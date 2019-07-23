@@ -8,6 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-admin',
+    'name'=> $params['nama_sistem'],
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'admin\controllers',
     'bootstrap' => ['log'],

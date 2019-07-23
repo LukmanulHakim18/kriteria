@@ -1,0 +1,916 @@
+[
+  {"standar": 1,
+  "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
+  "butir": [
+    {
+      "tabel": "1",
+      "isi": "Kerjasama Tridharma",
+      "dokumen_sumber": [
+        {
+          "kode": "1.01.1",
+          "dokumen": "Laporan Realisasi Kerjasama"
+        },
+        {
+          "kode": "1.01.2",
+          "dokumen": "Surat Perjanjian Kerjasama"
+        },
+        {
+          "kode": "1.01.3",
+          "dokumen": "Surat Tugas"
+        }
+      ],
+      "dokumen_pendukung": [
+        {
+          "kode": "1.02.1",
+          "dokumen": "Berita Acara"
+        },
+        {
+          "kode": "1.02.2",
+          "dokumen": "Foto-foto kegiatan"
+        }
+      ]
+    }
+  ]
+  },
+  {"standar": 2,
+    "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
+    "butir": [
+      {
+        "tabel": "2.a",
+        "isi": "Seleksi Mahasiswa",
+        "dokumen_sumber": [
+          {
+            "kode": "2.a.01.1",
+            "dokumen": "Laporan Penerimaan Mahasiswa Baru"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "2.a.02.1",
+            "dokumen": "Bukti Pembayaran SPP"
+          }
+        ]
+      },
+      {
+        "tabel": "2.b",
+        "isi": "Mahasiswa Asing",
+        "dokumen_sumber": [
+          {
+            "kode": "2.b.01.1",
+            "dokumen": "Laporan Penerimaan Mahasiswa Baru"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "2.b.02.1",
+            "dokumen": "Bukti Pembayaran SPP"
+          }
+        ]
+      }
+    ]
+  },
+
+  {"standar": 3,
+    "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
+    "butir": [
+      {
+        "tabel": "3.a.1",
+        "isi": "Dosen Tetap Perguruan Tinggi",
+        "dokumen_sumber": [
+          {
+            "kode": "3.a.1.01.1",
+            "dokumen": "Daftar dosen per fakultas"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "3.a.1.02.1",
+            "dokumen": "SK Penetapan Dosen Fakultas"
+          }
+        ]
+      },
+      {
+        "tabel": "3.a.2",
+        "isi": "Dosen Pembimbing Utama Tugas Akhir",
+        "dokumen_sumber": [
+          {
+            "kode": "3.a.2.01.1",
+            "dokumen": "Daftar Pembimbing Tugas Akhir per fakultas"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "3.a.2.02.1",
+            "dokumen": "SK Pembimbing Tugas Akhir"
+          }
+        ]
+      },
+      {
+        "tabel": "3.a.3",
+        "isi": "Ekuivalen Waktu Pengajar Penuh (EWMP) Dosen Tetap Perguruan Tinggi",
+        "dokumen_sumber": [
+          {
+            "kode": "3.a.3.01.1",
+            "dokumen": "Laporan BKD"
+          },
+          {
+            "kode": "3.a.3.01.2",
+            "dokumen": "Dan seterusnya..."
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "3.a.3.02.1",
+            "dokumen": "SK Mengajar"
+          },
+          {
+            "kode": "3.a.3.02.2",
+            "dokumen": "dan seterusnya..."
+          }
+        ]
+      },
+      {
+        "tabel": "3.a.4",
+        "isi": "Dosen Tidak Tetap",
+        "dokumen_sumber": [
+          {
+            "kode": "3.a.4.01.1",
+            "dokumen": "Daftar dosen tidak tetap"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "3.a.4.02.1",
+            "dokumen": "FC ijazah"
+          },
+          {
+            "kode": "3.a.4.02.2",
+            "dokumen": "DST"
+          }
+        ]
+      },
+      {
+        "tabel": "3.a.5",
+        "isi": "Dosen Industri/Praktisi",
+        "dokumen_sumber": [
+          {
+            "kode": "3.a.5.01.1",
+            "dokumen": "Daftar dosen industri"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "3.a.5.02.1",
+            "dokumen": "FC ijazah"
+          }
+        ]
+      },
+      {
+        "tabel": "3.b.1",
+        "isi": "Pengakuan/Rekognisi Dosen",
+        "dokumen_sumber": [
+          {
+            "kode": "3.b.1.01.1",
+            "dokumen": "Daftar Rekognisi Dosen Fakultas"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "3.b.1.02.1",
+            "dokumen": "Sertifikat"
+          }
+        ]
+      },
+      {
+        "tabel": "3.b.2",
+        "isi": "Penelitian DTPS",
+        "dokumen_sumber": [
+          {
+            "kode": "3.b.2.01.1",
+            "dokumen": "Daftar Penelitian DTPS"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "3.b.2.02.1",
+            "dokumen": "SK Penelitian"
+          },
+          {
+            "kode": "3.b.2.02.2",
+            "dokumen": "Laporan Penelitian"
+          }
+        ]
+      },
+      {
+        "tabel": "3.b.3",
+        "isi": "PkM DTPS",
+        "dokumen_sumber": [
+          {
+            "kode": "3.b.3.01.1",
+            "dokumen": "Daftar PkM DTPS"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "3.b.3.02.1",
+            "dokumen": "SK PkM"
+          },
+          {
+            "kode": "3.b.3.02.2",
+            "dokumen": "Laporan PkM"
+          }
+        ]
+      },
+      {
+        "tabel": "3.b.4",
+        "isi": "Pagelaran/Pameran/Presentasi/Publikasi Ilmiah DTPS",
+        "dokumen_sumber": [
+          {
+            "kode": "3.b.4.01.1",
+            "dokumen": "Daftar Pagelaran/Pameran/ Presentasi/Publikasi Ilmiah DTPS"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "3.b.4.02.1",
+            "dokumen": "Foto Kegiatan"
+          },
+          {
+            "kode": "3.b.4.02.2",
+            "dokumen": "dan seterusnya…"
+          }
+        ]
+      },
+      {
+        "tabel": "3.b.5.1",
+        "isi": "Luaran Penelitian/PkM Lainnya - HKI (Paten, Paten Sederhana)",
+        "dokumen_sumber": [
+          {
+            "kode": "3.b.5.1.01.1",
+            "dokumen": "Laporan Luaran Penelitian/PkM Lainnya - HKI (Paten, Paten Sederhana"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "3.b.5.1.02.1",
+            "dokumen": "Foto Kegiatan"
+          },
+          {
+            "kode": "3.b.5.1.02.2",
+            "dokumen": "SK"
+          }
+        ]
+      },
+      {
+        "tabel": "3.b.5.2",
+        "isi": "Luaran Penelitian/PkM Lainnya - HKI (Hak Cipta, Desain Produk Industri, dll.)",
+        "dokumen_sumber": [
+          {
+            "kode": "3.b.5.2.01.1",
+            "dokumen": "Laporan Luaran Penelitian/PkM Lainnya - HKI (Hak Cipta, Desain Produk Industri, dll.)"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "3.b.5.2.02.1",
+            "dokumen": "Foto Kegiatan"
+          },
+          {
+            "kode": "3.b.5.2.02.2",
+            "dokumen": "SK"
+          }
+        ]
+      },
+      {
+        "tabel": "3.b.5.3",
+        "isi": "Luaran Penelitian/PkM Lainnya - Teknologi Tepat Guna, Produk, Karya Seni, Rekayasa Sosial",
+        "dokumen_sumber": [
+          {
+            "kode": "3.b.5.3.01.1",
+            "dokumen": "Laporan Luaran Penelitian/PkM Lainnya - Teknologi Tepat Guna, Produk, Karya Seni, Rekayasa Sosial"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "3.b.5.3.02.1",
+            "dokumen": "Foto Kegiatan"
+          }
+        ]
+      },
+      {
+        "tabel": "3.b.5.4",
+        "isi": "Luaran Penelitian/PkM Lainnya - Buku ber-ISBN, Book Chapter",
+        "dokumen_sumber": [
+          {
+            "kode": "3.b.5.4.01.1",
+            "dokumen": "Laporan Luaran Penelitian/PkM Lainnya - Buku ber-ISBN, Book Chapter"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "3.b.5.4.02.1",
+            "dokumen": "Foto Kegiatan"
+          }
+        ]
+      },
+      {
+        "tabel": "3.b.6",
+        "isi": "Karya Ilmiah DTPS yang Disitasi",
+        "dokumen_sumber": [
+          {
+            "kode": "3.b.6.01.1",
+            "dokumen": "Laporan Karya Ilmiah DTPS yang Disitasi"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "3.b.6.02.1",
+            "dokumen": "Foto Kegiatan"
+          }
+        ]
+      },
+      {
+        "tabel": "3.b.7",
+        "isi": "Produk/Jasa DTPS yang Diadopsi oleh Industri/Masyarakat",
+        "dokumen_sumber": [
+          {
+            "kode": "3.b.7.01.1",
+            "dokumen": "Laporan Produk/Jasa DTPS yang Diadopsi oleh Industri/Masyarakat"
+          },
+          {
+            "kode": "3.b.7.01.2",
+            "dokumen": "Surata Pengakuan oleh Industri/Masyarakat"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "3.b.7.02.1",
+            "dokumen": "Foto Kegiatan"
+          },
+          {
+            "kode": "3.b.7.02.2",
+            "dokumen": "dan seterusnya…"
+          }
+        ]
+      }
+    ]
+  },
+
+
+  {"standar": 4,
+    "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
+    "butir": [
+      {
+        "tabel": "4.b",
+        "isi": "Penggunaan Dana",
+        "dokumen_sumber":[
+          {
+            "kode": "4.b.01.1",
+            "dokumen":"Laporan Keuangan"
+          },
+          {
+            "kode": "4.b.01.2",
+            "dokumen":"RKAKL"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "4.b.02.1",
+            "dokumen":"Bukti-bukti"
+          }
+        ]
+
+      }
+
+    ]
+  },
+
+  {"standar": 5,
+    "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
+    "butir": [
+
+      {
+        "tabel": "5.a",
+        "isi": "Kurikulum, Capaian Pembelajaran, dan Rencana Pembelajaran",
+        "dokumen_sumber": [
+          {
+            "kode": "5.a.01.1",
+            "dokumen": "Dokumen Kurikulum"
+          },
+          {
+            "kode": "5.a.01.2",
+            "dokumen": "RPS"
+          },
+          {
+            "kode": "5.a.01.3",
+            "dokumen": "Laporan Review Kurikulum"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "5.a.02.1",
+            "dokumen": "Berita Acara"
+          },
+          {
+            "kode": "5.a.02.2",
+            "dokumen": "Notulen"
+          },
+          {
+            "kode": "5.a.02.3",
+            "dokumen": "Daftar Hadir"
+          }
+        ]
+      },
+      {
+        "tabel": "5.b",
+        "isi": "Integrasi Kegiatan Penelitian/PkM dalam Pembelajaran",
+        "dokumen_sumber": [
+          {
+            "kode": "5.b.01.1",
+            "dokumen": "RPS per prodi"
+          },
+          {
+            "kode": "5.b.01.2",
+            "dokumen": "Daftar Penellitian per dosen"
+          },
+          {
+            "kode": "5.b.01.3",
+            "dokumen": "Daftar PkM perdosen"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "5.b.02.1",
+            "dokumen": "Laporan Penelitian"
+          },
+          {
+            "kode": "5.b.02.2",
+            "dokumen": "Laporan PkM"
+          }
+        ]
+      },
+      {
+        "tabel": "5.b",
+        "isi": "Integrasi Kegiatan Penelitian/PkM dalam Pembelajaran",
+        "dokumen_sumber": [
+          {
+            "kode": "5.b.01.1",
+            "dokumen": "RPS per prodi"
+          },
+          {
+            "kode": "5.b.01.2",
+            "dokumen": "Daftar Penellitian per dosen"
+          },
+          {
+            "kode": "5.b.01.3",
+            "dokumen": "Daftar PkM perdosen"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "5.b.02.1",
+            "dokumen": "Laporan Penelitian"
+          },
+          {
+            "kode": "5.b.02.2",
+            "dokumen": "Laporan PkM"
+          }
+        ]
+      },
+      {
+        "tabel": "5.c",
+        "isi": "Kepuasan Mahasiswa",
+        "dokumen_sumber": [
+          {
+            "kode": "5.c.01.1",
+            "dokumen": "Instrumen"
+          },
+          {
+            "kode": "5.c.01.2",
+            "dokumen": "Laporan Survei"
+          },
+          {
+            "kode": "5.c.01.3",
+            "dokumen": "Hasil analisis reliabilitas dan validitas instrumen"
+          },
+          {
+            "kode": "5.c.01.4",
+            "dokumen": "Rekap hasil kusioner pembelajaran mahasiswa"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "5.c.02.1",
+            "dokumen": "SK"
+          }
+        ]
+      }
+    ]
+  },
+  {"standar": 6,
+    "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
+    "butir": [
+      {
+        "tabel": "2.a",
+        "isi": "Seleksi Mahasiswa",
+        "dokumen_sumber": [
+          {
+            "kode": "2.a.01.1",
+            "dokumen": "Laporan Penerimaan Mahasiswa Baru"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "2.a.02.1",
+            "dokumen": "Bukti Pembayaran SPP"
+          }
+        ]
+      },
+      {
+        "tabel": "2.b",
+        "isi": "Mahasiswa Asing",
+        "dokumen_sumber": [
+          {
+            "kode": "2.b.01.1",
+            "dokumen": "Laporan Penerimaan Mahasiswa Baru"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "2.b.02.1",
+            "dokumen": "Bukti Pembayaran SPP"
+          }
+        ]
+      }
+    ]
+  },
+
+  {"standar": 7,
+    "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
+    "butir": [
+
+      {
+        "tabel": "7",
+        "isi": "PkM DTPS yang Melibatkan Mahasiswa",
+        "dokumen_sumber": [
+          {
+            "kode": "7.01.1",
+            "dokumen": "Laporan PkM yang melibatkan mahasiswa"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "7.02.1",
+            "dokumen": "Laporan PkM"
+          }
+        ]
+      }
+    ]
+  },
+
+
+  {"standar": 8,
+    "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
+    "butir": [
+      {
+        "tabel": "8.a",
+        "isi": "IPK Lulusan",
+        "dokumen_sumber": [
+          {
+            "kode": "8.a.01.1",
+            "dokumen": "Daftar IPK Lulusan"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "-",
+            "dokumen": "-"
+          }
+        ]
+      },
+      {
+        "tabel": "8.b.1",
+        "isi": "Prestasi Akademik Mahasiswa",
+        "dokumen_sumber": [
+          {
+            "kode": "8.b.1.01.1",
+            "dokumen": "Daftar Prestasi Mahasiswa"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "8.b.1.02.1",
+            "dokumen": "Sertifikat"
+          }
+        ]
+      },
+      {
+        "tabel": "8.b.2",
+        "isi": "Prestasi Non-akademik Mahasiswa",
+        "dokumen_sumber": [
+          {
+            "kode": "8.b.2.01.1",
+            "dokumen": "Daftar Prestasi Mahasiswa"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "8.b.2.02.1",
+            "dokumen": "Sertifikat"
+          }
+        ]
+      },
+      {
+        "tabel": "8.c",
+        "isi": "Masa Studi Lulusan",
+        "dokumen_sumber": [
+          {
+            "kode": "8.c.01.1",
+            "dokumen": "Data masa studi TS-4 s.d TS (mencakup data jumlah mhs diterima, jumlah mhs lulus per tahun, rata-rata masa studi)"
+          },
+          {
+            "kode": "8.c.01.2",
+            "dokumen": "Daftar Wisudawan"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "8.c.02.1",
+            "dokumen": "Buku Wisuda"
+          }
+        ]
+      },
+      {
+        "tabel": "8.d.1",
+        "isi": "Waktu Tunggu Lulusan",
+        "dokumen_sumber": [
+          {
+            "kode": "8.d.1.01.1",
+            "dokumen": "Data waktu tunggu lulusan TS-4 s.d TS-2, yang mencakup jumlah lulusan, waktu tunggu bekerja, jumlah lulusan yang dipesan sebelum lulus."
+          },
+          {
+            "kode": "8.d.1.01.2",
+            "dokumen": "Data tracer study"
+          },
+          {
+            "kode": "8.d.1.01.3",
+            "dokumen": "Surat resmi dari lembaga lain yang meminta lulusan PS untuk ikut mengabdi"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "8.d.02.1",
+            "dokumen": "Buku Wisuda"
+          }
+        ]
+      },
+      {
+        "tabel": "8.d.2",
+        "isi": "Kesesuaian Bidang Kerja Lulusan",
+        "dokumen_sumber": [
+          {
+            "kode": "8.d.2.01.1",
+            "dokumen": "Data kesesuaian bidang kerja lulusan TS-4 s.d. TS-2., yang mencakup jumlah lulusan dan tingat kesesuain bidang kerja."
+          },
+          {
+            "kode": "8.d.2.01.2",
+            "dokumen": "Data tracer study"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "8.d.2.02.1",
+            "dokumen": "Buku Wisuda"
+          },
+          {
+            "kode": "8.d.2.02.2",
+            "dokumen": "Kurikulum"
+          }
+        ]
+      },
+      {
+        "tabel": "8.e.1",
+        "isi": "Tempat Kerja Lulusan",
+        "dokumen_sumber": [
+          {
+            "kode": "8.e.1.01.1",
+            "dokumen": "Data tempat kerja lulusan TS-4 s.d TS-2, mencakup total jumlah lulusan, jumlah lulusan yang bekerja dan tingkat/ukuran tempat kerja/wiraswasta"
+          },
+          {
+            "kode": "8.e.1.01.2",
+            "dokumen": "Data tracer study"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "-",
+            "dokumen": "-"
+          }
+        ]
+      },
+      {
+        "tabel": "8.e.2",
+        "isi": "Kepuasan Pengguna Lulusan",
+        "dokumen_sumber": [
+          {
+            "kode": "8.e.2.01.1",
+            "dokumen": "Laporan hasil survey kepuasan pengguna lulusan (mencakup data tingkat kepuasan pengguna, rencana tindak lanjut)"
+          },
+          {
+            "kode": "8.e.2.01.2",
+            "dokumen": "Data survey kepuasan pengguna lulusan"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "8.e.2.02.1",
+            "dokumen": "Kuesioner kepuasan pengguna lulusan"
+          },
+          {
+            "kode": "8.e.2.02.2",
+            "dokumen": "Notulen rapat prodi/tim tracer study"
+          },
+          {
+            "kode": "8.e.2.02.3",
+            "dokumen": "Daftar Hadir"
+          },
+          {
+            "kode": "8.e.2.02.4",
+            "dokumen": "Foto Kegiatan"
+          }
+        ]
+      },
+      {
+        "tabel": "8.f.1",
+        "isi": "Pagelaran/Pameran/Presentasi/Publikasi Ilmiah Mahasiswa",
+        "dokumen_sumber": [
+          {
+            "kode": "8.f.1.01.1",
+            "dokumen": "Data publikasi ilmiah mahasiswa TS-2 s.d TS, baik secara mandiri atau bersama dosen tetap prodi"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "8.f.1.02.1",
+            "dokumen": "Contoh publikasi ilmiah"
+          }
+        ]
+      },
+      {
+        "tabel": "8.f.2",
+        "isi": "Karya Ilmiah Mahasiswa yang Disitasi",
+        "dokumen_sumber": [
+          {
+            "kode": "8.f.2.01.1",
+            "dokumen": "Data karya ilmiah mahasiswa yang disitasi dala TS-2 s.d TS, baik mandiri atau bersama dosen tetap prodi"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "8.f.2.02.1",
+            "dokumen": "Contoh karya ilmiah yang disitasi"
+          }
+        ]
+      },
+      {
+        "tabel": "8.f.3",
+        "isi": "Produk/Jasa Mahasiswa yang Diadopsi oleh Industri/Masyarakat",
+        "dokumen_sumber": [
+          {
+            "kode": "8.f.3.01.1",
+            "dokumen": "Data produk/jasa mahasiswa yang diadopsi dala TS-2 s.d TS, baik mandiri atau bersama dosen tetap prodi"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "8.f.3.02.1",
+            "dokumen": "Contoh"
+          }
+        ]
+      },
+      {
+        "tabel": "8.f.4.1",
+        "isi": "Luaran Penelitian yang Dihasilkan Mahasiswa - HKI (Paten, Paten Sederhana)",
+        "dokumen_sumber": [
+          {
+            "kode": "8.f.4.1.01.1",
+            "dokumen": "Data luaran penelitian/ PkM mahasiswa TS-2 s.d TS, baik mandiri atau bersama dosen tetap prodi, berupa paten atau paten sederhana"
+          },
+          {
+            "kode": "8.f.4.1.01.2",
+            "dokumen": "Surat penetapan oleh Kemenkumham atau kementerian lain yang berwenang"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "8.f.4.1.02.1",
+            "dokumen": "Laporan penelitian/PkM"
+          },
+          {
+            "kode": "8.f.4.1.02.2",
+            "dokumen": "Contoh"
+          }
+        ]
+      },
+      {
+        "tabel": "8.f.4.2",
+        "isi": "Luaran Penelitian yang Dihasilkan Mahasiswa - HKI (Hak Cipta, Desain Produk Industri, dll.)",
+        "dokumen_sumber": [
+          {
+            "kode": "8.f.4.2.01.1",
+            "dokumen": "Data luaran penelitian/ PkM mahasiswa TS-2 s.d TS, baik mandiri atau bersama dosen tetap prodi, berupa hak cipta, desain produk industri, dll"
+          },
+          {
+            "kode": "8.f.4.2.01.2",
+            "dokumen": "Surat penetapan oleh Kemenkumham atau kementerian lain yang berwenang"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "8.f.4.2.02.1",
+            "dokumen": "Laporan penelitian/PkM"
+          },
+          {
+            "kode": "8.f.4.2.02.2",
+            "dokumen": "Contoh Produk"
+          }
+        ]
+      },
+      {
+        "tabel": "8.f.4.2",
+        "isi": "Luaran Penelitian yang Dihasilkan Mahasiswa - HKI (Hak Cipta, Desain Produk Industri, dll.)",
+        "dokumen_sumber": [
+          {
+            "kode": "8.f.4.2.01.1",
+            "dokumen": "Data luaran penelitian/ PkM mahasiswa TS-2 s.d TS, baik mandiri atau bersama dosen tetap prodi, berupa hak cipta, desain produk industri, dll"
+          },
+          {
+            "kode": "8.f.4.2.01.2",
+            "dokumen": "Surat penetapan oleh Kemenkumham atau kementerian lain yang berwenang"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "8.f.4.2.02.1",
+            "dokumen": "Laporan penelitian/PkM"
+          },
+          {
+            "kode": "8.f.4.2.02.2",
+            "dokumen": "Contoh Produk"
+          }
+        ]
+      },
+      {
+        "tabel": "8.f.4.3",
+        "isi": "Luaran Penelitian yang Dihasilkan Mahasiswa -Teknologi Tepat Guna, Produk, Karya Seni, Rekayasa Sosial",
+        "dokumen_sumber": [
+          {
+            "kode": "8.f.4.3.01.1",
+            "dokumen": "Data luaran penelitian/ PkM mahasiswa TS-2 s.d TS, baik mandiri atau bersama dosen tetap prodi, berupa teknologi tepat guna, produk terstandar/tersertifikasi, rekayasa sosial, dll"
+          },
+          {
+            "kode": "8.f.4.3.01.2",
+            "dokumen": "Surat penetapan oleh Kemenkumham atau kementerian lain yang berwenang"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "8.f.4.3.02.1",
+            "dokumen": "Laporan penelitian/PkM"
+          },
+          {
+            "kode": "8.f.4.3.02.2",
+            "dokumen": "Contoh Produk"
+          }
+        ]
+      },
+      {
+        "tabel": "8.f.4.4",
+        "isi": "Luaran Penelitian yang Dihasilkan mahasiswa - Buku ber-ISBN, Book Chapter",
+        "dokumen_sumber": [
+          {
+            "kode": "8.f.4.4.01.1",
+            "dokumen": "Data luaran penelitian/PkM mahasiswa TS-2 s.d TS, baik mandiri atau bersama dosen tetap prodi, berupa Buku der-ISBN, Book chapter"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "8.f.4.3.02.1",
+            "dokumen": "Laporan penelitian/PkM"
+          },
+          {
+            "kode": "8.f.4.3.02.2",
+            "dokumen": "Contoh buku, book chapter"
+          }
+        ]
+      }
+    ]
+  },
+
+
+  {"standar": 9,
+    "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
+    "butir": [
+    ]
+  }
+]

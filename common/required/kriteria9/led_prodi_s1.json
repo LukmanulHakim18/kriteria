@@ -1,0 +1,2662 @@
+[
+    {
+        "standar": 1,
+        "judul" : " VISI, MISI, TUJUAN DAN STRATEGI ",
+        "butir":[
+            {
+            "nomor": "1",
+            "isi": "Latar Belakang",
+            "dokumen_sumber":[
+              {
+                "kode": "1.1.1.1", 
+                "dokumen":"Rencana Induk Pengembangan (RIP)"
+              },
+              {
+                "kode": "1.1.1.2",
+                "dokumen":"Rencana Strategis (RENSTRA)"
+              },
+              {
+                "kode": "1.1.1.3",
+                "dokumen":"Rencana Operasional (RENOP)"
+              }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "1.1.2.1",
+                "dokumen":"Notulen Penyusun RIP, RENSTRA dan RENOP"
+                },
+                {
+                "kode": "1.1.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "1.1.2.3",
+                "dokumen":"Foto Kegiatan"
+                }
+            ]
+          
+            },
+            {
+            "nomor": "2",
+            "isi": "Kebijakan",
+            "dokumen_sumber":[
+              {
+                "kode": "1.2.1.1",
+                "dokumen":"Pedoman penyusunan, Evaluasi, Implementasi VMTS kedalam program pengembangan UPPS dan Program Studi"
+              },
+              {
+                "kode": "1.2.1.2",
+                "dokumen":"Rencana Induk Pengembangan (RIP)"
+              },
+              {
+                "kode": "1.2.1.3",
+                "dokumen":"RENSTRA Fakultas"
+              }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "1.2.2.1",
+                "dokumen":"Notulen Penyusunan Pedoman"
+                },
+                {
+                "kode": "1.2.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "1.2.2.3",
+                "dokumen":"Foto Kegiatan"
+                }
+            ]
+          
+            },
+            {
+            "nomor": "3",
+            "isi": "Mekanisme Penetapan dan Strategi Pencapaian Standar",
+            "dokumen_sumber":[
+                {
+                "kode": "1.3.1.1",
+                "dokumen":"Rencana Induk Pengembangan (RIP)"
+                },
+                {
+                "kode": "1.3.1.2",
+                "dokumen":"Rencana Strategis (RENSTRA) Fakultas"
+                },
+                {
+                "kode": "1.3.1.3",
+                "dokumen":"Sasaran Mutu"
+                },
+                {
+                "kode": "1.3.1.4",
+                "dokumen":"Standar VMTS"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "1.3.2.1",
+                "dokumen":"Notulen Penyusun RIP, RENSTRA dan RENOP"
+                },
+                {
+                "kode": "1.3.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "1.3.2.3",
+                "dokumen":"Foto Kegiatan"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "4",
+            "isi": "Indikator Kinerja Utama",
+            "dokumen_sumber":[
+                {
+                "kode": "1.4.1.1",
+                "dokumen":"Dokumen Standar Mutu Fakultas dan Prodi"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "1.4.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "1.4.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "1.4.2.3",
+                "dokumen":"SK Penetapan"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "5",
+            "isi": "Indikator Kinerja Tambahan",
+            "dokumen_sumber":[
+                {
+                "kode": "1.5.1.1",
+                "dokumen":"Dokumen Standar Mutu Fakultas dan Prodi"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "1.5.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "1.5.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "1.5.2.3",
+                "dokumen":"SK Penetapan"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "6",
+            "isi": "Evaluasi Capaian Kinerja",
+            "dokumen_sumber":[
+                {
+                "kode": "1.6.1.1",
+                "dokumen":"Laporan Kinerja Fakultas dan Prodi"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "1.6.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "1.6.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "7",
+            "isi": "Penjaminan Mutu",
+            "dokumen_sumber":[
+                {
+                "kode": "1.7.1.1",
+                "dokumen":"Kebijakan Mutu"
+                },
+                {
+                "kode": "1.7.1.2",
+                "dokumen":"Manual Mutu"
+                },
+                {
+                "kode": "1.7.1.3",
+                "dokumen":"Standar Mutu"
+                },
+                {
+                "kode": "1.7.1.4",
+                "dokumen":"Sasaran Mutu"
+                },
+                {
+                "kode": "1.7.1.5",
+                "dokumen":"SOP"
+                },
+                {
+                "kode": "1.7.1.6",
+                "dokumen":"Laporan Monev"
+                },
+                {
+                "kode": "1.7.1.7",
+                "dokumen":"Pedoman Monev"
+                },
+                {
+                "kode": "1.7.1.8",
+                "dokumen":"Laporan Audit"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "1.7.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "1.7.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "1.7.2.3",
+                "dokumen":"SK Penetapan"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "8",
+            "isi": "Pemahaman dan Kepuasan Pengguna",
+            "dokumen_sumber":[
+                {
+                "kode": "1.8.1.1",
+                "dokumen":"Pedoman Survey Pemahaman Visi, Misi, Tujuan dan Sasaran yang menunjukkan bahwa survey dilaksanakan secara konsisten, dan ditindaklanjuti secara berkala dan tersistem"
+                },
+                {
+                "kode": "1.8.1.2",
+                "dokumen":"Hasil Survey Pemahaman VMTS"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "1.8.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "1.8.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "9",
+            "isi": "Kesimpulan hasil evaluasi ketercapaian standar serta tindak lanjut",
+            "dokumen_sumber":[
+                {
+                "kode": "1.9.1.1",
+                "dokumen":"Laporan Evaluasi ketercapaian Standar Mutu VMTS"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "1.9.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "1.9.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            }
+    
+            
+        ]
+    }
+    ,
+    {
+        "standar": 2,
+        "judul" : "TATA PAMONG, TATA KELOLA DAN KERJASAMA",
+        "butir":[
+            {
+            "nomor": "1",
+            "isi": "Latar Belakang",
+            "dokumen_sumber":[
+              {
+                "kode": "2.1.1.1", 
+                "dokumen":"Rencana Induk Pengembangan (RIP)"
+              },
+              {
+                "kode": "2.1.1.2",
+                "dokumen":"Rencana Strategis (RENSTRA)"
+              },
+              {
+                "kode": "2.1.1.3",
+                "dokumen":"Rencana Operasional (RENOP)"
+              }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "2.1.2.1",
+                "dokumen":"Notulen Penyusun RIP, RENSTRA dan RENOP"
+                },
+                {
+                "kode": "2.1.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "2.1.2.3",
+                "dokumen":"Foto Kegiatan"
+                }
+            ]
+          
+            },
+            {
+            "nomor": "2",
+            "isi": "Kebijakan",
+            "dokumen_sumber":[
+              {
+                "kode": "2.2.1.1",
+                "dokumen":"Pedoman penyusunan, Evaluasi, Implementasi VMTS kedalam program pengembangan UPPS dan Program Studi"
+              },
+              {
+                "kode": "2.2.1.2",
+                "dokumen":"Rencana Induk Pengembangan (RIP)"
+              },
+              {
+                "kode": "2.2.1.3",
+                "dokumen":"RENSTRA Fakultas"
+              }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "2.2.2.1",
+                "dokumen":"Notulen Penyusunan Pedoman"
+                },
+                {
+                "kode": "2.2.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "2.2.2.3",
+                "dokumen":"Foto Kegiatan"
+                }
+            ]
+          
+            },
+            {
+            "nomor": "3",
+            "isi": "Mekanisme Penetapan dan Strategi Pencapaian Standar",
+            "dokumen_sumber":[
+                {
+                "kode": "2.3.1.1",
+                "dokumen":"Rencana Induk Pengembangan (RIP)"
+                },
+                {
+                "kode": "2.3.1.2",
+                "dokumen":"Rencana Strategis (RENSTRA) Fakultas"
+                },
+                {
+                "kode": "2.3.1.3",
+                "dokumen":"Sasaran Mutu"
+                },
+                {
+                "kode": "2.3.1.4",
+                "dokumen":"Standar VMTS"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "2.3.2.1",
+                "dokumen":"Notulen Penyusun RIP, RENSTRA dan RENOP"
+                },
+                {
+                "kode": "2.3.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "2.3.2.3",
+                "dokumen":"Foto Kegiatan"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "4",
+            "isi": "Indikator Kinerja Utama",
+            "dokumen_sumber":[
+                {
+                "kode": "2.4.1.1",
+                "dokumen":"Dokumen Standar Mutu Fakultas dan Prodi"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "2.4.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "2.4.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "2.4.2.3",
+                "dokumen":"SK Penetapan"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "5",
+            "isi": "Indikator Kinerja Tambahan",
+            "dokumen_sumber":[
+                {
+                "kode": "2.5.1.1",
+                "dokumen":"Dokumen Standar Mutu Fakultas dan Prodi"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "2.5.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "2.5.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "2.5.2.3",
+                "dokumen":"SK Penetapan"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "6",
+            "isi": "Evaluasi Capaian Kinerja",
+            "dokumen_sumber":[
+                {
+                "kode": "2.6.1.1",
+                "dokumen":"Laporan Kinerja Fakultas dan Prodi"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "2.6.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "2.6.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "7",
+            "isi": "Penjaminan Mutu",
+            "dokumen_sumber":[
+                {
+                "kode": "2.7.1.1",
+                "dokumen":"Kebijakan Mutu"
+                },
+                {
+                "kode": "2.7.1.2",
+                "dokumen":"Manual Mutu"
+                },
+                {
+                "kode": "2.7.1.3",
+                "dokumen":"Standar Mutu"
+                },
+                {
+                "kode": "2.7.1.4",
+                "dokumen":"Sasaran Mutu"
+                },
+                {
+                "kode": "2.7.1.5",
+                "dokumen":"SOP"
+                },
+                {
+                "kode": "2.7.1.6",
+                "dokumen":"Laporan Monev"
+                },
+                {
+                "kode": "2.7.1.7",
+                "dokumen":"Pedoman Monev"
+                },
+                {
+                "kode": "2.7.1.8",
+                "dokumen":"Laporan Audit"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "2.7.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "2.7.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "2.7.2.3",
+                "dokumen":"SK Penetapan"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "8",
+            "isi": "Pemahaman dan Kepuasan Pengguna",
+            "dokumen_sumber":[
+                {
+                "kode": "2.8.1.1",
+                "dokumen":"Pedoman Survey Pemahaman Visi, Misi, Tujuan dan Sasaran yang menunjukkan bahwa survey dilaksanakan secara konsisten, dan ditindaklanjuti secara berkala dan tersistem"
+                },
+                {
+                "kode": "2.8.1.2",
+                "dokumen":"Hasil Survey Pemahaman VMTS"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "2.8.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "2.8.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "9",
+            "isi": "Kesimpulan hasil evaluasi ketercapaian standar serta tindak lanjut",
+            "dokumen_sumber":[
+                {
+                "kode": "2.9.1.1",
+                "dokumen":"Laporan Evaluasi ketercapaian Standar Mutu VMTS"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "2.9.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "2.9.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            }
+    
+            
+        ]
+    }
+	,
+	{
+        "standar": 3,
+        "judul" : " MAHASISWA ",
+        "butir":[
+            {
+            "nomor": "1",
+            "isi": "Latar Belakang",
+            "dokumen_sumber":[
+              {
+                "kode": "3.1.1.1", 
+                "dokumen":"Dokumen Kebijakan penerimaan mahasiswa baru"
+              },
+              {
+                "kode": "3.1.1.2",
+                "dokumen":"Kebijakan seleksi mahasiswa baru"
+              },
+              {
+                "kode": "3.1.1.3",
+                "dokumen":"Dokumen instrumen terukur tes masuk mahasiswa baru"
+              },
+              {
+                "kode": "3.1.1.4",
+                "dokumen":"Dokumen kebijakan tentang mahasiswa asing yang berisi tentang jalur dan tatacara mengikuti program (Full time, part time, student exchange, credit earning dan kegiatan lain yang relevan)"
+              },
+              {
+                "kode": "3.1.1.5",
+                "dokumen":"Profil prodi"
+              },
+              {
+                "kode": "3.1.1.6",
+                "dokumen":"Kebijakan layanan kemahasiswaan"
+              }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "3.1.2.1",
+                "dokumen":"Notulensi penyusunan dokumen sumber"
+                },
+                {
+                "kode": "3.1.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "3.1.2.3",
+                "dokumen":"Foto Kegiatan"
+                }
+            ]
+          
+            },
+            {
+            "nomor": "2",
+            "isi": "Kebijakan",
+            "dokumen_sumber":[
+              {
+                "kode": "3.2.1.1",
+                "dokumen":"Dokumen Kebijakan penerimaan mahasiswa baru"
+              },
+              {
+                "kode": "3.2.1.2",
+                "dokumen":"Kebijakan seleksi mahasiswa baru"
+              },
+              {
+                "kode": "3.2.1.3",
+                "dokumen":"Dokumen instrumen terukur tes masuk mahasiswa baru"
+              },
+              {
+                "kode": "3.2.1.4",
+                "dokumen":"Dokumen kebijakan tentang mahasiswa asing yang berisi tentang jalur dan tatacara mengikuti program ( Full time, part time, student exchange, credit earning dan kegiatan lain yang relevan)."
+              },
+              {
+                "kode": "3.2.1.5",
+                "dokumen":"Kebijakan layanan kemahasiswaan yang mencakup pengembangan kemampuan penalaran, minat dan bakat, kegiatan bimbingan karir dan kewirausahaan, serta kegiatan peningkatan kesejahteraan (bimbingan dan konseling, beasiswa, dan kesehatan)."
+              }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "3.2.2.1",
+                "dokumen":"Notulen Penyusunan dokumen sumber"
+                },
+                {
+                "kode": "3.2.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "3.2.2.3",
+                "dokumen":"Foto Kegiatan"
+                }
+            ]
+          
+            },
+            {
+            "nomor": "3",
+            "isi": "Mekanisme Penetapan dan Strategi Pencapaian Standar",
+            "dokumen_sumber":[
+                {
+                "kode": "3.3.1.1",
+                "dokumen":"Dokumen Kebijakan penerimaan mahasiswa baru"
+                },
+                {
+                "kode": "3.3.1.2",
+                "dokumen":"Sasaran mutu"
+                },
+                {
+                "kode": "3.3.1.3",
+                "dokumen":"RIP"
+                },
+                {
+                "kode": "3.3.1.4",
+                "dokumen":"RENSTRA"
+                },
+                {
+                "kode": "3.3.1.5",
+                "dokumen":"RENOP"
+                },
+                {
+                "kode": "3.3.1.6",
+                "dokumen":"Pedoman Monev Kemahasiswaan"
+                },
+                {
+                "kode": "3.3.1.7",
+                "dokumen":"Standar Mutu Mahasiswa"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "3.3.2.1",
+                "dokumen":"Notulen Penyusun dokumen sumber"
+                },
+                {
+                "kode": "3.3.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "3.3.2.3",
+                "dokumen":"Foto Kegiatan"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "4",
+            "isi": "Indikator Kinerja Utama",
+            "dokumen_sumber":[
+                {
+                "kode": "3.4.1.1",
+                "dokumen":"Standar mutu mahasiswa"
+                },
+				{
+				"kode": "3.4.1.2",
+				"dokumen": "Dokumen kebijakan penerimaan mahasiswa baru"
+				},
+				{
+				"kode": "3.4.1.3",
+				"dokumen": "Rekapitulasi jumlah pendaftar mahasiswa baru, lulus seleksi, daftar ulang dan aktif. (Mahasiswa dalam negeri maupun mahasiswa asing)"
+				},
+				{
+				"kode": "3.4.1.4",
+				"dokumen": "Kebijakan layanan kemahasiswaan yang mencakup pengembangan kemampuan penalaran, minat dan bakat, kegiatan bimbingan karir dan kewirausahaan, serta kegiatan peningkatan kesejahteraan (bimbingan dan konseling, beasiswa, dan kesehatan)"
+				}
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "3.4.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "3.4.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "3.4.2.3",
+                "dokumen":"SK Penetapan tentang jalur penerimaan mahasiswa baru dan kuotanya"
+                },
+                {
+                "kode": "3.4.2.4",
+                "dokumen":"SK penetapan hasil yudisium penerimaan mahasiswa baru"
+                }
+            ]
+        
+            },
+            {
+            "nomor": "5",
+            "isi": "Indikator Kinerja Tambahan",
+            "dokumen_sumber":[
+                {
+                "kode": "3.5.1.1",
+                "dokumen":"Standar mutu mahasiswa"
+                },
+				{
+				"kode": "3.5.1.2",
+				"dokumen":"Dokumen kebijakan penerimaan mahasiswa baru"
+				},
+				{
+				"kode": "3.5.1.3",
+				"dokumen":"Rekapitulasi jumlah pendaftar mahasiswa baru, lulus seleksi, daftar ulang dan aktif."
+				},
+				{
+				"kode": "3.5.1.4",
+				"dokumen":"Kebijakan layanan kemahasiswaan yang mencakup pengembangan kemampuan penalaran, minat dan bakat, kegiatan bimbingan karir dan kewirausahaan, serta kegiatan peningkatan kesejahteraan"
+				}
+				
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "3.5.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "3.5.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "3.5.2.3",
+                "dokumen":"SK Penetapan"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "6",
+            "isi": "Evaluasi Capaian Kinerja",
+            "dokumen_sumber":[
+                {
+                "kode": "3.6.1.1",
+                "dokumen":"Pedoman Monev Kemahasiswaan yang mencakup identifikasi akar masalah, faktor pendukung keberhasilan dan faktor penghambat ketercapaian standar, serta tindak lanjut yang akan dilakukan."
+                },
+                {
+                "kode": "3.6.1.2",
+                "dokumen":"Hasil monev kemahasiswaan"
+                },
+                {
+                "kode": "3.6.1.3",
+                "dokumen":"Laporan proses dan penerimaan mahasiswa baru"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "3.6.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "3.6.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "7",
+            "isi": "Penjaminan Mutu",
+            "dokumen_sumber":[
+                {
+                "kode": "3.7.1.1",
+                "dokumen":"Laporan monev kemahasiswaan"
+                },
+                {
+                "kode": "3.7.1.2",
+                "dokumen":"Laporan audit kemahasiswaan"
+                },
+                {
+                "kode": "3.7.1.3",
+                "dokumen":"Laporan audit tindak lanjut kemahasiswaan"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "3.7.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "3.7.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "8",
+            "isi": "Kepuasan Pengguna",
+            "dokumen_sumber":[
+                {
+                "kode": "3.8.1.1",
+                "dokumen":"Pedoman penyusunan instrumen"
+                },
+                {
+                "kode": "3.8.1.2",
+                "dokumen":"Pedoman pelaksanaan survey (waktu, pelaksana, tempat, Dokumentasi) yang menunjukkan bahwa survey dilaksanakan secara konsisten, dan ditindaklanjuti secara berkala dan tersistem."
+                },
+                {
+                "kode": "3.8.1.3",
+                "dokumen":"Pedoman analisis hasil survey"
+                },
+                {
+                "kode": "3.8.1.4",
+                "dokumen":"hasil analisis dan review pelaksanaan pengukuran kepuasan mahasiswa."
+                },
+                {
+                "kode": "3.8.1.5",
+                "dokumen":"laporan tindak lanjut untuk perbaikan dan peningkatan mutu luaran secara berkala dan tersistem"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "3.8.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "3.8.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "9",
+            "isi": "Kesimpulan hasil evaluasi ketercapaian standar serta tindak lanjut",
+            "dokumen_sumber":[
+                {
+                "kode": "3.9.1.1",
+                "dokumen":"Laporan Evaluasi dan tindak lanjut terkait mahasiswa dan kemahasiswaan"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "3.9.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "3.9.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            }
+    
+            
+        ]
+    }
+	,
+	{
+        "standar": 4,
+        "judul" : " SUMBER DAYA MANUSIA ",
+        "butir":[
+            {
+            "nomor": "1",
+            "isi": "Latar Belakang",
+            "dokumen_sumber":[
+              {
+                "kode": "4.1.1.1", 
+                "dokumen":"Profil dosen (kualifikasi, kompetensi, proporsi dan beban kerja)."
+              },
+              {
+                "kode": "4.1.1.2",
+                "dokumen":"kinerja dosen (kepakaran, kinerja dan prestasi di bidang penelitian dan PkM)."
+              },
+              {
+                "kode": "4.1.1.3",
+                "dokumen":"Kebijakan dan program pengembangan dosen, tenaga kependidikan"
+              },
+              {
+                "kode": "4.1.1.4",
+                "dokumen":"Kebijakan pengelolaan SDM (dosen dan tenaga kependidikan)."
+              }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "4.1.2.1",
+                "dokumen":"Notulensi penyusunan dokumen sumber"
+                },
+                {
+                "kode": "4.1.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "4.1.2.3",
+                "dokumen":"Foto Kegiatan"
+                },
+                {
+                "kode": "4.1.2.4",
+                "dokumen":"SK Penetapan"
+                }
+            ]
+          
+            },
+            {
+            "nomor": "2",
+            "isi": "Kebijakan",
+            "dokumen_sumber":[
+              {
+                "kode": "4.2.1.1",
+                "dokumen":"Penetapan standar perguruan tinggi terkait kualifikasi, kompetensi, beban kerja, proporsi, serta pengelolaan SDM dosen."
+              },
+              {
+                "kode": "4.2.1.2",
+                "dokumen":"Penetapan standar perguruan tinggi terkait kualifikasi, kompetensi, beban kerja, proporsi, serta pengelolaan SDM Tenaga Kependidikan."
+              },
+              {
+                "kode": "4.2.1.3",
+                "dokumen":"Kebijakan pengelolaan SDM yang meliputi: Perencanaan, rekrutmen, seleksi, penempatan, pengembangan, retensi, pemberhentian, dan pensiun yang telah ditetapkan untuk memenuhi kebutuhan pendidikan, penelitian, dan PkM."
+              },
+              {
+                "kode": "4.2.1.4",
+                "dokumen":"Pedoman sosialisasi Kebijakan pengelolaan SDM yang meliputi: Perencanaan, rekrutmen, seleksi, penempatan, pengembangan, retensi, pemberhentian, dan pensiun yang telah ditetapkan untuk memenuhi kebutuhan pendidikan, penelitian, dan PkM."
+              },
+              {
+                "kode": "4.2.1.5",
+                "dokumen":"kebijakan pemberian reward and punishment, pengakuan, mentoring yang diimplementasikan untuk memotivasi dan mendukung pelaksanaan tridharma."
+              }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "4.2.2.1",
+                "dokumen":"Notulen Penyusunan dokumen sumber"
+                },
+                {
+                "kode": "4.2.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "4.2.2.3",
+                "dokumen":"Foto Kegiatan"
+                },
+                {
+                "kode": "4.2.2.4",
+                "dokumen":"SK penetapan"
+                }
+            ]
+          
+            },
+            {
+            "nomor": "3",
+            "isi": "Strategi pencapaian standar",
+            "dokumen_sumber":[
+                {
+                "kode": "4.3.1.1",
+                "dokumen":"RIP"
+                },
+                {
+                "kode": "4.3.1.2",
+                "dokumen":"RENSTRA"
+                },
+                {
+                "kode": "4.3.1.3",
+                "dokumen":"RENOP"
+                },
+                {
+                "kode": "4.3.1.4",
+                "dokumen":"Sasaran Mutu"
+                },
+                {
+                "kode": "4.3.1.5",
+                "dokumen":"Pedoman Monev SDM (Dosen dan Tendik)"
+                },
+                {
+                "kode": "4.3.1.6",
+                "dokumen":"Standar Mutu SDM"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "4.3.2.1",
+                "dokumen":"Notulen Penyusun dokumen sumber"
+                },
+                {
+                "kode": "4.3.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "4.3.2.3",
+                "dokumen":"Foto Kegiatan"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "4",
+            "isi": "Indikator Kinerja Utama",
+            "dokumen_sumber":[
+                {
+                "kode": "4.4.1.1",
+                "dokumen":"Standar mutu SDM"
+                },
+				{
+				"kode": "4.4.1.2",
+				"dokumen": "Profil dosen tetap yang mencakup jumlah dosen tetap, kualifikasi akademik, bidang keahlian, kepemilikan sertifikasi profesi, jabatan akademik, kesesuaian bidang keahlian dengan mata kuliah yang diampu."
+				},
+				{
+				"kode": "4.4.1.3",
+				"dokumen": "Beban kerja dosen tetap terkait dengan rasio jumlah mahasiswa, pembimbing utama tugas ahir, ekuivalensi waktu mengajar penuh."
+				},
+				{
+				"kode": "4.4.1.4",
+				"dokumen": "Profil dosen tidak tetap yang mencakup kualifikasi akademik bidang keahlian, kepemilikan sertifikasi profesi, jabatan akademik, kesesuaian bidang keahlian dengan mata kuliah yang diampu."
+				},
+				{
+				"kode": "4.4.1.5",
+				"dokumen": "Profil dosen yang mencakup pengakuan atas kepakaran/ prestasi/ kinerja, penelitian, PKM, publikasi ilmiah, karya ilmiah yang disitasi, serta luaran penelitian dan PKM lainnya, baik tingka wilayah nasional maupun internasional."
+				},
+				{
+				"kode": "4.4.1.6",
+				"dokumen": "Monev kesesuaian perencanaan dan pengembangan dosen."
+				},
+				{
+				"kode": "4.4.1.7",
+				"dokumen": "Profil tenaga kependidikan yang mencakup Kecukupan dan kualifikasi tenaga kependidikan berdasarkan jenis pekerjaannya (administrasi, laboran, teknisi, dll.) serta kepemilikan sertifikat kompetensi/profesi yang mendukung mutu hasil kerja sesuai dengan bidang tugasnya."
+				}
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "4.4.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "4.4.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "4.4.2.3",
+                "dokumen":"SK Penetapan kualifikasi dosen"
+                }
+            ]
+        
+            },
+            {
+            "nomor": "5",
+            "isi": "Indikator Kinerja Tambahan",
+            "dokumen_sumber":[
+                {
+                "kode": "4.5.1.1",
+                "dokumen":"Standar mutu SDM"
+                },
+				{
+				"kode": "4.5.1.2",
+				"dokumen":"Pedoman Monev SDM (Dosen dan Tendik)"
+				},
+				{
+				"kode": "4.5.1.3",
+				"dokumen":"Hasil Monev SDM (Dosen dan Tendik)"
+				}
+				
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "4.5.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "4.5.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "6",
+            "isi": "Evaluasi Capaian Kinerja",
+            "dokumen_sumber":[
+                {
+                "kode": "4.6.1.1",
+                "dokumen":"Pedoman Monev SDM (Dosen dan Tendik) yang mencakup identifikasi akar masalah, faktor pendukung keberhasilan dan faktor penghambat ketercapaian standar, serta tindak lanjut yang akan dilakukan."
+                },
+                {
+                "kode": "4.6.1.2",
+                "dokumen":"Pedoman penilaian kinerja Dosen dan Tendik"
+                },
+                {
+                "kode": "4.6.1.3",
+                "dokumen":"Hasil Monev SDM (Dosen dan Tendik)"
+                },
+                {
+                "kode": "4.6.1.4",
+                "dokumen":"Hasil Penilaian dan evaluasi kinerja Dosen dan Tendik"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "4.6.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "4.6.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "7",
+            "isi": "Penjaminan Mutu",
+            "dokumen_sumber":[
+                {
+                "kode": "4.7.1.1",
+                "dokumen":"Laporan monev SDM (Dosen dan Tendik)"
+                },
+                {
+                "kode": "4.7.1.2",
+                "dokumen":"Laporan audit SDM (Dosen dan Tendik)"
+                },
+                {
+                "kode": "4.7.1.3",
+                "dokumen":"Laporan audit tindak lanjut SDM (Dosen dan Tendik)"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "4.7.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "4.7.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "8",
+            "isi": "Kepuasan Pengguna",
+            "dokumen_sumber":[
+                {
+                "kode": "4.8.1.1",
+                "dokumen":"Pedoman Penyusunan Instrumen pengukuran kepuasan dosen dan tendik terhadap layanan pengelolaan dan pengembangan SDM"
+                },
+                {
+                "kode": "4.8.1.2",
+                "dokumen":"Pedoman pelaksanaan survey (waktu, pelaksana, tempat, Dokumentasi) yang menunjukkan bahwa survey dilaksanakan secara konsisten, dan ditindaklanjuti secara berkala dan tersistem."
+                },
+                {
+                "kode": "4.8.1.3",
+                "dokumen":"Pedoman analisis hasil survey"
+                },
+                {
+                "kode": "4.8.1.4",
+                "dokumen":"hasil analisis dan review pelaksanaan pengukuran kepuasan dosen dan tendik terhadap layanan pengelolaan dan pengembangan SDM."
+                },
+                {
+                "kode": "4.8.1.5",
+                "dokumen":"laporan tindak lanjut untuk perbaikan dan peningkatan mutu luaran secara berkala dan tersistem"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "4.8.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "4.8.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "9",
+            "isi": "Kesimpulan hasil evaluasi ketercapaian standar serta tindak lanjut",
+            "dokumen_sumber":[
+                {
+                "kode": "4.9.1.1",
+                "dokumen":"Laporan Evaluasi dan tindak lanjut terkait pengelolaan dan pengembangan SDM Dosen dan Tendik"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "4.9.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "4.9.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            }
+    
+            
+        ]
+    }
+	,
+	{
+        "standar": 5,
+        "judul" : " KEUANGAN, SARANA DAN PRASARANA ",
+        "butir":[
+            {
+            "nomor": "1",
+            "isi": "Latar Belakang",
+            "dokumen_sumber":[
+              {
+                "kode": "5.1.1.1", 
+                "dokumen":"Kinerja keuangan yang mencakup aspek perencanaan, pengalokasian, realisasi, dan pertanggungjawaban biaya operasional tridharma serta investasi"
+              },
+              {
+                "kode": "5.1.1.2",
+                "dokumen":"Ketersediaan sarana dan prasarana untuk menjamin pencapaian capaian pembelajaran dan peningkatan suasana akademik"
+              }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "5.1.2.1",
+                "dokumen":"Notulensi penyusunan dokumen sumber"
+                },
+                {
+                "kode": "5.1.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "5.1.2.3",
+                "dokumen":"Foto Kegiatan"
+                },
+                {
+                "kode": "5.1.2.4",
+                "dokumen":"SK Penetapan Alokasi anggaran"
+                }
+            ]
+          
+            },
+            {
+            "nomor": "2",
+            "isi": "Kebijakan",
+            "dokumen_sumber":[
+              {
+                "kode": "5.2.1.1",
+                "dokumen":"Kebijakan pengelolaan keuangan yang mencakup perencanaan, pengalokasian, realisasi, dan pertanggungjawaban biaya pendidikan."
+              },
+              {
+                "kode": "5.2.1.2",
+                "dokumen":"Kebijakan pengelolaan sarana dan prasarana yang mencakup perencanaan,pengadaan, pemanfaatan, pemeliharaan, dan penghapusan yang sesuai dengan kebijakan perguruan tinggi"
+              }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "5.2.2.1",
+                "dokumen":"Notulen Penyusunan dokumen sumber"
+                },
+                {
+                "kode": "5.2.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "5.2.2.3",
+                "dokumen":"Foto Kegiatan"
+                },
+                {
+                "kode": "5.2.2.4",
+                "dokumen":"SK penetapan"
+                }
+            ]
+          
+            },
+            {
+            "nomor": "3",
+            "isi": "Strategi pencapaian standar",
+            "dokumen_sumber":[
+                {
+                "kode": "5.3.1.1",
+                "dokumen":"RENSTRA keuangan dan sarpras"
+                },
+                {
+                "kode": "5.3.1.2",
+                "dokumen":"RENOP keuangan dan sarpras"
+                },
+                {
+                "kode": "5.3.1.3",
+                "dokumen":"Sasaran Mutu"
+                },
+                {
+                "kode": "5.3.1.4",
+                "dokumen":"Standar Mutu keuangan, sarana dan prasarana"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "5.3.2.1",
+                "dokumen":"Notulen Penyusun dokumen sumber"
+                },
+                {
+                "kode": "5.3.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "5.3.2.3",
+                "dokumen":"Foto Kegiatan"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "4",
+            "isi": "Indikator Kinerja Utama",
+            "dokumen_sumber":[
+                {
+                "kode": "5.4.1.1",
+                "dokumen":"Standar mutu keuangan, sarana dan prasarana"
+                },
+				{
+				"kode": "5.4.1.2",
+				"dokumen": "Data keuangan yang mencakup alokasi dan penggunaan dana untuk biaya operasional pendidikan, penggunaan dana untuk kegiatan penelitian dosen tetap, penggunaan dana untuk kegiatan PkM dosen tetap, penggunaan dana untuk investasi (SDM, sarana dan prasarana)"
+				},
+				{
+				"kode": "5.4.1.3",
+				"dokumen": "Data Kecukupan sarana yang mencakup ketersediaan, kepemilikan, kemutakhiran, dan kesiapgunaan fasilitas dan peralatan untuk pembelajaran maupun kegiatan penelitian dan PkM."
+				},
+				{
+				"kode": "5.4.1.4",
+				"dokumen": "Data Kecukupan sarana yang mencakup ketersediaan, kemutakhiran, dan kesiapgunaan fasilitas dan peralatan teknologi informasi dan komunikasi."
+				},
+				{
+				"kode": "5.4.1.5",
+				"dokumen": "Pengelolaan data pendidikan (sistem informasi manajemen perguruan tinggi: akademik, perpustakaan, SDM, keuangan, aset, decission support system, dll.)"
+				},
+				{
+				"kode": "5.4.1.6",
+				"dokumen": "Data ketersediaan fasilitas teknologi informasi untuk menyebarkan ilmu pengetahuan (e-learning, e-library, dll."
+				},
+				{
+				"kode": "5.4.1.7",
+				"dokumen": "Data Kecukupan prasarana yang mencakup ketersediaan, kepemilikan, kemutakhiran, kesiapgunaan prasarana untuk pembelajaran maupun kegiatan penelitian dan PkM, serta peruntukannya bagi mahasiswa berkebutuhan khusus."
+				},
+				{
+				"kode": "5.4.1.8",
+				"dokumen": "Pedoman Monev Keuangan dan Sarpras"
+				},
+				{
+				"kode": "5.4.1.9",
+				"dokumen": "Hasil Monev Keuangan dan Sarpras"
+				}
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "5.4.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "5.4.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+        
+            },
+            {
+            "nomor": "5",
+            "isi": "Indikator Kinerja Tambahan (yang melewati standar Nasional)",
+            "dokumen_sumber":[
+                {
+                "kode": "5.5.1.1",
+                "dokumen":"Standar mutu Keuangan, sarana dan prasarana"
+                },
+				{
+				"kode": "5.5.1.2",
+				"dokumen":"Pedoman Monev Keuangan dan Sarpras"
+				},
+				{
+				"kode": "5.5.1.3",
+				"dokumen":"Hasil Monev Keuangan dan Sarpras"
+				}
+				
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "5.5.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "5.5.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "6",
+            "isi": "Evaluasi Capaian Kinerja",
+            "dokumen_sumber":[
+                {
+                "kode": "5.6.1.1",
+                "dokumen":"Pedoman Monev Keuangan dan Sarpras yang mencakup identifikasi akar masalah, faktor pendukung keberhasilan dan faktor penghambat ketercapaian standar, serta tindak lanjut yang akan dilakukan."
+                },
+                {
+                "kode": "5.6.1.2",
+                "dokumen":"Hasil Monev Keuangan dan Sarpras"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "5.6.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "5.6.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "7",
+            "isi": "Penjaminan Mutu",
+            "dokumen_sumber":[
+                {
+                "kode": "5.7.1.1",
+                "dokumen":"Laporan monev Keuangan dan Sarpras"
+                },
+                {
+                "kode": "5.7.1.2",
+                "dokumen":"Laporan audit Keuangan dan Sarpras"
+                },
+                {
+                "kode": "5.7.1.3",
+                "dokumen":"Laporan audit tindak lanjut Keuangan dan Sarpras"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "5.7.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "5.7.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "8",
+            "isi": "Kepuasan Pengguna (Dosen dan Tendik)",
+            "dokumen_sumber":[
+                {
+                "kode": "5.8.1.1",
+                "dokumen":"Pedoman Penyusunan Instrumen pengukuran kepuasan sivitas akademika terhadap layanan pengelolaan keuangan maupun sarana dan prasarana"
+                },
+                {
+                "kode": "5.8.1.2",
+                "dokumen":"Pedoman pelaksanaan survey (waktu, pelaksana, tempat, Dokumentasi) yang menunjukkan bahwa survey dilaksanakan secara konsisten, dan ditindaklanjuti secara berkala dan tersistem."
+                },
+                {
+                "kode": "5.8.1.3",
+                "dokumen":"Pedoman analisis hasil survey"
+                },
+                {
+                "kode": "5.8.1.4",
+                "dokumen":"Hasil analisis dan review pelaksanaan kepuasan sivitas akademika terhadap layanan pengelolaan keuangan maupun sarana dan prasarana"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "5.8.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "5.8.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "9",
+            "isi": "Kesimpulan hasil evaluasi ketercapaian standar serta tindak lanjut",
+            "dokumen_sumber":[
+                {
+                "kode": "5.9.1.1",
+                "dokumen":"Laporan Evaluasi dan tindak lanjut terkait pengelolaan keuangan maupun sarana dan prasarana"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "5.9.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "5.9.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            }
+    
+            
+        ]
+    }
+	,
+	{
+        "standar": 6,
+        "judul" : " PENDIDIKAN ",
+        "butir":[
+            {
+            "nomor": "1",
+            "isi": "Latar Belakang",
+            "dokumen_sumber":[
+              {
+                "kode": "6.1.1.1", 
+                "dokumen":"Kurikulum Program Studi"
+              },
+              {
+                "kode": "6.1.1.2",
+                "dokumen":"SKPI, RPS, SAP"
+              },
+              {
+                "kode": "6.1.1.3",
+                "dokumen":"Pembelajaran (karakteristik proses pembelajaran, rencana proses pembelajaran, pelaksanaan proses pembelajaran, monitoring dan evaluasi proses pembelajaran, dan penilaian pembelajaran)."
+              },
+              {
+                "kode": "6.1.1.4",
+                "dokumen":"Kebijakan integrasi kegiatan penelitian dan PkM dalam pembelajaran"
+              },
+              {
+                "kode": "6.1.1.5",
+                "dokumen":"Kebijakan suasana akademik yang didasarkan atas analisis internal dan eksternal, serta posisi dan daya saing program studi."
+              }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "6.1.2.1",
+                "dokumen":"Notulensi penyusunan dokumen sumber"
+                },
+                {
+                "kode": "6.1.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "6.1.2.3",
+                "dokumen":"Foto Kegiatan"
+                },
+                {
+                "kode": "6.1.2.4",
+                "dokumen":"SK Penetapan Kurikulum"
+                }
+            ]
+          
+            },
+            {
+            "nomor": "2",
+            "isi": "Kebijakan",
+            "dokumen_sumber":[
+              {
+                "kode": "6.2.1.1",
+                "dokumen":"Kebijakan pengelolaan pendidikan"
+              },
+              {
+                "kode": "6.2.1.2",
+                "dokumen":"Kebijakan penetapan standar pendidikan (SNPT)"
+              },
+              {
+                "kode": "6.2.1.3",
+                "dokumen":"Panduan akademik yang memuat tujuan dan sasaran pendidikan"
+              },
+              {
+                "kode": "6.2.1.4",
+                "dokumen":"Kebijakan strategi, metode, dan instrumen untuk mengukur efektivitas pengelolaan pendidikan."
+              }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "6.2.2.1",
+                "dokumen":"Notulen Penyusunan dokumen sumber"
+                },
+                {
+                "kode": "6.2.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "6.2.2.3",
+                "dokumen":"Foto Kegiatan"
+                },
+                {
+                "kode": "6.2.2.4",
+                "dokumen":"SK penetapan kurikulum"
+                }
+            ]
+          
+            },
+            {
+            "nomor": "3",
+            "isi": "Strategi pencapaian standar",
+            "dokumen_sumber":[
+                {
+                "kode": "6.3.1.1",
+                "dokumen":"RENSTRA bidang pendidikan"
+                },
+                {
+                "kode": "6.3.1.2",
+                "dokumen":"RENOP bidang pendidikan"
+                },
+                {
+                "kode": "6.3.1.3",
+                "dokumen":"Standar Mutu pendidikan (8 standar)"
+                },
+                {
+                "kode": "6.3.1.4",
+                "dokumen":"Sasaran Mutu"
+                },
+                {
+                "kode": "6.3.1.5",
+                "dokumen":"Laporan kegiatan workshop, seminar, dsb"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "6.3.2.1",
+                "dokumen":"Notulen Penyusun dokumen sumber"
+                },
+                {
+                "kode": "6.3.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "6.3.2.3",
+                "dokumen":"Foto Kegiatan"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "4",
+            "isi": "Indikator Kinerja Utama",
+            "dokumen_sumber":[
+                {
+                "kode": "6.4.1.1",
+                "dokumen":"Standar mutu pendidikan"
+                },
+				{
+				"kode": "6.4.1.2",
+				"dokumen": "Dokumen evaluasi dan pemutakhiran kurikulum yang melibatkan pemangku kepentingan internal dan eksternal, serta direview oleh pakar bidang ilmu program studinya."
+				},
+				{
+				"kode": "6.4.1.3",
+				"dokumen": "Dokumen Kesesuaian capaian pembelajaran dengan profil lulusan dan jenjang KKNI/SKKNI."
+				},
+				{
+				"kode": "6.4.1.4",
+				"dokumen": "Dokumen Ketepatan struktur kurikulum dalam pembentukan capaian pembelajaran."
+				},
+				{
+				"kode": "6.4.1.5",
+				"dokumen": "Dokumen rencana pembelajaran dan pemetaan capaian pembelajaran, bahan kajian dan matakuliah (atau dokumen sejenis lainnya)."
+				}
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "6.4.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "6.4.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "6.4.2.3",
+                "dokumen":"SK Pemutakhiran Kurikulum"
+                }
+            ]
+        
+            },
+            {
+            "nomor": "5",
+            "isi": "Indikator Kinerja Tambahan (yang melewati standar Nasional)",
+            "dokumen_sumber":[
+                {
+                "kode": "6.5.1.1",
+                "dokumen":"Standar Mutu Pendidikan"
+                },
+				{
+				"kode": "6.5.1.2",
+				"dokumen":"Dokumen Monev terhadap proses pendidikan yang sahih yang terukur dikaji dan dianalisis untuk perbaikan berkelanjutan."
+				}
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "6.5.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "6.5.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "6",
+            "isi": "Evaluasi Capaian Kinerja",
+            "dokumen_sumber":[
+                {
+                "kode": "6.6.1.1",
+                "dokumen":"Pedoman Monev Pendidikan yang mencakup identifikasi akar masalah, faktor pendukung keberhasilan dan faktor penghambat ketercapaian standar, serta tindak lanjut yang akan dilakukan."
+                },
+                {
+                "kode": "6.6.1.2",
+                "dokumen":"Hasil Monev Bidang Pendidikan"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "6.6.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "6.6.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "7",
+            "isi": "Penjaminan Mutu",
+            "dokumen_sumber":[
+                {
+                "kode": "6.7.1.1",
+                "dokumen":"Laporan monev Bidang Pendidikan"
+                },
+                {
+                "kode": "6.7.1.2",
+                "dokumen":"Laporan audit Bidang Pendidikan"
+                },
+                {
+                "kode": "6.7.1.3",
+                "dokumen":"Laporan audit tindak lanjut Bidang Pendidikan"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "6.7.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "6.7.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "6.7.2.3",
+                "dokumen":"Foto kegiatan"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "8",
+            "isi": "Kepuasan Pengguna (Mahasiswa)",
+            "dokumen_sumber":[
+                {
+                "kode": "6.8.1.1",
+                "dokumen":"Pedoman Penyusunan Instrumen pengukuran kepuasan mahasiswa terhadap proses pendidikan"
+                },
+                {
+                "kode": "6.8.1.2",
+                "dokumen":"Pedoman pelaksanaan survey (waktu, pelaksana, tempat, Dokumentasi) yang menunjukkan bahwa survey dilaksanakan secara konsisten, dan ditindaklanjuti secara berkala dan tersistem."
+                },
+                {
+                "kode": "6.8.1.3",
+                "dokumen":"Pedoman analisis hasil survey"
+                },
+                {
+                "kode": "6.8.1.4",
+                "dokumen":"Hasil analisis dan review pelaksanaan kepuasan mahasiswa terhadap proses pendidikan"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "6.8.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "6.8.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "9",
+            "isi": "Kesimpulan hasil evaluasi ketercapaian standar serta tindak lanjut",
+            "dokumen_sumber":[
+                {
+                "kode": "6.9.1.1",
+                "dokumen":"Laporan Evaluasi dan tindak lanjut terkait Proses Pendidikan Program Studi yang diakreditasi"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "6.9.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "6.9.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            }
+    
+            
+        ]
+    }
+	,
+	{
+        "standar": 7,
+        "judul" : " PENELITIAN ",
+        "butir":[
+            {
+            "nomor": "1",
+            "isi": "Latar Belakang",
+            "dokumen_sumber":[
+              {
+                "kode": "7.1.1.1", 
+                "dokumen":"proses penelitian yang mencakup perencanaan, pelaksanaan, pemantauan, dan pelaporan"
+              },
+              {
+                "kode": "7.1.1.2",
+                "dokumen":"analisis internal dan eksternal, serta posisi dan keunggulan pada bidang keilmuan program studi."
+              }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "7.1.2.1",
+                "dokumen":"Notulensi penyusunan dokumen sumber"
+                },
+                {
+                "kode": "7.1.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "7.1.2.3",
+                "dokumen":"Foto Kegiatan"
+                },
+                {
+                "kode": "7.1.2.4",
+                "dokumen":"SK Penetapan Penelitian"
+                }
+            ]
+          
+            },
+            {
+            "nomor": "2",
+            "isi": "Kebijakan",
+            "dokumen_sumber":[
+              {
+                "kode": "7.2.1.1",
+                "dokumen":"Dokumen Formal tentang kebijakan penelitian"
+              },
+              {
+                "kode": "7.2.1.2",
+                "dokumen":"Dokumen Kebijakan yang berisi penelitian dosen yang melibatkan mahasiswa sebagai pelaksanaan tugas ahir atau kegiatan lainnya"
+              },
+              {
+                "kode": "7.2.1.3",
+                "dokumen":"Dokumen kebijakan yang berisi penelitian dosen yang menjadi rujukan tema Tesis/ Disertasi mahasiswa Program Studi"
+              }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "7.2.2.1",
+                "dokumen":"Notulen Penyusunan dokumen sumber"
+                },
+                {
+                "kode": "7.2.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "7.2.2.3",
+                "dokumen":"Foto Kegiatan"
+                },
+                {
+                "kode": "7.2.2.4",
+                "dokumen":"SK penetapan Penelitian"
+                }
+            ]
+          
+            },
+            {
+            "nomor": "3",
+            "isi": "Strategi pencapaian standar",
+            "dokumen_sumber":[
+                {
+                "kode": "7.3.1.1",
+                "dokumen":"Dokumen tentang pengalokasian sumber daya untuk mencapai standar yang telah ditetapkan"
+                },
+                {
+                "kode": "7.3.1.2",
+                "dokumen":"Standar Mutu Penelitian (8 standar)"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "7.3.2.1",
+                "dokumen":"Notulen Penyusun dokumen"
+                },
+                {
+                "kode": "7.3.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "4",
+            "isi": "Indikator Kinerja Utama",
+            "dokumen_sumber":[
+                {
+                "kode": "7.4.1.1",
+                "dokumen":"Standar mutu penelitian"
+                },
+				{
+				"kode": "7.4.1.2",
+				"dokumen": "Kebijakan penelitian Dosen dan Mahasiswa sesuai dengan pengembangan keilmuan Program Studi"
+				},
+				{
+				"kode": "7.4.1.3",
+				"dokumen": "Dokumen Monev kesesuaian penelitian Dosen dan Mahasiswa dengan keilmuan Program Studi"
+				}
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "7.4.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "7.4.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "7.4.2.3",
+                "dokumen":"SK kebijakan penelitian"
+                }
+            ]
+        
+            },
+            {
+            "nomor": "5",
+            "isi": "Indikator Kinerja Tambahan (yang melewati standar Nasional)",
+            "dokumen_sumber":[
+                {
+                "kode": "7.5.1.1",
+                "dokumen":"Standar Mutu Penelitian"
+                },
+				{
+				"kode": "7.5.1.2",
+				"dokumen":"Dokumen Monitoring terhadap kesesuaian antara penelitian Dosen dan Mahasiswa dengan keilmuan Program Studi"
+				}
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "7.5.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "7.5.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "6",
+            "isi": "Evaluasi Capaian Kinerja",
+            "dokumen_sumber":[
+                {
+                "kode": "7.6.1.1",
+                "dokumen":"Pedoman Monev Penelitian yang mencakup identifikasi akar masalah, faktor pendukung keberhasilan dan faktor penghambat ketercapaian standar, serta tindak lanjut yang akan dilakukan."
+                },
+                {
+                "kode": "7.6.1.2",
+                "dokumen":"Hasil Monev Bidang Penelitian"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "7.6.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "7.6.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "7",
+            "isi": "Penjaminan Mutu",
+            "dokumen_sumber":[
+                {
+                "kode": "7.7.1.1",
+                "dokumen":"Laporan monev Penelitian"
+                },
+                {
+                "kode": "7.7.1.2",
+                "dokumen":"Laporan audit Penelitian"
+                },
+                {
+                "kode": "7.7.1.3",
+                "dokumen":"Laporan audit tindak lanjut Penelitian"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "7.7.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "7.7.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "7.7.2.3",
+                "dokumen":"Foto kegiatan"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "8",
+            "isi": "Kepuasan Pengguna (Mahasiswa)",
+            "dokumen_sumber":[
+                {
+                "kode": "7.8.1.1",
+                "dokumen":"Pedoman Penyusunan Instrumen pengukuran kepuasan peneliti dan mitra kegiatan penelitian terhadap layanan dan pelaksanaan proses penelitian"
+                },
+                {
+                "kode": "7.8.1.2",
+                "dokumen":"Pedoman pelaksanaan survey (waktu, pelaksana, tempat, Dokumentasi) yang menunjukkan bahwa survey dilaksanakan secara konsisten, dan ditindaklanjuti secara berkala dan tersistem."
+                },
+                {
+                "kode": "7.8.1.3",
+                "dokumen":"Pedoman analisis hasil survey"
+                },
+                {
+                "kode": "7.8.1.4",
+                "dokumen":"Hasil analisis dan review pelaksanaan pengukuran kepuasan peneliti dan mitra kegiatan penelitian terhadap layanan dan pelaksanaan proses penelitian"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "7.8.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "7.8.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "9",
+            "isi": "Kesimpulan hasil evaluasi ketercapaian standar serta tindak lanjut",
+            "dokumen_sumber":[
+                {
+                "kode": "7.9.1.1",
+                "dokumen":"Laporan Evaluasi dan tindak lanjut proses pengelolaan penelitian."
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "7.9.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "7.9.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            }
+    
+            
+        ]
+    }
+	,
+	{
+        "standar": 8,
+        "judul" : " PENGANDIAN KEPADA MASYARAKAT ",
+        "butir":[
+            {
+            "nomor": "1",
+            "isi": "Latar Belakang",
+            "dokumen_sumber":[
+              {
+                "kode": "8.1.1.1", 
+                "dokumen":"Proses pengabdian kepada masyarakat (PkM) yang mencakup: perencanaan, pelaksanaan, pemantauan, dan pelaporan PkM yang didasarkan atas analisis internal dan eksternal, serta posisi dan keunggulan pada bidang keilmuan program studi."
+              }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "8.1.2.1",
+                "dokumen":"Notulensi penyusunan dokumen sumber"
+                },
+                {
+                "kode": "8.1.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "8.1.2.3",
+                "dokumen":"Foto Kegiatan"
+                },
+                {
+                "kode": "8.1.2.4",
+                "dokumen":"SK Penetapan Penelitian"
+                }
+            ]
+          
+            },
+            {
+            "nomor": "2",
+            "isi": "Kebijakan",
+            "dokumen_sumber":[
+              {
+                "kode": "8.2.1.1",
+                "dokumen":"Dokumen Formal tentang kebijakan dan standar PkM yang mendorong adanya keterlibatan mahasiswa program studi dalam PkM dosen"
+              },
+              {
+                "kode": "8.2.1.2",
+                "dokumen":"Dokumen peta jalan PkM yang memayungi tema PkM dosen dan mahasiswa."
+              }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "8.2.2.1",
+                "dokumen":"Notulen Penyusunan dokumen sumber"
+                },
+                {
+                "kode": "8.2.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "8.2.2.3",
+                "dokumen":"SK Penetapan kebijakan penelitian"
+                }
+            ]
+          
+            },
+            {
+            "nomor": "3",
+            "isi": "Strategi pencapaian standar",
+            "dokumen_sumber":[
+                {
+                "kode": "8.3.1.1",
+                "dokumen":"Dokumen tentang pengalokasian sumber daya untuk mencapai standar yang telah ditetapkan"
+                },
+                {
+                "kode": "8.3.1.2",
+                "dokumen":"Standar Mutu Pengabdian kepada Masyarakat (8 standar)"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "8.3.2.1",
+                "dokumen":"Notulen Penyusun dokumen sumber"
+                },
+                {
+                "kode": "8.3.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "4",
+            "isi": "Indikator Kinerja Utama",
+            "dokumen_sumber":[
+                {
+                "kode": "8.4.1.1",
+                "dokumen":"Standar Mutu Pengabdian kepada Masyarakat"
+                },
+				{
+				"kode": "8.4.1.2",
+				"dokumen": "Kebijakan peta jalan PkM yang memayungi tema PkM dosen dan mahasiswa serta hilirisasi/penerapan keilmuan program studi"
+				},
+				{
+				"kode": "8.4.1.3",
+				"dokumen": "Dokumen Monev kesesuaian PkM Dosen dan Mahasiswa dengan kebijakan peta jalan PkM."
+				},
+				{
+				"kode": "8.4.1.4",
+				"dokumen": "Kebijakan tindak lanjut monev PkM untuk perbaikan relevansi PkM dan pengembangan keilmuan program studi."
+				},
+				{
+				"kode": "8.4.1.5",
+				"dokumen": "Data keterlibatan mahasiswa dalam PkM dosen"
+				}
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "8.4.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "8.4.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "8.4.2.3",
+                "dokumen":"SK kebijakan PKM"
+                },
+                {
+                "kode": "8.4.2.4",
+                "dokumen":"Laporan PKM"
+                },
+                {
+                "kode": "8.4.2.5",
+                "dokumen":"Foto Kegiatan"
+                }
+            ]
+        
+            },
+            {
+            "nomor": "5",
+            "isi": "Indikator Kinerja Tambahan (yang melewati standar Nasional)",
+            "dokumen_sumber":[
+                {
+                "kode": "8.5.1.1",
+                "dokumen":"Standar Mutu PKM (8 standar)"
+                },
+				{
+				"kode": "8.5.1.2",
+				"dokumen":"Dokumen kebijakan peta jalan PkM yang menunjukkan ciri khas program studi"
+				},
+				{
+				"kode": "8.5.1.3",
+				"dokumen":"Dokumen monev PKMM"
+				},
+				{
+				"kode": "8.5.1.4",
+				"dokumen":"Dokumen audit PKM"
+				}
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "8.5.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "8.5.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "8.5.2.3",
+                "dokumen":"Foto Kegiatan"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "6",
+            "isi": "Evaluasi Capaian Kinerja",
+            "dokumen_sumber":[
+                {
+                "kode": "8.6.1.1",
+                "dokumen":"Pedoman Monev PkM yang mencakup identifikasi akar masalah, faktor pendukung keberhasilan dan faktor penghambat ketercapaian standar, serta tindak lanjut yang akan dilakukan."
+                },
+                {
+                "kode": "8.6.1.2",
+                "dokumen":"Hasil Monev PkM"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "8.6.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "8.6.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "7",
+            "isi": "Penjaminan Mutu",
+            "dokumen_sumber":[
+                {
+                "kode": "8.7.1.1",
+                "dokumen":"Laporan monev PKM"
+                },
+                {
+                "kode": "8.7.1.2",
+                "dokumen":"Laporan audit PKM"
+                },
+                {
+                "kode": "8.7.1.3",
+                "dokumen":"Laporan audit tindak lanjut PKM"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "8.7.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "8.7.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "8.7.2.3",
+                "dokumen":"Foto kegiatan"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "8",
+            "isi": "Kepuasan Pengguna (Mahasiswa)",
+            "dokumen_sumber":[
+                {
+                "kode": "8.8.1.1",
+                "dokumen":"Pedoman Penyusunan Instrumen pengukuran kepuasan pelaksana dan mitra kegiatan PkM terhadap layanan dan pelaksanaan proses PkM"
+                },
+                {
+                "kode": "8.8.1.2",
+                "dokumen":"Pedoman pelaksanaan survey (waktu, pelaksana, tempat, Dokumentasi) yang menunjukkan bahwa survey dilaksanakan secara konsisten, dan ditindaklanjuti secara berkala dan tersistem."
+                },
+                {
+                "kode": "8.8.1.3",
+                "dokumen":"Pedoman analisis hasil survey Hasil analisis dan review pelaksanaan pengukuran kepuasan pelaksana dan mitra kegiatan PkM terhadap layanan dan pelaksanaan proses PkM"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "8.8.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "8.8.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "9",
+            "isi": "Kesimpulan hasil evaluasi ketercapaian standar serta tindak lanjut",
+            "dokumen_sumber":[
+                {
+                "kode": "8.9.1.1",
+                "dokumen":"Laporan Evaluasi dan tindak lanjut PkM"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "8.9.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "8.9.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            }
+    
+            
+        ]
+    }
+	,
+	{
+        "standar": 9,
+        "judul" : " LUARAN DAN CAPAIAN TRI DHARMA ",
+        "butir":[
+            {
+            "nomor": "1",
+            "isi": "Latar Belakang",
+            "dokumen_sumber":[
+              {
+                "kode": "-", 
+                "dokumen":"-"
+              }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "-", 
+                "dokumen":"-"
+              }
+            ]
+          
+            },
+            {
+            "nomor": "2",
+            "isi": "Kebijakan",
+            "dokumen_sumber":[
+              {
+                "kode": "-", 
+                "dokumen":"-"
+              }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "-", 
+                "dokumen":"-"
+              }
+            ]
+          
+            },
+            {
+            "nomor": "3",
+            "isi": "Strategi pencapaian standar",
+            "dokumen_sumber":[
+                {
+                "kode": "-", 
+                "dokumen":"-"
+              }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "-", 
+                "dokumen":"-"
+              }
+            ]
+            
+            },
+            {
+            "nomor": "4",
+            "isi": "Indikator Kinerja Utama",
+            "dokumen_sumber":[
+                {
+                "kode": "9.4.1.1",
+                "dokumen":"Standar Mutu"
+                },
+				{
+				"kode": "9.4.1.2",
+				"dokumen": "Pedoman pengukuran capaian pembelajaran lulusan, prestasi mahasiswa, efektivitas dan produktivitas pendidikan, daya saing lulusan, serta kinerja lulusan."
+				},
+				{
+				"kode": "9.4.1.3",
+				"dokumen": "Data capaian pembelajaran lulusan yang mencakup aspek keserbacakupan, kedalaman dan kebermanfaatan (meliputi data IPK lulusan, capaian prestasi akademik dan non akademik, rata-rata masa studi, kelulusan tepat waktu) yang menunjukkan adanya peningkatan dari waktu ke waktu."
+				},
+				{
+				"kode": "9.4.1.4",
+				"dokumen": "Pedoman tracer study terhadap lulusan dan pengguna lulusan, yang mencakup aspek organisasi, metodologi, instrumen, penilaian, evaluasi, dan pemanfaatan hasil studi."
+				},
+				{
+				"kode": "9.4.1.5",
+				"dokumen": "Data hasil tracer study terhadap lulusan yang mencakup waktu tunggu lulusan untuk mendapatkan pekerjaan pertama, dan kesesuaian bidang kerja pekerjaan pertama."
+				},
+				{
+				"kode": "9.4.1.6",
+				"dokumen": "Data hasil tracer study terhadap pengguna lulusan yang mencakup tingkat/ukuran tempat kerja/berwirausaha lulusan, kepuasan pengguna lulusan (meliputi aspek etika, keahlian pada bidang ilmu, kemampuan berbahasa asing, penggunaan teknologi informasi, kemampuan berkomunikasi, kerjasama tim, dan pengembangan diri)."
+				},
+				{
+				"kode": "9.4.1.7",
+				"dokumen": "Data luaran penelitian dan PkM mahasiswa, meliputi publikasi ilmiah mahasiswa, HKI, Teknologi Tepat Guna, Produk, Karya Seni, Rekayasa Sosial, Buku ber-ISBN, Book Chapter (baik yang dilakukan mandiri atau bersama dosen tetap program studi),"
+				}
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "9.4.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "9.4.2.2",
+                "dokumen":"Daftar Hadir"
+                },
+                {
+                "kode": "9.4.2.3",
+                "dokumen":"Dokumen publikasi ilmiah mahasiswa, HKI, Teknologi Tepat Guna, Produk, Karya Seni, Rekayasa Sosial, Buku ber-ISBN, atau Book Chapter yang dihasilkan mahasiswa"
+                }
+            ]
+        
+            },
+            {
+            "nomor": "5",
+            "isi": "Indikator Kinerja Tambahan (yang melewati standar Nasional)",
+            "dokumen_sumber":[
+                {
+                "kode": "9.5.1.1",
+                "dokumen":"Standar Mutu"
+                },
+				{
+				"kode": "9.5.1.2",
+				"dokumen":"Dokumen Monev terhadap luaran dan capaian tridharma berdasarkan standar yang ditetapkan untuk melampaui SN-Dikti)"
+				}
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "9.5.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "9.5.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "6",
+            "isi": "Evaluasi Capaian Kinerja",
+            "dokumen_sumber":[
+                {
+                "kode": "9.6.1.1",
+                "dokumen":"Pedoman Monev luaran tridharma, yang mencakup identifikasi akar masalah, faktor pendukung keberhasilan dan faktor penghambat ketercapaian standar, serta tindak lanjut yang akan dilakukan."
+                },
+                {
+                "kode": "9.6.1.2",
+                "dokumen":"Hasil Monev luaran tridharma"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "9.6.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "9.6.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "7",
+            "isi": "Penjaminan Mutu Luaran",
+            "dokumen_sumber":[
+                {
+                "kode": "9.7.1.1",
+                "dokumen":"Laporan Monev luaran tridharma"
+                },
+                {
+                "kode": "9.7.1.2",
+                "dokumen":"Laporan audit luaran tridharma"
+                },
+                {
+                "kode": "9.7.1.3",
+                "dokumen":"Laporan audit tindak lanjut luaran tridharma"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "9.7.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "9.7.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "8",
+            "isi": "Kepuasan Pengguna (Mahasiswa)",
+            "dokumen_sumber":[
+                {
+                "kode": "9.8.1.1",
+                "dokumen":"Pedoman Penyusunan Instrumen pengukuran kepuasan pengguna lulusan dan mitra kerja terhadap kinerja lulusan."
+                },
+                {
+                "kode": "9.8.1.2",
+                "dokumen":"Pedoman pelaksanaan survey (waktu, pelaksana, tempat, Dokumentasi) yang menunjukkan bahwa survey dilaksanakan secara konsisten, dan ditindaklanjuti secara berkala dan tersistem."
+                },
+                {
+                "kode": "9.8.1.3",
+                "dokumen":"Pedoman analisis hasil survey"
+                },
+                {
+                "kode": "9.8.1.4",
+                "dokumen":"Hasil analisis dan review pelaksanaan pengukuran kepuasan pengguna lulusan dan mitra kerja terhadap kinerja lulusan"
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "9.8.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "9.8.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            },
+            {
+            "nomor": "9",
+            "isi": "Kesimpulan hasil evaluasi ketercapaian standar serta tindak lanjut",
+            "dokumen_sumber":[
+                {
+                "kode": "9.9.1.1",
+                "dokumen":"Laporan Evaluasi dan tindak lanjut terkait luaran dan capaian tridharma."
+                }
+            ],
+            "dokumen_pendukung": [
+                {
+                "kode": "9.9.2.1",
+                "dokumen":"Notulen"
+                },
+                {
+                "kode": "9.9.2.2",
+                "dokumen":"Daftar Hadir"
+                }
+            ]
+            
+            }
+    
+            
+        ]
+    }
+]

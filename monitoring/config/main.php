@@ -8,6 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-monitoring',
+    'name'=> $params['nama_sistem'],
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'monitoring\controllers',
     'bootstrap' => ['log'],

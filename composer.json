@@ -27,7 +27,8 @@
         "kartik-v/yii2-widget-fileinput": "@dev",
         "2amigos/yii2-chartjs-widget" : "~2.0",
         "insolita/yii2-migration-generator": "~3.1",
-        "kartik-v/yii2-widget-datepicker": "dev-master"
+        "kartik-v/yii2-widget-datepicker": "dev-master",
+        "yiisoft/yii2-bootstrap": "^2.0@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
