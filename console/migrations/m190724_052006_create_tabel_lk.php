@@ -3,7 +3,7 @@
 use yii\db\Migration;
 
 /**
- * Class m190724_052006_create_tabel_lk
+ * Class m190723_094232_add_tabel_lk
  */
 class m190724_052006_create_tabel_lk extends Migration
 {
@@ -245,6 +245,7 @@ class m190724_052006_create_tabel_lk extends Migration
         $this->createTable('{{%k9_lkps_fakultas}}',[
             'id'=>$this->primaryKey(),
             'id_akreditasi'=>$this->integer(),
+            'id_fakultas'=>$this->integer(),
             'progress'=>$this->float()->defaultValue(0),
             'created_at'=>$this->integer(),
             'updated_at'=>$this->integer()
@@ -551,6 +552,8 @@ class m190724_052006_create_tabel_lk extends Migration
     private function dropForeignFakultas()
     {
         $this->dropForeignKey('fk-k9_lkps_fak-k9_akreditasi_fak','{{%k9_akreditasi_fakultas}}');
+        $this->dropForeignKey('fk-k9_lkps_fak-fakultas_akademi','{{%k9_lkps_fakultas}}');
+
 
         $this->dropForeignKey('fk-k9_lkps_fak_kt1-k9_lkps_fak','{{k9_lkps_fakultas_kriteria1}}');
         $this->dropForeignKey('fk-k9_lkps_fak_kt2-k9_lkps_fak','{{k9_lkps_fakultas_kriteria2}}');
@@ -645,6 +648,7 @@ class m190724_052006_create_tabel_lk extends Migration
     private function addForeignFakultas()
     {
         $this->addForeignKey('fk-k9_lkps_fak-k9_akreditasi_fak','{{%k9_lkps_fakultas}}','id_akreditasi','{{%k9_akreditasi}}','id','cascade','cascade');
+        $this->addForeignKey('fk-k9_lkps_fak-fakultas_akademi','{{%k9_lkps_fakultas}}','id_fakultas','{{%fakultas_akademi}}','id','cascade','cascade');
 
         $this->addForeignKey('fk-k9_lkps_fak_kt1-k9_lkps_fak','{{k9_lkps_fakultas_kriteria1}}','id_lkps_fakultas','{{%k9_lkps_fakultas}}','id','cascade','cascade');
         $this->addForeignKey('fk-k9_lkps_fak_kt2-k9_lkps_fak','{{k9_lkps_fakultas_kriteria2}}','id_lkps_fakultas','{{%k9_lkps_fakultas}}','id','cascade','cascade');
@@ -1029,5 +1033,4 @@ class m190724_052006_create_tabel_lk extends Migration
         return false;
     }
     */
-
 }
