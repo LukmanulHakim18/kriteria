@@ -3,25 +3,27 @@
 /* @var $this yii\web\View */
 /* @var $name string */
 /* @var $message string */
+
 /* @var $exception Exception */
 
 use yii\helpers\Html;
-
+$this->context->layout= 'main-error';
 $this->title = $name;
+$posTag = strpos($name, '#');
+$substring = substr($name, $posTag + 1, '3');
 ?>
-<div class="site-error">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <div class="alert alert-danger">
+<div class="kt-error_container">
+    <span class="kt-error_number">
+        <h1><?= $substring ?></h1>
+    </span>
+    <p class="kt-error_title kt-font-light">
         <?= nl2br(Html::encode($message)) ?>
-    </div>
-
-    <p>
-        The above error occurred while the Web server was processing your request.
     </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
+    <p class="kt-error_subtitle">
+        Kenapa bisa sampai ke sini?
     </p>
-
+    <p class="kt-error_description">
+        Kesalahan diatas terjadi ketika server sedang memproses permintaan anda.<br>
+        Silahkan kontak administrator jika anda merasa ini kesalahan server. Terima kasih.
+    </p>
 </div>
