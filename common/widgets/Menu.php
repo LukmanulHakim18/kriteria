@@ -78,6 +78,7 @@ class Menu extends \yii\widgets\Menu
      */
     protected function renderItem($item)
     {
+
         if (isset($item['items'])) {
             $labelTemplate = '<a href="{url}" class="kt-menu__link kt-menu__toggle"> <span class="kt-menu__link-icon">{icon}</span> <span class="kt-menu__link-text">{label}</span> <i class="kt-menu__ver-arrow la la-angle-right"></i></a>';
             $linkTemplate = '<a href="{url}" class="kt-menu__link kt-menu__toggle"> <span class="kt-menu__link-icon">{icon}</span> <span class="kt-menu__link-text">{label}</span> <i class="kt-menu__ver-arrow la la-angle-right"></i></a>';
@@ -85,12 +86,32 @@ class Menu extends \yii\widgets\Menu
             $labelTemplate = $this->labelTemplate;
             $linkTemplate = $this->linkTemplate;
         }
-        $replacements = [
-            '{label}' => strtr($this->labelTemplate, ['{label}' => $item['label'],]),
-            '{icon}' => empty($item['icon']) ? $this->defaultIconHtml
-                : "$item[icon]",
-            '{url}' => isset($item['url']) ? Url::to($item['url']) : 'javascript:;',
-        ];
+
+        if(isset($item['options']['class'])) {
+            if ($item['options']['class'] === 'kt-menu__section') {
+                $labelTemplate = '{label}';
+                $replacements = ['{label}' => strtr($labelTemplate, ['{label}' => '<h4 class="kt-menu__section-text">' . $item['label'] . '</h4>
+									<i class="kt-menu__section-icon flaticon-more-v2"></i>'])];
+
+            }else{
+                $replacements = [
+                    '{label}' => strtr($this->labelTemplate, ['{label}' => $item['label'],]),
+                    '{icon}' => empty($item['icon']) ? $this->defaultIconHtml
+                        : "$item[icon]",
+                    '{url}' => isset($item['url']) ? Url::to($item['url']) : 'javascript:;',
+                ];
+            }
+        }
+
+        else{
+
+            $replacements = [
+                '{label}' => strtr($this->labelTemplate, ['{label}' => $item['label'],]),
+                '{icon}' => empty($item['icon']) ? $this->defaultIconHtml
+                    : "$item[icon]",
+                '{url}' => isset($item['url']) ? Url::to($item['url']) : 'javascript:;',
+            ];
+        }
         $template = ArrayHelper::getValue($item, 'template', isset($item['url']) ? $linkTemplate : $labelTemplate);
         return strtr($template, $replacements);
     }

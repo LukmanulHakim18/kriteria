@@ -48,6 +48,8 @@ use yii\bootstrap4\Html;
                 [
                     'options' => ['class' => 'kt-menu__nav'],
                     'items' => [
+                        ['label' => 'Menu Yii2', 'options' => ['class' => 'kt-menu__section']],
+
                         ['label' => 'Dashboard', 'icon' => "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"24px\" height=\"24px\" viewBox=\"0 0 24 24\" version=\"1.1\" class=\"kt-svg-icon\">
 												<g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">
 													<polygon id=\"Bound\" points=\"0 0 24 0 24 24 0 24\"></polygon>
@@ -56,7 +58,6 @@ use yii\bootstrap4\Html;
 												</g>
 											</svg>", 'url' => ['/site']],
 
-                        ['label' => 'Menu Yii2', 'options' => ['class' => 'kt-menu__section']],
                         ['label' => 'Debug', 'icon' => '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect id="bound" x="0" y="0" width="24" height="24" />
@@ -116,16 +117,7 @@ use yii\bootstrap4\Html;
 
                             ],
                         ],
-                        [
-                            'label' => 'Some tools',
-                            'icon' => 'share',
-                            'url' => '#',
-                            'items' => [
-                                ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
-                                ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'],],
 
-                            ],
-                        ],
                     ],
                 ]
                     ) ?>
