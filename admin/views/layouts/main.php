@@ -60,7 +60,9 @@ use common\widgets\Alert;
             <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
 
               <?=$this->render('subheader')?>
-                <?=$content?>
+
+
+                <?=$this->render('content',['content'=>$content])?>
             </div>
 
             <?=$this->render('footer')?>
