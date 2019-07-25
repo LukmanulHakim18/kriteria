@@ -1,20 +1,17 @@
 {
-    "name": "yiisoft/yii2-app-advanced",
-    "description": "Yii 2 Advanced Project Template",
-    "keywords": ["yii2", "framework", "advanced", "project template"],
-    "homepage": "http://www.yiiframework.com/",
+    "name": "adryanev/kriteria",
+    "description": "Sistem Infromasi Penjaminan Mutu Akreditasi 9 Kriteria UIN Suska Riau",
+    "keywords": ["yii2", "akreditasi", "9kriteria", "uinsuska"],
+    "homepage": "http://topapp.id/kriteria",
     "type": "project",
     "license": "BSD-3-Clause",
     "support": {
-        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
-        "forum": "http://www.yiiframework.com/forum/",
-        "wiki": "http://www.yiiframework.com/wiki/",
-        "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiisoft/yii2"
+        "issues": "https://github.com/adryanev/kriteria/issues?state=open",
+        "source": "https://github.com/adryanev/kriteria"
     },
     "minimum-stability": "dev",
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=7.1.0",
         "yiisoft/yii2": "~2.0.14",
         "yiisoft/yii2-bootstrap4": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
@@ -27,7 +24,8 @@
         "kartik-v/yii2-widget-fileinput": "@dev",
         "2amigos/yii2-chartjs-widget" : "~2.0",
         "insolita/yii2-migration-generator": "~3.1",
-        "kartik-v/yii2-widget-datepicker": "dev-master"
+        "kartik-v/yii2-widget-datepicker": "dev-master",
+        "yiisoft/yii2-bootstrap": "^2.0@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

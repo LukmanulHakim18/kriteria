@@ -8,6 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-admin',
+    'name'=> $params['nama_sistem'],
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'admin\controllers',
     'bootstrap' => ['log'],
@@ -48,6 +49,16 @@ return [
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ],
+        ],
+        'assetManager'=>[
+            'bundles'=>[
+                'yii\bootstrap4\BootstrapAsset'=>[
+                    'sourcePath' => null,
+                    'basePath' => '@webroot',
+                    'baseUrl' => '@web',
+                    'css'=>['css/style.bundle.css']
+                ]
+            ]
         ],
     ],
     'params' => $params,
