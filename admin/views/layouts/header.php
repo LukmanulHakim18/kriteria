@@ -468,7 +468,7 @@ Use dot badge instead of animated pulse effect:
                         <?= $namaLengkap ?>
                     </div>
                     <div class="kt-user-card__badge">
-                        <span class="btn btn-success btn-sm btn-bold btn-font-md">23 messages</span>
+                        <span class="btn btn-success btn-sm btn-bold btn-font-md">Super Admin</span>
                     </div>
                 </div>
 
