@@ -1,8 +1,13 @@
+<?php
+
+use yii\bootstrap4\Html;
+
+?>
 <!-- begin:: Header Mobile -->
 <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
     <div class="kt-header-mobile__logo">
         <a href="demo1/index.html">
-            <?=\yii\bootstrap4\Html::img('@web/media/logos/logo_instansi.png',['alt'=>'Logo UIN SUSKA RIAU','height'=>50,'width'=>50])?>
+            <?= \yii\bootstrap4\Html::a(Html::img(Yii::getAlias('@web/media/logos/logo_sistem_uin.png'),['alt'=>'logo','width'=>200,'height'=>30]),['site/index']) ?>
         </a>
     </div>
     <div class="kt-header-mobile__toolbar">

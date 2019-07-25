@@ -1,10 +1,10 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\LoginForm */
+/* @var $form yii\bootstrap4\ActiveForm */
+/* @var $model akreditasi\models\LoginForm */
 
-use yii\helpers\Html;
+use yii\bootstrap4\Html;
 use yii\bootstrap4\ActiveForm;
 
 $this->title = 'Login';
@@ -13,7 +13,7 @@ $this->context->layout='main-login';
 ?>
 <div class="kt-login__signin">
     <div class="kt-login__head">
-        <h3 class="kt-login__title">Sign In To Admin</h3>
+        <h3 class="kt-login__title"><?=Html::encode(Yii::$app->name)?></h3>
     </div>
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',

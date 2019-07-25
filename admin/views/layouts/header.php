@@ -459,7 +459,7 @@ Use dot badge instead of animated pulse effect:
                 <!--begin: Head -->
                 <div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" style="background-image: url(<?=Yii::getAlias('@web/media/misc/bg-1.jpg')?>)">
                     <div class="kt-user-card__avatar">
-                        <img class="kt-hidden" alt="Pic" src="./assets/media/users/300_25.jpg" />
+<!--                        <img class="kt-hidden" alt="Pic" src="./assets/media/users/300_25.jpg" />-->
 
                         <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
                         <span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success"><?= $inisial?></span>
@@ -519,6 +519,6 @@ function refreshTime() {
 
 setInterval(refreshTime, 1000);
 JS;
-$this->registerJs($jsTime);
+$this->registerJs($jsTime,\yii\web\View::POS_LOAD);
 
 ?>

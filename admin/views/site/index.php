@@ -2,7 +2,8 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Beranda';
+$this->params['breadcrumbs'][] = $this->title
 ?>
 <!-- begin:: Content -->
 <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
