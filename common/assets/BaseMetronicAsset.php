@@ -37,7 +37,7 @@ class BaseMetronicAsset extends AssetBundle
         //global mandatory
         'vendors/general/popper.js/dist/umd/popper.js',
         'vendors/general/js-cookie/src/js.cookie.js',
-        'vendors/general/moment/min/moment.min.js',
+        'vendors/general/moment/min/moment-with-locales.js',
         'vendors/general/tooltip.js/dist/umd/tooltip.min.js',
         'vendors/general/perfect-scrollbar/dist/perfect-scrollbar.js',
         'vendors/general/sticky-js/dist/sticky.min.js',

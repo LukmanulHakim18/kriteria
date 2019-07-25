@@ -1,7 +1,33 @@
+<?php
+
+use yii\helpers\Html;
+$namaLengkap = Html::encode(Yii::$app->user->identity->profilUser->nama_lengkap);
+$inisial = mb_strtoupper(mb_substr(Html::encode(Yii::$app->user->identity->profilUser->nama_lengkap), 0, 1));
+?>
 <!-- begin:: Header -->
 <div id="kt_header" class="kt-header kt-grid__item  kt-header--fixed ">
 
-    <div></div>
+    <!-- begin:: Header Menu -->
+    <div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper">
+
+
+        <!-- begin:: Header Menu -->
+        <div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper">
+            <div id="kt_header_menu" class="kt-header-menu kt-header-menu--layout-default ">
+                <ul class="kt-menu__nav ">
+                    <li class="kt-menu__item  kt-menu__item--open kt-menu__item--here  kt-menu__item--active"><a href="javascript:;" class="kt-menu__link kt-menu__toggle" id="time"><span class="kt-menu__link-text" ></span></a>
+
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
     <!-- begin:: Header Topbar -->
     <div class="kt-header__topbar">
 
@@ -420,12 +446,12 @@ Use dot badge instead of animated pulse effect:
         <div class="kt-header__topbar-item kt-header__topbar-item--user">
             <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="0px,0px">
                 <div class="kt-header__topbar-user">
-                    <span class="kt-header__topbar-welcome kt-hidden-mobile">Hi,</span>
-                    <span class="kt-header__topbar-username kt-hidden-mobile">Sean</span>
+                    <span class="kt-header__topbar-welcome kt-hidden-mobile">Assalamu'alaikum,</span>
+                    <span class="kt-header__topbar-username kt-hidden-mobile"><?= mb_strtoupper($namaLengkap)?></span>
                     <img class="kt-hidden" alt="Pic" src="./assets/media/users/300_25.jpg" />
 
                     <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
-                    <span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">S</span>
+                    <span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold"><?=Html::encode($inisial)?></span>
                 </div>
             </div>
             <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
@@ -436,10 +462,10 @@ Use dot badge instead of animated pulse effect:
                         <img class="kt-hidden" alt="Pic" src="./assets/media/users/300_25.jpg" />
 
                         <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
-                        <span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">S</span>
+                        <span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success"><?= $inisial?></span>
                     </div>
                     <div class="kt-user-card__name">
-                        Sean Stone
+                        <?= $namaLengkap ?>
                     </div>
                     <div class="kt-user-card__badge">
                         <span class="btn btn-success btn-sm btn-bold btn-font-md">23 messages</span>
@@ -463,61 +489,8 @@ Use dot badge instead of animated pulse effect:
                             </div>
                         </div>
                     </a>
-                    <a href="#" class="kt-notification__item">
-                        <div class="kt-notification__item-icon">
-                            <i class="flaticon2-mail kt-font-warning"></i>
-                        </div>
-                        <div class="kt-notification__item-details">
-                            <div class="kt-notification__item-title kt-font-bold">
-                                My Messages
-                            </div>
-                            <div class="kt-notification__item-time">
-                                Inbox and tasks
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="kt-notification__item">
-                        <div class="kt-notification__item-icon">
-                            <i class="flaticon2-rocket-1 kt-font-danger"></i>
-                        </div>
-                        <div class="kt-notification__item-details">
-                            <div class="kt-notification__item-title kt-font-bold">
-                                My Activities
-                            </div>
-                            <div class="kt-notification__item-time">
-                                Logs and notifications
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="kt-notification__item">
-                        <div class="kt-notification__item-icon">
-                            <i class="flaticon2-hourglass kt-font-brand"></i>
-                        </div>
-                        <div class="kt-notification__item-details">
-                            <div class="kt-notification__item-title kt-font-bold">
-                                My Tasks
-                            </div>
-                            <div class="kt-notification__item-time">
-                                latest tasks and projects
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="kt-notification__item">
-                        <div class="kt-notification__item-icon">
-                            <i class="flaticon2-cardiogram kt-font-warning"></i>
-                        </div>
-                        <div class="kt-notification__item-details">
-                            <div class="kt-notification__item-title kt-font-bold">
-                                Billing
-                            </div>
-                            <div class="kt-notification__item-time">
-                                billing & statements <span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill kt-badge--rounded">2 pending</span>
-                            </div>
-                        </div>
-                    </a>
                     <div class="kt-notification__custom kt-space-between">
                         <?=\yii\bootstrap4\Html::a('Keluar',['site/logout'],['class'=>'btn btn-label btn-label-brand btn-sm btn-bold','data'=>['method'=>'post','confirm'=>'Apakah anda ingin keluar?']])?>
-                        <a href="demo1/custom/user/login-v2.html" target="_blank" class="btn btn-clean btn-sm btn-bold">Upgrade Plan</a>
                     </div>
                 </div>
 
@@ -532,3 +505,20 @@ Use dot badge instead of animated pulse effect:
 </div>
 
 <!-- end:: Header -->
+
+<?php
+$jsTime = <<<JS
+var timeDisplay = document.getElementById("time");
+
+
+function refreshTime() {
+    moment.locale('ID');
+  var dateString = moment().format('dddd, D MMMM YYYY, hh:mm:ss');
+  timeDisplay.innerHTML = dateString;
+}
+
+setInterval(refreshTime, 1000);
+JS;
+$this->registerJs($jsTime);
+
+?>
