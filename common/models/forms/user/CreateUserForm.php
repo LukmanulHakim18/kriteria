@@ -44,13 +44,12 @@ class CreateUserForm extends Model
         ];
     }
 
-    public function rules(): array
+    public function rules()
     {
         return [
 
             [['username', 'password', 'email', 'status', 'hak_akses', 'nama_lengkap',], 'required'],
             [['username', 'password', 'email', 'hak_akses', 'nama_lengkap'], 'string'],
-            ['username', 'unique', 'targetClass' => User::class, 'message' => "Username sudah digunakan"],
             [['id_fakultas', 'id_prodi'], 'safe']
         ];
     }
@@ -72,15 +71,17 @@ class CreateUserForm extends Model
 
         $transaction = Yii::$app->db->beginTransaction();
 
-        if (!$user->save()) {
+
+        if (!$user->save(false)) {
             $transaction->rollBack();
-            return false;
+            return null;
         }
         $profil->id_user = $user->id;
-        if (!$profil->save()) {
+        if (!$profil->save(false)) {
             $transaction->rollBack();
-            return false;
+            return null;
         }
+
 
         try {
 
@@ -91,16 +92,16 @@ class CreateUserForm extends Model
                 $auth->assign($role, $user->id);
             } catch (\Exception $e) {
                 $transaction->rollBack();
-                return false;
+                return null;
             }
 
             $transaction->commit();
+            return $user;
 
         } catch (Exception $e) {
             var_dump($e->getMessage());
         }
-
-        return $user;
+        return null;
     }
 
 }

@@ -40,7 +40,7 @@ class UserSearch extends User
      */
     public function search($params)
     {
-        $query = User::find();
+        $query = User::find()->joinWith(['role']);
 
         // add conditions that should always apply here
 
@@ -48,6 +48,7 @@ class UserSearch extends User
             'query' => $query,
         ]);
 
+        $query->andWhere('auth_assignment.item_name NOT LIKE \'superadmin\'');
         $this->load($params);
 
         if (!$this->validate()) {
