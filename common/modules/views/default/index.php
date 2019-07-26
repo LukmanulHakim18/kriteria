@@ -3,7 +3,7 @@
 use common\models\User;
 use yii\widgets\DetailView;
 
-$this->title = Yii::$app->user->identity->username;
+$this->title = 'Profil : '.Yii::$app->user->identity->username;
 ?>
 <!--Begin::App-->
 <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
