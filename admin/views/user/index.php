@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel admin\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'User';
+$this->title = 'Pengguna';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="kt-portlet__head-wrapper">
                         <div class="kt-portlet__head-actions">
 
-                            <?= Html::button('<i class=flaticon2-add></i> Tambah User', ['value' => Url::to(['create']), 'title' => 'Tambah User', 'class' => 'showModalButton btn btn-success btn-elevate btn-elevate-air']); ?>
+                            <?= Html::button('<i class=flaticon2-add></i> Tambah Pengguna', ['value' => Url::to(['create']), 'title' => 'Tambah User', 'class' => 'showModalButton btn btn-success btn-elevate btn-elevate-air']); ?>
                         </div>
                     </div>
                 </div>

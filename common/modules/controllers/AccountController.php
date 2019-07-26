@@ -44,15 +44,15 @@ class AccountController extends Controller
 
         if ($model->load(Yii::$app->request->post()) ) {
             if(!$model->validate()){
-                throw new InvalidArgumentException('Gagal Validasi user');
+                throw new InvalidArgumentException('Gagal validasi pengguna');
             }
             $model->updateUser();
             if($model === false){
-                throw new InvalidArgumentException('Gagal memperbarui user, terdapat error');
+                throw new InvalidArgumentException('Gagal memperbarui pengguna, terdapat error');
 
             }
 
-            Yii::$app->session->setFlash('success','Berhasil Memperbarui User');
+            Yii::$app->session->setFlash('success','Berhasil memperbarui pengguna');
 
             return $this->redirect(['default/index']);
         }
@@ -72,9 +72,9 @@ class AccountController extends Controller
             if($modelPassword->validate()){
                 $modelPassword->updatePassword();
                 if(!$modelPassword){
-                    throw new InvalidArgumentException('Gagal Mengganti Password');
+                    throw new InvalidArgumentException('Gagal mengganti kata sandi');
                 }
-                Yii::$app->session->setFlash('success','Berhasil Mengganti Password');
+                Yii::$app->session->setFlash('success','Berhasil mengganti kata sandi');
                 return $this->redirect(['default/index']);
             }
 
