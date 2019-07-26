@@ -50,8 +50,8 @@ class BaseMetronicAsset extends AssetBundle
         'vendors/general/autosize/dist/autosize.js',
         'vendors/general/clipboard/dist/clipboard.min.js',
         'vendors/general/raphael/raphael.js',
-        'vendors/general/waypoints/lib/jquery.waypoints.js',
-        'vendors/general/counterup/jquery.counterup.js',
+        'vendors/general/waypoints/lib/jquery.waypoints.min.js',
+        'vendors/general/counterup/jquery.counterup.min.js',
         'vendors/general/es6-promise-polyfill/promise.min.js',
         'vendors/general/dompurify/dist/purify.js',
 

@@ -23,6 +23,7 @@ yii.confirm = function (message, okCallback, cancelCallback) {
 
 
 $(function(){
+
     //get the click of modal button to create / update item
     //we get the button by class not by ID because you can only have one id on a page and you can
     //have multiple classes therefore you can have multiple open modal buttons on a page all with or without

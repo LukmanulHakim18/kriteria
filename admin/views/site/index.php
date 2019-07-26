@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title
 														</span>
                         </div>
                         <span class="kt-widget24__stats kt-font-brand">
-														$18M
+														$<span class="counter">18</span>M
 													</span>
                     </div>
                     <div class="progress progress--sm">
@@ -55,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title
 														</span>
                         </div>
                         <span class="kt-widget24__stats kt-font-warning">
-														1349
+													<span class="counter">1349</span>
 													</span>
                     </div>
                     <div class="progress progress--sm">
@@ -87,7 +87,7 @@ $this->params['breadcrumbs'][] = $this->title
 														</span>
                         </div>
                         <span class="kt-widget24__stats kt-font-danger">
-														567
+														<span class="counter">567</span>
 													</span>
                     </div>
                     <div class="progress progress--sm">
@@ -119,7 +119,7 @@ $this->params['breadcrumbs'][] = $this->title
 														</span>
                         </div>
                         <span class="kt-widget24__stats kt-font-success">
-														276
+														<span class="counter">276</span>
 													</span>
                     </div>
                     <div class="progress progress--sm">

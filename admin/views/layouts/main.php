@@ -12,6 +12,13 @@ use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 
 \common\assets\MetronicDashboardAsset::register($this);
+$counterUp = <<<JS
+ $('.counter').counterUp({
+        delay: 10,
+        time: 1000
+    });
+JS;
+$this->registerJs($counterUp,\yii\web\View::POS_READY);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
