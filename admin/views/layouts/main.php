@@ -71,6 +71,7 @@ use common\widgets\Alert;
     </div>
 </div>
 
+
 <!-- end:: Page -->
 
 
@@ -104,8 +105,19 @@ use common\widgets\Alert;
     };
 </script>
 
+
 <!-- end::Global Config -->
 <?php $this->endBody() ?>
+<?php
+yii\bootstrap\Modal::begin([
+    'headerOptions' => ['id' => 'modalHeader'],
+    'id' => 'modal',
+    'size' => 'modal-lg',
+
+]);
+echo "<div id='modalContent'></div>";
+yii\bootstrap\Modal::end();
+?>
 </body>
 </html>
 <?php $this->endPage() ?>

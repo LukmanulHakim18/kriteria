@@ -3,10 +3,10 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Unit */
+/* @var $model common\models\ProgramStudi */
 
-$this->title = 'Update Unit: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Unit', 'url' => ['index']];
+$this->title = 'Update Program Studi: ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Ubah';
 ?>
@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = 'Ubah';
                 </div>
             </div>
             <div class="kt-portlet__body">
-                <div class="unit-update">
+                <div class="program-studi-update">
 
                     <?= $this->render('_form', [
                     'model' => $model,

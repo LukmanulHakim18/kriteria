@@ -123,6 +123,10 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             return $this->redirect(['view', <?= $urlParams ?>]);
         }
 
+        elseif (Yii::$app->request->isAjax){
+            return $this->renderAjax('_form',['model'=>$model]);
+        }
+
         return $this->render('create', [
             'model' => $model,
         ]);

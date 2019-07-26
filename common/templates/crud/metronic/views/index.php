@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
+use yii\helpers\Url;
+
 
 /* @var $this yii\web\View */
 /* @var $generator yii\gii\generators\crud\Generator */
@@ -14,6 +16,7 @@ echo "<?php\n";
 ?>
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use <?= $generator->indexWidgetType === 'grid' ? "yii\\grid\\GridView" : "yii\\widgets\\ListView" ?>;
 <?= $generator->enablePjax ? 'use yii\widgets\Pjax;' : '' ?>
 
@@ -42,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="kt-portlet__head-wrapper">
                         <div class="kt-portlet__head-actions">
 
-                            <?= "<?= " ?>Html::a(<?= $generator->generateString("<i class=flaticon2-add></i> Tambah " . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, ['create'], ['class' => 'btn btn-success btn-elevate btn-elevate-air']) ?>
+                            <?= "<?=" ?> Html::button(<?= $generator->generateString("<i class=flaticon2-add></i> Tambah " . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, ['value' => Url::to(['create']), 'title' => <?= $generator->generateString("Tambah " . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, 'class' => 'showModalButton btn btn-success btn-elevate btn-elevate-air']); ?>
                         </div>
                     </div>
                 </div>

@@ -1,13 +1,14 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Unit */
+/* @var $model common\models\FakultasAkademi */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Unit', 'url' => ['index']];
+$this->title = $model->nama;
+$this->params['breadcrumbs'][] = ['label' => 'Fakultas Akademi', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
@@ -21,13 +22,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         <i class="flaticon2-list-3"></i>
                     </span>
                     <h3 class="kt-portlet__head-title">
-                        <?= Html::encode($this->title) ?> <small>portlet sub title</small>
+                        <?= Html::encode($this->title) ?> <small><?=Html::encode($model->kode)?></small>
                     </h3>
                 </div>
                 <div class="kt-portlet__head-toolbar">
                     <div class="kt-portlet__head-wrapper">
                         <div class="kt-portlet__head-actions">
-
 
                             <?= Html::a('<i class=flaticon2-edit></i> Edit', ['update', 'id' => $model->id], ['class' => 'btn btn-warning btn-elevate btn-elevate-air']) ?>
                             <?= Html::a('<i class=flaticon2-delete></i> Hapus', ['delete', 'id' => $model->id], [
@@ -42,16 +42,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
             <div class="kt-portlet__body">
-                <div class="unit-view">
+                <div class="fakultas-akademi-view">
 
 
                     <?= DetailView::widget([
                     'model' => $model,
                     'attributes' => [
                                 'id',
+            'kode',
             'nama',
-            'created_at',
-            'updated_at',
+            'dekan',
+            'created_at:datetime',
+            'updated_at:datetime',
                     ],
                     ]) ?>
 

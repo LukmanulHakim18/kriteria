@@ -70,7 +70,7 @@ use yii\bootstrap4\Html;
                             'url' => 'javascript:;',
                             'items' => [
                                 ['label' => 'Unit', 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>', 'url' => ['/unit'],],
-                                ['label' => 'Fakultas', 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>', 'url' => ['/fakultas'],],
+                                ['label' => 'Fakultas', 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>', 'url' => ['/fakultas-akademi'],],
                                 [
                                     'label' => 'Program Studi',
                                     'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',

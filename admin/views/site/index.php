@@ -7,94 +7,135 @@ $this->params['breadcrumbs'][] = $this->title
 ?>
 <!--Begin::Section-->
 <div class="kt-portlet">
-    <div class="kt-portlet__body kt-portlet__body--fit">
+    <div class="kt-portlet__body  kt-portlet__body--fit">
         <div class="row row-no-padding row-col-separator-xl">
-            <div class="col-md-12 col-lg-12 col-xl-4">
+            <div class="col-md-12 col-lg-6 col-xl-3">
 
-                <!--begin:: Widgets/Stats2-1 -->
-                <div class="kt-widget1">
-                    <div class="kt-widget1__item">
-                        <div class="kt-widget1__info">
-                            <h3 class="kt-widget1__title">Member Profit</h3>
-                            <span class="kt-widget1__desc">Awerage Weekly Profit</span>
+                <!--begin::Total Profit-->
+                <div class="kt-widget24">
+                    <div class="kt-widget24__details">
+                        <div class="kt-widget24__info">
+                            <h4 class="kt-widget24__title">
+                                Total Profit
+                            </h4>
+                            <span class="kt-widget24__desc">
+															All Customs Value
+														</span>
                         </div>
-                        <span class="kt-widget1__number kt-font-brand">+$17,800</span>
+                        <span class="kt-widget24__stats kt-font-brand">
+														$18M
+													</span>
                     </div>
-                    <div class="kt-widget1__item">
-                        <div class="kt-widget1__info">
-                            <h3 class="kt-widget1__title">Orders</h3>
-                            <span class="kt-widget1__desc">Weekly Customer Orders</span>
-                        </div>
-                        <span class="kt-widget1__number kt-font-danger">+1,800</span>
+                    <div class="progress progress--sm">
+                        <div class="progress-bar kt-bg-brand" role="progressbar" style="width: 78%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <div class="kt-widget1__item">
-                        <div class="kt-widget1__info">
-                            <h3 class="kt-widget1__title">Issue Reports</h3>
-                            <span class="kt-widget1__desc">System bugs and issues</span>
-                        </div>
-                        <span class="kt-widget1__number kt-font-success">-27,49%</span>
+                    <div class="kt-widget24__action">
+													<span class="kt-widget24__change">
+														Change
+													</span>
+                        <span class="kt-widget24__number">
+														78%
+													</span>
                     </div>
                 </div>
 
-                <!--end:: Widgets/Stats2-1 -->
+                <!--end::Total Profit-->
             </div>
-            <div class="col-md-12 col-lg-12 col-xl-4">
+            <div class="col-md-12 col-lg-6 col-xl-3">
 
-                <!--begin:: Widgets/Stats2-2 -->
-                <div class="kt-widget1">
-                    <div class="kt-widget1__item">
-                        <div class="kt-widget1__info">
-                            <h3 class="kt-widget1__title">IPO Margin</h3>
-                            <span class="kt-widget1__desc">Awerage IPO Margin</span>
+                <!--begin::New Feedbacks-->
+                <div class="kt-widget24">
+                    <div class="kt-widget24__details">
+                        <div class="kt-widget24__info">
+                            <h4 class="kt-widget24__title">
+                                New Feedbacks
+                            </h4>
+                            <span class="kt-widget24__desc">
+															Customer Review
+														</span>
                         </div>
-                        <span class="kt-widget1__number kt-font-success">+24%</span>
+                        <span class="kt-widget24__stats kt-font-warning">
+														1349
+													</span>
                     </div>
-                    <div class="kt-widget1__item">
-                        <div class="kt-widget1__info">
-                            <h3 class="kt-widget1__title">Payments</h3>
-                            <span class="kt-widget1__desc">Yearly Expenses</span>
-                        </div>
-                        <span class="kt-widget1__number kt-font-info">+$560,800</span>
+                    <div class="progress progress--sm">
+                        <div class="progress-bar kt-bg-warning" role="progressbar" style="width: 84%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <div class="kt-widget1__item">
-                        <div class="kt-widget1__info">
-                            <h3 class="kt-widget1__title">Logistics</h3>
-                            <span class="kt-widget1__desc">Overall Regional Logistics</span>
-                        </div>
-                        <span class="kt-widget1__number kt-font-warning">-10%</span>
+                    <div class="kt-widget24__action">
+													<span class="kt-widget24__change">
+														Change
+													</span>
+                        <span class="kt-widget24__number">
+														84%
+													</span>
                     </div>
                 </div>
 
-                <!--end:: Widgets/Stats2-2 -->
+                <!--end::New Feedbacks-->
             </div>
-            <div class="col-md-12 col-lg-12 col-xl-4">
+            <div class="col-md-12 col-lg-6 col-xl-3">
 
-                <!--begin:: Widgets/Stats2-3 -->
-                <div class="kt-widget1">
-                    <div class="kt-widget1__item">
-                        <div class="kt-widget1__info">
-                            <h3 class="kt-widget1__title">Orders</h3>
-                            <span class="kt-widget1__desc">Awerage Weekly Orders</span>
+                <!--begin::New Orders-->
+                <div class="kt-widget24">
+                    <div class="kt-widget24__details">
+                        <div class="kt-widget24__info">
+                            <h4 class="kt-widget24__title">
+                                New Orders
+                            </h4>
+                            <span class="kt-widget24__desc">
+															Fresh Order Amount
+														</span>
                         </div>
-                        <span class="kt-widget1__number kt-font-success">+15%</span>
+                        <span class="kt-widget24__stats kt-font-danger">
+														567
+													</span>
                     </div>
-                    <div class="kt-widget1__item">
-                        <div class="kt-widget1__info">
-                            <h3 class="kt-widget1__title">Transactions</h3>
-                            <span class="kt-widget1__desc">Daily Transaction Increase</span>
-                        </div>
-                        <span class="kt-widget1__number kt-font-danger">+80%</span>
+                    <div class="progress progress--sm">
+                        <div class="progress-bar kt-bg-danger" role="progressbar" style="width: 69%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <div class="kt-widget1__item">
-                        <div class="kt-widget1__info">
-                            <h3 class="kt-widget1__title">Revenue</h3>
-                            <span class="kt-widget1__desc">Overall Revenue Increase</span>
-                        </div>
-                        <span class="kt-widget1__number kt-font-primary">+60%</span>
+                    <div class="kt-widget24__action">
+													<span class="kt-widget24__change">
+														Change
+													</span>
+                        <span class="kt-widget24__number">
+														69%
+													</span>
                     </div>
                 </div>
 
-                <!--end:: Widgets/Stats2-3 -->
+                <!--end::New Orders-->
+            </div>
+            <div class="col-md-12 col-lg-6 col-xl-3">
+
+                <!--begin::New Users-->
+                <div class="kt-widget24">
+                    <div class="kt-widget24__details">
+                        <div class="kt-widget24__info">
+                            <h4 class="kt-widget24__title">
+                                New Users
+                            </h4>
+                            <span class="kt-widget24__desc">
+															Joined New User
+														</span>
+                        </div>
+                        <span class="kt-widget24__stats kt-font-success">
+														276
+													</span>
+                    </div>
+                    <div class="progress progress--sm">
+                        <div class="progress-bar kt-bg-success" role="progressbar" style="width: 90%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="kt-widget24__action">
+													<span class="kt-widget24__change">
+														Change
+													</span>
+                        <span class="kt-widget24__number">
+														90%
+													</span>
+                    </div>
+                </div>
+
+                <!--end::New Users-->
             </div>
         </div>
     </div>

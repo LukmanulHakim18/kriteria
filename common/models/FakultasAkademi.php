@@ -2,7 +2,10 @@
 
 namespace common\models;
 
+use common\models\kriteria9\led\fakultas\K9LedFakultas;
+use common\models\kriteria9\lk\fakultas\K9LkFakultas;
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "fakultas_akademi".
@@ -28,6 +31,12 @@ class FakultasAkademi extends \yii\db\ActiveRecord
         return 'fakultas_akademi';
     }
 
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class
+        ];
+    }
     /**
      * {@inheritdoc}
      */

@@ -4,10 +4,10 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Unit */
+/* @var $model common\models\ProgramStudi */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Unit', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
@@ -42,14 +42,34 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
             <div class="kt-portlet__body">
-                <div class="unit-view">
+                <div class="program-studi-view">
 
 
                     <?= DetailView::widget([
                     'model' => $model,
                     'attributes' => [
                                 'id',
+            'kode',
             'nama',
+            'jurusan_departemen',
+            'id_fakultas_akademi',
+            'nomor_sk_pendirian',
+            'tanggal_sk_pendirian',
+            'pejabat_ttd_sk_pendirian',
+            'bulan_berdiri',
+            'tahun_berdiri',
+            'nomor_sk_operasional',
+            'tanggal_sk_operasional',
+            'peringkat_banpt_terakhir',
+            'nilai_banpt_terakhir',
+            'nomor_sk_banpt',
+            'alamat',
+            'kodepos',
+            'nomor_telp',
+            'homepage',
+            'email:email',
+            'kaprodi',
+            'jenjang',
             'created_at',
             'updated_at',
                     ],

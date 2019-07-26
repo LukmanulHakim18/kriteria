@@ -4,16 +4,16 @@ namespace admin\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use common\models\Unit;
-use admin\models\UnitSearch;
+use common\models\FakultasAkademi;
+use admin\models\FakultasAkademiSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * UnitController implements the CRUD actions for Unit model.
+ * FakultasAkademiController implements the CRUD actions for FakultasAkademi model.
  */
-class UnitController extends Controller
+class FakultasAkademiController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -40,12 +40,12 @@ class UnitController extends Controller
     }
 
     /**
-     * Lists all Unit models.
+     * Lists all FakultasAkademi models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new UnitSearch();
+        $searchModel = new FakultasAkademiSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -55,7 +55,7 @@ class UnitController extends Controller
     }
 
     /**
-     * Displays a single Unit model.
+     * Displays a single FakultasAkademi model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -68,20 +68,19 @@ class UnitController extends Controller
     }
 
     /**
-     * Creates a new Unit model.
+     * Creates a new FakultasAkademi model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Unit();
+        $model = new FakultasAkademi();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success','Berhasil menambahkan Unit.');
+            Yii::$app->session->setFlash('success','Berhasil menambahkan Fakultas.');
 
             return $this->redirect(['view', 'id' => $model->id]);
         }
-
         elseif (Yii::$app->request->isAjax){
             return $this->renderAjax('_form',['model'=>$model]);
         }
@@ -92,7 +91,7 @@ class UnitController extends Controller
     }
 
     /**
-     * Updates an existing Unit model.
+     * Updates an existing FakultasAkademi model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -103,10 +102,11 @@ class UnitController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success','Berhasil mengubah Unit.');
+            Yii::$app->session->setFlash('success','Berhasil mengubah Fakultas.');
 
             return $this->redirect(['view', 'id' => $model->id]);
         }
+
 
         return $this->render('update', [
             'model' => $model,
@@ -114,7 +114,7 @@ class UnitController extends Controller
     }
 
     /**
-     * Deletes an existing Unit model.
+     * Deletes an existing FakultasAkademi model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -124,21 +124,21 @@ class UnitController extends Controller
     {
         $this->findModel($id)->delete();
 
-        Yii::$app->session->setFlash('success','Berhasil menghapus Unit.');
+        Yii::$app->session->setFlash('success','Berhasil menghapus Fakultas.');
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Unit model based on its primary key value.
+     * Finds the FakultasAkademi model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Unit the loaded model
+     * @return FakultasAkademi the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Unit::findOne($id)) !== null) {
+        if (($model = FakultasAkademi::findOne($id)) !== null) {
             return $model;
         }
 

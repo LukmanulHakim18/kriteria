@@ -4,16 +4,16 @@ namespace admin\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use common\models\Unit;
-use admin\models\UnitSearch;
+use common\models\ProgramStudi;
+use admin\models\ProgramStudiSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * UnitController implements the CRUD actions for Unit model.
+ * ProgramStudiController implements the CRUD actions for ProgramStudi model.
  */
-class UnitController extends Controller
+class ProgramStudiController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -40,12 +40,12 @@ class UnitController extends Controller
     }
 
     /**
-     * Lists all Unit models.
+     * Lists all ProgramStudi models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new UnitSearch();
+        $searchModel = new ProgramStudiSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -55,7 +55,7 @@ class UnitController extends Controller
     }
 
     /**
-     * Displays a single Unit model.
+     * Displays a single ProgramStudi model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -68,16 +68,16 @@ class UnitController extends Controller
     }
 
     /**
-     * Creates a new Unit model.
+     * Creates a new ProgramStudi model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Unit();
+        $model = new ProgramStudi();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success','Berhasil menambahkan Unit.');
+            Yii::$app->session->setFlash('success','Berhasil menambahkan ProgramStudi.');
 
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -92,7 +92,7 @@ class UnitController extends Controller
     }
 
     /**
-     * Updates an existing Unit model.
+     * Updates an existing ProgramStudi model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -103,7 +103,7 @@ class UnitController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success','Berhasil mengubah Unit.');
+            Yii::$app->session->setFlash('success','Berhasil mengubah ProgramStudi.');
 
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -114,7 +114,7 @@ class UnitController extends Controller
     }
 
     /**
-     * Deletes an existing Unit model.
+     * Deletes an existing ProgramStudi model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -124,21 +124,21 @@ class UnitController extends Controller
     {
         $this->findModel($id)->delete();
 
-        Yii::$app->session->setFlash('success','Berhasil menghapus Unit.');
+        Yii::$app->session->setFlash('success','Berhasil menghapus ProgramStudi.');
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Unit model based on its primary key value.
+     * Finds the ProgramStudi model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Unit the loaded model
+     * @return ProgramStudi the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Unit::findOne($id)) !== null) {
+        if (($model = ProgramStudi::findOne($id)) !== null) {
             return $model;
         }
 

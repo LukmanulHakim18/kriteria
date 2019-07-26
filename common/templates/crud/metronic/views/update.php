@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = <?= $generator->generateString('Ubah') ?>;
                         <i class="flaticon2-edit"></i>
                     </span>
                     <h3 class="kt-portlet__head-title">
-                        <?= "<?= " ?>Html::encode($this->title) ?> <small>portlet sub title</small>
+                        <?= "<?= " ?>Html::encode($this->title) ?>
                     </h3>
                 </div>
             </div>

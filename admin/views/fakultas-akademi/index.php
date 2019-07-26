@@ -5,10 +5,10 @@ use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel admin\models\UnitSearch */
+/* @var $searchModel admin\models\FakultasAkademiSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Unit';
+$this->title = 'Fakultas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
@@ -28,14 +28,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="kt-portlet__head-toolbar">
                     <div class="kt-portlet__head-wrapper">
                         <div class="kt-portlet__head-actions">
-                            
-                            <?= Html::button('<i class=flaticon2-add></i> Tambah Unit', ['value' => Url::to(['create']), 'title' => 'Tambah Unit', 'class' => 'showModalButton btn btn-success btn-elevate btn-elevate-air']); ?>
+
+                            <?= Html::button('<i class=flaticon2-add></i> Tambah Fakultas', ['value' => Url::to(['fakultas-akademi/create']), 'title' => 'Tambah Fakultas', 'class' => 'showModalButton btn btn-success btn-elevate btn-elevate-air']); ?>
+
                         </div>
                     </div>
                 </div>
             </div>
             <div class="kt-portlet__body">
-                <div class="unit-index">
+                <div class="fakultas-akademi-index">
 
 
 
@@ -50,9 +51,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         ['class' => 'yii\grid\SerialColumn','header'=>'No'],
 
 //                                    'id',
+            'kode',
             'nama',
-//            'created_at',
-//            'updated_at',
+            'dekan',
+//            'created_at:datetime',
+            //'updated_at',
 
                         ['class' => 'common\widgets\ActionColumn','header'=>'Aksi'],
                         ],

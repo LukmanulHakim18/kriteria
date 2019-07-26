@@ -4,6 +4,7 @@ namespace common\models;
 
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "jenis_akreditasi".
@@ -24,6 +25,14 @@ class JenisAkreditasi extends \yii\db\ActiveRecord
     {
         return 'jenis_akreditasi';
     }
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class
+        ];
+    }
+
 
     /**
      * {@inheritdoc}

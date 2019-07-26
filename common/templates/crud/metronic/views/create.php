@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <i class="flaticon2-add-1"></i>
                     </span>
                     <h3 class="kt-portlet__head-title">
-                        <?= "<?= " ?>Html::encode($this->title) ?> <small>portlet sub title</small>
+                        <?= "<?= " ?>Html::encode($this->title) ?>
                     </h3>
                 </div>
             </div>
