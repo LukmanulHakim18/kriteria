@@ -54,7 +54,6 @@ class BaseMetronicAsset extends AssetBundle
         'vendors/general/counterup/jquery.counterup.js',
         'vendors/general/es6-promise-polyfill/promise.min.js',
         'vendors/general/dompurify/dist/purify.js',
-        'js/scripts.bundle.js',
 
     ];
     public $depends =[

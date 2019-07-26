@@ -35,7 +35,7 @@ use yii\widgets\ActiveForm;
     }
 } ?>
     <div class="form-group">
-        <?= "<?= " ?>Html::submitButton(<?= $generator->generateString('Save') ?>, ['class' => 'btn btn-success']) ?>
+        <?= "<?= " ?>Html::submitButton(<?= $generator->generateString("<i class='la la-save'></i> Simpan") ?>, ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-brand']) ?>
     </div>
 
     <?= "<?php " ?>ActiveForm::end(); ?>

@@ -17,6 +17,9 @@ class MetronicErrorPageAsset extends AssetBundle
         'css/pages/general/error/error-3.css'
     ];
 
-    public $js = [];
+    public $js = [
+        'js/scripts.bundle.js',
+
+    ];
 
 }

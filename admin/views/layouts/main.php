@@ -60,6 +60,7 @@ use common\widgets\Alert;
             <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
 
               <?=$this->render('subheader')?>
+              <?= \dominus77\sweetalert2\Alert::widget(['useSessionFlash' => true]) ?>
 
 
                 <?=$this->render('content',['content'=>$content])?>

@@ -448,7 +448,7 @@ Use dot badge instead of animated pulse effect:
                 <div class="kt-header__topbar-user">
                     <span class="kt-header__topbar-welcome kt-hidden-mobile">Assalamu'alaikum,</span>
                     <span class="kt-header__topbar-username kt-hidden-mobile"><?= mb_strtoupper($namaLengkap)?></span>
-                    <img class="kt-hidden" alt="Pic" src="./assets/media/users/300_25.jpg" />
+<!--                    <img class="kt-hidden" alt="Pic" src="./assets/media/users/300_25.jpg" />-->
 
                     <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
                     <span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold"><?=Html::encode($inisial)?></span>

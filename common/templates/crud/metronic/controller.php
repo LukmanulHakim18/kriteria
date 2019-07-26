@@ -118,6 +118,8 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
         $model = new <?= $modelClass ?>();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success','Berhasil menambahkan <?= $modelClass ?>.');
+
             return $this->redirect(['view', <?= $urlParams ?>]);
         }
 
@@ -138,6 +140,8 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
         $model = $this->findModel(<?= $actionParams ?>);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success','Berhasil mengubah <?= $modelClass ?>.');
+
             return $this->redirect(['view', <?= $urlParams ?>]);
         }
 
@@ -156,6 +160,8 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     public function actionDelete(<?= $actionParams ?>)
     {
         $this->findModel(<?= $actionParams ?>)->delete();
+
+        Yii::$app->session->setFlash('success','Berhasil menghapus <?= $modelClass ?>.');
 
         return $this->redirect(['index']);
     }

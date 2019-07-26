@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Html;
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
@@ -31,20 +32,26 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="kt-portlet__head">
                 <div class="kt-portlet__head-label">
                     <span class="kt-portlet__head-icon">
-                        <i class="flaticon2-graph-1"></i>
+                        <i class="flaticon2-list-2"></i>
                     </span>
                     <h3 class="kt-portlet__head-title">
                         <?= "<?= " ?>Html::encode($this->title) ?> <small>portlet sub title</small>
                     </h3>
+                </div>
+                <div class="kt-portlet__head-toolbar">
+                    <div class="kt-portlet__head-wrapper">
+                        <div class="kt-portlet__head-actions">
+
+                            <?= "<?= " ?>Html::a(<?= $generator->generateString("<i class=flaticon2-add></i> Tambah " . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, ['create'], ['class' => 'btn btn-success btn-elevate btn-elevate-air']) ?>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="kt-portlet__body">
                 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-index">
 
 
-                    <p>
-                        <?= "<?= " ?>Html::a(<?= $generator->generateString('Create ' . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, ['create'], ['class' => 'btn btn-success']) ?>
-                    </p>
+
 
                     <?= $generator->enablePjax ? "    <?php Pjax::begin(); ?>\n" : '' ?>
                     <?php if(!empty($generator->searchModelClass)): ?>
@@ -55,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= "<?= " ?>GridView::widget([
                         'dataProvider' => $dataProvider,
                         <?= !empty($generator->searchModelClass) ? "'filterModel' => \$searchModel,\n        'columns' => [\n" : "'columns' => [\n"; ?>
-                        ['class' => 'yii\grid\SerialColumn'],
+                        ['class' => 'yii\grid\SerialColumn','header'=>'No'],
 
                         <?php
                         $count = 0;
@@ -79,7 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                         ?>
 
-                        ['class' => 'yii\grid\ActionColumn'],
+                        ['class' => 'common\widgets\ActionColumn','header'=>'Aksi'],
                         ],
                         ]); ?>
                     <?php else: ?>
@@ -94,17 +101,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= $generator->enablePjax ? "    <?php Pjax::end(); ?>\n" : '' ?>
 
-                </div>
-            </div>
-            <div class="kt-portlet__foot kt-hidden">
-                <div class="row">
-                    <div class="col-lg-6">
-                        Portlet footer:
-                    </div>
-                    <div class="col-lg-6">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <span class="kt-margin-left-10">or <a href="#" class="kt-link kt-font-bold">Cancel</a></span>
-                    </div>
                 </div>
             </div>
         </div>

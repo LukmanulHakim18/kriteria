@@ -48,7 +48,7 @@ use yii\bootstrap4\Html;
                 [
                     'options' => ['class' => 'kt-menu__nav'],
                     'items' => [
-                        ['label' => 'Menu Yii2', 'options' => ['class' => 'kt-menu__section']],
+
 
                         ['label' => 'Dashboard', 'icon' => "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"24px\" height=\"24px\" viewBox=\"0 0 24 24\" version=\"1.1\" class=\"kt-svg-icon\">
 												<g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">
@@ -58,16 +58,40 @@ use yii\bootstrap4\Html;
 												</g>
 											</svg>", 'url' => ['/site']],
 
-                        ['label' => 'Debug', 'icon' => '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
-												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-													<rect id="bound" x="0" y="0" width="24" height="24" />
-													<rect id="Rectangle-7" fill="#000000" x="4" y="4" width="7" height="7" rx="1.5" />
-													<path d="M5.5,13 L9.5,13 C10.3284271,13 11,13.6715729 11,14.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,14.5 C4,13.6715729 4.67157288,13 5.5,13 Z M14.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,9.5 C20,10.3284271 19.3284271,11 18.5,11 L14.5,11 C13.6715729,11 13,10.3284271 13,9.5 L13,5.5 C13,4.67157288 13.6715729,4 14.5,4 Z M14.5,13 L18.5,13 C19.3284271,13 20,13.6715729 20,14.5 L20,18.5 C20,19.3284271 19.3284271,20 18.5,20 L14.5,20 C13.6715729,20 13,19.3284271 13,18.5 L13,14.5 C13,13.6715729 13.6715729,13 14.5,13 Z" id="Combined-Shape" fill="#000000" opacity="0.3" />
-												</g>
-											</svg>', 'url' => ['/debug']],
-                        ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+                        ['label' => 'Data Master', 'options' => ['class' => 'kt-menu__section']],
                         [
-                            'label' => 'Some tools',
+                            'label' => 'Institusi',
+                            'icon' => '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="bound" x="0" y="0" width="24" height="24"/>
+        <path d="M3.95709826,8.41510662 L11.47855,3.81866389 C11.7986624,3.62303967 12.2013376,3.62303967 12.52145,3.81866389 L20.0429,8.41510557 C20.6374094,8.77841684 21,9.42493654 21,10.1216692 L21,19.0000642 C21,20.1046337 20.1045695,21.0000642 19,21.0000642 L4.99998155,21.0000673 C3.89541205,21.0000673 2.99998155,20.1046368 2.99998155,19.0000673 L2.99999828,10.1216672 C2.99999935,9.42493561 3.36258984,8.77841732 3.95709826,8.41510662 Z M10,13 C9.44771525,13 9,13.4477153 9,14 L9,17 C9,17.5522847 9.44771525,18 10,18 L14,18 C14.5522847,18 15,17.5522847 15,17 L15,14 C15,13.4477153 14.5522847,13 14,13 L10,13 Z" id="Combined-Shape" fill="#000000"/>
+    </g>
+</svg>',
+                            'url' => 'javascript:;',
+                            'items' => [
+                                ['label' => 'Unit', 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>', 'url' => ['/unit'],],
+                                ['label' => 'Fakultas', 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>', 'url' => ['/fakultas'],],
+                                [
+                                    'label' => 'Program Studi',
+                                    'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',
+                                    'url' => ['/program-studi'],
+                                ],
+
+                            ],
+                        ],
+
+                        ['label' => 'Pengguna', 'icon' => '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Shape" points="0 0 24 0 24 24 0 24"/>
+        <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" id="Mask" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+        <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" id="Mask-Copy" fill="#000000" fill-rule="nonzero"/>
+    </g>
+</svg>', 'url' => ['/user']],
+                        ['label' => 'Pengguna', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+
+                        ['label' => 'Data Akreditasi', 'options' => ['class' => 'kt-menu__section']],
+                        [
+                            'label' => 'Master Akreditasi',
                             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <rect id="bound" x="0" y="0" width="24" height="24"/>
@@ -75,48 +99,28 @@ use yii\bootstrap4\Html;
         <path d="M16.6568542,5.92893219 L18.0710678,7.34314575 C18.4615921,7.73367004 18.4615921,8.36683502 18.0710678,8.75735931 L16.6913928,10.1370344 C16.3008685,10.5275587 15.6677035,10.5275587 15.2771792,10.1370344 L13.8629656,8.7228208 C13.4724413,8.33229651 13.4724413,7.69913153 13.8629656,7.30860724 L15.2426407,5.92893219 C15.633165,5.5384079 16.26633,5.5384079 16.6568542,5.92893219 Z" id="Rectangle-2" fill="#000000" opacity="0.3"/>
     </g>
 </svg>',
-                            'url' => '#',
+                            'url' => 'javascript:;',
                             'items' => [
-                                ['label' => 'dashboard lagi', 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>', 'url' => ['/site'],],
-                                ['label' => 'Debug', 'icon' => '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
-												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-													<rect id="bound" x="0" y="0" width="24" height="24" />
-													<rect id="Rectangle-7" fill="#000000" x="4" y="4" width="7" height="7" rx="1.5" />
-													<path d="M5.5,13 L9.5,13 C10.3284271,13 11,13.6715729 11,14.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,14.5 C4,13.6715729 4.67157288,13 5.5,13 Z M14.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,9.5 C20,10.3284271 19.3284271,11 18.5,11 L14.5,11 C13.6715729,11 13,10.3284271 13,9.5 L13,5.5 C13,4.67157288 13.6715729,4 14.5,4 Z M14.5,13 L18.5,13 C19.3284271,13 20,13.6715729 20,14.5 L20,18.5 C20,19.3284271 19.3284271,20 18.5,20 L14.5,20 C13.6715729,20 13,19.3284271 13,18.5 L13,14.5 C13,13.6715729 13.6715729,13 14.5,13 Z" id="Combined-Shape" fill="#000000" opacity="0.3" />
-												</g>
-											</svg>', 'url' => ['/debug'],],
+                                ['label' => 'Akreditasi', 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>', 'url' => ['/akreditasi'],],
+                                ['label' => 'Akreditasi Program Studi', 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>', 'url' => ['/akreditasi-prodi'],],
                                 [
-                                    'label' => 'Level One',
+                                    'label' => 'Akreditasi Institusi',
                                     'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',
-                                    'url' => '#',
-                                    'items' => [
-                                        ['label' => 'Level Two', 'icon' => 'circle-o', 'url' => '#',],
-                                        [
-                                            'label' => 'Level Two',
-                                            'icon' => '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
-												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-													<rect id="bound" x="0" y="0" width="24" height="24" />
-													<rect id="Rectangle-7" fill="#000000" x="4" y="4" width="7" height="7" rx="1.5" />
-													<path d="M5.5,13 L9.5,13 C10.3284271,13 11,13.6715729 11,14.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,14.5 C4,13.6715729 4.67157288,13 5.5,13 Z M14.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,9.5 C20,10.3284271 19.3284271,11 18.5,11 L14.5,11 C13.6715729,11 13,10.3284271 13,9.5 L13,5.5 C13,4.67157288 13.6715729,4 14.5,4 Z M14.5,13 L18.5,13 C19.3284271,13 20,13.6715729 20,14.5 L20,18.5 C20,19.3284271 19.3284271,20 18.5,20 L14.5,20 C13.6715729,20 13,19.3284271 13,18.5 L13,14.5 C13,13.6715729 13.6715729,13 14.5,13 Z" id="Combined-Shape" fill="#000000" opacity="0.3" />
-												</g>
-											</svg>',
-                                            'url' => '#',
-                                            'items' => [
-                                                ['label' => 'Level Three', 'icon' => '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
-												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-													<rect id="bound" x="0" y="0" width="24" height="24" />
-													<rect id="Rectangle-7" fill="#000000" x="4" y="4" width="7" height="7" rx="1.5" />
-													<path d="M5.5,13 L9.5,13 C10.3284271,13 11,13.6715729 11,14.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,14.5 C4,13.6715729 4.67157288,13 5.5,13 Z M14.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,9.5 C20,10.3284271 19.3284271,11 18.5,11 L14.5,11 C13.6715729,11 13,10.3284271 13,9.5 L13,5.5 C13,4.67157288 13.6715729,4 14.5,4 Z M14.5,13 L18.5,13 C19.3284271,13 20,13.6715729 20,14.5 L20,18.5 C20,19.3284271 19.3284271,20 18.5,20 L14.5,20 C13.6715729,20 13,19.3284271 13,18.5 L13,14.5 C13,13.6715729 13.6715729,13 14.5,13 Z" id="Combined-Shape" fill="#000000" opacity="0.3" />
-												</g>
-											</svg>', 'url' => '#',],
-                                                ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                            ],
-                                        ],
-                                    ],
+                                    'url' => ['/akreditasi-institusi'],
+
                                 ],
 
                             ],
+
                         ],
+                        ['label' => 'Sertifikat Akreditasi', 'icon' => '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="bound" x="0" y="0" width="24" height="24"/>
+        <path d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z" id="Path-57" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+        <rect id="Rectangle" fill="#000000" opacity="0.3" x="11" y="2" width="2" height="14" rx="1"/>
+        <path d="M12.0362375,3.37797611 L7.70710678,7.70710678 C7.31658249,8.09763107 6.68341751,8.09763107 6.29289322,7.70710678 C5.90236893,7.31658249 5.90236893,6.68341751 6.29289322,6.29289322 L11.2928932,1.29289322 C11.6689749,0.916811528 12.2736364,0.900910387 12.6689647,1.25670585 L17.6689647,5.75670585 C18.0794748,6.12616487 18.1127532,6.75845471 17.7432941,7.16896473 C17.3738351,7.57947475 16.7415453,7.61275317 16.3310353,7.24329415 L12.0362375,3.37797611 Z" id="Path-102" fill="#000000" fill-rule="nonzero"/>
+    </g>
+</svg>', 'url' => ['/sertifikat']],
 
                     ],
                 ]

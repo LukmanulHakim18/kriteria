@@ -20,7 +20,6 @@ use yii\widgets\DetailView;
 $this->title = $model-><?= $generator->getNameAttribute() ?>;
 $this->params['breadcrumbs'][] = ['label' => <?= $generator->generateString(Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
 ?>
 <div class="row">
     <div class="col-lg-12">
@@ -30,26 +29,32 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="kt-portlet__head">
                 <div class="kt-portlet__head-label">
                     <span class="kt-portlet__head-icon">
-                        <i class="flaticon2-graph-1"></i>
+                        <i class="flaticon2-list-3"></i>
                     </span>
                     <h3 class="kt-portlet__head-title">
                         <?= "<?= " ?>Html::encode($this->title) ?> <small>portlet sub title</small>
                     </h3>
                 </div>
+                <div class="kt-portlet__head-toolbar">
+                    <div class="kt-portlet__head-wrapper">
+                        <div class="kt-portlet__head-actions">
+
+
+                            <?= "<?= " ?>Html::a(<?= $generator->generateString("<i class=flaticon2-edit></i> Edit") ?>, ['update', <?= $urlParams ?>], ['class' => 'btn btn-warning btn-elevate btn-elevate-air']) ?>
+                            <?= "<?= " ?>Html::a(<?= $generator->generateString("<i class=flaticon2-delete></i> Hapus") ?>, ['delete', <?= $urlParams ?>], [
+                            'class' => 'btn btn-danger btn-elevate btn-elevate-air',
+                            'data' => [
+                            'confirm' => <?= $generator->generateString('Apakah anda ingin menghapus item ini?') ?>,
+                            'method' => 'post',
+                            ],
+                            ]) ?>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="kt-portlet__body">
                 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-view">
 
-                    <p>
-                        <?= "<?= " ?>Html::a(<?= $generator->generateString('Update') ?>, ['update', <?= $urlParams ?>], ['class' => 'btn btn-primary']) ?>
-                        <?= "<?= " ?>Html::a(<?= $generator->generateString('Delete') ?>, ['delete', <?= $urlParams ?>], [
-                        'class' => 'btn btn-danger',
-                        'data' => [
-                        'confirm' => <?= $generator->generateString('Are you sure you want to delete this item?') ?>,
-                        'method' => 'post',
-                        ],
-                        ]) ?>
-                    </p>
 
                     <?= "<?= " ?>DetailView::widget([
                     'model' => $model,
@@ -69,17 +74,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     ]) ?>
 
-                </div>
-            </div>
-            <div class="kt-portlet__foot kt-hidden">
-                <div class="row">
-                    <div class="col-lg-6">
-                        Portlet footer:
-                    </div>
-                    <div class="col-lg-6">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <span class="kt-margin-left-10">or <a href="#" class="kt-link kt-font-bold">Cancel</a></span>
-                    </div>
                 </div>
             </div>
         </div>

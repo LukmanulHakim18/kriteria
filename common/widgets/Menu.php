@@ -150,6 +150,7 @@ class Menu extends \yii\widgets\Menu
                 }
             }
             $menu = $this->renderItem($item);
+
             if (!empty($item['items'])) {
 
                 $menu .= strtr($this->submenuTemplate, [
