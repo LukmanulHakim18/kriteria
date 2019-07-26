@@ -14,6 +14,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int $id
  * @property int $id_akreditasi
  * @property int $id_prodi
+ * @property float $progress
  * @property int $created_at
  * @property int $updated_at
  *

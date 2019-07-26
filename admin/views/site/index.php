@@ -1,9 +1,16 @@
 <?php
 
 /* @var $this yii\web\View */
+/* @var $jumlahProdi integer */
+/* @var $jumlahPengguna integer */
+/* @var $apt integer */
+/* @var $aps integer */
+/* @var $persenAps float */
+/* @var $persenApt float */
 
 $this->title = 'Beranda';
-$this->params['breadcrumbs'][] = $this->title
+$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <!--Begin::Section-->
 <div class="kt-portlet">
@@ -16,26 +23,13 @@ $this->params['breadcrumbs'][] = $this->title
                     <div class="kt-widget24__details">
                         <div class="kt-widget24__info">
                             <h4 class="kt-widget24__title">
-                                Total Profit
+                                Program Studi
                             </h4>
-                            <span class="kt-widget24__desc">
-															All Customs Value
-														</span>
+                            <span class="kt-widget24__desc">Jumlah Program Studi</span>
                         </div>
                         <span class="kt-widget24__stats kt-font-brand">
-														$<span class="counter">18</span>M
-													</span>
-                    </div>
-                    <div class="progress progress--sm">
-                        <div class="progress-bar kt-bg-brand" role="progressbar" style="width: 78%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <div class="kt-widget24__action">
-													<span class="kt-widget24__change">
-														Change
-													</span>
-                        <span class="kt-widget24__number">
-														78%
-													</span>
+                            <span class="counter"><?=$jumlahProdi ?></span>
+                        </span>
                     </div>
                 </div>
 
@@ -48,26 +42,11 @@ $this->params['breadcrumbs'][] = $this->title
                     <div class="kt-widget24__details">
                         <div class="kt-widget24__info">
                             <h4 class="kt-widget24__title">
-                                New Feedbacks
+                                Pengguna
                             </h4>
-                            <span class="kt-widget24__desc">
-															Customer Review
-														</span>
+                            <span class="kt-widget24__desc">Jumlah Akun Pengguna</span>
                         </div>
-                        <span class="kt-widget24__stats kt-font-warning">
-													<span class="counter">1349</span>
-													</span>
-                    </div>
-                    <div class="progress progress--sm">
-                        <div class="progress-bar kt-bg-warning" role="progressbar" style="width: 84%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <div class="kt-widget24__action">
-													<span class="kt-widget24__change">
-														Change
-													</span>
-                        <span class="kt-widget24__number">
-														84%
-													</span>
+                        <span class="kt-widget24__stats kt-font-warning"><span class="counter"><?= $jumlahPengguna ?></span></span>
                     </div>
                 </div>
 
@@ -79,28 +58,16 @@ $this->params['breadcrumbs'][] = $this->title
                 <div class="kt-widget24">
                     <div class="kt-widget24__details">
                         <div class="kt-widget24__info">
-                            <h4 class="kt-widget24__title">
-                                New Orders
-                            </h4>
-                            <span class="kt-widget24__desc">
-															Fresh Order Amount
-														</span>
+                            <h4 class="kt-widget24__title">Akreditasi Prodi</h4>
+                            <span class="kt-widget24__desc">Akreditasi Program Studi Tahun <?=date('Y')?></span>
                         </div>
-                        <span class="kt-widget24__stats kt-font-danger">
-														<span class="counter">567</span>
-													</span>
+                        <span class="kt-widget24__stats kt-font-danger"><span class="counter"><?=$aps?></span></span>
                     </div>
-                    <div class="progress progress--sm">
-                        <div class="progress-bar kt-bg-danger" role="progressbar" style="width: 69%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <div class="kt-widget24__action">
-													<span class="kt-widget24__change">
-														Change
-													</span>
-                        <span class="kt-widget24__number">
-														69%
-													</span>
-                    </div>
+                    <?=\yii\bootstrap4\Progress::widget([
+                            'barOptions' => ['class'=>'progress-bar progress-bar-striped progress-bar-animated kt-bg-danger'],
+                        'percent' => $persenAps
+                    ])?>
+
                 </div>
 
                 <!--end::New Orders-->
@@ -112,27 +79,17 @@ $this->params['breadcrumbs'][] = $this->title
                     <div class="kt-widget24__details">
                         <div class="kt-widget24__info">
                             <h4 class="kt-widget24__title">
-                                New Users
+                                Akreditasi Perguruan Tinggi
                             </h4>
-                            <span class="kt-widget24__desc">
-															Joined New User
-														</span>
+                            <span class="kt-widget24__desc">Akreditasi Insitusi Perguruan Tinggi Tahun <?=date('Y')?></span>
                         </div>
-                        <span class="kt-widget24__stats kt-font-success">
-														<span class="counter">276</span>
-													</span>
+                        <span class="kt-widget24__stats kt-font-success"><span class="counter"><?=$apt?></span></span>
                     </div>
-                    <div class="progress progress--sm">
-                        <div class="progress-bar kt-bg-success" role="progressbar" style="width: 90%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <div class="kt-widget24__action">
-													<span class="kt-widget24__change">
-														Change
-													</span>
-                        <span class="kt-widget24__number">
-														90%
-													</span>
-                    </div>
+                    <?=\yii\bootstrap4\Progress::widget([
+                            'barOptions' => ['class'=>'progress-bar progress-bar-striped progress-bar-animated kt-bg-success'],
+                        'percent' => $persenApt
+                    ])?>
+
                 </div>
 
                 <!--end::New Users-->
@@ -152,106 +109,23 @@ $this->params['breadcrumbs'][] = $this->title
 													<i class="flaticon2-graph-1"></i>
 												</span>
                     <h3 class="kt-portlet__head-title">
-                        Icon Title <small>portlet sub title</small>
+                        Selamat Datang
+                        <small>di Dashboard Admin</small>
                     </h3>
                 </div>
             </div>
             <div class="kt-portlet__body">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.
-            </div>
-            <div class="kt-portlet__foot kt-hidden">
-                <div class="row">
-                    <div class="col-lg-6">
-                        Portlet footer:
-                    </div>
-                    <div class="col-lg-6">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <span class="kt-margin-left-10">or <a href="#" class="kt-link kt-font-bold">Cancel</a></span>
-                    </div>
-                </div>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                type and scrambled.
             </div>
         </div>
 
         <!--end::Portlet-->
     </div>
 </div>
-<div class="row">
-    <div class="col-lg-12">
 
-        <!--begin::Portlet-->
-        <div class="kt-portlet kt-portlet--mobile">
-            <div class="kt-portlet__head">
-                <div class="kt-portlet__head-label">
-                    <h3 class="kt-portlet__head-title">
-                        Basic Portlet <small>portlet sub title</small>
-                    </h3>
-                </div>
-            </div>
-            <div class="kt-portlet__body">
-                <div class="site-index">
-
-                    <div class="jumbotron">
-                        <h1>Congratulations!</h1>
-
-                        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-                        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-                    </div>
-
-                    <div class="body-content">
-
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <h2>Heading</h2>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                                    et
-                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip
-                                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                                    dolore eu
-                                    fugiat nulla pariatur.</p>
-
-                                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-                            </div>
-                            <div class="col-lg-4">
-                                <h2>Heading</h2>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                                    et
-                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip
-                                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                                    dolore eu
-                                    fugiat nulla pariatur.</p>
-
-                                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-                            </div>
-                            <div class="col-lg-4">
-                                <h2>Heading</h2>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                                    et
-                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip
-                                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                                    dolore eu
-                                    fugiat nulla pariatur.</p>
-
-                                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a>
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!--end::Portlet-->
-
-    </div>
-</div>
 
 
