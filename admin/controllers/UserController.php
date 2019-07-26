@@ -105,10 +105,10 @@ class UserController extends Controller
 
                 $user = $model->addUser();
                 if($user === null){
-                    throw new InvalidArgumentException('Gagal membuat user');
+                    throw new InvalidArgumentException('Gagal membuat pengguna');
 
                 }
-                Yii::$app->session->setFlash('success','Berhasil menambahkan User.');
+                Yii::$app->session->setFlash('success','Berhasil menambahkan pengguna.');
 
                 return $this->redirect(['user/index']);
 
@@ -158,15 +158,15 @@ class UserController extends Controller
 
         if ($model->load(Yii::$app->request->post()) ) {
             if(!$model->validate()){
-                throw new InvalidArgumentException('Gagal Validasi user');
+                throw new InvalidArgumentException('Gagal validasi pengguna');
             }
             $model->updateUser();
             if($model === false){
-                throw new InvalidArgumentException('Gagal memperbarui user, terdapat error');
+                throw new InvalidArgumentException('Gagal memperbarui pengguna, terdapat error');
 
             }
 
-            Yii::$app->session->setFlash('success','Berhasil Memperbarui User');
+            Yii::$app->session->setFlash('success','Berhasil memperbarui pengguna');
 
             return $this->redirect(['view', 'id' => $model->getUser()->id]);
         }
@@ -175,9 +175,9 @@ class UserController extends Controller
             if($modelPassword->validate()){
                 $modelPassword->updatePassword();
                 if(!$modelPassword){
-                    throw new InvalidArgumentException('Gagal Mengganti Password');
+                    throw new InvalidArgumentException('Gagal mengganti kata sandi');
                 }
-                Yii::$app->session->setFlash('success','Berhasil Mengganti Password');
+                Yii::$app->session->setFlash('success','Berhasil mengganti kata sandi');
                 return $this->redirect(['view', 'id' => $model->getUser()->id]);
             }
 
@@ -202,7 +202,7 @@ class UserController extends Controller
     {
         $this->findModel($id)->delete();
 
-        Yii::$app->session->setFlash('success','Berhasil menghapus User.');
+        Yii::$app->session->setFlash('success','Berhasil menghapus pengguna.');
 
         return $this->redirect(['index']);
     }

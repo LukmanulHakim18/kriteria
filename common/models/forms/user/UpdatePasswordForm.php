@@ -24,9 +24,9 @@ class UpdatePasswordForm extends Model
     public function attributeLabels()
     {
         return [
-            'oldPassword' => 'Password Lama',
-            'newPassword' => 'Password Baru',
-            'repeatPassword' => 'Konfirmasi Password Baru'
+            'oldPassword' => 'Kata Sandi Lama',
+            'newPassword' => 'Kata Sandi Baru',
+            'repeatPassword' => 'Konfirmasi Kata Sandi Baru'
         ];
     }
 
@@ -59,12 +59,12 @@ class UpdatePasswordForm extends Model
     {
 
         if (empty($id)) {
-            throw new InvalidArgumentException('User tidak ditemukan');
+            throw new InvalidArgumentException('Pengguna tidak ditemukan');
         }
 
         $this->_user = User::findOne($id);
         if (!$this->_user) {
-            throw new InvalidArgumentException('User yang dicari tidak ada');
+            throw new InvalidArgumentException('Pengguna yang dicari tidak ada');
         }
 
         parent::__construct($config);

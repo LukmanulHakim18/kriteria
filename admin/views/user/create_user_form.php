@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 /* @var $dataFakultas FakultasAkademi[] */
 /*  @var $dataRoles []*/
 
-$this->title = 'Tambah User';
+$this->title = 'Tambah Pengguna';
 $this->params['breadcrumbs'][] = ['label' => 'User', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

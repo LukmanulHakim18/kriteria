@@ -15,7 +15,7 @@ use yii\bootstrap4\ActiveForm;
 /* @var $form ActiveForm */
 /* @var $dataFakultas FakultasAkademi[] */
 /* @var $dataRoles [] */
-$this->title = 'Update User';
+$this->title = 'Update Pengguna';
 $this->params['breadcrumbs'][] = ['label' => 'User', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
