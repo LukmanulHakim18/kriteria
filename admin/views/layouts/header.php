@@ -483,10 +483,10 @@ Use dot badge instead of animated pulse effect:
                         </div>
                         <div class=\"kt-notification__item-details\">
                             <div class=\"kt-notification__item-title kt-font-bold\">
-                                My Profile
+                                Profil Saya
                             </div>
                             <div class=\"kt-notification__item-time\">
-                                Account settings and more
+                                Pengaturan akun dan lainnya
                             </div>
                         </div>",['/profile'],['class'=>'kt-notification__item'])?>
 
