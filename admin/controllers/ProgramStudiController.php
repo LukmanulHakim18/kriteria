@@ -2,10 +2,12 @@
 
 namespace admin\controllers;
 
+use common\models\FakultasAkademi;
 use Yii;
 use yii\filters\AccessControl;
 use common\models\ProgramStudi;
 use admin\models\ProgramStudiSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -75,6 +77,7 @@ class ProgramStudiController extends Controller
     public function actionCreate()
     {
         $model = new ProgramStudi();
+        $dataFakultas = ArrayHelper::map(FakultasAkademi::find()->all(),'id','nama');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success','Berhasil menambahkan ProgramStudi.');
@@ -83,11 +86,12 @@ class ProgramStudiController extends Controller
         }
 
         elseif (Yii::$app->request->isAjax){
-            return $this->renderAjax('_form',['model'=>$model]);
+            return $this->renderAjax('_form',['model'=>$model,'dataFakultas'=>$dataFakultas]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'dataFakultas'=>$dataFakultas
         ]);
     }
 
@@ -101,6 +105,7 @@ class ProgramStudiController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $dataFakultas = ArrayHelper::map(FakultasAkademi::find()->all(),'id','nama');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success','Berhasil mengubah ProgramStudi.');
@@ -110,6 +115,7 @@ class ProgramStudiController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'dataFakultas'=>$dataFakultas
         ]);
     }
 

@@ -56,7 +56,7 @@ class FakultasAkademi extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'kode' => 'Kode',
-            'nama' => 'Nama',
+            'nama' => 'Nama Fakultas',
             'dekan' => 'Dekan',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

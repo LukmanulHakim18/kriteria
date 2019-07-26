@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\ProgramStudi */
 
-$this->title = $model->id;
+$this->title = $model->nama;
 $this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'kode',
             'nama',
             'jurusan_departemen',
-            'id_fakultas_akademi',
+            'fakultasAkademi.nama',
             'nomor_sk_pendirian',
             'tanggal_sk_pendirian',
             'pejabat_ttd_sk_pendirian',
@@ -70,8 +70,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
             'kaprodi',
             'jenjang',
-            'created_at',
-            'updated_at',
+            'created_at:datetime',
+            'updated_at:datetime',
                     ],
                     ]) ?>
 

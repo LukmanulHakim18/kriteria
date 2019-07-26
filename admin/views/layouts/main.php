@@ -109,14 +109,17 @@ use common\widgets\Alert;
 <!-- end::Global Config -->
 <?php $this->endBody() ?>
 <?php
-yii\bootstrap\Modal::begin([
+yii\bootstrap4\Modal::begin([
+    'title' => '<span id="modalHeaderTitle"></span>',
     'headerOptions' => ['id' => 'modalHeader'],
     'id' => 'modal',
     'size' => 'modal-lg',
+    'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
+
 
 ]);
 echo "<div id='modalContent'></div>";
-yii\bootstrap\Modal::end();
+yii\bootstrap4\Modal::end();
 ?>
 </body>
 </html>

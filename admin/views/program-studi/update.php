@@ -4,10 +4,11 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\ProgramStudi */
+/* @var $dataFakultas common\models\FakultasAkademi[] */
 
-$this->title = 'Update Program Studi: ' . $model->id;
+$this->title = 'Update Program Studi: ' . $model->nama;
 $this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->nama, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Ubah';
 ?>
 
@@ -31,6 +32,8 @@ $this->params['breadcrumbs'][] = 'Ubah';
 
                     <?= $this->render('_form', [
                     'model' => $model,
+                        'dataFakultas'=>$dataFakultas
+
                     ]) ?>
 
                 </div>

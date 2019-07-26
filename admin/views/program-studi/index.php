@@ -49,11 +49,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
                         ['class' => 'yii\grid\SerialColumn','header'=>'No'],
 
-                                    'id',
+//                                    'id',
             'kode',
             'nama',
-            'jurusan_departemen',
-            'id_fakultas_akademi',
+//            'jurusan_departemen',
+            [
+                    'attribute' => 'id_fakultas_akademi',
+                 'value' => 'fakultasAkademi.nama',
+                'label' => 'Fakultas'
+            ],
             //'nomor_sk_pendirian',
             //'tanggal_sk_pendirian',
             //'pejabat_ttd_sk_pendirian',
