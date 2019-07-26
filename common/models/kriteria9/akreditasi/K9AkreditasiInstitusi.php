@@ -2,6 +2,8 @@
 
 namespace common\models\kriteria9\akreditasi;
 
+use common\models\kriteria9\led\institusi\K9LedInstitusi;
+use common\models\kriteria9\lk\institusi\K9LkInstitusi;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 
@@ -10,6 +12,7 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property int $id
  * @property int $id_akreditasi
+ * @property float $progress
  * @property int $created_at
  * @property int $updated_at
  *
