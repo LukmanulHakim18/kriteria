@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel admin\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -22,7 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         <i class="flaticon2-list-2"></i>
                     </span>
                     <h3 class="kt-portlet__head-title">
-                        <?= Html::encode($this->title) ?> <small><?=Html::encode(Yii::$app->name)?></small>
+                        <?= Html::encode($this->title) ?>
+                        <small><?= Html::encode(Yii::$app->name) ?></small>
                     </h3>
                 </div>
                 <div class="kt-portlet__head-toolbar">
@@ -38,37 +40,34 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="user-index">
 
 
+                    <?php Pjax::begin(); ?>
+                    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-
-                        <?php Pjax::begin(); ?>
-                                                <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-                    
-                                            <?= GridView::widget([
+                    <?= GridView::widget([
                         'dataProvider' => $dataProvider,
                         'filterModel' => $searchModel,
-        'columns' => [
-                        ['class' => 'yii\grid\SerialColumn','header'=>'No'],
+                        'columns' => [
+                            ['class' => 'yii\grid\SerialColumn', 'header' => 'No'],
 
 //                                    'id',
-            'username',
+                            'username',
+                            'email:email',
+                            ['label' => 'Hak Akses',
+                                'attribute' => 'role.item_name',
+                            ],
 //            'auth_key',
 //            'password_hash',
 //            'password_reset_token',
-            //'email:email',
-            //'status',
-            'is_admin:boolean',
-            'is_institusi:boolean',
-            'is_fakultas:boolean',
-            'is_prodi:boolean',
-            //'created_at',
-            //'updated_at',
-            //'verification_token',
+//                            'status',
+                            //'created_at',
+                            //'updated_at',
+                            //'verification_token',
 
-                        ['class' => 'common\widgets\ActionColumn','header'=>'Aksi'],
+                            ['class' => 'common\widgets\ActionColumn', 'header' => 'Aksi'],
                         ],
-                        ]); ?>
-                    
-                        <?php Pjax::end(); ?>
+                    ]); ?>
+
+                    <?php Pjax::end(); ?>
 
                 </div>
             </div>

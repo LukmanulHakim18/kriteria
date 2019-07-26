@@ -4,6 +4,7 @@
 namespace common\models\forms\user;
 
 
+use common\models\User;
 use InvalidArgumentException;
 use yii\base\Model;
 
@@ -20,7 +21,7 @@ class UserPasswordForm extends Model
     /**
      * @return array
      */
-    public function attributeLabels() :array
+    public function attributeLabels()
     {
         return [
             'oldPassword' => 'Password Lama',
@@ -29,22 +30,30 @@ class UserPasswordForm extends Model
         ];
     }
 
-    public function rules() :array
+    public function rules()
     {
         return [
             [['oldPassword','newPassword','repeatPassword'],'required'],
-            ['oldPassword','findPassword'],
-            ['repeatPassword','compare','compareAttribute' => 'newPassword'],
+            ['repeatPassword','compare','compareAttribute' => 'newPassword','message' => "Password tidak sama."],
+            ['oldPassword','findPassword','skipOnEmpty'=>false],
+
         ];
     }
 
-    public function findPassword($attribute, $params): void
+    public function findPassword($attribute, $params)
     {
 
-        $password = $this->_user->password_hash;
-        if($password !== $this->oldPassword){
-            $this->addError($attribute,'Password lama tidak sesuai dengan database');
+        if (!$this->hasErrors()) {
+            $user = $this->_user;
+            if (!$user || !$user->validatePassword($this->oldPassword)) {
+                $this->addError($attribute,'Password lama tidak sesuai dengan database');
+                return false;
+            }
+
         }
+        return true;
+
+
     }
     public function __construct($id, $config = [])
     {
@@ -64,10 +73,11 @@ class UserPasswordForm extends Model
     public function updatePassword()
     {
 
-        $user = $this->_user;
-        $user->setPassword($this->newPassword);
+            $user = $this->_user;
+            $user->setPassword($this->newPassword);
 
-        return $user->save()? $user: null;
+            return $user->save()? $user: null;
+
 
 
     }

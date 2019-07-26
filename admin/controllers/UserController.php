@@ -2,10 +2,18 @@
 
 namespace admin\controllers;
 
+use common\models\FakultasAkademi;
+use common\models\forms\user\CreateUserForm;
+use common\models\forms\user\UpdateUserForm;
+use common\models\forms\user\UserPasswordForm;
+use common\models\ProgramStudi;
 use Yii;
+use yii\base\InvalidArgumentException;
 use yii\filters\AccessControl;
 use common\models\User;
 use admin\models\UserSearch;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -74,20 +82,51 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
-        $model = new User();
+        $model = new CreateUserForm();
+        $available_role = Yii::$app->authManager->getRoles();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success','Berhasil menambahkan User.');
+        $forbidden_roles = ['superadmin'];
 
-            return $this->redirect(['view', 'id' => $model->id]);
+        $roles = array_keys($available_role);
+
+        foreach ($forbidden_roles as $role){
+            $pos = array_search($role, $roles);
+            ArrayHelper::remove($roles,$pos);
         }
 
+        $dataRoles = array_combine($roles, $roles);
+
+        $fakultas = FakultasAkademi::find()->all();
+        $dataFakultas = ArrayHelper::map($fakultas,'id','nama');
+
+        if ($model->load(Yii::$app->request->post()) ) {
+
+            if($model->validate()){
+
+                $user = $model->addUser();
+                if($user === null){
+                    throw new InvalidArgumentException('Gagal membuat user');
+
+                }
+                Yii::$app->session->setFlash('success','Berhasil menambahkan User.');
+
+                return $this->redirect(['user/index']);
+
+            }
+
+            throw new InvalidArgumentException('Gagal membuat user, Validasi data gagal');
+
+        }
         elseif (Yii::$app->request->isAjax){
-            return $this->renderAjax('_form',['model'=>$model]);
+
+            return $this->renderAjax('_create_user_form',[ 'model' => $model,
+                'dataFakultas'=>$dataFakultas, 'dataRoles'=>$dataRoles]);
         }
 
-        return $this->render('create', [
+        return $this->render('create_user_form', [
             'model' => $model,
+            'dataFakultas'=>$dataFakultas,
+            'dataRoles'=>$dataRoles
         ]);
     }
 
@@ -100,16 +139,55 @@ class UserController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model = new UpdateUserForm($id);
+        $modelPassword = new UserPasswordForm($id);
+        $fakultas = FakultasAkademi::find()->all();
+        $dataFakultas = ArrayHelper::map($fakultas,'id','nama');
+        $available_role = Yii::$app->authManager->getRoles();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success','Berhasil mengubah User.');
+        $forbidden_roles = ['superadmin'];
 
-            return $this->redirect(['view', 'id' => $model->id]);
+        $roles = array_keys($available_role);
+
+        foreach ($forbidden_roles as $role){
+            $pos = array_search($role, $roles);
+            ArrayHelper::remove($roles,$pos);
         }
 
-        return $this->render('update', [
+        $dataRoles = array_combine($roles, $roles);
+
+        if ($model->load(Yii::$app->request->post()) ) {
+            if(!$model->validate()){
+                throw new InvalidArgumentException('Gagal Validasi user');
+            }
+            $model->updateUser();
+            if($model === false){
+                throw new InvalidArgumentException('Gagal memperbarui user, terdapat error');
+
+            }
+
+            Yii::$app->session->setFlash('success','Berhasil Memperbarui User');
+
+            return $this->redirect(['view', 'id' => $model->getUser()->id]);
+        }
+        if($modelPassword->load(Yii::$app->request->post())){
+
+            if($modelPassword->validate()){
+                $modelPassword->updatePassword();
+                if(!$modelPassword){
+                    throw new InvalidArgumentException('Gagal Mengganti Password');
+                }
+                Yii::$app->session->setFlash('success','Berhasil Mengganti Password');
+                return $this->redirect(['view', 'id' => $model->getUser()->id]);
+            }
+
+        }
+
+        return $this->render('update_user_form', [
             'model' => $model,
+            'modelPassword'=>$modelPassword,
+            'dataFakultas'=>$dataFakultas,
+            'dataRoles'=>$dataRoles
         ]);
     }
 
@@ -143,5 +221,41 @@ class UserController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionGetFakultas(){
+        $fakultas = FakultasAkademi::find()->all();
+        return ArrayHelper::map($fakultas,'id','nama');
+    }
+
+    public function actionGetProdi(){
+
+        $this->enableCsrfValidation = false;
+        $arrayProdi = [];
+
+        if(isset($_POST['depdrop_parents'])){
+            $parent = $_POST['depdrop_parents'];
+            if($parent!==null){
+                $id = $parent[0];
+                $dataProdi = ProgramStudi::findAll(['id_fakultas_akademi'=>$id]);
+                foreach ($dataProdi as $data){
+                    $id = $data->id;
+                    $nama = $data->nama . '('.$data->jenjang.')';
+                    $newArray = ['id'=>$id,'name'=>$nama];
+                    $arrayProdi[] = $newArray;
+                }
+
+                echo Json::encode(['output'=>$arrayProdi, 'selected'=>'']);
+                return;
+            }
+        }
+        echo Json::encode(['output'=>'', 'selected'=>'']);
+    }
+    public function beforeAction($action)
+    {
+        if ($this->action->id === 'get-prodi') {
+            $this->enableCsrfValidation = false;
+        }
+        return true;
     }
 }

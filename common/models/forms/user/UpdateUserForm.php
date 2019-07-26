@@ -4,6 +4,8 @@
 namespace common\models\forms\user;
 
 
+use common\models\ProfilUser;
+use common\models\User;
 use InvalidArgumentException;
 use Yii;
 use yii\base\Model;
@@ -16,10 +18,7 @@ class UpdateUserForm extends Model
     public $username;
     public $email;
     public $status;
-    public $is_admin;
-    public $is_institusi;
-    public $is_fakultas;
-    public $is_prodi;
+    public $hak_akses;
 
     public $nama_lengkap;
     public $id_fakultas;
@@ -39,52 +38,50 @@ class UpdateUserForm extends Model
     public function attributeLabels()
     {
         return [
-            'username' => 'Username (Nip/Nik)',
-            'is_admin' => 'Akses Admin',
-            'is_institusi' => 'Akses Institusi',
-            'is_fakultas' => 'Akses Fakultas',
-            'is_prodi' => 'Akses Prodi',
+            'username' => 'Username',
             'id_fakultas' => 'Fakultas',
             'id_prodi' => 'Prodi',
         ];
     }
 
-    public function __construct($id,$config = [])
+    public function __construct($id, $config = [])
     {
 
-        if(empty($id)){
+        if (empty($id)) {
             throw new InvalidArgumentException('Id tidak boleh kosong');
         }
         $this->_user = User::findOne($id);
-        if(!$this->_user){
+        if (!$this->_user) {
             throw new InvalidArgumentException('User tidak Ditemukan');
         }
         $this->_profilUser = $this->_user->profilUser;
 
         $this->setAttributes([
-            'username'=>$this->_user->username,
-            'email'=>$this->_user->email,
-            'status'=>$this->_user->status,
-            'is_admin'=>$this->_user->is_admin,
-            'is_institusi'=>$this->_user->is_institusi,
-            'is_fakultas'=>$this->_user->is_fakultas,
-            'is_prodi'=>$this->_user->is_prodi,
-            'nama_lengkap'=>$this->_profilUser->nama_lengkap,
-            'id_prodi'=>$this->_profilUser->id_prodi,
-            'id_fakultas'=>$this->_profilUser->id_fakultas,
-        ],false);
+            'username' => $this->_user->username,
+            'email' => $this->_user->email,
+            'status' => $this->_user->status,
+            'nama_lengkap' => $this->_profilUser->nama_lengkap,
+            'id_prodi' => $this->_profilUser->id_prodi,
+            'id_fakultas' => $this->_profilUser->id_fakultas,
+        ], false);
+
+        $auth = Yii::$app->getAuthManager();
+        $r = array_keys($auth->getRolesByUser($this->_user->id));
+        $akses = array_combine($r, $r);
+        $this->hak_akses = $akses;
 
         parent::__construct($config);
     }
 
-    public function rules() :array
+    public function rules(): array
     {
         return [
 
-            [['username','email','status','is_admin','is_institusi','is_fakultas','is_prodi','nama_lengkap'],'required'],
-            [['id_fakultas','id_prodi'],'safe']
+            [['username', 'email', 'status', 'hak_akses', 'nama_lengkap'], 'required'],
+            [['id_fakultas', 'id_prodi'], 'safe']
         ];
     }
+
     public function updateUser()
     {
 
@@ -93,77 +90,56 @@ class UpdateUserForm extends Model
 
         $profil = $this->_profilUser;
 
-        $user->setAttributes(['username'=>$this->username,
-            'email'=>$this->email,
-            'status'=>$this->status,
-            'is_admin'=>$this->is_admin,
-            'is_institusi'=>$this->is_institusi,
-            'is_fakultas'=>$this->is_fakultas,
-            'is_prodi'=>$this->is_prodi],false);
-        $profil->setAttributes(['nama_lengkap'=>$this->nama_lengkap,'id_fakultas'=>$this->id_fakultas,'id_prodi'=>$this->id_prodi]);
+        $user->setAttributes(['username' => $this->username,
+            'email' => $this->email,
+            'status' => $this->status,
+        ], false);
+        $profil->setAttributes(['nama_lengkap' => $this->nama_lengkap, 'id_fakultas' => $this->id_fakultas, 'id_prodi' => $this->id_prodi]);
 
         $transaction = \Yii::$app->db->beginTransaction();
 
-        if(!$user->save()){
+        if (!$user->save()) {
             $transaction->rollBack();
             return false;
         }
         $profil->id_user = $user->id;
-        if(!$profil->save()){
+        if (!$profil->save()) {
             $transaction->rollBack();
             return false;
         }
 
         try {
-            $transaction->commit();
             $auth = Yii::$app->getAuthManager();
             $r = array_values($auth->getRolesByUser($user->id));
-            foreach ($r as $role){
-                $auth->revoke($role,$user->id);
+            foreach ($r as $role) {
+                $auth->revoke($role, $user->id);
 
             }
-            if ($user->is_admin) {
-                if($user->is_institusi && $user->is_fakultas && $user->is_prodi){
-                    $role = $auth->getRole('adminLpm');
-                    $auth->assign($role, $user->id);
-                }
-                elseif ($user->is_institusi) {
-                    $role = $auth->getRole('adminInstitusi');
-                    $auth->assign($role, $user->id);
-                } elseif ($user->is_fakultas) {
-                    $role = $auth->getRole('adminFakultas');
-                    $auth->assign($role, $user->id);
-                } elseif ($user->is_prodi) {
-                    $role = $auth->getRole('adminProdi');
-                    $auth->assign($role, $user->id);
-                }
+            $role = $auth->getRole($this->hak_akses);
 
-            } else {
-                if ($user->is_institusi) {
-                    $role = $auth->getRole('userInstitusi');
-                    $auth->assign($role, $user->id);
-                } elseif ($user->is_fakultas) {
-                    $role = $auth->getRole('userFakultas');
-                    $auth->assign($role, $user->id);
-                } elseif ($user->is_prodi) {
-                    $role = $auth->getRole('userProdi');
-                    $auth->assign($role, $user->id);
-                }
+            try {
+                $auth->assign($role, $user->id);
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                return false;
             }
+            $transaction->commit();
+
         } catch (Exception $e) {
             var_dump($e->getMessage());
         }
 
 
-
         return $user;
     }
 
-    public function getUser(){
+    public function getUser()
+    {
         return $this->_user;
     }
 
-    public function getProfilUser(){
+    public function getProfilUser()
+    {
         return $this->_profilUser;
     }
 }
