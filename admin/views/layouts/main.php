@@ -12,6 +12,13 @@ use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 
 \common\assets\MetronicDashboardAsset::register($this);
+$counterUp = <<<JS
+ $('.counter').counterUp({
+        delay: 10,
+        time: 1000
+    });
+JS;
+$this->registerJs($counterUp,\yii\web\View::POS_READY);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -60,13 +67,17 @@ use common\widgets\Alert;
             <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
 
               <?=$this->render('subheader')?>
-                <?=$content?>
+              <?= \dominus77\sweetalert2\Alert::widget(['useSessionFlash' => true]) ?>
+
+
+                <?=$this->render('content',['content'=>$content])?>
             </div>
 
             <?=$this->render('footer')?>
         </div>
     </div>
 </div>
+
 
 <!-- end:: Page -->
 
@@ -101,8 +112,22 @@ use common\widgets\Alert;
     };
 </script>
 
+
 <!-- end::Global Config -->
 <?php $this->endBody() ?>
+<?php
+yii\bootstrap4\Modal::begin([
+    'title' => '<span id="modalHeaderTitle"></span>',
+    'headerOptions' => ['id' => 'modalHeader'],
+    'id' => 'modal',
+    'size' => 'modal-lg',
+    'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
+
+
+]);
+echo "<div id='modalContent'></div>";
+yii\bootstrap4\Modal::end();
+?>
 </body>
 </html>
 <?php $this->endPage() ?>

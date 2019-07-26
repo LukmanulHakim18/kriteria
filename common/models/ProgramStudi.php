@@ -2,7 +2,9 @@
 
 namespace common\models;
 
+use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "program_studi".
@@ -46,6 +48,12 @@ class ProgramStudi extends \yii\db\ActiveRecord
         return 'program_studi';
     }
 
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class
+        ];
+    }
     /**
      * {@inheritdoc}
      */

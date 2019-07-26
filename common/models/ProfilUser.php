@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "profil_user".
@@ -27,6 +28,12 @@ class ProfilUser extends \yii\db\ActiveRecord
         return 'profil_user';
     }
 
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class
+        ];
+    }
     /**
      * {@inheritdoc}
      */

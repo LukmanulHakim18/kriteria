@@ -19,6 +19,8 @@ class MetronicLoginPageAsset extends AssetBundle
     ];
 
     public $js = [
+        'js/scripts.bundle.js',
+
 //        'js/pages/login/login-general.js'
     ];
 

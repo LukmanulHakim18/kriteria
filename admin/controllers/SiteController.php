@@ -60,6 +60,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+//        Yii::$app->session->setFlash('success','Hello World');
         return $this->render('index');
     }
 
