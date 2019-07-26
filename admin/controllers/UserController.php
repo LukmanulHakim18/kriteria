@@ -5,7 +5,7 @@ namespace admin\controllers;
 use common\models\FakultasAkademi;
 use common\models\forms\user\CreateUserForm;
 use common\models\forms\user\UpdateUserForm;
-use common\models\forms\user\UserPasswordForm;
+use common\models\forms\user\UpdatePasswordForm;
 use common\models\ProgramStudi;
 use Yii;
 use yii\base\InvalidArgumentException;
@@ -140,7 +140,7 @@ class UserController extends Controller
     public function actionUpdate($id)
     {
         $model = new UpdateUserForm($id);
-        $modelPassword = new UserPasswordForm($id);
+        $modelPassword = new UpdatePasswordForm($id);
         $fakultas = FakultasAkademi::find()->all();
         $dataFakultas = ArrayHelper::map($fakultas,'id','nama');
         $available_role = Yii::$app->authManager->getRoles();

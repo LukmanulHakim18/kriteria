@@ -8,7 +8,7 @@ use common\models\User;
 use InvalidArgumentException;
 use yii\base\Model;
 
-class UserPasswordForm extends Model
+class UpdatePasswordForm extends Model
 {
 
     public $oldPassword;

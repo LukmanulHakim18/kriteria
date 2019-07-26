@@ -58,6 +58,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         $scenario['update'] = [
             'username', 'email', 'status',
         ];
+        $scenario['update-account'] = [
+            'username', 'email',
+        ];
         $scenario['password-update'] = ['password_hash'];
 
         return $scenario;

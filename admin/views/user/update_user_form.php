@@ -11,7 +11,7 @@ use yii\bootstrap4\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\forms\user\UpdateUserForm */
-/* @var $modelPassword common\models\forms\user\UserPasswordForm */
+/* @var $modelPassword common\models\forms\user\UpdatePasswordForm */
 /* @var $form ActiveForm */
 /* @var $dataFakultas FakultasAkademi[] */
 /* @var $dataRoles [] */
@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ]) ?>
 
                         <div class="form-group">
-                            <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+                            <?= Html::submitButton('<i class=\'la la-save\'></i> Simpan', ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-brand']) ?>
                         </div>
                         <?php ActiveForm::end(); ?>
 
@@ -121,7 +121,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                         <div class="form-group">
-                            <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+                            <?= Html::submitButton('<i class=\'la la-save\'></i> Simpan', ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-brand']) ?>
                         </div>
                         <?php ActiveForm::end(); ?>
 

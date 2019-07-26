@@ -16,7 +16,10 @@ return [
         'admin'=>[
             'class'=> \mdm\admin\Module::class,
             'layout' => 'left-menu',
-        ]
+        ],
+        'profile' => [
+            'class' => 'common\modules\Profile',
+        ],
     ],
     'components' => [
         'request' => [
