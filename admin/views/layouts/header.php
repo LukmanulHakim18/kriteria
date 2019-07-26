@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 $namaLengkap = Html::encode(Yii::$app->user->identity->profilUser->nama_lengkap);
 $inisial = mb_strtoupper(mb_substr(Html::encode(Yii::$app->user->identity->profilUser->nama_lengkap), 0, 1));
+$roles = Yii::$app->authManager->getRolesByUser(Yii::$app->user->getId());
+$role = ucfirst(array_keys($roles)[0]);
 ?>
 <!-- begin:: Header -->
 <div id="kt_header" class="kt-header kt-grid__item  kt-header--fixed ">
@@ -468,7 +470,7 @@ Use dot badge instead of animated pulse effect:
                         <?= $namaLengkap ?>
                     </div>
                     <div class="kt-user-card__badge">
-                        <span class="btn btn-success btn-sm btn-bold btn-font-md">Super Admin</span>
+                        <span class="btn btn-success btn-sm btn-bold btn-font-md"><?=$role?></span>
                     </div>
                 </div>
 

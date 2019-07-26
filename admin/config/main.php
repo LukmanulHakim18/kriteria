@@ -71,9 +71,11 @@ return [
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
-            'site/*',
-            'admin/*',
-            'debug/*',
+            'site/login',
+            'site/error',
+            'site/logout',
+//            'admin/*',
+//            'debug/*',
 //            'sertifikat/*',
 //            'sertifikat-institusi/*',
 //            'sertifikat/*',
