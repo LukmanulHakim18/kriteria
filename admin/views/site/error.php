@@ -6,24 +6,30 @@
 
 /* @var $exception Exception */
 
-use yii\helpers\Html;
+use yii\bootstrap4\Html;
 $this->context->layout= 'main-error';
 $this->title = $name;
 $posTag = strpos($name, '#');
 $substring = substr($name, $posTag + 1, '3');
 ?>
-<div class="kt-error_container">
-    <span class="kt-error_number">
-        <h1><?= $substring ?></h1>
-    </span>
-    <p class="kt-error_title kt-font-light">
-        <?= nl2br(Html::encode($message)) ?>
-    </p>
-    <p class="kt-error_subtitle">
-        Kenapa bisa sampai ke sini?
-    </p>
-    <p class="kt-error_description">
-        Kesalahan diatas terjadi ketika server sedang memproses permintaan anda.<br>
-        Silahkan kontak administrator jika anda merasa ini kesalahan server. Terima kasih.
-    </p>
+<!-- begin:: Page -->
+<div class="kt-grid kt-grid--ver kt-grid--root">
+    <div class="kt-grid__item kt-grid__item--fluid kt-grid  kt-error-v6" style="background-image: url(<?=Yii::getAlias('@web/media/error/bg6.jpg')?>);">
+        <div class="kt-error_container">
+            <div class="kt-error_subtitle kt-font-light">
+                <h1>Oops...</h1>
+
+            </div>
+            <p class="kt-error_description kt-font-light">
+                <?=$name?><br>
+                <?=$message?><br>
+
+
+
+            </p>
+            <?=!Yii::$app->user->isGuest? Html::a('Logout',['site/logout'],['class'=>'btn btn-default btn-pill btn-elevate btn-elevate-air' ,'data'=>['method'=>'post','confirm'=>'Apakah anda ingin keluar?']]) :"" ?>
+        </div>
+    </div>
 </div>
+
+<!-- end:: Page -->

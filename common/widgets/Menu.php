@@ -90,6 +90,7 @@ class Menu extends \yii\widgets\Menu
         if(isset($item['options']['class'])) {
             if ($item['options']['class'] === 'kt-menu__section') {
                 $labelTemplate = '{label}';
+                $linkTemplate = '{label}';
                 $replacements = ['{label}' => strtr($labelTemplate, ['{label}' => '<h4 class="kt-menu__section-text">' . $item['label'] . '</h4>
 									<i class="kt-menu__section-icon flaticon-more-v2"></i>'])];
 

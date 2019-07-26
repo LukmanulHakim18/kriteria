@@ -47,11 +47,8 @@ MetronicErrorPageAsset::register($this);
 
 <?php $this->beginBody() ?>
 <!-- begin:: Page -->
-<div class="kt-grid kt-grid--ver kt-grid--root">
-    <div class="kt-grid__item kt-grid__item--fluid kt-grid  kt-error-v3" style="background-image: url(<?=Yii::getAlias('@web/media/error/bg3.jpg')?>);">
         <?=$content?>
-    </div>
-</div>
+
 
 <!-- end:: Page -->
 

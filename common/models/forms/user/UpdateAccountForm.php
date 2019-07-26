@@ -1,28 +1,18 @@
 <?php
 
-
 namespace common\models\forms\user;
-
 
 use common\models\ProfilUser;
 use common\models\User;
 use InvalidArgumentException;
 use Yii;
-use yii\base\Model;
 use yii\db\Exception;
 
-class UpdateUserForm extends Model
+class UpdateAccountForm extends \yii\base\Model
 {
-
-
     public $username;
     public $email;
-    public $status;
-    public $hak_akses;
-
     public $nama_lengkap;
-    public $id_fakultas;
-    public $id_prodi;
 
 
     /**
@@ -39,8 +29,6 @@ class UpdateUserForm extends Model
     {
         return [
             'username' => 'Username',
-            'id_fakultas' => 'Fakultas',
-            'id_prodi' => 'Prodi',
         ];
     }
 
@@ -59,16 +47,9 @@ class UpdateUserForm extends Model
         $this->setAttributes([
             'username' => $this->_user->username,
             'email' => $this->_user->email,
-            'status' => $this->_user->status,
             'nama_lengkap' => $this->_profilUser->nama_lengkap,
-            'id_prodi' => $this->_profilUser->id_prodi,
-            'id_fakultas' => $this->_profilUser->id_fakultas,
         ], false);
 
-        $auth = Yii::$app->getAuthManager();
-        $r = array_keys($auth->getRolesByUser($this->_user->id));
-        $akses = array_combine($r, $r);
-        $this->hak_akses = $akses;
 
         parent::__construct($config);
     }
@@ -77,8 +58,7 @@ class UpdateUserForm extends Model
     {
         return [
 
-            [['username', 'email', 'status', 'hak_akses', 'nama_lengkap'], 'required'],
-            [['id_fakultas', 'id_prodi'], 'safe']
+            [['username', 'email', 'nama_lengkap'], 'required'],
         ];
     }
 
@@ -86,47 +66,34 @@ class UpdateUserForm extends Model
     {
 
         $user = $this->_user;
-        $user->scenario = 'update';
+        $user->scenario = 'update-account';
 
         $profil = $this->_profilUser;
 
         $user->setAttributes(['username' => $this->username,
             'email' => $this->email,
-            'status' => $this->status,
-        ], false);
-        $profil->setAttributes(['nama_lengkap' => $this->nama_lengkap, 'id_fakultas' => $this->id_fakultas, 'id_prodi' => $this->id_prodi]);
+        ]);
+
+        $profil->setAttributes(['nama_lengkap' => $this->nama_lengkap]);
 
         $transaction = \Yii::$app->db->beginTransaction();
 
-        if (!$user->save()) {
-            $transaction->rollBack();
-            return false;
-        }
-        $profil->id_user = $user->id;
-        if (!$profil->save()) {
-            $transaction->rollBack();
-            return false;
-        }
 
         try {
-            $auth = Yii::$app->getAuthManager();
-            $r = array_values($auth->getRolesByUser($user->id));
-            foreach ($r as $role) {
-                $auth->revoke($role, $user->id);
-
-            }
-            $role = $auth->getRole($this->hak_akses);
-
-            try {
-                $auth->assign($role, $user->id);
-            } catch (\Exception $e) {
+            if (!$user->save(false)) {
                 $transaction->rollBack();
                 return false;
             }
-            $transaction->commit();
+            $profil->id_user = $user->id;
+            if (!$profil->save(false)) {
+                $transaction->rollBack();
+                return false;
+            }
 
+            $transaction->commit();
         } catch (Exception $e) {
-            var_dump($e->getMessage());
+            $transaction->rollBack();
+            return false;
         }
 
 

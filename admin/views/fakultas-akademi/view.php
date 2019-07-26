@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <i class="flaticon2-list-3"></i>
                     </span>
                     <h3 class="kt-portlet__head-title">
-                        <?= Html::encode($this->title) ?> <small><?=Html::encode($model->kode)?></small>
+                        <?= Html::encode($this->title) ?> <small>(<?=Html::encode($model->kode)?>)</small>
                     </h3>
                 </div>
                 <div class="kt-portlet__head-toolbar">

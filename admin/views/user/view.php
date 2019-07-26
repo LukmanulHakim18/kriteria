@@ -1,5 +1,6 @@
 <?php
 
+use common\models\User;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -21,7 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         <i class="flaticon2-list-3"></i>
                     </span>
                     <h3 class="kt-portlet__head-title">
-                        <?= Html::encode($this->title) ?> <small><?="({$model->profilUser->nama_lengkap})"?></small>
+                        <?= Html::encode($this->title) ?>
+                        <small><?= "({$model->profilUser->nama_lengkap})" ?></small>
                     </h3>
                 </div>
                 <div class="kt-portlet__head-toolbar">
@@ -31,11 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             <?= Html::a('<i class=flaticon2-edit></i> Edit', ['update', 'id' => $model->id], ['class' => 'btn btn-warning btn-elevate btn-elevate-air']) ?>
                             <?= Html::a('<i class=flaticon2-delete></i> Hapus', ['delete', 'id' => $model->id], [
-                            'class' => 'btn btn-danger btn-elevate btn-elevate-air',
-                            'data' => [
-                            'confirm' => 'Apakah anda ingin menghapus item ini?',
-                            'method' => 'post',
-                            ],
+                                'class' => 'btn btn-danger btn-elevate btn-elevate-air',
+                                'data' => [
+                                    'confirm' => 'Apakah anda ingin menghapus item ini?',
+                                    'method' => 'post',
+                                ],
                             ]) ?>
                         </div>
                     </div>
@@ -46,23 +48,36 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                     <?= DetailView::widget([
-                    'model' => $model,
-                    'attributes' => [
-                                'id',
-            'username',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
-            'email:email',
-//            'status',
-            'is_admin:boolean',
-            'is_institusi:boolean',
-            'is_fakultas:boolean',
-            'is_prodi:boolean',
-            'created_at:datetime',
-            'updated_at:datetime',
-            'verification_token',
-                    ],
+                        'model' => $model,
+                        'attributes' => [
+//                            'id',
+                            'username',
+//                            'auth_key',
+//                            'password_hash',
+//                            'password_reset_token',
+//                            'verification_token',
+                            'email:email',
+                            'profilUser.fakultas.nama',
+                            'profilUser.prodi.nama',
+                            ['attribute' => 'status',
+                                'value' => function ($model) {
+                                    $status = '';
+                                    if ($model->status === User::STATUS_ACTIVE) {
+                                        $status .= 'Aktif';
+                                    } elseif ($model->status === User::STATUS_INACTIVE) {
+                                        $status .= "Tidak Aktif";
+                                    } else {
+                                        $status .= "Dihapus";
+                                    }
+                                    return $status;
+                                }],
+                            ['label' => 'Hak Akses', 'attribute' => 'role.item_name'],
+                            'created_at:datetime',
+                            'updated_at:datetime',
+
+                        ],
+//
+
                     ]) ?>
 
                 </div>

@@ -75,7 +75,7 @@ class ProgramStudi extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'kode' => 'Kode',
-            'nama' => 'Nama',
+            'nama' => 'Nama Program Studi',
             'jurusan_departemen' => 'Jurusan Departemen',
             'id_fakultas_akademi' => 'Id Fakultas Akademi',
             'nomor_sk_pendirian' => 'Nomor Sk Pendirian',

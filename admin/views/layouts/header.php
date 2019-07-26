@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 $namaLengkap = Html::encode(Yii::$app->user->identity->profilUser->nama_lengkap);
 $inisial = mb_strtoupper(mb_substr(Html::encode(Yii::$app->user->identity->profilUser->nama_lengkap), 0, 1));
+$roles = Yii::$app->authManager->getRolesByUser(Yii::$app->user->getId());
+$role = ucfirst(array_keys($roles)[0]);
 ?>
 <!-- begin:: Header -->
 <div id="kt_header" class="kt-header kt-grid__item  kt-header--fixed ">
@@ -468,7 +470,7 @@ Use dot badge instead of animated pulse effect:
                         <?= $namaLengkap ?>
                     </div>
                     <div class="kt-user-card__badge">
-                        <span class="btn btn-success btn-sm btn-bold btn-font-md">Super Admin</span>
+                        <span class="btn btn-success btn-sm btn-bold btn-font-md"><?=$role?></span>
                     </div>
                 </div>
 
@@ -476,21 +478,20 @@ Use dot badge instead of animated pulse effect:
 
                 <!--begin: Navigation -->
                 <div class="kt-notification">
-                    <a href="#" class="kt-notification__item">
-                        <div class="kt-notification__item-icon">
-                            <i class="flaticon2-calendar-3 kt-font-success"></i>
+                    <?=Html::a("<div class=\"kt-notification__item-icon\">
+                            <i class=\"flaticon2-calendar-3 kt-font-success\"></i>
                         </div>
-                        <div class="kt-notification__item-details">
-                            <div class="kt-notification__item-title kt-font-bold">
+                        <div class=\"kt-notification__item-details\">
+                            <div class=\"kt-notification__item-title kt-font-bold\">
                                 My Profile
                             </div>
-                            <div class="kt-notification__item-time">
+                            <div class=\"kt-notification__item-time\">
                                 Account settings and more
                             </div>
-                        </div>
-                    </a>
+                        </div>",['/profile'],['class'=>'kt-notification__item'])?>
+
                     <div class="kt-notification__custom kt-space-between">
-                        <?=\yii\bootstrap4\Html::a('Keluar',['site/logout'],['class'=>'btn btn-label btn-label-brand btn-sm btn-bold','data'=>['method'=>'post','confirm'=>'Apakah anda ingin keluar?']])?>
+                        <?=\yii\bootstrap4\Html::a('Keluar',['/site/logout'],['class'=>'btn btn-label btn-label-brand btn-sm btn-bold','data'=>['method'=>'post','confirm'=>'Apakah anda ingin keluar?']])?>
                     </div>
                 </div>
 

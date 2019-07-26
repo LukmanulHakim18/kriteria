@@ -16,15 +16,12 @@ use yii\web\IdentityInterface;
  * @property string $password_reset_token
  * @property string $email
  * @property int $status
- * @property int $is_admin
- * @property int $is_institusi
- * @property int $is_fakultas
- * @property int $is_prodi
  * @property int $created_at
  * @property int $updated_at
  * @property string $verification_token
  *
  * @property ProfilUser $profilUser
+ * @property AuthRule $role
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -56,10 +53,13 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         $scenario = parent::scenarios();
         $scenario['create'] = [
-            'username', 'password_hash', 'email', 'status', 'is_admin', 'is_institusi', 'is_fakultas', 'is_prodi'
+            'username', 'password_hash', 'email', 'status',
         ];
         $scenario['update'] = [
-            'username', 'email', 'status', 'is_admin', 'is_institusi', 'is_fakuktas', 'is_prodi',
+            'username', 'email', 'status',
+        ];
+        $scenario['update-account'] = [
+            'username', 'email',
         ];
         $scenario['password-update'] = ['password_hash'];
 
@@ -73,7 +73,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             [['username', 'email',], 'required'],
-            [['status', 'is_admin', 'is_institusi', 'is_fakultas', 'is_prodi', 'created_at', 'updated_at'], 'integer'],
+            [['status','created_at', 'updated_at'], 'integer'],
             [['username', 'password_hash', 'password_reset_token', 'email', 'verification_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             [['username'], 'unique'],
@@ -113,6 +113,14 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function getProfilUser()
     {
         return $this->hasOne(ProfilUser::className(), ['id_user' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRole()
+    {
+        return $this->hasOne(AuthAssignment::className(), ['user_id' => 'id']);
     }
 
 
