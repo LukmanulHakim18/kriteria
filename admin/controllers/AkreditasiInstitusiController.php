@@ -2,14 +2,13 @@
 
 namespace admin\controllers;
 
-use admin\models\K9AkreditasiProdiForm;
+use admin\models\K9AkreditasiInstitusiForm;
+use admin\models\K9AkreditasiInstitusiSearch;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
-use common\models\ProgramStudi;
+use common\models\kriteria9\akreditasi\K9AkreditasiInstitusi;
 use Yii;
 use yii\base\ErrorException;
 use yii\filters\AccessControl;
-use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
-use admin\models\K9AkreditasiProdiSearch;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
 use yii\web\Controller;
@@ -19,7 +18,7 @@ use yii\filters\VerbFilter;
 /**
  * AkreditasiProdiController implements the CRUD actions for K9AkreditasiProdi model.
  */
-class AkreditasiProdiController extends Controller
+class AkreditasiInstitusiController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -51,7 +50,7 @@ class AkreditasiProdiController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new K9AkreditasiProdiSearch();
+        $searchModel = new K9AkreditasiInstitusiSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -80,29 +79,24 @@ class AkreditasiProdiController extends Controller
      */
     public function actionCreate()
     {
-        $model = new K9AkreditasiProdiForm();
-        $idAkreditasi = K9Akreditasi::findAll(['jenis_akreditasi'=>'prodi']);
+        $model = new K9AkreditasiInstitusiForm();
+        $idAkreditasi = K9Akreditasi::findAll(['jenis_akreditasi'=>'institusi']);
         $dataAkreditasi = ArrayHelper::map($idAkreditasi, 'id', 'nama');
 
-        $idProdi = ProgramStudi::find()->where(['jenjang' => 'S1'])->all();
-        $dataProdi = ArrayHelper::map($idProdi, 'id', function ($data) {
-            return $data->nama . " ({$data->jenjang})";
-        });
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->createAkreditasi()) {
-                Yii::$app->session->setFlash('success', 'Berhasil menambahkan Akreditasi Prodi');
-                return $this->redirect(['akreditasi-prodi/index']);
+                Yii::$app->session->setFlash('success', 'Berhasil menambahkan Akreditasi Institusi');
+                return $this->redirect(['akreditasi-institusi/index']);
             }
         } elseif (Yii::$app->request->isAjax) {
             return $this->renderAjax('_form', ['model' => $model,
                 'dataAkreditasi' => $dataAkreditasi,
-                'dataProdi' => $dataProdi,]);
+                ]);
         }
         return $this->render('create', [
             'model' => $model,
             'dataAkreditasi' => $dataAkreditasi,
-            'dataProdi' => $dataProdi,
         ]);
     }
 
@@ -118,7 +112,7 @@ class AkreditasiProdiController extends Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        $this->deleteFolder($model);
+        $this->deleteFolder($id);
         $model->delete();
 
 
@@ -128,31 +122,32 @@ class AkreditasiProdiController extends Controller
     }
 
     /**
-     * Finds the K9AkreditasiProdi model based on its primary key value.
+     * Finds the K9AkreditasiInstitusi model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return K9AkreditasiProdi the loaded model
+     * @return K9AkreditasiInstitusi the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = K9AkreditasiProdi::findOne($id)) !== null) {
+        if (($model = K9AkreditasiInstitusi::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    private function deleteFolder(K9AkreditasiProdi $model)
+    private function deleteFolder($id)
     {
+        $model = $this->findModel($id);
         $path = Yii::getAlias('@uploadAkreditasi');
         $pathData = Yii::$app->params['uploadPath'];
         $replacement = [
             '{lembaga}'=>$model->akreditasi->lembaga,
             '{jenis_akreditasi}'=>$model->akreditasi->jenis_akreditasi,
             '{tahun}'=>$model->akreditasi->tahun,
-            '{level}'=>'prodi',
-            '{id}'=>$model->id_prodi,
+            '{level}'=>'institusi',
+            '{id}'=>'',
         ];
         $result = strtr($pathData,$replacement);
 

@@ -53,7 +53,7 @@ use yii\base\Model;
 use yii\db\Transaction;
 use yii\helpers\FileHelper;
 
-class AkreditasiProdiForm extends Model
+class K9AkreditasiProdiForm extends Model
 {
 
     public $id_akreditasi;
@@ -72,7 +72,6 @@ class AkreditasiProdiForm extends Model
      * @var K9LkProdi
      */
     private $_lk_prodi;
-
 
     /**
      * @var K9LedFakultas
@@ -277,12 +276,12 @@ class AkreditasiProdiForm extends Model
 
             if (!$kriteria8Fakultas->save()) {
                 $transaction->rollBack();
-                throw new InvalidArgumentException($kriteria7Fakultas->errors);
+                throw new InvalidArgumentException($kriteria8Fakultas->errors);
             }
 
             if (!$kriteria9Fakultas->save()) {
                 $transaction->rollBack();
-                throw new InvalidArgumentException($kriteria7Fakultas->errors);
+                throw new InvalidArgumentException($kriteria9Fakultas->errors);
             }
 
             $this->createFolder('fakultas');
@@ -355,11 +354,11 @@ class AkreditasiProdiForm extends Model
         }
         if (!$kriteria8Prodi->save()) {
             $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria7Prodi->errors);
+            throw new InvalidArgumentException($kriteria8Prodi->errors);
         }
         if (!$kriteria9Prodi->save()) {
             $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria7Prodi->errors);
+            throw new InvalidArgumentException($kriteria9Prodi->errors);
         }
 
         $this->createFolder('prodi');
@@ -536,7 +535,7 @@ class AkreditasiProdiForm extends Model
     public static function findOne($id)
     {
 
-        $model = new AkreditasiProdiForm();
+        $model = new K9AkreditasiProdiForm();
         $data = K9AkreditasiProdi::findOne($id);
         $id_akreditasi = $data->id_akreditasi;
 

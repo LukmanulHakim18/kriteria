@@ -19,7 +19,7 @@ use yii\bootstrap4\ActiveForm;
 
     <?= $form->field($model, 'tahun')->textInput(['maxlength' => true,'value'=>date('Y')]) ?>
 
-    <?= $form->field($model, 'jenis_akreditasi')->dropDownList(['prodi'=>'Program Studi','instansi'=>'Perguruan Tinggi'],['prompt'=>'Pilih Jenis Akreditasi']) ?>
+    <?= $form->field($model, 'jenis_akreditasi')->dropDownList(['prodi'=>'Program Studi','institusi'=>'Perguruan Tinggi'],['prompt'=>'Pilih Jenis Akreditasi']) ?>
 
     <?= $form->field($model, 'lembaga')->textInput(['value'=>'BAN-PT','readonly'=>'true']) ?>
 
