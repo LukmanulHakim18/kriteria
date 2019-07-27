@@ -9,7 +9,7 @@
         "issues": "https://github.com/adryanev/kriteria/issues?state=open",
         "source": "https://github.com/adryanev/kriteria"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "php": ">=7.1.0",
         "yiisoft/yii2": "~2.0.14",
@@ -20,9 +20,7 @@
         "kartik-v/yii2-widget-select2": "dev-master",
         "kartik-v/yii2-widget-depdrop": "dev-master",
         "mdmsoft/yii2-admin": "~2.0",
-        "2amigos/yii2-ckeditor-widget": "^2.2",
         "kartik-v/yii2-widget-fileinput": "@dev",
-        "2amigos/yii2-chartjs-widget" : "~2.0",
         "insolita/yii2-migration-generator": "~3.1",
         "kartik-v/yii2-widget-datepicker": "dev-master",
         "yiisoft/yii2-bootstrap": "^2.0@dev",
