@@ -64,12 +64,12 @@ $menuItems = [
 </svg>',
         'url' => 'javascript:;',
         'items' => [
-            ['label' => 'Akreditasi', 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>', 'url' => ['/akreditasi'],],
-            ['label' => 'Akreditasi Program Studi', 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>', 'url' => ['/akreditasi-prodi'],],
+            ['label' => 'Akreditasi', 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>', 'url' => ['/akreditasi/index'],],
+            ['label' => 'Akreditasi Program Studi', 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>', 'url' => ['/akreditasi-prodi/index'],],
             [
                 'label' => 'Akreditasi Institusi',
                 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',
-                'url' => ['/akreditasi-institusi'],
+                'url' => ['/akreditasi-institusi/index'],
 
             ],
 
@@ -83,7 +83,7 @@ $menuItems = [
         <rect id="Rectangle" fill="#000000" opacity="0.3" x="11" y="2" width="2" height="14" rx="1"/>
         <path d="M12.0362375,3.37797611 L7.70710678,7.70710678 C7.31658249,8.09763107 6.68341751,8.09763107 6.29289322,7.70710678 C5.90236893,7.31658249 5.90236893,6.68341751 6.29289322,6.29289322 L11.2928932,1.29289322 C11.6689749,0.916811528 12.2736364,0.900910387 12.6689647,1.25670585 L17.6689647,5.75670585 C18.0794748,6.12616487 18.1127532,6.75845471 17.7432941,7.16896473 C17.3738351,7.57947475 16.7415453,7.61275317 16.3310353,7.24329415 L12.0362375,3.37797611 Z" id="Path-102" fill="#000000" fill-rule="nonzero"/>
     </g>
-</svg>', 'url' => ['/sertifikat']],
+</svg>', 'url' => ['/sertifikat/index']],
 
 ];
 $menuItems = Helper::filter($menuItems);

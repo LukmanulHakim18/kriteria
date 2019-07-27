@@ -6,6 +6,7 @@ use common\models\JenisAkreditasi;
 use common\models\kriteria9\led\fakultas\K9LedFakultas;
 use common\models\kriteria9\lk\fakultas\K9LkFakultas;
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "k9_akreditasi".
@@ -13,12 +14,11 @@ use Yii;
  * @property int $id
  * @property string $nama
  * @property string $tahun
- * @property int $id_jenis_akreditasi
+ * @property string $jenis_akreditasi
  * @property string $lembaga
  * @property int $created_at
  * @property int $updated_at
  *
- * @property JenisAkreditasi $jenisAkreditasi
  * @property K9AkreditasiInstitusi[] $k9AkreditasiInstitusis
  * @property K9AkreditasiProdi[] $k9AkreditasiProdis
  * @property K9LedFakultas[] $k9LedFakultas
@@ -33,6 +33,15 @@ class K9Akreditasi extends \yii\db\ActiveRecord
     {
         return 'k9_akreditasi';
     }
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class
+        ];
+    }
 
     /**
      * {@inheritdoc}
@@ -40,11 +49,12 @@ class K9Akreditasi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_jenis_akreditasi', 'created_at', 'updated_at'], 'integer'],
+
             [['nama', 'lembaga'], 'string', 'max' => 255],
             [['tahun'], 'string', 'max' => 4],
-            [['id_jenis_akreditasi'], 'exist', 'skipOnError' => true, 'targetClass' => JenisAkreditasi::className(), 'targetAttribute' => ['id_jenis_akreditasi' => 'id']],
+            [['jenis_akreditasi'], 'string', 'max' => 10],
         ];
+
     }
 
     /**
@@ -63,13 +73,6 @@ class K9Akreditasi extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getJenisAkreditasi()
-    {
-        return $this->hasOne(JenisAkreditasi::className(), ['id' => 'id_jenis_akreditasi']);
-    }
 
     /**
      * @return \yii\db\ActiveQuery
