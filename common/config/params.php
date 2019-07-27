@@ -33,4 +33,6 @@ return [
         ],
     ],
 
+    'uploadPath'=>'{lembaga}/{jenis_akreditasi}/{tahun}/{level}/{id}'
+
 ];

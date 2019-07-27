@@ -18,7 +18,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int $updated_at
  *
  * @property K9Akreditasi $akreditasi
- * @property FakultasAkademi $akreditasi0
+ * @property FakultasAkademi $fakultas
  * @property K9LedFakultasKriteria1[] $k9LedFakultasKriteria1s
  * @property K9LedFakultasKriteria2[] $k9LedFakultasKriteria2s
  * @property K9LedFakultasKriteria3[] $k9LedFakultasKriteria3s
@@ -86,9 +86,9 @@ class K9LedFakultas extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAkreditasi0()
+    public function getFakultas()
     {
-        return $this->hasOne(FakultasAkademi::className(), ['id' => 'id_akreditasi']);
+        return $this->hasOne(FakultasAkademi::className(), ['id' => 'id_fakultas']);
     }
 
     /**
