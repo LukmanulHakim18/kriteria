@@ -1,4 +1,6 @@
 [
+
+  
   {"standar": 1,
   "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
   "butir": [
@@ -32,7 +34,8 @@
     }
   ]
   },
-  {"standar": 2,
+  {
+    "standar": 2,
     "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
     "butir": [
       {
