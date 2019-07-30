@@ -19,7 +19,7 @@ use yii\bootstrap4\ActiveForm;
 
 
     <div class="form-group">
-        <?= Html::submitButton('<i class=\'la la-save\'></i> Simpan', ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-brand']) ?>
+        <?= Html::submitButton('<i class=\'la la-save\'></i> Simpan', ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-brand block-ui']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

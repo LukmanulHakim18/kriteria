@@ -8,8 +8,8 @@ use yii\helpers\Html;
 /* @var $model common\models\kriteria9\akreditasi\K9AkreditasiInstitusi */
 /* @var $dataAkreditasi K9Akreditasi[] */
 
-$this->title = 'Tambah Akreditasi Institusi';
-$this->params['breadcrumbs'][] = ['label' => 'Akreditasi Prodi', 'Institusi' => ['index']];
+$this->title = 'Tambah Akreditasi Perguruan Tinggi';
+$this->params['breadcrumbs'][] = ['label' => 'Akreditasi Perguruan Tinggi', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">

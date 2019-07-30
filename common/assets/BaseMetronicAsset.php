@@ -28,7 +28,8 @@ class BaseMetronicAsset extends AssetBundle
         'css/skins/header/base/light.css',
         'css/skins/header/menu/light.css',
         'css/skins/brand/dark.css',
-        'css/skins/aside/dark.css'
+        'css/skins/aside/dark.css',
+        'css/site.css'
 
     ];
 

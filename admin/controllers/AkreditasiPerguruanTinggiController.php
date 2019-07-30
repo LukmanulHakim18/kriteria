@@ -18,7 +18,7 @@ use yii\filters\VerbFilter;
 /**
  * AkreditasiProdiController implements the CRUD actions for K9AkreditasiProdi model.
  */
-class AkreditasiInstitusiController extends Controller
+class AkreditasiPerguruanTinggiController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -87,7 +87,7 @@ class AkreditasiInstitusiController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($model->createAkreditasi()) {
                 Yii::$app->session->setFlash('success', 'Berhasil menambahkan Akreditasi Institusi');
-                return $this->redirect(['akreditasi-institusi/index']);
+                return $this->redirect(['akreditasi-perguruan-tinggi/index']);
             }
         } elseif (Yii::$app->request->isAjax) {
             return $this->renderAjax('_form', ['model' => $model,
@@ -103,7 +103,7 @@ class AkreditasiInstitusiController extends Controller
 
 
     /**
-     * Deletes an existing K9AkreditasiProdi model.
+     * Deletes an existing K9AkreditasiInstitusi model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed

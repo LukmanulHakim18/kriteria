@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel admin\models\K9AkreditasiProdiSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Akreditasi Institusi';
+$this->title = 'Akreditasi Perguruan Tinggi';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
@@ -22,14 +22,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         <i class="flaticon2-list-2"></i>
                     </span>
                     <h3 class="kt-portlet__head-title">
-                        <?= Html::encode($this->title) ?> <small>Data Akreditasi Institusi</small>
+                        <?= Html::encode($this->title) ?> <small>Data Akreditasi Perguruan Tinggi</small>
                     </h3>
                 </div>
                 <div class="kt-portlet__head-toolbar">
                     <div class="kt-portlet__head-wrapper">
                         <div class="kt-portlet__head-actions">
 
-                            <?= Html::button('<i class=flaticon2-add></i> Tambah Akreditasi Institusi', ['value' => Url::to(['create']), 'title' => 'Tambah Akreditasi Institusi', 'class' => 'showModalButton btn btn-success btn-elevate btn-elevate-air']); ?>
+                            <?=Html::a('<i class=flaticon2-add></i> Tambah Akreditasi Perguruan Tinggi',['akreditasi-perguruan-tinggi/create'],['class'=>'btn btn-success btn-elevate btn-elevate-air'])?>
+
                         </div>
                     </div>
                 </div>
