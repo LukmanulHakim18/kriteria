@@ -1,38 +1,37 @@
 [
-
-  
-  {"standar": 1,
-  "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
-  "butir": [
-    {
-      "tabel": "1",
-      "isi": "Kerjasama Tridharma",
-      "dokumen_sumber": [
-        {
-          "kode": "1.01.1",
-          "dokumen": "Laporan Realisasi Kerjasama"
-        },
-        {
-          "kode": "1.01.2",
-          "dokumen": "Surat Perjanjian Kerjasama"
-        },
-        {
-          "kode": "1.01.3",
-          "dokumen": "Surat Tugas"
-        }
-      ],
-      "dokumen_pendukung": [
-        {
-          "kode": "1.02.1",
-          "dokumen": "Berita Acara"
-        },
-        {
-          "kode": "1.02.2",
-          "dokumen": "Foto-foto kegiatan"
-        }
-      ]
-    }
-  ]
+  {
+    "standar": 1,
+    "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
+    "butir": [
+      {
+        "tabel": "1",
+        "isi": "Kerjasama Tridharma",
+        "dokumen_sumber": [
+          {
+            "kode": "1.01.1",
+            "dokumen": "Laporan Realisasi Kerjasama"
+          },
+          {
+            "kode": "1.01.2",
+            "dokumen": "Surat Perjanjian Kerjasama"
+          },
+          {
+            "kode": "1.01.3",
+            "dokumen": "Surat Tugas"
+          }
+        ],
+        "dokumen_pendukung": [
+          {
+            "kode": "1.02.1",
+            "dokumen": "Berita Acara"
+          },
+          {
+            "kode": "1.02.2",
+            "dokumen": "Foto-foto kegiatan"
+          }
+        ]
+      }
+    ]
   },
   {
     "standar": 2,
@@ -72,8 +71,8 @@
       }
     ]
   },
-
-  {"standar": 3,
+  {
+    "standar": 3,
     "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
     "butir": [
       {
@@ -358,40 +357,36 @@
       }
     ]
   },
-
-
-  {"standar": 4,
+  {
+    "standar": 4,
     "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
     "butir": [
       {
         "tabel": "4.b",
         "isi": "Penggunaan Dana",
-        "dokumen_sumber":[
+        "dokumen_sumber": [
           {
             "kode": "4.b.01.1",
-            "dokumen":"Laporan Keuangan"
+            "dokumen": "Laporan Keuangan"
           },
           {
             "kode": "4.b.01.2",
-            "dokumen":"RKAKL"
+            "dokumen": "RKAKL"
           }
         ],
         "dokumen_pendukung": [
           {
             "kode": "4.b.02.1",
-            "dokumen":"Bukti-bukti"
+            "dokumen": "Bukti-bukti"
           }
         ]
-
       }
-
     ]
   },
-
-  {"standar": 5,
+  {
+    "standar": 5,
     "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
     "butir": [
-
       {
         "tabel": "5.a",
         "isi": "Kurikulum, Capaian Pembelajaran, dan Rencana Pembelajaran",
@@ -510,7 +505,8 @@
       }
     ]
   },
-  {"standar": 6,
+  {
+    "standar": 6,
     "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
     "butir": [
       {
@@ -547,11 +543,10 @@
       }
     ]
   },
-
-  {"standar": 7,
+  {
+    "standar": 7,
     "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
     "butir": [
-
       {
         "tabel": "7",
         "isi": "PkM DTPS yang Melibatkan Mahasiswa",
@@ -570,9 +565,8 @@
       }
     ]
   },
-
-
-  {"standar": 8,
+  {
+    "standar": 8,
     "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
     "butir": [
       {
@@ -909,9 +903,8 @@
       }
     ]
   },
-
-
-  {"standar": 9,
+  {
+    "standar": 9,
     "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
     "butir": [
     ]

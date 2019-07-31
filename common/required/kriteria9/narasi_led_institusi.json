@@ -1,6 +1,6 @@
 [
     {
-        "standar":1,
+        "kriteria":1,
         "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
         "butir":[
             {
@@ -16,7 +16,7 @@
             {
                 "nomor": "1.3",
                 "isi": "Strategi Pencapaian",
-                "deskripsi": "Bagian ini menjelaskan secara komprehensif strategi pencapaian VMTS perguruan tinggi. Pada bagian ini juga harus diuraikan sumber daya yang akan           dialokasikan untuk mencapai visi yang telah ditetapkan serta mekanisme kontrol pencapaiannya"
+                "deskripsi": "Bagian ini menjelaskan secara komprehensif strategi pencapaian VMTS perguruan tinggi. Pada bagian ini juga harus diuraikan sumber daya yang akan dialokasikan untuk mencapai visi yang telah ditetapkan serta mekanisme kontrol pencapaiannya"
             },
             {
                 "nomor": "1.4",
