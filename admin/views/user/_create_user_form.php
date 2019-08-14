@@ -17,7 +17,11 @@ use yii\bootstrap4\ActiveForm;
 
 <div class="create_user_form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+            'enableClientValidation' => true,
+        'enableAjaxValidation' => true,
+        'id' => 'create-user-form'
+    ]); ?>
 
     <?= $form->field($model, 'username')->textInput(['prompt'=>'username']) ?>
     <?= $form->field($model, 'password')->passwordInput() ?>

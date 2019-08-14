@@ -6,6 +6,7 @@
  * @param okCallback triggered when confirmation is true
  * @param cancelCallback callback triggered when cancelled
  */
+
 yii.confirm = function (message, okCallback, cancelCallback) {
     swal({
         title: message,
@@ -50,43 +51,50 @@ $(function(){
         }
     });
 });
+// var form = document.getElementById('form-adryan')
+// form.addEventListener('beforeSubmit', function(evt){
+//     //console.log('before submit');
+//
+//     var submit = evt.find(':submit');
+//     KTApp.block('.modal-content',{
+//         overlayColor: '#000000',
+//         type: 'v2',
+//         state: 'primary',
+//         message: 'Sedang Memproses...'
+//     });
+//     submit.html('<i class="flaticon2-refresh"></i> Sedang Memproses');
+//     submit.prop('disabled', true);
+//
+//     KTApp.blockPage({
+//         overlayColor: '#000000',
+//         type: 'v2',
+//         state: 'primary',
+//         message: 'Sedang memproses...'
+//     });
+// });
+    $('form').on('beforeSubmit', function()
+    {
+        var form = $(this);
+        //console.log('before submit');
 
-// block ui
-jQuery(function($){
+        var submit = form.find(':submit');
+        KTApp.block('.modal-content',{
+            overlayColor: '#000000',
+            type: 'v2',
+            state: 'primary',
+            message: 'Sedang Memproses...'
+        });
+        submit.html('<i class="flaticon2-refresh"></i> Sedang Memproses');
+        submit.prop('disabled', true);
 
-    $('.block-ui').click(function(){
         KTApp.blockPage({
             overlayColor: '#000000',
             type: 'v2',
             state: 'primary',
             message: 'Sedang memproses...'
         });
-        KTApp.block('.block-ui modal-content',{
-            overlayColor: '#000000',
-            type: 'v2',
-            state: 'primary',
-            message: 'Sedang memproses...'
-        });
-        var $this = $(this);
-        var $next = $this.next();
-        if($next.hasClass('jsBeforeSubmitFormBtnBrother')) {
-            $brotherBtn = $next;
-        } else {
-            $brotherBtn = $this.clone();
-            $brotherBtn.attr('type', 'button');
-            $brotherBtn.addClass('jsBeforeSubmitFormBtnBrother');
-            $brotherBtn.removeClass('jsBeforeSubmitFormBtn');
-            $brotherBtn.insertAfter($this);
-            $brotherBtn.attr('disabled', 'disabled');
-            $brotherBtn.prepend('<i class="flaticon2-refresh"></i> ');
-        }
-        $this.hide();
-        $brotherBtn.show();
+
     });
-    // $('.block-ui').parents('form').on('afterValidate', function (event, messages, errorAttributes) {
-    //     if(errorAttributes.length > 0) {
-    //         $('.jsBeforeSubmitFormBtn').show();
-    //         $('.jsBeforeSubmitFormBtnBrother').hide();
-    //     }
-    // });
-});
+
+
+

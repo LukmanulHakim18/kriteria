@@ -9,6 +9,7 @@ use common\models\forms\user\UpdatePasswordForm;
 use common\models\ProgramStudi;
 use Yii;
 use yii\base\InvalidArgumentException;
+use yii\bootstrap4\ActiveForm;
 use yii\filters\AccessControl;
 use common\models\User;
 use admin\models\UserSearch;
@@ -17,6 +18,7 @@ use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -99,7 +101,12 @@ class UserController extends Controller
         $fakultas = FakultasAkademi::find()->all();
         $dataFakultas = ArrayHelper::map($fakultas,'id','nama');
 
+        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
         if ($model->load(Yii::$app->request->post()) ) {
+
 
             if($model->validate()){
 
@@ -118,6 +125,7 @@ class UserController extends Controller
 
         }
         elseif (Yii::$app->request->isAjax){
+
 
             return $this->renderAjax('_create_user_form',[ 'model' => $model,
                 'dataFakultas'=>$dataFakultas, 'dataRoles'=>$dataRoles]);

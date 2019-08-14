@@ -14,7 +14,7 @@ use yii\bootstrap4\ActiveForm;
 
 <div class="program-studi-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['enableClientScript' => true, 'id' => 'prodi-form']); ?>
 
     <?= $form->field($model, 'kode')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
