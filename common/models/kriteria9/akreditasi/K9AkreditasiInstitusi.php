@@ -12,9 +12,9 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property int $id
  * @property int $id_akreditasi
- * @property float $progress
  * @property int $created_at
  * @property int $updated_at
+ * @property double $progress
  *
  * @property K9Akreditasi $akreditasi
  * @property K9LedInstitusi[] $k9LedInstitusis
@@ -29,6 +29,7 @@ class K9AkreditasiInstitusi extends \yii\db\ActiveRecord
     {
         return 'k9_akreditasi_institusi';
     }
+
     /**
      * {@inheritdoc}
      */
@@ -38,7 +39,6 @@ class K9AkreditasiInstitusi extends \yii\db\ActiveRecord
             TimestampBehavior::class
         ];
     }
-
     /**
      * {@inheritdoc}
      */
@@ -46,6 +46,7 @@ class K9AkreditasiInstitusi extends \yii\db\ActiveRecord
     {
         return [
             [['id_akreditasi', 'created_at', 'updated_at'], 'integer'],
+            [['progress'], 'number'],
             [['id_akreditasi'], 'exist', 'skipOnError' => true, 'targetClass' => K9Akreditasi::className(), 'targetAttribute' => ['id_akreditasi' => 'id']],
         ];
     }
@@ -60,6 +61,7 @@ class K9AkreditasiInstitusi extends \yii\db\ActiveRecord
             'id_akreditasi' => 'Id Akreditasi',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'progress' => 'Progress',
         ];
     }
 
