@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <div class="update_user_form">
 
-                        <?php $form = ActiveForm::begin(); ?>
+                        <?php $form = ActiveForm::begin(['id'=>'update-user-form']); ?>
 
                         <?= $form->field($model, 'username')->textInput() ?>
                         <?= $form->field($model, 'email')->textInput() ?>
@@ -113,7 +113,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <div class="update_password_from">
 
-                        <?php $form = ActiveForm::begin(); ?>
+                        <?php $form = ActiveForm::begin(['id'=>'update-password-form']); ?>
 
                         <?= $form->field($modelPassword, 'oldPassword')->passwordInput() ?>
                         <?= $form->field($modelPassword, 'newPassword')->passwordInput() ?>

@@ -3,17 +3,17 @@
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 
-
 /* @var $this yii\web\View */
 /* @var $model common\models\Unit */
 /* @var $form yii\bootstrap4\ActiveForm;
 */
+
 ?>
 
 
 <div class="unit-form">
 
-    <?php $form = ActiveForm::begin(['id'=>'form-adryan']); ?>
+    <?php $form = ActiveForm::begin(['id'=>'unit-form']); ?>
 
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
 
@@ -25,7 +25,32 @@ use yii\bootstrap4\ActiveForm;
 
 </div>
 <?php
+$jsForm = <<<JS
+ $('form').on('beforeSubmit', function()
+    {
+        var form = $(this);
+        //console.log('before submit');
 
+        var submit = form.find(':submit');
+        KTApp.block('.modal',{
+            overlayColor: '#000000',
+            type: 'v2',
+            state: 'primary',
+            message: 'Sedang Memproses...'
+        });
+        submit.html('<i class="flaticon2-refresh"></i> Sedang Memproses');
+        submit.prop('disabled', true);
 
+        KTApp.blockPage({
+            overlayColor: '#000000',
+            type: 'v2',
+            state: 'primary',
+            message: 'Sedang memproses...'
+        });
 
-//$this->registerJsFile('@web/js/pages/my-script.js',['depends'=>\yii\web\YiiAsset::class]) ?>
+    });
+
+JS;
+
+$this->registerJs($jsForm);
+?>

@@ -164,6 +164,10 @@ class UserController extends Controller
 
         $dataRoles = array_combine($roles, $roles);
 
+        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
         if ($model->load(Yii::$app->request->post()) ) {
             if(!$model->validate()){
                 throw new InvalidArgumentException('Gagal validasi pengguna');

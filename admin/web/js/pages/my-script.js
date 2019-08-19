@@ -78,7 +78,7 @@ $(function(){
         //console.log('before submit');
 
         var submit = form.find(':submit');
-        KTApp.block('.modal-content',{
+        KTApp.block('.modal',{
             overlayColor: '#000000',
             type: 'v2',
             state: 'primary',
