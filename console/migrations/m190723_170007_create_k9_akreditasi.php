@@ -21,7 +21,7 @@ class m190723_170007_create_k9_akreditasi extends Migration
             'id'=>$this->primaryKey(),
             'nama'=>$this->string(),
             'tahun'=>$this->string(4),
-            'id_jenis_akreditasi'=>$this->integer(),
+            'jenis_akreditasi'=>$this->string(10),
             'lembaga'=>$this->string(),
             'created_at'=>$this->integer(),
             'updated_at'=>$this->integer()
@@ -42,7 +42,6 @@ class m190723_170007_create_k9_akreditasi extends Migration
             'updated_at'=>$this->integer()
         ],$tableOptions);
 
-        $this->addForeignKey('fk-k9_akreditasi-jenis_akreditasi','{{%k9_akreditasi}}','id_jenis_akreditasi','{{%jenis_akreditasi}}','id','cascade','cascade');
         $this->addForeignKey('fk-k9_akreditasi_prodi-k9_akreditasi','{{%k9_akreditasi_prodi}}','id_akreditasi','{{%k9_akreditasi}}','id','cascade','cascade');
         $this->addForeignKey('fk-k9_akreditasi_prodi-program_studi','{{%k9_akreditasi_prodi}}','id_prodi','{{%program_studi}}','id','cascade','cascade');
         $this->addForeignKey('fk-k9_akreditasi_prodi_institusi-k9_akreditasi','{{%k9_akreditasi_institusi}}','id_akreditasi','{{%k9_akreditasi}}','id','cascade','cascade');
@@ -55,7 +54,6 @@ class m190723_170007_create_k9_akreditasi extends Migration
      */
     public function safeDown()
     {
-        $this->dropForeignKey('fk-k9_akreditasi-jenis_akreditasi','{{%k9_akreditasi}}');
         $this->dropForeignKey('fk-k9_akreditasi_prodi-k9_akreditasi','{{%k9_akreditasi_prodi}}');
         $this->dropForeignKey('fk-k9_akreditasi_prodi-program_studi','{{%k9_akreditasi_prodi}}');
         $this->dropForeignKey('fk-k9_akreditasi_prodi_institusi-k9_akreditasi','{{%k9_akreditasi_institusi}}');
