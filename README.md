@@ -65,9 +65,10 @@ environments/            contains environment-based overrides
 4. Clone Repository dengan cara `git clone https://github.com/adryanev/mutu.git`.
 5. Copy `vagrant/config/vagrant.local.example.yml` menjadi `vagrant/config/vagrant.local.yml`.
 6. Ganti Personal Api token di `vagrant/config/vagrant.local.yml`.
-7. Jalankan command `vagrant plugin install vagrant-hostmanager` `vagrant up`.
-8. Jalankan `php yii migrate` & `php yii auth/up`
-9. Tambahkan hosts file. 
+7. Copy dan rename `system-configuration-example.ini` menjadi `system-configuration.ini`
+8. Jalankan command `vagrant plugin install vagrant-hostmanager` `vagrant up`.
+9. Jalankan `php yii migrate` & `php yii auth/up`
+10. Tambahkan hosts file. 
 ```
 192.168.2.1 monitoring.mutu.test
 192.168.2.1 akreditasi.mutu.test
