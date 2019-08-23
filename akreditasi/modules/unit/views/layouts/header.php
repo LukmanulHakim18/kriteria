@@ -514,7 +514,7 @@ var timeDisplay = document.getElementById("time");
 
 function refreshTime() {
     moment.locale('ID');
-  var dateString = moment().format('dddd, D MMMM YYYY, HH:mm:ss');
+  var dateString = moment().format('dddd, D MMMM YYYY, hh:mm:ss');
   timeDisplay.innerHTML = dateString;
 }
 

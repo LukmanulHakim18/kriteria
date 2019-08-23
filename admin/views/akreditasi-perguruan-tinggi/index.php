@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="kt-portlet__head-wrapper">
                         <div class="kt-portlet__head-actions">
 
-                            <?=Html::a('<i class=flaticon2-add></i> Tambah Akreditasi Perguruan Tinggi',['akreditasi-perguruan-tinggi/create'],['class'=>'btn btn-success btn-elevate btn-elevate-air'])?>
+                            <?= Html::button('<i class=flaticon2-add></i> Tambah Akreditasi Perguruan Tinggi', ['value' => Url::to(['akreditasi-perguruan-tinggi/create']), 'title' => 'Tambah Akreditasi Perguruan Tinggi', 'class' => 'showModalButton btn btn-success btn-elevate btn-elevate-air']); ?>
 
                         </div>
                     </div>

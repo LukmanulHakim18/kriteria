@@ -34,7 +34,7 @@ class UserController extends Controller
             'access'=>[
                 'class'=>AccessControl::className(),
                 'rules'=>[
-                    ['actions'=>['index','create','update','view','delete'],
+                    ['actions'=>['index','create','update','view','delete','get-prodi'],
                      'allow'=>true,
                      'roles'=>['@']
                     ]
@@ -242,7 +242,6 @@ class UserController extends Controller
 
     public function actionGetProdi(){
 
-        $this->enableCsrfValidation = false;
         $arrayProdi = [];
 
         if(isset($_POST['depdrop_parents'])){
@@ -262,12 +261,5 @@ class UserController extends Controller
             }
         }
         echo Json::encode(['output'=>'', 'selected'=>'']);
-    }
-    public function beforeAction($action)
-    {
-        if ($this->action->id === 'get-prodi') {
-            $this->enableCsrfValidation = false;
-        }
-        return true;
     }
 }

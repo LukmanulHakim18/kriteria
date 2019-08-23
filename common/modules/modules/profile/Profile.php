@@ -1,6 +1,6 @@
 <?php
 
-namespace common\modules;
+namespace common\modules\profile;
 
 /**
  * profile module definition class
@@ -10,7 +10,7 @@ class Profile extends \yii\base\Module
     /**
      * {@inheritdoc}
      */
-    public $controllerNamespace = 'common\modules\controllers';
+    public $controllerNamespace = 'common\modules\profile\controllers';
 
     /**
      * {@inheritdoc}

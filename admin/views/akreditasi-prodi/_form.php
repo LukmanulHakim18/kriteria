@@ -15,7 +15,7 @@ use yii\bootstrap4\ActiveForm;
 
 <div class="k9-akreditasi-prodi-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['id' => 'akreditasi-prodi-form']); ?>
 
     <?=    $form->field($model, 'id_akreditasi')->widget(Select2::class,
         ['data' => $dataAkreditasi,

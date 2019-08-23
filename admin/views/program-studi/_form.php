@@ -22,13 +22,13 @@ use yii\bootstrap4\ActiveForm;
     <?= $form->field($model, 'jurusan_departemen')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'jenjang')->widget(Select2::class,[
-        'data'=>['S1'=>'S1','S2'=>'S2'],
-        'options' => ['class'=>'kt-select2'],
+        'data'=>\common\models\Constants::JENJANG,
+        'options' => ['class'=>'kt-select2','placeholder'=>'Pilih Jenjang'],
     ])->label('Jenjang') ?>
 
     <?= $form->field($model, 'id_fakultas_akademi')->widget(Select2::class,[
         'data'=>$dataFakultas,
-        'options' => ['class'=>'kt-select2'],
+        'options' => ['class'=>'kt-select2','placeholder'=>'Pilih Fakultas'],
     ])->label('Fakultas/Akademi') ?>
 
     <?= $form->field($model, 'nomor_sk_pendirian')->textInput(['maxlength' => true]) ?>

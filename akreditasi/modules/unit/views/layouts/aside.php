@@ -18,7 +18,7 @@ $menuItems = [
 
     ['label' => 'Data Master', 'url' => ['/site/index'], 'options' => ['class' => 'kt-menu__section']],
     [
-        'label' => 'Institusi',
+        'label' => 'Kegiatan',
         'icon' => '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <rect id="bound" x="0" y="0" width="24" height="24"/>
@@ -27,74 +27,29 @@ $menuItems = [
 </svg>',
         'url' => 'javascript:;',
         'items' => [
-            ['label' => 'Unit', 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>', 'url' => ['/unit/index'],],
-            ['label' => 'Fakultas', 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>', 'url' => ['/fakultas-akademi/index'],],
+            [
+                'label' => 'Institusi',
+                'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',
+                'url' => ['/standar7/default']
+            ],
+            [
+                'label' => 'Unit',
+                'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',
+                'url' => ['#']
+            ],
+            [
+                'label' => 'Fakultas',
+                'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',
+                'url' => ['#']
+            ],
             [
                 'label' => 'Program Studi',
                 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',
-                'url' => ['/program-studi/index'],
-            ],
+                'url' => ['#']
+            ]
 
         ],
     ],
-
-    ['label' => 'Pengguna', 'icon' => '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <polygon id="Shape" points="0 0 24 0 24 24 0 24"/>
-        <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" id="Mask" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
-        <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" id="Mask-Copy" fill="#000000" fill-rule="nonzero"/>
-    </g>
-</svg>', 'url' => 'javascript:;',
-        'items' => [
-            ['label' => 'Akun Pengguna', 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>', 'url' => ['/user/index'],],
-            ['label' => 'Role Base Access Control', 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>', 'url' => ['/admin'],],
-
-        ],
-    ],
-
-    ['label' => 'Data Akreditasi', 'url' => ['/site/index'], 'options' => ['class' => 'kt-menu__section']],
-    [
-        'label' => 'Master Akreditasi',
-        'icon' => '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect id="bound" x="0" y="0" width="24" height="24"/>
-        <path d="M15.9497475,3.80761184 L13.0246125,6.73274681 C12.2435639,7.51379539 12.2435639,8.78012535 13.0246125,9.56117394 L14.4388261,10.9753875 C15.2198746,11.7564361 16.4862046,11.7564361 17.2672532,10.9753875 L20.1923882,8.05025253 C20.7341101,10.0447871 20.2295941,12.2556873 18.674559,13.8107223 C16.8453326,15.6399488 14.1085592,16.0155296 11.8839934,14.9444337 L6.75735931,20.0710678 C5.97631073,20.8521164 4.70998077,20.8521164 3.92893219,20.0710678 C3.1478836,19.2900192 3.1478836,18.0236893 3.92893219,17.2426407 L9.05556629,12.1160066 C7.98447038,9.89144078 8.36005124,7.15466739 10.1892777,5.32544095 C11.7443127,3.77040588 13.9552129,3.26588995 15.9497475,3.80761184 Z" id="Combined-Shape" fill="#000000"/>
-        <path d="M16.6568542,5.92893219 L18.0710678,7.34314575 C18.4615921,7.73367004 18.4615921,8.36683502 18.0710678,8.75735931 L16.6913928,10.1370344 C16.3008685,10.5275587 15.6677035,10.5275587 15.2771792,10.1370344 L13.8629656,8.7228208 C13.4724413,8.33229651 13.4724413,7.69913153 13.8629656,7.30860724 L15.2426407,5.92893219 C15.633165,5.5384079 16.26633,5.5384079 16.6568542,5.92893219 Z" id="Rectangle-2" fill="#000000" opacity="0.3"/>
-    </g>
-</svg>',
-        'url' => 'javascript:;',
-        'items' => [
-            ['label' => 'Akreditasi', 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>', 'url' => ['/akreditasi/index'],],
-            ['label' => 'Akreditasi Program Studi', 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>', 'url' => ['/akreditasi-prodi/index'],],
-            [
-                'label' => 'Akreditasi Perguruan Tinggi',
-                'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',
-                'url' => ['/akreditasi-perguruan-tinggi/index'],
-
-            ],
-
-        ],
-
-    ],
-    ['label' => 'Sertifikat Akreditasi', 'icon' => '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect id="bound" x="0" y="0" width="24" height="24"/>
-        <path d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z" id="Path-57" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
-        <rect id="Rectangle" fill="#000000" opacity="0.3" x="11" y="2" width="2" height="14" rx="1"/>
-        <path d="M12.0362375,3.37797611 L7.70710678,7.70710678 C7.31658249,8.09763107 6.68341751,8.09763107 6.29289322,7.70710678 C5.90236893,7.31658249 5.90236893,6.68341751 6.29289322,6.29289322 L11.2928932,1.29289322 C11.6689749,0.916811528 12.2736364,0.900910387 12.6689647,1.25670585 L17.6689647,5.75670585 C18.0794748,6.12616487 18.1127532,6.75845471 17.7432941,7.16896473 C17.3738351,7.57947475 16.7415453,7.61275317 16.3310353,7.24329415 L12.0362375,3.37797611 Z" id="Path-102" fill="#000000" fill-rule="nonzero"/>
-    </g>
-</svg>', 'url' => 'javascript:;','items' => [
-        ['label' => 'Sertifikat Program Studi', 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>', 'url' => ['/sertifikat-prodi/index'],],
-        [
-            'label' => 'Sertifikat Perguruan Tinggi',
-            'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',
-            'url' => ['/sertifikat-perguruan-tinggi/index'],
-
-        ],
-
-    ],
-        ]
-
 ];
 $menuItems = Helper::filter($menuItems);
 

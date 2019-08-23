@@ -1,6 +1,6 @@
 <?php
 
-namespace common\modules\controllers;
+namespace common\modules\profile\controllers;
 
 
 use common\models\forms\user\UpdatePasswordForm;

@@ -67,7 +67,7 @@ environments/            contains environment-based overrides
 6. Ganti Personal Api token di `vagrant/config/vagrant.local.yml`.
 7. Jalankan command `vagrant plugin install vagrant-hostmanager` `vagrant up`.
 8. Jalankan `php yii migrate` & `php yii auth/up`
-8. Tambahkan hosts file. 
+9. Tambahkan hosts file. 
 ```
 192.168.2.1 monitoring.mutu.test
 192.168.2.1 akreditasi.mutu.test

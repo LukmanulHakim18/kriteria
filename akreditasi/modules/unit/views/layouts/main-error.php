@@ -3,7 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use common\assets\MetronicLoginPageAsset;
+use common\assets\MetronicErrorPageAsset;
 use common\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap4\Nav;
@@ -11,7 +11,7 @@ use yii\bootstrap4\NavBar;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 
-MetronicLoginPageAsset::register($this);
+MetronicErrorPageAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -36,33 +36,19 @@ MetronicLoginPageAsset::register($this);
     </script>
 
     <!--end::Fonts -->
-    <?php $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'href' => Url::to(['/favicon.ico'])]); ?>
 
 
+    <?php $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'href' => Url::to(['/uinicon.png'])]); ?>
     <?php $this->head() ?>
 
 </head>
-
+<!-- begin::Body -->
 <body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
-<?php $this->beginBody() ?>
 
+<?php $this->beginBody() ?>
 <!-- begin:: Page -->
-<div class="kt-grid kt-grid--ver kt-grid--root">
-    <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v4 kt-login--signin" id="kt_login">
-        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" style="background-image: url(<?=Yii::getAlias('@web/media/bg/bg-2.jpg')?>);">
-            <div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
-                <div class="kt-login__container">
-                    <div class="kt-login__logo">
-                        <a href="#">
-                            <?=Html::img('@web/media/logos/logo_instansi.png',['height'=>100,'width'=>100])?>
-                        </a>
-                    </div>
-                   <?=$content?>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        <?=$content?>
+
 
 <!-- end:: Page -->
 

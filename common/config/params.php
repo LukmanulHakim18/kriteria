@@ -9,6 +9,7 @@ return [
     'user.passwordResetTokenExpire' => 3600,
     'instansi'=>$ini['instansi'],
     'nama_sistem'=>$ini['nama_sistem'],
+    'url_instansi'=>$ini['url_instansi'],
     'bsVersion' => '4.x', // this will set globally `bsVersion` to Bootstrap 4.x for all Krajee Extensions
     'mdm.admin.configs' => [
         'advanced' => [

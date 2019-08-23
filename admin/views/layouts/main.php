@@ -44,7 +44,7 @@ $this->registerJs($counterUp,\yii\web\View::POS_READY);
 
     <!--end::Fonts -->
 
-    <?php $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'href' => Url::to(['/uinicon.png'])]); ?>
+    <?php $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'href' => Url::to(['/favicon.ico'])]); ?>
     <?php $this->head() ?>
 </head>
 <!-- begin::Body -->
