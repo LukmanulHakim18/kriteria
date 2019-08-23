@@ -71,6 +71,16 @@ return [
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ],
         ],
+        'assetManager'=>[
+            'bundles'=>[
+                'yii\bootstrap4\BootstrapAsset'=>[
+                    'sourcePath' => null,
+                    'basePath' => '@webroot',
+                    'baseUrl' => '@web',
+                    'css'=>['css/style.bundle.css']
+                ]
+            ]
+        ],
     ],
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
