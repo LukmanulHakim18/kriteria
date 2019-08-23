@@ -17,6 +17,7 @@ class m190723_170007_create_k9_akreditasi extends Migration
             // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
             $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE=InnoDB';
         }
+
         $this->createTable('{{%k9_akreditasi}}',[
             'id'=>$this->primaryKey(),
             'nama'=>$this->string(),
@@ -41,6 +42,7 @@ class m190723_170007_create_k9_akreditasi extends Migration
             'created_at'=>$this->integer(),
             'updated_at'=>$this->integer()
         ],$tableOptions);
+
 
         $this->addForeignKey('fk-k9_akreditasi_prodi-k9_akreditasi','{{%k9_akreditasi_prodi}}','id_akreditasi','{{%k9_akreditasi}}','id','cascade','cascade');
         $this->addForeignKey('fk-k9_akreditasi_prodi-program_studi','{{%k9_akreditasi_prodi}}','id_prodi','{{%program_studi}}','id','cascade','cascade');

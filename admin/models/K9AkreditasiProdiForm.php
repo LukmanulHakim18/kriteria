@@ -15,6 +15,15 @@ use common\models\kriteria9\led\fakultas\K9LedFakultasKriteria6;
 use common\models\kriteria9\led\fakultas\K9LedFakultasKriteria7;
 use common\models\kriteria9\led\fakultas\K9LedFakultasKriteria8;
 use common\models\kriteria9\led\fakultas\K9LedFakultasKriteria9;
+use common\models\kriteria9\led\fakultas\K9LedFakultasNarasiKriteria1;
+use common\models\kriteria9\led\fakultas\K9LedFakultasNarasiKriteria2;
+use common\models\kriteria9\led\fakultas\K9LedFakultasNarasiKriteria3;
+use common\models\kriteria9\led\fakultas\K9LedFakultasNarasiKriteria4;
+use common\models\kriteria9\led\fakultas\K9LedFakultasNarasiKriteria5;
+use common\models\kriteria9\led\fakultas\K9LedFakultasNarasiKriteria6;
+use common\models\kriteria9\led\fakultas\K9LedFakultasNarasiKriteria7;
+use common\models\kriteria9\led\fakultas\K9LedFakultasNarasiKriteria8;
+use common\models\kriteria9\led\fakultas\K9LedFakultasNarasiKriteria9;
 use common\models\kriteria9\led\prodi\K9LedProdi;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria1;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria2;
@@ -25,6 +34,15 @@ use common\models\kriteria9\led\prodi\K9LedProdiKriteria6;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria7;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria8;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria9;
+use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria1;
+use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria2;
+use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria3;
+use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria4;
+use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria5;
+use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria6;
+use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria7;
+use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria8;
+use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria9;
 use common\models\kriteria9\lk\fakultas\K9LkFakultas;
 use common\models\kriteria9\lk\fakultas\K9LkFakultasKriteria1;
 use common\models\kriteria9\lk\fakultas\K9LkFakultasKriteria2;
@@ -153,6 +171,8 @@ class K9AkreditasiProdiForm extends Model
             $pathLkPendukung = $pathP . '/lk/pendukung';
             $pathLkLainnya = $pathP . '/lk/lainnya';
 
+            $pathMatriks = $pathP . '/matriks-kuantitatif';
+
 
             FileHelper::createDirectory($pathLedSumber);
             FileHelper::createDirectory($pathLedPendukung);
@@ -160,6 +180,7 @@ class K9AkreditasiProdiForm extends Model
             FileHelper::createDirectory($pathLkSumber);
             FileHelper::createDirectory($pathLkPendukung);
             FileHelper::createDirectory($pathLkLainnya);
+            FileHelper::createDirectory($pathMatriks);
 
         }
         elseif($params === 'fakultas'){
@@ -389,7 +410,6 @@ class K9AkreditasiProdiForm extends Model
                 throw new InvalidArgumentException($this->_led_fakultas->errors);
             }
 
-            $attr = ['id_led_fakultas' => $this->_led_fakultas->id, 'progress' => 0];
 
             $kriteria1Fakultas = new K9LedFakultasKriteria1();
             $kriteria2Fakultas = new K9LedFakultasKriteria2();
@@ -401,7 +421,16 @@ class K9AkreditasiProdiForm extends Model
             $kriteria8Fakultas = new K9LedFakultasKriteria8();
             $kriteria9Fakultas = new K9LedFakultasKriteria9();
 
+            $narasiKriteria2Fakultas = new K9LedFakultasNarasiKriteria2();
+            $narasiKriteria3Fakultas = new K9LedFakultasNarasiKriteria3();
+            $narasiKriteria4Fakultas = new K9LedFakultasNarasiKriteria4();
+            $narasiKriteria5Fakultas = new K9LedFakultasNarasiKriteria5();
+            $narasiKriteria6Fakultas = new K9LedFakultasNarasiKriteria6();
+            $narasiKriteria7Fakultas = new K9LedFakultasNarasiKriteria7();
+            $narasiKriteria8Fakultas = new K9LedFakultasNarasiKriteria8();
+            $narasiKriteria9Fakultas = new K9LedFakultasNarasiKriteria9();
 
+            $attr = ['id_led_fakultas' => $this->_led_fakultas->id, 'progress' => 0];
             $kriteria1Fakultas->attributes = $attr;
             $kriteria2Fakultas->attributes = $attr;
             $kriteria3Fakultas->attributes = $attr;
@@ -417,39 +446,106 @@ class K9AkreditasiProdiForm extends Model
                 $transaction->rollBack();
                 throw new InvalidArgumentException($kriteria1Fakultas->errors);
             }
+            $narasiKriteria1Fakultas = new K9LedFakultasNarasiKriteria1();
+            $narasiKriteria1Fakultas->id_led_fakultas_kriteria1 = $narasiKriteria1Fakultas->id;
+            $narasiKriteria1Fakultas->progress = 0;
+
             if (!$kriteria2Fakultas->save()) {
                 $transaction->rollBack();
                 throw new InvalidArgumentException($kriteria2Fakultas->errors);
             }
+            $narasiKriteria2Fakultas->id_led_fakultas_kriteria2 = $narasiKriteria2Fakultas->id;
+            $narasiKriteria2Fakultas->progress = 0;
+
             if (!$kriteria3Fakultas->save()) {
                 $transaction->rollBack();
                 throw new InvalidArgumentException($kriteria3Fakultas->errors);
             }
+            $narasiKriteria3Fakultas->id_led_fakultas_kriteria3 = $narasiKriteria3Fakultas->id;
+            $narasiKriteria3Fakultas->progress = 0;
+
+
             if (!$kriteria4Fakultas->save()) {
                 $transaction->rollBack();
                 throw new InvalidArgumentException($kriteria4Fakultas->errors);
             }
+            $narasiKriteria4Fakultas->id_led_fakultas_kriteria4 = $narasiKriteria4Fakultas->id;
+            $narasiKriteria4Fakultas->progress = 0;
+
+
             if (!$kriteria5Fakultas->save()) {
                 $transaction->rollBack();
                 throw new InvalidArgumentException($kriteria5Fakultas->errors);
             }
+            $narasiKriteria5Fakultas->id_led_fakultas_kriteria5 = $narasiKriteria5Fakultas->id;
+            $narasiKriteria5Fakultas->progress = 0;
+
             if (!$kriteria6Fakultas->save()) {
                 $transaction->rollBack();
                 throw new InvalidArgumentException($kriteria6Fakultas->errors);
             }
+            $narasiKriteria6Fakultas->id_led_fakultas_kriteria6 = $narasiKriteria6Fakultas->id;
+            $narasiKriteria6Fakultas->progress = 0;
+
             if (!$kriteria7Fakultas->save()) {
                 $transaction->rollBack();
                 throw new InvalidArgumentException($kriteria7Fakultas->errors);
             }
+
+            $narasiKriteria7Fakultas->id_led_fakultas_kriteria7 = $narasiKriteria7Fakultas->id;
+            $narasiKriteria7Fakultas->progress = 0;
 
             if (!$kriteria8Fakultas->save()) {
                 $transaction->rollBack();
                 throw new InvalidArgumentException($kriteria7Fakultas->errors);
             }
 
+            $narasiKriteria8Fakultas->id_led_fakultas_kriteria8 = $narasiKriteria8Fakultas->id;
+            $narasiKriteria8Fakultas->progress = 0;
+
             if (!$kriteria9Fakultas->save()) {
                 $transaction->rollBack();
                 throw new InvalidArgumentException($kriteria7Fakultas->errors);
+            }
+
+            $narasiKriteria9Fakultas->id_led_fakultas_kriteria9 = $narasiKriteria9Fakultas->id;
+            $narasiKriteria9Fakultas->progress = 0;
+
+            if(!$narasiKriteria1Fakultas->save()){
+                $transaction->rollBack();
+                throw new InvalidArgumentException($narasiKriteria1Fakultas->errors);
+            }
+            if(!$narasiKriteria2Fakultas->save()){
+                $transaction->rollBack();
+                throw new InvalidArgumentException($narasiKriteria2Fakultas->errors);
+            }
+            if(!$narasiKriteria3Fakultas->save()){
+                $transaction->rollBack();
+                throw new InvalidArgumentException($narasiKriteria3Fakultas->errors);
+            }
+            if(!$narasiKriteria4Fakultas->save()){
+                $transaction->rollBack();
+                throw new InvalidArgumentException($narasiKriteria4Fakultas->errors);
+            }
+            if(!$narasiKriteria5Fakultas->save()){
+                $transaction->rollBack();
+                throw new InvalidArgumentException($narasiKriteria5Fakultas->errors);
+            }
+            if(!$narasiKriteria6Fakultas->save()){
+                $transaction->rollBack();
+                throw new InvalidArgumentException($narasiKriteria6Fakultas->errors);
+            }
+            if(!$narasiKriteria7Fakultas->save()){
+                $transaction->rollBack();
+                throw new InvalidArgumentException($narasiKriteria7Fakultas->errors);
+            }
+            if(!$narasiKriteria8Fakultas->save()){
+                $transaction->rollBack();
+                throw new InvalidArgumentException($narasiKriteria8Fakultas->errors);
+            }
+            if(!$narasiKriteria9Fakultas->save()){
+                $transaction->rollBack();
+                throw new InvalidArgumentException($narasiKriteria9Fakultas->errors);
             }
 
         }
@@ -473,6 +569,16 @@ class K9AkreditasiProdiForm extends Model
         $kriteria8Prodi = new K9LedProdiKriteria8();
         $kriteria9Prodi = new K9LedProdiKriteria9();
 
+        $narasiKriteria1Prodi = new K9LedProdiNarasiKriteria1();
+        $narasiKriteria2Prodi = new K9LedProdiNarasiKriteria2();
+        $narasiKriteria3Prodi = new K9LedProdiNarasiKriteria3();
+        $narasiKriteria4Prodi = new K9LedProdiNarasiKriteria4();
+        $narasiKriteria5Prodi = new K9LedProdiNarasiKriteria5();
+        $narasiKriteria6Prodi = new K9LedProdiNarasiKriteria6();
+        $narasiKriteria7Prodi = new K9LedProdiNarasiKriteria7();
+        $narasiKriteria8Prodi = new K9LedProdiNarasiKriteria8();
+        $narasiKriteria9Prodi = new K9LedProdiNarasiKriteria9();
+
 
         $kriteria1Prodi->attributes = $attr;
         $kriteria2Prodi->attributes = $attr;
@@ -490,44 +596,107 @@ class K9AkreditasiProdiForm extends Model
             $transaction->rollBack();
             throw new InvalidArgumentException($kriteria1Prodi->errors);
         }
+        $narasiKriteria1Prodi->id_led_prodi_kriteria1 = $kriteria1Prodi->id;
+        $narasiKriteria1Prodi->progress = 0;
 
         if (!$kriteria2Prodi->save()) {
             $transaction->rollBack();
             throw new InvalidArgumentException($kriteria2Prodi->errors);
         }
+        $narasiKriteria2Prodi->id_led_prodi_kriteria2 = $kriteria2Prodi->id;
+        $narasiKriteria2Prodi->progress = 0;
+
         if (!$kriteria3Prodi->save()) {
             $transaction->rollBack();
             throw new InvalidArgumentException($kriteria3Prodi->errors);
         }
+
+        $narasiKriteria3Prodi->id_led_prodi_kriteria3 = $kriteria3Prodi->id;
+        $narasiKriteria3Prodi->progress = 0;
 
         if (!$kriteria4Prodi->save()) {
             $transaction->rollBack();
             throw new InvalidArgumentException($kriteria4Prodi->errors);
         }
 
+        $narasiKriteria4Prodi->id_led_prodi_kriteria4 = $kriteria4Prodi->id;
+        $narasiKriteria4Prodi->progress = 0;
+
         if (!$kriteria5Prodi->save()) {
             $transaction->rollBack();
             throw new InvalidArgumentException($kriteria5Prodi->errors);
         }
 
+        $narasiKriteria5Prodi->id_led_prodi_kriteria5 = $kriteria5Prodi->id;
+        $narasiKriteria5Prodi->progress = 0;
+
         if (!$kriteria6Prodi->save()) {
             $transaction->rollBack();
             throw new InvalidArgumentException($kriteria6Prodi->errors);
         }
+        $narasiKriteria6Prodi->id_led_prodi_kriteria6 = $kriteria6Prodi->id;
+        $narasiKriteria6Prodi->progress = 0;
+
         if (!$kriteria7Prodi->save()) {
             $transaction->rollBack();
             throw new InvalidArgumentException($kriteria7Prodi->errors);
         }
+        $narasiKriteria7Prodi->id_led_prodi_kriteria7 = $kriteria7Prodi->id;
+        $narasiKriteria7Prodi->progress = 0;
+
         if (!$kriteria8Prodi->save()) {
             $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria7Prodi->errors);
+            throw new InvalidArgumentException($kriteria8Prodi->errors);
         }
+        $narasiKriteria8Prodi->id_led_prodi_kriteria8 = $kriteria8Prodi->id;
+        $narasiKriteria8Prodi->progress = 0;
+
         if (!$kriteria9Prodi->save()) {
             $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria7Prodi->errors);
+            throw new InvalidArgumentException($kriteria9Prodi->errors);
+        }
+        $narasiKriteria9Prodi->id_led_prodi_kriteria9 = $kriteria9Prodi->id;
+        $narasiKriteria9Prodi->progress = 0;
+
+        if(!$narasiKriteria1Prodi->save()){
+            $transaction->rollBack();
+            throw new InvalidArgumentException($narasiKriteria1Prodi->errors);
+        }
+        if(!$narasiKriteria2Prodi->save()){
+            $transaction->rollBack();
+            throw new InvalidArgumentException($narasiKriteria2Prodi->errors);
+        }
+        if(!$narasiKriteria3Prodi->save()){
+            $transaction->rollBack();
+            throw new InvalidArgumentException($narasiKriteria3Prodi->errors);
+        }
+        if(!$narasiKriteria4Prodi->save()){
+            $transaction->rollBack();
+            throw new InvalidArgumentException($narasiKriteria4Prodi->errors);
+        }
+        if(!$narasiKriteria5Prodi->save()){
+            $transaction->rollBack();
+            throw new InvalidArgumentException($narasiKriteria6Prodi->errors);
+        }
+        if(!$narasiKriteria6Prodi->save()){
+            $transaction->rollBack();
+            throw new InvalidArgumentException($narasiKriteria6Prodi->errors);
         }
 
+        if(!$narasiKriteria7Prodi->save()){
+            $transaction->rollBack();
+            throw new InvalidArgumentException($narasiKriteria7Prodi->errors);
+        }
 
+        if(!$narasiKriteria8Prodi->save()){
+            $transaction->rollBack();
+            throw new InvalidArgumentException($narasiKriteria8Prodi->errors);
+        }
+
+        if(!$narasiKriteria9Prodi->save()){
+            $transaction->rollBack();
+            throw new InvalidArgumentException($narasiKriteria9Prodi->errors);
+        }
 
 
     }

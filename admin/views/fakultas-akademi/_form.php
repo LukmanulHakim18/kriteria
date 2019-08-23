@@ -43,13 +43,7 @@ $jsForm = <<<JS
         });
         submit.html('<i class="flaticon2-refresh"></i> Sedang Memproses');
         submit.prop('disabled', true);
-
-        KTApp.blockPage({
-            overlayColor: '#000000',
-            type: 'v2',
-            state: 'primary',
-            message: 'Sedang memproses...'
-        });
+        
 
     });
 

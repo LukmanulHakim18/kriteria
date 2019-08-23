@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel admin\models\K9AkreditasiProdiSearch */

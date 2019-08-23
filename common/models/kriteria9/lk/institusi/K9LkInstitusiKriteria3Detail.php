@@ -2,7 +2,6 @@
 
 namespace common\models\kriteria9\lk\institusi;
 
-use common\models\User;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -14,6 +13,8 @@ use yii\behaviors\TimestampBehavior;
  * @property int $id_lk_institusi_kriteria3
  * @property string $kode_dokumen
  * @property string $nama_dokumen
+ * @property string $isi_dokumen
+ * @property string $bentuk_dokumen
  * @property string $jenis_dokumen
  * @property int $created_at
  * @property int $updated_at
@@ -49,7 +50,7 @@ class K9LkInstitusiKriteria3Detail extends \yii\db\ActiveRecord
     {
         return [
             [['id_lk_institusi_kriteria3', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['kode_dokumen', 'nama_dokumen', 'jenis_dokumen'], 'string', 'max' => 255],
+            [['kode_dokumen', 'nama_dokumen', 'isi_dokumen', 'bentuk_dokumen', 'jenis_dokumen'], 'string', 'max' => 255],
             [['id_lk_institusi_kriteria3'], 'exist', 'skipOnError' => true, 'targetClass' => K9LkInstitusiKriteria3::className(), 'targetAttribute' => ['id_lk_institusi_kriteria3' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
@@ -66,6 +67,8 @@ class K9LkInstitusiKriteria3Detail extends \yii\db\ActiveRecord
             'id_lk_institusi_kriteria3' => 'Id Lk Institusi Kriteria3',
             'kode_dokumen' => 'Kode Dokumen',
             'nama_dokumen' => 'Nama Dokumen',
+            'isi_dokumen' => 'Isi Dokumen',
+            'bentuk_dokumen' => 'Bentuk Dokumen',
             'jenis_dokumen' => 'Jenis Dokumen',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

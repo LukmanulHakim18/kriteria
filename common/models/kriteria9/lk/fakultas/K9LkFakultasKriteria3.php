@@ -30,7 +30,7 @@ class K9LkFakultasKriteria3 extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::class
+            TimestampBehavior::class,
         ];
     }
 

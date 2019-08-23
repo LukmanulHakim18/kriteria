@@ -1042,8 +1042,8 @@ class m190723_170054_create_tabel_led extends Migration
 
     private function addForeignFakultas()
     {
-        $this->addForeignKey('fk-k9_led_fak-k9_akreditasi_fak','{{%k9_led_fakultas}}','id_fakultas','{{%k9_akreditasi}}','id','cascade','cascade');
-        $this->addForeignKey('fk-k9_led_fak-k9_fakultas_akademi','{{%k9_led_fakultas}}','id_akreditasi','{{%fakultas_akademi}}','id','cascade','cascade');
+        $this->addForeignKey('fk-k9_led_fak-k9_akreditasi_fak','{{%k9_led_fakultas}}','id_akreditasi','{{%k9_akreditasi}}','id','cascade','cascade');
+        $this->addForeignKey('fk-k9_led_fak-k9_fakultas_akademi','{{%k9_led_fakultas}}','id_fakultas','{{%fakultas_akademi}}','id','cascade','cascade');
 
         $this->addForeignKey('fk-k9_led_fak_kt1-k9_led_fak','{{k9_led_fakultas_kriteria1}}','id_led_fakultas','{{%k9_led_fakultas}}','id','cascade','cascade');
         $this->addForeignKey('fk-k9_led_fak_kt2-k9_led_fak','{{k9_led_fakultas_kriteria2}}','id_led_fakultas','{{%k9_led_fakultas}}','id','cascade','cascade');
