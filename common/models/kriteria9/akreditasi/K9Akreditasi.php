@@ -2,7 +2,6 @@
 
 namespace common\models\kriteria9\akreditasi;
 
-use common\models\JenisAkreditasi;
 use common\models\kriteria9\led\fakultas\K9LedFakultas;
 use common\models\kriteria9\lk\fakultas\K9LkFakultas;
 use Yii;
@@ -33,6 +32,8 @@ class K9Akreditasi extends \yii\db\ActiveRecord
     {
         return 'k9_akreditasi';
     }
+
+
     /**
      * {@inheritdoc}
      */
@@ -49,12 +50,10 @@ class K9Akreditasi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-
             [['nama', 'lembaga'], 'string', 'max' => 255],
             [['tahun'], 'string', 'max' => 4],
             [['jenis_akreditasi'], 'string', 'max' => 10],
         ];
-
     }
 
     /**
@@ -66,13 +65,12 @@ class K9Akreditasi extends \yii\db\ActiveRecord
             'id' => 'ID',
             'nama' => 'Nama',
             'tahun' => 'Tahun',
-            'id_jenis_akreditasi' => 'Id Jenis Akreditasi',
+            'jenis_akreditasi' => 'Jenis Akreditasi',
             'lembaga' => 'Lembaga',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
     }
-
 
     /**
      * @return \yii\db\ActiveQuery
@@ -95,7 +93,7 @@ class K9Akreditasi extends \yii\db\ActiveRecord
      */
     public function getK9LedFakultas()
     {
-        return $this->hasMany(K9LedFakultas::className(), ['id_akreditasi' => 'id']);
+        return $this->hasMany(K9LedFakultas::className(), ['id_fakultas' => 'id']);
     }
 
     /**

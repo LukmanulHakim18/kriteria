@@ -17,7 +17,11 @@ use yii\bootstrap4\ActiveForm;
 
 <div class="create_user_form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+            'enableClientValidation' => true,
+        'enableAjaxValidation' => true,
+        'id' => 'create-user-form'
+    ]); ?>
 
     <?= $form->field($model, 'username')->textInput(['prompt'=>'username']) ?>
     <?= $form->field($model, 'password')->passwordInput() ?>
@@ -51,3 +55,28 @@ use yii\bootstrap4\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div><!-- create_user_form -->
+
+<?php
+$jsForm = <<<JS
+ $('form').on('beforeSubmit', function()
+    {
+        var form = $(this);
+        //console.log('before submit');
+
+        var submit = form.find(':submit');
+        KTApp.block('.modal',{
+            overlayColor: '#000000',
+            type: 'v2',
+            state: 'primary',
+            message: 'Sedang Memproses...'
+        });
+        submit.html('<i class="flaticon2-refresh"></i> Sedang Memproses');
+        submit.prop('disabled', true);
+        
+
+    });
+
+JS;
+
+$this->registerJs($jsForm);
+?>

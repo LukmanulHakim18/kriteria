@@ -2,8 +2,6 @@
 
 namespace common\models\kriteria9\lk\fakultas;
 
-use common\models\FakultasAkademi;
-use common\models\kriteria9\akreditasi\K9Akreditasi;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 
@@ -42,7 +40,7 @@ class K9LkFakultas extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::class
+            TimestampBehavior::class,
         ];
     }
 

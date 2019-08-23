@@ -14,7 +14,9 @@ use yii\behaviors\TimestampBehavior;
  * @property int $id_led_institusi_kriteria5
  * @property string $kode_dokumen
  * @property string $nama_dokumen
+ * @property string $isi_dokumen
  * @property string $jenis_dokumen
+ * @property string $bentuk_dokumen
  * @property int $created_at
  * @property int $updated_at
  * @property int $created_by
@@ -34,6 +36,7 @@ class K9LedInstitusiKriteria5Detail extends \yii\db\ActiveRecord
         return 'k9_led_institusi_kriteria5_detail';
     }
 
+
     /**
      * {@inheritdoc}
      */
@@ -44,7 +47,6 @@ class K9LedInstitusiKriteria5Detail extends \yii\db\ActiveRecord
             BlameableBehavior::class
         ];
     }
-
     /**
      * {@inheritdoc}
      */
@@ -52,7 +54,7 @@ class K9LedInstitusiKriteria5Detail extends \yii\db\ActiveRecord
     {
         return [
             [['id_led_institusi_kriteria5', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['kode_dokumen', 'nama_dokumen', 'jenis_dokumen'], 'string', 'max' => 255],
+            [['kode_dokumen', 'nama_dokumen', 'isi_dokumen', 'jenis_dokumen', 'bentuk_dokumen'], 'string', 'max' => 255],
             [['id_led_institusi_kriteria5'], 'exist', 'skipOnError' => true, 'targetClass' => K9LedInstitusiKriteria5::className(), 'targetAttribute' => ['id_led_institusi_kriteria5' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
@@ -69,7 +71,9 @@ class K9LedInstitusiKriteria5Detail extends \yii\db\ActiveRecord
             'id_led_institusi_kriteria5' => 'Id Led Institusi Kriteria5',
             'kode_dokumen' => 'Kode Dokumen',
             'nama_dokumen' => 'Nama Dokumen',
+            'isi_dokumen' => 'Isi Dokumen',
             'jenis_dokumen' => 'Jenis Dokumen',
+            'bentuk_dokumen' => 'Bentuk Dokumen',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'created_by' => 'Created By',

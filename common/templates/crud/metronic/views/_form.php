@@ -29,7 +29,7 @@ use yii\bootstrap4\ActiveForm;
 
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-form">
 
-    <?= "<?php " ?>$form = ActiveForm::begin(); ?>
+    <?= "<?php " ?>$form = ActiveForm::begin(['id'=>'<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-form']); ?>
 
 <?php foreach ($generator->getColumnNames() as $attribute) {
     if (in_array($attribute, $safeAttributes)) {
@@ -43,3 +43,34 @@ use yii\bootstrap4\ActiveForm;
     <?= "<?php " ?>ActiveForm::end(); ?>
 
 </div>
+
+<?= "<?php " ?>
+$js = <<<JS
+ $('form').on('beforeSubmit', function()
+    {
+        var form = $(this);
+        //console.log('before submit');
+
+        var submit = form.find(':submit');
+        KTApp.block('.modal',{
+            overlayColor: '#000000',
+            type: 'v2',
+            state: 'primary',
+            message: 'Sedang Memproses...'
+        });
+        submit.html('<i class="flaticon2-refresh"></i> Sedang Memproses');
+        submit.prop('disabled', true);
+
+        KTApp.blockPage({
+            overlayColor: '#000000',
+            type: 'v2',
+            state: 'primary',
+            message: 'Sedang memproses...'
+        });
+
+    });
+
+JS;
+
+$this->registerJs($js);
+?>

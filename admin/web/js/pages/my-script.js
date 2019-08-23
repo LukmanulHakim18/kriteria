@@ -6,6 +6,7 @@
  * @param okCallback triggered when confirmation is true
  * @param cancelCallback callback triggered when cancelled
  */
+
 yii.confirm = function (message, okCallback, cancelCallback) {
     swal({
         title: message,
@@ -50,3 +51,50 @@ $(function(){
         }
     });
 });
+// var form = document.getElementById('form-adryan')
+// form.addEventListener('beforeSubmit', function(evt){
+//     //console.log('before submit');
+//
+//     var submit = evt.find(':submit');
+//     KTApp.block('.modal-content',{
+//         overlayColor: '#000000',
+//         type: 'v2',
+//         state: 'primary',
+//         message: 'Sedang Memproses...'
+//     });
+//     submit.html('<i class="flaticon2-refresh"></i> Sedang Memproses');
+//     submit.prop('disabled', true);
+//
+//     KTApp.blockPage({
+//         overlayColor: '#000000',
+//         type: 'v2',
+//         state: 'primary',
+//         message: 'Sedang memproses...'
+//     });
+// });
+    $('form').on('beforeSubmit', function()
+    {
+        var form = $(this);
+        //console.log('before submit');
+
+        var submit = form.find(':submit');
+        KTApp.block('.modal',{
+            overlayColor: '#000000',
+            type: 'v2',
+            state: 'primary',
+            message: 'Sedang Memproses...'
+        });
+        submit.html('<i class="flaticon2-refresh"></i> Sedang Memproses');
+        submit.prop('disabled', true);
+
+        KTApp.blockPage({
+            overlayColor: '#000000',
+            type: 'v2',
+            state: 'primary',
+            message: 'Sedang memproses...'
+        });
+
+    });
+
+
+

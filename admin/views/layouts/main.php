@@ -44,7 +44,7 @@ $this->registerJs($counterUp,\yii\web\View::POS_READY);
 
     <!--end::Fonts -->
 
-    <?php $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'href' => Url::to(['/uinicon.png'])]); ?>
+    <?php $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'href' => Url::to(['/favicon.ico'])]); ?>
     <?php $this->head() ?>
 </head>
 <!-- begin::Body -->
@@ -114,7 +114,6 @@ $this->registerJs($counterUp,\yii\web\View::POS_READY);
 
 
 <!-- end::Global Config -->
-<?php $this->endBody() ?>
 <?php
 yii\bootstrap4\Modal::begin([
     'title' => '<span id="modalHeaderTitle"></span>',
@@ -128,6 +127,8 @@ yii\bootstrap4\Modal::begin([
 echo "<div id='modalContent'></div>";
 yii\bootstrap4\Modal::end();
 ?>
+<?php $this->endBody() ?>
+
 </body>
 </html>
 <?php $this->endPage() ?>

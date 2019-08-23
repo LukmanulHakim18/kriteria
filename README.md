@@ -1,10 +1,12 @@
 <p align="center">
-    <a href="https://topapp.id" target="_blank">
+ <a href="https://topapp.id" target="_blank">
         <img src="https://topapp.id/admin/images/profil/logo.png" height="250px">
     </a>
     <h1 align="center">Sistem Mutu Universitas 9 Kriteria</h1>
-    <br>
+    <br/>
 </p>
+   
+
 
 Sistem Mutu Universitas adalah aplikasi untuk mengisi data akreditasi dan monitoring.
 
@@ -62,15 +64,15 @@ environments/            contains environment-based overrides
 3. Create Github [Personal API Token](https://github.com/blog/1509-personal-api-tokens).
 4. Clone Repository dengan cara `git clone https://github.com/adryanev/mutu.git`.
 5. Copy `vagrant/config/vagrant.local.example.yml` menjadi `vagrant/config/vagrant.local.yml`.
-5. Ganti Personal Api token di `vagrant/config/vagrant.local.yml`.
-6. Jalankan command `vagrant plugin install vagrant-hostmanager` `vagrant up`.
-7. Tambahkan hosts file.
+6. Ganti Personal Api token di `vagrant/config/vagrant.local.yml`.
+7. Jalankan command `vagrant plugin install vagrant-hostmanager` `vagrant up`.
+8. Jalankan `php yii migrate` & `php yii auth/up`
+9. Tambahkan hosts file. 
 ```
 192.168.2.1 monitoring.mutu.test
 192.168.2.1 akreditasi.mutu.test
 192.168.2.1 admin.mutu.test
 ```
-
 ## Cara Kontribusi
 Silahkan baca di [CONTRIBUTE.md](CONTRIBUTE.md)
 

@@ -9,6 +9,7 @@ use common\models\forms\user\UpdatePasswordForm;
 use common\models\ProgramStudi;
 use Yii;
 use yii\base\InvalidArgumentException;
+use yii\bootstrap4\ActiveForm;
 use yii\filters\AccessControl;
 use common\models\User;
 use admin\models\UserSearch;
@@ -17,6 +18,7 @@ use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -32,7 +34,7 @@ class UserController extends Controller
             'access'=>[
                 'class'=>AccessControl::className(),
                 'rules'=>[
-                    ['actions'=>['index','create','update','view','delete'],
+                    ['actions'=>['index','create','update','view','delete','get-prodi'],
                      'allow'=>true,
                      'roles'=>['@']
                     ]
@@ -99,7 +101,12 @@ class UserController extends Controller
         $fakultas = FakultasAkademi::find()->all();
         $dataFakultas = ArrayHelper::map($fakultas,'id','nama');
 
+        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
         if ($model->load(Yii::$app->request->post()) ) {
+
 
             if($model->validate()){
 
@@ -118,6 +125,7 @@ class UserController extends Controller
 
         }
         elseif (Yii::$app->request->isAjax){
+
 
             return $this->renderAjax('_create_user_form',[ 'model' => $model,
                 'dataFakultas'=>$dataFakultas, 'dataRoles'=>$dataRoles]);
@@ -156,6 +164,10 @@ class UserController extends Controller
 
         $dataRoles = array_combine($roles, $roles);
 
+        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
         if ($model->load(Yii::$app->request->post()) ) {
             if(!$model->validate()){
                 throw new InvalidArgumentException('Gagal validasi pengguna');
@@ -230,7 +242,6 @@ class UserController extends Controller
 
     public function actionGetProdi(){
 
-        $this->enableCsrfValidation = false;
         $arrayProdi = [];
 
         if(isset($_POST['depdrop_parents'])){
@@ -250,12 +261,5 @@ class UserController extends Controller
             }
         }
         echo Json::encode(['output'=>'', 'selected'=>'']);
-    }
-    public function beforeAction($action)
-    {
-        if ($this->action->id === 'get-prodi') {
-            $this->enableCsrfValidation = false;
-        }
-        return true;
     }
 }

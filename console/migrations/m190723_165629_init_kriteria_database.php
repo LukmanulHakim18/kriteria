@@ -71,12 +71,6 @@ class m190723_165629_init_kriteria_database extends Migration
             'updated_at'=>$this->integer()
         ],$tableOptions);
 
-        $this->createTable('{{%jenis_akreditasi}}',[
-            'id'=>$this->primaryKey(),
-            'nama'=>$this->string(),
-            'created_at'=>$this->integer(),
-            'updated_at'=>$this->integer()
-        ],$tableOptions);
     }
 
     /**
@@ -84,7 +78,6 @@ class m190723_165629_init_kriteria_database extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%jenis_akreditasi}}');
         $this->dropTable('{{%unit}}');
         $this->dropTable('{{%program_studi}}');
         $this->dropTable('{{%program}}');

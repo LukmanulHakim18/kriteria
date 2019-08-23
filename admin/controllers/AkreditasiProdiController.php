@@ -3,6 +3,7 @@
 namespace admin\controllers;
 
 use admin\models\K9AkreditasiProdiForm;
+use common\models\Constants;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\ProgramStudi;
 use Yii;
@@ -81,10 +82,10 @@ class AkreditasiProdiController extends Controller
     public function actionCreate()
     {
         $model = new K9AkreditasiProdiForm();
-        $idAkreditasi = K9Akreditasi::findAll(['jenis_akreditasi'=>'prodi']);
+        $idAkreditasi = K9Akreditasi::findAll(['jenis_akreditasi'=>Constants::PRODI]);
         $dataAkreditasi = ArrayHelper::map($idAkreditasi, 'id', 'nama');
 
-        $idProdi = ProgramStudi::find()->where(['jenjang' => 'S1'])->all();
+        $idProdi = ProgramStudi::find()->all();
         $dataProdi = ArrayHelper::map($idProdi, 'id', function ($data) {
             return $data->nama . " ({$data->jenjang})";
         });

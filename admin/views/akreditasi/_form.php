@@ -13,13 +13,13 @@ use yii\bootstrap4\ActiveForm;
 
 <div class="k9-akreditasi-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['id' => 'akreditasi-form']); ?>
 
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tahun')->textInput(['maxlength' => true,'value'=>date('Y')]) ?>
+    <?= $form->field($model, 'tahun')->textInput(['value'=>date('Y')]) ?>
 
-    <?= $form->field($model, 'jenis_akreditasi')->dropDownList(['prodi'=>'Program Studi','institusi'=>'Perguruan Tinggi'],['prompt'=>'Pilih Jenis Akreditasi']) ?>
+    <?= $form->field($model, 'jenis_akreditasi')->dropDownList(\common\models\Constants::JENIS_AKREDITASI,['prompt'=>'Pilih Jenis Akreditasi']) ?>
 
     <?= $form->field($model, 'lembaga')->textInput(['value'=>'BAN-PT','readonly'=>'true']) ?>
 
@@ -30,3 +30,28 @@ use yii\bootstrap4\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+
+<?php
+$jsForm = <<<JS
+ $('form').on('beforeSubmit', function()
+    {
+        var form = $(this);
+        //console.log('before submit');
+
+        var submit = form.find(':submit');
+        KTApp.block('.modal',{
+            overlayColor: '#000000',
+            type: 'v2',
+            state: 'primary',
+            message: 'Sedang Memproses...'
+        });
+        submit.html('<i class="flaticon2-refresh"></i> Sedang Memproses');
+        submit.prop('disabled', true);
+        
+    });
+
+JS;
+
+$this->registerJs($jsForm);
+?>

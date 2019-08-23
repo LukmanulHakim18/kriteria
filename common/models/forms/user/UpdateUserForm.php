@@ -78,6 +78,9 @@ class UpdateUserForm extends Model
         return [
 
             [['username', 'email', 'status', 'hak_akses', 'nama_lengkap'], 'required'],
+            [['username'],'unique','targetClass' => User::class, 'message' => '{attribute} "{value}" telah digunakan.'],
+            [['email'],'unique','targetClass' => User::class,'message' => '{attribute} "{value}" telah digunakan.'],
+            [['username', 'email', 'hak_akses', 'nama_lengkap'], 'string'],
             [['id_fakultas', 'id_prodi'], 'safe']
         ];
     }

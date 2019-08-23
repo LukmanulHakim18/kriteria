@@ -30,7 +30,7 @@ class K9LkProdiKriteria8 extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::class
+            TimestampBehavior::class,
         ];
     }
 

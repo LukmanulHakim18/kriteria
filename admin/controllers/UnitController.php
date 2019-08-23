@@ -9,6 +9,9 @@ use admin\models\UnitSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
+use yii\bootstrap4\ActiveForm;
+
 
 /**
  * UnitController implements the CRUD actions for Unit model.
@@ -76,7 +79,13 @@ class UnitController extends Controller
     {
         $model = new Unit();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+
+            if(Yii::$app->request->isAjax){
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($model);
+            }
+            $model->save();
             Yii::$app->session->setFlash('success','Berhasil menambahkan Unit.');
 
             return $this->redirect(['view', 'id' => $model->id]);

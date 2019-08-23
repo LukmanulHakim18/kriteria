@@ -15,6 +15,15 @@ use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria6;
 use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria7;
 use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria8;
 use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria9;
+use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKriteria1;
+use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKriteria2;
+use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKriteria3;
+use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKriteria4;
+use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKriteria5;
+use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKriteria6;
+use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKriteria7;
+use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKriteria8;
+use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKriteria9;
 use common\models\kriteria9\lk\institusi\K9LkInstitusi;
 use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria1;
 use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria2;
@@ -52,16 +61,16 @@ class K9AkreditasiInstitusiForm extends Model
     private $_led_institusi;
 
 
-
     public function rules()
     {
         return [
-            [['id_akreditasi'],'required'],
-            [['id_akreditasi'],'integer'],
+            [['id_akreditasi'], 'required'],
+            [['id_akreditasi'], 'integer'],
         ];
     }
 
-    public function createAkreditasi(){
+    public function createAkreditasi()
+    {
         $transaction = Yii::$app->db->beginTransaction();
 
         try {
@@ -91,25 +100,27 @@ class K9AkreditasiInstitusiForm extends Model
         $path = Yii::getAlias('@uploadAkreditasi');
 
 
-            $replacementsProdi = [
-                '{lembaga}'=>$this->_akreditasiInstitusi->akreditasi->lembaga,
-                '{jenis_akreditasi}'=>$this->_akreditasiInstitusi->akreditasi->jenis_akreditasi,
-                '{tahun}'=>$this->_akreditasiInstitusi->akreditasi->tahun,
-                '{level}'=>'institusi',
-                '{id}'=>'',
-            ];
+        $replacementInstitusi = [
+            '{lembaga}' => $this->_akreditasiInstitusi->akreditasi->lembaga,
+            '{jenis_akreditasi}' => $this->_akreditasiInstitusi->akreditasi->jenis_akreditasi,
+            '{tahun}' => $this->_akreditasiInstitusi->akreditasi->tahun,
+            '{level}' => 'institusi',
+            '{id}' => '',
+        ];
 
-            $result = strtr($uploadPath,$replacementsProdi);
+        $result = strtr($uploadPath, $replacementInstitusi);
 
-            $pathP = $path.'/'.$result;
+        $pathP = $path . '/' . $result;
 
-            $pathLedSumber = $pathP . '/led/sumber';
-            $pathLedPendukung = $pathP . '/led/pendukung';
-            $pathLedLainnya = $pathP . '/led/lainnya';
+        $pathLedSumber = $pathP . '/led/sumber';
+        $pathLedPendukung = $pathP . '/led/pendukung';
+        $pathLedLainnya = $pathP . '/led/lainnya';
 
-            $pathLkSumber = $pathP . '/lk/sumber';
-            $pathLkPendukung = $pathP . '/lk/pendukung';
-            $pathLkLainnya = $pathP . '/lk/lainnya';
+        $pathLkSumber = $pathP . '/lk/sumber';
+        $pathLkPendukung = $pathP . '/lk/pendukung';
+        $pathLkLainnya = $pathP . '/lk/lainnya';
+
+        $pathMatriks = $pathP . '/matriks-kuantitatif';
 
 
         try {
@@ -119,11 +130,10 @@ class K9AkreditasiInstitusiForm extends Model
             FileHelper::createDirectory($pathLkSumber);
             FileHelper::createDirectory($pathLkPendukung);
             FileHelper::createDirectory($pathLkLainnya);
+            FileHelper::createDirectory($pathMatriks);
         } catch (Exception $e) {
             throw $e;
         }
-
-
 
 
     }
@@ -139,8 +149,6 @@ class K9AkreditasiInstitusiForm extends Model
 
         $this->_lk_institusi->id_akreditasi_institusi = $this->_akreditasiInstitusi->id;
         $this->_lk_institusi->progress = 0;
-
-
 
 
         if (!$this->_lk_institusi->save(false)) {
@@ -171,7 +179,6 @@ class K9AkreditasiInstitusiForm extends Model
         $kriteria7Institusi->attributes = $attr;
         $kriteria8Institusi->attributes = $attr;
         $kriteria9Institusi->attributes = $attr;
-
 
 
         if (!$kriteria1Institusi->save()) {
@@ -249,6 +256,15 @@ class K9AkreditasiInstitusiForm extends Model
         $kriteria8Institusi = new K9LedInstitusiKriteria8();
         $kriteria9Institusi = new K9LedInstitusiKriteria9();
 
+        $narasiKriteria1Institusi = new K9LedInstitusiNarasiKriteria1();
+        $narasiKriteria2Institusi = new K9LedInstitusiNarasiKriteria2();
+        $narasiKriteria3Institusi = new K9LedInstitusiNarasiKriteria3();
+        $narasiKriteria4Institusi = new K9LedInstitusiNarasiKriteria4();
+        $narasiKriteria5Institusi = new K9LedInstitusiNarasiKriteria5();
+        $narasiKriteria6Institusi = new K9LedInstitusiNarasiKriteria6();
+        $narasiKriteria7Institusi = new K9LedInstitusiNarasiKriteria7();
+        $narasiKriteria8Institusi = new K9LedInstitusiNarasiKriteria8();
+        $narasiKriteria9Institusi = new K9LedInstitusiNarasiKriteria9();
 
         $kriteria1Institusi->attributes = $attr;
         $kriteria2Institusi->attributes = $attr;
@@ -261,57 +277,121 @@ class K9AkreditasiInstitusiForm extends Model
         $kriteria9Institusi->attributes = $attr;
 
 
-
         if (!$kriteria1Institusi->save()) {
             $transaction->rollBack();
             throw new InvalidArgumentException($kriteria1Institusi->errors);
         }
+        $narasiKriteria1Institusi->id_led_institusi_kriteria1 = $kriteria1Institusi->id;
+        $narasiKriteria1Institusi->progress = 0;
 
         if (!$kriteria2Institusi->save()) {
             $transaction->rollBack();
             throw new InvalidArgumentException($kriteria2Institusi->errors);
         }
+        $narasiKriteria2Institusi->id_led_institusi_kriteria2 = $kriteria2Institusi->id;
+        $narasiKriteria2Institusi->progress = 0;
+
         if (!$kriteria3Institusi->save()) {
             $transaction->rollBack();
             throw new InvalidArgumentException($kriteria3Institusi->errors);
         }
+        $narasiKriteria3Institusi->id_led_institusi_kriteria3 = $kriteria3Institusi->id;
+        $narasiKriteria3Institusi->progress = 0;
 
         if (!$kriteria4Institusi->save()) {
             $transaction->rollBack();
             throw new InvalidArgumentException($kriteria4Institusi->errors);
         }
 
+        $narasiKriteria4Institusi->id_led_institusi_kriteria4 = $kriteria4Institusi->id;
+        $narasiKriteria4Institusi->progress = 0;
+
         if (!$kriteria5Institusi->save()) {
             $transaction->rollBack();
             throw new InvalidArgumentException($kriteria5Institusi->errors);
         }
 
+        $narasiKriteria5Institusi->id_led_institusi_kriteria5 = $kriteria5Institusi->id;
+        $narasiKriteria5Institusi->progress = 0;
+
         if (!$kriteria6Institusi->save()) {
             $transaction->rollBack();
             throw new InvalidArgumentException($kriteria6Institusi->errors);
         }
+
+        $narasiKriteria6Institusi->id_led_institusi_kriteria6 = $kriteria6Institusi->id;
+        $narasiKriteria6Institusi->progress = 0;
+
         if (!$kriteria7Institusi->save()) {
             $transaction->rollBack();
             throw new InvalidArgumentException($kriteria7Institusi->errors);
         }
+
+        $narasiKriteria7Institusi->id_led_institusi_kriteria7 = $kriteria7Institusi->id;
+        $narasiKriteria7Institusi->progress = 0;
+
         if (!$kriteria8Institusi->save()) {
             $transaction->rollBack();
             throw new InvalidArgumentException($kriteria8Institusi->errors);
         }
+        $narasiKriteria8Institusi->id_led_institusi_kriteria8 = $kriteria8Institusi->id;
+        $narasiKriteria8Institusi->progress = 0;
+
         if (!$kriteria9Institusi->save()) {
             $transaction->rollBack();
             throw new InvalidArgumentException($kriteria9Institusi->errors);
         }
+        $narasiKriteria9Institusi->id_led_institusi_kriteria9 = $kriteria9Institusi->id;
+        $narasiKriteria9Institusi->progress = 0;
+
+        if (!$narasiKriteria1Institusi->save()) {
+            $transaction->rollBack();
+            throw new InvalidArgumentException($narasiKriteria1Institusi->errors);
+        }
+        if (!$narasiKriteria2Institusi->save()) {
+            $transaction->rollBack();
+            throw new InvalidArgumentException($narasiKriteria2Institusi->errors);
+        }
+        if (!$narasiKriteria3Institusi->save()) {
+            $transaction->rollBack();
+            throw new InvalidArgumentException($narasiKriteria3Institusi->errors);
+        }
+        if (!$narasiKriteria4Institusi->save()) {
+            $transaction->rollBack();
+            throw new InvalidArgumentException($narasiKriteria4Institusi->errors);
+        }
+        if (!$narasiKriteria5Institusi->save()) {
+            $transaction->rollBack();
+            throw new InvalidArgumentException($narasiKriteria5Institusi->errors);
+        }
+        if (!$narasiKriteria6Institusi->save()) {
+            $transaction->rollBack();
+            throw new InvalidArgumentException($narasiKriteria6Institusi->errors);
+        }
+        if (!$narasiKriteria7Institusi->save()) {
+            $transaction->rollBack();
+            throw new InvalidArgumentException($narasiKriteria7Institusi->errors);
+        }
+        if (!$narasiKriteria8Institusi->save()) {
+            $transaction->rollBack();
+            throw new InvalidArgumentException($narasiKriteria8Institusi->errors);
+        }
+        if (!$narasiKriteria9Institusi->save()) {
+            $transaction->rollBack();
+            throw new InvalidArgumentException($narasiKriteria9Institusi->errors);
+        }
 
     }
 
-    public static function findOne($id){
+    public static function findOne($id)
+    {
         $model = new K9AkreditasiInstitusiForm();
         $data = K9AkreditasiInstitusi::findOne($id);
         $model->id_akreditasi = $data->id_akreditasi;
         $model->_lk_institusi = $data->k9LkInstitusis;
         $model->_led_institusi = $data->k9LedInstitusis;
         $model->_akreditasiInstitusi = $data;
+
 
         return $model;
 
