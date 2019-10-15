@@ -10,7 +10,10 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
         'authManager'=>[
-            'class'=>\yii\rbac\DbManager::class,
+            'class'=>\yii\rbac\PhpManager::class,
+            'ruleFile' => '@common/auth/rbac/rules.php',
+            'assignmentFile' => '@common/auth/rbac/assignments.php',
+            'itemFile' => '@common/auth/rbac/items.php',
         ]
     ],
 ];
