@@ -50,6 +50,16 @@ return [
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ],
         ],
+
+        'assetManager'=>[
+            'bundles'=>[
+                'yii\bootstrap4\BootstrapAsset'=>[
+                    'sourcePath' => '@common/assets/metronic/assets',
+
+                    'css'=>['css/demo1/style.bundle.css']
+                ]
+            ]
+        ],
     ],
     'params' => $params,
 ];
