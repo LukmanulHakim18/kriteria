@@ -3,14 +3,12 @@
 namespace admin\controllers;
 
 use Carbon\Carbon;
-use common\models\ProgramStudi;
-use common\models\sertifikat\SertifikatProdi;
-use common\models\sertifikat\SertifikatProdiSearch;
+use common\models\sertifikat\SertifikatInstitusi;
+use common\models\sertifikat\SertifikatInstitusiSearch;
 use Yii;
 use yii\bootstrap4\ActiveForm;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -19,9 +17,9 @@ use yii\web\UploadedFile;
 
 
 /**
- * SertifikatProdiController implements the CRUD actions for SertifikatProdi model.
+ * SertifikatPerguruanTinggiController implements the CRUD actions for SertifikatInstitusi model.
  */
-class SertifikatProdiController extends Controller
+class SertifikatPerguruanTinggiController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -48,12 +46,12 @@ class SertifikatProdiController extends Controller
     }
 
     /**
-     * Lists all SertifikatProdi models.
+     * Lists all SertifikatInstitusi models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SertifikatProdiSearch();
+        $searchModel = new SertifikatInstitusiSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -63,7 +61,7 @@ class SertifikatProdiController extends Controller
     }
 
     /**
-     * Displays a single SertifikatProdi model.
+     * Displays a single SertifikatInstitusi model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -76,15 +74,15 @@ class SertifikatProdiController extends Controller
     }
 
     /**
-     * Finds the SertifikatProdi model based on its primary key value.
+     * Finds the SertifikatInstitusi model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return SertifikatProdi the loaded model
+     * @return SertifikatInstitusi the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = SertifikatProdi::findOne($id)) !== null) {
+        if (($model = SertifikatInstitusi::findOne($id)) !== null) {
             return $model;
         }
 
@@ -92,25 +90,20 @@ class SertifikatProdiController extends Controller
     }
 
     /**
-     * Creates a new SertifikatProdi model.
+     * Creates a new SertifikatInstitusi model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new SertifikatProdi();
+        $model = new SertifikatInstitusi();
+        $ini = parse_ini_file(__DIR__ . '/../../system-configuration.ini');
 
-        $idProdi = ProgramStudi::find()->all();
-        $dataProdi = ArrayHelper::map($idProdi, 'id', function ($data) {
-            return $data->nama . "({$data->jenjang})";
-        });
+        $namaInstitusi = $ini['instansi'];
 
-        $idSertifikat = SertifikatProdi::find()->all();
-        //unset prodi yg sudah upload sertifikat
-        foreach ($idSertifikat as $value):
-            unset($dataProdi[$value['id_prodi']]);
-        endforeach;
 
+//        var_dump($dataInstitusi);
+//        exit();
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -133,25 +126,23 @@ class SertifikatProdiController extends Controller
             $model->dokumen_sk = $fileNameSk;
             $doksk->saveAs($path . '/' . $fileNameSk);
 
-
             $model->save(false);
-            Yii::$app->session->setFlash('success', 'Berhasil menambahkan SertifikatProdi.');
+            Yii::$app->session->setFlash('success', 'Berhasil menambahkan SertifikatInstitusi.');
 
-            return $this->redirect(['sertifikat-prodi/index']);
 //            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['sertifikat-perguruan-tinggi/index']);
         } elseif (Yii::$app->request->isAjax) {
-            return $this->renderAjax('_form', ['model' => $model, 'dataProdi' => $dataProdi]);
+            return $this->renderAjax('_form', ['model' => $model, 'namaInstitusi' => $namaInstitusi]);
         }
-
 
         return $this->render('create', [
             'model' => $model,
-            'dataProdi' => $dataProdi
+            'namaInstitusi' => $namaInstitusi
         ]);
     }
 
     /**
-     * Updates an existing SertifikatProdi model.
+     * Updates an existing SertifikatInstitusi model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -160,6 +151,10 @@ class SertifikatProdiController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $ini = parse_ini_file(__DIR__ . '/../../system-configuration.ini');
+
+        $namaInstitusi = $ini['instansi'];
+
 
         $temp1 = $model->sertifikat;
         $model->sertifikat = $temp1;
@@ -167,17 +162,15 @@ class SertifikatProdiController extends Controller
         $temp2 = $model->dokumen_sk;
         $model->dokumen_sk = $temp2;
 
-
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
-//            handler file upload
             $path = Yii::getAlias('@uploadAdmin/sertifikat');
-            $carbon = Carbon::now();
-            $tgl = $carbon->timestamp;
+            $carbon = Carbon::now('Asia/Jakarta');
+            $tgl = $carbon->format('U');
 
             $file1 = UploadedFile::getInstance($model, 'sertifikat');
             if ($file1) {
@@ -199,19 +192,19 @@ class SertifikatProdiController extends Controller
             }
 
             $model->save(false);
-
-            Yii::$app->session->setFlash('success', 'Berhasil mengubah SertifikatProdi.');
+            Yii::$app->session->setFlash('success', 'Berhasil mengubah SertifikatInstitusi.');
 
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'namaInstitusi' => $namaInstitusi
         ]);
     }
 
     /**
-     * Deletes an existing SertifikatProdi model.
+     * Deletes an existing SertifikatInstitusi model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -223,7 +216,7 @@ class SertifikatProdiController extends Controller
         unlink(Yii::getAlias('@uploadAdmin/sertifikat/' . $this->findModel($id)->dokumen_sk));
         $this->findModel($id)->delete();
 
-        Yii::$app->session->setFlash('success', 'Berhasil menghapus Sertifikat Prodi.');
+        Yii::$app->session->setFlash('success', 'Berhasil menghapus Sertifikat Institusi.');
 
         return $this->redirect(['index']);
     }

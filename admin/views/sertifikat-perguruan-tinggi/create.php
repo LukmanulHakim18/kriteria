@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\sertifikat\SertifikatInstitusi */
+/* @var $namaInstitusi */
 
 $this->title = 'Tambah Sertifikat Institusi';
 $this->params['breadcrumbs'][] = ['label' => 'Sertifikat Institusi', 'url' => ['index']];
@@ -29,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= $this->render('_form', [
                     'model' => $model,
+                    'namaInstitusi' => $namaInstitusi
                     ]) ?>
 
                 </div>

@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
+/* @var $namaInstitusi */
 /* @var $model common\models\sertifikat\SertifikatInstitusi */
 
 $this->title = 'Ubah Sertifikat Institusi: ' . $model->id;
@@ -29,8 +30,9 @@ $this->params['breadcrumbs'][] = 'Ubah';
             <div class="kt-portlet__body">
                 <div class="sertifikat-institusi-update">
 
-                    <?= $this->render('_form', [
+                    <?= $this->render('_form-update', [
                     'model' => $model,
+                    'namaInstitusi' =>$namaInstitusi
                     ]) ?>
 
                 </div>

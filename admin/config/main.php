@@ -1,4 +1,7 @@
 <?php
+
+use kartik\datecontrol\Module;
+
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/../../common/config/params-local.php',
@@ -8,25 +11,47 @@ $params = array_merge(
 
 return [
     'id' => 'app-admin',
-    'name'=> $params['nama_sistem'],
+    'name' => $params['nama_sistem'],
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'admin\controllers',
     'bootstrap' => ['log'],
     'modules' => [
-        'admin'=>[
-            'class'=> \mdm\admin\Module::class,
+        'admin' => [
+            'class' => \mdm\admin\Module::class,
             'layout' => 'left-menu',
         ],
         'profile' => [
             'class' => 'common\modules\profile\Profile',
         ],
-        'gridview' =>  [
+        'gridview' => [
             'class' => '\kartik\grid\Module'
             // enter optional module parameters below - only if you need to
             // use your own export download action or custom translation
             // message source
             // 'downloadAction' => 'gridview/export/download',
             // 'i18n' => []
+        ],
+        'datecontrol' => [
+            'class' => 'kartik\datecontrol\Module',
+            // format settings for displaying each date attribute (ICU format example)
+            'displaySettings' => [
+                Module::FORMAT_DATE => 'dd MMMM yyyy',
+                Module::FORMAT_TIME => 'HH:mm:ss',
+                Module::FORMAT_DATETIME => 'dd MMMM yyyy HH:mm:ss',
+            ],
+            'saveTimezone' => 'Asia/Jakarta',
+            'displayTimezone' => 'Asia/Jakarta',
+            // format settings for saving each date attribute (PHP format example)
+            'saveSettings' => [
+                Module::FORMAT_DATE => 'php:U', // saves as unix timestamp
+                Module::FORMAT_TIME => 'php:U',
+                Module::FORMAT_DATETIME => 'php:U',
+            ],
+
+
+            // automatically use kartik\widgets for each of the above formats
+            'autoWidget' => true,
+
         ]
     ],
     'components' => [
@@ -60,7 +85,7 @@ return [
             'showScriptName' => false,
             // Disable r= routes
             'enablePrettyUrl' => true,
-            'rules' =>[
+            'rules' => [
 //                ['class' => 'common\helpers\UrlRule', 'connectionID' => 'db', /* ... */],
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
@@ -68,11 +93,11 @@ return [
 
             ],
         ],
-        'assetManager'=>[
-            'bundles'=>[
-                'yii\bootstrap4\BootstrapAsset'=>[
+        'assetManager' => [
+            'bundles' => [
+                'yii\bootstrap4\BootstrapAsset' => [
                     'sourcePath' => '@common/assets/metronic/assets',
-                    'css'=>['css/demo1/style.bundle.css']
+                    'css' => ['css/demo1/style.bundle.css']
                 ]
             ]
         ],
@@ -86,7 +111,7 @@ return [
 //            'admin/*',
 //            'debug/*',
 //            'sertifikat/*',
-//            'sertifikat-institusi/*',
+//            'sertifikat-perguruan-tinggi/*',
 //            'sertifikat/*',
 //            'sertifikat-prodi/*'
             // The actions listed here will be allowed to everyone including guests.

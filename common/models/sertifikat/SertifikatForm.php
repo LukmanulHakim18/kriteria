@@ -34,7 +34,7 @@ class SertifikatForm extends Model
 
         if($untuk === 'institusi'){
             $this->_sertifikat = SertifikatInstitusi::find();
-            $url .= "sertifikat-institusi/index";
+            $url .= "sertifikat-perguruan-tinggi/index";
         }
         else{
             $this->_sertifikat = SertifikatProdi::find();

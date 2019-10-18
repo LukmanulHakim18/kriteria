@@ -1,11 +1,13 @@
 <?php
 
+use common\models\ProgramStudi;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\sertifikat\SertifikatProdi */
+/* @var $dataProdi ProgramStudi */
 
-$this->title = 'Ubah Sertifikat Prodi: ' . $model->id;
+$this->title = 'Ubah Sertifikat Prodi:  ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Sertifikat Prodi', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Ubah';
@@ -29,7 +31,13 @@ $this->params['breadcrumbs'][] = 'Ubah';
             <div class="kt-portlet__body">
                 <div class="sertifikat-prodi-update">
 
-                    <?= $this->render('_form', [
+                    Nama Prodi
+                    <div class="kt-space-5"></div>
+
+                    <h5><?= $model->prodi->nama ?></h5>
+                    <div class="kt-space-20"></div>
+
+                    <?= $this->render('_form-update', [
                     'model' => $model,
                     ]) ?>
 

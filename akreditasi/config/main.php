@@ -90,7 +90,7 @@ return [
 //            'admin/*',
 //            'debug/*',
 //            'sertifikat/*',
-//            'sertifikat-institusi/*',
+//            'sertifikat-perguruan-tinggi/*',
 //            'sertifikat/*',
 //            'sertifikat-prodi/*'
             // The actions listed here will be allowed to everyone including guests.

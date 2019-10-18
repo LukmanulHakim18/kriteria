@@ -49,11 +49,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
                         ['class' => 'yii\grid\SerialColumn','header'=>'No'],
 
-                                    'id',
-            'id_prodi',
-            'nama_lembaga',
-            'tgl_akreditasi',
-            'tgl_kadaluarsa',
+//                                    'id',
+            'prodi.nama',
+//            'nama_lembaga',
+            'tgl_akreditasi:date',
+            'tgl_kadaluarsa:date',
             //'nomor_sk',
             //'nomor_sertifikat',
             //'nilai_angka',
@@ -63,7 +63,13 @@ $this->params['breadcrumbs'][] = $this->title;
             //'tanggal_diterima',
             //'is_publik',
             //'dokumen_sk',
-            //'sertifikat',
+            [
+                'attribute' => 'sertifikat',
+                'format' => 'raw',
+                'value' => function($model){
+                    return Html::a($model->sertifikat."&nbsp;<i class='fa fa-external-link-alt'></i>", ['sertifikat-prodi/lihat-sertifikat','id'=> $model->id],['target' => '_blank', 'data-pjax'=>"0"]);
+                }
+            ],
             //'created_at',
             //'updated_at',
             //'created_by',
