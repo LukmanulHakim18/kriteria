@@ -60,6 +60,19 @@ class K9AkreditasiInstitusiForm extends Model
      */
     private $_led_institusi;
 
+    public static function findOne($id)
+    {
+        $model = new K9AkreditasiInstitusiForm();
+        $data = K9AkreditasiInstitusi::findOne($id);
+        $model->id_akreditasi = $data->id_akreditasi;
+        $model->_lk_institusi = $data->k9LkInstitusis;
+        $model->_led_institusi = $data->k9LedInstitusis;
+        $model->_akreditasiInstitusi = $data;
+
+
+        return $model;
+
+    }
 
     public function rules()
     {
@@ -164,10 +177,6 @@ class K9AkreditasiInstitusiForm extends Model
         $kriteria3Institusi = new K9LkInstitusiKriteria3();
         $kriteria4Institusi = new K9LkInstitusiKriteria4();
         $kriteria5Institusi = new K9LkInstitusiKriteria5();
-        $kriteria6Institusi = new K9LkInstitusiKriteria6();
-        $kriteria7Institusi = new K9LkInstitusiKriteria7();
-        $kriteria8Institusi = new K9LkInstitusiKriteria8();
-        $kriteria9Institusi = new K9LkInstitusiKriteria9();
 
 
         $kriteria1Institusi->attributes = $attr;
@@ -175,10 +184,6 @@ class K9AkreditasiInstitusiForm extends Model
         $kriteria3Institusi->attributes = $attr;
         $kriteria4Institusi->attributes = $attr;
         $kriteria5Institusi->attributes = $attr;
-        $kriteria6Institusi->attributes = $attr;
-        $kriteria7Institusi->attributes = $attr;
-        $kriteria8Institusi->attributes = $attr;
-        $kriteria9Institusi->attributes = $attr;
 
 
         if (!$kriteria1Institusi->save()) {
@@ -203,23 +208,6 @@ class K9AkreditasiInstitusiForm extends Model
         if (!$kriteria5Institusi->save()) {
             $transaction->rollBack();
             throw new InvalidArgumentException($kriteria5Institusi->errors);
-        }
-
-        if (!$kriteria6Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria6Institusi->errors);
-        }
-        if (!$kriteria7Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria7Institusi->errors);
-        }
-        if (!$kriteria8Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria8Institusi->errors);
-        }
-        if (!$kriteria9Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria9Institusi->errors);
         }
 
         $this->createFolder();
@@ -380,20 +368,6 @@ class K9AkreditasiInstitusiForm extends Model
             $transaction->rollBack();
             throw new InvalidArgumentException($narasiKriteria9Institusi->errors);
         }
-
-    }
-
-    public static function findOne($id)
-    {
-        $model = new K9AkreditasiInstitusiForm();
-        $data = K9AkreditasiInstitusi::findOne($id);
-        $model->id_akreditasi = $data->id_akreditasi;
-        $model->_lk_institusi = $data->k9LkInstitusis;
-        $model->_led_institusi = $data->k9LedInstitusis;
-        $model->_akreditasiInstitusi = $data;
-
-
-        return $model;
 
     }
 }
