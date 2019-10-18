@@ -2,6 +2,11 @@
 return [
     'superadmin' => [
         'type' => 1,
+        'children' => [
+            '@app-admin/*',
+            '@app-akreditasi/*',
+            '@app-monitoring/*',
+        ],
     ],
     'admin' => [
         'type' => 1,
@@ -26,5 +31,14 @@ return [
     ],
     'kaprodi' => [
         'type' => 1,
+    ],
+    '@app-admin/*' => [
+        'type' => 2,
+    ],
+    '@app-akreditasi/*' => [
+        'type' => 2,
+    ],
+    '@app-monitoring/*' => [
+        'type' => 2,
     ],
 ];

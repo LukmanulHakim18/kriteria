@@ -11,7 +11,7 @@ return [
     'nama_sistem' => $ini['nama_sistem'],
     'url_instansi' => $ini['url_instansi'],
     'author' => $ini['author'],
-    'author_url' => $ini['author_url'],
+    'url_author' => $ini['author_url'],
     'bsVersion' => '4.x', // this will set globally `bsVersion` to Bootstrap 4.x for all Krajee Extensions
     'mdm.admin.configs' => [
         'advanced' => [

@@ -2,7 +2,6 @@
 
 namespace common\models\kriteria9\lk\prodi;
 
-use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -10,6 +9,21 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property int $id
  * @property int $id_lk_prodi
+ * @property string $_3_a_1
+ * @property string $_3_a_2
+ * @property string $_3_a_3
+ * @property string $_3_a_4
+ * @property string $_3_a_5
+ * @property string $_3_b_1
+ * @property string $_3_b_2
+ * @property string $_3_b_3
+ * @property string $_3_b_4
+ * @property string $_3_b_5_1
+ * @property string $_3_b_5_2
+ * @property string $_3_b_5_3
+ * @property string $_3_b_5_4
+ * @property string $_3_b_6
+ * @property string $_3_b_7
  * @property double $progress
  * @property int $created_at
  * @property int $updated_at
@@ -29,9 +43,7 @@ class K9LkProdiKriteria3 extends \yii\db\ActiveRecord
 
     public function behaviors()
     {
-        return [
-            TimestampBehavior::class,
-        ];
+        return [TimestampBehavior::class];
     }
 
     /**
@@ -41,6 +53,7 @@ class K9LkProdiKriteria3 extends \yii\db\ActiveRecord
     {
         return [
             [['id_lk_prodi', 'created_at', 'updated_at'], 'integer'],
+            [['_3_a_1', '_3_a_2', '_3_a_3', '_3_a_4', '_3_a_5', '_3_b_1', '_3_b_2', '_3_b_3', '_3_b_4', '_3_b_5_1', '_3_b_5_2', '_3_b_5_3', '_3_b_5_4', '_3_b_6', '_3_b_7'], 'string'],
             [['progress'], 'number'],
             [['id_lk_prodi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LkProdi::className(), 'targetAttribute' => ['id_lk_prodi' => 'id']],
         ];
@@ -54,6 +67,21 @@ class K9LkProdiKriteria3 extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_lk_prodi' => 'Id Lk Prodi',
+            '_3_a_1' => '3 A 1',
+            '_3_a_2' => '3 A 2',
+            '_3_a_3' => '3 A 3',
+            '_3_a_4' => '3 A 4',
+            '_3_a_5' => '3 A 5',
+            '_3_b_1' => '3 B 1',
+            '_3_b_2' => '3 B 2',
+            '_3_b_3' => '3 B 3',
+            '_3_b_4' => '3 B 4',
+            '_3_b_5_1' => '3 B 5 1',
+            '_3_b_5_2' => '3 B 5 2',
+            '_3_b_5_3' => '3 B 5 3',
+            '_3_b_5_4' => '3 B 5 4',
+            '_3_b_6' => '3 B 6',
+            '_3_b_7' => '3 B 7',
             'progress' => 'Progress',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

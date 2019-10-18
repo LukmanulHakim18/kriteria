@@ -2,7 +2,6 @@
 
 namespace common\models\kriteria9\lk\institusi;
 
-use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -10,6 +9,8 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property int $id
  * @property int $id_lk_institusi
+ * @property string $_4_a
+ * @property string $_4_b
  * @property double $progress
  * @property int $created_at
  * @property int $updated_at
@@ -29,9 +30,7 @@ class K9LkInstitusiKriteria4 extends \yii\db\ActiveRecord
 
     public function behaviors()
     {
-        return [
-            TimestampBehavior::class,
-        ];
+        return [TimestampBehavior::class];
     }
 
     /**
@@ -41,6 +40,7 @@ class K9LkInstitusiKriteria4 extends \yii\db\ActiveRecord
     {
         return [
             [['id_lk_institusi', 'created_at', 'updated_at'], 'integer'],
+            [['_4_a', '_4_b'], 'string'],
             [['progress'], 'number'],
             [['id_lk_institusi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LkInstitusi::className(), 'targetAttribute' => ['id_lk_institusi' => 'id']],
         ];
@@ -54,6 +54,8 @@ class K9LkInstitusiKriteria4 extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_lk_institusi' => 'Id Lk Institusi',
+            '_4_a' => '4 A',
+            '_4_b' => '4 B',
             'progress' => 'Progress',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

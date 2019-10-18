@@ -2,7 +2,7 @@
 
 namespace common\models\kriteria9\lk\institusi;
 
-use Yii;
+use common\models\kriteria9\akreditasi\K9AkreditasiInstitusi;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -20,10 +20,6 @@ use yii\behaviors\TimestampBehavior;
  * @property K9LkInstitusiKriteria3[] $k9LkInstitusiKriteria3s
  * @property K9LkInstitusiKriteria4[] $k9LkInstitusiKriteria4s
  * @property K9LkInstitusiKriteria5[] $k9LkInstitusiKriteria5s
- * @property K9LkInstitusiKriteria6[] $k9LkInstitusiKriteria6s
- * @property K9LkInstitusiKriteria7[] $k9LkInstitusiKriteria7s
- * @property K9LkInstitusiKriteria8[] $k9LkInstitusiKriteria8s
- * @property K9LkInstitusiKriteria9[] $k9LkInstitusiKriteria9s
  */
 class K9LkInstitusi extends \yii\db\ActiveRecord
 {
@@ -116,35 +112,4 @@ class K9LkInstitusi extends \yii\db\ActiveRecord
         return $this->hasMany(K9LkInstitusiKriteria5::className(), ['id_lk_institusi' => 'id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getK9LkInstitusiKriteria6s()
-    {
-        return $this->hasMany(K9LkInstitusiKriteria6::className(), ['id_lk_institusi' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getK9LkInstitusiKriteria7s()
-    {
-        return $this->hasMany(K9LkInstitusiKriteria7::className(), ['id_lk_institusi' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getK9LkInstitusiKriteria8s()
-    {
-        return $this->hasMany(K9LkInstitusiKriteria8::className(), ['id_lk_institusi' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getK9LkInstitusiKriteria9s()
-    {
-        return $this->hasMany(K9LkInstitusiKriteria9::className(), ['id_lk_institusi' => 'id']);
-    }
 }

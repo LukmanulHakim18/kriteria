@@ -1,24 +1,21 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
-use akreditasi\assets\AppAsset;
+use common\assets\metronic\MetronicDashboardDemo1Asset;
 use yii\helpers\Html;
-use yii\bootstrap4\Nav;
-use yii\bootstrap4\NavBar;
 use yii\helpers\Url;
-use yii\widgets\Breadcrumbs;
-use common\widgets\Alert;
 
-\common\assets\MetronicDashboardAsset::register($this);
+MetronicDashboardDemo1Asset::register($this);
 $counterUp = <<<JS
  $('.counter').counterUp({
         delay: 10,
         time: 1000
     });
 JS;
-$this->registerJs($counterUp,\yii\web\View::POS_READY);
+$this->registerJs($counterUp, \yii\web\View::POS_READY);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -36,7 +33,7 @@ $this->registerJs($counterUp,\yii\web\View::POS_READY);
             google: {
                 "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"]
             },
-            active: function() {
+            active: function () {
                 sessionStorage.fonts = true;
             }
         });
@@ -54,26 +51,26 @@ $this->registerJs($counterUp,\yii\web\View::POS_READY);
 
 <?php $this->beginBody() ?>
 
-<?=$this->render('mobile_header')?>
+<?= $this->render('mobile_header') ?>
 
 <div class="kt-grid kt-grid--hor kt-grid--root">
     <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
 
-        <?=$this->render('aside')?>
+        <?= $this->render('aside') ?>
 
         <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
 
-            <?=$this->render('header')?>
+            <?= $this->render('header') ?>
             <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
 
-                <?=$this->render('subheader')?>
+                <?= $this->render('subheader') ?>
                 <?= \dominus77\sweetalert2\Alert::widget(['useSessionFlash' => true]) ?>
 
 
-                <?=$this->render('content',['content'=>$content])?>
+                <?= $this->render('content', ['content' => $content]) ?>
             </div>
 
-            <?=$this->render('footer')?>
+            <?= $this->render('footer') ?>
         </div>
     </div>
 </div>

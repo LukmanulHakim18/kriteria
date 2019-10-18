@@ -1,17 +1,15 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
+use common\assets\metronic\MetronicErrorPageDemo1Asset;
 use common\assets\MetronicErrorPageAsset;
-use common\widgets\Alert;
 use yii\helpers\Html;
-use yii\bootstrap4\Nav;
-use yii\bootstrap4\NavBar;
 use yii\helpers\Url;
-use yii\widgets\Breadcrumbs;
 
-MetronicErrorPageAsset::register($this);
+MetronicErrorPageDemo1Asset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -29,7 +27,7 @@ MetronicErrorPageAsset::register($this);
             google: {
                 "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"]
             },
-            active: function() {
+            active: function () {
                 sessionStorage.fonts = true;
             }
         });
@@ -47,7 +45,7 @@ MetronicErrorPageAsset::register($this);
 
 <?php $this->beginBody() ?>
 <!-- begin:: Page -->
-        <?=$content?>
+<?= $content ?>
 
 
 <!-- end:: Page -->

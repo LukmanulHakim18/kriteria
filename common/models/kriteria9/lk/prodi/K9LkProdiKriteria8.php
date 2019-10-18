@@ -2,7 +2,6 @@
 
 namespace common\models\kriteria9\lk\prodi;
 
-use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -10,6 +9,20 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property int $id
  * @property int $id_lk_prodi
+ * @property string $_8_a
+ * @property string $_8_b
+ * @property string $_8_c
+ * @property string $_8_d_1
+ * @property string $_8_d_2
+ * @property string $_8_e_1
+ * @property string $_8_e_2
+ * @property string $_8_f_1
+ * @property string $_8_f_2
+ * @property string $_8_f_3
+ * @property string $_8_f_4_1
+ * @property string $_8_f_4_2
+ * @property string $_8_f_4_3
+ * @property string $_8_f_4_4
  * @property double $progress
  * @property int $created_at
  * @property int $updated_at
@@ -29,9 +42,7 @@ class K9LkProdiKriteria8 extends \yii\db\ActiveRecord
 
     public function behaviors()
     {
-        return [
-            TimestampBehavior::class,
-        ];
+        return [TimestampBehavior::class];
     }
 
     /**
@@ -41,6 +52,7 @@ class K9LkProdiKriteria8 extends \yii\db\ActiveRecord
     {
         return [
             [['id_lk_prodi', 'created_at', 'updated_at'], 'integer'],
+            [['_8_a', '_8_b', '_8_c', '_8_d_1', '_8_d_2', '_8_e_1', '_8_e_2', '_8_f_1', '_8_f_2', '_8_f_3', '_8_f_4_1', '_8_f_4_2', '_8_f_4_3', '_8_f_4_4'], 'string'],
             [['progress'], 'number'],
             [['id_lk_prodi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LkProdi::className(), 'targetAttribute' => ['id_lk_prodi' => 'id']],
         ];
@@ -54,6 +66,20 @@ class K9LkProdiKriteria8 extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_lk_prodi' => 'Id Lk Prodi',
+            '_8_a' => '8 A',
+            '_8_b' => '8 B',
+            '_8_c' => '8 C',
+            '_8_d_1' => '8 D 1',
+            '_8_d_2' => '8 D 2',
+            '_8_e_1' => '8 E 1',
+            '_8_e_2' => '8 E 2',
+            '_8_f_1' => '8 F 1',
+            '_8_f_2' => '8 F 2',
+            '_8_f_3' => '8 F 3',
+            '_8_f_4_1' => '8 F 4 1',
+            '_8_f_4_2' => '8 F 4 2',
+            '_8_f_4_3' => '8 F 4 3',
+            '_8_f_4_4' => '8 F 4 4',
             'progress' => 'Progress',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
