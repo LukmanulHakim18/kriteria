@@ -4,11 +4,10 @@
 
 /* @var $content string */
 
-use common\assets\metronic\MetronicErrorPageDemo1Asset;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-MetronicErrorPageDemo1Asset::register($this);
+\common\assets\metronic\MetronicErrorPageDemo1Asset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

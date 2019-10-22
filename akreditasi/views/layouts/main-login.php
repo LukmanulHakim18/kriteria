@@ -4,12 +4,10 @@
 
 /* @var $content string */
 
-use common\assets\metronic\MetronicLoginPageDemo1Asset;
-use common\assets\MetronicLoginPageAsset;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-MetronicLoginPageDemo1Asset::register($this);
+\common\assets\metronic\MetronicLoginPageDemo1Asset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

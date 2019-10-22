@@ -17,8 +17,8 @@ use yii\behaviors\TimestampBehavior;
  * @property double $progress
  *
  * @property K9Akreditasi $akreditasi
- * @property K9LedInstitusi[] $k9LedInstitusis
- * @property K9LkInstitusi[] $k9LkInstitusis
+ * @property K9LedInstitusi $k9LedInstitusis
+ * @property K9LkInstitusi $k9LkInstitusis
  */
 class K9AkreditasiInstitusi extends \yii\db\ActiveRecord
 {
@@ -78,7 +78,7 @@ class K9AkreditasiInstitusi extends \yii\db\ActiveRecord
      */
     public function getK9LedInstitusis()
     {
-        return $this->hasMany(K9LedInstitusi::className(), ['id_akreditasi_institusi' => 'id']);
+        return $this->hasOne(K9LedInstitusi::className(), ['id_akreditasi_institusi' => 'id']);
     }
 
     /**
@@ -86,6 +86,16 @@ class K9AkreditasiInstitusi extends \yii\db\ActiveRecord
      */
     public function getK9LkInstitusis()
     {
-        return $this->hasMany(K9LkInstitusi::className(), ['id_akreditasi_institusi' => 'id']);
+        return $this->hasOne(K9LkInstitusi::className(), ['id_akreditasi_institusi' => 'id']);
     }
+
+    public function updateProgress(){
+        $led = $this->k9LedInstitusis->progress;
+        $lk = $this->k9LkInstitusis->progress;
+
+        $progress = round((($led+$lk)/2),2);
+        $this->progress = $progress;
+        $this->save(false);
+    }
+
 }

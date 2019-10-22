@@ -3,7 +3,7 @@
 namespace common\models\sertifikat;
 
 use common\models\ProgramStudi;
-
+use common\models\User;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -32,6 +32,8 @@ use yii\behaviors\TimestampBehavior;
  * @property int $updated_by
  *
  * @property ProgramStudi $prodi
+ * @property User $createdBy
+ * @property User $updatedBy
  */
 class SertifikatProdi extends \yii\db\ActiveRecord
 {
@@ -57,10 +59,11 @@ class SertifikatProdi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_prodi', 'nilai_angka', 'is_publik', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['nama_lembaga', 'nomor_sk', 'nomor_sertifikat', 'nilai_huruf', 'tahun_sk', 'dokumen_sk', 'sertifikat'], 'string', 'max' => 255],
+            [['id_prodi', 'nilai_angka',  'is_publik', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['tanggal_pengajuan', 'tanggal_diterima','tgl_akreditasi', 'tgl_kadaluarsa', 'nama_lembaga', 'nomor_sk', 'nomor_sertifikat', 'nilai_huruf', 'tahun_sk', 'dokumen_sk', 'sertifikat'], 'string', 'max' => 255],
             [['id_prodi'], 'exist', 'skipOnError' => true, 'targetClass' => ProgramStudi::className(), 'targetAttribute' => ['id_prodi' => 'id']],
-            [['tgl_kadaluarsa','tgl_akreditasi','tanggal_diterima','tanggal_pengajuan'],'safe']
+            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
+            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
         ];
     }
 
@@ -98,5 +101,21 @@ class SertifikatProdi extends \yii\db\ActiveRecord
     public function getProdi()
     {
         return $this->hasOne(ProgramStudi::className(), ['id' => 'id_prodi']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCreatedBy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUpdatedBy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'updated_by']);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace common\models\kriteria9\led\institusi;
 
+use common\helpers\kriteria9\K9InstitusiProgressHelper;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 
@@ -16,6 +17,7 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property K9LedInstitusi $ledInstitusi
  * @property K9LedInstitusiKriteria5Detail[] $k9LedInstitusiKriteria5Details
+ * @property K9LedInstitusiNarasiKriteria5 $k9LedInstitusiNarasiKriteria5s
  */
 class K9LedInstitusiKriteria5 extends \yii\db\ActiveRecord
 {
@@ -30,22 +32,19 @@ class K9LedInstitusiKriteria5 extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::class
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
             [['id_led_institusi', 'created_at', 'updated_at'], 'integer'],
             [['progress'], 'number'],
             [['id_led_institusi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LedInstitusi::className(), 'targetAttribute' => ['id_led_institusi' => 'id']],
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class
         ];
     }
 
@@ -77,5 +76,24 @@ class K9LedInstitusiKriteria5 extends \yii\db\ActiveRecord
     public function getK9LedInstitusiKriteria5Details()
     {
         return $this->hasMany(K9LedInstitusiKriteria5Detail::className(), ['id_led_institusi_kriteria5' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getK9LedInstitusiNarasiKriteria5s()
+    {
+        return $this->hasOne(K9LedInstitusiNarasiKriteria5::className(), ['id_led_institusi_kriteria5' => 'id']);
+    }
+
+    public function updateProgress()
+    {
+        $narasi = $this->k9LedInstitusiNarasiKriteria5s->progress;
+
+        $dokumen = K9InstitusiProgressHelper::getDokumenLedProgress($this->id_led_institusi,$this->getK9LedInstitusiKriteria5Details(), 5);
+
+        $progress = round(($narasi+$dokumen)/2,2);
+        $this->progress = $progress;
+        $this->save(false);
     }
 }

@@ -3,6 +3,7 @@
 namespace common\models\kriteria9\lk\institusi;
 
 use common\models\kriteria9\akreditasi\K9AkreditasiInstitusi;
+use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -15,11 +16,15 @@ use yii\behaviors\TimestampBehavior;
  * @property int $updated_at
  *
  * @property K9AkreditasiInstitusi $akreditasiInstitusi
- * @property K9LkInstitusiKriteria1[] $k9LkInstitusiKriteria1s
- * @property K9LkInstitusiKriteria2[] $k9LkInstitusiKriteria2s
- * @property K9LkInstitusiKriteria3[] $k9LkInstitusiKriteria3s
- * @property K9LkInstitusiKriteria4[] $k9LkInstitusiKriteria4s
- * @property K9LkInstitusiKriteria5[] $k9LkInstitusiKriteria5s
+ * @property K9LkInstitusiKriteria1 $k9LkInstitusiKriteria1s
+ * @property K9LkInstitusiKriteria2 $k9LkInstitusiKriteria2s
+ * @property K9LkInstitusiKriteria3 $k9LkInstitusiKriteria3s
+ * @property K9LkInstitusiKriteria4 $k9LkInstitusiKriteria4s
+ * @property K9LkInstitusiKriteria5 $k9LkInstitusiKriteria5s
+ * @property K9LkInstitusiKriteria6 $k9LkInstitusiKriteria6s
+ * @property K9LkInstitusiKriteria7 $k9LkInstitusiKriteria7s
+ * @property K9LkInstitusiKriteria8 $k9LkInstitusiKriteria8s
+ * @property K9LkInstitusiKriteria9 $k9LkInstitusiKriteria9s
  */
 class K9LkInstitusi extends \yii\db\ActiveRecord
 {
@@ -77,7 +82,7 @@ class K9LkInstitusi extends \yii\db\ActiveRecord
      */
     public function getK9LkInstitusiKriteria1s()
     {
-        return $this->hasMany(K9LkInstitusiKriteria1::className(), ['id_lk_institusi' => 'id']);
+        return $this->hasOne(K9LkInstitusiKriteria1::className(), ['id_lk_institusi' => 'id']);
     }
 
     /**
@@ -85,7 +90,7 @@ class K9LkInstitusi extends \yii\db\ActiveRecord
      */
     public function getK9LkInstitusiKriteria2s()
     {
-        return $this->hasMany(K9LkInstitusiKriteria2::className(), ['id_lk_institusi' => 'id']);
+        return $this->hasOne(K9LkInstitusiKriteria2::className(), ['id_lk_institusi' => 'id']);
     }
 
     /**
@@ -93,7 +98,7 @@ class K9LkInstitusi extends \yii\db\ActiveRecord
      */
     public function getK9LkInstitusiKriteria3s()
     {
-        return $this->hasMany(K9LkInstitusiKriteria3::className(), ['id_lk_institusi' => 'id']);
+        return $this->hasOne(K9LkInstitusiKriteria3::className(), ['id_lk_institusi' => 'id']);
     }
 
     /**
@@ -101,7 +106,7 @@ class K9LkInstitusi extends \yii\db\ActiveRecord
      */
     public function getK9LkInstitusiKriteria4s()
     {
-        return $this->hasMany(K9LkInstitusiKriteria4::className(), ['id_lk_institusi' => 'id']);
+        return $this->hasOne(K9LkInstitusiKriteria4::className(), ['id_lk_institusi' => 'id']);
     }
 
     /**
@@ -109,7 +114,56 @@ class K9LkInstitusi extends \yii\db\ActiveRecord
      */
     public function getK9LkInstitusiKriteria5s()
     {
-        return $this->hasMany(K9LkInstitusiKriteria5::className(), ['id_lk_institusi' => 'id']);
+        return $this->hasOne(K9LkInstitusiKriteria5::className(), ['id_lk_institusi' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getK9LkInstitusiKriteria6s()
+    {
+        return $this->hasOne(K9LkInstitusiKriteria6::className(), ['id_lk_institusi' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getK9LkInstitusiKriteria7s()
+    {
+        return $this->hasOne(K9LkInstitusiKriteria7::className(), ['id_lk_institusi' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getK9LkInstitusiKriteria8s()
+    {
+        return $this->hasOne(K9LkInstitusiKriteria8::className(), ['id_lk_institusi' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getK9LkInstitusiKriteria9s()
+    {
+        return $this->hasOne(K9LkInstitusiKriteria9::className(), ['id_lk_institusi' => 'id']);
+    }
+
+    public function updateProgress()
+    {
+        $kriteria1 = $this->k9LkInstitusiKriteria1s->progress;
+        $kriteria2 = $this->k9LkInstitusiKriteria2s->progress;
+        $kriteria3 = $this->k9LkInstitusiKriteria3s->progress;
+        $kriteria4 = $this->k9LkInstitusiKriteria4s->progress;
+        $kriteria5 = $this->k9LkInstitusiKriteria5s->progress;
+        $kriteria6 = $this->k9LkInstitusiKriteria6s->progress;
+        $kriteria7 = $this->k9LkInstitusiKriteria7s->progress;
+        $kriteria8 = $this->k9LkInstitusiKriteria8s->progress;
+        $kriteria9 = $this->k9LkInstitusiKriteria9s->progress;
+
+        $progress = round((($kriteria1+$kriteria2+$kriteria3+$kriteria4+$kriteria5+$kriteria6+$kriteria7+$kriteria8+$kriteria9)/9), 2);
+        $this->progress = $progress;
+
+        $this->save(false);
+    }
 }

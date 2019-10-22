@@ -9,12 +9,14 @@
 
 namespace common\models;
 
+
+use akreditasi\modules\standar7\Standar7;
+
 class Constants
 {
 
     const JENJANG = [
-
-     'D3'=>'D3', 'S1'=> 'S1', 'S2'=>'S2','S3'=>'S3'
+      'S1'=> 'S1', 'S2'=>'S2'
     ];
 
     const JENIS_AKREDITASI =[
@@ -22,9 +24,27 @@ class Constants
         'institusi'=> 'Perguruan Tinggi'
     ];
 
+    const STANDAR7 = '7standar';
     const KRITERIA9 = '9kriteria';
+
+    const SUMBER = 'sumber';
+    const PENDUKUNG = 'pendukung';
+    const LAINNYA = 'lainnya';
+    const TEMPLATE = 'template';
+
+    const LINK = 'link';
+    const TEXT = 'text';
+
+    const BORANG = [
+        self::STANDAR7 => '7 Standar',
+        self::KRITERIA9 => '9 Kriteria'
+    ];
 
     const PRODI = 'prodi';
     const INSTITUSI = 'institusi';
+    const FAKULTAS = 'fakultas';
+
+    const ALLOWED_EXTENSIONS = ['jpg','jpeg','png','pdf','docx','doc','gif','ppt','pptx','xls','xlsx', 'zip','txt','csv','odt','ods'];
+    const MAX_UPLOAD_SIZE = 30000*1024;
 
 }

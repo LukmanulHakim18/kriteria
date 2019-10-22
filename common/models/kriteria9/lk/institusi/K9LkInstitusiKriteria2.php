@@ -2,6 +2,8 @@
 
 namespace common\models\kriteria9\lk\institusi;
 
+use common\helpers\kriteria9\K9InstitusiProgressHelper;
+use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -9,9 +11,6 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property int $id
  * @property int $id_lk_institusi
- * @property string $_2_a
- * @property string $_2_b
- * @property string $_2_c
  * @property double $progress
  * @property int $created_at
  * @property int $updated_at
@@ -29,6 +28,13 @@ class K9LkInstitusiKriteria2 extends \yii\db\ActiveRecord
         return 'k9_lk_institusi_kriteria2';
     }
 
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -36,15 +42,9 @@ class K9LkInstitusiKriteria2 extends \yii\db\ActiveRecord
     {
         return [
             [['id_lk_institusi', 'created_at', 'updated_at'], 'integer'],
-            [['_2_a', '_2_b', '_2_c'], 'string'],
             [['progress'], 'number'],
             [['id_lk_institusi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LkInstitusi::className(), 'targetAttribute' => ['id_lk_institusi' => 'id']],
         ];
-    }
-
-    public function behaviors()
-    {
-        return [TimestampBehavior::class];
     }
 
     /**
@@ -55,9 +55,6 @@ class K9LkInstitusiKriteria2 extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_lk_institusi' => 'Id Lk Institusi',
-            '_2_a' => '2 A',
-            '_2_b' => '2 B',
-            '_2_c' => '2 C',
             'progress' => 'Progress',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
@@ -78,5 +75,15 @@ class K9LkInstitusiKriteria2 extends \yii\db\ActiveRecord
     public function getK9LkInstitusiKriteria2Details()
     {
         return $this->hasMany(K9LkInstitusiKriteria2Detail::className(), ['id_lk_institusi_kriteria2' => 'id']);
+    }
+
+    public function updateProgress()
+    {
+
+        $dokumen = K9InstitusiProgressHelper::getDokumenLkProgress($this->id_lk_institusi,$this->getK9LkInstitusiKriteria2Details(), 2);
+
+        $progress = round(($dokumen)/1,2);
+        $this->progress = $progress;
+        $this->save(false);
     }
 }

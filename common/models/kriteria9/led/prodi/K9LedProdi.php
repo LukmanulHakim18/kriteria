@@ -16,15 +16,15 @@ use yii\behaviors\TimestampBehavior;
  * @property int $updated_at
  *
  * @property K9AkreditasiProdi $akreditasiProdi
- * @property K9LedProdiKriteria1[] $k9LedProdiKriteria1s
- * @property K9LedProdiKriteria2[] $k9LedProdiKriteria2s
- * @property K9LedProdiKriteria3[] $k9LedProdiKriteria3s
- * @property K9LedProdiKriteria4[] $k9LedProdiKriteria4s
- * @property K9LedProdiKriteria5[] $k9LedProdiKriteria5s
- * @property K9LedProdiKriteria6[] $k9LedProdiKriteria6s
- * @property K9LedProdiKriteria7[] $k9LedProdiKriteria7s
- * @property K9LedProdiKriteria8[] $k9LedProdiKriteria8s
- * @property K9LedProdiKriteria9[] $k9LedProdiKriteria9s
+ * @property K9LedProdiKriteria1 $k9LedProdiKriteria1s
+ * @property K9LedProdiKriteria2 $k9LedProdiKriteria2s
+ * @property K9LedProdiKriteria3 $k9LedProdiKriteria3s
+ * @property K9LedProdiKriteria4 $k9LedProdiKriteria4s
+ * @property K9LedProdiKriteria5 $k9LedProdiKriteria5s
+ * @property K9LedProdiKriteria6 $k9LedProdiKriteria6s
+ * @property K9LedProdiKriteria7 $k9LedProdiKriteria7s
+ * @property K9LedProdiKriteria8 $k9LedProdiKriteria8s
+ * @property K9LedProdiKriteria9 $k9LedProdiKriteria9s
  */
 class K9LedProdi extends \yii\db\ActiveRecord
 {
@@ -85,7 +85,7 @@ class K9LedProdi extends \yii\db\ActiveRecord
      */
     public function getK9LedProdiKriteria1s()
     {
-        return $this->hasMany(K9LedProdiKriteria1::className(), ['id_led_prodi' => 'id']);
+        return $this->hasOne(K9LedProdiKriteria1::className(), ['id_led_prodi' => 'id']);
     }
 
     /**
@@ -93,7 +93,7 @@ class K9LedProdi extends \yii\db\ActiveRecord
      */
     public function getK9LedProdiKriteria2s()
     {
-        return $this->hasMany(K9LedProdiKriteria2::className(), ['id_led_prodi' => 'id']);
+        return $this->hasOne(K9LedProdiKriteria2::className(), ['id_led_prodi' => 'id']);
     }
 
     /**
@@ -101,7 +101,7 @@ class K9LedProdi extends \yii\db\ActiveRecord
      */
     public function getK9LedProdiKriteria3s()
     {
-        return $this->hasMany(K9LedProdiKriteria3::className(), ['id_led_prodi' => 'id']);
+        return $this->hasOne(K9LedProdiKriteria3::className(), ['id_led_prodi' => 'id']);
     }
 
     /**
@@ -109,7 +109,7 @@ class K9LedProdi extends \yii\db\ActiveRecord
      */
     public function getK9LedProdiKriteria4s()
     {
-        return $this->hasMany(K9LedProdiKriteria4::className(), ['id_led_prodi' => 'id']);
+        return $this->hasOne(K9LedProdiKriteria4::className(), ['id_led_prodi' => 'id']);
     }
 
     /**
@@ -117,7 +117,7 @@ class K9LedProdi extends \yii\db\ActiveRecord
      */
     public function getK9LedProdiKriteria5s()
     {
-        return $this->hasMany(K9LedProdiKriteria5::className(), ['id_led_prodi' => 'id']);
+        return $this->hasOne(K9LedProdiKriteria5::className(), ['id_led_prodi' => 'id']);
     }
 
     /**
@@ -125,7 +125,7 @@ class K9LedProdi extends \yii\db\ActiveRecord
      */
     public function getK9LedProdiKriteria6s()
     {
-        return $this->hasMany(K9LedProdiKriteria6::className(), ['id_led_prodi' => 'id']);
+        return $this->hasOne(K9LedProdiKriteria6::className(), ['id_led_prodi' => 'id']);
     }
 
     /**
@@ -133,7 +133,7 @@ class K9LedProdi extends \yii\db\ActiveRecord
      */
     public function getK9LedProdiKriteria7s()
     {
-        return $this->hasMany(K9LedProdiKriteria7::className(), ['id_led_prodi' => 'id']);
+        return $this->hasOne(K9LedProdiKriteria7::className(), ['id_led_prodi' => 'id']);
     }
 
     /**
@@ -141,7 +141,7 @@ class K9LedProdi extends \yii\db\ActiveRecord
      */
     public function getK9LedProdiKriteria8s()
     {
-        return $this->hasMany(K9LedProdiKriteria8::className(), ['id_led_prodi' => 'id']);
+        return $this->hasOne(K9LedProdiKriteria8::className(), ['id_led_prodi' => 'id']);
     }
 
     /**
@@ -149,6 +149,24 @@ class K9LedProdi extends \yii\db\ActiveRecord
      */
     public function getK9LedProdiKriteria9s()
     {
-        return $this->hasMany(K9LedProdiKriteria9::className(), ['id_led_prodi' => 'id']);
+        return $this->hasOne(K9LedProdiKriteria9::className(), ['id_led_prodi' => 'id']);
+    }
+
+    public function updateProgress()
+    {
+        $kriteria1 = $this->k9LedProdiKriteria1s->progress;
+        $kriteria2 = $this->k9LedProdiKriteria2s->progress;
+        $kriteria3 = $this->k9LedProdiKriteria3s->progress;
+        $kriteria4 = $this->k9LedProdiKriteria4s->progress;
+        $kriteria5 = $this->k9LedProdiKriteria5s->progress;
+        $kriteria6 = $this->k9LedProdiKriteria6s->progress;
+        $kriteria7 = $this->k9LedProdiKriteria7s->progress;
+        $kriteria8 = $this->k9LedProdiKriteria8s->progress;
+        $kriteria9 = $this->k9LedProdiKriteria9s->progress;
+
+        $progress = round((($kriteria1+$kriteria2+$kriteria3+$kriteria4+$kriteria5+$kriteria6+$kriteria7+$kriteria8+$kriteria9)/9), 2);
+        $this->progress = $progress;
+
+        $this->save(false);
     }
 }

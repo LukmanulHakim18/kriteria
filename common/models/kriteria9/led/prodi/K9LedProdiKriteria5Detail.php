@@ -104,4 +104,20 @@ class K9LedProdiKriteria5Detail extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
     }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        $this->ledProdiKriteria5->updateProgress();
+        $this->ledProdiKriteria5->ledProdi->updateProgress();
+        $this->ledProdiKriteria5->ledProdi->akreditasiProdi->updateProgress();
+        return parent::afterSave($insert, $changedAttributes);
+    }
+
+    public function afterDelete()
+    {
+        $this->ledProdiKriteria5->updateProgress();
+        $this->ledProdiKriteria5->ledProdi->updateProgress();
+        $this->ledProdiKriteria5->ledProdi->akreditasiProdi->updateProgress();
+        parent::afterDelete();
+    }
 }

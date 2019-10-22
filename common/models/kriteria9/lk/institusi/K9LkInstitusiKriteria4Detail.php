@@ -2,6 +2,7 @@
 
 namespace common\models\kriteria9\lk\institusi;
 
+use common\models\User;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -99,5 +100,21 @@ class K9LkInstitusiKriteria4Detail extends \yii\db\ActiveRecord
     public function getUpdatedBy()
     {
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        $this->lkInstitusiKriteria4->updateProgress();
+        $this->lkInstitusiKriteria4->lkInstitusi->updateProgress();
+        $this->lkInstitusiKriteria4->lkInstitusi->akreditasiInstitusi->updateProgress();
+        return parent::afterSave($insert, $changedAttributes);
+    }
+
+    public function afterDelete()
+    {
+        $this->lkInstitusiKriteria4->updateProgress();
+        $this->lkInstitusiKriteria4->lkInstitusi->updateProgress();
+        $this->lkInstitusiKriteria4->lkInstitusi->akreditasiInstitusi->updateProgress();
+        parent::afterDelete();
     }
 }
