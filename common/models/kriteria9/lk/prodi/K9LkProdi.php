@@ -3,7 +3,6 @@
 namespace common\models\kriteria9\lk\prodi;
 
 use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
-use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -24,7 +23,6 @@ use yii\behaviors\TimestampBehavior;
  * @property K9LkProdiKriteria6 $k9LkProdiKriteria6s
  * @property K9LkProdiKriteria7 $k9LkProdiKriteria7s
  * @property K9LkProdiKriteria8 $k9LkProdiKriteria8s
- * @property K9LkProdiKriteria9 $k9LkProdiKriteria9s
  */
 class K9LkProdi extends \yii\db\ActiveRecord
 {
@@ -141,13 +139,6 @@ class K9LkProdi extends \yii\db\ActiveRecord
         return $this->hasOne(K9LkProdiKriteria8::className(), ['id_lk_prodi' => 'id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getK9LkProdiKriteria9s()
-    {
-        return $this->hasOne(K9LkProdiKriteria9::className(), ['id_lk_prodi' => 'id']);
-    }
 
     public function updateProgress()
     {
@@ -159,9 +150,7 @@ class K9LkProdi extends \yii\db\ActiveRecord
         $kriteria6 = $this->k9LkProdiKriteria6s->progress;
         $kriteria7 = $this->k9LkProdiKriteria7s->progress;
         $kriteria8 = $this->k9LkProdiKriteria8s->progress;
-        $kriteria9 = $this->k9LkProdiKriteria9s->progress;
-
-        $progress = round((($kriteria1+$kriteria2+$kriteria3+$kriteria4+$kriteria5+$kriteria6+$kriteria7+$kriteria8+$kriteria9)/9), 2);
+        $progress = round((($kriteria1 + $kriteria2 + $kriteria3 + $kriteria4 + $kriteria5 + $kriteria6 + $kriteria7 + $kriteria8) / 8), 2);
         $this->progress = $progress;
 
         $this->save(false);
