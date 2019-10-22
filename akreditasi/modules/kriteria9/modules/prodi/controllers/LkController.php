@@ -8,6 +8,7 @@ use akreditasi\models\kriteria9\forms\lk\prodi\K9LinkLkProdiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\prodi\K9LkProdiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\prodi\K9TempLkProdiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\prodi\K9TextLkProdiKriteriaDetailForm;
+use akreditasi\modules\kriteria9\controllers\BaseController;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\forms\lk\K9PencarianLkProdiForm;
@@ -29,68 +30,64 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
 use yii\web\UploadedFile;
 
-class LkController extends Controller
+class LkController extends BaseController
 {
-    public function beforeAction($action)
-    {
-        $this->layout="main";
-        return true;
-    }
 
-    public function actionArsip($target, $prodi){
+    public function actionArsip($target, $prodi)
+    {
 
         $model = new K9PencarianLkProdiForm();
 
-        $idAkreditasiProdi = K9Akreditasi::findAll(['jenis_akreditasi'=>'prodi']);
-        $dataAkreditasiProdi = ArrayHelper::map($idAkreditasiProdi,'id',function($data){
-            return $data->lembaga. ' - '.$data->nama. '('.$data->tahun.')';
+        $idAkreditasiProdi = K9Akreditasi::findAll(['jenis_akreditasi' => 'prodi']);
+        $dataAkreditasiProdi = ArrayHelper::map($idAkreditasiProdi, 'id', function ($data) {
+            return $data->lembaga . ' - ' . $data->nama . '(' . $data->tahun . ')';
         });
 
-        $idProdi = ProgramStudi::findAll(['id'=>$prodi]);
-        $dataProdi = ArrayHelper::map($idProdi, 'id', function ($data){
-            return $data->nama. '('.$data->jenjang.')';
+        $idProdi = ProgramStudi::findAll(['id' => $prodi]);
+        $dataProdi = ArrayHelper::map($idProdi, 'id', function ($data) {
+            return $data->nama . '(' . $data->jenjang . ')';
         });
 
 
-        if($model->load(Yii::$app->request->post())){
+        if ($model->load(Yii::$app->request->post())) {
 
-            if(Yii::$app->request->isAjax){
+            if (Yii::$app->request->isAjax) {
                 $url = $model->cari($target);
                 $lk = $model->getLk();
                 $newUrl = [];
-                if(!$lk){
+                if (!$lk) {
                     $newUrl = false;
-                }else{
-                    $newUrl = [$url,'lk'=>$lk->id,'prodi'=>$prodi];
+                } else {
+                    $newUrl = [$url, 'lk' => $lk->id, 'prodi' => $prodi];
                 }
-                return $this->renderAjax('_hasil-arsip',['lk'=>$lk,'url'=>$newUrl]);
+                return $this->renderAjax('_hasil-arsip', ['lk' => $lk, 'url' => $newUrl]);
             }
 
         }
-        return $this->render('arsip',[
+        return $this->render('arsip', [
             'model' => $model,
             'dataAkreditasiProdi' => $dataAkreditasiProdi,
             'dataProdi' => $dataProdi
         ]);
     }
 
-    public function actionIsi($lk, $prodi){
+    public function actionIsi($lk, $prodi)
+    {
         $file_json = 'lkps_prodi_s1.json';
         $lkInstitusi = K9LkProdi::findOne($lk);
 
-        $json = file_get_contents(Yii::getAlias('@common/required/kriteria9/aps/'.$file_json));
-        $kriteria1 = K9LkProdiKriteria1::find()->where(['id_lk_prodi'=>$lk])->one();
-        $kriteria2 = K9LkProdiKriteria2::find()->where(['id_lk_prodi'=>$lk])->one();
-        $kriteria3 = K9LkProdiKriteria3::find()->where(['id_lk_prodi'=>$lk])->one();
-        $kriteria4 = K9LkProdiKriteria4::find()->where(['id_lk_prodi'=>$lk])->one();
-        $kriteria5 = K9LkProdiKriteria5::find()->where(['id_lk_prodi'=>$lk])->one();
-        $kriteria6 = K9LkProdiKriteria6::find()->where(['id_lk_prodi'=>$lk])->one();
-        $kriteria7 = K9LkProdiKriteria7::find()->where(['id_lk_prodi'=>$lk])->one();
-        $kriteria8 = K9LkProdiKriteria8::find()->where(['id_lk_prodi'=>$lk])->one();
-        $kriteria9 = K9LkProdiKriteria9::find()->where(['id_lk_prodi'=>$lk])->one();
+        $json = file_get_contents(Yii::getAlias('@common/required/kriteria9/aps/' . $file_json));
+        $kriteria1 = K9LkProdiKriteria1::find()->where(['id_lk_prodi' => $lk])->one();
+        $kriteria2 = K9LkProdiKriteria2::find()->where(['id_lk_prodi' => $lk])->one();
+        $kriteria3 = K9LkProdiKriteria3::find()->where(['id_lk_prodi' => $lk])->one();
+        $kriteria4 = K9LkProdiKriteria4::find()->where(['id_lk_prodi' => $lk])->one();
+        $kriteria5 = K9LkProdiKriteria5::find()->where(['id_lk_prodi' => $lk])->one();
+        $kriteria6 = K9LkProdiKriteria6::find()->where(['id_lk_prodi' => $lk])->one();
+        $kriteria7 = K9LkProdiKriteria7::find()->where(['id_lk_prodi' => $lk])->one();
+        $kriteria8 = K9LkProdiKriteria8::find()->where(['id_lk_prodi' => $lk])->one();
+        $kriteria9 = K9LkProdiKriteria9::find()->where(['id_lk_prodi' => $lk])->one();
 
         $decode = Json::decode($json);
 
@@ -106,47 +103,48 @@ class LkController extends Controller
         $butir5 = $data5['butir'];
 
 
-        $ini = parse_ini_file(__DIR__.'/../../../../../../system-configuration.ini');
-        $institusi = $ini['instansi'];
+        $ini = parse_ini_file(__DIR__ . '/../../../../../../system-configuration.ini');
+        $institusi = $ini['institusi'];
 
-        return $this->render('isi',[
-            'lkInstitusi'=>$lkInstitusi,
-            'kriteria1'=>$kriteria1,
-            'kriteria2'=>$kriteria2,
-            'kriteria3'=>$kriteria3,
-            'kriteria4'=>$kriteria4,
-            'kriteria5'=>$kriteria5,
-            'kriteria6'=>$kriteria6,
-            'kriteria7'=>$kriteria7,
-            'kriteria8'=>$kriteria8,
-            'kriteria9'=>$kriteria9,
-            'decode'=>$decode,
+        return $this->render('isi', [
+            'lkInstitusi' => $lkInstitusi,
+            'kriteria1' => $kriteria1,
+            'kriteria2' => $kriteria2,
+            'kriteria3' => $kriteria3,
+            'kriteria4' => $kriteria4,
+            'kriteria5' => $kriteria5,
+            'kriteria6' => $kriteria6,
+            'kriteria7' => $kriteria7,
+            'kriteria8' => $kriteria8,
+            'kriteria9' => $kriteria9,
+            'decode' => $decode,
             'institusi' => $institusi
         ]);
     }
 
-    public function actionIsiKriteria($lk, $kriteria, $prodi){
+    public function actionIsiKriteria($lk, $kriteria, $prodi)
+    {
         $file_json = 'lkps_prodi_s1.json';
-        $json = file_get_contents(Yii::getAlias('@common/required/kriteria9/aps/'.$file_json));
+        $json = file_get_contents(Yii::getAlias('@common/required/kriteria9/aps/' . $file_json));
 
         $lkInstitusi = K9LkProdi::findOne($lk);
-        $sourceModel = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria'.$kriteria.'Detail';
-        $sourceKriteria = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria'.$kriteria;
+        $sourceModel = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria . 'Detail';
+        $sourceKriteria = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria;
 
-        $model = call_user_func($sourceModel.'::find')->where(['id_lk_prodi_kriteria'.$kriteria=>$lk])->all();
-        $modelTemp = call_user_func($sourceModel.'::find')->where(['id_lk_prodi_kriteria'.$kriteria=>$lk, 'jenis_dokumen'=>'template'])->all();
+        $model = call_user_func($sourceModel . '::find')->where(['id_lk_prodi_kriteria' . $kriteria => $lk])->all();
+        $modelTemp = call_user_func($sourceModel . '::find')->where(['id_lk_prodi_kriteria' . $kriteria => $lk, 'jenis_dokumen' => 'template'])->all();
 
-        $sourceCek = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria'.$kriteria.'Detail';
+        $sourceCek = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria . 'Detail';
 //        $cekisi = call_user_func($sourceCek.'::find')->where(['id_lk_prodi_kriteria'.$kriteria=>$lk])->select('kode_dokumen')->distinct()->count();
-        $cekisiTemplate = call_user_func($sourceCek.'::find')->where(['id_lk_prodi_kriteria'.$kriteria=>$lk, 'jenis_dokumen'=>'template'])->select('kode_dokumen')->distinct()->count();
-        $cekisiSumber = call_user_func($sourceCek.'::find')->where(['id_lk_prodi_kriteria'.$kriteria=>$lk, 'jenis_dokumen'=>'sumber'])->select('kode_dokumen')->distinct()->count();
-        $cekisiPendukung = call_user_func($sourceCek.'::find')->where(['id_lk_prodi_kriteria'.$kriteria=>$lk, 'jenis_dokumen'=>'pendukung'])->select('kode_dokumen')->distinct()->count();
-        $modelKriteria = call_user_func($sourceKriteria.'::find')->where(['id_lk_prodi'=>$lk])->one();
+        $cekisiTemplate = call_user_func($sourceCek . '::find')->where(['id_lk_prodi_kriteria' . $kriteria => $lk, 'jenis_dokumen' => 'template'])->select('kode_dokumen')->distinct()->count();
+        $cekisiSumber = call_user_func($sourceCek . '::find')->where(['id_lk_prodi_kriteria' . $kriteria => $lk, 'jenis_dokumen' => 'sumber'])->select('kode_dokumen')->distinct()->count();
+        $cekisiPendukung = call_user_func($sourceCek . '::find')->where(['id_lk_prodi_kriteria' . $kriteria => $lk, 'jenis_dokumen' => 'pendukung'])->select('kode_dokumen')->distinct()->count();
+        $modelKriteria = call_user_func($sourceKriteria . '::find')->where(['id_lk_prodi' => $lk])->one();
 
         $template = K9LkTemplate::find();
 
         $decode = Json::decode($json);
-        $data = $decode[$kriteria-1];
+        $data = $decode[$kriteria - 1];
         $butir = $data['butir'];
 
         $jumlahdok = 0;
@@ -159,13 +157,13 @@ class LkController extends Controller
 //        exit();
 
         foreach ($butir as $key => $value) {
-            if (!empty($value['template'])){
+            if (!empty($value['template'])) {
                 $jumlahdok++;
             }
             foreach ($value['dokumen_sumber'] as $key1 => $sumber) {
-                if (!empty($sumber['kode'])){
-                    $carikode = call_user_func($sourceCek.'::find')->where(['kode_dokumen'=>$sumber['kode'], 'id_lk_prodi_kriteria'.$kriteria=>$lk ])->all();
-                    if($carikode){
+                if (!empty($sumber['kode'])) {
+                    $carikode = call_user_func($sourceCek . '::find')->where(['kode_dokumen' => $sumber['kode'], 'id_lk_prodi_kriteria' . $kriteria => $lk])->all();
+                    if ($carikode) {
                         $jumlahisidok++;
                     }
                     $jumlahdok++;
@@ -173,7 +171,7 @@ class LkController extends Controller
             }
             foreach ($value['dokumen_pendukung'] as $key2 => $pendukung) {
                 if (!empty($pendukung['kode'])) {
-                    $carikode = call_user_func($sourceCek . '::find')->where(['kode_dokumen' => $pendukung['kode'], 'id_lk_prodi_kriteria'.$kriteria=>$lk ])->all();
+                    $carikode = call_user_func($sourceCek . '::find')->where(['kode_dokumen' => $pendukung['kode'], 'id_lk_prodi_kriteria' . $kriteria => $lk])->all();
                     if ($carikode) {
                         $jumlahisidok++;
                     }
@@ -193,89 +191,85 @@ class LkController extends Controller
 
 
 //        fix dokumentasi standar 3 sementara
-        if ($kriteria == 3){
-            if ($isi > 44){
+        if ($kriteria == 3) {
+            if ($isi > 44) {
                 $isi = 44;
             }
         }
-        if ($kriteria == 4){
-            if ($isi > 47){
+        if ($kriteria == 4) {
+            if ($isi > 47) {
                 $isi = 47;
             }
         }
 
-        $progress = round(($isi/array_sum($nomor))*100,2);
+        $progress = round(($isi / array_sum($nomor)) * 100, 2);
 
         $dokModel = new K9LkProdiKriteriaDetailForm();
         $dokTextModel = new K9TextLkProdiKriteriaDetailForm();
         $dokLinkModel = new K9LinkLkProdiKriteriaDetailForm();
         $dokTempModel = new K9TempLkProdiKriteriaDetailForm();
 
-        if($dokModel->load(Yii::$app->request->post())){
+        if ($dokModel->load(Yii::$app->request->post())) {
 
-            $dokModel->isiDokumen = UploadedFile::getInstance($dokModel,'isiDokumen');
+            $dokModel->isiDokumen = UploadedFile::getInstance($dokModel, 'isiDokumen');
 
-            if($dokModel->uploadDokumen($lk, $kriteria)){
+            if ($dokModel->uploadDokumen($lk, $kriteria)) {
 
 //              Alert jika nama sama belum selesai
 
-                Yii::$app->session->setFlash('success','Berhasil Upload');
+                Yii::$app->session->setFlash('success', 'Berhasil Upload');
                 return $this->redirect(Url::current());
-            }
-            else{
-                Yii::$app->session->setFlash('error','Gagal Upload. Cek File');
+            } else {
+                Yii::$app->session->setFlash('error', 'Gagal Upload. Cek File');
                 return $this->redirect(Url::current());
             }
 //            return $this->redirect(Url::current());
         }
 
-        if ($dokTempModel->load(Yii::$app->request->post())){
+        if ($dokTempModel->load(Yii::$app->request->post())) {
             $dokTempModel->isiDokumen = UploadedFile::getInstance($dokTempModel, 'isiDokumen');
-            if($dokTempModel->uploadTemplate($lk, $kriteria)){
-                Yii::$app->session->setFlash('success','Berhasil Upload Template');
+            if ($dokTempModel->uploadTemplate($lk, $kriteria)) {
+                Yii::$app->session->setFlash('success', 'Berhasil Upload Template');
                 return $this->redirect(Url::current());
-            }
-            else{
-                Yii::$app->session->setFlash('error','Gagal Upload. Cek File');
-                return $this->redirect(Url::current());
-            }
-        }
-
-        if ($dokTextModel->load(Yii::$app->request->post())){
-            if ($dokTextModel->uploadText($lk, $kriteria)){
-                Yii::$app->session->setFlash('success','Berhasil Tambah Teks');
-                return $this->redirect(Url::current());
-            }
-            else{
-                Yii::$app->session->setFlash('error','Gagal Tambah Teks');
+            } else {
+                Yii::$app->session->setFlash('error', 'Gagal Upload. Cek File');
                 return $this->redirect(Url::current());
             }
         }
 
-        if ($dokLinkModel->load(Yii::$app->request->post())){
-            if ($dokLinkModel->uploadLink($lk, $kriteria)){
-                Yii::$app->session->setFlash('success','Berhasil Tambah Tautan');
+        if ($dokTextModel->load(Yii::$app->request->post())) {
+            if ($dokTextModel->uploadText($lk, $kriteria)) {
+                Yii::$app->session->setFlash('success', 'Berhasil Tambah Teks');
+                return $this->redirect(Url::current());
+            } else {
+                Yii::$app->session->setFlash('error', 'Gagal Tambah Teks');
                 return $this->redirect(Url::current());
             }
-            else{
-                Yii::$app->session->setFlash('error','Gagal Tambah Tautan');
+        }
+
+        if ($dokLinkModel->load(Yii::$app->request->post())) {
+            if ($dokLinkModel->uploadLink($lk, $kriteria)) {
+                Yii::$app->session->setFlash('success', 'Berhasil Tambah Tautan');
+                return $this->redirect(Url::current());
+            } else {
+                Yii::$app->session->setFlash('error', 'Gagal Tambah Tautan');
                 return $this->redirect(Url::current());
             }
         }
 
 
-        return $this->render('isi-kriteria',[
-            'model'=>$model,
-            'modelKriteria'=>$modelKriteria,
-            'modelTemp'=>$modelTemp,
-            'lkInstitusi'=>$lkInstitusi,
-            'json'=>$data,
-            'butir'=>$butir,
-            'dokModel'=>$dokModel,
-            'progress'=>$progress,
-            'cari'=>'isi',
-            'nomor'=> $nomor,
-            'dokumen'=>$dokumen,
+        return $this->render('isi-kriteria', [
+            'model' => $model,
+            'modelKriteria' => $modelKriteria,
+            'modelTemp' => $modelTemp,
+            'lkInstitusi' => $lkInstitusi,
+            'json' => $data,
+            'butir' => $butir,
+            'dokModel' => $dokModel,
+            'progress' => $progress,
+            'cari' => 'isi',
+            'nomor' => $nomor,
+            'dokumen' => $dokumen,
             'dokTextModel' => $dokTextModel,
             'dokLinkModel' => $dokLinkModel,
             'dokTempModel' => $dokTempModel,
@@ -283,8 +277,9 @@ class LkController extends Controller
         ]);
     }
 
-    public function actionDownloadTemplate($id){
-        ini_set('max_execution_time', 5*60);
+    public function actionDownloadTemplate($id)
+    {
+        ini_set('max_execution_time', 5 * 60);
         $template = K9LkTemplate::findOne($id);
         $path = K9ProdiDirectoryHelper::getTemplateLkPath();
         $file = $template->nama_file;
@@ -292,79 +287,78 @@ class LkController extends Controller
         return Yii::$app->response->sendFile("$path/$file");
     }
 
-    public function actionDownloadDok($id){
-        ini_set('max_execution_time', 5*60);
+    public function actionDownloadDok($id)
+    {
+        ini_set('max_execution_time', 5 * 60);
         $model = K9LkProdiKriteria1Detail::findOne($id);
         $path = K9ProdiDirectoryHelper::getDokumenLkPath($model->lkProdiKriteria1->lkProdi->akreditasiProdi);
         $file = $model->isi_dokumen;
 
-        if ($model->jenis_dokumen == 'lainnya'){
+        if ($model->jenis_dokumen == 'lainnya') {
             return Yii::$app->response->sendFile("$path/lainnya/$file");
-        }
-        elseif ($model->jenis_dokumen == 'sumber'){
+        } elseif ($model->jenis_dokumen == 'sumber') {
             return Yii::$app->response->sendFile("$path/sumber/$file");
-        }
-        elseif ($model->jenis_dokumen == 'pendukung'){
+        } elseif ($model->jenis_dokumen == 'pendukung') {
             return Yii::$app->response->sendFile("$path/pendukung/$file");
-        }
-        else {
+        } else {
             return Yii::$app->response->sendFile("$path/$file");
         }
 
     }
 
-    public function actionHapusDok(){
-        if(Yii::$app->request->isPost){
+    public function actionHapusDok()
+    {
+        if (Yii::$app->request->isPost) {
             $id = Yii::$app->request->post('id');
             $kriteria = Yii::$app->request->post('kriteria');
             $lk = Yii::$app->request->post('lk');
             $prodi = Yii::$app->request->post('prodi');
 
             $namespace = 'common\\models\\kriteria9\\lk\\prodi\\K9';
-            $class = $namespace.'LkProdiKriteria'.$kriteria.'Detail';
-            $model = call_user_func($class.'::findOne',$id);
+            $class = $namespace . 'LkProdiKriteria' . $kriteria . 'Detail';
+            $model = call_user_func($class . '::findOne', $id);
 
             $path = K9ProdiDirectoryHelper::getDokumenLkPath($model->lkProdiKriteria1->lkProdi->akreditasiProdi);
             $file = $model->isi_dokumen;
 
-            if ($model->bentuk_dokumen == 'text'){
+            if ($model->bentuk_dokumen == 'text') {
                 $model->delete();
-                Yii::$app->session->setFlash('success',"Teks Tabel $model->kode_dokumen berhasil dihapus");
-                return $this->redirect(['lk/isi-kriteria','kriteria'=>$kriteria,'lk'=>$lk, 'prodi'=>$prodi]);
+                Yii::$app->session->setFlash('success', "Teks Tabel $model->kode_dokumen berhasil dihapus");
+                return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk, 'prodi' => $prodi]);
             }
-            if ($model->bentuk_dokumen == 'link'){
+            if ($model->bentuk_dokumen == 'link') {
                 $model->delete();
-                Yii::$app->session->setFlash('success',"Tautan Tabel $model->kode_dokumen berhasil dihapus");
-                return $this->redirect(['lk/isi-kriteria','kriteria'=>$kriteria,'lk'=>$lk, 'prodi'=>$prodi]);
+                Yii::$app->session->setFlash('success', "Tautan Tabel $model->kode_dokumen berhasil dihapus");
+                return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk, 'prodi' => $prodi]);
             }
 
-            if ($model->jenis_dokumen == 'lainnya'){
+            if ($model->jenis_dokumen == 'lainnya') {
                 unlink("$path/lainnya/$file");
                 $model->delete();
 
-                Yii::$app->session->setFlash('success',"Dokumen Tabel $model->kode_dokumen berhasil dihapus");
-                return $this->redirect(['lk/isi-kriteria','kriteria'=>$kriteria,'lk'=>$lk, 'prodi'=>$prodi]);
+                Yii::$app->session->setFlash('success', "Dokumen Tabel $model->kode_dokumen berhasil dihapus");
+                return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk, 'prodi' => $prodi]);
             }
-            if ($model->jenis_dokumen == 'sumber'){
+            if ($model->jenis_dokumen == 'sumber') {
                 unlink("$path/sumber/$file");
                 $model->delete();
 
-                Yii::$app->session->setFlash('success',"Dokumen Tabel $model->kode_dokumen berhasil dihapus");
-                return $this->redirect(['lk/isi-kriteria','kriteria'=>$kriteria,'lk'=>$lk, 'prodi'=>$prodi]);
+                Yii::$app->session->setFlash('success', "Dokumen Tabel $model->kode_dokumen berhasil dihapus");
+                return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk, 'prodi' => $prodi]);
             }
-            if ($model->jenis_dokumen == 'pendukung'){
+            if ($model->jenis_dokumen == 'pendukung') {
                 unlink("$path/pendukung/$file");
                 $model->delete();
 
-                Yii::$app->session->setFlash('success',"Dokumen Tabel $model->kode_dokumen berhasil dihapus");
-                return $this->redirect(['lk/isi-kriteria','kriteria'=>$kriteria,'lk'=>$lk, 'prodi'=>$prodi]);
+                Yii::$app->session->setFlash('success', "Dokumen Tabel $model->kode_dokumen berhasil dihapus");
+                return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk, 'prodi' => $prodi]);
             }
 
             unlink("$path/$file");
             $model->delete();
 
-            Yii::$app->session->setFlash('success',"Dokumen Tabel $model->kode_dokumen berhasil dihapus");
-            return $this->redirect(['lk/isi-kriteria','kriteria'=>$kriteria,'lk'=>$lk, 'prodi'=>$prodi]);
+            Yii::$app->session->setFlash('success', "Dokumen Tabel $model->kode_dokumen berhasil dihapus");
+            return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk, 'prodi' => $prodi]);
         }
         throw new BadRequestHttpException('Request Harus Post');
     }

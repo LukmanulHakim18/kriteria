@@ -1,9 +1,9 @@
 <?php
 
-namespace akreditasi\modules\kriteria9\modules\instansi;
+namespace akreditasi\modules\kriteria9\modules\institusi;
 
 /**
- * k9-instansi module definition class
+ * k9-institusi module definition class
  */
 class K9Instansi extends \yii\base\Module
 {

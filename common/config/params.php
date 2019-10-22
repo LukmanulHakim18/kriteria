@@ -7,11 +7,11 @@ return [
     'senderEmail' => 'noreply@example.com',
     'senderName' => 'Example.com mailer',
     'user.passwordResetTokenExpire' => 3600,
-    'instansi' => $ini['instansi'],
+    'institusi' => $ini['institusi'],
     'nama_sistem' => $ini['nama_sistem'],
-    'url_instansi' => $ini['url_instansi'],
+    'url_institusi' => $ini['url_institusi'],
     'author' => $ini['author'],
-    'url_author' => $ini['author_url'],
+    'url_author' => $ini['url_author'],
     'bsVersion' => '4.x', // this will set globally `bsVersion` to Bootstrap 4.x for all Krajee Extensions
     'mdm.admin.configs' => [
         'advanced' => [

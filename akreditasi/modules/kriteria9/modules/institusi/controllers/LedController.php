@@ -14,6 +14,7 @@ use akreditasi\models\kriteria9\forms\led\K9DetailLedInstitusiLinkForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedInstitusiTeksForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedInstitusiUploadForm;
 use akreditasi\models\kriteria9\forms\led\K9DokumenLedInstitusiUploadForm;
+use akreditasi\modules\kriteria9\controllers\BaseController;
 use common\helpers\kriteria9\K9InstitusiDirectoryHelper;
 use common\models\Constants;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
@@ -29,83 +30,58 @@ use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria6;
 use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria7;
 use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria8;
 use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria9;
-use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKriteria1;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
 use yii\helpers\Json;
 use yii\helpers\Url;
-use yii\web\BadRequestHttpException;
-use yii\web\Controller;
 use yii\web\MethodNotAllowedHttpException;
 use yii\web\UploadedFile;
 
-class LedController extends Controller
+class LedController extends BaseController
 {
-    public $layout = 'main';
 
-    protected function getJsonData(){
-        $fileJson = 'led_institusi.json';
-        $json = Json::decode(file_get_contents(Yii::getAlias('@common/required/kriteria9/apt/'.$fileJson)));
-        return $json;
-
-    }
-
-    protected function getArrayKriteria($led){
-        $kriteria1 = K9LedInstitusiKriteria1::findOne(['id_led_institusi'=>$led]);
-        $kriteria2 = K9LedInstitusiKriteria2::findOne(['id_led_institusi'=>$led]);
-        $kriteria3 = K9LedInstitusiKriteria3::findOne(['id_led_institusi'=>$led]);
-        $kriteria4 = K9LedInstitusiKriteria4::findOne(['id_led_institusi'=>$led]);
-        $kriteria5 = K9LedInstitusiKriteria5::findOne(['id_led_institusi'=>$led]);
-        $kriteria6 = K9LedInstitusiKriteria6::findOne(['id_led_institusi'=>$led]);
-        $kriteria7 = K9LedInstitusiKriteria7::findOne(['id_led_institusi'=>$led]);
-        $kriteria8 = K9LedInstitusiKriteria8::findOne(['id_led_institusi'=>$led]);
-        $kriteria9 = K9LedInstitusiKriteria9::findOne(['id_led_institusi'=>$led]);
-
-        $kriteria = [$kriteria1,$kriteria2,$kriteria3,$kriteria4,$kriteria5,$kriteria6,$kriteria7,$kriteria8,$kriteria9];
-
-        return $kriteria;
-    }
-
-    public function actionArsip($target){
+    public function actionArsip($target)
+    {
 
         $model = new K9PencarianLedInstitusiForm();
-        $akreditasi = K9Akreditasi::findAll(['jenis_akreditasi'=>Constants::INSTITUSI]);
-        $dataAkreditasi = ArrayHelper::map($akreditasi,'id',function ($data){
-            return $data->nama." (".$data->tahun.")";
+        $akreditasi = K9Akreditasi::findAll(['jenis_akreditasi' => Constants::INSTITUSI]);
+        $dataAkreditasi = ArrayHelper::map($akreditasi, 'id', function ($data) {
+            return $data->nama . " (" . $data->tahun . ")";
         });
 
-        if($model->load(Yii::$app->request->post())){
-            if(Yii::$app->request->isAjax){
+        if ($model->load(Yii::$app->request->post())) {
+            if (Yii::$app->request->isAjax) {
                 $url = $model->cari($target);
                 $led = $model->getLed();
                 $newUrl = [];
-                if(!$led) $newUrl =  false;
+                if (!$led) $newUrl = false;
                 else $newUrl = $url;
 
-                return $this->renderAjax('_hasil-arsip',['led'=>$led,'url'=>$newUrl]);
+                return $this->renderAjax('_hasil-arsip', ['led' => $led, 'url' => $newUrl]);
 
             }
         }
-        return $this->render('arsip',[
-            'model'=>$model,
-            'dataAkreditasi'=>$dataAkreditasi]);
+        return $this->render('arsip', [
+            'model' => $model,
+            'dataAkreditasi' => $dataAkreditasi]);
 
     }
 
-    public function actionIsi($led){
+    public function actionIsi($led)
+    {
         $ledInstitusi = K9LedInstitusi::findOne($led);
 
         $modelDokumen = new K9DokumenLedInstitusiUploadForm();
-        $dataDokumen = K9DokumenLedInstitusi::findAll(['id_led_institusi'=>$led]);
+        $dataDokumen = K9DokumenLedInstitusi::findAll(['id_led_institusi' => $led]);
         $json = $this->getJsonData();
         $kriteria = $this->getArrayKriteria($led);
         $realPath = K9InstitusiDirectoryHelper::getDokumenLedUrl($ledInstitusi->akreditasiInstitusi);
 
-        if($modelDokumen->load(Yii::$app->request->post())){
+        if ($modelDokumen->load(Yii::$app->request->post())) {
 
             $dokumen = $this->uploadDokumenLed($led);
-            if($dokumen){
+            if ($dokumen) {
                 $model = new K9DokumenLedInstitusi();
                 $model->id_led_institusi = $ledInstitusi->id;
                 $model->nama_dokumen = $dokumen->getNamaDokumen();
@@ -129,7 +105,56 @@ class LedController extends Controller
         ]);
     }
 
-    public function actionHapusDokumenLed(){
+    protected function getJsonData()
+    {
+        $fileJson = 'led_institusi.json';
+        $json = Json::decode(file_get_contents(Yii::getAlias('@common/required/kriteria9/apt/' . $fileJson)));
+        return $json;
+
+    }
+
+    protected function getArrayKriteria($led)
+    {
+        $kriteria1 = K9LedInstitusiKriteria1::findOne(['id_led_institusi' => $led]);
+        $kriteria2 = K9LedInstitusiKriteria2::findOne(['id_led_institusi' => $led]);
+        $kriteria3 = K9LedInstitusiKriteria3::findOne(['id_led_institusi' => $led]);
+        $kriteria4 = K9LedInstitusiKriteria4::findOne(['id_led_institusi' => $led]);
+        $kriteria5 = K9LedInstitusiKriteria5::findOne(['id_led_institusi' => $led]);
+        $kriteria6 = K9LedInstitusiKriteria6::findOne(['id_led_institusi' => $led]);
+        $kriteria7 = K9LedInstitusiKriteria7::findOne(['id_led_institusi' => $led]);
+        $kriteria8 = K9LedInstitusiKriteria8::findOne(['id_led_institusi' => $led]);
+        $kriteria9 = K9LedInstitusiKriteria9::findOne(['id_led_institusi' => $led]);
+
+        $kriteria = [$kriteria1, $kriteria2, $kriteria3, $kriteria4, $kriteria5, $kriteria6, $kriteria7, $kriteria8, $kriteria9];
+
+        return $kriteria;
+    }
+
+    protected function uploadDokumenLed($led)
+    {
+        $ledInstitusi = K9LedInstitusi::findOne($led);
+
+        $dokumenLed = new K9DokumenLedInstitusiUploadForm();
+        $dokumenLed->dokumenLed = UploadedFile::getInstance($dokumenLed, 'dokumenLed');
+        $realPath = K9InstitusiDirectoryHelper::getDokumenLedPath($ledInstitusi->akreditasiInstitusi);
+        $response = null;
+
+        if ($dokumenLed->validate()) {
+
+            $uploaded = $dokumenLed->uploadDokumen($realPath);
+            if ($uploaded) {
+                $response = $dokumenLed;
+            }
+
+        }
+
+        return $response;
+
+
+    }
+
+    public function actionHapusDokumenLed()
+    {
         if (Yii::$app->request->isPost) {
 
             $data = Yii::$app->request->post();
@@ -161,14 +186,15 @@ class LedController extends Controller
         return Yii::$app->response->sendFile($file);
     }
 
-    public function actionIsiKriteria($led,$kriteria){
+    public function actionIsiKriteria($led, $kriteria)
+    {
 
-        $modelLedClass = 'common\\models\\kriteria9\\led\\institusi\\K9LedInstitusiKriteria'.$kriteria;
-        $modelLed = call_user_func($modelLedClass.'::findOne',$led);
+        $modelLedClass = 'common\\models\\kriteria9\\led\\institusi\\K9LedInstitusiKriteria' . $kriteria;
+        $modelLed = call_user_func($modelLedClass . '::findOne', $led);
 
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\led\\institusi\\K9LedInstitusiNarasiKriteria' . $kriteria . 'Form';
-        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_led_institusi_kriteria'.$kriteria => $modelLed->id]);
-        $relasiNarasiAttr = 'ledInstitusiKriteria'.$kriteria;
+        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_led_institusi_kriteria' . $kriteria => $modelLed->id]);
+        $relasiNarasiAttr = 'ledInstitusiKriteria' . $kriteria;
 
 
         $json = $this->getJsonData();
@@ -203,41 +229,41 @@ class LedController extends Controller
             return $this->redirect(Url::current());
 
         }
-        if($textModel->load(Yii::$app->request->post())){
-            if($textModel->save($led,$kriteria)){
-                Yii::$app->session->setFlash('success','Berhasil Menambahkan dokumen');
+        if ($textModel->load(Yii::$app->request->post())) {
+            if ($textModel->save($led, $kriteria)) {
+                Yii::$app->session->setFlash('success', 'Berhasil Menambahkan dokumen');
                 return $this->redirect(Url::current());
             }
-            Yii::$app->session->setFlash('warning','Gagal Menambahkan Dokumen');
+            Yii::$app->session->setFlash('warning', 'Gagal Menambahkan Dokumen');
             return $this->redirect(Url::current());
 
         }
 
-        if($linkModel->load(Yii::$app->request->post())){
-            if($linkModel->save($led,$kriteria)){
-                Yii::$app->session->setFlash('success','Berhasil Menambahkan dokumen');
+        if ($linkModel->load(Yii::$app->request->post())) {
+            if ($linkModel->save($led, $kriteria)) {
+                Yii::$app->session->setFlash('success', 'Berhasil Menambahkan dokumen');
                 return $this->redirect(Url::current());
             }
-            Yii::$app->session->setFlash('warning','Gagal Menambahkan Dokumen');
+            Yii::$app->session->setFlash('warning', 'Gagal Menambahkan Dokumen');
             return $this->redirect(Url::current());
 
         }
-
 
 
         return $this->render('isi-kriteria', [
-            'model'=>$modelLed,
+            'model' => $modelLed,
             'modelNarasi' => $modelNarasi,
             'poinKriteria' => $poinKriteria,
             'detailModel' => $detailModel,
             'path' => $realPath,
-            'textModel'=>$textModel,
-            'linkModel'=>$linkModel
+            'textModel' => $textModel,
+            'linkModel' => $linkModel
 
         ]);
     }
 
-    public function actionHapusDetail(){
+    public function actionHapusDetail()
+    {
         if (Yii::$app->request->isPost) {
 
             $data = Yii::$app->request->post();
@@ -247,10 +273,10 @@ class LedController extends Controller
             $jenis = $data['jenis'];
 
             $namespace = 'common\\models\\kriteria9\\led\\institusi';
-            $classPath = "$namespace\\K9LedInstitusiKriteria$kriteria"."Detail";
+            $classPath = "$namespace\\K9LedInstitusiKriteria$kriteria" . "Detail";
             $model = call_user_func("$classPath::findOne", $idDokumen);
             $led = K9LedInstitusi::findOne($idLed);
-            if(!$model->bentuk_dokumen === Constants::TEXT && !$model->bentuk_dokumen === Constants::LINK){
+            if (!$model->bentuk_dokumen === Constants::TEXT && !$model->bentuk_dokumen === Constants::LINK) {
                 $dokumenPath = K9InstitusiDirectoryHelper::getDokumenLedPath($led->akreditasiInstitusi);
                 FileHelper::unlink("$dokumenPath/$jenis/$model->isi_dokumen");
             }
@@ -263,20 +289,22 @@ class LedController extends Controller
         return new MethodNotAllowedHttpException('Penghapusan harus sesuai prosedur.');
     }
 
-    public function actionDownloadDetail($kriteria, $dokumen, $led,$jenis){
+    public function actionDownloadDetail($kriteria, $dokumen, $led, $jenis)
+    {
         ini_set('max_execution_time', 5 * 60);
         $led = K9LedInstitusi::findOne($led);
         $namespace = 'common\\models\\kriteria9\\led\\institusi';
-        $className = "$namespace\\K9LedInstitusiKriteria$kriteria"."Detail";
+        $className = "$namespace\\K9LedInstitusiKriteria$kriteria" . "Detail";
         $model = call_user_func($className . '::findOne', $dokumen);
         $file = K9InstitusiDirectoryHelper::getDokumenLedPath($led->akreditasiInstitusi) . "/$jenis/{$model->isi_dokumen}";
         return Yii::$app->response->sendFile($file);
     }
 
-    public function actionLihat($led){
+    public function actionLihat($led)
+    {
         $ledInstitusi = K9LedInstitusi::findOne($led);
 
-        $dataDokumen = K9DokumenLedInstitusi::findAll(['id_led_institusi'=>$led]);
+        $dataDokumen = K9DokumenLedInstitusi::findAll(['id_led_institusi' => $led]);
         $json = $this->getJsonData();
         $kriteria = $this->getArrayKriteria($led);
         $realPath = K9InstitusiDirectoryHelper::getDokumenLedUrl($ledInstitusi->akreditasiInstitusi);
@@ -291,14 +319,15 @@ class LedController extends Controller
         ]);
     }
 
-    public function actionLihatKriteria($led,$kriteria){
+    public function actionLihatKriteria($led, $kriteria)
+    {
 
-        $modelLedClass = 'common\\models\\kriteria9\\led\\institusi\\K9LedInstitusiKriteria'.$kriteria;
-        $modelLed = call_user_func($modelLedClass.'::findOne',$led);
+        $modelLedClass = 'common\\models\\kriteria9\\led\\institusi\\K9LedInstitusiKriteria' . $kriteria;
+        $modelLed = call_user_func($modelLedClass . '::findOne', $led);
 
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\led\\institusi\\K9LedInstitusiNarasiKriteria' . $kriteria . 'Form';
-        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_led_institusi_kriteria'.$kriteria => $modelLed->id]);
-        $relasiNarasiAttr = 'ledInstitusiKriteria'.$kriteria;
+        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_led_institusi_kriteria' . $kriteria => $modelLed->id]);
+        $relasiNarasiAttr = 'ledInstitusiKriteria' . $kriteria;
 
 
         $json = $this->getJsonData();
@@ -306,43 +335,15 @@ class LedController extends Controller
         $poinKriteria = $dataKriteria['butir'];
 
 
-
         $realPath = K9InstitusiDirectoryHelper::getDetailLedUrl($modelLed->ledInstitusi->akreditasiInstitusi);
 
 
-
-
         return $this->render('lihat-kriteria', [
-            'model'=>$modelLed,
+            'model' => $modelLed,
             'modelNarasi' => $modelNarasi,
             'poinKriteria' => $poinKriteria,
             'path' => $realPath,
 
         ]);
-    }
-
-
-
-    protected function uploadDokumenLed($led)
-    {
-        $ledInstitusi = K9LedInstitusi::findOne($led);
-
-        $dokumenLed = new K9DokumenLedInstitusiUploadForm();
-        $dokumenLed->dokumenLed = UploadedFile::getInstance($dokumenLed, 'dokumenLed');
-        $realPath = K9InstitusiDirectoryHelper::getDokumenLedPath($ledInstitusi->akreditasiInstitusi);
-        $response = null;
-
-        if ($dokumenLed->validate()) {
-
-            $uploaded = $dokumenLed->uploadDokumen($realPath);
-            if ($uploaded) {
-                $response = $dokumenLed;
-            }
-
-        }
-
-        return $response;
-
-
     }
 }

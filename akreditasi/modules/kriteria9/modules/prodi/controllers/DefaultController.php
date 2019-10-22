@@ -2,23 +2,22 @@
 
 namespace akreditasi\modules\kriteria9\modules\prodi\controllers;
 
+use akreditasi\modules\kriteria9\controllers\BaseController;
 use common\models\ProgramStudi;
 use Yii;
-use yii\web\Controller;
 
 /**
  * Default controller for the `k9-prodi` module
  */
-class DefaultController extends Controller
+class DefaultController extends BaseController
 {
-    public $layout = 'main';
     public function actionIndex()
     {
         $id_prodi = Yii::$app->request->get('prodi');
 
-        $modelProdi = ProgramStudi::findOne(['id'=>$id_prodi]);
+        $modelProdi = ProgramStudi::findOne(['id' => $id_prodi]);
 
-        return $this->render('index',[
+        return $this->render('index', [
             'modelProdi' => $modelProdi
         ]);
     }

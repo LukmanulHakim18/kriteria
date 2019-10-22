@@ -99,7 +99,7 @@ class SertifikatPerguruanTinggiController extends Controller
         $model = new SertifikatInstitusi();
         $ini = parse_ini_file(__DIR__ . '/../../system-configuration.ini');
 
-        $namaInstitusi = $ini['instansi'];
+        $namaInstitusi = $ini['institusi'];
 
 
 //        var_dump($dataInstitusi);
@@ -153,7 +153,7 @@ class SertifikatPerguruanTinggiController extends Controller
         $model = $this->findModel($id);
         $ini = parse_ini_file(__DIR__ . '/../../system-configuration.ini');
 
-        $namaInstitusi = $ini['instansi'];
+        $namaInstitusi = $ini['institusi'];
 
 
         $temp1 = $model->sertifikat;

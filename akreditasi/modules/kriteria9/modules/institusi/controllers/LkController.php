@@ -7,6 +7,7 @@ use akreditasi\models\kriteria9\forms\lk\institusi\K9LinkLkInstitusiKriteriaDeta
 use akreditasi\models\kriteria9\forms\lk\institusi\K9LkInstitusiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\institusi\K9TempLkInstitusiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\institusi\K9TextLkInstitusiKriteriaDetailForm;
+use akreditasi\modules\kriteria9\controllers\BaseController;
 use common\helpers\kriteria9\K9InstitusiDirectoryHelper;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\forms\lk\K9PencarianLkInstitusiForm;
@@ -35,76 +36,72 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
 use yii\web\UploadedFile;
 
-class LkController extends Controller
+class LkController extends BaseController
 {
-    public function beforeAction($action)
-    {
-        $this->layout="main";
-        return true;
-    }
 
-    public function actionArsip($target){
+    public function actionArsip($target)
+    {
         $model = new K9PencarianLkInstitusiForm();
 
-        $idAkreditasiInstitusi = K9Akreditasi::findAll(['jenis_akreditasi'=>'institusi']);
-        $dataAkreditasiInstitusi = ArrayHelper::map($idAkreditasiInstitusi,'id',function($data){
-            return $data->lembaga.' - '.$data->nama.' ('.$data->tahun.')';
+        $idAkreditasiInstitusi = K9Akreditasi::findAll(['jenis_akreditasi' => 'institusi']);
+        $dataAkreditasiInstitusi = ArrayHelper::map($idAkreditasiInstitusi, 'id', function ($data) {
+            return $data->lembaga . ' - ' . $data->nama . ' (' . $data->tahun . ')';
         });
 
-        if ($model->load(Yii::$app->request->post())){
-            if (Yii::$app->request->isAjax){
+        if ($model->load(Yii::$app->request->post())) {
+            if (Yii::$app->request->isAjax) {
                 $url = $model->cari($target);
                 $lk = $model->getLk();
                 $newUrl = [];
-                if(!$lk){
+                if (!$lk) {
                     $newUrl = false;
-                }else{
+                } else {
                     $newUrl = $url;
                 }
-                return $this->renderAjax('_hasil-arsip',['lk'=>$lk,'url'=>$newUrl]);
+                return $this->renderAjax('_hasil-arsip', ['lk' => $lk, 'url' => $newUrl]);
             }
         }
 
-        return $this->render('arsip',[
+        return $this->render('arsip', [
             'model' => $model,
             'dataAkreditasiInstitusi' => $dataAkreditasiInstitusi
         ]);
     }
 
-    public function actionIsi($lk){
+    public function actionIsi($lk)
+    {
         $file_json = 'lkpt_institusi.json';
         $lkInstitusi = K9LkInstitusi::findOne($lk);
 
-        $json = file_get_contents(Yii::getAlias('@common/required/kriteria9/apt/'.$file_json));
-        $kriteria1 = K9LkInstitusiKriteria1::find()->where(['id_lk_institusi'=>$lk])->one();
-        $kriteria2 = K9LkInstitusiKriteria2::find()->where(['id_lk_institusi'=>$lk])->one();
-        $kriteria3 = K9LkInstitusiKriteria3::find()->where(['id_lk_institusi'=>$lk])->one();
-        $kriteria4 = K9LkInstitusiKriteria4::find()->where(['id_lk_institusi'=>$lk])->one();
-        $kriteria5 = K9LkInstitusiKriteria5::find()->where(['id_lk_institusi'=>$lk])->one();
-        $kriteria6 = K9LkInstitusiKriteria6::find()->where(['id_lk_institusi'=>$lk])->one();
-        $kriteria7 = K9LkInstitusiKriteria7::find()->where(['id_lk_institusi'=>$lk])->one();
-        $kriteria8 = K9LkInstitusiKriteria8::find()->where(['id_lk_institusi'=>$lk])->one();
-        $kriteria9 = K9LkInstitusiKriteria9::find()->where(['id_lk_institusi'=>$lk])->one();
+        $json = file_get_contents(Yii::getAlias('@common/required/kriteria9/apt/' . $file_json));
+        $kriteria1 = K9LkInstitusiKriteria1::find()->where(['id_lk_institusi' => $lk])->one();
+        $kriteria2 = K9LkInstitusiKriteria2::find()->where(['id_lk_institusi' => $lk])->one();
+        $kriteria3 = K9LkInstitusiKriteria3::find()->where(['id_lk_institusi' => $lk])->one();
+        $kriteria4 = K9LkInstitusiKriteria4::find()->where(['id_lk_institusi' => $lk])->one();
+        $kriteria5 = K9LkInstitusiKriteria5::find()->where(['id_lk_institusi' => $lk])->one();
+        $kriteria6 = K9LkInstitusiKriteria6::find()->where(['id_lk_institusi' => $lk])->one();
+        $kriteria7 = K9LkInstitusiKriteria7::find()->where(['id_lk_institusi' => $lk])->one();
+        $kriteria8 = K9LkInstitusiKriteria8::find()->where(['id_lk_institusi' => $lk])->one();
+        $kriteria9 = K9LkInstitusiKriteria9::find()->where(['id_lk_institusi' => $lk])->one();
 
         $decode = Json::decode($json);
 
-        $cekisi1 = K9LkInstitusiKriteria1Detail::find()->where(['id_lk_institusi_kriteria1'=>$lk])->select('kode_dokumen')->distinct()->count();
-        $cekisi2 = K9LkInstitusiKriteria2Detail::find()->where(['id_lk_institusi_kriteria2'=>$lk])->select('kode_dokumen')->distinct()->count();
-        $cekisi3 = K9LkInstitusiKriteria3Detail::find()->where(['id_lk_institusi_kriteria3'=>$lk])->select('kode_dokumen')->distinct()->count();
-        $cekisi4 = K9LkInstitusiKriteria4Detail::find()->where(['id_lk_institusi_kriteria4'=>$lk])->select('kode_dokumen')->distinct()->count();
-        $cekisi5 = K9LkInstitusiKriteria5Detail::find()->where(['id_lk_institusi_kriteria5'=>$lk])->select('kode_dokumen')->distinct()->count();
-        $cekisi6 = K9LkInstitusiKriteria6Detail::find()->where(['id_lk_institusi_kriteria6'=>$lk])->select('kode_dokumen')->distinct()->count();
-        $cekisi7 = K9LkInstitusiKriteria7Detail::find()->where(['id_lk_institusi_kriteria7'=>$lk])->select('kode_dokumen')->distinct()->count();
-        $cekisi8 = K9LkInstitusiKriteria8Detail::find()->where(['id_lk_institusi_kriteria8'=>$lk])->select('kode_dokumen')->distinct()->count();
-        $cekisi9 = K9LkInstitusiKriteria9Detail::find()->where(['id_lk_institusi_kriteria9'=>$lk])->select('kode_dokumen')->distinct()->count();
+        $cekisi1 = K9LkInstitusiKriteria1Detail::find()->where(['id_lk_institusi_kriteria1' => $lk])->select('kode_dokumen')->distinct()->count();
+        $cekisi2 = K9LkInstitusiKriteria2Detail::find()->where(['id_lk_institusi_kriteria2' => $lk])->select('kode_dokumen')->distinct()->count();
+        $cekisi3 = K9LkInstitusiKriteria3Detail::find()->where(['id_lk_institusi_kriteria3' => $lk])->select('kode_dokumen')->distinct()->count();
+        $cekisi4 = K9LkInstitusiKriteria4Detail::find()->where(['id_lk_institusi_kriteria4' => $lk])->select('kode_dokumen')->distinct()->count();
+        $cekisi5 = K9LkInstitusiKriteria5Detail::find()->where(['id_lk_institusi_kriteria5' => $lk])->select('kode_dokumen')->distinct()->count();
+        $cekisi6 = K9LkInstitusiKriteria6Detail::find()->where(['id_lk_institusi_kriteria6' => $lk])->select('kode_dokumen')->distinct()->count();
+        $cekisi7 = K9LkInstitusiKriteria7Detail::find()->where(['id_lk_institusi_kriteria7' => $lk])->select('kode_dokumen')->distinct()->count();
+        $cekisi8 = K9LkInstitusiKriteria8Detail::find()->where(['id_lk_institusi_kriteria8' => $lk])->select('kode_dokumen')->distinct()->count();
+        $cekisi9 = K9LkInstitusiKriteria9Detail::find()->where(['id_lk_institusi_kriteria9' => $lk])->select('kode_dokumen')->distinct()->count();
 
-        if ($cekisi3 > 44){
+        if ($cekisi3 > 44) {
             $cekisi3 = 44;
         }
-        if ($cekisi4 > 47){
+        if ($cekisi4 > 47) {
             $cekisi4 = 47;
         }
 
@@ -274,54 +271,55 @@ class LkController extends Controller
 //        $lkInstitusi->progress = $progressDok;
 //        $lkInstitusi->save(false);
 
-        $ini = parse_ini_file(__DIR__.'/../../../../../../system-configuration.ini');
-        $institusi = $ini['instansi'];
+        $ini = parse_ini_file(__DIR__ . '/../../../../../../system-configuration.ini');
+        $institusi = $ini['institusi'];
 
-        return $this->render('isi',[
-            'lkInstitusi'=>$lkInstitusi,
+        return $this->render('isi', [
+            'lkInstitusi' => $lkInstitusi,
 //            'progressDok'=>$progressDok,
-            'kriteria1'=>$kriteria1,
+            'kriteria1' => $kriteria1,
 //            'progress1'=>$progress1,
-            'kriteria2'=>$kriteria2,
+            'kriteria2' => $kriteria2,
 //            'progress2'=>$progress2,
-            'kriteria3'=>$kriteria3,
+            'kriteria3' => $kriteria3,
 //            'progress3'=>$progress3,
-            'kriteria4'=>$kriteria4,
+            'kriteria4' => $kriteria4,
 //            'progress4'=>$progress4,
-            'kriteria5'=>$kriteria5,
+            'kriteria5' => $kriteria5,
 //            'progress5'=>$progress5,
 //            'kriteria6'=>$kriteria6,
 //            'progress6'=>$progress6,
 //            'kriteria7'=>$kriteria7,
 //            'progress7'=>$progress7,
-            'json'=>$json,
-            'cari'=>'isi',
+            'json' => $json,
+            'cari' => 'isi',
             'institusi' => $institusi
         ]);
     }
 
-    public function actionIsiKriteria($lk, $kriteria){
+    public function actionIsiKriteria($lk, $kriteria)
+    {
         $file_json = 'lkpt_institusi.json';
-        $json = file_get_contents(Yii::getAlias('@common/required/kriteria9/apt/'.$file_json));
+        $json = file_get_contents(Yii::getAlias('@common/required/kriteria9/apt/' . $file_json));
 
         $lkInstitusi = K9LkInstitusi::findOne($lk);
-        $sourceModel = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria'.$kriteria.'Detail';
-        $sourceKriteria = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria'.$kriteria;
+        $sourceModel = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria' . $kriteria . 'Detail';
+        $sourceKriteria = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria' . $kriteria;
 
-        $model = call_user_func($sourceModel.'::find')->where(['id_lk_institusi_kriteria'.$kriteria=>$lk])->all();
-        $modelTemp = call_user_func($sourceModel.'::find')->where(['id_lk_institusi_kriteria'.$kriteria=>$lk, 'jenis_dokumen'=>'template'])->all();
+        $model = call_user_func($sourceModel . '::find')->where(['id_lk_institusi_kriteria' . $kriteria => $lk])->all();
+        $modelTemp = call_user_func($sourceModel . '::find')->where(['id_lk_institusi_kriteria' . $kriteria => $lk, 'jenis_dokumen' => 'template'])->all();
 
-        $sourceCek = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria'.$kriteria.'Detail';
+        $sourceCek = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria' . $kriteria . 'Detail';
 //        $cekisi = call_user_func($sourceCek.'::find')->where(['id_lk_institusi_kriteria'.$kriteria=>$lk])->select('kode_dokumen')->distinct()->count();
-        $cekisiTemplate = call_user_func($sourceCek.'::find')->where(['id_lk_institusi_kriteria'.$kriteria=>$lk, 'jenis_dokumen'=>'template'])->select('kode_dokumen')->distinct()->count();
-        $cekisiSumber = call_user_func($sourceCek.'::find')->where(['id_lk_institusi_kriteria'.$kriteria=>$lk, 'jenis_dokumen'=>'sumber'])->select('kode_dokumen')->distinct()->count();
-        $cekisiPendukung = call_user_func($sourceCek.'::find')->where(['id_lk_institusi_kriteria'.$kriteria=>$lk, 'jenis_dokumen'=>'pendukung'])->select('kode_dokumen')->distinct()->count();
-        $modelKriteria = call_user_func($sourceKriteria.'::find')->where(['id_lk_institusi'=>$lk])->one();
+        $cekisiTemplate = call_user_func($sourceCek . '::find')->where(['id_lk_institusi_kriteria' . $kriteria => $lk, 'jenis_dokumen' => 'template'])->select('kode_dokumen')->distinct()->count();
+        $cekisiSumber = call_user_func($sourceCek . '::find')->where(['id_lk_institusi_kriteria' . $kriteria => $lk, 'jenis_dokumen' => 'sumber'])->select('kode_dokumen')->distinct()->count();
+        $cekisiPendukung = call_user_func($sourceCek . '::find')->where(['id_lk_institusi_kriteria' . $kriteria => $lk, 'jenis_dokumen' => 'pendukung'])->select('kode_dokumen')->distinct()->count();
+        $modelKriteria = call_user_func($sourceKriteria . '::find')->where(['id_lk_institusi' => $lk])->one();
 
         $template = K9LkTemplate::find();
 
         $decode = Json::decode($json);
-        $data = $decode[$kriteria-1];
+        $data = $decode[$kriteria - 1];
         $butir = $data['butir'];
 
         $jumlahdok = 0;
@@ -334,13 +332,13 @@ class LkController extends Controller
 //        exit();
 
         foreach ($butir as $key => $value) {
-            if (!empty($value['template'])){
+            if (!empty($value['template'])) {
                 $jumlahdok++;
             }
             foreach ($value['dokumen_sumber'] as $key1 => $sumber) {
-                if (!empty($sumber['kode'])){
-                    $carikode = call_user_func($sourceCek.'::find')->where(['kode_dokumen'=>$sumber['kode'], 'id_lk_institusi_kriteria'.$kriteria=>$lk ])->all();
-                    if($carikode){
+                if (!empty($sumber['kode'])) {
+                    $carikode = call_user_func($sourceCek . '::find')->where(['kode_dokumen' => $sumber['kode'], 'id_lk_institusi_kriteria' . $kriteria => $lk])->all();
+                    if ($carikode) {
                         $jumlahisidok++;
                     }
                     $jumlahdok++;
@@ -348,7 +346,7 @@ class LkController extends Controller
             }
             foreach ($value['dokumen_pendukung'] as $key2 => $pendukung) {
                 if (!empty($pendukung['kode'])) {
-                    $carikode = call_user_func($sourceCek . '::find')->where(['kode_dokumen' => $pendukung['kode'], 'id_lk_institusi_kriteria'.$kriteria=>$lk ])->all();
+                    $carikode = call_user_func($sourceCek . '::find')->where(['kode_dokumen' => $pendukung['kode'], 'id_lk_institusi_kriteria' . $kriteria => $lk])->all();
                     if ($carikode) {
                         $jumlahisidok++;
                     }
@@ -368,89 +366,85 @@ class LkController extends Controller
 
 
 //        fix dokumentasi standar 3 sementara
-        if ($kriteria == 3){
-            if ($isi > 44){
+        if ($kriteria == 3) {
+            if ($isi > 44) {
                 $isi = 44;
             }
         }
-        if ($kriteria == 4){
-            if ($isi > 47){
+        if ($kriteria == 4) {
+            if ($isi > 47) {
                 $isi = 47;
             }
         }
 
-        $progress = round(($isi/array_sum($nomor))*100,2);
+        $progress = round(($isi / array_sum($nomor)) * 100, 2);
 
         $dokModel = new K9LkInstitusiKriteriaDetailForm();
         $dokTextModel = new K9TextLkInstitusiKriteriaDetailForm();
         $dokLinkModel = new K9LinkLkInstitusiKriteriaDetailForm();
         $dokTempModel = new K9TempLkInstitusiKriteriaDetailForm();
 
-        if($dokModel->load(Yii::$app->request->post())){
+        if ($dokModel->load(Yii::$app->request->post())) {
 
-            $dokModel->isiDokumen = UploadedFile::getInstance($dokModel,'isiDokumen');
+            $dokModel->isiDokumen = UploadedFile::getInstance($dokModel, 'isiDokumen');
 
-            if($dokModel->uploadDokumen($lk, $kriteria)){
+            if ($dokModel->uploadDokumen($lk, $kriteria)) {
 
 //              Alert jika nama sama belum selesai
 
-                Yii::$app->session->setFlash('success','Berhasil Upload');
+                Yii::$app->session->setFlash('success', 'Berhasil Upload');
                 return $this->redirect(Url::current());
-            }
-            else{
-                Yii::$app->session->setFlash('error','Gagal Upload. Cek File');
+            } else {
+                Yii::$app->session->setFlash('error', 'Gagal Upload. Cek File');
                 return $this->redirect(Url::current());
             }
 //            return $this->redirect(Url::current());
         }
 
-        if ($dokTempModel->load(Yii::$app->request->post())){
+        if ($dokTempModel->load(Yii::$app->request->post())) {
             $dokTempModel->isiDokumen = UploadedFile::getInstance($dokTempModel, 'isiDokumen');
-            if($dokTempModel->uploadTemplate($lk, $kriteria)){
-                Yii::$app->session->setFlash('success','Berhasil Upload Template');
+            if ($dokTempModel->uploadTemplate($lk, $kriteria)) {
+                Yii::$app->session->setFlash('success', 'Berhasil Upload Template');
                 return $this->redirect(Url::current());
-            }
-            else{
-                Yii::$app->session->setFlash('error','Gagal Upload. Cek File');
-                return $this->redirect(Url::current());
-            }
-        }
-
-        if ($dokTextModel->load(Yii::$app->request->post())){
-            if ($dokTextModel->uploadText($lk, $kriteria)){
-                Yii::$app->session->setFlash('success','Berhasil Tambah Teks');
-                return $this->redirect(Url::current());
-            }
-            else{
-                Yii::$app->session->setFlash('error','Gagal Tambah Teks');
+            } else {
+                Yii::$app->session->setFlash('error', 'Gagal Upload. Cek File');
                 return $this->redirect(Url::current());
             }
         }
 
-        if ($dokLinkModel->load(Yii::$app->request->post())){
-            if ($dokLinkModel->uploadLink($lk, $kriteria)){
-                Yii::$app->session->setFlash('success','Berhasil Tambah Tautan');
+        if ($dokTextModel->load(Yii::$app->request->post())) {
+            if ($dokTextModel->uploadText($lk, $kriteria)) {
+                Yii::$app->session->setFlash('success', 'Berhasil Tambah Teks');
+                return $this->redirect(Url::current());
+            } else {
+                Yii::$app->session->setFlash('error', 'Gagal Tambah Teks');
                 return $this->redirect(Url::current());
             }
-            else{
-                Yii::$app->session->setFlash('error','Gagal Tambah Tautan');
+        }
+
+        if ($dokLinkModel->load(Yii::$app->request->post())) {
+            if ($dokLinkModel->uploadLink($lk, $kriteria)) {
+                Yii::$app->session->setFlash('success', 'Berhasil Tambah Tautan');
+                return $this->redirect(Url::current());
+            } else {
+                Yii::$app->session->setFlash('error', 'Gagal Tambah Tautan');
                 return $this->redirect(Url::current());
             }
         }
 
 
-        return $this->render('isi-kriteria',[
-            'model'=>$model,
-            'modelKriteria'=>$modelKriteria,
-            'modelTemp'=>$modelTemp,
-            'lkInstitusi'=>$lkInstitusi,
-            'json'=>$data,
-            'butir'=>$butir,
-            'dokModel'=>$dokModel,
-            'progress'=>$progress,
-            'cari'=>'isi',
-            'nomor'=> $nomor,
-            'dokumen'=>$dokumen,
+        return $this->render('isi-kriteria', [
+            'model' => $model,
+            'modelKriteria' => $modelKriteria,
+            'modelTemp' => $modelTemp,
+            'lkInstitusi' => $lkInstitusi,
+            'json' => $data,
+            'butir' => $butir,
+            'dokModel' => $dokModel,
+            'progress' => $progress,
+            'cari' => 'isi',
+            'nomor' => $nomor,
+            'dokumen' => $dokumen,
             'dokTextModel' => $dokTextModel,
             'dokLinkModel' => $dokLinkModel,
             'dokTempModel' => $dokTempModel,
@@ -458,8 +452,9 @@ class LkController extends Controller
         ]);
     }
 
-    public function actionDownloadTemplate($id){
-        ini_set('max_execution_time', 5*60);
+    public function actionDownloadTemplate($id)
+    {
+        ini_set('max_execution_time', 5 * 60);
         $template = K9LkTemplate::findOne($id);
         $path = K9InstitusiDirectoryHelper::getTemplateLkPath();
         $file = $template->nama_file;
@@ -467,8 +462,9 @@ class LkController extends Controller
         return Yii::$app->response->sendFile("$path/$file");
     }
 
-    public function actionDownloadDok($id){
-        ini_set('max_execution_time', 5*60);
+    public function actionDownloadDok($id)
+    {
+        ini_set('max_execution_time', 5 * 60);
         $template = K9LkInstitusiKriteria1Detail::findOne($id);
         $path = K9InstitusiDirectoryHelper::getDokumenLkPath($template->lkInstitusiKriteria1->lkInstitusi->akreditasiInstitusi);
         $file = $template->isi_dokumen;
@@ -476,82 +472,89 @@ class LkController extends Controller
         return Yii::$app->response->sendFile("$path/$file");
     }
 
-    public function actionHapusDok(){
-        if(Yii::$app->request->isPost){
+    public function actionHapusDok()
+    {
+        if (Yii::$app->request->isPost) {
             $id = Yii::$app->request->post('id');
             $kriteria = Yii::$app->request->post('kriteria');
             $lk = Yii::$app->request->post('lk');
 
             $namespace = 'common\\models\\kriteria9\\lk\\institusi\\K9';
-            $class = $namespace.'LkInstitusiKriteria'.$kriteria.'Detail';
-            $model = call_user_func($class.'::findOne',$id);
+            $class = $namespace . 'LkInstitusiKriteria' . $kriteria . 'Detail';
+            $model = call_user_func($class . '::findOne', $id);
 
             $path = K9InstitusiDirectoryHelper::getDokumenLkPath($model->lkInstitusiKriteria1->lkInstitusi->akreditasiInstitusi);
             $file = $model->isi_dokumen;
 
-            if ($model->bentuk_dokumen == 'text'){
+            if ($model->bentuk_dokumen == 'text') {
                 $model->delete();
-                Yii::$app->session->setFlash('success',"Teks Tabel $model->kode_dokumen berhasil dihapus");
-                return $this->redirect(['lk/isi-kriteria','kriteria'=>$kriteria,'lk'=>$lk]);
+                Yii::$app->session->setFlash('success', "Teks Tabel $model->kode_dokumen berhasil dihapus");
+                return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk]);
             }
-            if ($model->bentuk_dokumen == 'link'){
+            if ($model->bentuk_dokumen == 'link') {
                 $model->delete();
-                Yii::$app->session->setFlash('success',"Tautan Tabel $model->kode_dokumen berhasil dihapus");
-                return $this->redirect(['lk/isi-kriteria','kriteria'=>$kriteria,'lk'=>$lk]);
+                Yii::$app->session->setFlash('success', "Tautan Tabel $model->kode_dokumen berhasil dihapus");
+                return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk]);
             }
 
-            if ($model->jenis_dokumen == 'lainnya'){
+            if ($model->jenis_dokumen == 'lainnya') {
                 unlink("$path/lainnya/$file");
                 $model->delete();
 
-                Yii::$app->session->setFlash('success',"Dokumen $model->kode_dokumen berhasil dihapus");
-                return $this->redirect(['lk/isi-kriteria','kriteria'=>$kriteria,'lk'=>$lk]);
+                Yii::$app->session->setFlash('success', "Dokumen $model->kode_dokumen berhasil dihapus");
+                return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk]);
             }
-            if ($model->jenis_dokumen == 'sumber'){
+            if ($model->jenis_dokumen == 'sumber') {
                 unlink("$path/sumber/$file");
                 $model->delete();
 
-                Yii::$app->session->setFlash('success',"Dokumen $model->kode_dokumen berhasil dihapus");
-                return $this->redirect(['lk/isi-kriteria','kriteria'=>$kriteria,'lk'=>$lk]);
+                Yii::$app->session->setFlash('success', "Dokumen $model->kode_dokumen berhasil dihapus");
+                return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk]);
             }
-            if ($model->jenis_dokumen == 'pendukung'){
+            if ($model->jenis_dokumen == 'pendukung') {
                 unlink("$path/pendukung/$file");
                 $model->delete();
 
-                Yii::$app->session->setFlash('success',"Dokumen $model->kode_dokumen berhasil dihapus");
-                return $this->redirect(['lk/isi-kriteria','kriteria'=>$kriteria,'lk'=>$lk]);
+                Yii::$app->session->setFlash('success', "Dokumen $model->kode_dokumen berhasil dihapus");
+                return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk]);
             }
 
             unlink("$path/$file");
             $model->delete();
 
-            Yii::$app->session->setFlash('success',"Dokumen $model->kode_dokumen berhasil dihapus");
-            return $this->redirect(['lk/isi-kriteria','kriteria'=>$kriteria,'lk'=>$lk]);
+            Yii::$app->session->setFlash('success', "Dokumen $model->kode_dokumen berhasil dihapus");
+            return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk]);
         }
         throw new BadRequestHttpException('Request Harus Post');
     }
 
-    public function actionLihatDok($kriteria, $dok, $lk){
+    public function actionLihatDok($kriteria, $dok, $lk)
+    {
 
     }
 
-    public function actionHapusKriteria(){
+    public function actionHapusKriteria()
+    {
 
     }
 
-    public function actoinPj($kriteria){
+    public function actoinPj($kriteria)
+    {
 
     }
 
-    public function actionPjKriteria($kriteria, $lk){
+    public function actionPjKriteria($kriteria, $lk)
+    {
 
     }
 
-    public function actionLihat($lk){
+    public function actionLihat($lk)
+    {
 
     }
 
-    public function actionLihatKriteria($kriteria, $lk){
+    public function actionLihatKriteria($kriteria, $lk)
+    {
 
     }
 }

@@ -8,18 +8,18 @@ $params = array_merge(
 
 return [
     'id' => 'app-akreditasi',
-    'name'=> $params['nama_sistem'],
+    'name' => $params['nama_sistem'],
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'akreditasi\controllers',
-    'modules'=>[
-        'profile'=>[
+    'modules' => [
+        'profile' => [
             'class' => 'common\modules\profile\Profile'
         ],
-        'kriteria9'=>[
-            'class'=>'akreditasi\modules\kriteria9\Kriteria9',
+        'kriteria9' => [
+            'class' => 'akreditasi\modules\kriteria9\Kriteria9',
             'modules' => [
-                'k9-instansi' => [
+                'k9-institusi' => [
                     'class' => 'akreditasi\modules\kriteria9\modules\instansi\K9Instansi',
                 ],
                 'k9-fakultas' => [
@@ -65,18 +65,18 @@ return [
             'showScriptName' => false,
             // Disable r= routes
             'enablePrettyUrl' => true,
-            'rules' =>[
+            'rules' => [
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ],
         ],
-        'assetManager'=>[
-            'bundles'=>[
-                'yii\bootstrap4\BootstrapAsset'=>[
+        'assetManager' => [
+            'bundles' => [
+                'yii\bootstrap4\BootstrapAsset' => [
                     'sourcePath' => '@common/assets/metronic/assets',
 
-                    'css'=>['css/demo1/style.bundle.css']
+                    'css' => ['css/demo1/style.bundle.css']
                 ]
             ]
         ],
