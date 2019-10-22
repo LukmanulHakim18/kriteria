@@ -2,6 +2,8 @@
 
 namespace akreditasi\modules\kriteria9\modules\prodi\controllers;
 
+use common\models\ProgramStudi;
+use Yii;
 use yii\web\Controller;
 
 /**
@@ -9,12 +11,15 @@ use yii\web\Controller;
  */
 class DefaultController extends Controller
 {
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
+    public $layout = 'main';
     public function actionIndex()
     {
-        return $this->render('index');
+        $id_prodi = Yii::$app->request->get('prodi');
+
+        $modelProdi = ProgramStudi::findOne(['id'=>$id_prodi]);
+
+        return $this->render('index',[
+            'modelProdi' => $modelProdi
+        ]);
     }
 }
