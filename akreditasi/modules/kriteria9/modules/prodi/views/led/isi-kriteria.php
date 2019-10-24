@@ -9,15 +9,15 @@
  * @var $linkModel K9DetailLedProdiLinkForm ;
  */
 $prodi = $_GET['prodi'];
-$this->title = "Kriteria " . $_GET['kriteria'];
+$kriteria = $_GET['kriteria'];
+$this->title = "Kriteria " . $kriteria;
 $this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
 $this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9/default/index']];
 $this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['/kriteria9/k9-prodi/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Pencarian Data Prodi', 'url' => ['/kriteria9/k9-prodi/arsip', 'target' => 'isi','prodi'=>$prodi]];
-$this->params['breadcrumbs'][] = ['label' => 'Isi Led', 'url' => ['/kriteria9/k9-prodi/led/isi', 'led' => $_GET['led'],'prodi'=>$prodi]];
+$this->params['breadcrumbs'][] = ['label' => 'Pencarian Data Prodi', 'url' => ['/kriteria9/k9-prodi/arsip', 'target' => 'isi', 'prodi' => $prodi]];
+$this->params['breadcrumbs'][] = ['label' => 'Isi Led', 'url' => ['/kriteria9/k9-prodi/led/isi', 'led' => $_GET['led'], 'prodi' => $prodi]];
 $this->params['breadcrumbs'][] = $this->title;
 
-$kriteria = $_GET['kriteria'];
 
 use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiLinkForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiTeksForm;
@@ -30,7 +30,9 @@ use kartik\file\FileInput;
 use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;
-use yii\bootstrap4\Progress; ?>
+use yii\bootstrap4\Progress;
+
+?>
 
 <div class="kt-portlet">
     <div class="kt-portlet__head">
@@ -98,7 +100,7 @@ use yii\bootstrap4\Progress; ?>
                                         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $modelAttribute . '-form']) ?>
 
                                         <?= $form->field($modelNarasi, $modelAttribute)->widget(TinyMce::class, [
-                                            'options' => ['rows' => 6,'id'=>$modelAttribute.'-tinymce-kriteria'],
+                                            'options' => ['rows' => 6, 'id' => $modelAttribute . '-tinymce-kriteria'],
                                             'language' => 'id',
                                             'clientOptions' => [
                                                 'plugins' => [
@@ -137,20 +139,20 @@ use yii\bootstrap4\Progress; ?>
 
                                     <tbody>
                                     <?php
-                                        foreach ($item['dokumen_sumber'] as $keyDoksum =>$doksum):
-                                            $doksumAttr = '_' . str_replace('.', '_', $doksum['kode']);
-                                    ?>
-                                        <?php if(empty($doksum['kode'])) : ?>
-                                            <tr>
-                                                <td colspan="3">Tidak ada dokumen</td>
-                                            </tr>
-                                        <?php else: ?>
+                                    foreach ($item['dokumen_sumber'] as $keyDoksum => $doksum):
+                                        $doksumAttr = '_' . str_replace('.', '_', $doksum['kode']);
+                                        ?>
+                                        <?php if (empty($doksum['kode'])) : ?>
+                                        <tr>
+                                            <td colspan="3">Tidak ada dokumen</td>
+                                        </tr>
+                                    <?php else: ?>
                                         <tr>
                                             <th scope="row">
-                                                <?=$doksum['kode']?>
+                                                <?= $doksum['kode'] ?>
                                             </th>
                                             <td>
-                                                <?=$doksum['dokumen']?>
+                                                <?= $doksum['dokumen'] ?>
                                             </td>
                                             <td>
                                                 <div class="row pull-right">
@@ -161,13 +163,13 @@ use yii\bootstrap4\Progress; ?>
                                                             'size' => 'modal-lg',
                                                             'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
                                                         ]) ?>
-                                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $doksumAttr. '-text-sumber-form']) ?>
+                                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $doksumAttr . '-text-sumber-form']) ?>
 
                                                         <?= $form->field($textModel, 'kode_dokumen')->textInput(['value' => $doksum['kode'], 'readonly' => true]) ?>
                                                         <?= $form->field($textModel, 'jenis_dokumen')->textInput(['value' => Constants::SUMBER, 'readonly' => true]) ?>
                                                         <?= $form->field($textModel, 'nama_dokumen')->textInput()->label('Nama Teks') ?>
-                                                        <?= $form->field($textModel, 'berkasDokumen')->widget(TinyMce::class,[
-                                                            'options' => ['rows' => 6,'id'=>$doksumAttr.'-text-sumber-input',],
+                                                        <?= $form->field($textModel, 'berkasDokumen')->widget(TinyMce::class, [
+                                                            'options' => ['rows' => 6, 'id' => $doksumAttr . '-text-sumber-input',],
 
                                                             'language' => 'id',
                                                             'clientOptions' => [
@@ -195,7 +197,7 @@ use yii\bootstrap4\Progress; ?>
                                                             'size' => 'modal-lg',
                                                             'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
                                                         ]) ?>
-                                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $doksumAttr. '-link-sumber-form']) ?>
+                                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $doksumAttr . '-link-sumber-form']) ?>
 
                                                         <?= $form->field($linkModel, 'kode_dokumen')->textInput(['value' => $doksum['kode'], 'readonly' => true]) ?>
                                                         <?= $form->field($linkModel, 'jenis_dokumen')->textInput(['value' => Constants::SUMBER, 'readonly' => true]) ?>
@@ -214,7 +216,7 @@ use yii\bootstrap4\Progress; ?>
                                                             'size' => 'modal-lg',
                                                             'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
                                                         ]) ?>
-                                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $doksumAttr. '-upload-sumber-form']) ?>
+                                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $doksumAttr . '-upload-sumber-form']) ?>
 
                                                         <?= $form->field($detailModel, 'kode_dokumen')->textInput(['value' => $doksum['kode'], 'readonly' => true]) ?>
                                                         <?= $form->field($detailModel, 'nama_dokumen')->textInput(['value' => $doksum['dokumen'], 'readonly' => true]) ?>
@@ -246,87 +248,87 @@ use yii\bootstrap4\Progress; ?>
 
                                             </td>
                                         </tr>
-                                            <?php
-                                            $detailClass = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria'.$kriteria.'Detail';
-                                            $detail = call_user_func($detailClass."::find")->where(['id_led_prodi_kriteria'.$kriteria=>$model->id]);
+                                        <?php
+                                        $detailClass = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria' . $kriteria . 'Detail';
+                                        $detail = call_user_func($detailClass . "::find")->where(['id_led_prodi_kriteria' . $kriteria => $model->id]);
 
-                                            $detail1 = $detail->andWhere(['kode_dokumen' => $doksum['kode'],'jenis_dokumen'=>Constants::SUMBER])->all();
+                                        $detail1 = $detail->andWhere(['kode_dokumen' => $doksum['kode'], 'jenis_dokumen' => Constants::SUMBER])->all();
 
-                                            foreach ($detail1 as $k => $v):
-                                                ?>
-                                                <tr>
-                                                    <td colspan="2">
-                                                        <div class="row">
-                                                            <div class="col-lg-12 text-center">
+                                        foreach ($detail1 as $k => $v):
+                                            ?>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 text-center">
 
-                                                                <?= FileIconHelper::getIconByExtension($v->bentuk_dokumen) ?>
-                                                            </div>
+                                                            <?= FileIconHelper::getIconByExtension($v->bentuk_dokumen) ?>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12 text-center">
+                                                            <?php $type = FileTypeHelper::getType($v->bentuk_dokumen);
+
+                                                            if ($type === FileTypeHelper::TYPE_STATIC_TEXT || $type === FileTypeHelper::TYPE_LINK) : ?>
+                                                                <?= Html::encode($v->nama_dokumen) ?>
+
+                                                            <?php else: ?>
+                                                                <?= Html::encode($v->isi_dokumen) ?>
+                                                            <?php endif; ?>
 
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-12 text-center">
-                                                                <?php $type = FileTypeHelper::getType($v->bentuk_dokumen);
+                                                    </div>
+                                                </td>
+                                                <td class="pull-right">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <?php $type = FileTypeHelper::getType($v->bentuk_dokumen);
+                                                            if ($type === FileTypeHelper::TYPE_IMAGE || $type === FileTypeHelper::TYPE_PDF || $type === FileTypeHelper::TYPE_STATIC_TEXT):?>
 
-                                                                if ($type === FileTypeHelper::TYPE_STATIC_TEXT || $type === FileTypeHelper::TYPE_LINK) : ?>
-                                                                    <?=Html::encode($v->nama_dokumen)  ?>
-
-                                                                <?php else:?>
-                                                                    <?=Html::encode($v->isi_dokumen)?>
-                                                                <?php endif;?>
-
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="pull-right">
-                                                        <div class="row">
-                                                            <div class="col-lg-12">
-                                                                <?php $type = FileTypeHelper::getType($v->bentuk_dokumen);
-                                                                if ($type === FileTypeHelper::TYPE_IMAGE || $type === FileTypeHelper::TYPE_PDF || $type === FileTypeHelper::TYPE_STATIC_TEXT):?>
-
-                                                                    <?php Modal::begin([
-                                                                        'title' => $v->nama_dokumen,
-                                                                        'toggleButton' => ['label' => '<i class="la la-eye"></i> &nbsp;Lihat', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'],
-                                                                        'size' => 'modal-lg',
-                                                                        'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
-                                                                    ]); ?>
-                                                                    <?php switch ($type) {
-                                                                        case FileTypeHelper::TYPE_IMAGE:
-                                                                            echo Html::img("$path/sumber/{$v->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
-                                                                            break;
-                                                                        case FileTypeHelper::TYPE_STATIC_TEXT:
-                                                                            echo $v->isi_dokumen;
-                                                                            break;
-                                                                        case FileTypeHelper::TYPE_PDF:
-                                                                            echo '<embed src="' . $path . '/sumber/' . $v->isi_dokumen . '" type="application/pdf" height="100%" width="100%">
+                                                                <?php Modal::begin([
+                                                                    'title' => $v->nama_dokumen,
+                                                                    'toggleButton' => ['label' => '<i class="la la-eye"></i> &nbsp;Lihat', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'],
+                                                                    'size' => 'modal-lg',
+                                                                    'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
+                                                                ]); ?>
+                                                                <?php switch ($type) {
+                                                                    case FileTypeHelper::TYPE_IMAGE:
+                                                                        echo Html::img("$path/sumber/{$v->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
+                                                                        break;
+                                                                    case FileTypeHelper::TYPE_STATIC_TEXT:
+                                                                        echo $v->isi_dokumen;
+                                                                        break;
+                                                                    case FileTypeHelper::TYPE_PDF:
+                                                                        echo '<embed src="' . $path . '/sumber/' . $v->isi_dokumen . '" type="application/pdf" height="100%" width="100%">
 ';
-                                                                            break;
-                                                                    } ?>
-                                                                    <?php Modal::end(); ?>
-                                                                <?php elseif($type === FileTypeHelper::TYPE_LINK): ?>
-                                                                    <?=Html::a('<i class="la la-external-link"></i> Lihat',$v->isi_dokumen,['class'=>'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air','target'=>'_blank'])?>
-                                                                <?php endif; ?>
-                                                                <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
+                                                                        break;
+                                                                } ?>
+                                                                <?php Modal::end(); ?>
+                                                            <?php elseif ($type === FileTypeHelper::TYPE_LINK): ?>
+                                                                <?= Html::a('<i class="la la-external-link"></i> Lihat', $v->isi_dokumen, ['class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air', 'target' => '_blank']) ?>
+                                                            <?php endif; ?>
+                                                            <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
 
-                                                                <?php else: ?>
-                                                                    <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['led/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'led' => $_GET['led'],'jenis'=>Constants::SUMBER], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
-                                                                <?php endif; ?>
-                                                                <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['led/hapus-detail'], [
-                                                                    'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
-                                                                    'data' => [
-                                                                        'method' => 'POST',
-                                                                        'confirm' => 'Apakah anda yakin menghapus item ini?',
-                                                                        'params' => ['dokumen' => $v->id, 'kriteria' => $kriteria,'prodi'=>$prodi, 'led' => $_GET['led'],'jenis'=>Constants::SUMBER]
-                                                                    ]
-                                                                ]) ?>
-                                                            </div>
-
+                                                            <?php else: ?>
+                                                                <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['led/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'led' => $_GET['led'], 'jenis' => Constants::SUMBER], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
+                                                            <?php endif; ?>
+                                                            <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['led/hapus-detail'], [
+                                                                'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
+                                                                'data' => [
+                                                                    'method' => 'POST',
+                                                                    'confirm' => 'Apakah anda yakin menghapus item ini?',
+                                                                    'params' => ['dokumen' => $v->id, 'kriteria' => $kriteria, 'prodi' => $prodi, 'led' => $_GET['led'], 'jenis' => Constants::SUMBER]
+                                                                ]
+                                                            ]) ?>
                                                         </div>
-                                                    </td>
-                                                </tr>
 
-                                            <?php endforeach; ?>
-                                        <?php endif;?>
-                                    <?php endforeach;?>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                    <?php endforeach; ?>
 
 
                                     </tbody>
@@ -348,20 +350,20 @@ use yii\bootstrap4\Progress; ?>
 
                                     <tbody>
                                     <?php
-                                    foreach ($item['dokumen_pendukung'] as $keyDokpen =>$dokpen):
+                                    foreach ($item['dokumen_pendukung'] as $keyDokpen => $dokpen):
                                         $dokpenAttr = '_' . str_replace('.', '_', $dokpen['kode']);
                                         ?>
-                                        <?php if(empty($dokpen['kode'])) : ?>
+                                        <?php if (empty($dokpen['kode'])) : ?>
                                         <tr>
                                             <td colspan="3">Tidak ada dokumen</td>
                                         </tr>
-                                        <?php else: ?>
+                                    <?php else: ?>
                                         <tr>
                                             <th scope="row">
-                                                <?=$dokpen['kode']?>
+                                                <?= $dokpen['kode'] ?>
                                             </th>
                                             <td>
-                                                <?=$dokpen['dokumen']?>
+                                                <?= $dokpen['dokumen'] ?>
                                             </td>
                                             <td>
                                                 <div class="row pull-right">
@@ -372,13 +374,13 @@ use yii\bootstrap4\Progress; ?>
                                                             'size' => 'modal-lg',
                                                             'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
                                                         ]) ?>
-                                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $doksumAttr. '-text-pendukung-form']) ?>
+                                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $doksumAttr . '-text-pendukung-form']) ?>
 
                                                         <?= $form->field($textModel, 'kode_dokumen')->textInput(['value' => $dokpen['kode'], 'readonly' => true]) ?>
                                                         <?= $form->field($textModel, 'jenis_dokumen')->textInput(['value' => Constants::PENDUKUNG, 'readonly' => true]) ?>
                                                         <?= $form->field($textModel, 'nama_dokumen')->textInput()->label('Nama Teks') ?>
-                                                        <?= $form->field($textModel, 'berkasDokumen')->widget(TinyMce::class,[
-                                                            'options' => ['rows' => 6,'id'=>$dokpenAttr.'-text-sumber-input',],
+                                                        <?= $form->field($textModel, 'berkasDokumen')->widget(TinyMce::class, [
+                                                            'options' => ['rows' => 6, 'id' => $dokpenAttr . '-text-sumber-input',],
 
                                                             'language' => 'id',
                                                             'clientOptions' => [
@@ -392,7 +394,7 @@ use yii\bootstrap4\Progress; ?>
                                                                 'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link"
 
                                                             ]
-                                                        ])->label('Teks')  ?>
+                                                        ])->label('Teks') ?>
 
                                                         <div class="form-group pull-right">
                                                             <?= Html::submitButton('<i class="la la-save"></i> Simpan', ['class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air']) ?>
@@ -406,7 +408,7 @@ use yii\bootstrap4\Progress; ?>
                                                             'size' => 'modal-lg',
                                                             'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
                                                         ]) ?>
-                                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $dokpenAttr. '-link-pendukung-form']) ?>
+                                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $dokpenAttr . '-link-pendukung-form']) ?>
 
                                                         <?= $form->field($linkModel, 'kode_dokumen')->textInput(['value' => $dokpen['kode'], 'readonly' => true]) ?>
                                                         <?= $form->field($linkModel, 'jenis_dokumen')->textInput(['value' => Constants::PENDUKUNG, 'readonly' => true]) ?>
@@ -425,7 +427,7 @@ use yii\bootstrap4\Progress; ?>
                                                             'size' => 'modal-lg',
                                                             'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
                                                         ]) ?>
-                                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $dokpenAttr. '-pendukung-form']) ?>
+                                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $dokpenAttr . '-pendukung-form']) ?>
 
                                                         <?= $form->field($detailModel, 'kode_dokumen')->textInput(['value' => $dokpen['kode'], 'readonly' => true]) ?>
                                                         <?= $form->field($detailModel, 'nama_dokumen')->textInput(['value' => $dokpen['dokumen'], 'readonly' => true]) ?>
@@ -458,15 +460,15 @@ use yii\bootstrap4\Progress; ?>
                                             </td>
                                         </tr>
                                         <?php
-                                        $detailClass = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria'.$kriteria.'Detail';
-                                        $detail = call_user_func($detailClass."::find")->where(['id_led_prodi_kriteria'.$kriteria=>$model->id]);
+                                        $detailClass = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria' . $kriteria . 'Detail';
+                                        $detail = call_user_func($detailClass . "::find")->where(['id_led_prodi_kriteria' . $kriteria => $model->id]);
 
-                                        $detail1 = $detail->andWhere(['kode_dokumen' => $dokpen['kode'],'jenis_dokumen'=>Constants::PENDUKUNG])->all();
+                                        $detail1 = $detail->andWhere(['kode_dokumen' => $dokpen['kode'], 'jenis_dokumen' => Constants::PENDUKUNG])->all();
 
                                         foreach ($detail1 as $k => $v):
                                             ?>
                                             <tr>
-                                                <td><?=$k+1?></td>
+                                                <td><?= $k + 1 ?></td>
                                                 <td>
                                                     <div class="row">
                                                         <div class="col-lg-12 text-center">
@@ -479,11 +481,11 @@ use yii\bootstrap4\Progress; ?>
                                                             <?php $type = FileTypeHelper::getType($v->bentuk_dokumen);
 
                                                             if ($type === FileTypeHelper::TYPE_STATIC_TEXT || $type === FileTypeHelper::TYPE_LINK) : ?>
-                                                                <?=Html::encode($v->nama_dokumen)  ?>
+                                                                <?= Html::encode($v->nama_dokumen) ?>
 
-                                                            <?php else:?>
-                                                                <?=Html::encode($v->isi_dokumen)?>
-                                                            <?php endif;?>
+                                                            <?php else: ?>
+                                                                <?= Html::encode($v->isi_dokumen) ?>
+                                                            <?php endif; ?>
 
                                                         </div>
                                                     </div>
@@ -513,20 +515,20 @@ use yii\bootstrap4\Progress; ?>
                                                                         break;
                                                                 } ?>
                                                                 <?php Modal::end(); ?>
-                                                            <?php elseif($type === FileTypeHelper::TYPE_LINK): ?>
-                                                            <?=Html::a('<i class="la la-external-link"></i> Lihat',$v->isi_dokumen,['class'=>'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air','target'=>'_blank'])?>
+                                                            <?php elseif ($type === FileTypeHelper::TYPE_LINK): ?>
+                                                                <?= Html::a('<i class="la la-external-link"></i> Lihat', $v->isi_dokumen, ['class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air', 'target' => '_blank']) ?>
                                                             <?php endif; ?>
                                                             <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
 
                                                             <?php else: ?>
-                                                            <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['led/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'led' => $_GET['led'],'jenis'=>Constants::PENDUKUNG], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
+                                                                <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['led/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'led' => $_GET['led'], 'jenis' => Constants::PENDUKUNG], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
                                                             <?php endif; ?>
                                                             <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['led/hapus-detail'], [
                                                                 'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
                                                                 'data' => [
                                                                     'method' => 'POST',
                                                                     'confirm' => 'Apakah anda yakin menghapus item ini?',
-                                                                    'params' => ['dokumen' => $v->id, 'kriteria' => $kriteria, 'led' => $_GET['led'],'jenis'=>Constants::PENDUKUNG,'prodi'=>$prodi]
+                                                                    'params' => ['dokumen' => $v->id, 'kriteria' => $kriteria, 'led' => $_GET['led'], 'jenis' => Constants::PENDUKUNG, 'prodi' => $prodi]
                                                                 ]
                                                             ]) ?>
                                                         </div>
@@ -536,8 +538,8 @@ use yii\bootstrap4\Progress; ?>
                                             </tr>
 
                                         <?php endforeach; ?>
-                                    <?php endif;?>
-                                    <?php endforeach;?>
+                                    <?php endif; ?>
+                                    <?php endforeach; ?>
 
 
                                     </tbody>
@@ -564,12 +566,12 @@ use yii\bootstrap4\Progress; ?>
                                                         'size' => 'modal-lg',
                                                         'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
                                                     ]) ?>
-                                                    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $modelAttribute. '-text-lainnya-form']) ?>
+                                                    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $modelAttribute . '-text-lainnya-form']) ?>
 
                                                     <?= $form->field($textModel, 'jenis_dokumen')->textInput(['value' => Constants::LAINNYA, 'readonly' => true]) ?>
                                                     <?= $form->field($textModel, 'nama_dokumen')->textInput()->label('Nama Teks') ?>
-                                                    <?= $form->field($textModel, 'berkasDokumen')->widget(TinyMce::class,[
-                                                        'options' => ['rows' => 6,'id'=>$modelAttribute.'-text-lainnya-input',],
+                                                    <?= $form->field($textModel, 'berkasDokumen')->widget(TinyMce::class, [
+                                                        'options' => ['rows' => 6, 'id' => $modelAttribute . '-text-lainnya-input',],
 
                                                         'language' => 'id',
                                                         'clientOptions' => [
@@ -597,7 +599,7 @@ use yii\bootstrap4\Progress; ?>
                                                         'size' => 'modal-lg',
                                                         'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
                                                     ]) ?>
-                                                    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $modelAttribute. '-link-lainnya-form']) ?>
+                                                    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $modelAttribute . '-link-lainnya-form']) ?>
 
                                                     <?= $form->field($linkModel, 'jenis_dokumen')->textInput(['value' => Constants::LAINNYA, 'readonly' => true]) ?>
                                                     <?= $form->field($linkModel, 'nama_dokumen')->textInput()->label('Nama Tautan') ?>
@@ -654,15 +656,15 @@ use yii\bootstrap4\Progress; ?>
 
                                     <tbody>
                                     <?php
-                                    $detailClass = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria'.$kriteria."Detail";
-                                    $detail = call_user_func($detailClass."::find")->where(['id_led_prodi_kriteria'.$kriteria=>$model->id]);
+                                    $detailClass = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria' . $kriteria . "Detail";
+                                    $detail = call_user_func($detailClass . "::find")->where(['id_led_prodi_kriteria' . $kriteria => $model->id]);
 
-                                    $detail1 = $detail->andWhere(['jenis_dokumen'=>Constants::LAINNYA])->all();
+                                    $detail1 = $detail->andWhere(['jenis_dokumen' => Constants::LAINNYA])->all();
 
                                     foreach ($detail1 as $k => $v):
                                         ?>
                                         <tr>
-                                            <td><?=$k+1?></td>
+                                            <td><?= $k + 1 ?></td>
                                             <td>
                                                 <div class="row">
                                                     <div class="col-lg-12 text-center">
@@ -675,11 +677,11 @@ use yii\bootstrap4\Progress; ?>
                                                         <?php $type = FileTypeHelper::getType($v->bentuk_dokumen);
 
                                                         if ($type === FileTypeHelper::TYPE_STATIC_TEXT || $type === FileTypeHelper::TYPE_LINK) : ?>
-                                                            <?=Html::encode($v->nama_dokumen)  ?>
+                                                            <?= Html::encode($v->nama_dokumen) ?>
 
-                                                        <?php else:?>
-                                                            <?=Html::encode($v->isi_dokumen)?>
-                                                        <?php endif;?>
+                                                        <?php else: ?>
+                                                            <?= Html::encode($v->isi_dokumen) ?>
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                             </td>
@@ -708,20 +710,20 @@ use yii\bootstrap4\Progress; ?>
                                                                     break;
                                                             } ?>
                                                             <?php Modal::end(); ?>
-                                                        <?php elseif($type === FileTypeHelper::TYPE_LINK): ?>
-                                                            <?=Html::a('<i class="la la-external-link"></i> Lihat',$v->isi_dokumen,['class'=>'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air','target'=>'_blank'])?>
+                                                        <?php elseif ($type === FileTypeHelper::TYPE_LINK): ?>
+                                                            <?= Html::a('<i class="la la-external-link"></i> Lihat', $v->isi_dokumen, ['class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air', 'target' => '_blank']) ?>
                                                         <?php endif; ?>
                                                         <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
 
                                                         <?php else: ?>
-                                                            <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['led/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'led' => $_GET['led'],'jenis'=>Constants::LAINNYA], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
+                                                            <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['led/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'led' => $_GET['led'], 'jenis' => Constants::LAINNYA], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
                                                         <?php endif; ?>
                                                         <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['led/hapus-detail'], [
                                                             'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
                                                             'data' => [
                                                                 'method' => 'POST',
                                                                 'confirm' => 'Apakah anda yakin menghapus item ini?',
-                                                                'params' => ['dokumen' => $v->id, 'kriteria' => $kriteria, 'led' => $_GET['led'],'jenis'=>Constants::LAINNYA,'prodi'=>$prodi]
+                                                                'params' => ['dokumen' => $v->id, 'kriteria' => $kriteria, 'led' => $_GET['led'], 'jenis' => Constants::LAINNYA, 'prodi' => $prodi]
                                                             ]
                                                         ]) ?>
                                                     </div>

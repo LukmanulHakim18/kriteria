@@ -5,25 +5,6 @@ namespace admin\models;
 
 
 use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
-use common\models\kriteria9\led\fakultas\K9LedFakultas;
-use common\models\kriteria9\led\fakultas\K9LedFakultasKriteria1;
-use common\models\kriteria9\led\fakultas\K9LedFakultasKriteria2;
-use common\models\kriteria9\led\fakultas\K9LedFakultasKriteria3;
-use common\models\kriteria9\led\fakultas\K9LedFakultasKriteria4;
-use common\models\kriteria9\led\fakultas\K9LedFakultasKriteria5;
-use common\models\kriteria9\led\fakultas\K9LedFakultasKriteria6;
-use common\models\kriteria9\led\fakultas\K9LedFakultasKriteria7;
-use common\models\kriteria9\led\fakultas\K9LedFakultasKriteria8;
-use common\models\kriteria9\led\fakultas\K9LedFakultasKriteria9;
-use common\models\kriteria9\led\fakultas\K9LedFakultasNarasiKriteria1;
-use common\models\kriteria9\led\fakultas\K9LedFakultasNarasiKriteria2;
-use common\models\kriteria9\led\fakultas\K9LedFakultasNarasiKriteria3;
-use common\models\kriteria9\led\fakultas\K9LedFakultasNarasiKriteria4;
-use common\models\kriteria9\led\fakultas\K9LedFakultasNarasiKriteria5;
-use common\models\kriteria9\led\fakultas\K9LedFakultasNarasiKriteria6;
-use common\models\kriteria9\led\fakultas\K9LedFakultasNarasiKriteria7;
-use common\models\kriteria9\led\fakultas\K9LedFakultasNarasiKriteria8;
-use common\models\kriteria9\led\fakultas\K9LedFakultasNarasiKriteria9;
 use common\models\kriteria9\led\prodi\K9LedProdi;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria1;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria2;
@@ -43,32 +24,14 @@ use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria6;
 use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria7;
 use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria8;
 use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria9;
-use common\models\kriteria9\lk\fakultas\K9LkFakultas;
-use common\models\kriteria9\lk\fakultas\K9LkFakultasKriteria1;
-use common\models\kriteria9\lk\fakultas\K9LkFakultasKriteria2;
-use common\models\kriteria9\lk\fakultas\K9LkFakultasKriteria3;
-use common\models\kriteria9\lk\fakultas\K9LkFakultasKriteria4;
-use common\models\kriteria9\lk\fakultas\K9LkFakultasKriteria5;
-use common\models\kriteria9\lk\fakultas\K9LkFakultasKriteria6;
-use common\models\kriteria9\lk\fakultas\K9LkFakultasKriteria7;
-use common\models\kriteria9\lk\fakultas\K9LkFakultasKriteria8;
-use common\models\kriteria9\lk\fakultas\K9LkFakultasKriteria9;
 use common\models\kriteria9\lk\prodi\K9LkProdi;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria1;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria2;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria3;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria4;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria5;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria6;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria7;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria8;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria9;
-use Exception;
 use InvalidArgumentException;
 use Yii;
+use yii\base\Exception;
 use yii\base\Model;
 use yii\db\Transaction;
 use yii\helpers\FileHelper;
+use yii\helpers\Json;
 
 class K9AkreditasiProdiForm extends Model
 {
@@ -90,6 +53,19 @@ class K9AkreditasiProdiForm extends Model
      */
     private $_lk_prodi;
 
+    public static function findOne($id)
+    {
+
+        $model = new K9AkreditasiProdiForm();
+        $data = K9AkreditasiProdi::findOne($id);
+        $id_akreditasi = $data->id_akreditasi;
+        $model->id_prodi = $data->id_prodi;
+        $model->id_akreditasi = $data->id_akreditasi;
+        $model->_lk_prodi = $data->k9LkProdis;
+        $model->_led_prodi = $data->k9LedProdis;
+
+        return $model;
+    }
 
     /**
      * @return array
@@ -133,7 +109,49 @@ class K9AkreditasiProdiForm extends Model
         return true;
     }
 
+    /**
+     * @param $transaction Transaction
+     */
+    private function createLk($transaction)
+    {
+        $this->_lk_prodi = new K9LkProdi();
 
+
+        $this->_lk_prodi->id_akreditasi_prodi = $this->_akreditasiProdi->id;
+        $this->_lk_prodi->progress = 0;
+
+        if (!$this->_lk_prodi->save(false)) {
+            $transaction->rollback();
+            throw new InvalidArgumentException($this->_lk_prodi->errors);
+
+        }
+
+        $fileJson = 'lkps_prodi_s1.json';
+        $json = Json::decode(file_get_contents(Yii::getAlias('@common/required/kriteria9/aps/' . $fileJson)));
+        $attr = ['id_lk_prodi' => $this->_lk_prodi->id, 'progress' => 0];
+        foreach ($json as $kriteria) {
+            $class = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria['kriteria'];
+            $kriteriaProdi = new $class;
+            $kriteriaProdi->setAttributes($attr);
+            foreach ($kriteria['butir'] as $key => $item) {
+                $modelAttribute = '_' . str_replace('.', '_', $item['nomor']);
+                $kriteriaProdi->$modelAttribute = $item['template'];
+                if (!$kriteriaProdi->save) {
+                    $transaction->rollBack();
+                    throw new InvalidArgumentException($kriteriaProdi->errors);
+                }
+            }
+        }
+
+
+        $this->createFolder();
+
+
+    }
+
+    /**
+     * @throws Exception
+     */
     private function createFolder()
     {
         $uploadPath = Yii::$app->params['uploadPath'];
@@ -163,94 +181,17 @@ class K9AkreditasiProdiForm extends Model
         $pathMatriks = $pathP . '/matriks-kuantitatif';
 
 
-        FileHelper::createDirectory($pathLedSumber);
-        FileHelper::createDirectory($pathLedPendukung);
-        FileHelper::createDirectory($pathLedLainnya);
-        FileHelper::createDirectory($pathLkSumber);
-        FileHelper::createDirectory($pathLkPendukung);
-        FileHelper::createDirectory($pathLkLainnya);
-        FileHelper::createDirectory($pathMatriks);
-
-    }
-
-    /**
-     * @param $transaction Transaction
-     */
-    private function createLk($transaction)
-    {
-        $this->_lk_prodi = new K9LkProdi();
-
-
-        $this->_lk_prodi->id_akreditasi_prodi = $this->_akreditasiProdi->id;
-        $this->_lk_prodi->progress = 0;
-
-        if (!$this->_lk_prodi->save(false)) {
-            $transaction->rollback();
-            throw new InvalidArgumentException($this->_lk_prodi->errors);
-
+        try {
+            FileHelper::createDirectory($pathLedSumber);
+            FileHelper::createDirectory($pathLedPendukung);
+            FileHelper::createDirectory($pathLedLainnya);
+            FileHelper::createDirectory($pathLkSumber);
+            FileHelper::createDirectory($pathLkPendukung);
+            FileHelper::createDirectory($pathLkLainnya);
+            FileHelper::createDirectory($pathMatriks);
+        } catch (Exception $e) {
+            throw $e;
         }
-
-        $attr = ['id_lk_prodi' => $this->_lk_prodi->id, 'progress' => 0];
-
-        $kriteria1Prodi = new K9LkProdiKriteria1();
-        $kriteria2Prodi = new K9LkProdiKriteria2();
-        $kriteria3Prodi = new K9LkProdiKriteria3();
-        $kriteria4Prodi = new K9LkProdiKriteria4();
-        $kriteria5Prodi = new K9LkProdiKriteria5();
-        $kriteria6Prodi = new K9LkProdiKriteria6();
-        $kriteria7Prodi = new K9LkProdiKriteria7();
-        $kriteria8Prodi = new K9LkProdiKriteria8();
-
-
-        $kriteria1Prodi->attributes = $attr;
-        $kriteria2Prodi->attributes = $attr;
-        $kriteria3Prodi->attributes = $attr;
-        $kriteria4Prodi->attributes = $attr;
-        $kriteria5Prodi->attributes = $attr;
-        $kriteria6Prodi->attributes = $attr;
-        $kriteria7Prodi->attributes = $attr;
-        $kriteria8Prodi->attributes = $attr;
-
-
-        if (!$kriteria1Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria1Prodi->errors);
-        }
-
-        if (!$kriteria2Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria2Prodi->errors);
-        }
-        if (!$kriteria3Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria3Prodi->errors);
-        }
-
-        if (!$kriteria4Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria4Prodi->errors);
-        }
-
-        if (!$kriteria5Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria5Prodi->errors);
-        }
-
-        if (!$kriteria6Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria6Prodi->errors);
-        }
-        if (!$kriteria7Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria7Prodi->errors);
-        }
-        if (!$kriteria8Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria8Prodi->errors);
-        }
-
-
-        $this->createFolder();
 
 
     }
@@ -413,20 +354,6 @@ class K9AkreditasiProdiForm extends Model
         }
 
 
-    }
-
-    public static function findOne($id)
-    {
-
-        $model = new K9AkreditasiProdiForm();
-        $data = K9AkreditasiProdi::findOne($id);
-        $id_akreditasi = $data->id_akreditasi;
-        $model->id_prodi = $data->id_prodi;
-        $model->id_akreditasi = $data->id_akreditasi;
-        $model->_lk_prodi = $data->k9LkProdis;
-        $model->_led_prodi = $data->k9LedProdis;
-
-        return $model;
     }
 
 

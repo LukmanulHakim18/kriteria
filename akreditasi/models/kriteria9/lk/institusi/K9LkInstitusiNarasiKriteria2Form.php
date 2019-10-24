@@ -10,7 +10,7 @@
 namespace akreditasi\models\kriteria9\lk\prodi;
 
 
-
+use common\helpers\kriteria9\K9InstitusiProgressHelper;
 use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria2;
 
 class K9LkInstitusiNarasiKriteria2Form extends K9LkInstitusiKriteria2
@@ -41,10 +41,12 @@ class K9LkInstitusiNarasiKriteria2Form extends K9LkInstitusiKriteria2
                 $count += 1;
             }
         }
+        $progress1 = round(($count / $total) * 100, 2);
 
-        $progress = round(($count / $total) * 100, 2);
+        $dokumen = K9InstitusiProgressHelper::getDokumenLkProgress($this->id_lk_institusi, $this->getK9LkInstitusiKriteria2Details(), 2);
 
-        $this->progress = $progress;
+        $progress2 = round(($dokumen) / 1, 2);
+        $this->progress = $progress1 + $progress2;
 
         return true;
     }

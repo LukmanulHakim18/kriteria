@@ -23,7 +23,6 @@ use common\models\kriteria9\lk\prodi\K9LkProdiKriteria5;
 use common\models\kriteria9\lk\prodi\K9LkProdiKriteria6;
 use common\models\kriteria9\lk\prodi\K9LkProdiKriteria7;
 use common\models\kriteria9\lk\prodi\K9LkProdiKriteria8;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria9;
 use common\models\ProgramStudi;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -76,133 +75,54 @@ class LkController extends BaseController
     public function actionIsi($lk, $prodi)
     {
         $file_json = 'lkps_prodi_s1.json';
-        $lkInstitusi = K9LkProdi::findOne($lk);
+        $lkProdi = K9LkProdi::findOne($lk);
 
-        $json = file_get_contents(Yii::getAlias('@common/required/kriteria9/aps/' . $file_json));
-        $kriteria1 = K9LkProdiKriteria1::find()->where(['id_lk_prodi' => $lk])->one();
-        $kriteria2 = K9LkProdiKriteria2::find()->where(['id_lk_prodi' => $lk])->one();
-        $kriteria3 = K9LkProdiKriteria3::find()->where(['id_lk_prodi' => $lk])->one();
-        $kriteria4 = K9LkProdiKriteria4::find()->where(['id_lk_prodi' => $lk])->one();
-        $kriteria5 = K9LkProdiKriteria5::find()->where(['id_lk_prodi' => $lk])->one();
-        $kriteria6 = K9LkProdiKriteria6::find()->where(['id_lk_prodi' => $lk])->one();
-        $kriteria7 = K9LkProdiKriteria7::find()->where(['id_lk_prodi' => $lk])->one();
-        $kriteria8 = K9LkProdiKriteria8::find()->where(['id_lk_prodi' => $lk])->one();
-        $kriteria9 = K9LkProdiKriteria9::find()->where(['id_lk_prodi' => $lk])->one();
-
-        $decode = Json::decode($json);
-
-        $data1 = $decode[0];
-        $butir1 = $data1['butir'];
-        $data2 = $decode[1];
-        $butir2 = $data2['butir'];
-        $data3 = $decode[2];
-        $butir3 = $data3['butir'];
-        $data4 = $decode[3];
-        $butir4 = $data4['butir'];
-        $data5 = $decode[4];
-        $butir5 = $data5['butir'];
-
-
-        $ini = parse_ini_file(__DIR__ . '/../../../../../../system-configuration.ini');
-        $institusi = $ini['institusi'];
+        $json = $this->getJsonData();
+        $kriteria = $this->getArrayKriteria($lk);
+        $institusi = Yii::$app->params['institusi'];
 
         return $this->render('isi', [
-            'lkInstitusi' => $lkInstitusi,
-            'kriteria1' => $kriteria1,
-            'kriteria2' => $kriteria2,
-            'kriteria3' => $kriteria3,
-            'kriteria4' => $kriteria4,
-            'kriteria5' => $kriteria5,
-            'kriteria6' => $kriteria6,
-            'kriteria7' => $kriteria7,
-            'kriteria8' => $kriteria8,
-            'kriteria9' => $kriteria9,
-            'decode' => $decode,
-            'institusi' => $institusi
+            'lkProdi' => $lkProdi,
+            'kriteria' => $kriteria,
+            'institusi' => $institusi,
+            'json' => $json
         ]);
+    }
+
+    protected function getJsonData()
+    {
+        $fileJson = 'lkps_prodi_s1.json';
+        $json = Json::decode(file_get_contents(Yii::getAlias('@common/required/kriteria9/aps/' . $fileJson)));
+        return $json;
+
+    }
+
+    protected function getArrayKriteria($lk)
+    {
+        $kriteria1 = K9LkProdiKriteria1::findOne(['id_lk_prodi' => $lk]);
+        $kriteria2 = K9LkProdiKriteria2::findOne(['id_lk_prodi' => $lk]);
+        $kriteria3 = K9LkProdiKriteria3::findOne(['id_lk_prodi' => $lk]);
+        $kriteria4 = K9LkProdiKriteria4::findOne(['id_lk_prodi' => $lk]);
+        $kriteria5 = K9LkProdiKriteria5::findOne(['id_lk_prodi' => $lk]);
+        $kriteria6 = K9LkProdiKriteria6::findOne(['id_lk_prodi' => $lk]);
+        $kriteria7 = K9LkProdiKriteria7::findOne(['id_lk_prodi' => $lk]);
+        $kriteria8 = K9LkProdiKriteria8::findOne(['id_lk_prodi' => $lk]);
+
+        $kriteria = [$kriteria1, $kriteria2, $kriteria3, $kriteria4, $kriteria5, $kriteria6, $kriteria7, $kriteria8];
+
+        return $kriteria;
     }
 
     public function actionIsiKriteria($lk, $kriteria, $prodi)
     {
-        $file_json = 'lkps_prodi_s1.json';
-        $json = file_get_contents(Yii::getAlias('@common/required/kriteria9/aps/' . $file_json));
 
-        $lkInstitusi = K9LkProdi::findOne($lk);
-        $sourceModel = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria . 'Detail';
-        $sourceKriteria = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria;
+        $json = $this->getJsonData();
+        $dataKriteria = $json[$kriteria - 1];
+        $poinKriteria = $dataKriteria['butir'];
+        $lkProdi = K9LkProdi::findOne($lk);
 
-        $model = call_user_func($sourceModel . '::find')->where(['id_lk_prodi_kriteria' . $kriteria => $lk])->all();
-        $modelTemp = call_user_func($sourceModel . '::find')->where(['id_lk_prodi_kriteria' . $kriteria => $lk, 'jenis_dokumen' => 'template'])->all();
-
-        $sourceCek = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria . 'Detail';
-//        $cekisi = call_user_func($sourceCek.'::find')->where(['id_lk_prodi_kriteria'.$kriteria=>$lk])->select('kode_dokumen')->distinct()->count();
-        $cekisiTemplate = call_user_func($sourceCek . '::find')->where(['id_lk_prodi_kriteria' . $kriteria => $lk, 'jenis_dokumen' => 'template'])->select('kode_dokumen')->distinct()->count();
-        $cekisiSumber = call_user_func($sourceCek . '::find')->where(['id_lk_prodi_kriteria' . $kriteria => $lk, 'jenis_dokumen' => 'sumber'])->select('kode_dokumen')->distinct()->count();
-        $cekisiPendukung = call_user_func($sourceCek . '::find')->where(['id_lk_prodi_kriteria' . $kriteria => $lk, 'jenis_dokumen' => 'pendukung'])->select('kode_dokumen')->distinct()->count();
-        $modelKriteria = call_user_func($sourceKriteria . '::find')->where(['id_lk_prodi' => $lk])->one();
-
-        $template = K9LkTemplate::find();
-
-        $decode = Json::decode($json);
-        $data = $decode[$kriteria - 1];
-        $butir = $data['butir'];
-
-        $jumlahdok = 0;
-        $jumlahisidok = 0;
-        //jumlah
-        $nomor = [];
-        $dokumen = [];
-
-//        var_dump($butir[0]['template']);
-//        exit();
-
-        foreach ($butir as $key => $value) {
-            if (!empty($value['template'])) {
-                $jumlahdok++;
-            }
-            foreach ($value['dokumen_sumber'] as $key1 => $sumber) {
-                if (!empty($sumber['kode'])) {
-                    $carikode = call_user_func($sourceCek . '::find')->where(['kode_dokumen' => $sumber['kode'], 'id_lk_prodi_kriteria' . $kriteria => $lk])->all();
-                    if ($carikode) {
-                        $jumlahisidok++;
-                    }
-                    $jumlahdok++;
-                }
-            }
-            foreach ($value['dokumen_pendukung'] as $key2 => $pendukung) {
-                if (!empty($pendukung['kode'])) {
-                    $carikode = call_user_func($sourceCek . '::find')->where(['kode_dokumen' => $pendukung['kode'], 'id_lk_prodi_kriteria' . $kriteria => $lk])->all();
-                    if ($carikode) {
-                        $jumlahisidok++;
-                    }
-                    $jumlahdok++;
-                }
-            }
-            $nomor[$key] = $jumlahdok;
-            $dokumen[$key] = $jumlahisidok; /*jumlah dokumen yg diisi*/
-            $jumlahdok = 0;
-            $jumlahisidok = 0;
-        }
-
-        //cari dokumen yg belum diupload
-//        var_dump($cekisi);
-//        exit();
-        $isi = $cekisiTemplate + $cekisiSumber + $cekisiPendukung;
-
-
-//        fix dokumentasi standar 3 sementara
-        if ($kriteria == 3) {
-            if ($isi > 44) {
-                $isi = 44;
-            }
-        }
-        if ($kriteria == 4) {
-            if ($isi > 47) {
-                $isi = 47;
-            }
-        }
-
-        $progress = round(($isi / array_sum($nomor)) * 100, 2);
+        $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\prodi\\K9lkProdiNarasiKriteria' . $kriteria . 'Form';
+        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', $lk);
 
         $dokModel = new K9LkProdiKriteriaDetailForm();
         $dokTextModel = new K9TextLkProdiKriteriaDetailForm();
@@ -259,21 +179,15 @@ class LkController extends BaseController
 
 
         return $this->render('isi-kriteria', [
-            'model' => $model,
-            'modelKriteria' => $modelKriteria,
-            'modelTemp' => $modelTemp,
-            'lkInstitusi' => $lkInstitusi,
-            'json' => $data,
-            'butir' => $butir,
+            'modelNarasi' => $modelNarasi,
+            'lkProdi' => $lkProdi,
+            'json' => $json,
             'dokModel' => $dokModel,
-            'progress' => $progress,
-            'cari' => 'isi',
-            'nomor' => $nomor,
-            'dokumen' => $dokumen,
             'dokTextModel' => $dokTextModel,
             'dokLinkModel' => $dokLinkModel,
             'dokTempModel' => $dokTempModel,
-            'template' => $template
+            'dataKriteria' => $dataKriteria,
+            'poinKriteria' => $poinKriteria
         ]);
     }
 

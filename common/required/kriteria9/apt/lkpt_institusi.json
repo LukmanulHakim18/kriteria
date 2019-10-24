@@ -1,6 +1,6 @@
 [
   {
-    "standar": 1,
+    "kriteria": 1,
     "judul": "Tata Pamong, Tata Kelola dan Kerjasama",
     "butir": [
       {
@@ -57,7 +57,7 @@
     ]
   },
   {
-    "standar": 2,
+    "kriteria": 2,
     "judul": "Mahasiswa",
     "butir": [
       {
@@ -114,7 +114,7 @@
     ]
   },
   {
-    "standar": 3,
+    "kriteria": 3,
     "judul": "Sumber Daya Manusia",
     "butir": [
       {
@@ -256,7 +256,7 @@
     ]
   },
   {
-    "standar": 4,
+    "kriteria": 4,
     "judul": "Keuangan, Sarana dan Prasarana",
     "butir": [
       {
@@ -296,7 +296,7 @@
     ]
   },
   {
-    "standar": 5,
+    "kriteria": 5,
     "judul": "Luaran dan Capaian Tridharma",
     "butir": [
       {

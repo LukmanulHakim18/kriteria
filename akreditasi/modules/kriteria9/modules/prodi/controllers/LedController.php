@@ -200,8 +200,6 @@ class LedController extends BaseController
 
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\led\\prodi\\K9LedProdiNarasiKriteria' . $kriteria . 'Form';
         $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_led_prodi_kriteria' . $kriteria => $modelLed->id]);
-        $relasiNarasiAttr = 'ledProdiKriteria' . $kriteria;
-
 
         $json = $this->getJsonData();
         $dataKriteria = $json[$kriteria - 1];

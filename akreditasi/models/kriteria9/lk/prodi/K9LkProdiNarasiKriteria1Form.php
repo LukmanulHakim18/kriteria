@@ -10,6 +10,7 @@
 namespace akreditasi\models\kriteria9\lk\prodi;
 
 
+use common\helpers\kriteria9\K9ProdiProgressHelper;
 use common\models\kriteria9\lk\prodi\K9LkProdiKriteria1;
 
 class K9LkProdiNarasiKriteria1Form extends K9LkProdiKriteria1
@@ -41,9 +42,12 @@ class K9LkProdiNarasiKriteria1Form extends K9LkProdiKriteria1
             }
         }
 
-        $progress = round(($count / $total) * 100, 2);
+        $progress1 = round(($count / $total) * 100, 2);
 
-        $this->progress = $progress;
+        $dokumen = K9ProdiProgressHelper::getDokumenLkProgress($this->id_lk_prodi, $this->getK9LkProdiKriteria1Details(), 1);
+
+        $progress2 = round(($dokumen) / 1, 2);
+        $this->progress = $progress1 + $progress2;
 
         return true;
     }
