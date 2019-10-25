@@ -22,10 +22,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $_3_b_2
  * @property string $_3_b_3
  * @property string $_3_b_4
- * @property string $_3_b_5_1
- * @property string $_3_b_5_2
- * @property string $_3_b_5_3
- * @property string $_3_b_5_4
+ * @property string $_3_b_5
  * @property string $_3_b_6
  * @property string $_3_b_7
  *
@@ -57,7 +54,7 @@ class K9LkProdiKriteria3 extends \yii\db\ActiveRecord
         return [
             [['id_lk_prodi', 'created_at', 'updated_at'], 'integer'],
             [['progress'], 'number'],
-            [['_3_a_1', '_3_a_2', '_3_a_3', '_3_a_4', '_3_a_5', '_3_b_1', '_3_b_2', '_3_b_3', '_3_b_4', '_3_b_5_1', '_3_b_5_2', '_3_b_5_3', '_3_b_5_4', '_3_b_6', '_3_b_7'], 'string'],
+            [['_3_a_1', '_3_a_2', '_3_a_3', '_3_a_4', '_3_a_5', '_3_b_1', '_3_b_2', '_3_b_3', '_3_b_4', '_3_b_5', '_3_b_6', '_3_b_7'], 'string'],
             [['id_lk_prodi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LkProdi::className(), 'targetAttribute' => ['id_lk_prodi' => 'id']],
         ];
     }
@@ -79,10 +76,7 @@ class K9LkProdiKriteria3 extends \yii\db\ActiveRecord
             '_3_b_2' => '3 B 2',
             '_3_b_3' => '3 B 3',
             '_3_b_4' => '3 B 4',
-            '_3_b_5_1' => '3 B 5 1',
-            '_3_b_5_2' => '3 B 5 2',
-            '_3_b_5_3' => '3 B 5 3',
-            '_3_b_5_4' => '3 B 5 4',
+            '_3_b_5' => '3 B 5',
             '_3_b_6' => '3 B 6',
             '_3_b_7' => '3 B 7',
             'progress' => 'Progress',

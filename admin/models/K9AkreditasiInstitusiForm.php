@@ -173,9 +173,9 @@ class K9AkreditasiInstitusiForm extends Model
             $kriteriaInstitusi = new $class;
             $kriteriaInstitusi->setAttributes($attr);
             foreach ($kriteria['butir'] as $key => $item) {
-                $modelAttribute = '_' . str_replace('.', '_', $item['nomor']);
+                $modelAttribute = '_' . str_replace('.', '_', $item['tabel']);
                 $kriteriaInstitusi->$modelAttribute = $item['template'];
-                if (!$kriteriaInstitusi->save) {
+                if (!$kriteriaInstitusi->save()) {
                     $transaction->rollBack();
                     throw new InvalidArgumentException($kriteriaInstitusi->errors);
                 }
