@@ -2,7 +2,6 @@
 
 use akreditasi\models\kriteria9\forms\lk\institusi\K9LinkLkInstitusiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\institusi\K9LkInstitusiKriteriaDetailForm;
-use akreditasi\models\kriteria9\forms\lk\institusi\K9TempLkInstitusiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\institusi\K9TextLkInstitusiKriteriaDetailForm;
 use akreditasi\models\kriteria9\lk\prodi\K9LkProdiNarasiKriteria1Form;
 use common\helpers\FileIconHelper;
@@ -21,7 +20,6 @@ use yii\bootstrap4\Progress;
 /* @var $dokModel K9LkInstitusiKriteriaDetailForm */
 /* @var $dokTextModel K9TextLkInstitusiKriteriaDetailForm */
 /* @var $dokLinkModel K9LinkLkInstitusiKriteriaDetailForm */
-/* @var $dokTempModel K9TempLkInstitusiKriteriaDetailForm */
 /* @var $dataKriteria */
 /* @var $poinKriteria */
 
@@ -152,12 +150,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                         $clear = trim($doksum['kode']);
                                         $kodeSumber = '_' . str_replace('.', '_', $clear);
 
-                                        if (!empty($sumber['kode'])) : ?>
+                                        if (!empty($doksum['kode'])) : ?>
 
                                             <tr>
-                                                <th scope="row"><?= $sumber['kode'] ?></th>
+                                                <th scope="row"><?= $doksum['kode'] ?></th>
                                                 <td>
-                                                    <p style="font-size: 14px;font-weight: 400"><?= $sumber['dokumen'] ?></p>
+                                                    <p style="font-size: 14px;font-weight: 400"><?= $doksum['dokumen'] ?></p>
                                                 </td>
                                                 <td>
 
@@ -172,8 +170,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 
                                                     <?= $form->field($dokModel, 'jenisDokumen')->textInput(['value' => 'sumber', 'readonly' => true]) ?>
-                                                    <?= $form->field($dokModel, 'kodeDokumen')->textInput(['value' => $sumber['kode'], 'readonly' => true]) ?>
-                                                    <?= $form->field($dokModel, 'namaDokumen')->textInput(['value' => $sumber['dokumen'], 'readonly' => true]) ?>
+                                                    <?= $form->field($dokModel, 'kodeDokumen')->textInput(['value' => $doksum['kode'], 'readonly' => true]) ?>
+                                                    <?= $form->field($dokModel, 'namaDokumen')->textInput(['value' => $doksum['dokumen'], 'readonly' => true]) ?>
 
                                                     <?= $form->field($dokModel, 'isiDokumen')->widget(FileInput::class, [
                                                         'options' => ['id' => 'isiDokumen' . $kodeSumber],
@@ -211,8 +209,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => 'pendukung']) ?>
 
                                                     <?= $form->field($dokTextModel, 'jenisDokumen')->textInput(['value' => 'sumber', 'readonly' => true]) ?>
-                                                    <?= $form->field($dokTextModel, 'kodeDokumen')->textInput(['value' => $sumber['kode'], 'readonly' => true]) ?>
-                                                    <?= $form->field($dokTextModel, 'namaDokumen')->textInput(['value' => $sumber['dokumen'], 'readonly' => true]) ?>
+                                                    <?= $form->field($dokTextModel, 'kodeDokumen')->textInput(['value' => $doksum['kode'], 'readonly' => true]) ?>
+                                                    <?= $form->field($dokTextModel, 'namaDokumen')->textInput(['value' => $doksum['dokumen'], 'readonly' => true]) ?>
 
                                                     <?= $form->field($dokTextModel, 'isiDokumen')->widget(TinyMce::class, [
                                                         'options' => ['rows' => 6, 'id' => 'sumber' . $kodeSumber],
@@ -248,8 +246,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 
                                                     <?= $form->field($dokLinkModel, 'jenisDokumen')->textInput(['value' => 'sumber', 'readonly' => true]) ?>
-                                                    <?= $form->field($dokLinkModel, 'kodeDokumen')->textInput(['value' => $sumber['kode'], 'readonly' => true]) ?>
-                                                    <?= $form->field($dokLinkModel, 'namaDokumen')->textInput(['value' => $sumber['dokumen'], 'readonly' => true]) ?>
+                                                    <?= $form->field($dokLinkModel, 'kodeDokumen')->textInput(['value' => $doksum['kode'], 'readonly' => true]) ?>
+                                                    <?= $form->field($dokLinkModel, 'namaDokumen')->textInput(['value' => $doksum['dokumen'], 'readonly' => true]) ?>
                                                     <?= $form->field($dokLinkModel, 'isiDokumen')->textInput() ?>
 
                                                     <div class="form-group text-right">
@@ -336,15 +334,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                         <?php foreach ($item['dokumen_pendukung'] as $keyDokpen => $dokpen) {
                                             $dokpenAttr = '_' . str_replace('.', '_', $dokpen['kode']);
-                                            if (!empty($pendukung['kode'])) {
+                                            if (!empty($dokpen['kode'])) {
 
-                                                $kodePendukung = str_replace('.', '', trim($pendukung['kode']));
+                                                $kodePendukung = str_replace('.', '', trim($dokpen['kode']));
                                                 ?>
 
                                                 <tr>
-                                                    <th scope="row"><?= $pendukung['kode'] ?></th>
+                                                    <th scope="row"><?= $dokpen['kode'] ?></th>
                                                     <td>
-                                                        <p style="font-size: 14px;font-weight: 400"><?= $pendukung['dokumen'] ?></p>
+                                                        <p style="font-size: 14px;font-weight: 400"><?= $dokpen['dokumen'] ?></p>
                                                     </td>
                                                     <td style="width: 300px;">
                                                         <!--                                            File-->
@@ -358,8 +356,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 
                                                         <?= $form->field($dokModel, 'jenisDokumen')->textInput(['value' => 'pendukung', 'readonly' => true]) ?>
-                                                        <?= $form->field($dokModel, 'kodeDokumen')->textInput(['value' => $pendukung['kode'], 'readonly' => true]) ?>
-                                                        <?= $form->field($dokModel, 'namaDokumen')->textInput(['value' => $pendukung['dokumen'], 'readonly' => true]) ?>
+                                                        <?= $form->field($dokModel, 'kodeDokumen')->textInput(['value' => $dokpen['kode'], 'readonly' => true]) ?>
+                                                        <?= $form->field($dokModel, 'namaDokumen')->textInput(['value' => $dokpen['dokumen'], 'readonly' => true]) ?>
 
                                                         <?= $form->field($dokModel, 'isiDokumen')->widget(FileInput::class, [
                                                             'options' => ['id' => 'isiDokumen' . $kodePendukung],
@@ -397,8 +395,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => 'pendukung']) ?>
 
                                                         <?= $form->field($dokTextModel, 'jenisDokumen')->textInput(['value' => 'pendukung', 'readonly' => true]) ?>
-                                                        <?= $form->field($dokTextModel, 'kodeDokumen')->textInput(['value' => $pendukung['kode'], 'readonly' => true]) ?>
-                                                        <?= $form->field($dokTextModel, 'namaDokumen')->textInput(['value' => $pendukung['dokumen'], 'readonly' => true]) ?>
+                                                        <?= $form->field($dokTextModel, 'kodeDokumen')->textInput(['value' => $dokpen['kode'], 'readonly' => true]) ?>
+                                                        <?= $form->field($dokTextModel, 'namaDokumen')->textInput(['value' => $dokpen['dokumen'], 'readonly' => true]) ?>
 
                                                         <?= $form->field($dokTextModel, 'isiDokumen')->widget(TinyMce::class, [
                                                             'options' => ['rows' => 6, 'id' => 'pendukung' . $kodePendukung],
@@ -434,8 +432,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 
                                                         <?= $form->field($dokLinkModel, 'jenisDokumen')->textInput(['value' => 'pendukung', 'readonly' => true]) ?>
-                                                        <?= $form->field($dokLinkModel, 'kodeDokumen')->textInput(['value' => $pendukung['kode'], 'readonly' => true]) ?>
-                                                        <?= $form->field($dokLinkModel, 'namaDokumen')->textInput(['value' => $pendukung['dokumen'], 'readonly' => true]) ?>
+                                                        <?= $form->field($dokLinkModel, 'kodeDokumen')->textInput(['value' => $dokpen['kode'], 'readonly' => true]) ?>
+                                                        <?= $form->field($dokLinkModel, 'namaDokumen')->textInput(['value' => $dokpen['dokumen'], 'readonly' => true]) ?>
                                                         <?= $form->field($dokLinkModel, 'isiDokumen')->textInput() ?>
 
                                                         <div class="form-group text-right">
@@ -560,32 +558,36 @@ $this->params['breadcrumbs'][] = $this->title;
                                         </thead>
                                         <tbody>
                                         <?php
-                                        if (!empty($model)) {
-                                            foreach ($model as $key => $item) {
-                                                if ($item['tabel'] == $item['kode_dokumen'] && $item['jenis_dokumen'] == 'lainnya') { ?>
+                                        $detailClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria . "Detail";
+                                        $detail = call_user_func($detailClass . "::find")->where(['id_lk_prodi_kriteria' . $kriteria => $modelNarasi->id]);
+
+                                        $detail1 = $detail->andWhere(['jenis_dokumen' => Constants::LAINNYA])->all();
+                                        if (!empty($detail1)) {
+                                            foreach ($detail1 as $k => $v) {
+                                                if ($v['tabel'] == $v['kode_dokumen'] && $v['jenis_dokumen'] == 'lainnya') { ?>
                                                     <tr>
-                                                        <td><strong><?= $key + 1 ?></strong></td>
+                                                        <td><strong><?= $k + 1 ?></strong></td>
                                                         <td>
                                                             <div class="text-center">
-                                                                <?php if ($item->bentuk_dokumen != 'text' && $item->bentuk_dokumen != 'link') { ?>
+                                                                <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') { ?>
                                                                     <div class="icon">
-                                                                        <?= FileIconHelper::getIconByExtension($item->bentuk_dokumen) ?>
+                                                                        <?= FileIconHelper::getIconByExtension($v->bentuk_dokumen) ?>
                                                                     </div>
                                                                     <div class="kt-space-5"></div>
-                                                                    <?= Html::a($item['isi_dokumen'] . " <i class='fa fa-external-link-alt'></i>", ['lk/lihat-dok', 'id' => $item['id']], ['target' => '_blank', 'data-pjax' => "0"]) ?>
+                                                                    <?= Html::a($v['isi_dokumen'] . " <i class='fa fa-external-link-alt'></i>", ['lk/lihat-dok', 'id' => $v['id']], ['target' => '_blank', 'data-pjax' => "0"]) ?>
 
                                                                 <?php } else {
-                                                                    if ($item->bentuk_dokumen == 'link') {
-                                                                        echo '<a href=' . $item['isi_dokumen'] . ' target="_blank">' . $item["isi_dokumen"] . ' <i class=\'fa fa-external-link-alt\'></i></a>';
+                                                                    if ($v->bentuk_dokumen == 'link') {
+                                                                        echo '<a href=' . $v['isi_dokumen'] . ' target="_blank">' . $v["isi_dokumen"] . ' <i class=\'fa fa-external-link-alt\'></i></a>';
                                                                     } else {
-                                                                        echo $item['isi_dokumen'];
+                                                                        echo $v['isi_dokumen'];
                                                                     }
                                                                 } ?>
                                                             </div>
                                                         </td>
                                                         <td class="pull-right">
-                                                            <?php if ($item->bentuk_dokumen != 'text' && $item->bentuk_dokumen != 'link') {
-                                                                echo Html::a('<i class="la la-download"></i> &nbsp;Unduh', ['lk/download-dok', 'id' => $item->id], ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-warning']);
+                                                            <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') {
+                                                                echo Html::a('<i class="la la-download"></i> &nbsp;Unduh', ['lk/download-dok', 'id' => $v->id], ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-warning']);
                                                             } ?>
 
                                                             <!--                                                <div class="kt-space-10"></div>-->
@@ -594,7 +596,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                 'data' => [
                                                                     'method' => 'POST',
                                                                     'confirm' => 'Apakah anda yakin menghapus item ini ?',
-                                                                    'params' => ['id' => $item->id, 'kriteria' => $kriteria, 'lk' => $_GET['lk'], 'prodi' => $_GET['prodi']]
+                                                                    'params' => ['id' => $v->id, 'kriteria' => $kriteria, 'lk' => $_GET['lk'], 'prodi' => $_GET['prodi']]
                                                                 ]]) ?>
                                                         </td>
                                                     </tr>

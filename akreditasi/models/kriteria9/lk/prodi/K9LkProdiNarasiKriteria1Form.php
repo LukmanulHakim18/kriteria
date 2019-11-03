@@ -26,6 +26,9 @@ class K9LkProdiNarasiKriteria1Form extends K9LkProdiKriteria1
 
     public function updateProgress()
     {
+
+        $dirty = self::getDirtyAttributes();
+        $changed = array_keys($dirty);
         $count = 0;
 
         $exclude = ['id', 'id_lk_prodi', 'progress', 'created_at', 'updated_at'];

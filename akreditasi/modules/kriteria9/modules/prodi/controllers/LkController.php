@@ -6,7 +6,6 @@ namespace akreditasi\modules\kriteria9\modules\prodi\controllers;
 
 use akreditasi\models\kriteria9\forms\lk\prodi\K9LinkLkProdiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\prodi\K9LkProdiKriteriaDetailForm;
-use akreditasi\models\kriteria9\forms\lk\prodi\K9TempLkProdiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\prodi\K9TextLkProdiKriteriaDetailForm;
 use akreditasi\modules\kriteria9\controllers\BaseController;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
@@ -127,7 +126,6 @@ class LkController extends BaseController
         $dokModel = new K9LkProdiKriteriaDetailForm();
         $dokTextModel = new K9TextLkProdiKriteriaDetailForm();
         $dokLinkModel = new K9LinkLkProdiKriteriaDetailForm();
-        $dokTempModel = new K9TempLkProdiKriteriaDetailForm();
 
         if ($dokModel->load(Yii::$app->request->post())) {
 
@@ -146,16 +144,13 @@ class LkController extends BaseController
 //            return $this->redirect(Url::current());
         }
 
-        if ($dokTempModel->load(Yii::$app->request->post())) {
-            $dokTempModel->isiDokumen = UploadedFile::getInstance($dokTempModel, 'isiDokumen');
-            if ($dokTempModel->uploadTemplate($lk, $kriteria)) {
-                Yii::$app->session->setFlash('success', 'Berhasil Upload Template');
-                return $this->redirect(Url::current());
-            } else {
-                Yii::$app->session->setFlash('error', 'Gagal Upload. Cek File');
-                return $this->redirect(Url::current());
-            }
+        if ($modelNarasi->load(Yii::$app->request->post())) {
+            $modelNarasi->save();
+            Yii::$app->session->setFlash('success', 'Berhasil Memperbarui Entri');
+            return $this->redirect(Url::current());
+
         }
+
 
         if ($dokTextModel->load(Yii::$app->request->post())) {
             if ($dokTextModel->uploadText($lk, $kriteria)) {
@@ -185,7 +180,6 @@ class LkController extends BaseController
             'dokModel' => $dokModel,
             'dokTextModel' => $dokTextModel,
             'dokLinkModel' => $dokLinkModel,
-            'dokTempModel' => $dokTempModel,
             'dataKriteria' => $dataKriteria,
             'poinKriteria' => $poinKriteria
         ]);
