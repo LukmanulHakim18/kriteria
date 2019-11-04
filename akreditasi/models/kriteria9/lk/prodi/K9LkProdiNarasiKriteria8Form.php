@@ -10,6 +10,7 @@
 namespace akreditasi\models\kriteria9\lk\prodi;
 
 
+use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\helpers\kriteria9\K9ProdiProgressHelper;
 use common\models\kriteria9\lk\prodi\K9LkProdiKriteria8;
 
@@ -26,6 +27,7 @@ class K9LkProdiNarasiKriteria8Form extends K9LkProdiKriteria8
 
     public function updateProgress()
     {
+        $json = K9ProdiJsonHelper::getJsonKriteriaLk(8);
         $count = 0;
 
         $exclude = ['id', 'id_lk_prodi', 'progress', 'created_at', 'updated_at'];
@@ -35,18 +37,26 @@ class K9LkProdiNarasiKriteria8Form extends K9LkProdiKriteria8
         }, ARRAY_FILTER_USE_KEY);
 
         $total = sizeof($filters);
+        $attributeKeys = array_keys($filters);
 
-        foreach ($filters as $attribute) {
-            if ($attribute !== null) {
+        foreach ($attributeKeys as $k => $attribute) {
+            $template = $json['butir'][$k]['template'];
+            $hashTemplate = sha1($template);
+
+            $data = $this->$attribute;
+            $hashData = sha1($data);
+
+            if ($hashTemplate !== $hashData) {
                 $count += 1;
             }
         }
 
-        $progress1 = round(($count / $total) * 100, 2);
+
+        $progress1 = round(($count / $total) * 50, 2);
 
         $dokumen = K9ProdiProgressHelper::getDokumenLkProgress($this->id_lk_prodi, $this->getK9LkProdiKriteria8Details(), 8);
 
-        $progress2 = round(($dokumen) / 1, 2);
+        $progress2 = round(($dokumen), 2);
         $this->progress = $progress1 + $progress2;
 
         return true;
