@@ -5,12 +5,12 @@ namespace akreditasi\modules\kriteria9\modules\institusi;
 /**
  * k9-institusi module definition class
  */
-class K9Instansi extends \yii\base\Module
+class K9Institusi extends \yii\base\Module
 {
     /**
      * {@inheritdoc}
      */
-    public $controllerNamespace = 'akreditasi\modules\kriteria9\modules\instansi\controllers';
+    public $controllerNamespace = 'akreditasi\modules\kriteria9\modules\institusi\controllers';
 
     /**
      * {@inheritdoc}

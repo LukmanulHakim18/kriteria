@@ -7,9 +7,10 @@
  * Time: 5:29 PM
  */
 
-namespace akreditasi\models\kriteria9\lk\prodi;
+namespace akreditasi\models\kriteria9\lk\institusi;
 
 
+use common\helpers\kriteria9\K9InstitusiJsonHelper;
 use common\helpers\kriteria9\K9InstitusiProgressHelper;
 use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria5;
 
@@ -26,6 +27,7 @@ class K9LkInstitusiNarasiKriteria5Form extends K9LkInstitusiKriteria5
 
     public function updateProgress()
     {
+        $json = K9InstitusiJsonHelper::getJsonKriteriaLk(5);
         $count = 0;
 
         $exclude = ['id', 'id_lk_institusi', 'progress', 'created_at', 'updated_at'];
@@ -35,18 +37,26 @@ class K9LkInstitusiNarasiKriteria5Form extends K9LkInstitusiKriteria5
         }, ARRAY_FILTER_USE_KEY);
 
         $total = sizeof($filters);
+        $attributeKeys = array_keys($filters);
 
-        foreach ($filters as $attribute) {
-            if ($attribute !== null) {
+        foreach ($attributeKeys as $k => $attribute) {
+            $template = $json['butir'][$k]['template'];
+            $hashTemplate = sha1($template);
+
+            $data = $this->$attribute;
+            $hashData = sha1($data);
+
+            if ($hashTemplate !== $hashData) {
                 $count += 1;
             }
         }
+
 
         $progress1 = round(($count / $total) * 100, 2);
 
         $dokumen = K9InstitusiProgressHelper::getDokumenLkProgress($this->id_lk_institusi, $this->getK9LkInstitusiKriteria5Details(), 5);
 
-        $progress2 = round(($dokumen) / 1, 2);
+        $progress2 = round(($dokumen), 2);
         $this->progress = $progress1 + $progress2;
 
         return true;

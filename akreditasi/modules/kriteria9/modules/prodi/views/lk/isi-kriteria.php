@@ -1,8 +1,8 @@
 <?php
 
-use akreditasi\models\kriteria9\forms\lk\institusi\K9LinkLkInstitusiKriteriaDetailForm;
-use akreditasi\models\kriteria9\forms\lk\institusi\K9LkInstitusiKriteriaDetailForm;
-use akreditasi\models\kriteria9\forms\lk\institusi\K9TextLkInstitusiKriteriaDetailForm;
+use akreditasi\models\kriteria9\forms\lk\prodi\K9LinkLkProdiKriteriaDetailForm;
+use akreditasi\models\kriteria9\forms\lk\prodi\K9LkProdiKriteriaDetailForm;
+use akreditasi\models\kriteria9\forms\lk\prodi\K9TextLkProdiKriteriaDetailForm;
 use akreditasi\models\kriteria9\lk\prodi\K9LkProdiNarasiKriteria1Form;
 use common\helpers\FileIconHelper;
 use common\models\Constants;
@@ -17,9 +17,9 @@ use yii\bootstrap4\Progress;
 /* @var $this yii\web\View */
 /* @var $lkProdi K9LkProdi */
 /* @var $modelNarasi K9LkProdiNarasiKriteria1Form */
-/* @var $dokModel K9LkInstitusiKriteriaDetailForm */
-/* @var $dokTextModel K9TextLkInstitusiKriteriaDetailForm */
-/* @var $dokLinkModel K9LinkLkInstitusiKriteriaDetailForm */
+/* @var $dokModel K9LkProdiKriteriaDetailForm */
+/* @var $dokTextModel K9TextLkProdiKriteriaDetailForm */
+/* @var $dokLinkModel K9LinkLkProdiKriteriaDetailForm */
 /* @var $dataKriteria */
 /* @var $poinKriteria */
 
@@ -27,9 +27,8 @@ $prodi = Yii::$app->request->get('prodi');
 $kriteria = Yii::$app->request->get('kriteria');
 $this->title = "Kriteria " . $kriteria;
 $this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
-$this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/site/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['/site/index']];
-//$this->params['breadcrumbs'][] = ['label'=>'Data Program Studi','url'=>['/standar7/s7-prodi/default']];
+$this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9/default/index']];
+$this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['/kriteria9/k9-prodi', 'prodi' => $prodi]];
 $this->params['breadcrumbs'][] = ['label' => 'Isi Kriteria', 'url' => ['/kriteria9/k9-prodi/lk/isi', 'lk' => $lkProdi->id, 'prodi' => $_GET['prodi']]];
 $this->params['breadcrumbs'][] = $this->title;
 

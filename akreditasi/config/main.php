@@ -20,7 +20,7 @@ return [
             'class' => 'akreditasi\modules\kriteria9\Kriteria9',
             'modules' => [
                 'k9-institusi' => [
-                    'class' => 'akreditasi\modules\kriteria9\modules\instansi\K9Instansi',
+                    'class' => 'akreditasi\modules\kriteria9\modules\institusi\K9Institusi',
                 ],
                 'k9-fakultas' => [
                     'class' => 'akreditasi\modules\kriteria9\modules\fakultas\K9Fakultas',

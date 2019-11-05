@@ -73,9 +73,7 @@ class LkController extends BaseController
 
     public function actionIsi($lk, $prodi)
     {
-        $file_json = 'lkps_prodi_s1.json';
         $lkProdi = K9LkProdi::findOne($lk);
-
         $json = $this->getJsonData();
         $kriteria = $this->getArrayKriteria($lk);
         $institusi = Yii::$app->params['institusi'];

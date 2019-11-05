@@ -1,9 +1,6 @@
 <?php
 
-use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria6;
-use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria7;
 use common\models\kriteria9\lk\prodi\K9LkProdi;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria9;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Progress;
 
@@ -12,20 +9,20 @@ use yii\bootstrap4\Progress;
 /* @var $kriteria */
 /* @var $institusi */
 
+$prodi = Yii::$app->request->get('prodi');
 $this->title = "Isi Laporan Kinerja";
 $this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
-$this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/site/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Prodi', 'url' => ['/site/index']];
-//$this->params['breadcrumbs'][] = ['label'=>'Data Program Studi','url'=>['/standar7/s7-prodi/default']];
+$this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9/default/index']];
+$this->params['breadcrumbs'][] = ['label' => 'Prodi', 'url' => ['/kriteria9/k9-prodi/default/index', 'prodi' => $prodi]];
 $this->params['breadcrumbs'][] = $this->title;
-$prodi = Yii::$app->request->get('prodi');
+
 ?>
 
 <div class="kt-portlet">
     <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
             <h3 class="kt-portlet__head-title">
-                Form Laporan Kinerja Institusi
+                Form Laporan Kinerja Program Studi
             </h3>
         </div>
     </div>

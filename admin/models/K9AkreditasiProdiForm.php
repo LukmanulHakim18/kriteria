@@ -142,10 +142,7 @@ class K9AkreditasiProdiForm extends Model
                 }
             }
         }
-
-
         $this->createFolder();
-
 
     }
 
