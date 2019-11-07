@@ -1,6 +1,6 @@
 <?php
 
-/* @var $modelProdi ProgramStudi  */
+/* @var $modelProdi ProgramStudi */
 
 use common\models\ProgramStudi;
 use yii\bootstrap4\Html;
@@ -16,6 +16,14 @@ $this->title = $modelProdi->nama;
             <h3 class="kt-portlet__head-title">
                 Profil Program Studi
             </h3>
+        </div>
+        <div class="kt-portlet__head-toolbar">
+            <div class="kt-portlet__head-wrapper">
+                <div class="kt-portlet__head-actions">
+
+                    <?= Html::a('<i class=flaticon2-edit></i> Edit Profil', ['profil/update', 'prodi' => Yii::$app->request->get('prodi')], ['class' => 'btn btn-info btn-elevate btn-elevate-air']); ?>
+                </div>
+            </div>
         </div>
     </div>
 
