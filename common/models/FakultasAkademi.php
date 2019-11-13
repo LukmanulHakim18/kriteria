@@ -2,9 +2,7 @@
 
 namespace common\models;
 
-use common\models\kriteria9\led\fakultas\K9LedFakultas;
-use common\models\kriteria9\lk\fakultas\K9LkFakultas;
-use Yii;
+use oxyaction\behaviors\RelatedPolymorphicBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -17,12 +15,12 @@ use yii\behaviors\TimestampBehavior;
  * @property int $created_at
  * @property int $updated_at
  *
- * @property K9LedFakultas[] $k9LedFakultas
- * @property K9LkFakultas[] $k9LkFakultas
  * @property ProgramStudi[] $programStudis
  */
 class FakultasAkademi extends \yii\db\ActiveRecord
 {
+    const FAKULTAS_AKADEMI = 'FakultasAkademi';
+
     /**
      * {@inheritdoc}
      */
@@ -34,9 +32,20 @@ class FakultasAkademi extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::class
+            TimestampBehavior::class,
+            'polymorphic' => [
+                'class' => RelatedPolymorphicBehavior::class,
+                'polyRelations' => [
+                    'profil' => Profil::class
+
+                ],
+                'polymorphicType' => self::FAKULTAS_AKADEMI,
+                'foreignKeyColumnName' => 'id_foreign_key',
+                'typeColumnName' => 'tipe'
+            ]
         ];
     }
+
     /**
      * {@inheritdoc}
      */
@@ -61,22 +70,6 @@ class FakultasAkademi extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getK9LedFakultas()
-    {
-        return $this->hasMany(K9LedFakultas::className(), ['id_akreditasi' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getK9LkFakultas()
-    {
-        return $this->hasMany(K9LkFakultas::className(), ['id_fakultas' => 'id']);
     }
 
     /**

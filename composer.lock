@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f58489b091bb74759b7df5a603298af7",
+    "content-hash": "7fd6f3cdf123d981080cb87390f4d093",
     "packages": [
         {
             "name": "2amigos/yii2-tinymce-widget",
@@ -71,7 +71,7 @@
             "version": "v3.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
+                "url": "git@github.com:twbs/bootstrap.git",
                 "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
             },
             "dist": {
@@ -93,7 +93,7 @@
             "version": "1.10.19",
             "source": {
                 "type": "git",
-                "url": "https://github.com/DataTables/DataTables.git",
+                "url": "git@github.com:DataTables/DataTables.git",
                 "reference": "156faa83386460c578e00c460eca9766e38a0c5f"
             },
             "dist": {
@@ -173,7 +173,7 @@
             "version": "3.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery/jquery-dist.git",
+                "url": "git@github.com:jquery/jquery-dist.git",
                 "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
             },
             "dist": {
@@ -192,7 +192,7 @@
             "version": "v1.3.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/bestiejs/punycode.js.git",
+                "url": "git@github.com:bestiejs/punycode.js.git",
                 "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3"
             },
             "dist": {
@@ -208,7 +208,7 @@
             "version": "v7.33.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/sweetalert2/sweetalert2.git",
+                "url": "git@github.com:sweetalert2/sweetalert2.git",
                 "reference": "296862833b24e446c7bda35f040712840911cc7a"
             },
             "dist": {
@@ -3380,6 +3380,57 @@
             "license": [
                 "MIT"
             ]
+        },
+        {
+            "name": "oxyaction/yii2-polymorphic-relation-behavior",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Oxyaction/yii2-polymorphic-relation-behavior.git",
+                "reference": "4e8237e5939e01eefb6d6c1dc2b2278c335f4bd2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Oxyaction/yii2-polymorphic-relation-behavior/zipball/4e8237e5939e01eefb6d6c1dc2b2278c335f4bd2",
+                "reference": "4e8237e5939e01eefb6d6c1dc2b2278c335f4bd2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*",
+                "yiisoft/yii2": "^2.0.0"
+            },
+            "suggest": {
+                "yiisoft/yii2": "^2.0.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "oxyaction\\behaviors\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Kompaniets",
+                    "email": "alexkomp.ua@gmail.com"
+                }
+            ],
+            "homepage": "https://github.com/Oxyaction/yii2-polymorphic-relation-behavior",
+            "keywords": [
+                "Behavior",
+                "behaviour",
+                "polymorphic",
+                "relation",
+                "yii 2",
+                "yii2"
+            ],
+            "time": "2017-03-12T11:06:56+00:00"
         },
         {
             "name": "paragonie/random_compat",

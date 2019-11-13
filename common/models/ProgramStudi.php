@@ -3,7 +3,7 @@
 namespace common\models;
 
 use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
-use Yii;
+use oxyaction\behaviors\RelatedPolymorphicBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -40,6 +40,8 @@ use yii\behaviors\TimestampBehavior;
  */
 class ProgramStudi extends \yii\db\ActiveRecord
 {
+    const PROGRAM_STUDI = 'ProgramStudi';
+
     /**
      * {@inheritdoc}
      */
@@ -51,9 +53,20 @@ class ProgramStudi extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::class
+            TimestampBehavior::class,
+            'polymorphic' => [
+                'class' => RelatedPolymorphicBehavior::class,
+                'polyRelations' => [
+                    'profil' => Profil::class
+
+                ],
+                'polymorphicType' => self::PROGRAM_STUDI,
+                'foreignKeyColumnName' => 'id_foreign_key',
+                'typeColumnName' => 'tipe'
+            ]
         ];
     }
+
     /**
      * {@inheritdoc}
      */

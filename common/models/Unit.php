@@ -2,7 +2,7 @@
 
 namespace common\models;
 
-use Yii;
+use oxyaction\behaviors\RelatedPolymorphicBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -15,6 +15,8 @@ use yii\behaviors\TimestampBehavior;
  */
 class Unit extends \yii\db\ActiveRecord
 {
+    const UNIT = 'Unit';
+
     /**
      * {@inheritdoc}
      */
@@ -26,7 +28,16 @@ class Unit extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::class
+            TimestampBehavior::class,
+            'polymorphic' => [
+                'class' => RelatedPolymorphicBehavior::class,
+                'polyRelations' => [
+                    'profil' => Profil::class
+                ],
+                'polymorphicType' => self::UNIT,
+                'foreignKeyColumnName' => 'id_foreign_key',
+                'typeColumnName' => 'tipe'
+            ]
         ];
     }
 

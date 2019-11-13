@@ -35,7 +35,8 @@
         "2amigos/yii2-tinymce-widget": "~1.1",
         "mootensai/yii2-enhanced-gii": "dev-master",
         "kartik-v/yii2-tree-manager": "dev-master",
-        "kartik-v/yii2-datecontrol": "dev-master"
+        "kartik-v/yii2-datecontrol": "dev-master",
+        "oxyaction/yii2-polymorphic-relation-behavior": "^1.0"
 
     },
     "require-dev": {
