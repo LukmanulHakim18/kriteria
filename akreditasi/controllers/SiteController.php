@@ -1,8 +1,8 @@
 <?php
 namespace akreditasi\controllers;
 
-use frontend\models\ResendVerificationEmailForm;
-use frontend\models\VerifyEmailForm;
+use akreditasi\models\ResendVerificationEmailForm;
+use akreditasi\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;

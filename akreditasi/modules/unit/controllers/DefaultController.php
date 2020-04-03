@@ -2,10 +2,12 @@
 
 namespace akreditasi\modules\unit\controllers;
 
+use akreditasi\modules\kriteria9\controllers\BaseController;
+
 /**
  * Default controller for the `unit` module
  */
-class DefaultController extends BaseCon
+class DefaultController extends BaseController
 {
 
     /**
