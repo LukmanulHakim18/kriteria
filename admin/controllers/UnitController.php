@@ -2,6 +2,7 @@
 
 namespace admin\controllers;
 
+use common\models\Profil;
 use Yii;
 use yii\filters\AccessControl;
 use common\models\Unit;
@@ -86,6 +87,10 @@ class UnitController extends Controller
                 return ActiveForm::validate($model);
             }
             $model->save();
+            $profil = new Profil();
+            $profil->external_id = $model->id;
+            $profil->type = Unit::UNIT;
+            $profil->save(false);
             Yii::$app->session->setFlash('success','Berhasil menambahkan Unit.');
 
             return $this->redirect(['view', 'id' => $model->id]);

@@ -40,7 +40,7 @@ use yii\behaviors\TimestampBehavior;
  */
 class ProgramStudi extends \yii\db\ActiveRecord
 {
-    const PROGRAM_STUDI = 'ProgramStudi';
+    const PROGRAM_STUDI = 'programStudi';
 
     /**
      * {@inheritdoc}

@@ -12,6 +12,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $kode
  * @property string $nama
  * @property string $dekan
+ * @property int $jenis
  * @property int $created_at
  * @property int $updated_at
  *
@@ -19,7 +20,10 @@ use yii\behaviors\TimestampBehavior;
  */
 class FakultasAkademi extends \yii\db\ActiveRecord
 {
-    const FAKULTAS_AKADEMI = 'FakultasAkademi';
+    const FAKULTAS_AKADEMI = 'fakultasAkademi';
+    const JENIS_FAKULTAS = 1;
+    const JENIS_PASCA = 2;
+    const JENIS_AKADEMI = 0;
 
     /**
      * {@inheritdoc}
@@ -40,12 +44,18 @@ class FakultasAkademi extends \yii\db\ActiveRecord
 
                 ],
                 'polymorphicType' => self::FAKULTAS_AKADEMI,
-                'foreignKeyColumnName' => 'id_foreign_key',
-                'typeColumnName' => 'tipe'
             ]
         ];
     }
 
+    public function getJenisString(){
+        $jenis = [
+            self::JENIS_AKADEMI=> \Yii::t('app','Akademi'),
+            self::JENIS_FAKULTAS => \Yii::t('app','Fakultas'),
+            self::JENIS_PASCA=>\Yii::t('app','Pascasarjana')
+        ];
+        return $jenis[$this->jenis];
+    }
     /**
      * {@inheritdoc}
      */
@@ -66,7 +76,7 @@ class FakultasAkademi extends \yii\db\ActiveRecord
             'id' => 'ID',
             'kode' => 'Kode',
             'nama' => 'Nama Fakultas',
-            'dekan' => 'Dekan',
+            'dekan' => 'Dekan/Direktur',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

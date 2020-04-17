@@ -3,6 +3,7 @@
 namespace admin\controllers;
 
 use common\models\FakultasAkademi;
+use common\models\Profil;
 use Yii;
 use yii\filters\AccessControl;
 use common\models\ProgramStudi;
@@ -80,6 +81,9 @@ class ProgramStudiController extends Controller
         $dataFakultas = ArrayHelper::map(FakultasAkademi::find()->all(),'id','nama');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $profil = new Profil();
+            $profil->external_id = $model->id;
+            $profil->type = ProgramStudi::PROGRAM_STUDI;
             Yii::$app->session->setFlash('success','Berhasil menambahkan ProgramStudi.');
 
             return $this->redirect(['view', 'id' => $model->id]);

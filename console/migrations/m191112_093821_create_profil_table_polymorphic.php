@@ -20,8 +20,8 @@ class m191112_093821_create_profil_table_polymorphic extends Migration
 
         $this->createTable('{{%profil}}', [
             'id' => $this->primaryKey(),
-            'id_foreign_key' => $this->integer(),
-            'tipe' => $this->string(),
+            'external_id' => $this->integer(),
+            'type' => $this->string(),
             'visi' => $this->string(),
             'misi' => $this->string(),
             'tujuan' => $this->string(),

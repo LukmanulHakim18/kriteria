@@ -8,8 +8,8 @@ use Yii;
  * This is the model class for table "profil".
  *
  * @property int $id
- * @property int $id_foreign_key
- * @property string $tipe
+ * @property int $external_id
+ * @property string $type
  * @property string $visi
  * @property string $misi
  * @property string $tujuan
@@ -35,9 +35,9 @@ class Profil extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_foreign_key', 'created_at', 'updated_at'], 'integer'],
+            [['external_id', 'created_at', 'updated_at'], 'integer'],
             [['sambutan'], 'string'],
-            [['tipe', 'visi', 'misi', 'tujuan', 'sasaran', 'motto'], 'string', 'max' => 255],
+            [['type', 'visi', 'misi', 'tujuan', 'sasaran', 'motto'], 'string', 'max' => 255],
         ];
     }
 
@@ -48,8 +48,8 @@ class Profil extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_foreign_key' => 'Id Foreign Key',
-            'tipe' => 'Tipe',
+            'external_id' => 'Id Foreign Key',
+            'type' => 'Tipe',
             'visi' => 'Visi',
             'misi' => 'Misi',
             'tujuan' => 'Tujuan',

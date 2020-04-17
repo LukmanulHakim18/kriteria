@@ -15,7 +15,7 @@ use yii\behaviors\TimestampBehavior;
  */
 class Unit extends \yii\db\ActiveRecord
 {
-    const UNIT = 'Unit';
+    const UNIT = 'unit';
 
     /**
      * {@inheritdoc}
@@ -35,8 +35,6 @@ class Unit extends \yii\db\ActiveRecord
                     'profil' => Profil::class
                 ],
                 'polymorphicType' => self::UNIT,
-                'foreignKeyColumnName' => 'id_foreign_key',
-                'typeColumnName' => 'tipe'
             ]
         ];
     }

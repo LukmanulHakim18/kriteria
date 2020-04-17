@@ -2,6 +2,7 @@
 
 namespace admin\controllers;
 
+use common\models\Profil;
 use Yii;
 use yii\filters\AccessControl;
 use common\models\FakultasAkademi;
@@ -77,6 +78,10 @@ class FakultasAkademiController extends Controller
         $model = new FakultasAkademi();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $profil = new Profil();
+            $profil->external_id = $model->id;
+            $profil->type = FakultasAkademi::FAKULTAS_AKADEMI;
+            $profil->save(false);
             Yii::$app->session->setFlash('success','Berhasil menambahkan Fakultas.');
 
             return $this->redirect(['view', 'id' => $model->id]);
