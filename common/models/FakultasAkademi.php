@@ -62,7 +62,7 @@ class FakultasAkademi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['created_at', 'updated_at'], 'integer'],
+            [['created_at', 'updated_at','jenis'], 'integer'],
             [['kode', 'nama', 'dekan'], 'string', 'max' => 255],
         ];
     }
@@ -77,6 +77,7 @@ class FakultasAkademi extends \yii\db\ActiveRecord
             'kode' => 'Kode',
             'nama' => 'Nama Fakultas',
             'dekan' => 'Dekan/Direktur',
+            'jenis'=>'Jenis',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
