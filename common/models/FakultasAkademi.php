@@ -25,6 +25,11 @@ class FakultasAkademi extends \yii\db\ActiveRecord
     const JENIS_PASCA = 2;
     const JENIS_AKADEMI = 0;
 
+    const JENIS = [
+        self::JENIS_AKADEMI => "Akademi",
+        self::JENIS_FAKULTAS=>"Fakultas",
+        self::JENIS_PASCA=>"Pascasarjana"
+    ];
     /**
      * {@inheritdoc}
      */
@@ -49,12 +54,7 @@ class FakultasAkademi extends \yii\db\ActiveRecord
     }
 
     public function getJenisString(){
-        $jenis = [
-            self::JENIS_AKADEMI=> \Yii::t('app','Akademi'),
-            self::JENIS_FAKULTAS => \Yii::t('app','Fakultas'),
-            self::JENIS_PASCA=>\Yii::t('app','Pascasarjana')
-        ];
-        return $jenis[$this->jenis];
+        return self::JENIS[$this->jenis];
     }
     /**
      * {@inheritdoc}

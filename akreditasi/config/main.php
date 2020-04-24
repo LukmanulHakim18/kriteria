@@ -22,13 +22,13 @@ return [
                 'k9-institusi' => [
                     'class' => 'akreditasi\modules\kriteria9\modules\institusi\K9Institusi',
                 ],
-                'k9-fakultas' => [
-                    'class' => 'akreditasi\modules\kriteria9\modules\fakultas\K9Fakultas',
-                ],
                 'k9-prodi' => [
                     'class' => 'akreditasi\modules\kriteria9\modules\prodi\K9Prodi',
                 ],
             ]
+        ],
+        'fakultas' => [
+            'class' => 'akreditasi\modules\fakultas\Fakultas',
         ],
         'unit' => [
             'class' => 'akreditasi\modules\unit\Unit',

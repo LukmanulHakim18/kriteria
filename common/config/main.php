@@ -13,10 +13,10 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
         'authManager' => [
-            'class' => \yii\rbac\PhpManager::class,
-            'ruleFile' => '@common/auth/rbac/rules.php',
-            'assignmentFile' => '@common/auth/rbac/assignments.php',
-            'itemFile' => '@common/auth/rbac/items.php',
+            'class' => \yii\rbac\DbManager::class,
+//            'ruleFile' => '@common/auth/rbac/rules.php',
+//            'assignmentFile' => '@common/auth/rbac/assignments.php',
+//            'itemFile' => '@common/auth/rbac/items.php',
         ],
         'formatter' => [
             'locale' => 'id_ID',

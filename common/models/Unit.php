@@ -21,13 +21,13 @@ class Unit extends \yii\db\ActiveRecord
     const JENIS_LEMBAGA = 1;
     const JENIS_SATKER = 2;
 
+    const JENIS = [
+        self::JENIS_UNIT=>'Unit',
+        self::JENIS_LEMBAGA=>'Lembaga',
+        self::JENIS_SATKER=>'Satuan Kerja'
+    ];
     public function getJenisString(){
-        $jenis = [
-            self::JENIS_UNIT=>\Yii::t('app','Unit'),
-            self::JENIS_LEMBAGA=>\Yii::t('app','Lembaga'),
-            self::JENIS_SATKER=>\Yii::t('app','Satuan Kerja')
-        ];
-        return $jenis[$this->jenis];
+        return self::JENIS[$this->jenis];
     }
 
     /**

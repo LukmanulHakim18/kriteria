@@ -9,9 +9,6 @@
 
 namespace common\models;
 
-
-use akreditasi\modules\standar7\Standar7;
-
 class Constants
 {
 

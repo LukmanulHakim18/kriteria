@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\FakultasAkademi */
+/* @var $jenis array */
 
 $this->title = 'Update Fakultas Akademi: ' . $model->nama;
 $this->params['breadcrumbs'][] = ['label' => 'Fakultas Akademi', 'url' => ['index']];
@@ -31,6 +32,7 @@ $this->params['breadcrumbs'][] = 'Ubah';
 
                     <?= $this->render('_form', [
                     'model' => $model,
+                        'jenis'=>$jenis
                     ]) ?>
 
                 </div>

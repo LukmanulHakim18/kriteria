@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "profil".
@@ -18,6 +19,8 @@ use Yii;
  * @property string $sambutan
  * @property int $created_at
  * @property int $updated_at
+ *
+ * @property StrukturOrganisasi $sturktur
  */
 class Profil extends \yii\db\ActiveRecord
 {
@@ -27,6 +30,11 @@ class Profil extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'profil';
+    }
+
+    public function behaviors()
+    {
+        return [TimestampBehavior::class];
     }
 
     /**
@@ -59,5 +67,9 @@ class Profil extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
+    }
+
+    public function getStrukturs(){
+        return $this->hasMany(StrukturOrganisasi::class,['id_profil'=>'id']);
     }
 }

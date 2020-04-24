@@ -4,7 +4,9 @@ namespace admin\controllers;
 
 use common\models\FakultasAkademi;
 use common\models\Profil;
+use common\models\StrukturOrganisasi;
 use Yii;
+use yii\db\Exception;
 use yii\filters\AccessControl;
 use common\models\ProgramStudi;
 use admin\models\ProgramStudiSearch;
@@ -78,24 +80,42 @@ class ProgramStudiController extends Controller
     public function actionCreate()
     {
         $model = new ProgramStudi();
+        $jenjang = ProgramStudi::JENJANG;
         $dataFakultas = ArrayHelper::map(FakultasAkademi::find()->all(),'id','nama');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $profil = new Profil();
-            $profil->external_id = $model->id;
-            $profil->type = ProgramStudi::PROGRAM_STUDI;
-            Yii::$app->session->setFlash('success','Berhasil menambahkan ProgramStudi.');
+        if ($model->load(Yii::$app->request->post())) {
 
-            return $this->redirect(['view', 'id' => $model->id]);
+            $db = Yii::$app->db->beginTransaction();
+            try{
+                $model->save();
+                $profil = new Profil();
+                $profil->external_id = $model->id;
+                $profil->type = ProgramStudi::PROGRAM_STUDI;
+                $profil->save(false);
+
+                $struktur = new StrukturOrganisasi();
+                $struktur->id_profil = $profil->id;
+                $struktur->save(false);
+
+                $db->commit();
+                Yii::$app->session->setFlash('success','Berhasil menambahkan ProgramStudi.');
+
+                return $this->redirect(['view', 'id' => $model->id]);
+            }catch (Exception $e){
+                $db->rollBack();
+                throw $e;
+            }
+
         }
 
         elseif (Yii::$app->request->isAjax){
-            return $this->renderAjax('_form',['model'=>$model,'dataFakultas'=>$dataFakultas]);
+            return $this->renderAjax('_form',['model'=>$model,'dataFakultas'=>$dataFakultas,'jenjang'=>$jenjang]);
         }
 
         return $this->render('create', [
             'model' => $model,
-            'dataFakultas'=>$dataFakultas
+            'dataFakultas'=>$dataFakultas,
+            'jenjang'=>$jenjang
         ]);
     }
 
@@ -109,6 +129,8 @@ class ProgramStudiController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $jenjang = ProgramStudi::JENJANG;
+
         $dataFakultas = ArrayHelper::map(FakultasAkademi::find()->all(),'id','nama');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -119,7 +141,8 @@ class ProgramStudiController extends Controller
 
         return $this->render('update', [
             'model' => $model,
-            'dataFakultas'=>$dataFakultas
+            'dataFakultas'=>$dataFakultas,
+            'jenjang'=>$jenjang
         ]);
     }
 
