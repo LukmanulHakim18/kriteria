@@ -17,10 +17,11 @@ use yii\behaviors\TimestampBehavior;
  * @property string $sasaran
  * @property string $motto
  * @property string $sambutan
+ * @property string $struktur_organisasi
  * @property int $created_at
  * @property int $updated_at
  *
- * @property StrukturOrganisasi $sturktur
+ *
  */
 class Profil extends \yii\db\ActiveRecord
 {
@@ -69,7 +70,4 @@ class Profil extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getStrukturs(){
-        return $this->hasMany(StrukturOrganisasi::class,['id_profil'=>'id']);
-    }
 }

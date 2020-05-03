@@ -43,5 +43,5 @@ class Constants
 
     const ALLOWED_EXTENSIONS = ['jpg','jpeg','png','pdf','docx','doc','gif','ppt','pptx','xls','xlsx', 'zip','txt','csv','odt','ods'];
     const MAX_UPLOAD_SIZE = 30000*1024;
-
+    const IMAGE_EXTENSIONS = ['jpg','jpeg','png','gif','bmp','tiff'];
 }

@@ -79,9 +79,7 @@ class ProgramStudi extends \yii\db\ActiveRecord
                     'profil' => Profil::class
 
                 ],
-                'polymorphicType' => self::PROGRAM_STUDI,
-                'foreignKeyColumnName' => 'id_foreign_key',
-                'typeColumnName' => 'tipe'
+                'polymorphicType' => self::PROGRAM_STUDI
             ]
         ];
     }

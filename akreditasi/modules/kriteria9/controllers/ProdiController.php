@@ -14,6 +14,7 @@ namespace akreditasi\modules\kriteria9\controllers;
 
 
 use akreditasi\models\PencarianProdiForm;
+use common\models\AuthAssignment;
 use common\models\ProgramStudi;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -30,8 +31,13 @@ class ProdiController extends BaseController
     {
 
         $model = new PencarianProdiForm();
+        //cek akses sesuai data
+        $role = AuthAssignment::findOne(['user_id'=>Yii::$app->user->identity->getId()]);
+        if($role->item_name === 'prodi' || $role->item_name === 'kaprodi') $idProdi = ProgramStudi::find()->where(['id'=>Yii::$app->user->identity->profilUser->id_prodi])->all();
+        elseif ($role->item_name === 'fakultas' || $role->item_name === 'dekanat') $idProdi = ProgramStudi::findAll(['id_fakultas_akademi'=>Yii::$app->user->identity->profilUser->id_fakultas]);
+        else $idProdi = ProgramStudi::find()->all();
 
-        $idProdi = ProgramStudi::find()->all();
+
         $dataProdi = ArrayHelper::map($idProdi, 'id', function ($data) {
             return $data->nama . '(' . $data->jenjang . ')';
         });

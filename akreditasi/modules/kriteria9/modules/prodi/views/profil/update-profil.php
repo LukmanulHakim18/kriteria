@@ -4,12 +4,13 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\ProgramStudi */
-/* @var $dataFakultas common\models\FakultasAkademi[] */
+/* @var $profil common\models\Profil */
+/* @var $strukturModel akreditasi\models\StrukturOrganisasiUploadForm */
 
-$this->title = 'Update Program Studi: ' . $model->nama;
+$this->title = 'Update Profil Program Studi: ' . $model->nama;
 $this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['/kriteria9/prodi/arsip']];
 $this->params['breadcrumbs'][] = ['label' => $model->nama, 'url' => ['default/index', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Ubah';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="row">
@@ -30,9 +31,10 @@ $this->params['breadcrumbs'][] = 'Ubah';
             <div class="kt-portlet__body">
                 <div class="program-studi-update">
 
-                    <?= $this->render('_form', [
+                    <?= $this->render('_form-profil', [
                     'model' => $model,
-                        'dataFakultas'=>$dataFakultas
+                        'profil'=>$profil,
+                        'strukturModel'=>$strukturModel
 
                     ]) ?>
 

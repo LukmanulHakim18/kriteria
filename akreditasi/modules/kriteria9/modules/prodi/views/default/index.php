@@ -21,7 +21,7 @@ $this->title = $modelProdi->nama;
             <div class="kt-portlet__head-wrapper">
                 <div class="kt-portlet__head-actions">
 
-                    <?= Html::a('<i class=flaticon2-edit></i> Edit Profil', ['profil/update', 'prodi' => Yii::$app->request->get('prodi')], ['class' => 'btn btn-info btn-elevate btn-elevate-air']); ?>
+                    <?= Html::a('<i class=flaticon2-edit></i> Edit Profil', ['profil/index', 'prodi' => Yii::$app->request->get('prodi')], ['class' => 'btn btn-info btn-elevate btn-elevate-air']); ?>
                 </div>
             </div>
         </div>
