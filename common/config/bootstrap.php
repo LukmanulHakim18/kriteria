@@ -8,10 +8,11 @@ Yii::setAlias('@uploadAkreditasi', '@akreditasi/web/upload');
 Yii::setAlias('@uploadAdmin', '@admin/web/upload');
 Yii::setAlias('@uploadStruktur', '@uploadAkreditasi/struktur');
 Yii::setAlias('@required', '@common/required');
+$ini = parse_ini_file(dirname(__DIR__,2).'/system-configuration.ini');
 
-Yii::setAlias('@.akreditasi','http://kriteria.test');
-Yii::setAlias('@.monitoring','http://monitoring.kriteria.test');
-Yii::setAlias('@.admin','http://admin.kriteria.test');
+Yii::setAlias('@.akreditasi',$ini['url_kriteria']);
+Yii::setAlias('@.monitoring',$ini['url_monitoring']);
+Yii::setAlias('@.admin',$ini['url_admin']);
 Yii::setAlias('@.uploadAkreditasi','@.akreditasi/upload');
 Yii::setAlias('@.uploadAdmin','@.admin/upload');
 Yii::setAlias('@.uploadStruktur','@.uploadAkreditasi/struktur');
