@@ -4,6 +4,10 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\ProgramStudi */
+/**
+ * @var $dataFakultas array;
+ * @var $jenjang array;
+ */
 
 $this->title = 'Tambah Program Studi';
 $this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['index']];
@@ -29,6 +33,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= $this->render('_form', [
                     'model' => $model,
+                        'dataFakultas'=>$dataFakultas,
+                        'jenjang'=>$jenjang
                     ]) ?>
 
                 </div>

@@ -2,6 +2,7 @@
 
 namespace common\models\kriteria9\lk\prodi;
 
+use common\models\User;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -99,5 +100,21 @@ class K9LkProdiKriteria1Detail extends \yii\db\ActiveRecord
     public function getUpdatedBy()
     {
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        $this->lkProdiKriteria1->updateProgress();
+        $this->lkProdiKriteria1->lkProdi->updateProgress();
+        $this->lkProdiKriteria1->lkProdi->akreditasiProdi->updateProgress();
+        return parent::afterSave($insert, $changedAttributes);
+    }
+
+    public function afterDelete()
+    {
+        $this->lkProdiKriteria1->updateProgress();
+        $this->lkProdiKriteria1->lkProdi->updateProgress();
+        $this->lkProdiKriteria1->lkProdi->akreditasiProdi->updateProgress();
+        parent::afterDelete();
     }
 }

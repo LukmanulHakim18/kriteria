@@ -2,9 +2,7 @@
 
 namespace common\models;
 
-use common\models\kriteria9\led\fakultas\K9LedFakultas;
-use common\models\kriteria9\lk\fakultas\K9LkFakultas;
-use Yii;
+use oxyaction\behaviors\RelatedPolymorphicBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -14,15 +12,24 @@ use yii\behaviors\TimestampBehavior;
  * @property string $kode
  * @property string $nama
  * @property string $dekan
+ * @property int $jenis
  * @property int $created_at
  * @property int $updated_at
  *
- * @property K9LedFakultas[] $k9LedFakultas
- * @property K9LkFakultas[] $k9LkFakultas
  * @property ProgramStudi[] $programStudis
  */
 class FakultasAkademi extends \yii\db\ActiveRecord
 {
+    const FAKULTAS_AKADEMI = 'fakultasAkademi';
+    const JENIS_FAKULTAS = 1;
+    const JENIS_PASCA = 2;
+    const JENIS_AKADEMI = 0;
+
+    const JENIS = [
+        self::JENIS_AKADEMI => "Akademi",
+        self::JENIS_FAKULTAS=>"Fakultas",
+        self::JENIS_PASCA=>"Pascasarjana"
+    ];
     /**
      * {@inheritdoc}
      */
@@ -34,8 +41,20 @@ class FakultasAkademi extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::class
+            TimestampBehavior::class,
+            'polymorphic' => [
+                'class' => RelatedPolymorphicBehavior::class,
+                'polyRelations' => [
+                    'profil' => Profil::class
+
+                ],
+                'polymorphicType' => self::FAKULTAS_AKADEMI,
+            ]
         ];
+    }
+
+    public function getJenisString(){
+        return self::JENIS[$this->jenis];
     }
     /**
      * {@inheritdoc}
@@ -43,7 +62,7 @@ class FakultasAkademi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['created_at', 'updated_at'], 'integer'],
+            [['created_at', 'updated_at','jenis'], 'integer'],
             [['kode', 'nama', 'dekan'], 'string', 'max' => 255],
         ];
     }
@@ -57,26 +76,11 @@ class FakultasAkademi extends \yii\db\ActiveRecord
             'id' => 'ID',
             'kode' => 'Kode',
             'nama' => 'Nama Fakultas',
-            'dekan' => 'Dekan',
+            'dekan' => 'Dekan/Direktur',
+            'jenis'=>'Jenis',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getK9LedFakultas()
-    {
-        return $this->hasMany(K9LedFakultas::className(), ['id_akreditasi' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getK9LkFakultas()
-    {
-        return $this->hasMany(K9LkFakultas::className(), ['id_fakultas' => 'id']);
     }
 
     /**

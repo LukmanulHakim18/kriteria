@@ -2,7 +2,7 @@
 
 namespace common\models\kriteria9\lk\prodi;
 
-use Yii;
+use common\helpers\kriteria9\K9ProdiProgressHelper;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -13,6 +13,7 @@ use yii\behaviors\TimestampBehavior;
  * @property double $progress
  * @property int $created_at
  * @property int $updated_at
+ * @property string $_4
  *
  * @property K9LkProdi $lkProdi
  * @property K9LkProdiKriteria4Detail[] $k9LkProdiKriteria4Details
@@ -42,6 +43,7 @@ class K9LkProdiKriteria4 extends \yii\db\ActiveRecord
         return [
             [['id_lk_prodi', 'created_at', 'updated_at'], 'integer'],
             [['progress'], 'number'],
+            [['_4'], 'string'],
             [['id_lk_prodi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LkProdi::className(), 'targetAttribute' => ['id_lk_prodi' => 'id']],
         ];
     }
@@ -54,6 +56,7 @@ class K9LkProdiKriteria4 extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_lk_prodi' => 'Id Lk Prodi',
+            '_4' => '4',
             'progress' => 'Progress',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
@@ -66,6 +69,15 @@ class K9LkProdiKriteria4 extends \yii\db\ActiveRecord
     public function getLkProdi()
     {
         return $this->hasOne(K9LkProdi::className(), ['id' => 'id_lk_prodi']);
+    }
+
+    public function updateProgress()
+    {
+        $dokumen = K9ProdiProgressHelper::getDokumenLkProgress($this->id_lk_prodi, $this->getK9LkProdiKriteria4Details(), 4);
+
+        $progress = round(($dokumen) / 1, 2);
+        $this->progress = $progress;
+        $this->save(false);
     }
 
     /**

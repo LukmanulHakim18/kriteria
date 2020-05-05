@@ -3,7 +3,7 @@
 namespace common\models;
 
 use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
-use Yii;
+use oxyaction\behaviors\RelatedPolymorphicBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -40,6 +40,27 @@ use yii\behaviors\TimestampBehavior;
  */
 class ProgramStudi extends \yii\db\ActiveRecord
 {
+    const PROGRAM_STUDI = 'programStudi';
+    const JENJANG_DIPLOMA = "Diploma";
+    const JENJANG_SARJANA = "Sarjana";
+    const JENJANG_SARJANA_TERAPAN = "SarjanaTerapan";
+    const JENJANG_MAGISTER = "Magister";
+    const JENJANG_MAGISTER_TERAPAN ="MagisterTerapan";
+    const JENJANG_DOKTOR = "Doktor";
+    const JENJANG_DOKTOR_TERAPAN = "DoktorTerapan";
+
+    const JENJANG = [
+        self::JENJANG_DIPLOMA=>self::JENJANG_DIPLOMA,
+        self::JENJANG_SARJANA=>self::JENJANG_SARJANA,
+        self::JENJANG_SARJANA_TERAPAN=>"Sarjana Terapan",
+        self::JENJANG_MAGISTER=>self::JENJANG_MAGISTER,
+        self::JENJANG_MAGISTER_TERAPAN=>"Magister Terapan",
+        self::JENJANG_DOKTOR=>self::JENJANG_DOKTOR,
+        self::JENJANG_DOKTOR_TERAPAN=>"Doktor Terapan",
+
+    ];
+
+
     /**
      * {@inheritdoc}
      */
@@ -51,9 +72,18 @@ class ProgramStudi extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::class
+            TimestampBehavior::class,
+            'polymorphic' => [
+                'class' => RelatedPolymorphicBehavior::class,
+                'polyRelations' => [
+                    'profil' => Profil::class
+
+                ],
+                'polymorphicType' => self::PROGRAM_STUDI
+            ]
         ];
     }
+
     /**
      * {@inheritdoc}
      */

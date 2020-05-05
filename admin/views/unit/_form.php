@@ -1,10 +1,12 @@
 <?php
 
+use kartik\select2\Select2;
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Unit */
+/* @var $jenis array */
 /* @var $form yii\bootstrap4\ActiveForm;
 */
 
@@ -16,6 +18,12 @@ use yii\bootstrap4\ActiveForm;
     <?php $form = ActiveForm::begin(['id'=>'unit-form']); ?>
 
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model,'jenis')->widget(Select2::class,[
+            'data' => $jenis,
+        'pluginOptions' => [
+                'placeholder'=>'Pilih Jenis'
+        ]
+    ])?>
 
     <div class="form-group">
         <?= Html::submitButton('<i class=\'la la-save\'></i> Simpan', ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-brand']) ?>

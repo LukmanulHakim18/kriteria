@@ -8,27 +8,27 @@ $params = array_merge(
 
 return [
     'id' => 'app-akreditasi',
-    'name'=> $params['nama_sistem'],
+    'name' => $params['nama_sistem'],
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'akreditasi\controllers',
-    'modules'=>[
-        'profile'=>[
+    'modules' => [
+        'profile' => [
             'class' => 'common\modules\profile\Profile'
         ],
-        'kriteria9'=>[
-            'class'=>'akreditasi\modules\kriteria9\Kriteria9',
+        'kriteria9' => [
+            'class' => 'akreditasi\modules\kriteria9\Kriteria9',
             'modules' => [
-                'k9-instansi' => [
-                    'class' => 'akreditasi\modules\kriteria9\modules\instansi\K9Instansi',
-                ],
-                'k9-fakultas' => [
-                    'class' => 'akreditasi\modules\kriteria9\modules\fakultas\K9Fakultas',
+                'k9-institusi' => [
+                    'class' => 'akreditasi\modules\kriteria9\modules\institusi\K9Institusi',
                 ],
                 'k9-prodi' => [
                     'class' => 'akreditasi\modules\kriteria9\modules\prodi\K9Prodi',
                 ],
             ]
+        ],
+        'fakultas' => [
+            'class' => 'akreditasi\modules\fakultas\Fakultas',
         ],
         'unit' => [
             'class' => 'akreditasi\modules\unit\Unit',
@@ -65,19 +65,18 @@ return [
             'showScriptName' => false,
             // Disable r= routes
             'enablePrettyUrl' => true,
-            'rules' =>[
+            'rules' => [
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ],
         ],
-        'assetManager'=>[
-            'bundles'=>[
-                'yii\bootstrap4\BootstrapAsset'=>[
-                    'sourcePath' => null,
-                    'basePath' => '@webroot',
-                    'baseUrl' => '@web',
-                    'css'=>['css/style.bundle.css']
+        'assetManager' => [
+            'bundles' => [
+                'yii\bootstrap4\BootstrapAsset' => [
+                    'sourcePath' => '@common/assets/metronic/assets',
+
+                    'css' => ['css/demo1/style.bundle.css']
                 ]
             ]
         ],
@@ -91,7 +90,7 @@ return [
 //            'admin/*',
 //            'debug/*',
 //            'sertifikat/*',
-//            'sertifikat-institusi/*',
+//            'sertifikat-perguruan-tinggi/*',
 //            'sertifikat/*',
 //            'sertifikat-prodi/*'
             // The actions listed here will be allowed to everyone including guests.

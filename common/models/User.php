@@ -21,7 +21,7 @@ use yii\web\IdentityInterface;
  * @property string $verification_token
  *
  * @property ProfilUser $profilUser
- * @property AuthRule $role
+ * @property AuthAssignment $role
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -273,25 +273,5 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
-    }
-
-    public function isAdminFakultas()
-    {
-        return $this->is_admin === 1 && $this->is_fakultas === 1;
-    }
-
-    public function isAdminProdi()
-    {
-        return $this->is_admin === 1 && $this->is_prodi === 1;
-    }
-
-    public function isAdminInstitusi()
-    {
-        return $this->is_admin === 1 && $this->is_institusi === 1;
-    }
-
-    public function isRoot()
-    {
-        return $this->isAdminFakultas() && $this->isAdminInstitusi() && $this->isAdminProdi();
     }
 }

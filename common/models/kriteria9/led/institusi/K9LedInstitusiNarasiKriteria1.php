@@ -2,7 +2,9 @@
 
 namespace common\models\kriteria9\led\institusi;
 
+use common\models\User;
 use Yii;
+use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -22,8 +24,12 @@ use yii\behaviors\TimestampBehavior;
  * @property double $progress
  * @property int $created_at
  * @property int $updated_at
+ * @property int $created_by
+ * @property int $updated_by
  *
- * @property K9LedInstitusi $ledInstitusiKriteria1
+ * @property User $createdBy
+ * @property User $updatedBy
+ * @property K9LedInstitusiKriteria1 $ledInstitusiKriteria1
  */
 class K9LedInstitusiNarasiKriteria1 extends \yii\db\ActiveRecord
 {
@@ -38,25 +44,29 @@ class K9LedInstitusiNarasiKriteria1 extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
+    public function rules()
     {
         return [
-            TimestampBehavior::class,
+            [['id_led_institusi_kriteria1', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['_1_1', '_1_2', '_1_3', '_1_4', '_1_5', '_1_6', '_1_7', '_1_8', '_1_9'], 'string'],
+            [['progress'], 'number'],
+            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
+            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
+            [['id_led_institusi_kriteria1'], 'exist', 'skipOnError' => true, 'targetClass' => K9LedInstitusiKriteria1::className(), 'targetAttribute' => ['id_led_institusi_kriteria1' => 'id']],
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function behaviors()
     {
         return [
-            [['id_led_institusi_kriteria1', 'created_at', 'updated_at'], 'integer'],
-            [['_1_1', '_1_2', '_1_3', '_1_4', '_1_5', '_1_6', '_1_7', '_1_8', '_1_9'], 'string'],
-            [['progress'], 'number'],
-            [['id_led_institusi_kriteria1'], 'exist', 'skipOnError' => true, 'targetClass' => K9LedInstitusi::className(), 'targetAttribute' => ['id_led_institusi_kriteria1' => 'id']],
+            TimestampBehavior::class,
+            BlameableBehavior::class
         ];
     }
+
 
     /**
      * {@inheritdoc}
@@ -78,7 +88,25 @@ class K9LedInstitusiNarasiKriteria1 extends \yii\db\ActiveRecord
             'progress' => 'Progress',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'created_by' => 'Created By',
+            'updated_by' => 'Updated By',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCreatedBy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUpdatedBy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'updated_by']);
     }
 
     /**
@@ -86,6 +114,6 @@ class K9LedInstitusiNarasiKriteria1 extends \yii\db\ActiveRecord
      */
     public function getLedInstitusiKriteria1()
     {
-        return $this->hasOne(K9LedInstitusi::className(), ['id' => 'id_led_institusi_kriteria1']);
+        return $this->hasOne(K9LedInstitusiKriteria1::className(), ['id' => 'id_led_institusi_kriteria1']);
     }
 }

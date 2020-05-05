@@ -9,7 +9,7 @@ use Yii;
  *
  * @property string $item_name
  * @property string $user_id
- * @property int $created_at
+ * @property int|null $created_at
  *
  * @property AuthItem $itemName
  */
@@ -50,6 +50,8 @@ class AuthAssignment extends \yii\db\ActiveRecord
     }
 
     /**
+     * Gets query for [[ItemName]].
+     *
      * @return \yii\db\ActiveQuery
      */
     public function getItemName()

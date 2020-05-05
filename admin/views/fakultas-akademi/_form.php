@@ -6,6 +6,7 @@ use yii\bootstrap4\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\FakultasAkademi */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $jenis array */
 ?>
 
 
@@ -18,6 +19,13 @@ use yii\bootstrap4\ActiveForm;
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'dekan')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model,'jenis')->widget(\kartik\select2\Select2::class,[
+
+            'data' => $jenis,
+        'pluginOptions' => [
+                'placeholder'=>'Pilih Jenis'
+        ]
+    ])?>
 
     <div class="form-group">
         <?= Html::submitButton('<i class=\'la la-save\'></i> Simpan', ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-brand block-ui']) ?>

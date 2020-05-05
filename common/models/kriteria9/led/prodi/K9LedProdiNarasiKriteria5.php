@@ -2,7 +2,9 @@
 
 namespace common\models\kriteria9\led\prodi;
 
+use common\models\User;
 use Yii;
+use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -22,8 +24,12 @@ use yii\behaviors\TimestampBehavior;
  * @property double $progress
  * @property int $created_at
  * @property int $updated_at
+ * @property int $created_by
+ * @property int $updated_by
  *
- * @property K9LedProdi $ledProdiKriteria5
+ * @property User $createdBy
+ * @property User $updatedBy
+ * @property K9LedProdiKriteria5 $ledProdiKriteria5
  */
 class K9LedProdiNarasiKriteria5 extends \yii\db\ActiveRecord
 {
@@ -38,23 +44,26 @@ class K9LedProdiNarasiKriteria5 extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
+    public function rules()
     {
         return [
-            TimestampBehavior::class
+            [['id_led_prodi_kriteria5', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['_5_1', '_5_2', '_5_3', '_5_4', '_5_5', '_5_6', '_5_7', '_5_8', '_5_9'], 'string'],
+            [['progress'], 'number'],
+            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
+            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
+            [['id_led_prodi_kriteria5'], 'exist', 'skipOnError' => true, 'targetClass' => K9LedProdiKriteria5::className(), 'targetAttribute' => ['id_led_prodi_kriteria5' => 'id']],
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function behaviors()
     {
         return [
-            [['id_led_prodi_kriteria5', 'created_at', 'updated_at'], 'integer'],
-            [['_5_1', '_5_2', '_5_3', '_5_4', '_5_5', '_5_6', '_5_7', '_5_8', '_5_9'], 'string'],
-            [['progress'], 'number'],
-            [['id_led_prodi_kriteria5'], 'exist', 'skipOnError' => true, 'targetClass' => K9LedProdi::className(), 'targetAttribute' => ['id_led_prodi_kriteria5' => 'id']],
+            TimestampBehavior::class,
+            BlameableBehavior::class
         ];
     }
 
@@ -78,7 +87,25 @@ class K9LedProdiNarasiKriteria5 extends \yii\db\ActiveRecord
             'progress' => 'Progress',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'created_by' => 'Created By',
+            'updated_by' => 'Updated By',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCreatedBy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUpdatedBy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'updated_by']);
     }
 
     /**
@@ -86,6 +113,6 @@ class K9LedProdiNarasiKriteria5 extends \yii\db\ActiveRecord
      */
     public function getLedProdiKriteria5()
     {
-        return $this->hasOne(K9LedProdi::className(), ['id' => 'id_led_prodi_kriteria5']);
+        return $this->hasOne(K9LedProdiKriteria5::className(), ['id' => 'id_led_prodi_kriteria5']);
     }
 }

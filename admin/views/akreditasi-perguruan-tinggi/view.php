@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\kriteria9\akreditasi\K9AkreditasiInstitusi */
 
-$this->title = 'Akreditasi '. Yii::$app->params['instansi'].' '.$model->akreditasi->tahun;
+$this->title = 'Akreditasi ' . Yii::$app->params['institusi'] . ' ' . $model->akreditasi->tahun;
 $this->params['breadcrumbs'][] = ['label' => 'Akreditasi Institusi', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <i class="flaticon2-list-3"></i>
                     </span>
                     <h3 class="kt-portlet__head-title">
-                        <?= Html::encode($this->title) ?> <small>(<?=$model->akreditasi->tahun?>)</small>
+                        <?= Html::encode($this->title) ?> <small>(<?= $model->akreditasi->tahun ?>)</small>
                     </h3>
                 </div>
                 <div class="kt-portlet__head-toolbar">
@@ -30,11 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                             <?= Html::a('<i class=flaticon2-delete></i> Hapus', ['delete', 'id' => $model->id], [
-                            'class' => 'btn btn-danger btn-elevate btn-elevate-air',
-                            'data' => [
-                            'confirm' => 'Apakah anda ingin menghapus item ini? <br>(Semua Data dan Dokumen Akreditasi ini akan terhapus)',
-                            'method' => 'post',
-                            ],
+                                'class' => 'btn btn-danger btn-elevate btn-elevate-air',
+                                'data' => [
+                                    'confirm' => 'Apakah anda ingin menghapus item ini? <br>(Semua Data dan Dokumen Akreditasi ini akan terhapus)',
+                                    'method' => 'post',
+                                ],
                             ]) ?>
                         </div>
                     </div>
@@ -45,15 +45,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                     <?= DetailView::widget([
-                    'model' => $model,
-                    'attributes' => [
-                                'id',
-            'akreditasi.lembaga',
-            'akreditasi.tahun',
-            'created_at:datetime',
-            'updated_at:datetime',
-            'progress',
-                    ],
+                        'model' => $model,
+                        'attributes' => [
+                            'id',
+                            'akreditasi.lembaga',
+                            'akreditasi.tahun',
+                            'created_at:datetime',
+                            'updated_at:datetime',
+                            'progress',
+                        ],
                     ]) ?>
 
                 </div>

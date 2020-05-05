@@ -5,6 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\ProgramStudi */
 /* @var $dataFakultas common\models\FakultasAkademi[] */
+/**
+ * @var $jenjang array
+ */
 
 $this->title = 'Update Program Studi: ' . $model->nama;
 $this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['index']];
@@ -32,7 +35,8 @@ $this->params['breadcrumbs'][] = 'Ubah';
 
                     <?= $this->render('_form', [
                     'model' => $model,
-                        'dataFakultas'=>$dataFakultas
+                        'dataFakultas'=>$dataFakultas,
+                        'jenjang'=>$jenjang
 
                     ]) ?>
 

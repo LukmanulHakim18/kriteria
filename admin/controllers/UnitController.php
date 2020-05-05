@@ -2,7 +2,10 @@
 
 namespace admin\controllers;
 
+use common\models\Profil;
+use common\models\StrukturOrganisasi;
 use Yii;
+use yii\db\Exception;
 use yii\filters\AccessControl;
 use common\models\Unit;
 use admin\models\UnitSearch;
@@ -74,29 +77,46 @@ class UnitController extends Controller
      * Creates a new Unit model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
+     * @throws Exception
      */
     public function actionCreate()
     {
         $model = new Unit();
-
+        $jenis = Unit::JENIS;
         if ($model->load(Yii::$app->request->post())) {
 
             if(Yii::$app->request->isAjax){
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return ActiveForm::validate($model);
             }
-            $model->save();
-            Yii::$app->session->setFlash('success','Berhasil menambahkan Unit.');
+            $db = Yii::$app->db->beginTransaction();
+            try{
+                $model->save();
+                $profil = new Profil();
+                $profil->external_id = $model->id;
+                $profil->type = Unit::UNIT;
+                $profil->save(false);
 
-            return $this->redirect(['view', 'id' => $model->id]);
+                $struktur = new StrukturOrganisasi();
+                $struktur->id_profil = $profil->id;
+                $struktur->save(false);
+                $db->commit();
+                Yii::$app->session->setFlash('success','Berhasil menambahkan Unit.');
+
+                return $this->redirect(['view', 'id' => $model->id]);
+            }catch (Exception $exception){
+                $db->rollBack();
+                throw $exception;
+            }
         }
 
         elseif (Yii::$app->request->isAjax){
-            return $this->renderAjax('_form',['model'=>$model]);
+            return $this->renderAjax('_form',['model'=>$model,'jenis'=>$jenis]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'jenis'=>$jenis
         ]);
     }
 
@@ -110,7 +130,7 @@ class UnitController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $jenis = Unit::JENIS;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success','Berhasil mengubah Unit.');
 
@@ -119,6 +139,7 @@ class UnitController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'jenis'=>$jenis
         ]);
     }
 

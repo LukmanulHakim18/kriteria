@@ -2,29 +2,14 @@
 
 namespace akreditasi\modules\unit\controllers;
 
-use yii\web\Controller;
+use akreditasi\modules\kriteria9\controllers\BaseController;
 
 /**
  * Default controller for the `unit` module
  */
-class DefaultController extends Controller
+class DefaultController extends BaseController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-        ];
-    }
-    public function beforeAction($action)
-    {
-        $this->layout="main";
-        return parent::beforeAction($action);
-    }
+
     /**
      * Renders the index view for the module
      * @return string

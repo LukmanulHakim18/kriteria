@@ -104,4 +104,20 @@ class K9LedInstitusiKriteria2Detail extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
     }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        $this->ledInstitusiKriteria2->updateProgress();
+        $this->ledInstitusiKriteria2->ledInstitusi->updateProgress();
+        $this->ledInstitusiKriteria2->ledInstitusi->akreditasiInstitusi->updateProgress();
+        return parent::afterSave($insert, $changedAttributes);
+    }
+
+    public function afterDelete()
+    {
+        $this->ledInstitusiKriteria2->updateProgress();
+        $this->ledInstitusiKriteria2->ledInstitusi->updateProgress();
+        $this->ledInstitusiKriteria2->ledInstitusi->akreditasiInstitusi->updateProgress();
+        parent::afterDelete();
+    }
 }

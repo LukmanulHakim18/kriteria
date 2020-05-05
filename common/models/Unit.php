@@ -2,7 +2,7 @@
 
 namespace common\models;
 
-use Yii;
+use oxyaction\behaviors\RelatedPolymorphicBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -10,11 +10,26 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property int $id
  * @property string $nama
+ * @property int $jenis
  * @property int $created_at
  * @property int $updated_at
  */
 class Unit extends \yii\db\ActiveRecord
 {
+    const UNIT = 'unit';
+    const JENIS_UNIT = 0;
+    const JENIS_LEMBAGA = 1;
+    const JENIS_SATKER = 2;
+
+    const JENIS = [
+        self::JENIS_UNIT=>'Unit',
+        self::JENIS_LEMBAGA=>'Lembaga',
+        self::JENIS_SATKER=>'Satuan Kerja'
+    ];
+    public function getJenisString(){
+        return self::JENIS[$this->jenis];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -26,7 +41,14 @@ class Unit extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::class
+            TimestampBehavior::class,
+            'polymorphic' => [
+                'class' => RelatedPolymorphicBehavior::class,
+                'polyRelations' => [
+                    'profil' => Profil::class
+                ],
+                'polymorphicType' => self::UNIT,
+            ]
         ];
     }
 
@@ -36,7 +58,7 @@ class Unit extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['created_at', 'updated_at'], 'integer'],
+            [['created_at', 'updated_at','jenis'], 'integer'],
             [['nama'], 'string', 'max' => 255],
         ];
     }
@@ -49,6 +71,7 @@ class Unit extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nama' => 'Nama',
+            'jenis'=>\Yii::t('app','Jenis'),
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

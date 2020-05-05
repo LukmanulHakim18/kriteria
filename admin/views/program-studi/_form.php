@@ -9,6 +9,7 @@ use yii\bootstrap4\ActiveForm;
 /* @var $model common\models\ProgramStudi */
 /* @var $form yii\bootstrap4\ActiveForm */
 /* @var $dataFakultas \common\models\FakultasAkademi[] */
+/* @var $jenjang array */
 ?>
 
 
@@ -22,14 +23,14 @@ use yii\bootstrap4\ActiveForm;
     <?= $form->field($model, 'jurusan_departemen')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'jenjang')->widget(Select2::class,[
-        'data'=>\common\models\Constants::JENJANG,
+        'data'=>$jenjang,
         'options' => ['class'=>'kt-select2','placeholder'=>'Pilih Jenjang'],
     ])->label('Jenjang') ?>
 
     <?= $form->field($model, 'id_fakultas_akademi')->widget(Select2::class,[
         'data'=>$dataFakultas,
-        'options' => ['class'=>'kt-select2','placeholder'=>'Pilih Fakultas'],
-    ])->label('Fakultas/Akademi') ?>
+        'options' => ['class'=>'kt-select2','placeholder'=>'Pilih Akademi/Fakultas/Pascasarjana'],
+    ])->label('Akademi/Fakultas/Pascasarjana') ?>
 
     <?= $form->field($model, 'nomor_sk_pendirian')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'tanggal_sk_pendirian')->textInput(['maxlength' => true]) ?>

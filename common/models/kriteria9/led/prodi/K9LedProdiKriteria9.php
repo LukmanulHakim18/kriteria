@@ -2,6 +2,7 @@
 
 namespace common\models\kriteria9\led\prodi;
 
+use common\helpers\kriteria9\K9ProdiProgressHelper;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 
@@ -16,6 +17,7 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property K9LedProdi $ledProdi
  * @property K9LedProdiKriteria9Detail[] $k9LedProdiKriteria9Details
+ * @property K9LedProdiNarasiKriteria9 $k9LedProdiNarasiKriteria9s
  */
 class K9LedProdiKriteria9 extends \yii\db\ActiveRecord
 {
@@ -30,22 +32,19 @@ class K9LedProdiKriteria9 extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::class
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
             [['id_led_prodi', 'created_at', 'updated_at'], 'integer'],
             [['progress'], 'number'],
             [['id_led_prodi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LedProdi::className(), 'targetAttribute' => ['id_led_prodi' => 'id']],
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class
         ];
     }
 
@@ -77,5 +76,25 @@ class K9LedProdiKriteria9 extends \yii\db\ActiveRecord
     public function getK9LedProdiKriteria9Details()
     {
         return $this->hasMany(K9LedProdiKriteria9Detail::className(), ['id_led_prodi_kriteria9' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getK9LedProdiNarasiKriteria9s()
+    {
+        return $this->hasOne(K9LedProdiNarasiKriteria9::className(), ['id_led_prodi_kriteria9' => 'id']);
+    }
+
+    public function updateProgress()
+    {
+        $narasi = $this->k9LedProdiNarasiKriteria9s->progress;
+
+        $dokumen = K9ProdiProgressHelper::getDokumenLedProgress($this->id_led_prodi,$this->getK9LedProdiKriteria9Details(), 1);
+
+
+        $progress = round(($narasi+$dokumen)/2,2);
+        $this->progress = $progress;
+        $this->save(false);
     }
 }

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Unit */
+/* @var $jenis array */
 
 $this->title = 'Update Unit: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Unit', 'url' => ['index']];
@@ -31,6 +32,7 @@ $this->params['breadcrumbs'][] = 'Ubah';
 
                     <?= $this->render('_form', [
                     'model' => $model,
+                        'jenis'=>$jenis
                     ]) ?>
 
                 </div>

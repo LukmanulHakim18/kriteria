@@ -1,11 +1,12 @@
 [
   {
-    "standar": 1,
-    "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
+    "kriteria": 1,
+    "judul": "Tata Pamong, Tata Kelola dan Kerjasama",
     "butir": [
       {
         "tabel": "1",
-        "isi": "Kerjasama Tridharma",
+        "isi": "Sertifikasi/Akreditasi Eksternal dan Audit Eksternal Keuangan",
+        "template": "<p>Tuliskan kerjasama tridharma di Unit Pengelola Program Studi (UPPS) dalam 3 tahun terakhir dengan mengikuti format Tabel 1 berikut ini.</p><p>Tabel 1 Kerjasama Tridharma</p><table><tbody><tr><td rowspan=\"2\" width=\"43\"><p>&nbsp;</p><p><strong>No.</strong></p></td><td rowspan=\"2\" width=\"67\"><p>&nbsp;</p><p><strong>Lembaga Mitra</strong></p></td><td colspan=\"3\" width=\"174\"><p><strong>Tingkat </strong><strong>1)</strong></p></td><td rowspan=\"2\" width=\"91\"><p><strong>Judul Kegiatan Kerjasama </strong><strong>2)</strong></p></td><td rowspan=\"2\" width=\"82\"><p><strong>Manfaat bagi PS yang</strong></p><p><strong>Diakreditasi</strong></p></td><td rowspan=\"2\" width=\"52\"><p><strong>Waktu dan Durasi</strong></p></td><td rowspan=\"2\" width=\"75\"><p><strong>Bukti Kerjasama</strong></p><p><strong>3)</strong></p></td></tr><tr><td width=\"58\"><p><strong>Interna- sional</strong></p></td><td width=\"56\"><p><strong>Nasi- onal</strong></p></td><td width=\"60\"><p><strong>Lokal/ Wilayah</strong></p></td></tr><tr><td width=\"43\"><p>1</p></td><td width=\"67\"><p>2</p></td><td width=\"58\"><p>3</p></td><td width=\"56\"><p>4</p></td><td width=\"60\"><p>5</p></td><td width=\"91\"><p>6</p></td><td width=\"82\"><p>7</p></td><td width=\"52\"><p>8</p></td><td width=\"75\"><p>9</p></td></tr><tr><td colspan=\"9\" width=\"585\"><p>Pendidikan</p></td></tr><tr><td width=\"43\"><p>1</p></td><td width=\"67\"><p>&nbsp;</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"91\"><p>&nbsp;</p></td><td width=\"82\"><p>&nbsp;</p></td><td width=\"52\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td></tr><tr><td width=\"43\"><p>2</p></td><td width=\"67\"><p>&nbsp;</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"91\"><p>&nbsp;</p></td><td width=\"82\"><p>&nbsp;</p></td><td width=\"52\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td></tr><tr><td width=\"43\"><p>3</p></td><td width=\"67\"><p>&nbsp;</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"91\"><p>&nbsp;</p></td><td width=\"82\"><p>&nbsp;</p></td><td width=\"52\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td></tr><tr><td width=\"43\"><p>&hellip;</p></td><td width=\"67\"><p>&nbsp;</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"91\"><p>&nbsp;</p></td><td width=\"82\"><p>&nbsp;</p></td><td width=\"52\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td></tr><tr><td width=\"43\"><p><strong>S</strong></p></td><td width=\"67\"><p>&nbsp;</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"91\"><p>&nbsp;</p></td><td width=\"82\"><p>&nbsp;</p></td><td width=\"52\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td></tr><tr><td colspan=\"9\" width=\"585\"><p>Penelitian</p></td></tr><tr><td width=\"43\"><p>1</p></td><td width=\"67\"><p>&nbsp;</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"91\"><p>&nbsp;</p></td><td width=\"82\"><p>&nbsp;</p></td><td width=\"52\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td></tr><tr><td width=\"43\"><p>2</p></td><td width=\"67\"><p>&nbsp;</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"91\"><p>&nbsp;</p></td><td width=\"82\"><p>&nbsp;</p></td><td width=\"52\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td></tr><tr><td width=\"43\"><p>3</p></td><td width=\"67\"><p>&nbsp;</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"91\"><p>&nbsp;</p></td><td width=\"82\"><p>&nbsp;</p></td><td width=\"52\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td></tr><tr><td width=\"43\"><p>&hellip;</p></td><td width=\"67\"><p>&nbsp;</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"91\"><p>&nbsp;</p></td><td width=\"82\"><p>&nbsp;</p></td><td width=\"52\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td></tr><tr><td width=\"43\"><p><strong>S</strong></p></td><td width=\"67\"><p>&nbsp;</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"91\"><p>&nbsp;</p></td><td width=\"82\"><p>&nbsp;</p></td><td width=\"52\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td></tr><tr><td colspan=\"9\" width=\"585\"><p>Pengabdian kepada Masyarakat</p></td></tr><tr><td width=\"43\"><p>1</p></td><td width=\"67\"><p>&nbsp;</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"91\"><p>&nbsp;</p></td><td width=\"82\"><p>&nbsp;</p></td><td width=\"52\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td></tr><tr><td width=\"43\"><p>2</p></td><td width=\"67\"><p>&nbsp;</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"91\"><p>&nbsp;</p></td><td width=\"82\"><p>&nbsp;</p></td><td width=\"52\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td></tr><tr><td width=\"43\"><p>3</p></td><td width=\"67\"><p>&nbsp;</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"91\"><p>&nbsp;</p></td><td width=\"82\"><p>&nbsp;</p></td><td width=\"52\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td></tr><tr><td width=\"43\"><p>&hellip;</p></td><td width=\"67\"><p>&nbsp;</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"91\"><p>&nbsp;</p></td><td width=\"82\"><p>&nbsp;</p></td><td width=\"52\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td></tr><tr><td width=\"43\">&Sigma;</td><td width=\"67\"><p>&nbsp;</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"91\"><p>&nbsp;</p></td><td width=\"82\"><p>&nbsp;</p></td><td width=\"52\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td></tr></tbody></table><p>Keterangan:</p><p><sup>1)</sup> Beri tanda V pada kolom yang sesuai.</p><p><sup>2)</sup> Diisi dengan judul kegiatan kerjasama yang sudah terimplementasikan, melibatkan sumber daya dan memberikan manfaat bagi Program Studi yang diakreditasi.</p><p><sup>3)</sup> Bukti kerjasama dapat berupa Surat Penugasan, Surat Perjanjian Kerjasama (SPK), bukti-bukti pelaksanaan (laporan, hasil kerjasama, luaran kerjasama), atau bukti lain yang relevan. Dokumen Memorandum of Understanding (MoU), Memorandum of Agreement (MoA), atau dokumen sejenis yang memayungi pelaksanaan kerjasama, tidak dapat dijadikan bukti realisasi kerjasama.</p><p>&nbsp;</p>",
         "dokumen_sumber": [
           {
             "kode": "1.01.1",
@@ -34,12 +35,13 @@
     ]
   },
   {
-    "standar": 2,
-    "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
+    "kriteria": 2,
+    "judul": "Mahasiswa",
     "butir": [
       {
         "tabel": "2.a",
         "isi": "Seleksi Mahasiswa",
+        "template": "<p>Tuliskan data daya tampung, jumlah calon mahasiswa (pendaftar dan peserta yang lulus seleksi), jumlah mahasiswa baru (reguler dan transfer) dan jumlah mahasiswa aktif (reguler dan transfer) dalam 5 tahun terakhir di Program Studi yang diakreditasi dengan mengikuti format Tabel 2.a berikut ini.</p><p>Tabel 2.a Seleksi Mahasiswa</p><table><tbody><tr><td rowspan=\"2\" width=\"66\"><p><strong>Tahun Akade- mik</strong></p></td><td rowspan=\"2\" width=\"76\"><p>&nbsp;</p><p><strong>Daya Tampung</strong></p></td><td colspan=\"2\" width=\"132\"><p><strong>Jumlah</strong></p><p><strong>Calon Mahasiswa</strong></p></td><td colspan=\"2\" width=\"148\"><p><strong>Jumlah</strong></p><p><strong>Mahasiswa Baru</strong></p></td><td colspan=\"2\" width=\"154\"><p><strong>Jumlah Mahasiswa Aktif</strong></p></td></tr><tr><td width=\"66\"><p><strong>Pen-</strong></p><p><strong>daftar</strong></p></td><td width=\"66\"><p><strong>Lulus</strong></p><p><strong>Seleksi</strong></p></td><td width=\"75\"><p><strong>Reguler</strong></p></td><td width=\"73\"><p><strong>Transfer</strong></p></td><td width=\"78\"><p><strong>Reguler</strong></p></td><td width=\"75\"><p><strong>Transfer</strong></p></td></tr><tr><td width=\"66\"><p>1</p></td><td width=\"76\"><p>2</p></td><td width=\"66\"><p>3</p></td><td width=\"66\"><p>4</p></td><td width=\"75\"><p>5</p></td><td width=\"73\"><p>6</p></td><td width=\"78\"><p>7</p></td><td width=\"75\"><p>8</p></td></tr><tr><td width=\"66\"><p>TS-4</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td><td width=\"73\"><p>&nbsp;</p></td><td width=\"78\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td></tr><tr><td width=\"66\"><p>TS-3</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td><td width=\"73\"><p>&nbsp;</p></td><td width=\"78\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td></tr><tr><td width=\"66\"><p>TS-2</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td><td width=\"73\"><p>&nbsp;</p></td><td width=\"78\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td></tr><tr><td width=\"66\"><p>TS-1</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td><td width=\"73\"><p>&nbsp;</p></td><td width=\"78\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td></tr><tr><td width=\"66\"><p>TS</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"75\"><p>&nbsp;</p></td><td width=\"73\"><p>&nbsp;</p></td><td width=\"78\"><p>NRTS =</p></td><td width=\"75\"><p>NTTS =</p></td></tr><tr><td colspan=\"2\" width=\"142\"><p><strong>Jumlah</strong></p></td><td width=\"66\"><p><strong>N</strong><strong>A </strong><strong>=</strong></p></td><td width=\"66\"><p><strong>N</strong><strong>B </strong><strong>=</strong></p></td><td width=\"75\"><p><strong>N</strong><strong>C </strong><strong>=</strong></p></td><td width=\"73\"><p><strong>N</strong><strong>D </strong><strong>=</strong></p></td><td colspan=\"2\" width=\"154\"><p><strong>N</strong><strong>M </strong><strong>= N</strong><strong>RTS </strong><strong>+ N</strong><strong>TTS</strong></p></td></tr></tbody></table><p>Keterangan:</p><p>TS = Tahun akademik penuh terakhir saat pengajuan usulan akreditasi</p>",
         "dokumen_sumber": [
           {
             "kode": "2.a.01.1",
@@ -56,6 +58,7 @@
       {
         "tabel": "2.b",
         "isi": "Mahasiswa Asing",
+        "template": "<p>Tuliskan jumlah mahasiswa asing yang terdaftar di seluruh program studi pada UPPS dalam 3 tahun terakhir dengan mengikuti format Tabel 2.b berikut ini.</p><p>Tabel 2.b Mahasiswa Asing (<em>Foreign Student</em>)</p><table><tbody><tr><td rowspan=\"2\" width=\"40\"><p>&nbsp;</p><p><strong>No.</strong></p></td><td rowspan=\"2\" width=\"85\"><p>&nbsp;</p><p><strong>Program Studi</strong></p></td><td colspan=\"3\" width=\"151\"><p><strong>Jumlah Mahasiswa Aktif</strong></p></td><td colspan=\"3\" width=\"151\"><p><strong>Jumlah Mahasiswa</strong></p><p><strong>Asing Penuh Waktu (<em>Full-time</em>)</strong></p></td><td colspan=\"3\" width=\"156\"><p><strong>Jumlah Mahasiswa</strong></p><p><strong>Asing Paruh Waktu (<em>Part-time</em>)</strong></p></td></tr><tr><td width=\"51\"><p><strong>TS-2</strong></p></td><td width=\"51\"><p><strong>TS-1</strong></p></td><td width=\"49\"><p><strong>TS</strong></p></td><td width=\"52\"><p><strong>TS-2</strong></p></td><td width=\"51\"><p><strong>TS-1</strong></p></td><td width=\"48\"><p><strong>TS</strong></p></td><td width=\"54\"><p><strong>TS-2</strong></p></td><td width=\"51\"><p><strong>TS-1</strong></p></td><td width=\"51\"><p><strong>TS</strong></p></td></tr><tr><td width=\"40\"><p>1</p></td><td width=\"85\"><p>2</p></td><td width=\"51\"><p>3</p></td><td width=\"51\"><p>4</p></td><td width=\"49\"><p>5</p></td><td width=\"52\"><p>6</p></td><td width=\"51\"><p>7</p></td><td width=\"48\"><p>8</p></td><td width=\"54\"><p>9</p></td><td width=\"51\"><p>10</p></td><td width=\"51\"><p>11</p></td></tr><tr><td width=\"40\"><p>1</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"51\"><p>&nbsp;</p></td><td width=\"51\"><p>&nbsp;</p></td><td width=\"49\"><p>&nbsp;</p></td><td width=\"52\"><p>&nbsp;</p></td><td width=\"51\"><p>&nbsp;</p></td><td width=\"48\"><p>&nbsp;</p></td><td width=\"54\"><p>&nbsp;</p></td><td width=\"51\"><p>&nbsp;</p></td><td width=\"51\"><p>&nbsp;</p></td></tr><tr><td width=\"40\"><p>...</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"51\"><p>&nbsp;</p></td><td width=\"51\"><p>&nbsp;</p></td><td width=\"49\"><p>&nbsp;</p></td><td width=\"52\"><p>&nbsp;</p></td><td width=\"51\"><p>&nbsp;</p></td><td width=\"48\"><p>&nbsp;</p></td><td width=\"54\"><p>&nbsp;</p></td><td width=\"51\"><p>&nbsp;</p></td><td width=\"51\"><p>&nbsp;</p></td></tr><tr><td colspan=\"2\" width=\"125\"><p><strong>Jumlah</strong></p></td><td width=\"51\"><p>&nbsp;</p></td><td width=\"51\"><p>&nbsp;</p></td><td width=\"49\"><p>&nbsp;</p></td><td width=\"52\"><p>&nbsp;</p></td><td width=\"51\"><p>&nbsp;</p></td><td width=\"48\"><p>&nbsp;</p></td><td width=\"54\"><p>&nbsp;</p></td><td width=\"51\"><p>&nbsp;</p></td><td width=\"51\"><p>&nbsp;</p></td></tr></tbody></table><p>Keterangan:</p><p>Mahasiswa asing dapat terdaftar untuk mengikuti program pendidikan secara penuh waktu (<em>full-time</em>) atau paruh waktu (<em>part-time</em>). Mahasiswa asing paruh waktu adalah mahasiswa yang terdaftar di Program Studi untuk mengikuti kegiatan pertukaran studi (<em>student exchange</em>), <em>credit earning</em>, atau kegiatan sejenis yang relevan.</p>",
         "dokumen_sumber": [
           {
             "kode": "2.b.01.1",
@@ -72,12 +75,13 @@
     ]
   },
   {
-    "standar": 3,
-    "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
+    "kriteria": 3,
+    "judul": "Sumber Daya Manusia",
     "butir": [
       {
         "tabel": "3.a.1",
         "isi": "Dosen Tetap Perguruan Tinggi",
+        "template": "<p>Tuliskan data Dosen Tetap Perguruan Tinggi yang ditugaskan sebagai pengampu mata kuliah di Program Studi yang Diakreditasi (DTPS) pada saat TS dengan mengikuti format Tabel 3.a.1) berikut ini.</p><p>Tabel 3.a.1) Dosen Tetap Perguruan Tinggi yang ditugaskan sebagai pengampu mata kuliah di Program Studi yang diakreditasi</p><table><tbody><tr><td rowspan=\"2\" width=\"36\"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><strong>No.</strong></p></td><td rowspan=\"2\" width=\"77\"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><strong>Nama Dosen</strong></p></td><td rowspan=\"2\" width=\"47\"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><strong>NIDN/ NIDK</strong></p></td><td colspan=\"2\" width=\"132\"><p><strong>Pendidikan Pasca Sarjana</strong></p><p><strong>1)</strong></p></td><td rowspan=\"2\" width=\"66\"><p>&nbsp;</p><p>&nbsp;</p><p><strong>Bidang Keahlian</strong></p><p><strong>2)</strong></p></td><td rowspan=\"2\" width=\"76\"><p>&nbsp;</p><p><strong>Kesesuaian dengan Kompetensi Inti PS</strong></p><p><strong>3)</strong></p></td><td rowspan=\"2\" width=\"66\"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><strong>Jabatan Akademik</strong></p></td><td rowspan=\"2\" width=\"76\"><p>&nbsp;</p><p>&nbsp;</p><p><strong>Sertifikat Pendidik Profesional</strong></p><p><strong>4)</strong></p></td><td rowspan=\"2\" width=\"79\"><p>&nbsp;</p><p><strong>Sertifikat Kompetensi/ Profesi/ Industri</strong></p><p><strong>5)</strong></p></td><td rowspan=\"2\" width=\"81\"><p>&nbsp;</p><p><strong>Mata Kuliah yang Diampu pada PS yang Diakreditasi</strong></p><p><strong>6)</strong></p></td><td rowspan=\"2\" width=\"76\"><p><strong>Kesesuaian Bidang Keahlian dengan Mata Kuliah yang Diampu</strong></p><p><strong>7)</strong></p></td><td rowspan=\"2\" width=\"84\"><p>&nbsp;</p><p>&nbsp;</p><p><strong>Mata Kuliah yang Diampu pada PS Lain</strong></p><p><strong>8)</strong></p></td></tr><tr><td width=\"66\"><p><strong>Magister/ Magister Terapan/ Spesialis</strong></p></td><td width=\"66\"><p><strong>Doktor/ Doktor Terapan/ Spesialis</strong></p></td></tr><tr><td width=\"36\"><p>1</p></td><td width=\"77\"><p>2</p></td><td width=\"47\"><p>3</p></td><td colspan=\"2\" width=\"132\"><p>4</p></td><td width=\"66\"><p>5</p></td><td width=\"76\"><p>6</p></td><td width=\"66\"><p>7</p></td><td width=\"76\"><p>8</p></td><td width=\"79\"><p>9</p></td><td width=\"81\"><p>10</p></td><td width=\"76\"><p>11</p></td><td width=\"84\"><p>12</p></td></tr><tr><td width=\"36\"><p>1</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"79\"><p>&nbsp;</p></td><td width=\"81\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"84\"><p>&nbsp;</p></td></tr><tr><td width=\"36\"><p>2</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"79\"><p>&nbsp;</p></td><td width=\"81\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"84\"><p>&nbsp;</p></td></tr><tr><td width=\"36\"><p>3</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"79\"><p>&nbsp;</p></td><td width=\"81\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"84\"><p>&nbsp;</p></td></tr><tr><td width=\"36\"><p>4</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"79\"><p>&nbsp;</p></td><td width=\"81\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"84\"><p>&nbsp;</p></td></tr><tr><td width=\"36\"><p>5</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"79\"><p>&nbsp;</p></td><td width=\"81\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"84\"><p>&nbsp;</p></td></tr><tr><td width=\"36\"><p>6</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"79\"><p>&nbsp;</p></td><td width=\"81\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"84\"><p>&nbsp;</p></td></tr><tr><td width=\"36\"><p>7</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"79\"><p>&nbsp;</p></td><td width=\"81\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"84\"><p>&nbsp;</p></td></tr><tr><td width=\"36\"><p>8</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"79\"><p>&nbsp;</p></td><td width=\"81\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"84\"><p>&nbsp;</p></td></tr><tr><td width=\"36\"><p>&hellip;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"79\"><p>&nbsp;</p></td><td width=\"81\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"84\"><p>&nbsp;</p></td></tr><tr><td width=\"36\"><p><strong>S</strong></p></td><td width=\"77\"><p><strong>NDT =</strong></p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p><strong>NDTPS =</strong></p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"79\"><p>&nbsp;</p></td><td width=\"81\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"84\"><p>&nbsp;</p></td></tr></tbody></table><p>Keterangan:</p><p>NDT = Jumlah Dosen Tetap Perguruan Tinggi yang ditugaskan sebagai pengampu mata kuliah di Program Studi yang diakreditasi. NDTPS = Jumlah Dosen Tetap Perguruan Tinggi yang ditugaskan sebagai pengampu mata kuliah dengan bidang keahlian yang sesuai dengan kompetensi inti program studi yang diakreditasi.</p><p><sup>1)</sup> Diisi dengan nama program studi pada pendidikan pasca sarjana (Magister/Magister Terapan dan/atau Doktor/Doktor Terapan) yang pernah diikuti.</p><p><sup>2)</sup> Diisi dengan bidang keahlian sesuai pendidikan pasca sarjana yang relevan dengan mata kuliah yang diampu.</p><p><sup>3)</sup> Diisi dengan tanda centang V jika bidang keahlian sesuai dengan kompetensi inti program studi yang diakreditasi.</p><p><sup>4)</sup> Diisi dengan nomor Sertifikat Pendidik Profesional.</p><p><sup>5)</sup> Diisi dengan bidang sertifikasi dan lembaga penerbit sertifikat. <u>Data ini diisi oleh pengusul dari program studi pada program</u> <u>Diploma Tiga dan program Sarjana Terapan.</u></p><p><sup>6)</sup> Diisi dengan nama mata kuliah yang diampu pada program studi yang diakreditasi pada saat TS-2 s.d. TS.</p><p><sup>7)</sup> Diisi dengan tanda centang V jika bidang keahlian sesuai dengan mata kuliah yang diampu.</p><p><sup>8)</sup> Diisi dengan nama mata kuliah yang diampu pada program studi lain pada saat TS-2 s.d. TS.</p>",
         "dokumen_sumber": [
           {
             "kode": "3.a.1.01.1",
@@ -94,6 +98,7 @@
       {
         "tabel": "3.a.2",
         "isi": "Dosen Pembimbing Utama Tugas Akhir",
+        "template": "<p>&nbsp;</p><p>Tuliskan DTPS yang menjadi pembimbing utama pada kegiatan tugas akhir mahasiswa (Laporan Akhir/Skripsi//Tesis/Disertasi)<sup>1) </sup>dalam 3 tahun terakhir dengan mengikuti format Tabel 3.a.2) berikut ini.</p><p>Tabel 3.a.2) Dosen Pembimbing Utama Tugas Akhir.</p><table><tbody><tr><td width=\"865\"><table width=\"100%\"><tbody><tr><td><table><tbody><tr><td rowspan=\"3\" width=\"38\"><p>&nbsp;</p><p>&nbsp;</p><p><strong>No.</strong></p></td><td rowspan=\"3\" width=\"217\"><p>&nbsp;</p><p>&nbsp;</p><p><strong>Nama Dosen </strong><strong>2)</strong></p></td><td colspan=\"8\" width=\"463\"><p><strong>Jumlah Mahasiswa yang Dibimbing</strong></p></td><td rowspan=\"3\" width=\"142\"><p><strong>Rata-rata Jumlah Bimbingan di semua Program/</strong></p><p><strong>Semester </strong><strong>5)</strong></p></td></tr><tr><td colspan=\"4\" width=\"236\"><p><strong>pada PS yang Diakreditasi </strong><strong>3)</strong></p></td><td colspan=\"4\" width=\"227\"><p><strong>pada PS Lain di PT </strong><strong>4)</strong></p></td></tr><tr><td width=\"66\"><p><strong>TS-2</strong></p></td><td width=\"57\"><p><strong>TS-1</strong></p></td><td width=\"57\"><p><strong>TS</strong></p></td><td width=\"57\"><p><strong>Rata-</strong></p><p><strong>rata</strong></p></td><td width=\"57\"><p><strong>TS-2</strong></p></td><td width=\"57\"><p><strong>TS-1</strong></p></td><td width=\"57\"><p><strong>TS</strong></p></td><td width=\"57\"><p><strong>Rata-</strong></p><p><strong>rata</strong></p></td></tr><tr><td width=\"38\"><p>1</p></td><td width=\"217\"><p>2</p></td><td width=\"66\"><p>3</p></td><td width=\"57\"><p>4</p></td><td width=\"57\"><p>5</p></td><td width=\"57\"><p>6</p></td><td width=\"57\"><p>7</p></td><td width=\"57\"><p>8</p></td><td width=\"57\"><p>9</p></td><td width=\"57\"><p>10</p></td><td width=\"142\"><p>11</p></td></tr><tr><td width=\"38\"><p>1</p></td><td width=\"217\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p>2</p></td><td width=\"217\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p>3</p></td><td width=\"217\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p>&hellip;</p></td><td width=\"217\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr></tbody></table><p>&nbsp;</p></td></tr></tbody></table>&nbsp;</td></tr></tbody></table><p>&nbsp;</p><p>Keterangan:</p><p><sup>1)</sup> Penugasan sebagai pembimbing tugas akhir mahasiswa dibuktikan dengan surat penugasan yang diterbitkan oleh UPPS.</p><p><sup>2)</sup> Diisi dengan nama dosen yang ditugaskan menjadi pembimbing utama.</p><p><sup>3)</sup> Diisi dengan data jumlah mahasiswa yang dibimbing pada Program Studi yang Diakreditasi.</p><p><sup>4)</sup> Diisi dengan data jumlah mahasiswa yang dibimbing pada Program Studi lain di Perguruan Tinggi.</p><p><sup>5)</sup> Rata-rata jumlah bimbingan di semua program/ semester (kolom 11) = ((kolom 6) + (kolom 10)) / 2.</p>",
         "dokumen_sumber": [
           {
             "kode": "3.a.2.01.1",
@@ -110,6 +115,7 @@
       {
         "tabel": "3.a.3",
         "isi": "Ekuivalen Waktu Pengajar Penuh (EWMP) Dosen Tetap Perguruan Tinggi",
+        "template": "<p>Tuliskan data Ekuivalen Waktu Mengajar Penuh (EWMP) dari Dosen Tetap Perguruan Tinggi yang ditugaskan di program studi yang diakreditasi (DT) pada saat TS dengan mengikuti format Tabel 3.a.3) berikut ini.</p><p>Tabel 3.a.3) Ekuivalen Waktu Mengajar Penuh (EWMP) Dosen Tetap Perguruan Tinggi</p><table><tbody><tr><td rowspan=\"3\" width=\"38\"><p>&nbsp;</p><p>&nbsp;</p><p><strong>No.</strong></p></td><td rowspan=\"3\" width=\"143\"><p>&nbsp;</p><p>&nbsp;</p><p><strong>Nama Dosen (DT)</strong></p></td><td rowspan=\"3\" width=\"57\"><p>&nbsp;</p><p>&nbsp;</p><p><strong>DTPS</strong></p><p><strong>1)</strong></p></td><td colspan=\"6\" width=\"482\"><p><strong>Ekuivalen Waktu Mengajar Penuh (EWMP) pada saat TS</strong></p><p><strong>dalam satuan kredit semester (sks)</strong></p></td><td rowspan=\"3\" width=\"76\"><p>&nbsp;</p><p>&nbsp;</p><p><strong>Jumlah (sks)</strong></p></td><td rowspan=\"3\" width=\"76\"><p>&nbsp;</p><p><strong>Rata-rata per Semester (sks)</strong></p></td></tr><tr><td colspan=\"3\" width=\"246\"><p><strong>Pendidikan:</strong></p><p><strong>Pembelajaran dan Pembimbingan</strong></p></td><td rowspan=\"2\" width=\"76\"><p>&nbsp;</p><p><strong>Penelitian</strong></p></td><td rowspan=\"2\" width=\"76\"><p>&nbsp;</p><p><strong>PkM</strong></p></td><td rowspan=\"2\" width=\"85\"><p><strong>Tugas Tambahan dan/atau</strong></p><p><strong>Penunjang</strong></p></td></tr><tr><td width=\"85\"><p><strong>PS yang</strong></p><p><strong>Diakreditasi</strong></p></td><td width=\"85\"><p><strong>PS Lain di</strong></p><p><strong>dalam PT</strong></p></td><td width=\"76\"><p><strong>PS Lain di</strong></p><p><strong>luar PT</strong></p></td></tr><tr><td width=\"38\"><p>1</p></td><td width=\"143\"><p>2</p></td><td width=\"57\"><p>3</p></td><td width=\"85\"><p>4</p></td><td width=\"85\"><p>5</p></td><td width=\"76\"><p>6</p></td><td width=\"76\"><p>7</p></td><td width=\"76\"><p>8</p></td><td width=\"85\"><p>9</p></td><td width=\"76\"><p>10</p></td><td width=\"76\"><p>11</p></td></tr><tr><td width=\"38\"><p>1</p></td><td width=\"143\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p>2</p></td><td width=\"143\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p>3</p></td><td width=\"143\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p>4</p></td><td width=\"143\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p>5</p></td><td width=\"143\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p>6</p></td><td width=\"143\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p>7</p></td><td width=\"143\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p>8</p></td><td width=\"143\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p>&hellip;</p></td><td width=\"143\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr><tr><td colspan=\"9\" width=\"720\"><p><strong>Rata-rata DT</strong></p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr><tr><td colspan=\"9\" width=\"720\"><p><strong>Rata-rata DTPS</strong></p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr></tbody></table><p>Keterangan:</p><p><sup>1)</sup> Diisi dengan tanda centang V untuk Dosen Tetap Perguruan Tinggi yang ditugaskan sebagai pengampu mata kuliah dengan bidang keahlian yang sesuai dengan kompetensi inti Program Studi yang diakreditasi.</p>",
         "dokumen_sumber": [
           {
             "kode": "3.a.3.01.1",
@@ -134,6 +140,7 @@
       {
         "tabel": "3.a.4",
         "isi": "Dosen Tidak Tetap",
+        "template": "<p>Tuliskan data Dosen Tidak Tetap yang ditugaskan sebagai pengampu mata kuliah di program studi yang Diakreditasi (DTT) pada saat TS dengan mengikuti format Tabel 3.a.4) berikut ini.</p><p>Tabel 3.a.4) Dosen Tidak Tetap yang ditugaskan sebagai pengampu mata kuliah di Program Studi yang Diakreditasi</p><table><tbody><tr><td width=\"38\"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><strong>No.</strong></p></td><td width=\"104\"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><strong>Nama Dosen</strong></p></td><td width=\"47\"><p>&nbsp;</p><p>&nbsp;</p><p><strong>NIDN/ </strong><strong>NIDK</strong></p><p><strong>1)</strong></p></td><td width=\"104\"><p>&nbsp;</p><p>&nbsp;</p><p><strong>Pendidikan Pasca Sarjana</strong></p><p><strong>2)</strong></p></td><td width=\"113\"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><strong>Bidang Keahlian</strong></p><p><strong>3)</strong></p></td><td width=\"85\"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><strong>Jabatan Akademik</strong></p></td><td width=\"95\"><p>&nbsp;</p><p>&nbsp;</p><p><strong>Sertifikat Pendidik Profesional</strong></p><p><strong>4)</strong></p></td><td width=\"104\"><p>&nbsp;</p><p><strong>Sertifikat Profesi/ Kompetensi/ Industri</strong></p><p><strong>5)</strong></p></td><td width=\"113\"><p>&nbsp;</p><p><strong>Mata Kuliah yang Diampu pada PS yang&nbsp;&nbsp; Diakreditasi</strong></p><p><strong>6)</strong></p></td><td width=\"84\"><p><strong>Kesesuaian Bidang Keahlian dengan Mata Kuliah yang Diampu</strong></p><p><strong>7)</strong></p></td></tr><tr><td width=\"38\"><p>1</p></td><td width=\"104\"><p>2</p></td><td width=\"47\"><p>3</p></td><td width=\"104\"><p>4</p></td><td width=\"113\"><p>5</p></td><td width=\"85\"><p>6</p></td><td width=\"95\"><p>7</p></td><td width=\"104\"><p>8</p></td><td width=\"113\"><p>9</p></td><td width=\"84\"><p>10</p></td></tr><tr><td width=\"38\"><p>1</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"95\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"84\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p>2</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"95\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"84\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p>3</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"95\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"84\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p>4</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"95\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"84\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p>5</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"95\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"84\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p>&hellip;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"95\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"84\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p><strong>S</strong></p></td><td width=\"104\"><p><strong>NDTT =</strong></p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"95\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"84\"><p>&nbsp;</p></td></tr></tbody></table><p>Keterangan:</p><p>NDTT = Jumlah Dosen Tidak Tetap yang ditugaskan sebagai pengampu mata kuliah di Program Studi yang diakreditasi.</p><p><sup>1)</sup> NIDN (Nomor Induk Dosen Nasional), NIDK (Nomor Induk Dosen Khusus), diisi jika ada.</p><p><sup>2)</sup> Diisi dengan jenis program (magister/magister terapan/doktor/doktor terapan) dan nama program studi pada pendidikan pasca sarjana yang pernah diikuti.</p><p><sup>3)</sup> Diisi dengan bidang keahlian sesuai pendidikan pasca sarjana yang relevan dengan mata kuliah yang diampu.</p><p><sup>4)</sup> Diisi dengan nomor sertifikat pendidik profesional.</p><p><sup>5)</sup> Diisi dengan bidang sertifikasi dan lembaga penerbit sertifikat. <u>Data ini diisi oleh pengusul dari Program Studi pada program</u> <u>Diploma Tiga dan program Sarjana Terapan.</u></p><p><sup>6)</sup> Diisi dengan nama mata kuliah yang diampu pada Program Studi yang diakreditasi pada saat TS-2 s.d. TS.</p><p><sup>7)</sup> Diisi dengan tanda centang V jika bidang keahlian sesuai dengan mata kuliah yang diampu.</p><p>Catatan: Data dosen industri/praktisi (Tabel 3.a.5)) tidak termasuk ke dalam data dosen tidak tetap.</p>",
         "dokumen_sumber": [
           {
             "kode": "3.a.4.01.1",
@@ -152,24 +159,9 @@
         ]
       },
       {
-        "tabel": "3.a.5",
-        "isi": "Dosen Industri/Praktisi",
-        "dokumen_sumber": [
-          {
-            "kode": "3.a.5.01.1",
-            "dokumen": "Daftar dosen industri"
-          }
-        ],
-        "dokumen_pendukung": [
-          {
-            "kode": "3.a.5.02.1",
-            "dokumen": "FC ijazah"
-          }
-        ]
-      },
-      {
         "tabel": "3.b.1",
         "isi": "Pengakuan/Rekognisi Dosen",
+        "template": "<p>Tuliskan pengakuan/rekognisi atas kepakaran/prestasi/kinerja DTPS yang diterima dalam 3 tahun terakhir dengan mengikuti format Tabel 3.b.1) berikut ini.</p><p>Tabel 3.b.1) Pengakuan/Rekognisi DTPS</p><table><tbody><tr><td rowspan=\"2\" width=\"38\"><p>&nbsp;</p><p><strong>No.</strong></p></td><td rowspan=\"2\" width=\"122\"><p>&nbsp;</p><p><strong>Nama Dosen</strong></p></td><td rowspan=\"2\" width=\"76\"><p>&nbsp;</p><p><strong>Bidang Keahlian</strong></p></td><td rowspan=\"2\" width=\"104\"><p><strong>Rekognisi dan Bukti Pendukung</strong></p><p><strong>1)</strong></p></td><td colspan=\"3\" width=\"187\"><p><strong>Tingkat</strong></p><p><strong>2)</strong></p></td><td rowspan=\"2\" width=\"56\"><p>&nbsp;</p><p><strong>Tahun</strong></p></td></tr><tr><td width=\"62\"><p><strong>Wilayah</strong></p></td><td width=\"65\"><p><strong>Nasional</strong></p></td><td width=\"60\"><p><strong>Interna-</strong></p><p><strong>sional</strong></p></td></tr><tr><td width=\"38\"><p>1</p></td><td width=\"122\"><p>2</p></td><td width=\"76\"><p>3</p></td><td width=\"104\"><p>4</p></td><td width=\"62\"><p>5</p></td><td width=\"65\"><p>6</p></td><td width=\"60\"><p>7</p></td><td width=\"56\"><p>8</p></td></tr><tr><td width=\"38\"><p>1</p></td><td width=\"122\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"62\"><p>&nbsp;</p></td><td width=\"65\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p>2</p></td><td width=\"122\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"62\"><p>&nbsp;</p></td><td width=\"65\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p>3</p></td><td width=\"122\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"62\"><p>&nbsp;</p></td><td width=\"65\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td></tr><tr><td width=\"38\"><p>&hellip;</p></td><td width=\"122\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"62\"><p>&nbsp;</p></td><td width=\"65\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td></tr><tr><td colspan=\"4\" width=\"340\"><p><strong>Jumlah</strong></p></td><td width=\"62\"><p>&nbsp;</p></td><td width=\"65\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td></tr></tbody></table><p>Keterangan:</p><p><sup>1)</sup> Pengakuan atau rekognisi atas kepakaran/prestasi/kinerja dapat berupa:</p><ol><li>menjadi visiting lecturer atau visiting scholar di program studi/perguruan tinggi terakreditasi A/Unggul atau program studi/perguruan tinggi internasional bereputasi.</li><li>menjadi <em>keynote speaker</em>/<em>invited speaker </em>pada pertemuan ilmiah tingkat nasional/ internasional.</li><li>menjadi editor atau mitra bestari pada jurnal nasional terakreditasi/jurnal internasional bereputasi di bidang yang sesuai dengan bidang program</li><li>menjadi staf ahli/narasumber di lembaga tingkat wilayah/nasional/internasional pada bidang yang sesuai dengan bidang program studi (<u>untuk pengusul dari program studi pada program Sarjana/Magister/Doktor</u>), atau menjadi tenaga ahli/konsultan di lembaga/industri tingkat wilayah/nasional/ internasional pada bidang yang sesuai dengan bidang program studi (<u>untuk pengusul dari program studi pada program Diploma Tiga/Sarjana Terapan/Magister Terapan/Doktor Terapan</u>).</li><li>mendapat penghargaan atas prestasi dan kinerja di tingkat wilayah/nasional/internasional.</li></ol><p><sup>2)</sup> Diisi dengan tanda centang V pada kolom yang sesuai.</p>",
         "dokumen_sumber": [
           {
             "kode": "3.b.1.01.1",
@@ -186,6 +178,7 @@
       {
         "tabel": "3.b.2",
         "isi": "Penelitian DTPS",
+        "template": "<p>Tuliskan jumlah judul penelitian <sup>1)</sup> yang dilaksanakan oleh DTPS berdasarkan sumber pembiayaan, yang relevan dengan bidang program studi pada TS-2 sampai dengan TS dengan mengikuti format Tabel 3.b.2) berikut ini.</p><p>Tabel 3.b.2) Penelitian DTPS</p><table><tbody><tr><td rowspan=\"2\" width=\"47\"><p><strong>No.</strong></p></td><td rowspan=\"2\" width=\"246\"><p><strong>Sumber Pembiayaan</strong></p></td><td colspan=\"3\" width=\"212\"><p><strong>Jumlah Judul</strong></p></td><td rowspan=\"2\" width=\"70\"><p><strong>Jumlah</strong></p></td></tr><tr><td width=\"76\"><p><strong>TS-2</strong></p></td><td width=\"68\"><p><strong>TS-1</strong></p></td><td width=\"68\"><p><strong>TS</strong></p></td></tr><tr><td width=\"47\"><p>1</p></td><td width=\"246\"><p>2</p></td><td width=\"76\"><p>3</p></td><td width=\"68\"><p>4</p></td><td width=\"68\"><p>5</p></td><td width=\"70\"><p>6</p></td></tr><tr><td width=\"47\"><p>1</p></td><td width=\"246\"><p>a)&nbsp; Perguruan Tinggi</p><p>b)&nbsp; Mandiri 2)</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"68\"><p>&nbsp;</p></td><td width=\"68\"><p>&nbsp;</p></td><td width=\"70\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>2</p></td><td width=\"246\"><p>Lembaga Dalam Negeri (di luar PT)</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"68\"><p>&nbsp;</p></td><td width=\"68\"><p>&nbsp;</p></td><td width=\"70\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>3</p></td><td width=\"246\"><p>Lembaga Luar Negeri</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"68\"><p>&nbsp;</p></td><td width=\"68\"><p>&nbsp;</p></td><td width=\"70\"><p>&nbsp;</p></td></tr><tr><td colspan=\"2\" width=\"293\"><p><strong>Jumlah</strong></p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"68\"><p>&nbsp;</p></td><td width=\"68\"><p>&nbsp;</p></td><td width=\"70\"><p>&nbsp;</p></td></tr></tbody></table><p>Keterangan:</p><p><sup>1)</sup> Kegiatan penelitian tercatat di unit/lembaga yang mengelola kegiatan penelitian di tingkat Perguruan Tinggi/UPPS.</p><p><sup>2)</sup> Penelitian dengan sumber pembiayaan dari DTPS.</p>",
         "dokumen_sumber": [
           {
             "kode": "3.b.2.01.1",
@@ -206,6 +199,7 @@
       {
         "tabel": "3.b.3",
         "isi": "PkM DTPS",
+        "template": "<p>Tuliskan jumlah judul Pengabdian kepada Masyarakat (PkM) <sup>1)</sup> yang dilaksanakan oleh DTPS berdasarkan sumber pembiayaan, yang relevan dengan bidang program studi pada TS-2 sampai dengan TS, dengan mengikuti format Tabel 3.b.3) berikut ini.</p><p>Tabel 3.b.3) Pengabdian kepada Masyarakat (PkM) DTPS</p><table><tbody><tr><td rowspan=\"2\" width=\"47\"><p><strong>No.</strong></p></td><td rowspan=\"2\" width=\"246\"><p><strong>Sumber Pembiayaan</strong></p></td><td colspan=\"3\" width=\"212\"><p><strong>Jumlah Judul</strong></p></td><td rowspan=\"2\" width=\"70\"><p><strong>Jumlah</strong></p></td></tr><tr><td width=\"76\"><p><strong>TS-2</strong></p></td><td width=\"68\"><p><strong>TS-1</strong></p></td><td width=\"68\"><p><strong>TS</strong></p></td></tr><tr><td width=\"47\"><p>1</p></td><td width=\"246\"><p>2</p></td><td width=\"76\"><p>3</p></td><td width=\"68\"><p>4</p></td><td width=\"68\"><p>5</p></td><td width=\"70\"><p>6</p></td></tr><tr><td width=\"47\"><p>1</p></td><td width=\"246\"><p>a)&nbsp; Perguruan Tinggi</p><p>b)&nbsp; Mandiri 2)</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"68\"><p>&nbsp;</p></td><td width=\"68\"><p>&nbsp;</p></td><td width=\"70\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>2</p></td><td width=\"246\"><p>Lembaga Dalam Negeri (di luar PT)</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"68\"><p>&nbsp;</p></td><td width=\"68\"><p>&nbsp;</p></td><td width=\"70\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>3</p></td><td width=\"246\"><p>Lembaga Luar Negeri</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"68\"><p>&nbsp;</p></td><td width=\"68\"><p>&nbsp;</p></td><td width=\"70\"><p>&nbsp;</p></td></tr><tr><td colspan=\"2\" width=\"293\"><p><strong>Jumlah</strong></p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"68\"><p>&nbsp;</p></td><td width=\"68\"><p>&nbsp;</p></td><td width=\"70\"><p>&nbsp;</p></td></tr></tbody></table><p>Keterangan:</p><p><sup>1)</sup> Kegiatan PkM tercatat di unit/lembaga yang mengelola kegiatan PkM di tingkat Perguruan Tinggi/UPPS.</p><p><sup>2)</sup> PkM dengan sumber pembiayaan dari DTPS.</p>",
         "dokumen_sumber": [
           {
             "kode": "3.b.3.01.1",
@@ -225,7 +219,8 @@
       },
       {
         "tabel": "3.b.4",
-        "isi": "Pagelaran/Pameran/Presentasi/Publikasi Ilmiah DTPS",
+        "isi": "Publikasi Ilmiah DTPS",
+        "template": "<p>Tuliskan jumlah publikasi ilmiah dengan judul yang relevan dengan bidang program studi, yang dihasilkan oleh DTPS dalam 3 tahun terakhir, dengan mengikuti format Tabel 3.b.4) berikut ini.</p><p>Tabel 3.b.4) Publikasi Ilmiah DTPS</p><table><tbody><tr><td rowspan=\"2\" width=\"47\"><p><strong>No.</strong></p></td><td rowspan=\"2\" width=\"255\"><p><strong>Media Publikasi</strong></p></td><td colspan=\"3\" width=\"198\"><p><strong>Jumlah Judul</strong></p></td><td rowspan=\"2\" width=\"76\"><p><strong>Jumlah</strong></p></td></tr><tr><td width=\"66\"><p><strong>TS-2</strong></p></td><td width=\"66\"><p><strong>TS-1</strong></p></td><td width=\"66\"><p><strong>TS</strong></p></td></tr><tr><td width=\"47\"><p>1</p></td><td width=\"255\"><p>2</p></td><td width=\"66\"><p>3</p></td><td width=\"66\"><p>4</p></td><td width=\"66\"><p>5</p></td><td width=\"76\"><p>6</p></td></tr><tr><td width=\"47\"><p>1</p></td><td width=\"255\"><p>Jurnal nasional tidak terakreditasi</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NA1 =</p></td></tr><tr><td width=\"47\"><p>2</p></td><td width=\"255\"><p>Jurnal nasional terakreditasi</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NA2 =</p></td></tr><tr><td width=\"47\"><p>3</p></td><td width=\"255\"><p>Jurnal internasional</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NA3 =</p></td></tr><tr><td width=\"47\"><p>4</p></td><td width=\"255\"><p>Jurnal internasional bereputasi</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NA4 =</p></td></tr><tr><td width=\"47\"><p>5</p></td><td width=\"255\"><p>Seminar wilayah/lokal/perguruan tinggi</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NB1 =</p></td></tr><tr><td width=\"47\"><p>6</p></td><td width=\"255\"><p>Seminar nasional</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NB2 =</p></td></tr><tr><td width=\"47\"><p>7</p></td><td width=\"255\"><p>Seminar internasional</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NB3 =</p></td></tr><tr><td width=\"47\"><p>8</p></td><td width=\"255\"><p>Tulisan di media massa wilayah</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NC1 =</p></td></tr><tr><td width=\"47\"><p>9</p></td><td width=\"255\"><p>Tulisan di media massa nasional</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NC2 =</p></td></tr><tr><td width=\"47\"><p>10</p></td><td width=\"255\"><p>Tulisan di media massa internasional</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NC3 =</p></td></tr><tr><td colspan=\"2\" width=\"302\"><p><strong>Jumlah</strong></p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr></tbody></table>",
         "dokumen_sumber": [
           {
             "kode": "3.b.4.01.1",
@@ -244,96 +239,42 @@
         ]
       },
       {
-        "tabel": "3.b.5.1",
-        "isi": "Luaran Penelitian/PkM Lainnya - HKI (Paten, Paten Sederhana)",
+        "tabel": "3.b.5",
+        "isi": "Karya ilmiah DTPS yang disitasi dalam 3 tahun terakhir",
+        "template": "<p>Tuliskan judul artikel karya ilmiah DTPS yang disitasi dalam 3 tahun terakhir dengan mengikuti format Tabel 3.b.5) berikut ini. Judul artikel yang disitasi harus relevan dengan bidang program studi.</p><p>Tabel 3.b.5) Karya ilmiah DTPS yang disitasi dalam 3 tahun terakhir</p><table><tbody><tr><td width=\"47\"><p><strong>No.</strong></p></td><td width=\"180\"><p><strong>Nama Dosen</strong></p></td><td width=\"255\"><p><strong>Judul Artikel yang Disitasi (Jurnal/Buku,</strong></p><p><strong>Volume, Tahun, Nomor, Halaman)</strong></p></td><td width=\"94\"><p><strong>Jumlah Sitasi</strong></p></td></tr><tr><td width=\"47\"><p>1</p></td><td width=\"180\"><p>2</p></td><td width=\"255\"><p>3</p></td><td width=\"94\"><p>4</p></td></tr><tr><td width=\"47\"><p>1</p></td><td width=\"180\"><p>&nbsp;</p></td><td width=\"255\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>2</p></td><td width=\"180\"><p>&nbsp;</p></td><td width=\"255\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>3</p></td><td width=\"180\"><p>&nbsp;</p></td><td width=\"255\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>4</p></td><td width=\"180\"><p>&nbsp;</p></td><td width=\"255\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>5</p></td><td width=\"180\"><p>&nbsp;</p></td><td width=\"255\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&hellip;</p></td><td width=\"180\"><p>&nbsp;</p></td><td width=\"255\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td></tr><tr><td colspan=\"2\" width=\"227\"><p><strong>Jumlah</strong></p></td><td width=\"255\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td></tr></tbody></table>",
         "dokumen_sumber": [
           {
-            "kode": "3.b.5.1.01.1",
-            "dokumen": "Laporan Luaran Penelitian/PkM Lainnya - HKI (Paten, Paten Sederhana"
-          }
-        ],
-        "dokumen_pendukung": [
-          {
-            "kode": "3.b.5.1.02.1",
-            "dokumen": "Foto Kegiatan"
+            "kode": "3.b.5.01.1",
+            "dokumen": "Laporan Luaran Penelitian/PkM Lainnya - HKI (Paten, Paten Sederhana)"
           },
           {
-            "kode": "3.b.5.1.02.2",
-            "dokumen": "SK"
-          }
-        ]
-      },
-      {
-        "tabel": "3.b.5.2",
-        "isi": "Luaran Penelitian/PkM Lainnya - HKI (Hak Cipta, Desain Produk Industri, dll.)",
-        "dokumen_sumber": [
-          {
-            "kode": "3.b.5.2.01.1",
+            "kode": "3.b.5.01.2",
             "dokumen": "Laporan Luaran Penelitian/PkM Lainnya - HKI (Hak Cipta, Desain Produk Industri, dll.)"
-          }
-        ],
-        "dokumen_pendukung": [
-          {
-            "kode": "3.b.5.2.02.1",
-            "dokumen": "Foto Kegiatan"
           },
           {
-            "kode": "3.b.5.2.02.2",
-            "dokumen": "SK"
-          }
-        ]
-      },
-      {
-        "tabel": "3.b.5.3",
-        "isi": "Luaran Penelitian/PkM Lainnya - Teknologi Tepat Guna, Produk, Karya Seni, Rekayasa Sosial",
-        "dokumen_sumber": [
-          {
-            "kode": "3.b.5.3.01.1",
+            "kode": "3.b.5.01.3",
             "dokumen": "Laporan Luaran Penelitian/PkM Lainnya - Teknologi Tepat Guna, Produk, Karya Seni, Rekayasa Sosial"
-          }
-        ],
-        "dokumen_pendukung": [
+          },
           {
-            "kode": "3.b.5.3.02.1",
-            "dokumen": "Foto Kegiatan"
-          }
-        ]
-      },
-      {
-        "tabel": "3.b.5.4",
-        "isi": "Luaran Penelitian/PkM Lainnya - Buku ber-ISBN, Book Chapter",
-        "dokumen_sumber": [
-          {
-            "kode": "3.b.5.4.01.1",
+            "kode": "3.b.5.01.4",
             "dokumen": "Laporan Luaran Penelitian/PkM Lainnya - Buku ber-ISBN, Book Chapter"
           }
         ],
         "dokumen_pendukung": [
           {
-            "kode": "3.b.5.4.02.1",
+            "kode": "3.b.5.02.1",
             "dokumen": "Foto Kegiatan"
-          }
-        ]
-      },
-      {
-        "tabel": "3.b.6",
-        "isi": "Karya Ilmiah DTPS yang Disitasi",
-        "dokumen_sumber": [
+          },
           {
-            "kode": "3.b.6.01.1",
-            "dokumen": "Laporan Karya Ilmiah DTPS yang Disitasi"
-          }
-        ],
-        "dokumen_pendukung": [
-          {
-            "kode": "3.b.6.02.1",
-            "dokumen": "Foto Kegiatan"
+            "kode": "3.b.5.02.2",
+            "dokumen": "SK"
           }
         ]
       },
       {
         "tabel": "3.b.7",
         "isi": "Produk/Jasa DTPS yang Diadopsi oleh Industri/Masyarakat",
+        "template": "<p>Tuliskan judul luaran penelitian atau judul luaran PkM yang dihasilkan DTPS dalam 3 tahun terakhir dengan mengikuti format Tabel 3.b.7) berikut ini. Jenis dan judul luaran harus relevan dengan bidang program studi.</p><p>Tabel 3.b.7) Luaran Penelitian/PkM Lainnya oleh DTPS</p><table><tbody><tr><td width=\"47\"><p><strong>No</strong></p></td><td width=\"312\"><p><strong>Judul Luaran Penelitian/PkM</strong></p></td><td width=\"76\"><p><strong>Tahun</strong></p></td><td width=\"142\"><p><strong>Keterangan</strong></p></td></tr><tr><td width=\"47\"><p>1</p></td><td width=\"312\"><p>2</p></td><td width=\"76\"><p>3</p></td><td width=\"142\"><p>4</p></td></tr><tr><td width=\"47\"><p><strong>I</strong></p></td><td width=\"312\"><p><strong>HKI <sup>1)</sup>:</strong></p><p>a)&nbsp;&nbsp;&nbsp; Paten,</p><p>b)&nbsp;&nbsp;&nbsp; Paten Sederhana</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"312\"><p>1. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"312\"><p>2. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"312\"><p>3. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td colspan=\"2\" width=\"359\"><p><strong>Jumlah</strong></p></td><td width=\"76\"><p>NA =</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p><strong>II</strong></p></td><td width=\"312\"><p><strong>HKI <sup>1)</sup>:</strong></p><p>a)&nbsp;&nbsp;&nbsp; Hak Cipta,</p><p>b)&nbsp;&nbsp;&nbsp; Desain Produk Industri,</p><p>c)&nbsp;&nbsp;&nbsp; Perlindungan Varietas Tanaman (Sertifikat Perlindungan Varietas Tanaman, Sertifikat Pelepasan Varietas, Sertifikat Pendaftaran Varietas),</p><p>d)&nbsp;&nbsp;&nbsp; Desain Tata Letak Sirkuit Terpadu,</p><p>e)&nbsp;&nbsp;&nbsp; dll.)</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"312\"><p>1. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"312\"><p>2. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"312\"><p>3. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td colspan=\"2\" width=\"359\"><p><strong>Jumlah</strong></p></td><td width=\"76\"><p>NB =</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p><strong>III</strong></p></td><td width=\"312\"><p><strong>Teknologi Tepat Guna, Produk (Produk</strong></p><p><strong>Terstandarisasi, Produk Tersertifikasi), Karya Seni, Rekayasa Sosial</strong></p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"312\"><p>1. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"312\"><p>2. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"312\"><p>3. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td colspan=\"2\" width=\"359\"><p><strong>Jumlah</strong></p></td><td width=\"76\"><p>NC =</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p><strong>IV</strong></p></td><td width=\"312\"><p><strong>Buku ber-ISBN, <em>Book Chapter</em></strong></p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"312\"><p>1. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"312\"><p>2. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"312\"><p>3. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"142\"><p>&nbsp;</p></td></tr><tr><td colspan=\"2\" width=\"359\"><p><strong>Jumlah</strong></p></td><td width=\"76\"><p>ND =</p></td><td width=\"142\"><p>&nbsp;</p></td></tr></tbody></table><p>Keterangan:</p><p><sup>1)</sup> Luaran penelitian/PkM yang mendapat pengakuan Hak Kekayaan Intelektual (HKI) dibuktikan dengan surat penetapan oleh Kemenkumham atau kementerian lain yang berwenang.</p>",
         "dokumen_sumber": [
           {
             "kode": "3.b.7.01.1",
@@ -358,25 +299,26 @@
     ]
   },
   {
-    "standar": 4,
-    "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
+    "kriteria": 4,
+    "judul": "Keuangan, Sarana dan Prasarana",
     "butir": [
       {
-        "tabel": "4.b",
+        "tabel": "4",
         "isi": "Penggunaan Dana",
+        "template": "<p>Tuliskan data penggunaan dana yang dikelola oleh UPPS dan data penggunaan dana yang dialokasikan ke program studi yang diakreditasi dalam 3 tahun terakhir dengan mengikuti format Tabel 4 berikut ini.</p><p>Tabel 4 Penggunaan Dana</p><table><tbody><tr><td rowspan=\"2\" width=\"37\"><p>&nbsp;</p><p><strong>No.</strong></p></td><td rowspan=\"2\" width=\"228\"><p>&nbsp;</p><p><strong>Jenis Penggunaan</strong></p></td><td colspan=\"4\" width=\"307\"><p><strong>Unit Pengelola Program Studi</strong></p><p><strong>(Rp.)</strong></p></td><td colspan=\"4\" width=\"307\"><p><strong>Program Studi</strong></p><p><strong>(Rp.)</strong></p></td></tr><tr><td width=\"77\"><p><strong>TS-2</strong></p></td><td width=\"77\"><p><strong>TS-1</strong></p></td><td width=\"77\"><p><strong>TS</strong></p></td><td width=\"77\"><p><strong>Rata-rata</strong></p></td><td width=\"77\"><p><strong>TS-2</strong></p></td><td width=\"77\"><p><strong>TS-1</strong></p></td><td width=\"77\"><p><strong>TS</strong></p></td><td width=\"77\"><p><strong>Rata-rata</strong></p></td></tr><tr><td width=\"37\"><p>1</p></td><td width=\"228\"><p>2</p></td><td width=\"77\"><p>3</p></td><td width=\"77\"><p>4</p></td><td width=\"77\"><p>5</p></td><td width=\"77\"><p>6</p></td><td width=\"77\"><p>7</p></td><td width=\"77\"><p>8</p></td><td width=\"77\"><p>9</p></td><td width=\"77\"><p>10</p></td></tr><tr><td width=\"37\"><p>1</p></td><td width=\"228\"><p>Biaya Operasional Pendidikan</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td></tr><tr><td width=\"37\"><p>&nbsp;</p></td><td width=\"228\"><p>a. Biaya Dosen (Gaji, Honor)</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td></tr><tr><td width=\"37\"><p>&nbsp;</p></td><td width=\"228\"><p>b. Biaya Tenaga Kependidikan (Gaji,</p><p>Honor)</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td></tr><tr><td width=\"37\"><p>&nbsp;</p></td><td width=\"228\"><p>c. Biaya Operasional Pembelajaran</p><p>(Bahan dan Peralatan Habis Pakai)</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td></tr><tr><td width=\"37\"><p>&nbsp;</p></td><td width=\"228\"><p>d. Biaya Operasional Tidak Langsung (Listrik, Gas, Air, Pemeliharaan Gedung, Pemeliharaan Sarana, Uang Lembur, Telekomunikasi, Konsumsi, Transport Lokal, Pajak,</p><p>Asuransi, dll.)</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td></tr><tr><td width=\"37\"><p>&nbsp;</p><p>2</p></td><td width=\"228\"><p>Biaya operasional kemahasiswaan (penalaran, minat, bakat, dan</p><p>kesejahteraan).</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td></tr><tr><td colspan=\"2\" width=\"265\"><p><strong>Jumlah</strong></p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td></tr><tr><td width=\"37\"><p>3</p></td><td width=\"228\"><p>Biaya Penelitian</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td></tr><tr><td width=\"37\"><p>4</p></td><td width=\"228\"><p>Biaya PkM</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td></tr><tr><td colspan=\"2\" width=\"265\"><p><strong>Jumlah</strong></p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td></tr><tr><td width=\"37\"><p>5</p></td><td width=\"228\"><p>Biaya Investasi SDM</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td></tr><tr><td width=\"37\"><p>6</p></td><td width=\"228\"><p>Biaya Investasi Sarana</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td></tr><tr><td width=\"37\"><p>7</p></td><td width=\"228\"><p>Biaya Investasi Prasarana</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td></tr><tr><td colspan=\"2\" width=\"265\"><p><strong>Jumlah</strong></p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td></tr><tr><td colspan=\"2\" width=\"265\"><p><strong>TOTAL</strong></p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td></tr></tbody></table>",
         "dokumen_sumber": [
           {
-            "kode": "4.b.01.1",
+            "kode": "4.01.1",
             "dokumen": "Laporan Keuangan"
           },
           {
-            "kode": "4.b.01.2",
+            "kode": "4.01.2",
             "dokumen": "RKAKL"
           }
         ],
         "dokumen_pendukung": [
           {
-            "kode": "4.b.02.1",
+            "kode": "4.02.1",
             "dokumen": "Bukti-bukti"
           }
         ]
@@ -384,12 +326,13 @@
     ]
   },
   {
-    "standar": 5,
-    "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
+    "kriteria": 5,
+    "judul": "Pendidikan",
     "butir": [
       {
         "tabel": "5.a",
         "isi": "Kurikulum, Capaian Pembelajaran, dan Rencana Pembelajaran",
+        "template": "<p>Tuliskan struktur program dan kelengkapan data mata kuliah sesuai dengan dokumen kurikulum program studi yang berlaku pada saat TS dengan mengikuti format Tabel 5.a berikut ini.</p><p>Tabel 5.a Kurikulum, Capaian Pembelajaran, dan Rencana Pembelajaran</p><table><tbody><tr><td rowspan=\"2\" width=\"42\"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><strong>No.</strong></p></td><td rowspan=\"2\" width=\"62\"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><strong>Semes- ter</strong></p></td><td rowspan=\"2\" width=\"57\"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><strong>Kode Mata Kuliah</strong></p></td><td rowspan=\"2\" width=\"94\"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><strong>Nama Mata Kuliah</strong></p></td><td rowspan=\"2\" width=\"57\"><p>&nbsp;</p><p>&nbsp;</p><p><strong>Mata Kuliah Kom- petensi</strong></p><p><strong>1)</strong></p></td><td colspan=\"3\" width=\"142\"><p><strong>Bobot Kredit</strong></p><p><strong>(sks)</strong></p></td><td rowspan=\"2\" width=\"47\"><p>&nbsp;</p><p><strong>Konversi Kredit ke Jam </strong><strong>2)</strong></p></td><td colspan=\"4\" width=\"189\"><p><strong>Capaian Pembelajaran </strong><strong>3)</strong></p></td><td rowspan=\"2\" width=\"85\"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><strong>Dokumen Rencana Pembela- jaran </strong><strong>3)</strong></p></td><td rowspan=\"2\" width=\"76\"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><strong>Unit Penye- lenggara</strong></p></td></tr><tr><td width=\"47\"><p><strong>Kuliah/ Responsi/ Tutorial</strong></p></td><td width=\"47\"><p>&nbsp;</p><p><strong>Seminar</strong></p></td><td width=\"47\"><p><strong>Praktikum/ Praktik/ Praktik Lapangan</strong></p></td><td width=\"47\"><p>&nbsp;</p><p><strong>Sikap</strong></p></td><td width=\"47\"><p>&nbsp;</p><p><strong>Pengetahuan</strong></p></td><td width=\"47\"><p><strong>Keterampilan Umum</strong></p></td><td width=\"47\"><p><strong>Keterampilan Khusus</strong></p></td></tr><tr><td width=\"42\"><p>1</p></td><td width=\"62\"><p>2</p></td><td width=\"57\"><p>3</p></td><td width=\"94\"><p>4</p></td><td width=\"57\"><p>5</p></td><td width=\"47\"><p>6</p></td><td width=\"47\"><p>7</p></td><td width=\"47\"><p>8</p></td><td width=\"47\"><p>9</p></td><td width=\"47\"><p>10</p></td><td width=\"47\"><p>11</p></td><td width=\"47\"><p>12</p></td><td width=\"47\"><p>13</p></td><td width=\"85\"><p>14</p></td><td width=\"76\"><p>15</p></td></tr><tr><td width=\"42\"><p>1</p></td><td width=\"62\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr><tr><td width=\"42\"><p>2</p></td><td width=\"62\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr><tr><td width=\"42\"><p>3</p></td><td width=\"62\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr><tr><td width=\"42\"><p>4</p></td><td width=\"62\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr><tr><td width=\"42\"><p>5</p></td><td width=\"62\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr><tr><td width=\"42\"><p>&hellip;</p></td><td width=\"62\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr><tr><td colspan=\"4\" width=\"255\"><p><strong>Jumlah</strong></p></td><td width=\"57\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr></tbody></table><p>Keterangan:</p><p><sup>1)</sup> Diisi dengan tanda centang V jika mata kuliah termasuk dalam mata kuliah kompetensi program studi.</p><p><sup>2)</sup> Diisi dengan konversi bobot kredit ke jam pelaksanaan pembelajaran. <u>Data ini diisi oleh pengusul dari program studi pada</u> <u>program Diploma Tiga/Sarjana/Sarjana Terapan.</u></p><p><sup>3)</sup> Beri tanda V pada kolom unsur pembentuk Capaian Pembelajaran Lulusan (CPL) sesuai dengan rencana pembelajaran.</p><p><sup>4)</sup> Diisi dengan nama dokumen rencana pembelajaran yang digunakan<strong>.</strong></p>",
         "dokumen_sumber": [
           {
             "kode": "5.a.01.1",
@@ -422,34 +365,7 @@
       {
         "tabel": "5.b",
         "isi": "Integrasi Kegiatan Penelitian/PkM dalam Pembelajaran",
-        "dokumen_sumber": [
-          {
-            "kode": "5.b.01.1",
-            "dokumen": "RPS per prodi"
-          },
-          {
-            "kode": "5.b.01.2",
-            "dokumen": "Daftar Penellitian per dosen"
-          },
-          {
-            "kode": "5.b.01.3",
-            "dokumen": "Daftar PkM perdosen"
-          }
-        ],
-        "dokumen_pendukung": [
-          {
-            "kode": "5.b.02.1",
-            "dokumen": "Laporan Penelitian"
-          },
-          {
-            "kode": "5.b.02.2",
-            "dokumen": "Laporan PkM"
-          }
-        ]
-      },
-      {
-        "tabel": "5.b",
-        "isi": "Integrasi Kegiatan Penelitian/PkM dalam Pembelajaran",
+        "template": "<p>Tuliskan judul penelitian/PkM DTPS yang terintegrasi ke dalam pembelajaran/ pengembangan matakuliah dalam 3 tahun terakhir dengan mengikuti format Tabel 5.b berikut ini.</p><p>Tabel 5.b Integrasi Kegiatan Penelitian/PkM dalam Pembelajaran</p><table><tbody><tr><td width=\"41\"><p><strong>No.</strong></p></td><td width=\"125\"><p><strong>Judul</strong></p><p><strong>Penelitian/PkM </strong><strong>1)</strong></p></td><td width=\"125\"><p><strong>Nama Dosen</strong></p></td><td width=\"125\"><p><strong>Mata Kuliah</strong></p></td><td width=\"136\"><p><strong>Bentuk Integrasi </strong><strong>2)</strong></p></td></tr><tr><td width=\"41\"><p>1</p></td><td width=\"125\"><p>2</p></td><td width=\"125\"><p>3</p></td><td width=\"125\"><p>4</p></td><td width=\"136\"><p>5</p></td></tr><tr><td width=\"41\"><p>1</p></td><td width=\"125\"><p>&nbsp;</p></td><td width=\"125\"><p>&nbsp;</p></td><td width=\"125\"><p>&nbsp;</p></td><td width=\"136\"><p>&nbsp;</p></td></tr><tr><td width=\"41\"><p>2</p></td><td width=\"125\"><p>&nbsp;</p></td><td width=\"125\"><p>&nbsp;</p></td><td width=\"125\"><p>&nbsp;</p></td><td width=\"136\"><p>&nbsp;</p></td></tr><tr><td width=\"41\"><p>3</p></td><td width=\"125\"><p>&nbsp;</p></td><td width=\"125\"><p>&nbsp;</p></td><td width=\"125\"><p>&nbsp;</p></td><td width=\"136\"><p>&nbsp;</p></td></tr><tr><td width=\"41\"><p>4</p></td><td width=\"125\"><p>&nbsp;</p></td><td width=\"125\"><p>&nbsp;</p></td><td width=\"125\"><p>&nbsp;</p></td><td width=\"136\"><p>&nbsp;</p></td></tr><tr><td width=\"41\"><p>5</p></td><td width=\"125\"><p>&nbsp;</p></td><td width=\"125\"><p>&nbsp;</p></td><td width=\"125\"><p>&nbsp;</p></td><td width=\"136\"><p>&nbsp;</p></td></tr><tr><td width=\"41\"><p>&hellip;</p></td><td width=\"125\"><p>&nbsp;</p></td><td width=\"125\"><p>&nbsp;</p></td><td width=\"125\"><p>&nbsp;</p></td><td width=\"136\"><p>&nbsp;</p></td></tr></tbody></table><p>Keterangan:</p><p><sup>1)</sup> Judul penelitian dan PkM tercatat di unit/lembaga yang mengelola kegiatan penelitian/PkM di tingkat Perguruan Tinggi/UPPS.</p><p><sup>2)</sup> Bentuk integrasi dapat berupa tambahan materi perkuliahan, studi kasus, Bab/ Subbab dalam buku ajar, atau bentuk lain yang relevan.</p>",
         "dokumen_sumber": [
           {
             "kode": "5.b.01.1",
@@ -478,6 +394,7 @@
       {
         "tabel": "5.c",
         "isi": "Kepuasan Mahasiswa",
+        "template": "<p>Tuliskan hasil pengukuran kepuasan mahasiswa terhadap proses pendidikan dengan mengikuti format Tabel 5.c berikut ini. Data diambil dari hasil studi penelusuran yang dilakukan pada saat TS.</p><p>Tabel 5.c Kepuasan Mahasiswa</p><table style=\"width: 1297px;\"><tbody><tr><td style=\"width: 107px;\" rowspan=\"2\" width=\"47\"><p>&nbsp;</p><p><strong>No.</strong></p></td><td style=\"width: 351px;\" rowspan=\"2\" width=\"143\"><p>&nbsp;</p><p><strong>Aspek yang Diukur</strong></p></td><td style=\"width: 604px;\" colspan=\"4\" width=\"265\"><p><strong>Tingkat Kepuasan Mahasiswa</strong></p><p><strong>(%)</strong></p></td><td style=\"width: 235px;\" rowspan=\"2\" width=\"103\"><p><strong>Rencana Tindak Lanjut oleh UPPS/PS</strong></p></td></tr><tr><td style=\"width: 150px;\" width=\"66\"><p><strong>Sangat</strong></p><p><strong>Baik</strong></p></td><td style=\"width: 146px;\" width=\"64\"><p><strong>Baik</strong></p></td><td style=\"width: 155px;\" width=\"68\"><p><strong>Cukup</strong></p></td><td style=\"width: 153px;\" width=\"66\"><p><strong>Kurang</strong></p></td></tr><tr><td style=\"width: 107px;\" width=\"47\"><p>1</p></td><td style=\"width: 351px;\" width=\"143\"><p>2</p></td><td style=\"width: 150px;\" width=\"66\"><p>3</p></td><td style=\"width: 146px;\" width=\"64\"><p>4</p></td><td style=\"width: 155px;\" width=\"68\"><p>5</p></td><td style=\"width: 153px;\" width=\"66\"><p>6</p></td><td style=\"width: 235px;\" width=\"103\"><p>7</p></td></tr><tr><td style=\"width: 107px;\" width=\"47\"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>1.</p></td><td style=\"width: 351px;\" width=\"143\"><p>Keandalan (<em>reliability</em>): kemampuan dosen, tenaga kependidikan, dan pengelola dalam memberikan pelayanan.</p></td><td style=\"width: 150px;\" width=\"66\"><p>&nbsp;</p></td><td style=\"width: 146px;\" width=\"64\"><p>&nbsp;</p></td><td style=\"width: 155px;\" width=\"68\"><p>&nbsp;</p></td><td style=\"width: 153px;\" width=\"66\"><p>&nbsp;</p></td><td style=\"width: 235px;\" width=\"103\"><p>&nbsp;</p></td></tr><tr><td style=\"width: 107px;\" width=\"47\"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>2.</p></td><td style=\"width: 351px;\" width=\"143\"><p>Daya tanggap (<em>responsiveness</em>): kemauan dari dosen, tenaga kependidikan, dan pengelola dalam membantu mahasiswa dan memberikan jasa</p><p>dengan cepat.</p></td><td style=\"width: 150px;\" width=\"66\"><p>&nbsp;</p></td><td style=\"width: 146px;\" width=\"64\"><p>&nbsp;</p></td><td style=\"width: 155px;\" width=\"68\"><p>&nbsp;</p></td><td style=\"width: 153px;\" width=\"66\"><p>&nbsp;</p></td><td style=\"width: 235px;\" width=\"103\"><p>&nbsp;</p></td></tr><tr><td style=\"width: 107px;\" width=\"47\"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>3.</p></td><td style=\"width: 351px;\" width=\"143\"><p>Kepastian (<em>assurance</em>): kemampuan dosen, tenaga kependidikan, dan pengelola untuk memberi keyakinan kepada mahasiswa bahwa pelayanan yang diberikan telah sesuai dengan</p><p>ketentuan.</p></td><td style=\"width: 150px;\" width=\"66\"><p>&nbsp;</p></td><td style=\"width: 146px;\" width=\"64\"><p>&nbsp;</p></td><td style=\"width: 155px;\" width=\"68\"><p>&nbsp;</p></td><td style=\"width: 153px;\" width=\"66\"><p>&nbsp;</p></td><td style=\"width: 235px;\" width=\"103\"><p>&nbsp;</p></td></tr><tr><td style=\"width: 107px;\" width=\"47\"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>4.</p></td><td style=\"width: 351px;\" width=\"143\"><p>Empati (<em>empathy</em>): kesediaan/kepedulian dosen, tenaga kependidikan, dan pengelola untuk memberi perhatian</p><p>kepada mahasiswa.</p></td><td style=\"width: 150px;\" width=\"66\"><p>&nbsp;</p></td><td style=\"width: 146px;\" width=\"64\"><p>&nbsp;</p></td><td style=\"width: 155px;\" width=\"68\"><p>&nbsp;</p></td><td style=\"width: 153px;\" width=\"66\"><p>&nbsp;</p></td><td style=\"width: 235px;\" width=\"103\"><p>&nbsp;</p></td></tr><tr><td style=\"width: 107px;\" width=\"47\"><p>&nbsp;</p><p>&nbsp;</p><p>5.</p></td><td style=\"width: 351px;\" width=\"143\"><p><em>Tangible</em>: penilaian mahasiswa terhadap kecukupan, aksesibitas, kualitas sarana dan</p><p>prasarana.</p></td><td style=\"width: 150px;\" width=\"66\"><p>&nbsp;</p></td><td style=\"width: 146px;\" width=\"64\"><p>&nbsp;</p></td><td style=\"width: 155px;\" width=\"68\"><p>&nbsp;</p></td><td style=\"width: 153px;\" width=\"66\"><p>&nbsp;</p></td><td style=\"width: 235px;\" width=\"103\"><p>&nbsp;</p></td></tr><tr><td style=\"width: 458px;\" colspan=\"2\" width=\"190\"><p><strong>Jumlah</strong></p></td><td style=\"width: 150px;\" width=\"66\"><p>&nbsp;</p></td><td style=\"width: 146px;\" width=\"64\"><p>&nbsp;</p></td><td style=\"width: 155px;\" width=\"68\"><p>&nbsp;</p></td><td style=\"width: 153px;\" width=\"66\"><p>&nbsp;</p></td><td style=\"width: 235px;\" width=\"103\"><p>&nbsp;</p></td></tr></tbody></table>",
         "dokumen_sumber": [
           {
             "kode": "5.c.01.1",
@@ -506,50 +423,36 @@
     ]
   },
   {
-    "standar": 6,
-    "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
+    "kriteria": 6,
+    "judul": "Penelitian",
     "butir": [
       {
-        "tabel": "2.a",
-        "isi": "Seleksi Mahasiswa",
+        "tabel": "6.a",
+        "isi": "Penelitian DTPS yang Melibatkan Mahasiswa",
+        "template": "<p>Tuliskan data penelitian DTPS yang dalam pelaksanaannya melibatkan mahasiswa Program Studi pada TS-2 sampai dengan TS dengan mengikuti format Tabel 6.a berikut ini.</p><p>Tabel 6.a Penelitian DTPS yang melibatkan mahasiswa</p><table><tbody><tr><td width=\"46\"><p>&nbsp;</p><p><strong>No.</strong></p></td><td width=\"115\"><p>&nbsp;</p><p><strong>Nama Dosen</strong></p></td><td width=\"88\"><p><strong>Tema Penelitian sesuai</strong></p><p><strong>Roadmap</strong></p></td><td width=\"120\"><p>&nbsp;</p><p><strong>Nama Mahasiswa</strong></p></td><td width=\"108\"><p>&nbsp;</p><p><strong>Judul Kegiatan</strong></p><p><strong>1)</strong></p></td><td width=\"70\"><p>&nbsp;</p><p><strong>Tahun</strong></p></td></tr><tr><td width=\"46\"><p>1</p></td><td width=\"115\"><p>2</p></td><td width=\"88\"><p>3</p></td><td width=\"120\"><p>4</p></td><td width=\"108\"><p>5</p></td><td width=\"70\"><p>6</p></td></tr><tr><td width=\"46\"><p>1</p></td><td width=\"115\"><p>&nbsp;</p></td><td width=\"88\"><p>&nbsp;</p></td><td width=\"120\"><p>&nbsp;</p></td><td width=\"108\"><p>&nbsp;</p></td><td width=\"70\"><p>&nbsp;</p></td></tr><tr><td width=\"46\"><p>2</p></td><td width=\"115\"><p>&nbsp;</p></td><td width=\"88\"><p>&nbsp;</p></td><td width=\"120\"><p>&nbsp;</p></td><td width=\"108\"><p>&nbsp;</p></td><td width=\"70\"><p>&nbsp;</p></td></tr><tr><td width=\"46\"><p>&hellip;</p></td><td width=\"115\"><p>&nbsp;</p></td><td width=\"88\"><p>&nbsp;</p></td><td width=\"120\"><p>&nbsp;</p></td><td width=\"108\"><p>&nbsp;</p></td><td width=\"70\"><p>&nbsp;</p></td></tr><tr><td colspan=\"4\" width=\"369\"><p><strong>Jumlah</strong></p></td><td width=\"108\"><p>&nbsp;</p></td><td width=\"70\"><p>&nbsp;</p></td></tr></tbody></table><p>Keterangan:</p><p><sup>1)</sup> Judul kegiatan yang melibatkan mahasiswa dalam penelitian dosen dapat berupa Tugas Akhir, Perancangan, Pengembangan Produk/Jasa, atau kegiatan lain yang relevan.</p>",
         "dokumen_sumber": [
           {
-            "kode": "2.a.01.1",
-            "dokumen": "Laporan Penerimaan Mahasiswa Baru"
+            "kode": "6.a.01.1",
+            "dokumen": "Daftar Mahasiswa yang terlibat penelitian dosen"
+          },
+          {
+            "kode": "6.a.01.2",
+            "dokumen": "Laporan Penelitian"
           }
         ],
         "dokumen_pendukung": [
-          {
-            "kode": "2.a.02.1",
-            "dokumen": "Bukti Pembayaran SPP"
-          }
-        ]
-      },
-      {
-        "tabel": "2.b",
-        "isi": "Mahasiswa Asing",
-        "dokumen_sumber": [
-          {
-            "kode": "2.b.01.1",
-            "dokumen": "Laporan Penerimaan Mahasiswa Baru"
-          }
-        ],
-        "dokumen_pendukung": [
-          {
-            "kode": "2.b.02.1",
-            "dokumen": "Bukti Pembayaran SPP"
-          }
         ]
       }
     ]
   },
   {
-    "standar": 7,
-    "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
+    "kriteria": 7,
+    "judul": "Pengabdian kepada Masyarakat (PkM)",
     "butir": [
       {
         "tabel": "7",
         "isi": "PkM DTPS yang Melibatkan Mahasiswa",
+        "template": "<p>Tuliskan data pengabdian kepada masyarakat (PkM) DTPS yang dalam pelaksanaannya melibatkan mahasiswa Program Studi pada TS-2 sampai dengan TS dengan mengikuti format Tabel 7 berikut ini.</p><p>Tabel 7. PkM DTPS yang melibatkan mahasiswa</p><table><tbody><tr><td width=\"46\"><p><strong>No.</strong></p></td><td width=\"115\"><p><strong>Nama Dosen</strong></p></td><td width=\"113\"><p><strong>Tema PkM sesuai Roadmap</strong></p></td><td width=\"119\"><p><strong>Nama Mahasiswa</strong></p></td><td width=\"108\"><p><strong>Judul Kegiatan</strong></p><p><strong>1)</strong></p></td><td width=\"70\"><p><strong>Tahun</strong></p></td></tr><tr><td width=\"46\"><p>1</p></td><td width=\"115\"><p>2</p></td><td width=\"113\"><p>3</p></td><td width=\"119\"><p>4</p></td><td width=\"108\"><p>5</p></td><td width=\"70\"><p>6</p></td></tr><tr><td width=\"46\"><p>1</p></td><td width=\"115\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"119\"><p>&nbsp;</p></td><td width=\"108\"><p>&nbsp;</p></td><td width=\"70\"><p>&nbsp;</p></td></tr><tr><td width=\"46\"><p>2</p></td><td width=\"115\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"119\"><p>&nbsp;</p></td><td width=\"108\"><p>&nbsp;</p></td><td width=\"70\"><p>&nbsp;</p></td></tr><tr><td width=\"46\"><p>3</p></td><td width=\"115\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"119\"><p>&nbsp;</p></td><td width=\"108\"><p>&nbsp;</p></td><td width=\"70\"><p>&nbsp;</p></td></tr><tr><td width=\"46\"><p>&hellip;</p></td><td width=\"115\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"119\"><p>&nbsp;</p></td><td width=\"108\"><p>&nbsp;</p></td><td width=\"70\"><p>&nbsp;</p></td></tr><tr><td colspan=\"4\" width=\"394\"><p><strong>Jumlah</strong></p></td><td width=\"108\"><p>&nbsp;</p></td><td width=\"70\"><p>&nbsp;</p></td></tr></tbody></table><p>Keterangan:</p><p><sup>1)</sup> Kegiatan PkM dosen yang dalam pelaksanaannya melibatkan mahasiswa, tidak termasuk kegiatan KKN atau kegiatan lainnya yang merupakan bagian dari kegiatan kurikuler.</p>",
         "dokumen_sumber": [
           {
             "kode": "7.01.1",
@@ -566,28 +469,25 @@
     ]
   },
   {
-    "standar": 8,
-    "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
+    "kriteria": 8,
+    "judul": "Luaran dan Capaian Tridharma ",
     "butir": [
       {
         "tabel": "8.a",
         "isi": "IPK Lulusan",
+        "template": "<p><strong>&nbsp;</strong></p><p>Tuliskan data Indeks Prestasi Kumulatif (IPK) lulusan dalam 3 tahun terakhir dengan mengikuti format Tabel 8.a berikut ini. Data dilengkapi dengan jumlah lulusan pada setiap tahun kelulusan.</p><p>Tabel 8.a IPK Lulusan</p><table><tbody><tr><td rowspan=\"2\" width=\"85\"><p><strong>Tahun</strong></p><p><strong>Lulus</strong></p></td><td rowspan=\"2\" width=\"107\"><p><strong>Jumlah Lulusan</strong></p></td><td colspan=\"3\" width=\"279\"><p><strong>Indeks Prestasi Kumulatif (IPK)</strong></p></td></tr><tr><td width=\"96\"><p><strong>Min.</strong></p></td><td width=\"95\"><p><strong>Rata-rata</strong></p></td><td width=\"88\"><p><strong>Maks.</strong></p></td></tr><tr><td width=\"85\"><p>1</p></td><td width=\"107\"><p>2</p></td><td width=\"96\"><p>3</p></td><td width=\"95\"><p>4</p></td><td width=\"88\"><p>5</p></td></tr><tr><td width=\"85\"><p>TS-2</p></td><td width=\"107\"><p>&nbsp;</p></td><td width=\"96\"><p>&nbsp;</p></td><td width=\"95\"><p>&nbsp;</p></td><td width=\"88\"><p>&nbsp;</p></td></tr><tr><td width=\"85\"><p>TS-1</p></td><td width=\"107\"><p>&nbsp;</p></td><td width=\"96\"><p>&nbsp;</p></td><td width=\"95\"><p>&nbsp;</p></td><td width=\"88\"><p>&nbsp;</p></td></tr><tr><td width=\"85\"><p>TS</p></td><td width=\"107\"><p>&nbsp;</p></td><td width=\"96\"><p>&nbsp;</p></td><td width=\"95\"><p>&nbsp;</p></td><td width=\"88\"><p>&nbsp;</p></td></tr></tbody></table>",
         "dokumen_sumber": [
           {
             "kode": "8.a.01.1",
             "dokumen": "Daftar IPK Lulusan"
           }
         ],
-        "dokumen_pendukung": [
-          {
-            "kode": "-",
-            "dokumen": "-"
-          }
-        ]
+        "dokumen_pendukung": []
       },
       {
         "tabel": "8.b.1",
         "isi": "Prestasi Akademik Mahasiswa",
+        "template": "<p>Tuliskan prestasi akademik yang dicapai mahasiswa Program Studi dalam 5 tahun terakhir dengan mengikuti format Tabel 8.b.1) berikut ini. Data dilengkapi dengan keterangan kegiatan yang diikuti (nama kegiatan, tahun, tingkat, dan prestasi yang dicapai).</p><p>Tabel 8.b.1) Prestasi Akademik</p><table><tbody><tr><td rowspan=\"2\" width=\"41\"><p>&nbsp;</p><p><strong>No.</strong></p></td><td rowspan=\"2\" width=\"118\"><p>&nbsp;</p><p><strong>Nama Kegiatan</strong></p></td><td rowspan=\"2\" width=\"113\"><p>&nbsp;</p><p><strong>Tahun Perolehan</strong></p></td><td colspan=\"3\" width=\"189\"><p><strong>Tingkat </strong><strong>1)</strong></p></td><td rowspan=\"2\" width=\"94\"><p><strong>Prestasi yang Dicapai</strong></p></td></tr><tr><td width=\"63\"><p><strong>Lokal/</strong></p><p><strong>Wilayah</strong></p></td><td width=\"60\"><p><strong>Nasio-</strong></p><p><strong>nal</strong></p></td><td width=\"66\"><p><strong>Interna-</strong></p><p><strong>sional</strong></p></td></tr><tr><td width=\"41\"><p>1</p></td><td width=\"118\"><p>2</p></td><td width=\"113\"><p>3</p></td><td width=\"63\"><p>4</p></td><td width=\"60\"><p>5</p></td><td width=\"66\"><p>6</p></td><td width=\"94\"><p>6</p></td></tr><tr><td width=\"41\"><p>1</p></td><td width=\"118\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"63\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td></tr><tr><td width=\"41\"><p>2</p></td><td width=\"118\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"63\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td></tr><tr><td width=\"41\"><p>3</p></td><td width=\"118\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"63\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td></tr><tr><td width=\"41\"><p>4</p></td><td width=\"118\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"63\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td></tr><tr><td width=\"41\"><p>5</p></td><td width=\"118\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"63\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td></tr><tr><td width=\"41\"><p>&hellip;</p></td><td width=\"118\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"63\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td></tr><tr><td colspan=\"3\" width=\"272\"><p><strong>Jumlah</strong></p></td><td width=\"63\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td></tr></tbody></table><p>Keterangan:</p><p><sup>1)</sup> Beri tanda centang V pada kolom yang sesuai.</p>",
         "dokumen_sumber": [
           {
             "kode": "8.b.1.01.1",
@@ -604,6 +504,7 @@
       {
         "tabel": "8.b.2",
         "isi": "Prestasi Non-akademik Mahasiswa",
+        "template": "<p>Tuliskan prestasi nonakademik yang dicapai mahasiswa Program Studi dalam 5 tahun terakhir dengan mengikuti format Tabel 8.b.2) berikut ini. Data dilengkapi dengan keterangan kegiatan yang diikuti (nama kegiatan, tahun, tingkat, dan prestasi yang dicapai).</p><p>Tabel 8.b.2) Prestasi Nonakademik Mahasiswa</p><table><tbody><tr><td rowspan=\"2\" width=\"41\"><p>&nbsp;</p><p><strong>No.</strong></p></td><td rowspan=\"2\" width=\"118\"><p>&nbsp;</p><p><strong>Nama Kegiatan</strong></p></td><td rowspan=\"2\" width=\"113\"><p>&nbsp;</p><p><strong>Tahun Perolehan</strong></p></td><td colspan=\"3\" width=\"191\"><p><strong>Tingkat</strong></p></td><td rowspan=\"2\" width=\"93\"><p><strong>Prestasi yang Dicapai</strong></p></td></tr><tr><td width=\"65\"><p><strong>Lokal/</strong></p><p><strong>Wilayah</strong></p></td><td width=\"60\"><p><strong>Nasio-</strong></p><p><strong>nal</strong></p></td><td width=\"66\"><p><strong>Interna-</strong></p><p><strong>sional</strong></p></td></tr><tr><td width=\"41\"><p>1</p></td><td width=\"118\"><p>2</p></td><td width=\"113\"><p>3</p></td><td width=\"65\"><p>4</p></td><td width=\"60\"><p>5</p></td><td width=\"66\"><p>6</p></td><td width=\"93\"><p>6</p></td></tr><tr><td width=\"41\"><p>1</p></td><td width=\"118\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"65\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"93\"><p>&nbsp;</p></td></tr><tr><td width=\"41\"><p>2</p></td><td width=\"118\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"65\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"93\"><p>&nbsp;</p></td></tr><tr><td width=\"41\"><p>3</p></td><td width=\"118\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"65\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"93\"><p>&nbsp;</p></td></tr><tr><td width=\"41\"><p>4</p></td><td width=\"118\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"65\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"93\"><p>&nbsp;</p></td></tr><tr><td width=\"41\"><p>5</p></td><td width=\"118\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"65\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"93\"><p>&nbsp;</p></td></tr><tr><td width=\"41\"><p>&hellip;</p></td><td width=\"118\"><p>&nbsp;</p></td><td width=\"113\"><p>&nbsp;</p></td><td width=\"65\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"93\"><p>&nbsp;</p></td></tr><tr><td colspan=\"3\" width=\"272\"><p><strong>Jumlah</strong></p></td><td width=\"65\"><p>&nbsp;</p></td><td width=\"60\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"93\"><p>&nbsp;</p></td></tr></tbody></table><p>Keterangan:</p><p><sup>1)</sup> Beri tanda centang V pada kolom yang sesuai.</p>",
         "dokumen_sumber": [
           {
             "kode": "8.b.2.01.1",
@@ -620,6 +521,7 @@
       {
         "tabel": "8.c",
         "isi": "Masa Studi Lulusan",
+        "template": "<p>Tuliskan masa studi lulusan untuk dengan mengikuti format Tabel 8.c berikut ini. Tabel 8.c. Masa Studi Lulusan Program Studi</p><table><tbody><tr><td rowspan=\"2\" width=\"57\"><p>&nbsp;</p><p><strong>Tahun Masuk</strong></p></td><td rowspan=\"2\" width=\"85\"><p><strong>Jumlah Mahasiswa Diterima </strong><strong>1)</strong></p></td><td colspan=\"7\" width=\"331\"><p><strong>Jumlah Mahasiswa yang Lulus pada</strong></p></td><td rowspan=\"2\" width=\"66\"><p><strong>Jumlah Lulusan s.d.</strong></p><p><strong>Akhir TS</strong></p></td><td rowspan=\"2\" width=\"66\"><p><strong>Rata- rata Masa</strong></p><p><strong>Studi</strong></p></td></tr><tr><td width=\"47\"><p><strong>Akhir TS-6</strong></p></td><td width=\"47\"><p><strong>Akhir TS-5</strong></p></td><td width=\"47\"><p><strong>Akhir TS-4</strong></p></td><td width=\"47\"><p><strong>Akhir TS-3</strong></p></td><td width=\"47\"><p><strong>Akhir TS-2</strong></p></td><td width=\"47\"><p><strong>Akhir TS-1</strong></p></td><td width=\"47\"><p><strong>Akhir TS</strong></p></td></tr><tr><td width=\"57\"><p>1</p></td><td width=\"85\"><p>2</p></td><td width=\"47\"><p>3</p></td><td width=\"47\"><p>4</p></td><td width=\"47\"><p>5</p></td><td width=\"47\"><p>6</p></td><td width=\"47\"><p>7</p></td><td width=\"47\"><p>8</p></td><td width=\"47\"><p>9</p></td><td width=\"66\"><p>10</p></td><td width=\"66\"><p>11</p></td></tr><tr><td width=\"57\"><p>TS-6</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td></tr><tr><td width=\"57\"><p>TS-5</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td></tr><tr><td width=\"57\"><p>TS-4</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td></tr><tr><td width=\"57\"><p>TS-3</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"47\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td></tr></tbody></table><p>Keterangan:</p><p><sup>1)</sup> Tidak termasuk mahasiswa transfer. TS = Tahun akademik penuh terakhir.</p><p>TS-n = Tahun akademik n tahun sebelum TS.</p>",
         "dokumen_sumber": [
           {
             "kode": "8.c.01.1",
@@ -640,6 +542,7 @@
       {
         "tabel": "8.d.1",
         "isi": "Waktu Tunggu Lulusan",
+        "template": "<p>Tuliskan data masa tunggu lulusan untuk mendapatkan pekerjaan pertama dalam 3 tahun, mulai TS-4 sampai dengan TS-2, dengan mengikuti format Tabel 8.d.1) berikut ini. Data diambil dari hasil studi penelusuran lulusan.</p><p>Tabel 8.d.1) Waktu Tunggu Lulusan</p><table><tbody><tr><td rowspan=\"2\" width=\"66\"><p>&nbsp;</p><p><strong>Tahun Lulus</strong></p></td><td rowspan=\"2\" width=\"74\"><p>&nbsp;</p><p><strong>Jumlah Lulusan</strong></p></td><td rowspan=\"2\" width=\"77\"><p><strong>Jumlah Lulusan yang Terlacak</strong></p></td><td colspan=\"3\" width=\"238\"><p><strong>Jumlah Lulusan Terlacak</strong></p><p><strong>dengan Waktu Tunggu Mendapatkan Pekerjaan</strong></p></td></tr><tr><td width=\"76\"><p><strong>WT &lt; 6</strong></p><p><strong>bulan</strong></p></td><td width=\"76\"><p><strong>6 &le; WT &le;</strong></p><p><strong>18 bulan</strong></p></td><td width=\"87\"><p><strong>WT &gt; 18</strong></p><p><strong>bulan</strong></p></td></tr><tr><td width=\"66\"><p>1</p></td><td width=\"74\"><p>2</p></td><td width=\"77\"><p>3</p></td><td width=\"76\"><p>4</p></td><td width=\"76\"><p>5</p></td><td width=\"87\"><p>6</p></td></tr><tr><td width=\"66\"><p>TS-4</p></td><td width=\"74\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"87\"><p>&nbsp;</p></td></tr><tr><td width=\"66\"><p>TS-3</p></td><td width=\"74\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"87\"><p>&nbsp;</p></td></tr><tr><td width=\"66\"><p>TS-2</p></td><td width=\"74\"><p>&nbsp;</p></td><td width=\"77\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"87\"><p>&nbsp;</p></td></tr></tbody></table>",
         "dokumen_sumber": [
           {
             "kode": "8.d.1.01.1",
@@ -664,6 +567,7 @@
       {
         "tabel": "8.d.2",
         "isi": "Kesesuaian Bidang Kerja Lulusan",
+        "template": "<p>Tuliskan data kesesuaian bidang kerja lulusan saat mendapatkan pekerjaan pertama dalam 3 tahun, mulai TS-4 sampai dengan TS-2, dengan mengikuti format Tabel 8.d.2) berikut ini. Data diambil dari hasil studi penelusuran lulusan.</p><p>Tabel 8.d.2) Kesesuaian Bidang Kerja Lulusan</p><table><tbody><tr><td rowspan=\"2\" width=\"95\"><p>&nbsp;</p><p><strong>Tahun Lulus</strong></p></td><td rowspan=\"2\" width=\"95\"><p>&nbsp;</p><p><strong>Jumlah Lulusan</strong></p></td><td rowspan=\"2\" width=\"94\"><p><strong>Jumlah Lulusan yang</strong></p><p><strong>Terlacak</strong></p></td><td colspan=\"3\" width=\"255\"><p><strong>Jumlah Lulusan Terlacak dengan</strong></p><p><strong>Tingkat Kesesuaian Bidang Kerja</strong></p></td></tr><tr><td width=\"85\"><p><strong>Rendah <sup>1)</sup></strong></p></td><td width=\"85\"><p><strong>Sedang <sup>2)</sup></strong></p></td><td width=\"85\"><p><strong>Tinggi <sup>3)</sup></strong></p></td></tr><tr><td width=\"95\"><p>1</p></td><td width=\"95\"><p>2</p></td><td width=\"94\"><p>3</p></td><td width=\"85\"><p>4</p></td><td width=\"85\"><p>5</p></td><td width=\"85\"><p>6</p></td></tr><tr><td width=\"95\"><p>TS-4</p></td><td width=\"95\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td></tr><tr><td width=\"95\"><p>TS-3</p></td><td width=\"95\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td></tr><tr><td width=\"95\"><p>TS-2</p></td><td width=\"95\"><p>&nbsp;</p></td><td width=\"94\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td></tr></tbody></table><p>Keterangan:</p><p><sup>1)</sup> Jenis pekerjaan/posisi jabatan dalam pekerjaan tidak sesuai atau kurang sesuai dengan profil lulusan yang direncanakan dalam dokumen kurikulum.</p><p><sup>2)</sup> Jenis pekerjaan/posisi jabatan dalam pekerjaan cukup sesuai dengan profil lulusan yang direncanakan dalam dokumen kurikulum.</p><p><sup>3)</sup> Jenis pekerjaan/posisi jabatan dalam pekerjaan sesuai atau sangat sesuai dengan profil lulusan yang direncanakan dalam dokumen kurikulum.</p>",
         "dokumen_sumber": [
           {
             "kode": "8.d.2.01.1",
@@ -688,6 +592,7 @@
       {
         "tabel": "8.e.1",
         "isi": "Tempat Kerja Lulusan",
+        "template": "<p>Tuliskan tingkat/ukuran tempat kerja/berwirausaha lulusan dalam 3 tahun, mulai TS-4 sampai dengan TS-2, dengan mengikuti format Tabel 8.e.1) berikut ini. Data diambil dari hasil studi penelusuran lulusan.</p><p>Tabel 8.e.1) Tempat Kerja Lulusan</p><table><tbody><tr><td rowspan=\"2\" width=\"85\"><p>&nbsp;</p><p>&nbsp;</p><p><strong>Tahun Lulus</strong></p></td><td rowspan=\"2\" width=\"76\"><p>&nbsp;</p><p>&nbsp;</p><p><strong>Jumlah Lulusan</strong></p></td><td rowspan=\"2\" width=\"85\"><p>&nbsp;</p><p><strong>Jumlah Lulusan yang Terlacak</strong></p></td><td colspan=\"3\" width=\"318\"><p><strong>Jumlah Lulusan Terlacak yang Bekerja berdasarkan Tingkat/Ukuran Tempat</strong></p><p><strong>Kerja/Berwirausaha</strong></p></td></tr><tr><td width=\"106\"><p><strong>Lokal/</strong></p><p><strong>Wilayah/ Berwirausaha</strong></p><p><strong>tidak Berizin</strong></p></td><td width=\"104\"><p><strong>Nasional/ Berwirausaha Berizin</strong></p></td><td width=\"108\"><p>&nbsp;</p><p><strong>Multinasiona/ </strong><strong>Internasional</strong></p></td></tr><tr><td width=\"85\"><p>1</p></td><td width=\"76\"><p>2</p></td><td width=\"85\"><p>3</p></td><td width=\"106\"><p>4</p></td><td width=\"104\"><p>5</p></td><td width=\"108\"><p>6</p></td></tr><tr><td width=\"85\"><p>TS-4</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"106\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"108\"><p>&nbsp;</p></td></tr><tr><td width=\"85\"><p>TS-3</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"106\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"108\"><p>&nbsp;</p></td></tr><tr><td width=\"85\"><p>TS-2</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"106\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"108\"><p>&nbsp;</p></td></tr><tr><td width=\"85\"><p><strong>Jumlah</strong></p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"85\"><p>&nbsp;</p></td><td width=\"106\"><p>&nbsp;</p></td><td width=\"104\"><p>&nbsp;</p></td><td width=\"108\"><p>&nbsp;</p></td></tr></tbody></table><p>&nbsp;</p>",
         "dokumen_sumber": [
           {
             "kode": "8.e.1.01.1",
@@ -699,15 +604,12 @@
           }
         ],
         "dokumen_pendukung": [
-          {
-            "kode": "-",
-            "dokumen": "-"
-          }
-        ]
+         ]
       },
       {
         "tabel": "8.e.2",
         "isi": "Kepuasan Pengguna Lulusan",
+        "template": "<p>&nbsp;</p><p>Tuliskan hasil pengukuran kepuasan pengguna lulusan berdasarkan aspek-aspek: 1) etika, 2) keahlian pada bidang ilmu (kompetensi utama), 3) kemampuan berbahasa asing, 4) penggunaan teknologi informasi, 5) kemampuan berkomunikasi, 6) kerjasama dan 7) pengembangan diri, dengan mengikuti format Tabel 8.e.2) berikut ini. Data diambil dari hasil studi penelusuran lulusan.</p><p>Tabel 8.e.2) Kepuasan Pengguna</p><table><tbody><tr><td rowspan=\"2\" width=\"47\"><p>&nbsp;</p><p><strong>No.</strong></p></td><td rowspan=\"2\" width=\"141\"><p>&nbsp;</p><p><strong>Jenis Kemampuan</strong></p></td><td colspan=\"4\" width=\"237\"><p><strong>Tingkat Kepuasan Pengguna</strong></p><p><strong>(%)</strong></p></td><td rowspan=\"2\" width=\"148\"><p>&nbsp;</p><p><strong>Rencana Tindak Lanjut oleh UPPS/PS</strong></p></td></tr><tr><td width=\"58\"><p><strong>Sanga</strong></p><p><strong>t Baik</strong></p></td><td width=\"62\"><p><strong>Baik</strong></p></td><td width=\"56\"><p><strong>Cukup</strong></p></td><td width=\"61\"><p><strong>Kuran</strong></p><p><strong>g</strong></p></td></tr><tr><td width=\"47\"><p>1</p></td><td width=\"141\"><p>2</p></td><td width=\"58\"><p>3</p></td><td width=\"62\"><p>4</p></td><td width=\"56\"><p>5</p></td><td width=\"61\"><p>6</p></td><td width=\"148\"><p>7</p></td></tr><tr><td width=\"47\"><p>1</p></td><td width=\"141\"><p>Etika</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"62\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"61\"><p>&nbsp;</p></td><td width=\"148\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>2</p></td><td width=\"141\"><p>Keahlian pada bidang ilmu</p><p>(kompetensi utama)</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"62\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"61\"><p>&nbsp;</p></td><td width=\"148\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>3</p></td><td width=\"141\"><p>Kemampuan</p><p>berbahasa asing</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"62\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"61\"><p>&nbsp;</p></td><td width=\"148\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>4</p></td><td width=\"141\"><p>Penggunaan</p><p>teknologi informasi</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"62\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"61\"><p>&nbsp;</p></td><td width=\"148\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>5</p></td><td width=\"141\"><p>Kemampuan</p><p>berkomunikasi</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"62\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"61\"><p>&nbsp;</p></td><td width=\"148\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>6</p></td><td width=\"141\"><p>Kerjasama tim</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"62\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"61\"><p>&nbsp;</p></td><td width=\"148\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>7</p></td><td width=\"141\"><p>Pengembangan diri</p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"62\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"61\"><p>&nbsp;</p></td><td width=\"148\"><p>&nbsp;</p></td></tr><tr><td colspan=\"2\" width=\"188\"><p><strong>Jumlah</strong></p></td><td width=\"58\"><p>&nbsp;</p></td><td width=\"62\"><p>&nbsp;</p></td><td width=\"56\"><p>&nbsp;</p></td><td width=\"61\"><p>&nbsp;</p></td><td width=\"148\"><p>&nbsp;</p></td></tr></tbody></table>",
         "dokumen_sumber": [
           {
             "kode": "8.e.2.01.1",
@@ -740,6 +642,7 @@
       {
         "tabel": "8.f.1",
         "isi": "Pagelaran/Pameran/Presentasi/Publikasi Ilmiah Mahasiswa",
+        "template": "<p>Tuliskan jumlah pagelaran/pameran/presentasi/publikasi ilmiah mahasiswa, yang dihasilkan secara mandiri atau bersamaDTPS, dalam 3 tahun terakhir dengan mengikuti format Tabel 8.f.1) berikut ini. Judulpagelaran/pameran/presentasi/publikasi ilmiah harus relevan dengan bidang program studi.</p><p>Tabel 8.f.1) Pagelaran/pameran/presentasi/publikasi Ilmiah mahasiswa</p><tbody><tr><td rowspan=\"2\" width=\"47\"><p><strong>No.</strong></p></td><td rowspan=\"2\" width=\"236\"><p><strong>Jenis</strong></p></td><td colspan=\"3\" width=\"198\"><p><strong>Jumlah Judul</strong></p></td><td rowspan=\"2\" width=\"76\"><p><strong>Jumlah</strong></p></td></tr><tr><td width=\"66\"><p><strong>TS-2</strong></p></td><td width=\"66\"><p><strong>TS-1</strong></p></td><td width=\"66\"><p><strong>TS</strong></p></td></tr><tr><td width=\"47\"><p>1</p></td><td width=\"236\"><p>2</p></td><td width=\"66\"><p>3</p></td><td width=\"66\"><p>4</p></td><td width=\"66\"><p>5</p></td><td width=\"76\"><p>6</p></td></tr><tr><td width=\"47\"><p>1</p></td><td width=\"236\"><p>Publikasi di jurnal nasional tidak</p><p>terakreditasi</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NA1 =</p></td></tr><tr><td width=\"47\"><p>2</p></td><td width=\"236\"><p>Publikasi di jurnal nasional</p><p>terakreditasi</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NA2 =</p></td></tr><tr><td width=\"47\"><p>3</p></td><td width=\"236\"><p>Publikasi di jurnal internasional</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NA3 =</p></td></tr><tr><td width=\"47\"><p>4</p></td><td width=\"236\"><p>Publikasi di jurnal internasional</p><p>bereputasi</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NA4=</p></td></tr><tr><td width=\"47\"><p>5</p></td><td width=\"236\"><p>Publikasi di seminar</p><p>wilayah/lokal/perguruan tinggi</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NB1 =</p></td></tr><tr><td width=\"47\"><p>6</p></td><td width=\"236\"><p>Publikasi di seminar nasional</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NB2 =</p></td></tr><tr><td width=\"47\"><p>7</p></td><td width=\"236\"><p>Publikasi di seminar internasional</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NB3=</p></td></tr><tr><td width=\"47\"><p>8</p></td><td width=\"236\"><p>Pagelaran/pameran/presentasi</p><p>dalam forum di tingkat wilayah</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NC1 =</p></td></tr><tr><td width=\"47\"><p>9</p></td><td width=\"236\"><p>Pagelaran/pameran/presentasi</p><p>dalam forum di tingkat nasional</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NC2 =</p></td></tr><tr><td width=\"47\"><p>10</p></td><td width=\"236\"><p>Pagelaran/pameran/presentasi</p><p>dalam forum di tingkat internasional</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>NC3 =</p></td></tr><tr><td colspan=\"2\" width=\"284\"><p><strong>Jumlah</strong></p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"66\"><p>&nbsp;</p></td><td width=\"76\"><p>&nbsp;</p></td></tr></tbody>",
         "dokumen_sumber": [
           {
             "kode": "8.f.1.01.1",
@@ -754,159 +657,50 @@
         ]
       },
       {
-        "tabel": "8.f.2",
-        "isi": "Karya Ilmiah Mahasiswa yang Disitasi",
-        "dokumen_sumber": [
-          {
-            "kode": "8.f.2.01.1",
-            "dokumen": "Data karya ilmiah mahasiswa yang disitasi dala TS-2 s.d TS, baik mandiri atau bersama dosen tetap prodi"
-          }
-        ],
-        "dokumen_pendukung": [
-          {
-            "kode": "8.f.2.02.1",
-            "dokumen": "Contoh karya ilmiah yang disitasi"
-          }
-        ]
-      },
-      {
-        "tabel": "8.f.3",
-        "isi": "Produk/Jasa Mahasiswa yang Diadopsi oleh Industri/Masyarakat",
-        "dokumen_sumber": [
-          {
-            "kode": "8.f.3.01.1",
-            "dokumen": "Data produk/jasa mahasiswa yang diadopsi dala TS-2 s.d TS, baik mandiri atau bersama dosen tetap prodi"
-          }
-        ],
-        "dokumen_pendukung": [
-          {
-            "kode": "8.f.3.02.1",
-            "dokumen": "Contoh"
-          }
-        ]
-      },
-      {
-        "tabel": "8.f.4.1",
+        "tabel": "8.f.4",
         "isi": "Luaran Penelitian yang Dihasilkan Mahasiswa - HKI (Paten, Paten Sederhana)",
+        "template": "<p>Tuliskan luaran penelitian dan luaran PkM yang dihasilkan mahasiswa, baik secara mandiri atau bersama DTPS, dalam 3 tahun terakhir dengan mengikuti format Tabel 8.f.4) berikut ini. Jenis dan judul luaran harus relevan dengan bidang program studi.</p><p>Tabel 8.f.4) Luaran penelitian/PkM yang dihasilkan mahasiswa</p><table><tbody><tr><td width=\"47\"><p><strong>No</strong></p></td><td width=\"274\"><p><strong>Judul Luaran Penelitian/PkM</strong></p></td><td width=\"76\"><p><strong>Tahun</strong></p></td><td width=\"170\"><p><strong>Keterangan</strong></p></td></tr><tr><td width=\"47\"><p>1</p></td><td width=\"274\"><p>2</p></td><td width=\"76\"><p>3</p></td><td width=\"170\"><p>4</p></td></tr><tr><td width=\"47\"><p><strong>I</strong></p></td><td width=\"274\"><p><strong>HKI <sup>1)</sup>:</strong></p><p>c)&nbsp;&nbsp;&nbsp; Paten,</p><p>d)&nbsp;&nbsp;&nbsp; Paten Sederhana</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"170\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"274\"><p>1. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"170\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"274\"><p>2. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"170\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"274\"><p>3. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"170\"><p>&nbsp;</p></td></tr><tr><td colspan=\"2\" width=\"322\"><p><strong>Jumlah</strong></p></td><td width=\"76\"><p>NA =</p></td><td width=\"170\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p><strong>II</strong></p></td><td width=\"274\"><p><strong>HKI <sup>1)</sup>:</strong></p><p>f)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Hak Cipta,</p><p>g)&nbsp;&nbsp;&nbsp; Desain Produk Industri,</p><p>h)&nbsp;&nbsp;&nbsp; Perlindungan Varietas Tanaman (Sertifikat Perlindungan Varietas Tanaman, Sertifikat Pelepasan Varietas, Sertifikat Pendaftaran Varietas),</p><p>i)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Desain Tata Letak Sirkuit Terpadu,</p><p>j)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dll.)</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"170\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"274\"><p>1. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"170\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"274\"><p>2. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"170\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"274\"><p>3. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"170\"><p>&nbsp;</p></td></tr><tr><td colspan=\"2\" width=\"322\"><p><strong>Jumlah</strong></p></td><td width=\"76\"><p>NB =</p></td><td width=\"170\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p><strong>III</strong></p></td><td width=\"274\"><p><strong>Teknologi Tepat Guna, Produk (Produk Terstandarisasi, Produk Tersertifikasi),</strong></p><p><strong>Karya Seni, Rekayasa Sosial</strong></p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"170\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"274\"><p>1. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"170\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"274\"><p>2. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"170\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"274\"><p>3. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"170\"><p>&nbsp;</p></td></tr><tr><td colspan=\"2\" width=\"322\"><p><strong>Jumlah</strong></p></td><td width=\"76\"><p>NC =</p></td><td width=\"170\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p><strong>IV</strong></p></td><td width=\"274\"><p><strong>Buku ber-ISBN, <em>Book Chapter</em></strong></p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"170\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"274\"><p>1. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"170\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"274\"><p>2. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"170\"><p>&nbsp;</p></td></tr><tr><td width=\"47\"><p>&nbsp;</p></td><td width=\"274\"><p>3. ...</p></td><td width=\"76\"><p>&nbsp;</p></td><td width=\"170\"><p>&nbsp;</p></td></tr><tr><td colspan=\"2\" width=\"322\"><p><strong>Jumlah</strong></p></td><td width=\"76\"><p>ND =</p></td><td width=\"170\"><p>&nbsp;</p></td></tr></tbody></table><p>Keterangan:</p><p><sup>1)</sup> Luaran penelitian/PkM yang mendapat pengakuan Hak Kekayaan Intelektual (HKI) harus dibuktikan dengan surat penetapan oleh Kemenkumham atau kementerian lain yang berwenang.</p>",
         "dokumen_sumber": [
           {
-            "kode": "8.f.4.1.01.1",
+            "kode": "8.f.4.01.1",
+            "dokumen": "Surat penetapan oleh Kemenkumham atau kementerian lain yang berwenang"
+          },
+          {
+            "kode": "8.f.4.01.2",
             "dokumen": "Data luaran penelitian/ PkM mahasiswa TS-2 s.d TS, baik mandiri atau bersama dosen tetap prodi, berupa paten atau paten sederhana"
           },
           {
-            "kode": "8.f.4.1.01.2",
-            "dokumen": "Surat penetapan oleh Kemenkumham atau kementerian lain yang berwenang"
-          }
-        ],
-        "dokumen_pendukung": [
-          {
-            "kode": "8.f.4.1.02.1",
-            "dokumen": "Laporan penelitian/PkM"
-          },
-          {
-            "kode": "8.f.4.1.02.2",
-            "dokumen": "Contoh"
-          }
-        ]
-      },
-      {
-        "tabel": "8.f.4.2",
-        "isi": "Luaran Penelitian yang Dihasilkan Mahasiswa - HKI (Hak Cipta, Desain Produk Industri, dll.)",
-        "dokumen_sumber": [
-          {
-            "kode": "8.f.4.2.01.1",
+            "kode": "8.f.4.01.3",
             "dokumen": "Data luaran penelitian/ PkM mahasiswa TS-2 s.d TS, baik mandiri atau bersama dosen tetap prodi, berupa hak cipta, desain produk industri, dll"
           },
           {
-            "kode": "8.f.4.2.01.2",
-            "dokumen": "Surat penetapan oleh Kemenkumham atau kementerian lain yang berwenang"
-          }
-        ],
-        "dokumen_pendukung": [
-          {
-            "kode": "8.f.4.2.02.1",
-            "dokumen": "Laporan penelitian/PkM"
-          },
-          {
-            "kode": "8.f.4.2.02.2",
-            "dokumen": "Contoh Produk"
-          }
-        ]
-      },
-      {
-        "tabel": "8.f.4.2",
-        "isi": "Luaran Penelitian yang Dihasilkan Mahasiswa - HKI (Hak Cipta, Desain Produk Industri, dll.)",
-        "dokumen_sumber": [
-          {
-            "kode": "8.f.4.2.01.1",
-            "dokumen": "Data luaran penelitian/ PkM mahasiswa TS-2 s.d TS, baik mandiri atau bersama dosen tetap prodi, berupa hak cipta, desain produk industri, dll"
-          },
-          {
-            "kode": "8.f.4.2.01.2",
-            "dokumen": "Surat penetapan oleh Kemenkumham atau kementerian lain yang berwenang"
-          }
-        ],
-        "dokumen_pendukung": [
-          {
-            "kode": "8.f.4.2.02.1",
-            "dokumen": "Laporan penelitian/PkM"
-          },
-          {
-            "kode": "8.f.4.2.02.2",
-            "dokumen": "Contoh Produk"
-          }
-        ]
-      },
-      {
-        "tabel": "8.f.4.3",
-        "isi": "Luaran Penelitian yang Dihasilkan Mahasiswa -Teknologi Tepat Guna, Produk, Karya Seni, Rekayasa Sosial",
-        "dokumen_sumber": [
-          {
-            "kode": "8.f.4.3.01.1",
+            "kode": "8.f.4.01.4",
             "dokumen": "Data luaran penelitian/ PkM mahasiswa TS-2 s.d TS, baik mandiri atau bersama dosen tetap prodi, berupa teknologi tepat guna, produk terstandar/tersertifikasi, rekayasa sosial, dll"
           },
           {
-            "kode": "8.f.4.3.01.2",
-            "dokumen": "Surat penetapan oleh Kemenkumham atau kementerian lain yang berwenang"
-          }
-        ],
-        "dokumen_pendukung": [
-          {
-            "kode": "8.f.4.3.02.1",
-            "dokumen": "Laporan penelitian/PkM"
-          },
-          {
-            "kode": "8.f.4.3.02.2",
-            "dokumen": "Contoh Produk"
-          }
-        ]
-      },
-      {
-        "tabel": "8.f.4.4",
-        "isi": "Luaran Penelitian yang Dihasilkan mahasiswa - Buku ber-ISBN, Book Chapter",
-        "dokumen_sumber": [
-          {
-            "kode": "8.f.4.4.01.1",
+            "kode": "8.f.4.01.5",
             "dokumen": "Data luaran penelitian/PkM mahasiswa TS-2 s.d TS, baik mandiri atau bersama dosen tetap prodi, berupa Buku der-ISBN, Book chapter"
           }
         ],
         "dokumen_pendukung": [
           {
-            "kode": "8.f.4.3.02.1",
+            "kode": "8.f.4.02.1",
             "dokumen": "Laporan penelitian/PkM"
           },
           {
-            "kode": "8.f.4.3.02.2",
+            "kode": "8.f.4.02.2",
+            "dokumen": "Contoh paten"
+          },
+          {
+            "kode": "8.f.4.02.3",
+            "dokumen": "Contoh produk"
+          },
+          {
+            "kode": "8.f.4.02.4",
             "dokumen": "Contoh buku, book chapter"
           }
         ]
       }
-    ]
-  },
-  {
-    "standar": 9,
-    "judul": "VISI, MISI, TUJUAN DAN STRATEGI",
-    "butir": [
     ]
   }
 ]

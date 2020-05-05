@@ -2,7 +2,10 @@
 
 namespace admin\controllers;
 
+use common\models\Profil;
+use common\models\StrukturOrganisasi;
 use Yii;
+use yii\db\Exception;
 use yii\filters\AccessControl;
 use common\models\FakultasAkademi;
 use admin\models\FakultasAkademiSearch;
@@ -75,18 +78,37 @@ class FakultasAkademiController extends Controller
     public function actionCreate()
     {
         $model = new FakultasAkademi();
+        $jenis = FakultasAkademi::JENIS;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success','Berhasil menambahkan Fakultas.');
+        if ($model->load(Yii::$app->request->post())) {
+            $transaction = Yii::$app->db->beginTransaction();
+            try{
+                $model->save();
+                $profil = new Profil();
+                $profil->external_id = $model->id;
+                $profil->type = FakultasAkademi::FAKULTAS_AKADEMI;
+                $profil->save(false);
 
-            return $this->redirect(['view', 'id' => $model->id]);
+                $struktur = new StrukturOrganisasi();
+                $struktur->id_profil = $profil->id;
+                $struktur->save(false);
+                $transaction->commit();
+                Yii::$app->session->setFlash('success','Berhasil menambahkan Fakultas.');
+
+                return $this->redirect(['view', 'id' => $model->id]);
+            }catch (Exception $e){
+                $transaction->rollBack();
+                throw $e;
+            }
+
         }
         elseif (Yii::$app->request->isAjax){
-            return $this->renderAjax('_form',['model'=>$model]);
+            return $this->renderAjax('_form',['model'=>$model,'jenis'=>$jenis]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'jenis'=>$jenis
         ]);
     }
 
@@ -100,6 +122,7 @@ class FakultasAkademiController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $jenis = FakultasAkademi::JENIS;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success','Berhasil mengubah Fakultas.');
@@ -110,6 +133,7 @@ class FakultasAkademiController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'jenis'=>$jenis
         ]);
     }
 

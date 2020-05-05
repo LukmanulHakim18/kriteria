@@ -1,12 +1,13 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\sertifikat\SertifikatProdi */
 
-$this->title = $model->id;
+$this->title = $model->prodi->nama;
 $this->params['breadcrumbs'][] = ['label' => 'Sertifikat Prodi', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -49,24 +50,38 @@ $this->params['breadcrumbs'][] = $this->title;
                     'model' => $model,
                     'attributes' => [
                                 'id',
-            'id_prodi',
+            'prodi.nama',
             'nama_lembaga',
-            'tgl_akreditasi',
-            'tgl_kadaluarsa',
+            'tgl_akreditasi:date',
+            'tgl_kadaluarsa:date',
             'nomor_sk',
             'nomor_sertifikat',
             'nilai_angka',
             'nilai_huruf',
             'tahun_sk',
-            'tanggal_pengajuan',
-            'tanggal_diterima',
+            'tanggal_pengajuan:date',
+            'tanggal_diterima:date',
             'is_publik',
-            'dokumen_sk',
-            'sertifikat',
-            'created_at',
-            'updated_at',
-            'created_by',
-            'updated_by',
+//            'dokumen_sk:image',
+            [
+                'attribute' => 'dokumen_sk',
+                'format' => 'raw',
+                'value' => function($model){
+                    return Html::a($model->dokumen_sk."&nbsp;<i class='fa fa-external-link-alt'></i>", ['sertifikat-prodi/lihat-sk','id'=> $model->id],['target' => '_blank', 'data-pjax'=>"0"]);
+                }
+            ],
+            [
+                'attribute' => 'sertifikat',
+                'format' => 'raw',
+                'value' => function($model){
+                    return Html::a($model->sertifikat."&nbsp;<i class='fa fa-external-link-alt'></i>", ['sertifikat-prodi/lihat-sertifikat','id'=> $model->id],['target' => '_blank', 'data-pjax'=>"0"]);
+                }
+            ],
+//            'sertifikat:image',
+            'created_at:date',
+            'updated_at:date',
+            'createdBy.profilUser.nama_lengkap',
+            'updatedBy.profilUser.nama_lengkap',
                     ],
                     ]) ?>
 

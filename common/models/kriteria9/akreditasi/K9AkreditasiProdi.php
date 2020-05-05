@@ -20,8 +20,8 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property K9Akreditasi $akreditasi
  * @property ProgramStudi $prodi
- * @property K9LedProdi[] $k9LedProdis
- * @property K9LkProdi[] $k9LkProdis
+ * @property K9LedProdi $k9LedProdis
+ * @property K9LkProdi $k9LkProdis
  */
 class K9AkreditasiProdi extends \yii\db\ActiveRecord
 {
@@ -89,7 +89,7 @@ class K9AkreditasiProdi extends \yii\db\ActiveRecord
      */
     public function getK9LedProdis()
     {
-        return $this->hasMany(K9LedProdi::className(), ['id_akreditasi_prodi' => 'id']);
+        return $this->hasOne(K9LedProdi::className(), ['id_akreditasi_prodi' => 'id']);
     }
 
     /**
@@ -97,6 +97,15 @@ class K9AkreditasiProdi extends \yii\db\ActiveRecord
      */
     public function getK9LkProdis()
     {
-        return $this->hasMany(K9LkProdi::className(), ['id_akreditasi_prodi' => 'id']);
+        return $this->hasOne(K9LkProdi::className(), ['id_akreditasi_prodi' => 'id']);
+    }
+
+    public function updateProgress(){
+        $led = $this->k9LedProdis->progress;
+        $lk = $this->k9LkProdis->progress;
+
+        $progress = round((($led+$lk)/2),2);
+        $this->progress = $progress;
+        $this->save(false);
     }
 }
