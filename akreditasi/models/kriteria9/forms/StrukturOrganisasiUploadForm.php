@@ -1,11 +1,12 @@
 <?php
 
 
-namespace akreditasi\models;
+namespace akreditasi\models\kriteria9\forms;
 
 
 use Carbon\Carbon;
 use yii\base\Model;
+use yii\helpers\FileHelper;
 use yii\web\UploadedFile;
 
 class StrukturOrganisasiUploadForm extends Model
@@ -18,7 +19,7 @@ class StrukturOrganisasiUploadForm extends Model
     public function rules()
     {
         return [
-            [['struktur'], 'file', 'skipOnEmpty' => false],
+            [['struktur'], 'file', 'skipOnEmpty' => true],
         ];
     }
 
@@ -27,10 +28,11 @@ class StrukturOrganisasiUploadForm extends Model
         if (!$this->validate()) {
             return false;
         }
-            $timestamp = Carbon::now()->timestamp;
-            $filename = $timestamp . '-'. $this->struktur->baseName . '.' . $this->struktur->extension;
-            $path = \Yii::getAlias("@uploadStruktur/$jenis/$id");
+        $path = \Yii::getAlias("@uploadStruktur/$jenis/$id");
+        FileHelper::createDirectory($path);
+        $timestamp = Carbon::now()->timestamp;
+        $filename = $timestamp . '-'. $this->struktur->baseName . '.' . $this->struktur->extension;
 
-            return $this->struktur->saveAs($path.'/' . $filename);
+            return $this->struktur->saveAs($path.'/' . $filename)?$filename: false;
     }
 }

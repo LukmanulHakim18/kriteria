@@ -9,7 +9,7 @@ use yii\helpers\Html;
 
 $this->title = 'Update Profil Program Studi: ' . $model->nama;
 $this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['/kriteria9/prodi/arsip']];
-$this->params['breadcrumbs'][] = ['label' => $model->nama, 'url' => ['default/index', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->nama, 'url' => ['default/index', 'prodi' => $model->id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

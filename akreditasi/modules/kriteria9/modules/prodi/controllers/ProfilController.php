@@ -10,7 +10,7 @@
 namespace akreditasi\modules\kriteria9\modules\prodi\controllers;
 
 
-use akreditasi\models\StrukturOrganisasiUploadForm;
+use akreditasi\models\kriteria9\forms\StrukturOrganisasiUploadForm;
 use akreditasi\modules\kriteria9\controllers\BaseController;
 use common\models\FakultasAkademi;
 use common\models\Profil;
@@ -18,10 +18,23 @@ use common\models\ProgramStudi;
 use Yii;
 use yii\base\Exception;
 use yii\helpers\ArrayHelper;
+use yii\helpers\FileHelper;
 use yii\web\UploadedFile;
 
 class ProfilController extends BaseController
 {
+
+    public function behaviors()
+    {
+        return[
+            'verbs'=>[
+                'class'=>'yii\filters\VerbFilter',
+                'actions' => [
+                    'hapus-struktur'=>['POST']
+                ]
+            ]
+        ];
+    }
 
     public function actionIndex($prodi)
     {
@@ -56,8 +69,12 @@ class ProfilController extends BaseController
         if($profil->load(Yii::$app->request->post()) && $strukturModel->load(Yii::$app->request->post())){
 
             $strukturModel->struktur = UploadedFile::getInstance($strukturModel,'struktur');
-            $save = $strukturModel->upload('prodi',$model->id);
-            if(!$save) throw new \Exception('Error upload data');
+            if(isset($strukturModel->struktur)){
+                $save = $strukturModel->upload($profil->type,$model->id);
+                if(!$save) throw new \Exception('Error upload data');
+                $profil->struktur_organisasi = $save;
+            }
+
             if(!$profil->save(false)) throw new Exception('Gagal mengupdate profil');
             Yii::$app->session->setFlash('success','Berhasil mengupdate profil');
             return $this->redirect(['profil/index','prodi'=>$model->id]);
@@ -65,6 +82,20 @@ class ProfilController extends BaseController
         }
 
         return $this->render('update-profil',compact('model','profil','strukturModel'));
+        }
+
+        public function actionHapusStruktur(){
+
+            $nama = Yii::$app->request->post('nama');
+            $id = Yii::$app->request->post('id');
+
+            $prodi = ProgramStudi::findOne($id);
+            $profil = $prodi->profil[0];
+            FileHelper::unlink(Yii::getAlias("@uploadStruktur/prodi/$id/$nama"));
+            $profil->struktur_organisasi = '';
+
+
+            return $profil->save(false)? true: false;
         }
 
 }
