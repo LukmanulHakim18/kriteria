@@ -9,10 +9,13 @@ use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\CreateUserForm */
+/* @var $model common\models\forms\user\CreateUserForm */
 /* @var $form ActiveForm */
-/* @var $dataFakultas FakultasAkademi[] */
+/* @var $dataFakultas [] */
+/* @var $dataProdi [] */
+/* @var $dataUnit [] */
 /*  @var $dataRoles []*/
+/*  @var $tipe []*/
 
 $this->title = 'Tambah Pengguna';
 $this->params['breadcrumbs'][] = ['label' => 'User', 'url' => ['index']];
@@ -37,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="kt-portlet__body">
                 <div class="user-create">
 
-                    <?=$this->render('_create_user_form',['model'=>$model,'dataFakultas'=>$dataFakultas,'dataRoles'=>$dataRoles])?>
+                    <?=$this->render('_create_user_form',['model'=>$model,'dataFakultas'=>$dataFakultas,'dataRoles'=>$dataRoles,'dataProdi'=>$dataProdi,'dataUnit'=>$dataUnit,'tipe'=>$tipe])?>
 
 
                 </div>

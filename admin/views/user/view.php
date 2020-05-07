@@ -45,8 +45,6 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <div class="kt-portlet__body">
                 <div class="user-view">
-
-
                     <?= DetailView::widget([
                         'model' => $model,
                         'attributes' => [
@@ -57,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //                            'password_reset_token',
 //                            'verification_token',
                             'email:email',
-                            'profilUser.fakultas.nama',
+                            'profilUser.prodi.fakultasAkademi.nama',
                             'profilUser.prodi.nama',
                             ['attribute' => 'status',
                                 'value' => function ($model) {

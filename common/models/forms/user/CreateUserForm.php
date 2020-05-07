@@ -4,7 +4,11 @@
 namespace common\models\forms\user;
 
 
+use common\models\FakultasAkademi;
 use common\models\ProfilUser;
+use common\models\ProfilUserRole;
+use common\models\ProgramStudi;
+use common\models\Unit;
 use common\models\User;
 use InvalidArgumentException;
 use Yii;
@@ -22,9 +26,10 @@ class CreateUserForm extends Model
     public $hak_akses;
 
     public $nama_lengkap;
+    public $tipe;
     public $id_fakultas;
     public $id_prodi;
-
+    public $id_unit;
     /**
      * @var User
      */
@@ -52,7 +57,7 @@ class CreateUserForm extends Model
             [['username'],'unique','targetClass' => User::class, 'message' => '{attribute} "{value}" telah digunakan.'],
             [['email'],'unique','targetClass' => User::class,'message' => '{attribute} "{value}" telah digunakan.'],
             [['username', 'password', 'email', 'hak_akses', 'nama_lengkap'], 'string'],
-            [['id_fakultas', 'id_prodi'], 'safe']
+            [['id_fakultas', 'id_prodi','tipe','id_unit'], 'safe']
         ];
     }
 
@@ -68,8 +73,7 @@ class CreateUserForm extends Model
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
-        $profil->setAttributes(['nama_lengkap' => $this->nama_lengkap,
-            'id_fakultas' => $this->id_fakultas, 'id_prodi' => $this->id_prodi], false);
+        $profil->setAttributes(['nama_lengkap' => $this->nama_lengkap,], false);
 
         $transaction = Yii::$app->db->beginTransaction();
 
@@ -80,6 +84,26 @@ class CreateUserForm extends Model
         }
         $profil->id_user = $user->id;
         if (!$profil->save(false)) {
+            $transaction->rollBack();
+            return null;
+        }
+
+        $profilRole = new ProfilUserRole();
+        $profilRole->id_profil = $profil->id;
+        if($this->tipe === ProgramStudi::PROGRAM_STUDI){
+            $profilRole->external_id = $this->id_prodi;
+            $profilRole->type = ProgramStudi::PROGRAM_STUDI;
+        }
+        else if($this->tipe === FakultasAkademi::FAKULTAS_AKADEMI){
+            $profilRole->external_id = $this->id_fakultas;
+            $profilRole->type = FakultasAkademi::FAKULTAS_AKADEMI;
+        }
+        else if($this->tipe === Unit::UNIT){
+            $profilRole->external_id = $this->id_unit;
+            $profilRole->type = Unit::UNIT;
+        }
+
+        if(!$profilRole->save(false)){
             $transaction->rollBack();
             return null;
         }

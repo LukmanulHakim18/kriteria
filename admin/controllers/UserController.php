@@ -6,7 +6,9 @@ use common\models\FakultasAkademi;
 use common\models\forms\user\CreateUserForm;
 use common\models\forms\user\UpdateUserForm;
 use common\models\forms\user\UpdatePasswordForm;
+use common\models\ProfilUserRole;
 use common\models\ProgramStudi;
+use common\models\Unit;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\bootstrap4\ActiveForm;
@@ -31,15 +33,6 @@ class UserController extends Controller
     public function behaviors()
     {
         return [
-            'access'=>[
-                'class'=>AccessControl::className(),
-                'rules'=>[
-                    ['actions'=>['index','create','update','view','delete','get-prodi'],
-                     'allow'=>true,
-                     'roles'=>['@']
-                    ]
-                ]
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -89,6 +82,8 @@ class UserController extends Controller
 
         $forbidden_roles = ['superadmin'];
 
+        $tipe = ProfilUserRole::TIPE;
+
         $roles = array_keys($available_role);
 
         foreach ($forbidden_roles as $role){
@@ -99,7 +94,17 @@ class UserController extends Controller
         $dataRoles = array_combine($roles, $roles);
 
         $fakultas = FakultasAkademi::find()->all();
-        $dataFakultas = ArrayHelper::map($fakultas,'id','nama');
+        $dataFakultas = ArrayHelper::map($fakultas,'id',function($item){
+            return $item->nama. " ({$item->jenis})";
+        });
+
+        $prodi = ProgramStudi::find()->all();
+        $dataProdi = ArrayHelper::map($prodi,'id',function ($item){
+            return $item->nama ." ({$item->jenjang})";
+        });
+
+        $unit = Unit::find()->all();
+        $dataUnit = ArrayHelper::map($unit,'id','nama');
 
         if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -124,17 +129,21 @@ class UserController extends Controller
             throw new InvalidArgumentException('Gagal membuat user, Validasi data gagal');
 
         }
-        elseif (Yii::$app->request->isAjax){
+
+        if (Yii::$app->request->isAjax){
 
 
             return $this->renderAjax('_create_user_form',[ 'model' => $model,
-                'dataFakultas'=>$dataFakultas, 'dataRoles'=>$dataRoles]);
+                'dataFakultas'=>$dataFakultas, 'dataRoles'=>$dataRoles,'dataProdi'=>$dataProdi,'dataUnit'=>$dataUnit,'tipe'=>$tipe]);
         }
 
         return $this->render('create_user_form', [
             'model' => $model,
             'dataFakultas'=>$dataFakultas,
-            'dataRoles'=>$dataRoles
+            'dataRoles'=>$dataRoles,
+            'dataProdi'=>$dataProdi,
+            'dataUnit'=>$dataUnit,
+            'tipe'=>$tipe
         ]);
     }
 
@@ -150,7 +159,18 @@ class UserController extends Controller
         $model = new UpdateUserForm($id);
         $modelPassword = new UpdatePasswordForm($id);
         $fakultas = FakultasAkademi::find()->all();
-        $dataFakultas = ArrayHelper::map($fakultas,'id','nama');
+        $dataFakultas = ArrayHelper::map($fakultas,'id',function($item){
+            return $item->nama. " ({$item->jenis})";
+        });
+
+        $tipe = ProfilUserRole::TIPE;
+        $prodi = ProgramStudi::find()->all();
+        $dataProdi = ArrayHelper::map($prodi,'id',function ($item){
+            return $item->nama ." ({$item->jenjang})";
+        });
+
+        $unit = Unit::find()->all();
+        $dataUnit = ArrayHelper::map($unit,'id','nama');
         $available_role = Yii::$app->authManager->getRoles();
 
         $forbidden_roles = ['superadmin'];
@@ -169,9 +189,6 @@ class UserController extends Controller
             return ActiveForm::validate($model);
         }
         if ($model->load(Yii::$app->request->post()) ) {
-            if(!$model->validate()){
-                throw new InvalidArgumentException('Gagal validasi pengguna');
-            }
             $model->updateUser();
             if($model === false){
                 throw new InvalidArgumentException('Gagal memperbarui pengguna, terdapat error');
@@ -199,7 +216,10 @@ class UserController extends Controller
             'model' => $model,
             'modelPassword'=>$modelPassword,
             'dataFakultas'=>$dataFakultas,
-            'dataRoles'=>$dataRoles
+            'dataRoles'=>$dataRoles,
+            'dataProdi'=>$dataProdi,
+            'dataUnit'=>$dataUnit,
+            'tipe'=>$tipe
         ]);
     }
 
@@ -233,33 +253,5 @@ class UserController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    public function actionGetFakultas(){
-        $fakultas = FakultasAkademi::find()->all();
-        return ArrayHelper::map($fakultas,'id','nama');
-    }
-
-    public function actionGetProdi(){
-
-        $arrayProdi = [];
-
-        if(isset($_POST['depdrop_parents'])){
-            $parent = $_POST['depdrop_parents'];
-            if($parent!==null){
-                $id = $parent[0];
-                $dataProdi = ProgramStudi::findAll(['id_fakultas_akademi'=>$id]);
-                foreach ($dataProdi as $data){
-                    $id = $data->id;
-                    $nama = $data->nama . '('.$data->jenjang.')';
-                    $newArray = ['id'=>$id,'name'=>$nama];
-                    $arrayProdi[] = $newArray;
-                }
-
-                echo Json::encode(['output'=>$arrayProdi, 'selected'=>'']);
-                return;
-            }
-        }
-        echo Json::encode(['output'=>'', 'selected'=>'']);
     }
 }

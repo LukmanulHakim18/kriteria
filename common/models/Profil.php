@@ -25,6 +25,9 @@ use yii\behaviors\TimestampBehavior;
  */
 class Profil extends \yii\db\ActiveRecord
 {
+    const TIPE_PRODI = ProgramStudi::PROGRAM_STUDI;
+    const TIPE_UNIT = Unit::UNIT;
+    const TIPE_FAKULTAS = FakultasAkademi::FAKULTAS_AKADEMI;
     /**
      * {@inheritdoc}
      */
