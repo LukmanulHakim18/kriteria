@@ -97,6 +97,8 @@ class AuthController extends Controller
             $auth->addChild($fakultas,$permission);
             $auth->addChild($dekanat,$permission);
         }
+        $auth->addChild($fakultas,$prodi);
+        $auth->addChild($dekanat,$kaprodi);
 
         return ExitCode::OK;
     }

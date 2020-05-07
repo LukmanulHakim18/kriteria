@@ -15,6 +15,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int $jenis
  * @property int $created_at
  * @property int $updated_at
+ * @property string $jenisString
  *
  * @property ProgramStudi[] $programStudis
  * @property Profil $profil

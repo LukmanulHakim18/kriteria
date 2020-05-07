@@ -95,7 +95,7 @@ class UserController extends Controller
 
         $fakultas = FakultasAkademi::find()->all();
         $dataFakultas = ArrayHelper::map($fakultas,'id',function($item){
-            return $item->nama. " ({$item->jenis})";
+            return $item->nama. " ({$item->jenisString})";
         });
 
         $prodi = ProgramStudi::find()->all();
@@ -160,7 +160,7 @@ class UserController extends Controller
         $modelPassword = new UpdatePasswordForm($id);
         $fakultas = FakultasAkademi::find()->all();
         $dataFakultas = ArrayHelper::map($fakultas,'id',function($item){
-            return $item->nama. " ({$item->jenis})";
+            return $item->nama. " ({$item->jenisString})";
         });
 
         $tipe = ProfilUserRole::TIPE;
