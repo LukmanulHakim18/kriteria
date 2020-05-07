@@ -157,7 +157,7 @@ use yii\bootstrap4\ActiveForm;
 
         'pluginOptions' => [
             'theme' => 'explorer-fas',
-            'maxFileSize' => Constants::MAX_UPLOAD_SIZE,
+            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
             'allowedFileExtensions' => Constants::IMAGE_EXTENSIONS,
             'showUpload' => false,
             'previewFileType' => 'any',

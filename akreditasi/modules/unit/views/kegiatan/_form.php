@@ -52,7 +52,7 @@ $unit = $_GET['unit'];
             'options' => ['multiple'=>true],
             'pluginOptions' => [
             'theme' => 'explorer-fas',
-            'maxFileSize' => Constants::MAX_UPLOAD_SIZE,
+            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
             'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
             'showUpload' => false,
             'previewFileType' => 'any',

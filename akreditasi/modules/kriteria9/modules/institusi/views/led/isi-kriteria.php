@@ -222,7 +222,7 @@ use yii\bootstrap4\Progress; ?>
                                                             'options' => ['id' => 'dokumenSumber' . $doksumAttr],
                                                             'pluginOptions' => [
                                                                 'theme' => 'explorer-fas',
-                                                                'maxFileSize' => Constants::MAX_UPLOAD_SIZE,
+                                                                'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
                                                                 'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
                                                                 'showUpload' => false,
                                                                 'previewFileType' => 'any',
@@ -434,7 +434,7 @@ use yii\bootstrap4\Progress; ?>
                                                             'options' => ['id' => 'dokumenPendukung' . $dokpenAttr],
                                                             'pluginOptions' => [
                                                                 'theme' => 'explorer-fas',
-                                                                'maxFileSize' => Constants::MAX_UPLOAD_SIZE,
+                                                                'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
                                                                 'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
                                                                 'showUpload' => false,
                                                                 'previewFileType' => 'any',
@@ -628,7 +628,7 @@ use yii\bootstrap4\Progress; ?>
                                                         'options' => ['id' => 'dokumenLainnya' . $modelAttribute],
                                                         'pluginOptions' => [
                                                             'theme' => 'explorer-fas',
-                                                            'maxFileSize' => Constants::MAX_UPLOAD_SIZE,
+                                                            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
                                                             'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
                                                             'showUpload' => false,
                                                             'previewFileType' => 'any',
