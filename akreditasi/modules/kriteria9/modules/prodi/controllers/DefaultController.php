@@ -16,7 +16,7 @@ class DefaultController extends BaseController
         $id_prodi = Yii::$app->request->get('prodi');
 
         $modelProdi = ProgramStudi::findOne(['id' => $id_prodi]);
-        $profil = $modelProdi->profil[0];
+        $profil = $modelProdi->profil;
 
         return $this->render('index', [
             'modelProdi' => $modelProdi,

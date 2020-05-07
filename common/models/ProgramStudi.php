@@ -37,6 +37,7 @@ use yii\behaviors\TimestampBehavior;
  * @property K9AkreditasiProdi[] $k9AkreditasiProdis
  * @property ProfilUser[] $profilUsers
  * @property FakultasAkademi $fakultasAkademi
+ * @property Profil $profil
  */
 class ProgramStudi extends \yii\db\ActiveRecord
 {
@@ -73,15 +74,14 @@ class ProgramStudi extends \yii\db\ActiveRecord
     {
         return [
             TimestampBehavior::class,
-            'polymorphic' => [
-                'class' => RelatedPolymorphicBehavior::class,
-                'polyRelations' => [
-                    'profil' => Profil::class
-
-                ],
-                'polymorphicType' => self::PROGRAM_STUDI
-            ]
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProfil(){
+        return $this->hasOne(Profil::class,['external_id'=>'id'])->andWhere(['type'=>self::PROGRAM_STUDI]);
     }
 
     /**

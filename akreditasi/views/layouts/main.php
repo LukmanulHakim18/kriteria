@@ -37,7 +37,7 @@ $menuItems = [
             [
                 'label' => 'Fakultas',
                 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',
-                'url' => ['/kriteria9/fakultas/arsip']
+                'url' => ['/fakultas/arsip']
             ],
             [
                 'label' => 'Program Studi',

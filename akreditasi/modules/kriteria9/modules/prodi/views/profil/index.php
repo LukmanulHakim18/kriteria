@@ -105,7 +105,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="kt-portlet__body">
                 <div class="program-studi-prodi">
                     <?=\yii\widgets\DetailView::widget([
-                            'model' => $programstudi->profil[0],
+                            'model' => $programstudi->profil,
                             'attributes' => [
 //                                'id',
                                 'visi:html',

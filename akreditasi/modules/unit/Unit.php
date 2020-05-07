@@ -25,7 +25,7 @@ class Unit extends \yii\base\Module
             'components' => [
                 'errorHandler' => [
                     'class' => ErrorHandler::className(),
-                    'errorAction' => '/standar7/default/error'
+                    'errorAction' => '/site/error'
                 ]
             ],
         ]);

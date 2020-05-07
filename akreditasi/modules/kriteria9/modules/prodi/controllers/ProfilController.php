@@ -63,7 +63,7 @@ class ProfilController extends BaseController
     public function actionUpdateProfil($prodi){
         $model = ProgramStudi::findOne($prodi);
         /** @var Profil $profil */
-        $profil = $model->profil[0];
+        $profil = $model->profil;
         $strukturModel = new StrukturOrganisasiUploadForm();
 
         if($profil->load(Yii::$app->request->post()) && $strukturModel->load(Yii::$app->request->post())){
@@ -90,8 +90,8 @@ class ProfilController extends BaseController
             $id = Yii::$app->request->post('id');
 
             $prodi = ProgramStudi::findOne($id);
-            $profil = $prodi->profil[0];
-            FileHelper::unlink(Yii::getAlias("@uploadStruktur/prodi/$id/$nama"));
+            $profil = $prodi->profil;
+            FileHelper::unlink(Yii::getAlias("@uploadStruktur/{$profil->type}/$id/$nama"));
             $profil->struktur_organisasi = '';
 
 

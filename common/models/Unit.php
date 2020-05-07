@@ -13,6 +13,8 @@ use yii\behaviors\TimestampBehavior;
  * @property int $jenis
  * @property int $created_at
  * @property int $updated_at
+ *
+ * @property Profil $profil
  */
 class Unit extends \yii\db\ActiveRecord
 {
@@ -42,15 +44,10 @@ class Unit extends \yii\db\ActiveRecord
     {
         return [
             TimestampBehavior::class,
-            'polymorphic' => [
-                'class' => RelatedPolymorphicBehavior::class,
-                'polyRelations' => [
-                    'profil' => Profil::class
-                ],
-                'polymorphicType' => self::UNIT,
-            ]
         ];
     }
+
+
 
     /**
      * {@inheritdoc}
@@ -75,5 +72,12 @@ class Unit extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function actionProfil(){
+        return $this->hasOne(Profil::class,['external_id'=>'id'])->andWhere(['type'=>self::UNIT]);
     }
 }

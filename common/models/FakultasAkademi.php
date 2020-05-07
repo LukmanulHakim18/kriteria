@@ -17,6 +17,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int $updated_at
  *
  * @property ProgramStudi[] $programStudis
+ * @property Profil $profil
  */
 class FakultasAkademi extends \yii\db\ActiveRecord
 {
@@ -42,14 +43,6 @@ class FakultasAkademi extends \yii\db\ActiveRecord
     {
         return [
             TimestampBehavior::class,
-            'polymorphic' => [
-                'class' => RelatedPolymorphicBehavior::class,
-                'polyRelations' => [
-                    'profil' => Profil::class
-
-                ],
-                'polymorphicType' => self::FAKULTAS_AKADEMI,
-            ]
         ];
     }
 
@@ -89,5 +82,12 @@ class FakultasAkademi extends \yii\db\ActiveRecord
     public function getProgramStudis()
     {
         return $this->hasMany(ProgramStudi::className(), ['id_fakultas_akademi' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProfil(){
+        return $this->hasOne(Profil::class,['external_id'=>'id'])->andWhere(['type'=>self::FAKULTAS_AKADEMI]);
     }
 }
