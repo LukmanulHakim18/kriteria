@@ -3,13 +3,14 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Unit */
-/* @var $jenis array */
+/* @var $model common\models\ProgramStudi */
+/* @var $profil common\models\Profil */
+/* @var $strukturModel akreditasi\models\StrukturOrganisasiUploadForm */
 
-$this->title = 'Update Unit: ' . $model->nama;
-$this->params['breadcrumbs'][] = ['label' => 'Unit / Lembaga / Satker', 'url' => ['/unit/arsip/index']];
-$this->params['breadcrumbs'][] = ['label' => $model->nama, 'url' => ['default/index', 'unit' => $model->id]];
-$this->params['breadcrumbs'][] = 'Ubah';
+$this->title = 'Update Profil Program Studi: ' . $model->nama;
+$this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['/kriteria9/prodi/arsip']];
+$this->params['breadcrumbs'][] = ['label' => $model->nama, 'url' => ['default/index', 'prodi' => $model->id]];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="row">
@@ -30,9 +31,10 @@ $this->params['breadcrumbs'][] = 'Ubah';
             <div class="kt-portlet__body">
                 <div class="program-studi-update">
 
-                    <?= $this->render('@admin/views/unit/_form', [
+                    <?= $this->render('_form-profil', [
                     'model' => $model,
-                        'jenis'=>$jenis
+                        'profil'=>$profil,
+                        'strukturModel'=>$strukturModel
 
                     ]) ?>
 

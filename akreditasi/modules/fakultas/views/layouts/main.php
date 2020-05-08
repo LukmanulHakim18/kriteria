@@ -18,44 +18,15 @@ $menuItems = [
 												</g>
 											</svg>", 'url' => ['/site/index']
     ],
-
-    ['label' => 'Borang Akreditasi', 'url' => ['/site/index'], 'options' => ['class' => 'kt-menu__section']],
-    ['label' => '9 Kriteria', 'icon' => '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+    ['label' => 'Data Master', 'url' => ['/site/index'], 'options' => ['class' => 'kt-menu__section']],
+    ['label' => 'Data Fakultas', 'icon' => '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <rect id="bound" x="0" y="0" width="24" height="24"/>
         <path d="M5.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,9.5 C20,10.3284271 19.3284271,11 18.5,11 L5.5,11 C4.67157288,11 4,10.3284271 4,9.5 L4,5.5 C4,4.67157288 4.67157288,4 5.5,4 Z M11,6 C10.4477153,6 10,6.44771525 10,7 C10,7.55228475 10.4477153,8 11,8 L13,8 C13.5522847,8 14,7.55228475 14,7 C14,6.44771525 13.5522847,6 13,6 L11,6 Z" id="Combined-Shape" fill="#000000" opacity="0.3"/>
         <path d="M5.5,13 L18.5,13 C19.3284271,13 20,13.6715729 20,14.5 L20,18.5 C20,19.3284271 19.3284271,20 18.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,14.5 C4,13.6715729 4.67157288,13 5.5,13 Z M11,15 C10.4477153,15 10,15.4477153 10,16 C10,16.5522847 10.4477153,17 11,17 L13,17 C13.5522847,17 14,16.5522847 14,16 C14,15.4477153 13.5522847,15 13,15 L11,15 Z" id="Combined-Shape-Copy" fill="#000000"/>
     </g>
-</svg>', 'url' => 'javascript:;',
-        'items' => [
+</svg>', 'url' => ['/fakultas/data/index','fakultas'=>$_GET['fakultas']]],
 
-            [
-                'label' => 'Institusi',
-                'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',
-                'url' => ['/kriteria9/k9-institusi/default/index']
-            ],
-            [
-                'label' => 'Fakultas',
-                'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',
-                'url' => ['/fakultas/arsip/index']
-            ],
-            [
-                'label' => 'Program Studi',
-                'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',
-                'url' => ['/kriteria9/prodi/arsip']
-            ]
-
-        ],
-    ],
-
-    ['label' => 'Unit', 'icon' => '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect id="bound" x="0" y="0" width="24" height="24"/>
-        <path d="M5,3 L6,3 C6.55228475,3 7,3.44771525 7,4 L7,20 C7,20.5522847 6.55228475,21 6,21 L5,21 C4.44771525,21 4,20.5522847 4,20 L4,4 C4,3.44771525 4.44771525,3 5,3 Z M10,3 L11,3 C11.5522847,3 12,3.44771525 12,4 L12,20 C12,20.5522847 11.5522847,21 11,21 L10,21 C9.44771525,21 9,20.5522847 9,20 L9,4 C9,3.44771525 9.44771525,3 10,3 Z" id="Combined-Shape" fill="#000000"/>
-        <rect id="Rectangle-Copy-2" fill="#000000" opacity="0.3" transform="translate(17.825568, 11.945519) rotate(-19.000000) translate(-17.825568, -11.945519) " x="16.3255682" y="2.94551858" width="3" height="18" rx="1"/>
-    </g>
-</svg>', 'url' => ['/unit/arsip/index'],
-    ],
 ];
 $menu = Helper::filter($menuItems);
 
@@ -102,26 +73,26 @@ $this->registerJs($counterUp, \yii\web\View::POS_READY);
 
 <?php $this->beginBody() ?>
 
-<?= $this->render('mobile_header') ?>
+<?= $this->render('@akreditasi/views/layouts/mobile_header') ?>
 
 <div class="kt-grid kt-grid--hor kt-grid--root">
     <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
 
-        <?= $this->render('aside', compact('menu')) ?>
+        <?= $this->render('@akreditasi/views/layouts/aside', compact('menu')) ?>
 
         <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
 
-            <?= $this->render('header') ?>
+            <?= $this->render('@akreditasi/views/layouts/header') ?>
             <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
 
-                <?= $this->render('subheader') ?>
+                <?= $this->render('@akreditasi/views/layouts/subheader') ?>
                 <?= \dominus77\sweetalert2\Alert::widget(['useSessionFlash' => true]) ?>
 
 
-                <?= $this->render('content', ['content' => $content]) ?>
+                <?= $this->render('@akreditasi/views/layouts/content', ['content' => $content]) ?>
             </div>
 
-            <?= $this->render('footer') ?>
+            <?= $this->render('@akreditasi/views/layouts/footer') ?>
         </div>
     </div>
 </div>

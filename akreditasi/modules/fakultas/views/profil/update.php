@@ -3,12 +3,12 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Unit */
+/* @var $model common\models\FakultasAkademi */
 /* @var $jenis array */
 
-$this->title = 'Update Unit: ' . $model->nama;
-$this->params['breadcrumbs'][] = ['label' => 'Unit / Lembaga / Satker', 'url' => ['/unit/arsip/index']];
-$this->params['breadcrumbs'][] = ['label' => $model->nama, 'url' => ['default/index', 'unit' => $model->id]];
+$this->title = 'Update Fakultas / Akademi / Pascasarjana: ' . $model->nama;
+$this->params['breadcrumbs'][] = ['label' => 'Fakultas', 'url' => ['/fakultas/arsip/index']];
+$this->params['breadcrumbs'][] = ['label' => $model->nama, 'url' => ['default/index', 'fakultas' => $model->id]];
 $this->params['breadcrumbs'][] = 'Ubah';
 ?>
 
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = 'Ubah';
             <div class="kt-portlet__body">
                 <div class="program-studi-update">
 
-                    <?= $this->render('@admin/views/unit/_form', [
+                    <?= $this->render('@admin/views/fakultas-akademi/_form', [
                     'model' => $model,
                         'jenis'=>$jenis
 

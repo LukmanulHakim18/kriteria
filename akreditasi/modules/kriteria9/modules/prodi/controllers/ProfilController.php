@@ -46,7 +46,7 @@ class ProfilController extends BaseController
     {
         $model = ProgramStudi::findOne($prodi);
         $dataFakultas = ArrayHelper::map(FakultasAkademi::find()->all(), 'id', 'nama');
-
+        $jenjang = ProgramStudi::JENJANG;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Berhasil mengubah ProgramStudi.');
 
@@ -55,7 +55,8 @@ class ProfilController extends BaseController
 
         return $this->render('update', [
             'model' => $model,
-            'dataFakultas' => $dataFakultas
+            'dataFakultas' => $dataFakultas,
+            'jenjang'=>$jenjang
         ]);
 
     }

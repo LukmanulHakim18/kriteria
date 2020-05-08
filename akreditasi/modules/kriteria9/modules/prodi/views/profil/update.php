@@ -5,10 +5,11 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\ProgramStudi */
 /* @var $dataFakultas common\models\FakultasAkademi[] */
+/* @var $jenjang array */
 
 $this->title = 'Update Program Studi: ' . $model->nama;
 $this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['/kriteria9/prodi/arsip']];
-$this->params['breadcrumbs'][] = ['label' => $model->nama, 'url' => ['default/index', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->nama, 'url' => ['default/index', 'prodi' => $model->id]];
 $this->params['breadcrumbs'][] = 'Ubah';
 ?>
 
@@ -30,9 +31,10 @@ $this->params['breadcrumbs'][] = 'Ubah';
             <div class="kt-portlet__body">
                 <div class="program-studi-update">
 
-                    <?= $this->render('_form', [
+                    <?= $this->render('@admin/views/program-studi/_form', [
                     'model' => $model,
-                        'dataFakultas'=>$dataFakultas
+                        'dataFakultas'=>$dataFakultas,
+                        'jenjang'=>$jenjang
 
                     ]) ?>
 

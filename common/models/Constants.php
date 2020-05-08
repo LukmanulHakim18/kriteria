@@ -40,11 +40,15 @@ class Constants
     const ALLOWED_EXTENSIONS = ['jpg','jpeg','png','pdf','docx','doc','gif','ppt','pptx','xls','xlsx', 'zip','txt','csv','odt','ods'];
     const IMAGE_EXTENSIONS = ['jpg','jpeg','png','gif','bmp','tiff'];
 
-    static function MAX_UPLOAD_SIZE() {return self::parse_size(self::file_upload_max_size());}
+    public static function MAX_UPLOAD_SIZE()
+    {
+        return self::file_upload_max_size();
+    }
 
     // Returns a file size limit in bytes based on the PHP upload_max_filesize
 // and post_max_size
-    private static function file_upload_max_size() {
+    private static function file_upload_max_size()
+    {
         static $max_size = -1;
 
         if ($max_size < 0) {
@@ -64,7 +68,8 @@ class Constants
         return $max_size;
     }
 
-    private static function parse_size($size) {
+    private static function parse_size($size)
+    {
         $unit = preg_replace('/[^bkmgtpezy]/i', '', $size); // Remove the non-unit characters from the size.
         $size = preg_replace('/[^0-9.]/', '', $size); // Remove the non-numeric characters from the size.
         if ($unit) {
