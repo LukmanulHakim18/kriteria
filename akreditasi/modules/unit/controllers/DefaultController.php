@@ -8,7 +8,7 @@ use yii\web\Controller;
 /**
  * Default controller for the `unit` module
  */
-class DefaultController extends Controller
+class DefaultController extends BaseController
 {
     /**
      * {@inheritdoc}
@@ -20,11 +20,6 @@ class DefaultController extends Controller
                 'class' => 'yii\web\ErrorAction',
             ],
         ];
-    }
-    public function beforeAction($action)
-    {
-        $this->layout="main";
-        return parent::beforeAction($action);
     }
     /**
      * Renders the index view for the module

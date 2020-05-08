@@ -23,25 +23,15 @@ use yii\web\UploadedFile;
 /**
  * KegiatanController implements the CRUD actions for KegiatanUnit model.
  */
-class KegiatanController extends Controller
+class KegiatanController extends BaseController
 {
 
-    public $layout = 'main';
     /**
      * {@inheritdoc}
      */
     public function behaviors()
     {
         return [
-            'access'=>[
-                'class'=>AccessControl::className(),
-                'rules'=>[
-                    ['actions'=>['index','create','update','view','delete','download-detail','hapus-detail'],
-                     'allow'=>true,
-                     'roles'=>['@']
-                    ]
-                ]
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

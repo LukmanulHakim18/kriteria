@@ -2,6 +2,8 @@
 
 namespace console\controllers;
 
+use common\auth\rbac\rules\AccessOwnProdi;
+use common\auth\rbac\rules\AccessOwnUnit;
 use Yii;
 use yii\console\Controller;
 use yii\console\ExitCode;
@@ -52,8 +54,8 @@ class AuthController extends Controller
         }
         $commonPermission = ['@app-akreditasi/site/*','@app-akreditasi/profile/*'];
 
-        $unitPermission = ['@app-akreditasi/unit/*'];
-        $prodiPermission = ['@app-akreditasi/kriteria9/prodi/*','@app-akreditasi/kriteria9/k9-prodi/*'];
+        $unitPermission = ['@app-akreditasi/unit/arsip/*'];
+        $prodiPermission = ['@app-akreditasi/kriteria9/prodi/*'];
         $fakultasPermission = ['@app-akreditasi/fakultas/*'];
 
         //common permission
@@ -97,8 +99,49 @@ class AuthController extends Controller
             $auth->addChild($fakultas,$permission);
             $auth->addChild($dekanat,$permission);
         }
+        printf("Add Prodi Permission to Fakultas and Dekanat\n");
         $auth->addChild($fakultas,$prodi);
         $auth->addChild($dekanat,$kaprodi);
+
+        //prodi rules
+        printf("Create AccessOwnProdi Rule \n");
+        $accessOwnProdi = new AccessOwnProdi;
+        $auth->add($accessOwnProdi);
+        printf("Create izinProdi Permission\n");
+        $izinProdi = $auth->createPermission('izinProdi');
+        $izinProdi->description = "Access kedalaman pengisian borang prodi";
+        $izinProdi->ruleName = $accessOwnProdi->name;
+        $auth->add($izinProdi);
+
+        $prodiRoute = $auth->createPermission('@app-akreditasi/kriteria9/k9-prodi/*');
+        printf("Adding izinProdi to Appropriate Roles\n");
+        $auth->add($prodiRoute);
+        $auth->addChild($izinProdi,$prodiRoute);
+        $auth->addChild($prodi,$izinProdi);
+        $auth->addChild($kaprodi,$izinProdi);
+
+        //unit rules
+        printf("Create AccessOwnUnit Rule \n");
+        $accessOwnUnit = new AccessOwnUnit;
+        $auth->add($accessOwnUnit);
+        printf("Create izinUnit Permission\n");
+        $izinUnit = $auth->createPermission('izinUnit');
+        $izinUnit->description = "Access kedalaman pengisian unit";
+        $izinUnit->ruleName = $accessOwnUnit->name;
+        $auth->add($izinUnit);
+
+        $unitRoute1 = $auth->createPermission('@app-akreditasi/unit/default/*');
+        printf("Adding izinUnit to Appropriate Roles\n");
+        $auth->add($unitRoute1);
+        $auth->addChild($izinUnit,$unitRoute1);
+        $unitRoute2 = $auth->createPermission('@app-akreditasi/unit/kegiatan/*');
+        $auth->add($unitRoute2);
+        $auth->addChild($izinUnit,$unitRoute2);
+        $unitRoute3 = $auth->createPermission('@app-akreditasi/unit/profil/*');
+        $auth->add($unitRoute3);
+        $auth->addChild($izinUnit,$unitRoute3);
+
+        $auth->addChild($unit,$izinUnit);
 
         return ExitCode::OK;
     }
