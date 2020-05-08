@@ -36,6 +36,7 @@ return [
         ],
     ],
 
-    'uploadPath' => '{lembaga}/{jenis_akreditasi}/{tahun}/{level}/{id}'
+    'uploadPath' => '{lembaga}/{jenis_akreditasi}/{tahun}/{level}/{id}',
+
 
 ];

@@ -8,6 +8,7 @@ Yii::setAlias('@uploadAkreditasi', '@akreditasi/web/upload');
 Yii::setAlias('@uploadAdmin', '@admin/web/upload');
 Yii::setAlias('@uploadStruktur', '@uploadAkreditasi/struktur');
 Yii::setAlias('@required', '@common/required');
+Yii::setAlias('@uploadUnit','@akreditasi/web/upload/unit/{id_unit}');
 $ini = parse_ini_file(dirname(__DIR__,2).'/system-configuration.ini');
 
 Yii::setAlias('@.akreditasi',$ini['url_kriteria']);
@@ -16,3 +17,4 @@ Yii::setAlias('@.admin',$ini['url_admin']);
 Yii::setAlias('@.uploadAkreditasi','@.akreditasi/upload');
 Yii::setAlias('@.uploadAdmin','@.admin/upload');
 Yii::setAlias('@.uploadStruktur','@.uploadAkreditasi/struktur');
+Yii::setAlias('@.uploadUnit','@.akreditasi/upload/unit/{id_unit}');

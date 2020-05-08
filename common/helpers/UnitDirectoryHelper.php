@@ -16,20 +16,16 @@ class UnitDirectoryHelper
 {
 
     public static function getUnitPath($id){
-        $p = Yii::$app->params['uploadUnit'];
+        $p = Yii::getAlias('@uploadUnit');
         $replacement = ['{id_unit}'=>$id];
         $path = strtr($p,$replacement);
-        $realPath = Yii::getAlias('@uploadAkreditasi/'.$path);
-
-        return $realPath;
+        return $path;
     }
 
     public static function getUnitUrl($id){
-        $p = Yii::$app->params['uploadUnit'];
+        $p = Yii::getAlias('@.uploadUnit');
         $replacement = ['{id_unit}'=>$id];
         $path = strtr($p,$replacement);
-        $realPath = Yii::getAlias('@web/upload/'.$path);
-
-        return $realPath;
+        return $path;
     }
 }
