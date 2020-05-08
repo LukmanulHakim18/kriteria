@@ -77,7 +77,7 @@ class Unit extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function actionProfil(){
+    public function getProfil(){
         return $this->hasOne(Profil::class,['external_id'=>'id'])->andWhere(['type'=>self::UNIT]);
     }
 }

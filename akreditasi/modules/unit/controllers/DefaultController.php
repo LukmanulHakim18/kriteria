@@ -28,6 +28,7 @@ class DefaultController extends BaseController
     public function actionIndex($unit)
     {
         $unit = Unit::findOne($unit);
-        return $this->render('index',['unit'=>$unit]);
+        $profil = $unit->profil;
+        return $this->render('index',['unit'=>$unit,'profil'=>$profil]);
     }
 }

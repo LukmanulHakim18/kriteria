@@ -50,6 +50,7 @@ $this->title = $modelProdi->nama;
                                 </div>
                             </div>
                         </div>
+                        <br>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
@@ -62,6 +63,7 @@ $this->title = $modelProdi->nama;
                                 </div>
                             </div>
                         </div>
+                        <br>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
@@ -74,6 +76,7 @@ $this->title = $modelProdi->nama;
                                 </div>
                             </div>
                         </div>
+                        <br>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
@@ -86,6 +89,7 @@ $this->title = $modelProdi->nama;
                                 </div>
                             </div>
                         </div>
+                        <br>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
@@ -98,6 +102,7 @@ $this->title = $modelProdi->nama;
                                 </div>
                             </div>
                         </div>
+                        <br>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
@@ -110,6 +115,7 @@ $this->title = $modelProdi->nama;
                                 </div>
                             </div>
                         </div>
+                        <br>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
