@@ -4,13 +4,11 @@ use akreditasi\models\unit\KegiatanDetailUploadForm;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\unit\KegiatanUnit */
-/* @var $detailModel KegiatanDetailUploadForm */
-/* @var $detailData []*/
+/* @var $model akreditasi\models\unit\KegiatanUnitForm */
 
-$this->title = 'Ubah Kegiatan Unit: ' . $model->nama;
+$this->title = 'Ubah Kegiatan Unit: ' . $model->getKegiatan()->nama;
 $this->params['breadcrumbs'][] = ['label' => 'Kegiatan Unit', 'url' => ['index','unit'=>$_GET['unit']]];
-$this->params['breadcrumbs'][] = ['label' => $model->nama, 'url' => ['view', 'id' => $model->id,'unit'=>$_GET['unit']]];
+$this->params['breadcrumbs'][] = ['label' => $model->getKegiatan()->nama, 'url' => ['view', 'id' => $model->getKegiatan()->id,'unit'=>$_GET['unit']]];
 $this->params['breadcrumbs'][] = 'Ubah';
 ?>
 
@@ -34,8 +32,6 @@ $this->params['breadcrumbs'][] = 'Ubah';
 
                     <?= $this->render('_form', [
                     'model' => $model,
-                        'detailModel'=>$detailModel,
-                        'detailData'=>$detailData,
                         'path'=>$path
 
 

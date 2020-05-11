@@ -16,11 +16,10 @@ use yii\bootstrap4\ActiveForm;
 $unit = $_GET['unit'];
 
 /* @var $this yii\web\View */
-/* @var $model common\models\unit\KegiatanUnit */
-/* @var $detailModel KegiatanDetailUploadForm */
+/* @var $model akreditasi\models\unit\KegiatanUnitForm */
 /* @var $form yii\bootstrap4\ActiveForm; */
-/* @var $config []; */
-/* @var $detailData [];*/
+
+$action = Yii::$app->controller->action->id;
 ?>
 
 <div class="kegiatan-unit-form">
@@ -47,15 +46,82 @@ $unit = $_GET['unit'];
             'options'=>['rows' => 6]
     ]) ?>
 
+    <?=$form->field($model,'sk_kegiatan')->widget(FileInput::className(),[
+        'pluginOptions' => [
+            'theme' => 'explorer-fas',
+            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
+            'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
+            'showUpload' => false,
+            'fileActionSettings' => [
+                'showZoom' => true,
+                'showRemove' => false,
+                'showUpload' => false,
+            ],
+        ]
+    ])?>
+    <?=$form->field($model,'laporan_kegiatan')->widget(FileInput::className(),[
+        'pluginOptions' => [
+            'theme' => 'explorer-fas',
+            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
+            'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
+            'showUpload' => false,
+            'fileActionSettings' => [
+                'showZoom' => true,
+                'showRemove' => false,
+                'showUpload' => false,
+            ],
+        ]
+    ])?>
+    <?=$form->field($model,'absensi')->widget(FileInput::className(),[
+        'pluginOptions' => [
+            'theme' => 'explorer-fas',
+            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
+            'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
+            'showUpload' => false,
+            'fileActionSettings' => [
+                'showZoom' => true,
+                'showRemove' => false,
+                'showUpload' => false,
+            ],
+        ]
+    ])?>
 
-    <?= $form->field($detailModel, 'berkas[]')->widget(FileInput::class,[
+    <?= $form->field($model, 'foto_kegiatan[]')->widget(FileInput::class,[
             'options' => ['multiple'=>true],
             'pluginOptions' => [
             'theme' => 'explorer-fas',
             'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
             'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
             'showUpload' => false,
-            'previewFileType' => 'any',
+            'fileActionSettings' => [
+                'showZoom' => true,
+                'showRemove' => false,
+                'showUpload' => false,
+            ],
+        ]
+    ]) ?>
+    <?= $form->field($model, 'sertifikat[]')->widget(FileInput::class,[
+        'options' => ['multiple'=>true],
+        'pluginOptions' => [
+            'theme' => 'explorer-fas',
+            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
+            'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
+            'showUpload' => false,
+            'fileActionSettings' => [
+                'showZoom' => true,
+                'showRemove' => false,
+                'showUpload' => false,
+            ],
+        ]
+    ]) ?>
+
+    <?= $form->field($model, 'dokumen_lainnya[]')->widget(FileInput::class,[
+        'options' => ['multiple'=>true],
+        'pluginOptions' => [
+            'theme' => 'explorer-fas',
+            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
+            'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
+            'showUpload' => false,
             'fileActionSettings' => [
                 'showZoom' => true,
                 'showRemove' => false,
@@ -74,7 +140,9 @@ $unit = $_GET['unit'];
 
     <?php ActiveForm::end(); ?>
 
-    <?php if(!$model->isNewRecord): ?>
+    <?php if($action === 'update'):
+        $detailData = $model->getKegiatan()->kegiatanUnitDetails;
+        ?>
 
         <div class="row">
             <div class="col-lg-12 table-responsive">
@@ -117,13 +185,13 @@ $unit = $_GET['unit'];
                                             ]); ?>
                                             <?php switch ($type) {
                                                 case FileTypeHelper::TYPE_IMAGE:
-                                                    echo \yii\bootstrap4\Html::img("$path/{$datum->nama_file}", ['height' => '100%', 'width' => '100%']);
+                                                    echo \yii\bootstrap4\Html::img("$path/{$datum->isi_file}", ['height' => '100%', 'width' => '100%']);
                                                     break;
                                                 case FileTypeHelper::TYPE_STATIC_TEXT:
-                                                    echo $datum->nama_file;
+                                                    echo $datum->isi_file;
                                                     break;
                                                 case FileTypeHelper::TYPE_PDF:
-                                                    echo '<embed src="' . $path . '/' . $datum->nama_file . '" type="application/pdf" height="100%" width="100%">
+                                                    echo '<embed src="' . $path . '/' . $datum->isi_file . '" type="application/pdf" height="100%" width="100%">
 ';
                                                     break;
                                             } ?>

@@ -112,6 +112,7 @@ return [
             'site/login',
             'site/error',
             'site/logout',
+            'datecontrol/*'
 //            'admin/*',
 //            'debug/*',
 //            'sertifikat/*',

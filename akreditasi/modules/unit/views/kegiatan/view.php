@@ -71,6 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <thead class="thead-dark">
                             <tr>
                                 <th class="text-center">Nama berkas</th>
+                                <th class="text-center">Jenis Berkas</th>
                                 <th class="text-center">Aksi</th>
                             </tr>
                             </thead>
@@ -87,10 +88,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-12 text-center">
-                                                <?= \yii\bootstrap4\Html::encode($datum->nama_file) ?>
+                                                <?= \yii\bootstrap4\Html::encode($datum->isi_file) ?>
 
                                             </div>
                                         </div>
+                                    </td>
+                                    <td class="text-center">
+                                       <?=$datum->nama_file?>
                                     </td>
                                     <td>
                                         <div class="row pull-right">
@@ -106,13 +110,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     ]); ?>
                                                     <?php switch ($type) {
                                                         case FileTypeHelper::TYPE_IMAGE:
-                                                            echo \yii\bootstrap4\Html::img("$path/{$datum->nama_file}", ['height' => '100%', 'width' => '100%']);
+                                                            echo \yii\bootstrap4\Html::img("$path/{$datum->isi_file}", ['height' => '100%', 'width' => '100%']);
                                                             break;
                                                         case FileTypeHelper::TYPE_STATIC_TEXT:
-                                                            echo $datum->nama_file;
+                                                            echo $datum->isi_file;
                                                             break;
                                                         case FileTypeHelper::TYPE_PDF:
-                                                            echo '<embed src="' . $path . '/' . $datum->nama_file . '" type="application/pdf" height="100%" width="100%">
+                                                            echo '<embed src="' . $path . '/' . $datum->isi_file . '" type="application/pdf" height="100%" width="100%">
 ';
                                                             break;
                                                     } ?>
