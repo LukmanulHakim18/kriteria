@@ -12,6 +12,8 @@
 namespace common\helpers\kriteria9;
 
 
+use common\helpers\DirectoryHelper;
+
 abstract class K9DirectoryHelper implements IK9DirectoryHelper
 {
 

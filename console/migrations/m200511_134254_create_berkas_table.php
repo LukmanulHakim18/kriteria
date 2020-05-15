@@ -14,6 +14,11 @@ class m200511_134254_create_berkas_table extends Migration
     {
         $this->createTable('{{%berkas}}', [
             'id' => $this->primaryKey(),
+            'external_id'=>$this->integer(),
+            'type'=>$this->string(),
+            'nama_berkas'=>$this->string(),
+            'created_at'=>$this->integer(),
+            'updated_at'=>$this->integer()
         ]);
     }
 

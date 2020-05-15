@@ -68,7 +68,7 @@ class KegiatanController extends BaseController
     {
         $model = $this->findModel($id);
         $detailData = $model->kegiatanUnitDetails;
-        $path = UnitDirectoryHelper::getUnitUrl($unit);
+        $path = UnitDirectoryHelper::getUrl($unit);
 
 
         return $this->render('view', [
@@ -86,8 +86,8 @@ class KegiatanController extends BaseController
     public function actionCreate($unit)
     {
         $model = new KegiatanUnitForm();
-        $urlPath = UnitDirectoryHelper::getUnitUrl($unit);
-        $path = UnitDirectoryHelper::getUnitPath($unit);
+        $urlPath = UnitDirectoryHelper::getUrl($unit);
+        $path = UnitDirectoryHelper::getPath($unit);
 
 //        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
 //            $model->id_unit = $unit;
@@ -134,8 +134,8 @@ class KegiatanController extends BaseController
     {
         $model = new KegiatanUnitForm($id);
         $detailData = $model->getKegiatan()->kegiatanUnitDetails;
-        $urlPath = UnitDirectoryHelper::getUnitUrl($unit);
-        $path = UnitDirectoryHelper::getUnitPath($unit);
+        $urlPath = UnitDirectoryHelper::getUrl($unit);
+        $path = UnitDirectoryHelper::getPath($unit);
         if ($model->load(Yii::$app->request->post()) ) {
 
             $model->sk_kegiatan = UploadedFile::getInstance($model,'sk_kegiatan');
@@ -180,7 +180,7 @@ class KegiatanController extends BaseController
     public function actionDownloadDetail($dokumen, $unit, $id){
         ini_set('max_execution_time', 5 * 60);
         $model = KegiatanUnitDetail::findOne($dokumen);
-        $fileDokumen = UnitDirectoryHelper::getUnitPath($unit). '/'.$model->nama_file;
+        $fileDokumen = UnitDirectoryHelper::getPath($unit). '/'.$model->nama_file;
 
         return Yii::$app->response->sendFile($fileDokumen);
     }
@@ -195,7 +195,7 @@ class KegiatanController extends BaseController
             $model = KegiatanUnitDetail::findOne($dokumenId);
             $nama_file = $model->nama_file;
             if($model->delete()){
-                FileHelper::unlink(UnitDirectoryHelper::getUnitPath($unitId).'/'.$nama_file);
+                FileHelper::unlink(UnitDirectoryHelper::getPath($unitId).'/'.$nama_file);
             }
 
 

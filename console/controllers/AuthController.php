@@ -2,6 +2,7 @@
 
 namespace console\controllers;
 
+use common\auth\rbac\rules\AccessOwnFakultas;
 use common\auth\rbac\rules\AccessOwnProdi;
 use common\auth\rbac\rules\AccessOwnUnit;
 use Yii;
@@ -56,7 +57,7 @@ class AuthController extends Controller
 
         $unitPermission = ['@app-akreditasi/unit/arsip/*'];
         $prodiPermission = ['@app-akreditasi/kriteria9/prodi/*'];
-        $fakultasPermission = ['@app-akreditasi/fakultas/*'];
+        $fakultasPermission = ['@app-akreditasi/fakultas/arsip/*'];
 
         //common permission
         foreach ($commonPermission as $permission){
@@ -142,6 +143,31 @@ class AuthController extends Controller
         $auth->addChild($izinUnit,$unitRoute3);
 
         $auth->addChild($unit,$izinUnit);
+
+        //Fakultas Rules.
+
+        printf("Create AccessOwnFakultas Rule \n");
+        $accessOwnFakultas = new AccessOwnFakultas;
+        $auth->add($accessOwnFakultas);
+        printf("Create izinFakultas Permission\n");
+        $izinFakultas = $auth->createPermission('izinFakultas');
+        $izinFakultas->description = "Access kedalaman pengisian fakultas";
+        $izinFakultas->ruleName = $accessOwnFakultas->name;
+        $auth->add($izinFakultas);
+
+        $fakultasRoute1 = $auth->createPermission('@app-akreditasi/fakultas/default/*');
+        printf("Adding izinFakultas to Appropriate Roles\n");
+        $auth->add($fakultasRoute1);
+        $auth->addChild($izinFakultas,$fakultasRoute1);
+        $fakultasRoute2 = $auth->createPermission('@app-akreditasi/fakultas/berkas/*');
+        $auth->add($fakultasRoute2);
+        $auth->addChild($izinFakultas,$fakultasRoute2);
+        $fakultasRoute3 = $auth->createPermission('@app-akreditasi/fakultas/profil/*');
+        $auth->add($fakultasRoute3);
+        $auth->addChild($izinFakultas,$fakultasRoute3);
+
+        $auth->addChild($fakultas,$izinFakultas);
+        $auth->addChild($dekanat,$izinFakultas);
 
         return ExitCode::OK;
     }

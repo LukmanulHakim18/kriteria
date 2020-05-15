@@ -14,6 +14,10 @@ class m200511_133610_create_profil_institusi_table extends Migration
     {
         $this->createTable('{{%profil_institusi}}', [
             'id' => $this->primaryKey(),
+            'nama'=>$this->string(),
+            'isi'=>$this->text(),
+            'created_at'=>$this->integer(),
+            'updated_at'=>$this->integer()
         ]);
     }
 
