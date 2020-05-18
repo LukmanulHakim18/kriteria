@@ -15,9 +15,16 @@ use Yii;
  * @property int|null $updated_at
  *
  * @property DetailBerkas[] $detailBerkas
+ * @property FakultasAkademi $fakultas
+ * @property ProgramStudi $prodi
+ * @property Unit $unit
  */
 class Berkas extends \yii\db\ActiveRecord
 {
+    const TYPE_PRODI = ProgramStudi::PROGRAM_STUDI;
+    const TYPE_FAKULTAS = FakultasAkademi::FAKULTAS_AKADEMI;
+    const TYPE_UNIT = Unit::UNIT;
+    const TYPE_INSTITUSI = 'institusi';
     /**
      * {@inheritdoc}
      */
@@ -60,5 +67,32 @@ class Berkas extends \yii\db\ActiveRecord
     public function getDetailBerkas()
     {
         return $this->hasMany(DetailBerkas::className(), ['id_berkas' => 'id']);
+    }
+
+    /**
+     * @return yii\db\ActiveQuery
+     */
+    public function getProdi()
+    {
+        return $this->hasOne(ProgramStudi::class, ['id'=>'external_id',function ($query) {
+            $query->andWhere(['type'=>self::TYPE_PRODI]);
+        }]);
+    }
+
+    /**
+     * @return yii\db\ActiveQuery
+     */
+    public function getFakultas()
+    {
+        return $this->hasOne(FakultasAkademi::class, ['id'=>'external_id', function ($query) {
+            $query->andWhere(['type'=>self::TYPE_FAKULTAS]);
+        }]);
+    }
+
+    public function getUnit()
+    {
+        return $this->hasOne(Unit::class, ['id'=>'external_id', function ($query) {
+            $query->andWhere(['type'=>self::TYPE_UNIT]);
+        }]);
     }
 }

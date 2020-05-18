@@ -15,6 +15,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int $updated_at
  *
  * @property Profil $profil
+ * @property Berkas $berkas
  */
 class Unit extends \yii\db\ActiveRecord
 {
@@ -28,7 +29,8 @@ class Unit extends \yii\db\ActiveRecord
         self::JENIS_LEMBAGA=>'Lembaga',
         self::JENIS_SATKER=>'Satuan Kerja'
     ];
-    public function getJenisString(){
+    public function getJenisString()
+    {
         return self::JENIS[$this->jenis];
     }
 
@@ -68,7 +70,7 @@ class Unit extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nama' => 'Nama',
-            'jenis'=>\Yii::t('app','Jenis'),
+            'jenis'=>\Yii::t('app', 'Jenis'),
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -77,7 +79,16 @@ class Unit extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProfil(){
-        return $this->hasOne(Profil::class,['external_id'=>'id'])->andWhere(['type'=>self::UNIT]);
+    public function getProfil()
+    {
+        return $this->hasOne(Profil::class, ['external_id'=>'id'])->andWhere(['type'=>self::UNIT]);
+    }
+
+    /**
+     * @return yii\db\ActiveQuery
+     */
+    public function getBerkas()
+    {
+        return $this->hasMany(Berkas::class, ['external_id'=>'id'])->andWhere(['type'=>self::UNIT]);
     }
 }
