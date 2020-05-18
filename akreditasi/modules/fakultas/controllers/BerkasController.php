@@ -16,7 +16,6 @@ use yii\web\Response;
 use yii\bootstrap4\ActiveForm;
 use yii\web\UploadedFile;
 
-
 /**
  * BerkasController implements the CRUD actions for Berkas model.
  */
@@ -32,6 +31,7 @@ class BerkasController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'delete-berkas'=>['POST']
                 ],
             ],
         ];
@@ -58,7 +58,7 @@ class BerkasController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($fakultas,$id)
+    public function actionView($fakultas, $id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -77,19 +77,18 @@ class BerkasController extends Controller
         $path = FakultasDirectoryHelper::getPath($fakultas);
         $urlPath = FakultasDirectoryHelper::getUrl($fakultas);
 
-        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
         if ($model->load(Yii::$app->request->post())) {
-
-            $modelBerkas->berkas = UploadedFile::getInstances($modelBerkas,'berkas');
+            $modelBerkas->berkas = UploadedFile::getInstances($modelBerkas, 'berkas');
 
             $transaction = Yii::$app->db->beginTransaction();
-            try{
+            try {
                 $model->save();
 
-                if($files = $modelBerkas->upload($path)){
+                if ($files = $modelBerkas->upload($path)) {
                     foreach ($files as $file) {
                         $detail = new DetailBerkas();
                         $detail->id_berkas =$model->id;
@@ -100,19 +99,15 @@ class BerkasController extends Controller
                 }
 
                 $transaction->commit();
-                Yii::$app->session->setFlash('success','Berhasil menambahkan Berkas.');
+                Yii::$app->session->setFlash('success', 'Berhasil menambahkan Berkas.');
 
                 return $this->redirect(['view', 'id' => $model->id]);
-            }catch (\Exception $exception){
+            } catch (\Exception $exception) {
                 $transaction->rollBack();
                 throw $exception;
             }
-
-
-        }
-
-        elseif (Yii::$app->request->isAjax){
-            return $this->renderAjax('_form',['model'=>$model]);
+        } elseif (Yii::$app->request->isAjax) {
+            return $this->renderAjax('_form', ['model'=>$model]);
         }
 
         return $this->render('create', [
@@ -127,27 +122,26 @@ class BerkasController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($fakultas,$id)
+    public function actionUpdate($fakultas, $id)
     {
         $model = $this->findModel($id);
         $detailModel = new BerkasUploadForm();
         $path = FakultasDirectoryHelper::getPath($fakultas);
         $urlPath=  FakultasDirectoryHelper::getUrl($fakultas);
 
-        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
-        if ($model->load(Yii::$app->request->post()) ) {
-
+        if ($model->load(Yii::$app->request->post())) {
             $transaction = Yii::$app->db->beginTransaction();
-            $detailModel->berkas = UploadedFile::getInstances($detailModel,'berkas');
+            $detailModel->berkas = UploadedFile::getInstances($detailModel, 'berkas');
 
-            try{
+            try {
                 $model->save();
 
-                if($files = $detailModel->upload($path)){
-                    foreach ($files as $file){
+                if ($files = $detailModel->upload($path)) {
+                    foreach ($files as $file) {
                         $detail = new DetailBerkas();
                         $detail->id_berkas = $model->id;
                         $detail->isi_berkas = $file['isi_berkas'];
@@ -159,22 +153,26 @@ class BerkasController extends Controller
                 $transaction->commit();
 
 
-                Yii::$app->session->setFlash('success','Berhasil mengubah Berkas.');
+                Yii::$app->session->setFlash('success', 'Berhasil mengubah Berkas.');
 
                 return $this->redirect(['view', 'id' => $model->id]);
-
-            }
-            catch (\Exception $exception){
+            } catch (\Exception $exception) {
                 $transaction->rollBack();
                 throw $exception;
             }
-
-
         }
 
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+    public function actionDeleteBerkas()
+    {
+    }
+
+    public function actionDownloadBerkas($id)
+    {
     }
 
     /**
@@ -187,13 +185,13 @@ class BerkasController extends Controller
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
      */
-    public function actionDelete($fakultas,$id)
+    public function actionDelete($fakultas, $id)
     {
         $this->findModel($id)->delete();
 
-        Yii::$app->session->setFlash('success','Berhasil menghapus Berkas.');
+        Yii::$app->session->setFlash('success', 'Berhasil menghapus Berkas.');
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index','fakultas'=>$fakultas]);
     }
 
     /**
