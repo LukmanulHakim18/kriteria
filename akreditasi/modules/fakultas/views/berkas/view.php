@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Berkas */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Berkas', 'url' => ['index']];
+$this->title = $model->nama_berkas;
+$this->params['breadcrumbs'][] = ['label' => 'Berkas', 'url' => ['index','fakultas'=>$_GET['fakultas']]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
@@ -29,8 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="kt-portlet__head-actions">
 
 
-                            <?= Html::a('<i class=flaticon2-edit></i> Edit', ['update', 'id' => $model->id], ['class' => 'btn btn-warning btn-elevate btn-elevate-air']) ?>
-                            <?= Html::a('<i class=flaticon2-delete></i> Hapus', ['delete', 'id' => $model->id], [
+                            <?= Html::a('<i class=flaticon2-edit></i> Edit', ['update', 'id' => $model->id,'fakultas'=>$_GET['fakultas']], ['class' => 'btn btn-warning btn-elevate btn-elevate-air']) ?>
+                            <?= Html::a('<i class=flaticon2-delete></i> Hapus', ['delete', 'id' => $model->id,'fakultas'=>$_GET['fakultas']], [
                             'class' => 'btn btn-danger btn-elevate btn-elevate-air',
                             'data' => [
                             'confirm' => 'Apakah anda ingin menghapus item ini?',
@@ -49,11 +49,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'model' => $model,
                     'attributes' => [
                                 'id',
-            'external_id',
-            'type',
-            'nama_berkas',
-            'created_at',
-            'updated_at',
+//                    'external_id',
+//                    'type',
+                    'nama_berkas',
+                    'created_at:datetime',
+                    'updated_at:datetime',
                     ],
                     ]) ?>
 

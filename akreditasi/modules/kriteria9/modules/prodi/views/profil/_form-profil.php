@@ -1,12 +1,13 @@
 <?php
 
 use common\models\Constants;
+use dmstr\ajaxbutton\AjaxButton;
 use dosamigos\tinymce\TinyMce;
 use kartik\file\FileInput;
 use kartik\select2\Select2;
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
-
+use yii\web\JsExpression;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\ProgramStudi */
@@ -20,105 +21,105 @@ use yii\bootstrap4\ActiveForm;
 
     <?php $form = ActiveForm::begin(['id' => 'profil-prodi-form']); ?>
 
-    <?= $form->field($profil, 'visi')->widget(TinyMce::class,[
+    <?= $form->field($profil, 'visi')->widget(TinyMce::class, [
         'options' => ['rows' => 6],
 
         'language' => 'id',
         'clientOptions' => [
 
             'plugins' => [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
+                'advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder',
+                'searchreplace wordcount visualblocks visualchars code fullscreen',
+                'insertdatetime media nonbreaking save table contextmenu directionality',
+                'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable',
             ],
-            'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link"
+            'toolbar' => 'undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link'
 
         ]
     ]) ?>
 
 
-    <?= $form->field($profil, 'misi')->widget(TinyMce::class,[
+    <?= $form->field($profil, 'misi')->widget(TinyMce::class, [
         'options' => ['rows' => 6],
 
         'language' => 'id',
         'clientOptions' => [
 
             'plugins' => [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
+                'advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder',
+                'searchreplace wordcount visualblocks visualchars code fullscreen',
+                'insertdatetime media nonbreaking save table contextmenu directionality',
+                'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable',
             ],
-            'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link"
+            'toolbar' => 'undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link'
 
         ]
     ]) ?>
-    <?= $form->field($profil, 'tujuan')->widget(TinyMce::class,[
+    <?= $form->field($profil, 'tujuan')->widget(TinyMce::class, [
         'options' => ['rows' => 6],
 
         'language' => 'id',
         'clientOptions' => [
 
             'plugins' => [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
+                'advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder',
+                'searchreplace wordcount visualblocks visualchars code fullscreen',
+                'insertdatetime media nonbreaking save table contextmenu directionality',
+                'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable',
             ],
-            'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link"
+            'toolbar' => 'undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link'
 
         ]
     ]) ?>
-    <?= $form->field($profil, 'sasaran')->widget(TinyMce::class,[
+    <?= $form->field($profil, 'sasaran')->widget(TinyMce::class, [
         'options' => ['rows' => 6],
 
         'language' => 'id',
         'clientOptions' => [
 
             'plugins' => [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
+                'advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder',
+                'searchreplace wordcount visualblocks visualchars code fullscreen',
+                'insertdatetime media nonbreaking save table contextmenu directionality',
+                'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable',
             ],
-            'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link"
+            'toolbar' => 'undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link'
 
         ]
     ]) ?>
-    <?= $form->field($profil, 'motto')->widget(TinyMce::class,[
+    <?= $form->field($profil, 'motto')->widget(TinyMce::class, [
         'options' => ['rows' => 6],
 
         'language' => 'id',
         'clientOptions' => [
 
             'plugins' => [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
+                'advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder',
+                'searchreplace wordcount visualblocks visualchars code fullscreen',
+                'insertdatetime media nonbreaking save table contextmenu directionality',
+                'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable',
             ],
-            'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link"
+            'toolbar' => 'undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link'
 
         ]
     ]) ?>
-    <?= $form->field($profil, 'sambutan')->widget(TinyMce::class,[
+    <?= $form->field($profil, 'sambutan')->widget(TinyMce::class, [
         'options' => ['rows' => 6],
 
         'language' => 'id',
         'clientOptions' => [
 
             'plugins' => [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
+                'advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder',
+                'searchreplace wordcount visualblocks visualchars code fullscreen',
+                'insertdatetime media nonbreaking save table contextmenu directionality',
+                'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable',
             ],
-            'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link"
+            'toolbar' => 'undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link'
 
         ]
     ]) ?>
-    <?php if($profil->struktur_organisasi):?>
+    <?php if ($profil->struktur_organisasi):?>
         <div id="current-struktur">
             <table class="table">
                 <thead class="thead-dark">
@@ -129,21 +130,21 @@ use yii\bootstrap4\ActiveForm;
                 </thead>
                 <tbody>
                 <tr>
-                    <td><?=Html::img(Yii::getAlias("@.uploadStruktur/{$profil->type}/{$model->id}/{$profil->struktur_organisasi}"),['width'=>'50%'])?></td>
+                    <td><?=Html::img(Yii::getAlias("@.uploadStruktur/{$profil->type}/{$model->id}/{$profil->struktur_organisasi}"), ['width'=>'50%'])?></td>
                     <td>
-                        <?=\dmstr\ajaxbutton\AjaxButton::widget([
+                        <?= AjaxButton::widget([
                                 'id' => 'hapus-struktur-button',
                             'url' => ['profil/hapus-struktur'],
                             'method' => 'POST',
-                            'content' => Yii::t('app','Hapus'),
+                            'content' => Yii::t('app', 'Hapus'),
                             'options' => ['class'=>'btn btn-danger btn-elevate btn-elevate-air'],
                             'params' => ['nama'=>$profil->struktur_organisasi,'id'=>$profil->external_id],
-                            'successExpression' => new \yii\web\JsExpression('function(resp,status,xhr){
+                            'successExpression' => new JsExpression('function(resp,status,xhr){
                             if(resp){
                                 const elem = document.getElementById("current-struktur");
                                 elem.parentNode.removeChild(elem);
                             }
-                            
+
                             }')
                         ])?>
                     </td>
@@ -153,7 +154,7 @@ use yii\bootstrap4\ActiveForm;
         </div>
 
     <?php endif; ?>
-    <?= $form->field($strukturModel, 'struktur')->widget(FileInput::class,[
+    <?= $form->field($strukturModel, 'struktur')->widget(FileInput::class, [
 
         'pluginOptions' => [
             'theme' => 'explorer-fas',
@@ -195,7 +196,7 @@ $jsForm = <<<JS
         });
         submit.html('<i class="flaticon2-refresh"></i> Sedang Memproses');
         submit.prop('disabled', true);
-        
+
     });
 
 JS;

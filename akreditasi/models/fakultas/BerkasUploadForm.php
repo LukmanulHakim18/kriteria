@@ -3,10 +3,9 @@
 
 namespace akreditasi\models\fakultas;
 
-
 use Carbon\Carbon;
 use common\models\Constants;
-use Faker\Provider\File;
+use yii\base\Exception;
 use yii\base\Model;
 use yii\helpers\FileHelper;
 use yii\web\UploadedFile;
@@ -38,14 +37,16 @@ class BerkasUploadForm extends Model
      * ]
      *
      * </code>
+     * @throws Exception
      */
-    public function upload($path){
+    public function upload($path): array
+    {
         $now = Carbon::now()->timestamp;
         FileHelper::createDirectory($path);
         $files= [];
-        foreach ($this->berkas as /** @var UploadedFile $file */ $file){
+        foreach ($this->berkas as $file) {
             $filename = "$now-{$file->baseName}.{$file->extension}";
-            if($file->saveAs("$path/$filename")){
+            if ($file->saveAs("$path/$filename")) {
                 $files[] = ['isi_berkas'=>$filename,'bentuk_berkas'=>$file->extension];
             }
         }

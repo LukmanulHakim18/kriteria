@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="kt-portlet__head-wrapper">
                         <div class="kt-portlet__head-actions">
 
-                            <?= Html::button('<i class=flaticon2-add></i> Tambah Berkas', ['value' => Url::to(['create']), 'title' => 'Tambah Berkas', 'class' => 'showModalButton btn btn-success btn-elevate btn-elevate-air']); ?>
+                            <?= Html::button('<i class=flaticon2-add></i> Tambah Berkas', ['value' => Url::to(['create','fakultas'=>Yii::$app->request->get('fakultas')]), 'title' => 'Tambah Berkas', 'class' => 'showModalButton btn btn-success btn-elevate btn-elevate-air']); ?>
                         </div>
                     </div>
                 </div>
@@ -41,25 +41,41 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                                                                     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-                    
-                                            <?= GridView::widget([
-                        'dataProvider' => $dataProvider,
-                        'filterModel' => $searchModel,
-        'columns' => [
-                        ['class' => 'yii\grid\SerialColumn','header'=>'No'],
 
-                                    'id',
-            'external_id',
-            'type',
-            'nama_berkas',
-            'created_at',
+                                            <?= GridView::widget([
+                                            'dataProvider' => $dataProvider,
+                                            'filterModel' => $searchModel,
+                                            'columns' => [
+                                            ['class' => 'yii\grid\SerialColumn','header'=>'No'],
+
+//                                            'id',
+//                                            'external_id',
+//                                            'type',
+                                            'nama_berkas',
+                                            'created_at:datetime',
             //'updated_at',
 
-                        ['class' => 'common\widgets\ActionColumn','header'=>'Aksi'],
-                        ],
+                                            ['class' => 'common\widgets\ActionColumn','header'=>'Aksi','buttons' => [
+                                                'view'=>function ($url, $model, $key) {
+                                                    return Html::a('<i class="flaticon2-information"></i> Lihat', ['berkas/view','id'=>$model->id,'fakultas'=>$_GET['fakultas']], ['class'=>' btn btn-sm btn-pill btn-elevate btn-elevate-air btn-info']);
+                                                },
+                                                'update'=>function ($url, $model, $key) {
+                                                    return Html::a('<i class="flaticon2-edit"></i> Ubah', ['berkas/update','id'=>$model->id,'fakultas'=>$_GET['fakultas']], ['class'=>' btn btn-sm btn-pill btn-elevate btn-elevate-air btn-warning']);
+                                                },
+                                                'delete'=>function ($url, $model, $key) {
+                                                    return Html::a('<i class="flaticon2-delete"></i> Hapus', ['berkas/delete','id'=>$model->id,'fakultas'=>$_GET['fakultas']], [
+                                                        'class'=>' btn btn-sm btn-pill btn-elevate btn-elevate-air btn-danger',
+                                                        'data-confirm' => Yii::t('yii', 'Apakah anda yakin untuk menghapus item ini?'),
+                                                        'data-method' => 'post',
+                                                    ]);
+                                                }
+
+
+                                            ]],
+                                            ],
                         ]); ?>
-                    
-                    
+
+
                 </div>
             </div>
         </div>
@@ -67,6 +83,3 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div>
 </div>
-
-
-

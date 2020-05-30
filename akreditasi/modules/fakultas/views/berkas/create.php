@@ -4,6 +4,8 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Berkas */
+/* @var $detailModel common\models\DetailBerkas */
+/* @var $urlPath string */
 
 $this->title = 'Tambah Berkas';
 $this->params['breadcrumbs'][] = ['label' => 'Berkas', 'url' => ['index']];
@@ -29,6 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= $this->render('_form', [
                     'model' => $model,
+                        'detailModel'=>$detailModel,
+                        'urlPath'=>$urlPath
                     ]) ?>
 
                 </div>

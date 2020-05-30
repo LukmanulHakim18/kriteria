@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "berkas".
@@ -41,6 +42,13 @@ class Berkas extends \yii\db\ActiveRecord
         return [
             [['external_id', 'created_at', 'updated_at'], 'integer'],
             [['type', 'nama_berkas'], 'string', 'max' => 255],
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class
         ];
     }
 

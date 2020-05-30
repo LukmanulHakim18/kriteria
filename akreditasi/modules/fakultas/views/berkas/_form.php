@@ -1,13 +1,16 @@
 <?php
 
+use common\models\Constants;
+use dmstr\ajaxbutton\AjaxButton;
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
-
+use yii\web\JsExpression;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Berkas */
-/* @var $form yii\bootstrap4\ActiveForm;
-*/
+/* @var $form yii\bootstrap4\ActiveForm; */
+/* @var $detailModel common\models\DetailBerkas;*/
+/* @var $urlPath string*/
 ?>
 
 
@@ -15,15 +18,59 @@ use yii\bootstrap4\ActiveForm;
 
     <?php $form = ActiveForm::begin(['id'=>'berkas-form']); ?>
 
-    <?= $form->field($model, 'external_id')->textInput() ?>
-
-    <?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'nama_berkas')->textInput(['maxlength' => true]) ?>
+    <?php if (!$model->isNewRecord):?>
+        <div id="current-berkas">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Berkas</th>
+                    <th>Aksi</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($model->detailBerkas as $detail): ?>
+                <tr>
+                    <td><?=$detail->isi_berkas?></td>
+                    <td><?=Html::a('Lihat', "$urlPath/{$detail->isi_berkas}", ['class'=>'btn btn-info btn-elevate btn-elevate-air','target'=>'_blank'])?>
+                        <?= AjaxButton::widget([
+                            'id' => 'hapus-berkas-button',
+                            'url' => ['berkas/delete-berkas'],
+                            'method' => 'POST',
+                            'content' => Yii::t('app', 'Hapus'),
+                            'options' => ['class'=>'btn btn-danger btn-elevate btn-elevate-air'],
+                            'params' => ['id'=>$detail->id],
+                            'successExpression' => new JsExpression('function(resp,status,xhr){
+                            if(resp){
+                                const elem = document.getElementById("current-berkas");
+                                elem.parentNode.removeChild(elem);
+                            }
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
+                            }')
+                        ])?>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    <?php endif;?>
+    <?=$form->field($detailModel, 'berkas[]')->widget(kartik\file\FileInput::class, [
+        'options' => ['multiple'=>true],
+        'pluginOptions' => [
+            'theme' => 'explorer-fas',
+            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
+            'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
+            'showUpload' => false,
+            'previewFileType' => 'any',
+            'fileActionSettings' => [
+                'showZoom' => true,
+                'showRemove' => false,
+                'showUpload' => false,
+            ],
+        ]
 
-    <?= $form->field($model, 'updated_at')->textInput() ?>
+    ])?>
 
     <div class="form-group">
         <?= Html::submitButton('<i class=\'la la-save\'></i> Simpan', ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-brand']) ?>

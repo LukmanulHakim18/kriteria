@@ -3,13 +3,13 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ProgramStudi */
+/* @var $model common\models\FakultasAkademi */
 /* @var $profil common\models\Profil */
 /* @var $strukturModel akreditasi\models\StrukturOrganisasiUploadForm */
 
-$this->title = 'Update Profil Program Studi: ' . $model->nama;
-$this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['/kriteria9/prodi/arsip']];
-$this->params['breadcrumbs'][] = ['label' => $model->nama, 'url' => ['default/index', 'prodi' => $model->id]];
+$this->title = 'Update Profil Fakultas/Akademi/Pascasarjana: ' . $model->nama;
+$this->params['breadcrumbs'][] = ['label' => 'Fakultas/Akademi/Pascasarjana', 'url' => ['/fakultas/arsip']];
+$this->params['breadcrumbs'][] = ['label' => $model->nama, 'url' => ['default/index', 'fakultas' => $model->id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -45,6 +45,3 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div>
 </div>
-
-
-

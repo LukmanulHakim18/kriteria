@@ -5,10 +5,12 @@ namespace akreditasi\modules\fakultas\controllers;
 use akreditasi\models\fakultas\BerkasUploadForm;
 use common\helpers\FakultasDirectoryHelper;
 use common\models\DetailBerkas;
+use common\models\FakultasAkademi;
 use Yii;
 use yii\filters\AccessControl;
 use common\models\Berkas;
 use akreditasi\models\fakultas\BerkasSearch;
+use yii\helpers\FileHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -73,7 +75,7 @@ class BerkasController extends Controller
     public function actionCreate($fakultas)
     {
         $model = new Berkas();
-        $modelBerkas = new BerkasUploadForm();
+        $detailModel = new BerkasUploadForm();
         $path = FakultasDirectoryHelper::getPath($fakultas);
         $urlPath = FakultasDirectoryHelper::getUrl($fakultas);
 
@@ -82,13 +84,15 @@ class BerkasController extends Controller
             return ActiveForm::validate($model);
         }
         if ($model->load(Yii::$app->request->post())) {
-            $modelBerkas->berkas = UploadedFile::getInstances($modelBerkas, 'berkas');
+            $detailModel->berkas = UploadedFile::getInstances($detailModel, 'berkas');
 
             $transaction = Yii::$app->db->beginTransaction();
             try {
+                $model->external_id = $fakultas;
+                $model->type = FakultasAkademi::FAKULTAS_AKADEMI;
                 $model->save();
 
-                if ($files = $modelBerkas->upload($path)) {
+                if ($files = $detailModel->upload($path)) {
                     foreach ($files as $file) {
                         $detail = new DetailBerkas();
                         $detail->id_berkas =$model->id;
@@ -101,17 +105,19 @@ class BerkasController extends Controller
                 $transaction->commit();
                 Yii::$app->session->setFlash('success', 'Berhasil menambahkan Berkas.');
 
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'id' => $model->id,'fakultas'=>$fakultas]);
             } catch (\Exception $exception) {
                 $transaction->rollBack();
                 throw $exception;
             }
         } elseif (Yii::$app->request->isAjax) {
-            return $this->renderAjax('_form', ['model'=>$model]);
+            return $this->renderAjax('_form', ['model'=>$model,'detailModel'=>$detailModel,'urlPath'=>$urlPath]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'detailModel'=>$detailModel,
+            'urlPath'=>$urlPath
         ]);
     }
 
@@ -164,15 +170,41 @@ class BerkasController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'detailModel'=>$detailModel,
+            'urlPath'=>$urlPath
         ]);
     }
 
+    /**
+     * @return Response
+     * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
+     */
     public function actionDeleteBerkas()
     {
+        $id = Yii::$app->request->post('id');
+        $detail = $this->findDetail($id);
+        $berkas = $detail->berkas;
+        $fakultas = $berkas->external_id;
+        $path = FakultasDirectoryHelper::getPath($fakultas);
+        FileHelper::unlink("$path/{$detail->isi_berkas}");
+        $detail->delete();
+        return $this->redirect(['berkas/update','fakultas'=>$fakultas,'id'=>$berkas->id]);
     }
 
+    /**
+     * @param $id
+     * @return \yii\console\Response|Response
+     * @throws NotFoundHttpException
+     */
     public function actionDownloadBerkas($id)
     {
+        $detail = $this->findDetail($id);
+        $berkas = $detail->berkas;
+        $fakultas = $berkas->external_id;
+        $path = FakultasDirectoryHelper::getPath($fakultas);
+        return Yii::$app->response->sendFile("$path/{$detail->isi_berkas}");
     }
 
     /**
@@ -208,5 +240,18 @@ class BerkasController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * @param $id
+     * @return DetailBerkas|null
+     * @throws NotFoundHttpException
+     */
+    protected function findDetail($id)
+    {
+        if (($model = DetailBerkas::findOne($id)) !== null) {
+            return $model;
+        }
+        throw new NotFoundHttpException('Data yang anda cari tidak ditemukan');
     }
 }
