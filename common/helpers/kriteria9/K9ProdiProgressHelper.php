@@ -78,7 +78,7 @@ class K9ProdiProgressHelper implements IK9ProgressHelper
     public static function getDokumenLkProgress($lk, $dokumen, $kriteria)
     {
         $progress = 0;
-        $filename = 'lkps_prodi_s1.json';
+        $filename = 'lkps_prodi_Sarjana.json';
         $filejson = file_get_contents(Yii::getAlias('@required/kriteria9/aps/' . $filename));
 
         $json = Json::decode($filejson);
