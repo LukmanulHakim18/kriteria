@@ -86,6 +86,21 @@ class LkController extends BaseController
         ]);
     }
 
+    public function actionLihat($lk, $prodi)
+    {
+        $lkProdi = K9LkProdi::findOne($lk);
+        $json = $this->getJsonData();
+        $kriteria = $this->getArrayKriteria($lk);
+        $institusi = Yii::$app->params['institusi'];
+
+        return $this->render('lihat', [
+            'lkProdi' => $lkProdi,
+            'kriteria' => $kriteria,
+            'institusi' => $institusi,
+            'json' => $json
+        ]);
+    }
+
     protected function getJsonData()
     {
         $fileJson = 'lkps_prodi_Sarjana.json';
@@ -118,7 +133,7 @@ class LkController extends BaseController
         $poinKriteria = $dataKriteria['butir'];
         $lkProdi = K9LkProdi::findOne($lk);
 
-        $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\prodi\\K9lkProdiNarasiKriteria' . $kriteria . 'Form';
+        $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\prodi\\K9LkProdiNarasiKriteria' . $kriteria . 'Form';
         $modelNarasi = call_user_func($modelNarasiClass . '::findOne', $lk);
 
         $dokModel = new K9LkProdiKriteriaDetailForm();
@@ -178,6 +193,26 @@ class LkController extends BaseController
             'dokModel' => $dokModel,
             'dokTextModel' => $dokTextModel,
             'dokLinkModel' => $dokLinkModel,
+            'dataKriteria' => $dataKriteria,
+            'poinKriteria' => $poinKriteria
+        ]);
+    }
+
+    public function actionLihatKriteria($lk, $kriteria, $prodi)
+    {
+
+        $json = $this->getJsonData();
+        $dataKriteria = $json[$kriteria - 1];
+        $poinKriteria = $dataKriteria['butir'];
+        $lkProdi = K9LkProdi::findOne($lk);
+
+        $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\prodi\\K9LkProdiNarasiKriteria' . $kriteria . 'Form';
+        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', $lk);
+
+        return $this->render('lihat-kriteria', [
+            'modelNarasi' => $modelNarasi,
+            'lkProdi' => $lkProdi,
+            'json' => $json,
             'dataKriteria' => $dataKriteria,
             'poinKriteria' => $poinKriteria
         ]);

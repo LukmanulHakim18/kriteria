@@ -3,7 +3,6 @@
 
 namespace common\auth\rbac\rules;
 
-
 use common\models\AuthAssignment;
 use common\models\FakultasAkademi;
 use common\models\User;
@@ -17,28 +16,27 @@ class AccessOwnFakultas extends Rule
     public function execute($user, $item, $params)
     {
         $identity = User::findOne($user);
-        if(!$identity){
+        if (!$identity) {
             return false;
         }
-        if(isset($params['fakultas'])){
+        if (isset($params['fakultas'])) {
             $fakultas = FakultasAkademi::findOne($params['fakultas']);
-            if(!$fakultas) {
+            if (!$fakultas) {
                 return false;
             }
 
             $role = AuthAssignment::findOne(['user_id'=>$identity->id]);
-            if(!$role) {
+            if (!$role) {
                 return false;
             }
 
-            if($role->item_name === 'superadmin' || $role->item_name === 'lpm'){
+            if ($role->item_name === 'superadmin' || $role->item_name === 'lpm') {
                 return true;
             }
 
-            if($role->item_name === 'fakultas' || $role->item_name === 'dekanat'){
+            if ($role->item_name === 'fakultas' || $role->item_name === 'dekanat') {
                 return $identity->profilUser->fakultas->id === $fakultas->id;
             }
-
         }
         return false;
     }
