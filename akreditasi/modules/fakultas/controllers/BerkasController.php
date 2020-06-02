@@ -21,7 +21,7 @@ use yii\web\UploadedFile;
 /**
  * BerkasController implements the CRUD actions for Berkas model.
  */
-class BerkasController extends Controller
+class BerkasController extends BaseController
 {
     /**
      * {@inheritdoc}
