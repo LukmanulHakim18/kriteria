@@ -9,7 +9,6 @@
 
 namespace akreditasi\modules\kriteria9\modules\prodi\controllers;
 
-
 use akreditasi\models\kriteria9\forms\StrukturOrganisasiUploadForm;
 use akreditasi\modules\kriteria9\controllers\BaseController;
 use common\models\FakultasAkademi;
@@ -40,7 +39,7 @@ class ProfilController extends BaseController
     {
         $programstudi = ProgramStudi::findOne($prodi);
 
-        return $this->render('index',['programstudi'=>$programstudi]);
+        return $this->render('index', ['programstudi'=>$programstudi]);
     }
     public function actionUpdate($prodi)
     {
@@ -58,45 +57,47 @@ class ProfilController extends BaseController
             'dataFakultas' => $dataFakultas,
             'jenjang'=>$jenjang
         ]);
-
     }
 
-    public function actionUpdateProfil($prodi){
+    public function actionUpdateProfil($prodi)
+    {
         $model = ProgramStudi::findOne($prodi);
         /** @var Profil $profil */
         $profil = $model->profil;
         $strukturModel = new StrukturOrganisasiUploadForm();
 
-        if($profil->load(Yii::$app->request->post()) && $strukturModel->load(Yii::$app->request->post())){
-
-            $strukturModel->struktur = UploadedFile::getInstance($strukturModel,'struktur');
-            if(isset($strukturModel->struktur)){
-                $save = $strukturModel->upload($profil->type,$model->id);
-                if(!$save) throw new \Exception('Error upload data');
+        if ($profil->load(Yii::$app->request->post()) && $strukturModel->load(Yii::$app->request->post())) {
+            $strukturModel->struktur = UploadedFile::getInstance($strukturModel, 'struktur');
+            if (isset($strukturModel->struktur)) {
+                $save = $strukturModel->upload($profil->type, $model->id);
+                if (!$save) {
+                    throw new \Exception('Error upload data');
+                }
                 $profil->struktur_organisasi = $save;
             }
 
-            if(!$profil->save(false)) throw new Exception('Gagal mengupdate profil');
-            Yii::$app->session->setFlash('success','Berhasil mengupdate profil');
+            if (!$profil->save(false)) {
+                throw new Exception('Gagal mengupdate profil');
+            }
+            Yii::$app->session->setFlash('success', 'Berhasil mengupdate profil');
             return $this->redirect(['profil/index','prodi'=>$model->id]);
-
         }
 
-        return $this->render('update-profil',compact('model','profil','strukturModel'));
-        }
+        return $this->render('update-profil', compact('model', 'profil', 'strukturModel'));
+    }
 
-        public function actionHapusStruktur(){
+    public function actionHapusStruktur()
+    {
 
-            $nama = Yii::$app->request->post('nama');
-            $id = Yii::$app->request->post('id');
+        $nama = Yii::$app->request->post('nama');
+        $id = Yii::$app->request->post('id');
 
-            $prodi = ProgramStudi::findOne($id);
-            $profil = $prodi->profil;
-            FileHelper::unlink(Yii::getAlias("@uploadStruktur/{$profil->type}/$id/$nama"));
-            $profil->struktur_organisasi = '';
+        $prodi = ProgramStudi::findOne($id);
+        $profil = $prodi->profil;
+        FileHelper::unlink(Yii::getAlias("@uploadStruktur/{$profil->type}/$id/$nama"));
+        $profil->struktur_organisasi = '';
 
 
-            return $profil->save(false)? true: false;
-        }
-
+        return $profil->save(false);
+    }
 }

@@ -6,7 +6,6 @@ namespace akreditasi\modules\kriteria9\modules\institusi\controllers;
 use akreditasi\models\kriteria9\forms\lk\institusi\K9LinkLkInstitusiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\institusi\K9LkInstitusiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\institusi\K9TextLkInstitusiKriteriaDetailForm;
-use akreditasi\modules\kriteria9\controllers\BaseController;
 use common\helpers\kriteria9\K9InstitusiDirectoryHelper;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\forms\lk\K9PencarianLkInstitusiForm;
@@ -108,11 +107,9 @@ class LkController extends BaseController
         $dokLinkModel = new K9LinkLkInstitusiKriteriaDetailForm();
 
         if ($dokModel->load(Yii::$app->request->post())) {
-
             $dokModel->isiDokumen = UploadedFile::getInstance($dokModel, 'isiDokumen');
 
             if ($dokModel->uploadDokumen($lk, $kriteria)) {
-
 //              Alert jika nama sama belum selesai
 
                 Yii::$app->session->setFlash('success', 'Berhasil Upload');
@@ -128,7 +125,6 @@ class LkController extends BaseController
             $modelNarasi->save();
             Yii::$app->session->setFlash('success', 'Berhasil Memperbarui Entri');
             return $this->redirect(Url::current());
-
         }
 
 
@@ -243,31 +239,25 @@ class LkController extends BaseController
 
     public function actionLihatDok($kriteria, $dok, $lk)
     {
-
     }
 
     public function actionHapusKriteria()
     {
-
     }
 
     public function actoinPj($kriteria)
     {
-
     }
 
     public function actionPjKriteria($kriteria, $lk)
     {
-
     }
 
     public function actionLihat($lk)
     {
-
     }
 
     public function actionLihatKriteria($kriteria, $lk)
     {
-
     }
 }

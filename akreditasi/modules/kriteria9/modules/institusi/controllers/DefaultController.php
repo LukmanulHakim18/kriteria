@@ -2,7 +2,6 @@
 
 namespace akreditasi\modules\kriteria9\modules\institusi\controllers;
 
-use akreditasi\modules\kriteria9\controllers\BaseController;
 use common\models\FakultasAkademi;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;

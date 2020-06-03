@@ -22,7 +22,7 @@ class StrukturOrganisasiUploadForm extends Model
         ];
     }
 
-    public function upload($jenis, $id)
+    public function upload($jenis, $id = null)
     {
         if (!$this->validate()) {
             return false;
