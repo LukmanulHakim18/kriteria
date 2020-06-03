@@ -6,19 +6,12 @@ use akreditasi\models\kriteria9\forms\StrukturOrganisasiUploadForm;
 use common\models\Profil;
 use Yii;
 use yii\base\Exception;
-use yii\filters\AccessControl;
-use common\models\ProfilInstitusi;
-use akreditasi\models\ProfilInstitusiSearch;
 use yii\helpers\FileHelper;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\web\Response;
-use yii\bootstrap4\ActiveForm;
 use yii\web\UploadedFile;
 
 /**
- * ProfilController implements the CRUD actions for ProfilInstitusi model.
+ * ProfilController implements the CRUD actions for Profil model.
  */
 class ProfilController extends BaseController
 {
@@ -41,6 +34,7 @@ class ProfilController extends BaseController
      * If update is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws Exception
      */
     public function actionUpdate()
     {
@@ -51,7 +45,7 @@ class ProfilController extends BaseController
             if (isset($strukturModel->struktur)) {
                 $save = $strukturModel->upload($model->type);
                 if (!$save) {
-                    throw new \Exception('Error upload data');
+                    throw new Exception('Error upload data');
                 }
                 $model->struktur_organisasi = $save;
             }
@@ -70,7 +64,6 @@ class ProfilController extends BaseController
     /**
      * Finds the ProfilInstitusi model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
      * @return Profil
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -83,6 +76,10 @@ class ProfilController extends BaseController
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
+    /**
+     * @return bool
+     * @throws NotFoundHttpException
+     */
     public function actionHapusStruktur()
     {
 
