@@ -1,28 +1,30 @@
 <?php
 
-namespace akreditasi\modules\fakultas\controllers;
 
+namespace akreditasi\modules\kriteria9\modules\institusi\controllers;
+
+use akreditasi\models\fakultas\BerkasSearch;
 use akreditasi\models\fakultas\BerkasUploadForm;
 use common\helpers\FakultasDirectoryHelper;
+use common\helpers\kriteria9\K9InstitusiDirectoryHelper;
+use common\models\Berkas;
 use common\models\DetailBerkas;
 use common\models\FakultasAkademi;
+use common\models\Profil;
+use Exception;
+use Throwable;
 use Yii;
-use yii\filters\AccessControl;
-use common\models\Berkas;
-use akreditasi\models\fakultas\BerkasSearch;
-use yii\helpers\FileHelper;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\web\Response;
 use yii\bootstrap4\ActiveForm;
+use yii\db\StaleObjectException;
+use yii\filters\VerbFilter;
+use yii\helpers\FileHelper;
+use yii\web\NotFoundHttpException;
+use yii\web\Response;
 use yii\web\UploadedFile;
 
-/**
- * BerkasController implements the CRUD actions for Berkas model.
- */
 class BerkasController extends BaseController
 {
+
     /**
      * {@inheritdoc}
      */
@@ -43,7 +45,7 @@ class BerkasController extends BaseController
      * Lists all Berkas models.
      * @return mixed
      */
-    public function actionIndex($fakultas)
+    public function actionIndex()
     {
         $searchModel = new BerkasSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -60,11 +62,20 @@ class BerkasController extends BaseController
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($fakultas, $id)
+    public function actionView($id)
     {
+        $url = K9InstitusiDirectoryHelper::getUrl();
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'url'=>$url
         ]);
+    }
+
+    public function actionDownloadDetail(){
+        $id = Yii::$app->request->post('id');
+        $path = K9InstitusiDirectoryHelper::getPath();
+        $detail = DetailBerkas::findOne($id);
+        return Yii::$app->response->sendFile("$path/{$detail->isi_berkas}");
     }
 
     /**
@@ -72,12 +83,12 @@ class BerkasController extends BaseController
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($fakultas)
+    public function actionCreate()
     {
         $model = new Berkas();
         $detailModel = new BerkasUploadForm();
-        $path = FakultasDirectoryHelper::getPath($fakultas);
-        $urlPath = FakultasDirectoryHelper::getUrl($fakultas);
+        $path = K9InstitusiDirectoryHelper::getPath();
+        $urlPath = K9InstitusiDirectoryHelper::getUrl();
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -88,8 +99,7 @@ class BerkasController extends BaseController
 
             $transaction = Yii::$app->db->beginTransaction();
             try {
-                $model->external_id = $fakultas;
-                $model->type = Berkas::TYPE_FAKULTAS;
+                $model->type = Berkas::TYPE_INSTITUSI;
                 $model->save();
 
                 if ($files = $detailModel->upload($path)) {
@@ -105,8 +115,8 @@ class BerkasController extends BaseController
                 $transaction->commit();
                 Yii::$app->session->setFlash('success', 'Berhasil menambahkan Berkas.');
 
-                return $this->redirect(['view', 'id' => $model->id,'fakultas'=>$fakultas]);
-            } catch (\Exception $exception) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } catch (Exception $exception) {
                 $transaction->rollBack();
                 throw $exception;
             }
@@ -128,12 +138,12 @@ class BerkasController extends BaseController
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($fakultas, $id)
+    public function actionUpdate($id)
     {
         $model = $this->findModel($id);
         $detailModel = new BerkasUploadForm();
-        $path = FakultasDirectoryHelper::getPath($fakultas);
-        $urlPath=  FakultasDirectoryHelper::getUrl($fakultas);
+        $path = K9InstitusiDirectoryHelper::getPath();
+        $urlPath=  K9InstitusiDirectoryHelper::getUrl();
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -162,7 +172,7 @@ class BerkasController extends BaseController
                 Yii::$app->session->setFlash('success', 'Berhasil mengubah Berkas.');
 
                 return $this->redirect(['view', 'id' => $model->id]);
-            } catch (\Exception $exception) {
+            } catch (Exception $exception) {
                 $transaction->rollBack();
                 throw $exception;
             }
@@ -178,8 +188,8 @@ class BerkasController extends BaseController
     /**
      * @return Response
      * @throws NotFoundHttpException
-     * @throws \Throwable
-     * @throws \yii\db\StaleObjectException
+     * @throws Throwable
+     * @throws StaleObjectException
      */
     public function actionDeleteBerkas()
     {
@@ -187,10 +197,10 @@ class BerkasController extends BaseController
         $detail = $this->findDetail($id);
         $berkas = $detail->berkas;
         $fakultas = $berkas->external_id;
-        $path = FakultasDirectoryHelper::getPath($fakultas);
+        $path = K9InstitusiDirectoryHelper::getPath();
         FileHelper::unlink("$path/{$detail->isi_berkas}");
         $detail->delete();
-        return $this->redirect(['berkas/update','fakultas'=>$fakultas,'id'=>$berkas->id]);
+        return $this->redirect(['berkas/update','id'=>$berkas->id]);
     }
 
     /**
@@ -202,28 +212,26 @@ class BerkasController extends BaseController
     {
         $detail = $this->findDetail($id);
         $berkas = $detail->berkas;
-        $fakultas = $berkas->external_id;
-        $path = FakultasDirectoryHelper::getPath($fakultas);
+        $path = K9InstitusiDirectoryHelper::getPath();
         return Yii::$app->response->sendFile("$path/{$detail->isi_berkas}");
     }
 
     /**
      * Deletes an existing Berkas model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param $fakultas
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
-     * @throws \Throwable
-     * @throws \yii\db\StaleObjectException
+     * @throws Throwable
+     * @throws StaleObjectException
      */
-    public function actionDelete($fakultas, $id)
+    public function actionDelete($id)
     {
         $this->findModel($id)->delete();
 
         Yii::$app->session->setFlash('success', 'Berhasil menghapus Berkas.');
 
-        return $this->redirect(['index','fakultas'=>$fakultas]);
+        return $this->redirect(['index']);
     }
 
     /**

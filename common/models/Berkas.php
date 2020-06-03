@@ -25,7 +25,7 @@ class Berkas extends \yii\db\ActiveRecord
     const TYPE_PRODI = ProgramStudi::PROGRAM_STUDI;
     const TYPE_FAKULTAS = FakultasAkademi::FAKULTAS_AKADEMI;
     const TYPE_UNIT = Unit::UNIT;
-    const TYPE_INSTITUSI = 'institusi';
+    const TYPE_INSTITUSI = Constants::INSTITUSI;
     /**
      * {@inheritdoc}
      */

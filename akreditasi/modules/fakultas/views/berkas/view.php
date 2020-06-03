@@ -1,5 +1,8 @@
 <?php
 
+use common\helpers\FileIconHelper;
+use common\helpers\FileTypeHelper;
+use yii\bootstrap4\Modal;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -57,6 +60,80 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     ]) ?>
 
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="detail-berkas-view">
+                    <!--                                Tabel dokumen lainnya-->
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>No.</th>
+                            <th>Dokumen</th>
+                            <th>Aksi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php $i=0; foreach ($model->detailBerkas as $k=>$v): ?>
+                            <tr>
+                                <td><?=++$i?></td>
+                                <td>
+                                    <div class="text-center">
+                                        <?php if ($v->bentuk_berkas !== 'text' && $v->bentuk_berkas !== 'link') { ?>
+                                            <div class="icon">
+                                                <?= FileIconHelper::getIconByExtension($v->bentuk_berkas) ?>
+                                            </div>
+                                            <div class="kt-space-5"></div>
+                                            <?php
+
+                                            echo $v['isi_berkas'];
+
+                                        } ?>
+                                    </div>
+                                </td>
+                                <td class="pull-right">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <?php $type = FileTypeHelper::getType($v->bentuk_berkas);
+                                            if ($type === FileTypeHelper::TYPE_IMAGE || $type === FileTypeHelper::TYPE_PDF || $type === FileTypeHelper::TYPE_STATIC_TEXT):?>
+
+                                                <?php Modal::begin([
+                                                    'title' => $model->nama_berkas,
+                                                    'toggleButton' => ['label' => '<i class="la la-eye"></i> &nbsp;Lihat', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'],
+                                                    'size' => 'modal-lg',
+                                                    'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
+                                                ]); ?>
+                                                <?php switch ($type) {
+                                                    case FileTypeHelper::TYPE_IMAGE:
+                                                        echo Html::img("$url/{$v->isi_berkas}", ['height' => '100%', 'width' => '100%']);
+                                                        break;
+                                                    case FileTypeHelper::TYPE_STATIC_TEXT:
+                                                        echo $v->isi_berkas;
+                                                        break;
+                                                    case FileTypeHelper::TYPE_PDF:
+                                                        echo '<embed src="' . $url . '/' . $v->isi_berkas . '" type="application/pdf" height="100%" width="100%">
+';
+                                                        break;
+                                                } ?>
+                                                <?php Modal::end(); ?>
+                                            <?php elseif ($type === FileTypeHelper::TYPE_LINK): ?>
+                                                <?= Html::a('<i class="la la-external-link"></i> Lihat', $v->isi_berkas, ['class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air', 'target' => '_blank']) ?>
+                                            <?php endif; ?>
+                                            <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['berkas/download-detail'], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air','data'=>[
+                                                'method'=>'POST',
+                                                'params'=>['id'=>$v->id]
+                                            ]]) ?>
+
+                                        </div>
+
+                                    </div>
+                                </td>
+
+                            </tr>
+                        <?php endforeach;?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
