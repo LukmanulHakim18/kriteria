@@ -1,6 +1,6 @@
 <?php
 
-namespace akreditasi\models\fakultas;
+namespace akreditasi\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;

@@ -2,14 +2,15 @@
 
 namespace akreditasi\modules\fakultas\controllers;
 
-use akreditasi\models\fakultas\BerkasUploadForm;
+use akreditasi\models\BerkasUploadForm;
 use common\helpers\FakultasDirectoryHelper;
 use common\models\DetailBerkas;
 use common\models\FakultasAkademi;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use common\models\Berkas;
-use akreditasi\models\fakultas\BerkasSearch;
+use akreditasi\models\BerkasSearch;
 use yii\helpers\FileHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -45,11 +46,10 @@ class BerkasController extends BaseController
      */
     public function actionIndex($fakultas)
     {
-        $searchModel = new BerkasSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $fakultas = $this->findFakultas($fakultas);
+        $dataProvider = new ActiveDataProvider(['query' => $fakultas->getBerkas()]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -62,8 +62,10 @@ class BerkasController extends BaseController
      */
     public function actionView($fakultas, $id)
     {
+        $url = FakultasDirectoryHelper::getUrl($fakultas);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'url'=>$url
         ]);
     }
 
@@ -161,7 +163,7 @@ class BerkasController extends BaseController
 
                 Yii::$app->session->setFlash('success', 'Berhasil mengubah Berkas.');
 
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'id' => $model->id,'fakultas'=>$fakultas]);
             } catch (\Exception $exception) {
                 $transaction->rollBack();
                 throw $exception;
@@ -250,6 +252,18 @@ class BerkasController extends BaseController
     protected function findDetail($id)
     {
         if (($model = DetailBerkas::findOne($id)) !== null) {
+            return $model;
+        }
+        throw new NotFoundHttpException('Data yang anda cari tidak ditemukan');
+    }
+
+    /**
+     * @param $id
+     * @return FakultasAkademi|null
+     * @throws NotFoundHttpException
+     */
+    protected function findFakultas($id){
+        if (($model = FakultasAkademi::findOne($id)) !== null) {
             return $model;
         }
         throw new NotFoundHttpException('Data yang anda cari tidak ditemukan');

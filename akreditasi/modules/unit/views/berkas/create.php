@@ -8,7 +8,7 @@ use yii\helpers\Html;
 /* @var $urlPath string */
 
 $this->title = 'Tambah Berkas';
-$this->params['breadcrumbs'][] = ['label' => 'Berkas', 'url' => ['index','fakultas'=>$_GET['fakultas']]];
+$this->params['breadcrumbs'][] = ['label' => 'Berkas', 'url' => ['index','unit'=>$_GET['unit']]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">

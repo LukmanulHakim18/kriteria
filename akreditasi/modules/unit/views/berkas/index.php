@@ -21,14 +21,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         <i class="flaticon2-list-2"></i>
                     </span>
                     <h3 class="kt-portlet__head-title">
-                        <?= Html::encode($this->title) ?> <small>Fakultas / Akademi / Pascasarjana</small>
+                        <?= Html::encode($this->title) ?> <small>portlet sub title</small>
                     </h3>
                 </div>
                 <div class="kt-portlet__head-toolbar">
                     <div class="kt-portlet__head-wrapper">
                         <div class="kt-portlet__head-actions">
 
-                            <?= Html::button('<i class=flaticon2-add></i> Tambah Berkas', ['value' => Url::to(['create','fakultas'=>Yii::$app->request->get('fakultas')]), 'title' => 'Tambah Berkas', 'class' => 'showModalButton btn btn-success btn-elevate btn-elevate-air']); ?>
+                            <?= Html::button('<i class=flaticon2-add></i> Tambah Berkas', ['value' => Url::to(['create','unit'=>Yii::$app->request->get('unit')]), 'title' => 'Tambah Berkas', 'class' => 'showModalButton btn btn-success btn-elevate btn-elevate-air']); ?>
                         </div>
                     </div>
                 </div>
@@ -55,13 +55,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                             ['class' => 'common\widgets\ActionColumn','header'=>'Aksi','buttons' => [
                                                 'view'=>function ($url, $model, $key) {
-                                                    return Html::a('<i class="flaticon2-information"></i> Lihat', ['berkas/view','id'=>$model->id,'fakultas'=>$_GET['fakultas']], ['class'=>' btn btn-sm btn-pill btn-elevate btn-elevate-air btn-info']);
+                                                    return Html::a('<i class="flaticon2-information"></i> Lihat', ['berkas/view','id'=>$model->id,'unit'=>$_GET['unit']], ['class'=>' btn btn-sm btn-pill btn-elevate btn-elevate-air btn-info']);
                                                 },
                                                 'update'=>function ($url, $model, $key) {
-                                                    return Html::a('<i class="flaticon2-edit"></i> Ubah', ['berkas/update','id'=>$model->id,'fakultas'=>$_GET['fakultas']], ['class'=>' btn btn-sm btn-pill btn-elevate btn-elevate-air btn-warning']);
+                                                    return Html::a('<i class="flaticon2-edit"></i> Ubah', ['berkas/update','id'=>$model->id,'unit'=>$_GET['unit']], ['class'=>' btn btn-sm btn-pill btn-elevate btn-elevate-air btn-warning']);
                                                 },
                                                 'delete'=>function ($url, $model, $key) {
-                                                    return Html::a('<i class="flaticon2-delete"></i> Hapus', ['berkas/delete','id'=>$model->id,'fakultas'=>$_GET['fakultas']], [
+                                                    return Html::a('<i class="flaticon2-delete"></i> Hapus', ['berkas/delete','id'=>$model->id,'unit'=>$_GET['unit']], [
                                                         'class'=>' btn btn-sm btn-pill btn-elevate btn-elevate-air btn-danger',
                                                         'data-confirm' => Yii::t('yii', 'Apakah anda yakin untuk menghapus item ini?'),
                                                         'data-method' => 'post',

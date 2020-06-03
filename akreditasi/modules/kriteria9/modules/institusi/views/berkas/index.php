@@ -7,7 +7,6 @@ use yii\helpers\Url;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel akreditasi\models\fakultas\BerkasSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Berkas';
@@ -46,7 +45,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                             <?= GridView::widget([
                                             'dataProvider' => $dataProvider,
-                                            'filterModel' => $searchModel,
                                             'columns' => [
                                             ['class' => SerialColumn::class,'header'=>'No'],
 

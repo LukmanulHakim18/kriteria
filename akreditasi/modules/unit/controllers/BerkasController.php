@@ -1,16 +1,14 @@
 <?php
 
 
-namespace akreditasi\modules\kriteria9\modules\institusi\controllers;
+namespace akreditasi\modules\unit\controllers;
 
 use akreditasi\models\BerkasSearch;
 use akreditasi\models\BerkasUploadForm;
-use common\helpers\FakultasDirectoryHelper;
-use common\helpers\kriteria9\K9InstitusiDirectoryHelper;
+use common\helpers\UnitDirectoryHelper;
 use common\models\Berkas;
 use common\models\DetailBerkas;
-use common\models\FakultasAkademi;
-use common\models\Profil;
+use common\models\Unit;
 use Exception;
 use Throwable;
 use Yii;
@@ -46,10 +44,10 @@ class BerkasController extends BaseController
      * Lists all Berkas models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($unit)
     {
-
-        $dataProvider = new ActiveDataProvider(['query' => Berkas::find()->where(['type'=>Berkas::TYPE_INSTITUSI])]);
+        $unit = $this->findUnit($unit);
+        $dataProvider = new ActiveDataProvider(['query' => $unit->getBerkas()]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
@@ -62,9 +60,9 @@ class BerkasController extends BaseController
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($unit, $id)
     {
-        $url = K9InstitusiDirectoryHelper::getUrl();
+        $url = UnitDirectoryHelper::getUrl($unit);
         return $this->render('view', [
             'model' => $this->findModel($id),
             'url'=>$url
@@ -76,12 +74,12 @@ class BerkasController extends BaseController
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($unit)
     {
         $model = new Berkas();
         $detailModel = new BerkasUploadForm();
-        $path = K9InstitusiDirectoryHelper::getPath();
-        $urlPath = K9InstitusiDirectoryHelper::getUrl();
+        $path = UnitDirectoryHelper::getPath($unit);
+        $urlPath = UnitDirectoryHelper::getUrl($unit);
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -92,7 +90,8 @@ class BerkasController extends BaseController
 
             $transaction = Yii::$app->db->beginTransaction();
             try {
-                $model->type = Berkas::TYPE_INSTITUSI;
+                $model->external_id = $unit;
+                $model->type = Berkas::TYPE_UNIT;
                 $model->save();
 
                 if ($files = $detailModel->upload($path)) {
@@ -108,7 +107,7 @@ class BerkasController extends BaseController
                 $transaction->commit();
                 Yii::$app->session->setFlash('success', 'Berhasil menambahkan Berkas.');
 
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'id' => $model->id,'unit'=>$unit]);
             } catch (Exception $exception) {
                 $transaction->rollBack();
                 throw $exception;
@@ -131,12 +130,12 @@ class BerkasController extends BaseController
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($unit, $id)
     {
         $model = $this->findModel($id);
         $detailModel = new BerkasUploadForm();
-        $path = K9InstitusiDirectoryHelper::getPath();
-        $urlPath=  K9InstitusiDirectoryHelper::getUrl();
+        $path = UnitDirectoryHelper::getPath($unit);
+        $urlPath=  UnitDirectoryHelper::getUrl($unit);
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -189,11 +188,11 @@ class BerkasController extends BaseController
         $id = Yii::$app->request->post('id');
         $detail = $this->findDetail($id);
         $berkas = $detail->berkas;
-        $fakultas = $berkas->external_id;
-        $path = K9InstitusiDirectoryHelper::getPath();
+        $unit = $berkas->external_id;
+        $path = UnitDirectoryHelper::getPath($unit);
         FileHelper::unlink("$path/{$detail->isi_berkas}");
         $detail->delete();
-        return $this->redirect(['berkas/update','id'=>$berkas->id]);
+        return $this->redirect(['berkas/update','unit'=>$unit,'id'=>$berkas->id]);
     }
 
     /**
@@ -205,26 +204,28 @@ class BerkasController extends BaseController
     {
         $detail = $this->findDetail($id);
         $berkas = $detail->berkas;
-        $path = K9InstitusiDirectoryHelper::getPath();
+        $unit = $berkas->external_id;
+        $path = UnitDirectoryHelper::getPath($unit);
         return Yii::$app->response->sendFile("$path/{$detail->isi_berkas}");
     }
 
     /**
      * Deletes an existing Berkas model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param $unit
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      * @throws Throwable
      * @throws StaleObjectException
      */
-    public function actionDelete($id)
+    public function actionDelete($unit, $id)
     {
         $this->findModel($id)->delete();
 
         Yii::$app->session->setFlash('success', 'Berhasil menghapus Berkas.');
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index','unit'=>$unit]);
     }
 
     /**
@@ -251,6 +252,13 @@ class BerkasController extends BaseController
     protected function findDetail($id)
     {
         if (($model = DetailBerkas::findOne($id)) !== null) {
+            return $model;
+        }
+        throw new NotFoundHttpException('Data yang anda cari tidak ditemukan');
+    }
+
+    protected function findUnit($id){
+        if (($model = Unit::findOne($id)) !== null) {
             return $model;
         }
         throw new NotFoundHttpException('Data yang anda cari tidak ditemukan');

@@ -2,7 +2,6 @@
 
 use common\helpers\FileIconHelper;
 use common\helpers\FileTypeHelper;
-use common\models\Constants;
 use yii\bootstrap4\Modal;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -120,10 +119,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <?php elseif ($type === FileTypeHelper::TYPE_LINK): ?>
                                             <?= Html::a('<i class="la la-external-link"></i> Lihat', $v->isi_berkas, ['class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air', 'target' => '_blank']) ?>
                                         <?php endif; ?>
-                                            <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['berkas/download-detail'], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air','data'=>[
-                                                'method'=>'POST',
-                                            'params'=>['id'=>$v->id]
-                                        ]]) ?>
+                                            <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['berkas/download-berkas','id'=>$v->id], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air'                                    ]) ?>
 
                                     </div>
 

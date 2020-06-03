@@ -1,7 +1,7 @@
 <?php
 
 
-namespace akreditasi\models\fakultas;
+namespace akreditasi\models;
 
 use Carbon\Carbon;
 use common\models\Constants;
