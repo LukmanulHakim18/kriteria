@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "profil".
@@ -21,6 +22,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int $created_at
  * @property int $updated_at
  *
+ * @property ProgramStudi | Unit | FakultasAkademi $owner
  *
  */
 class Profil extends \yii\db\ActiveRecord
@@ -74,4 +76,17 @@ class Profil extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getOwner()
+    {
+        switch ($this->type) {
+            case self::TIPE_UNIT :
+                return $this->hasOne(Unit::class, ['id'=>'external_id']);
+            case self::TIPE_FAKULTAS:
+                return $this->hasOne(FakultasAkademi::class, ['id'=>'external_id']);
+            case self::TIPE_PRODI :
+                return $this->hasOne(ProgramStudi::class, ['id'=>'external_id']);
+            default:
+                return new ActiveQuery(null);
+        }
+    }
 }

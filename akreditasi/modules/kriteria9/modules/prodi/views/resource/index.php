@@ -2,7 +2,9 @@
 
 /**
  * @var $this yii\web\View
- * @var $profilInstitusi common\models\ProfilInstitusi[]
+ * @var $profilFakultas common\models\Profil
+ * @var $profilInstitusi common\models\Profil
+ * @var $profilUnit common\models\Profil[]
  * @var $kegiatanUnit common\models\unit\KegiatanUnit[]
  * @var $berkasFakultas common\models\Berkas[]
  *
@@ -33,7 +35,8 @@ $this->title = 'Shared Resource'
 
     <div class="kt-portlet__body">
 
-        <ul class="nav nav-tabs  nav-tabs-line nav-tabs-line-brand" role="tablist">
+
+        <ul class="nav nav-tabs nav-fill nav-tabs-line nav-tabs-line-brand" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#kt_tabs_9_1" role="tab"><i class="flaticon-time-2"></i> Institusi</a>
             </li>
@@ -49,10 +52,10 @@ $this->title = 'Shared Resource'
               <?= $this->render('_institusi', ['profilInstitusi'=>$profilInstitusi]) ?>
             </div>
             <div class="tab-pane" id="kt_tabs_9_2" role="tabpanel">
-               <?=$this->render('_fakultas', ['berkasFakultas'=>$berkasFakultas])?>
+               <?=$this->render('_fakultas', ['berkasFakultas'=>$berkasFakultas,'profilFakultas'=>$profilFakultas])?>
             </div>
             <div class="tab-pane" id="kt_tabs_9_3" role="tabpanel">
-               <?=$this->render('_unit', ['kegiatanUnit'=>$kegiatanUnit])?>
+               <?=$this->render('_unit', ['kegiatanUnit'=>$kegiatanUnit,'profilUnit'=>$profilUnit])?>
             </div>
         </div>
     </div>

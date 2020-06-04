@@ -4,6 +4,8 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "berkas".
@@ -16,16 +18,15 @@ use yii\behaviors\TimestampBehavior;
  * @property int|null $updated_at
  *
  * @property DetailBerkas[] $detailBerkas
- * @property FakultasAkademi $fakultas
- * @property ProgramStudi $prodi
- * @property Unit $unit
+ * @property FakultasAkademi | ProgramStudi | Unit $owner
  */
-class Berkas extends \yii\db\ActiveRecord
+class Berkas extends ActiveRecord
 {
     const TYPE_PRODI = ProgramStudi::PROGRAM_STUDI;
     const TYPE_FAKULTAS = FakultasAkademi::FAKULTAS_AKADEMI;
     const TYPE_UNIT = Unit::UNIT;
     const TYPE_INSTITUSI = Constants::INSTITUSI;
+
     /**
      * {@inheritdoc}
      */
@@ -70,37 +71,46 @@ class Berkas extends \yii\db\ActiveRecord
     /**
      * Gets query for [[DetailBerkas]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getDetailBerkas()
     {
         return $this->hasMany(DetailBerkas::className(), ['id_berkas' => 'id']);
     }
 
-    /**
-     * @return yii\db\ActiveQuery
-     */
-    public function getProdi()
+    /** @return ActiveQuery */
+    public function getOwner()
     {
-        return $this->hasOne(ProgramStudi::class, ['id'=>'external_id',function ($query) {
-            $query->andWhere(['type'=>self::TYPE_PRODI]);
-        }]);
+        switch ($this->type) {
+            case self::TYPE_PRODI:
+                return $this->getProdi();
+            case self::TYPE_FAKULTAS:
+                return $this->getFakultas();
+            case self:: TYPE_UNIT:
+                return $this->getUnit();
+            default:
+                return new ActiveQuery(null);
+        }
     }
 
     /**
-     * @return yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getFakultas()
+    private function getProdi()
     {
-        return $this->hasOne(FakultasAkademi::class, ['id'=>'external_id', function ($query) {
-            $query->andWhere(['type'=>self::TYPE_FAKULTAS]);
-        }]);
+        return $this->hasOne(ProgramStudi::class, ['id' => 'external_id']);
     }
 
-    public function getUnit()
+    /**
+     * @return ActiveQuery
+     */
+    private function getFakultas()
     {
-        return $this->hasOne(Unit::class, ['id'=>'external_id', function ($query) {
-            $query->andWhere(['type'=>self::TYPE_UNIT]);
-        }]);
+        return $this->hasOne(FakultasAkademi::class, ['id' => 'external_id']);
+    }
+
+    private function getUnit()
+    {
+        return $this->hasOne(Unit::class, ['id' => 'external_id']);
     }
 }
