@@ -42,7 +42,8 @@
     "kartik-v/yii2-tree-manager": "dev-master",
     "kartik-v/yii2-datecontrol": "dev-master",
     "oxyaction/yii2-polymorphic-relation-behavior": "^1.0",
-    "mpdf/mpdf": "^8.0"
+    "mpdf/mpdf": "^8.0",
+    "dmstr/yii2-ajax-button": "^1.0"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",
@@ -51,7 +52,8 @@
     "codeception/base": "^2.4.0",
     "phpunit/phpunit": "~6.5.5",
     "codeception/verify": "~1.0.0",
-    "symfony/browser-kit": ">=2.7 <=4.2.4"
+    "symfony/browser-kit": ">=2.7 <=4.2.4",
+    "yiisoft/yii2-coding-standards": "^2.0"
   },
   "config": {
     "process-timeout": 1800,

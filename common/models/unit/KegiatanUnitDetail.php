@@ -11,7 +11,9 @@ use yii\behaviors\TimestampBehavior;
  * @property int $id
  * @property int $id_kegiatan_unit
  * @property string $nama_file
+ * @property string $isi_file
  * @property string $bentuk_file
+ * @property string $jenis_file
  * @property int $created_at
  * @property int $updated_at
  *
@@ -19,6 +21,13 @@ use yii\behaviors\TimestampBehavior;
  */
 class KegiatanUnitDetail extends \yii\db\ActiveRecord
 {
+
+    const JENIS_SK_KEGIATAN = 'sk_kegiatan';
+    const JENIS_ABSENSI = 'absensi';
+    const JENIS_LAPORAN_KEGIATAN = 'laporan_kegiatan';
+    const JENIS_FOTO_KEGIATAN = 'foto_kegiatan';
+    const JENIS_SERTIFIKAT = 'sertifikat';
+    const JENIS_DOKUMEN_LAINNYA = 'dokumen_lainnya';
     /**
      * {@inheritdoc}
      */

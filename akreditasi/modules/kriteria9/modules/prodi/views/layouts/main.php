@@ -60,14 +60,9 @@ $menuItems = [
                 'url' => ['lk/arsip', 'target' => 'isi', 'prodi' => $_GET['prodi']]
             ],
             [
-                'label' => 'Penanggung Jawab',
-                'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',
-                'url' => ['lkk/cek', 'target' => 'pj']
-            ],
-            [
                 'label' => 'Lihat LK',
                 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',
-                'url' => ['lk/arsip', 'target' => 'lihat']
+                'url' => ['lk/arsip', 'target' => 'lihat','prodi' => $_GET['prodi']]
             ]
 
         ],

@@ -22,7 +22,7 @@ use yii\bootstrap4\ActiveForm;
     <?= $form->field($model, 'jurusan_departemen')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'jenjang')->widget(Select2::class,[
-        'data'=>\common\models\Constants::JENJANG,
+        'data'=>\common\models\ProgramStudi::JENJANG,
         'options' => ['class'=>'kt-select2','placeholder'=>'Pilih Jenjang'],
     ])->label('Jenjang') ?>
 

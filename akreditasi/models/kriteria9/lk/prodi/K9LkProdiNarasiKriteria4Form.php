@@ -27,7 +27,7 @@ class K9LkProdiNarasiKriteria4Form extends K9LkProdiKriteria4
 
     public function updateProgress()
     {
-        $json = K9ProdiJsonHelper::getJsonKriteriaLk(4);
+        $json = K9ProdiJsonHelper::getJsonKriteriaLk(4,$this->lkProdi->akreditasiProdi->prodi->jenjang);
         $count = 0;
 
         $exclude = ['id', 'id_lk_prodi', 'progress', 'created_at', 'updated_at'];

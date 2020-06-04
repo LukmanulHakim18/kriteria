@@ -9,7 +9,6 @@
 
 namespace akreditasi\models\kriteria9\lk\prodi;
 
-
 use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\helpers\kriteria9\K9ProdiProgressHelper;
 use common\models\kriteria9\lk\prodi\K9LkProdiKriteria8;
@@ -27,7 +26,7 @@ class K9LkProdiNarasiKriteria8Form extends K9LkProdiKriteria8
 
     public function updateProgress()
     {
-        $json = K9ProdiJsonHelper::getJsonKriteriaLk(8);
+        $json = K9ProdiJsonHelper::getJsonKriteriaLk(8, $this->lkProdi->akreditasiProdi->prodi->jenjang);
         $count = 0;
 
         $exclude = ['id', 'id_lk_prodi', 'progress', 'created_at', 'updated_at'];

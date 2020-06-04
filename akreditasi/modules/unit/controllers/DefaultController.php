@@ -2,20 +2,33 @@
 
 namespace akreditasi\modules\unit\controllers;
 
-use akreditasi\modules\kriteria9\controllers\BaseController;
+use common\models\Unit;
+use yii\web\Controller;
 
 /**
  * Default controller for the `unit` module
  */
 class DefaultController extends BaseController
 {
-
+    /**
+     * {@inheritdoc}
+     */
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+        ];
+    }
     /**
      * Renders the index view for the module
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex($unit)
     {
-        return $this->render('index');
+        $unit = Unit::findOne($unit);
+        $profil = $unit->profil;
+        return $this->render('index',['unit'=>$unit,'profil'=>$profil]);
     }
 }

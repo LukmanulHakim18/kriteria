@@ -33,8 +33,8 @@ class ProdiController extends BaseController
         $model = new PencarianProdiForm();
         //cek akses sesuai data
         $role = AuthAssignment::findOne(['user_id'=>Yii::$app->user->identity->getId()]);
-        if($role->item_name === 'prodi' || $role->item_name === 'kaprodi') $idProdi = ProgramStudi::find()->where(['id'=>Yii::$app->user->identity->profilUser->id_prodi])->all();
-        elseif ($role->item_name === 'fakultas' || $role->item_name === 'dekanat') $idProdi = ProgramStudi::findAll(['id_fakultas_akademi'=>Yii::$app->user->identity->profilUser->id_fakultas]);
+        if($role->item_name === 'prodi' || $role->item_name === 'kaprodi') $idProdi = Yii::$app->user->identity->profilUser->getProdi()->all();
+        elseif ($role->item_name === 'fakultas' || $role->item_name === 'dekanat') $idProdi = Yii::$app->user->identity->profilUser->fakultas->programStudis;
         else $idProdi = ProgramStudi::find()->all();
 
 

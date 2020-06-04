@@ -15,8 +15,11 @@ use yii\behaviors\TimestampBehavior;
  * @property int $jenis
  * @property int $created_at
  * @property int $updated_at
+ * @property string $jenisString
  *
  * @property ProgramStudi[] $programStudis
+ * @property Profil $profil
+ * @property Berkas[] $berkas
  */
 class FakultasAkademi extends \yii\db\ActiveRecord
 {
@@ -26,9 +29,9 @@ class FakultasAkademi extends \yii\db\ActiveRecord
     const JENIS_AKADEMI = 0;
 
     const JENIS = [
-        self::JENIS_AKADEMI => "Akademi",
-        self::JENIS_FAKULTAS=>"Fakultas",
-        self::JENIS_PASCA=>"Pascasarjana"
+        self::JENIS_AKADEMI => 'Akademi',
+        self::JENIS_FAKULTAS=>'Fakultas',
+        self::JENIS_PASCA=>'Pascasarjana'
     ];
     /**
      * {@inheritdoc}
@@ -42,18 +45,11 @@ class FakultasAkademi extends \yii\db\ActiveRecord
     {
         return [
             TimestampBehavior::class,
-            'polymorphic' => [
-                'class' => RelatedPolymorphicBehavior::class,
-                'polyRelations' => [
-                    'profil' => Profil::class
-
-                ],
-                'polymorphicType' => self::FAKULTAS_AKADEMI,
-            ]
         ];
     }
 
-    public function getJenisString(){
+    public function getJenisString()
+    {
         return self::JENIS[$this->jenis];
     }
     /**
@@ -89,5 +85,21 @@ class FakultasAkademi extends \yii\db\ActiveRecord
     public function getProgramStudis()
     {
         return $this->hasMany(ProgramStudi::className(), ['id_fakultas_akademi' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProfil()
+    {
+        return $this->hasOne(Profil::class, ['external_id'=>'id'])->andWhere(['type'=>self::FAKULTAS_AKADEMI]);
+    }
+
+    /**
+     * @return yii\db\ActiveQuery
+     */
+    public function getBerkas()
+    {
+        return $this->hasMany(Berkas::class, ['external_id'=>'id'])->andWhere(['type'=>self::FAKULTAS_AKADEMI]);
     }
 }

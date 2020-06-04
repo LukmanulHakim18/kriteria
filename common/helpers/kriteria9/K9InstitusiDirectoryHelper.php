@@ -11,12 +11,19 @@
 
 namespace common\helpers\kriteria9;
 
-
 use common\models\kriteria9\akreditasi\K9AkreditasiInstitusi;
 use Yii;
 
 class K9InstitusiDirectoryHelper extends K9DirectoryHelper
 {
+    public static function getPath()
+    {
+        return Yii::getAlias('@uploadInstitusi');
+    }
+    public static function getUrl()
+    {
+        return Yii::getAlias('@.uploadInstitusi');
+    }
     private static function getK9InstitusiPath(K9AkreditasiInstitusi $akreditasiInstitusi)
     {
         $pathData = Yii::$app->params['uploadPath'];
@@ -27,10 +34,7 @@ class K9InstitusiDirectoryHelper extends K9DirectoryHelper
             '{level}'=>'institusi',
             '{id}'=>''
         ];
-        $result = strtr($pathData,$pathReplacements);
-        $realPath = "$result";
-
-        return $realPath;
+        return strtr($pathData, $pathReplacements);
     }
 
     public static function getDokumenLedPath($akreditasi)
@@ -125,7 +129,8 @@ class K9InstitusiDirectoryHelper extends K9DirectoryHelper
     }
 
 
-    public static function getTemplateLkPath(){
+    public static function getTemplateLkPath()
+    {
         $path = Yii::getAlias('@required');
         $pathReplacement = [
             '{borang}'=>'kriteria9',

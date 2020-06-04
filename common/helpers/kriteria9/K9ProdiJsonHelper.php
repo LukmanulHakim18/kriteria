@@ -9,20 +9,18 @@
 
 namespace common\helpers\kriteria9;
 
-
 use Yii;
 use yii\helpers\Json;
 
-class K9ProdiJsonHelper implements IK9JsonHelper
+class K9ProdiJsonHelper
 {
 
-    public static function getAllJsonLk()
+    public static function getAllJsonLk($jenis)
     {
-        return self::getJson('lk');
-
+        return self::getJson('lk', $jenis);
     }
 
-    static function getJson($tipe)
+    public static function getJson($tipe, $jenis = '')
     {
         $filename = '';
         switch ($tipe) {
@@ -30,17 +28,16 @@ class K9ProdiJsonHelper implements IK9JsonHelper
                 $filename = 'led_prodi.json';
                 break;
             case 'lk':
-                $filename = 'lkps_prodi_s1.json';
+                $filename = "lkps_prodi_$jenis.json";
                 break;
         }
         $path = Yii::getAlias('@required/kriteria9/aps/' . $filename);
-        $json = Json::decode(file_get_contents($path));
-        return $json;
+        return Json::decode(file_get_contents($path));
     }
 
-    public static function getJsonKriteriaLk(int $kriteria)
+    public static function getJsonKriteriaLk(int $kriteria, string $jenis)
     {
-        $json = self::getJson('lk');
+        $json = self::getJson('lk', $jenis);
         return $json[$kriteria - 1];
     }
 

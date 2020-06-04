@@ -91,13 +91,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <div class="card-body">
 
                                     <div class="kt-portlet kt-portlet--mobile">
-                                        <div class="kt-portlet__head">
-                                            <div class="kt-portlet__head-label">
-                                                <h3 class="kt-portlet__head-title">
-                                                    Template <small>Berikut adalah referensi template</small>
-                                                </h3>
-                                            </div>
-                                        </div>
                                         <div class="kt-portlet__body">
                                             <div class="row">
                                                 <div class="col-lg-12">
@@ -177,7 +170,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         'pluginOptions' => [
                                                             'theme' => 'explorer-fas',
                                                             'showUpload' => false,
-                                                            'maxFileSize' => Constants::MAX_UPLOAD_SIZE,
+                                                            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
                                                             'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
                                                             'previewFileType' => 'any',
                                                             'fileActionSettings' => [
@@ -252,11 +245,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     <div class="form-group text-right">
                                                         <?= Html::submitButton("<i class='la la-save'></i> Simpan", ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-primary ']) ?>
                                                     </div>
+                                                    <?php ActiveForm::end() ?>
+
+                                                    <?php Modal::end(); ?>
                                                 </td>
                                             </tr>
-                                            <?php ActiveForm::end() ?>
 
-                                            <?php Modal::end(); ?>
 
                                         <?php else :
                                             echo '<tr><td>Tidak ada dokumen</td></tr>';
@@ -363,7 +357,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                             'pluginOptions' => [
                                                                 'theme' => 'explorer-fas',
                                                                 'showUpload' => false,
-                                                                'maxFileSize' => Constants::MAX_UPLOAD_SIZE,
+                                                                'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
                                                                 'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
                                                                 'previewFileType' => 'any',
                                                                 'fileActionSettings' => [
@@ -439,12 +433,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                                             <?= Html::submitButton("<i class='la la-save'></i> Simpan", ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-primary ']) ?>
                                                         </div>
 
+                                                        <?php ActiveForm::end() ?>
+
+                                                        <?php Modal::end(); ?>
+
                                                     </td>
 
                                                 </tr>
-                                                <?php ActiveForm::end() ?>
 
-                                                <?php Modal::end(); ?>
 
                                             <?php } else {
                                                 echo '<tr><td>Tidak ada dokumen</td></tr>';
@@ -529,7 +525,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     'pluginOptions' => [
                                                         'theme' => 'explorer-fas',
                                                         'showUpload' => false,
-                                                        'maxFileSize' => Constants::MAX_UPLOAD_SIZE,
+                                                        'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
                                                         'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
                                                         'previewFileType' => 'any',
                                                         'fileActionSettings' => [

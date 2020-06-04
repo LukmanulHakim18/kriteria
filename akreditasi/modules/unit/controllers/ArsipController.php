@@ -11,6 +11,7 @@ namespace akreditasi\modules\unit\controllers;
 
 
 use akreditasi\models\PencarianUnitForm;
+use common\models\AuthAssignment;
 use common\models\Unit;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -29,7 +30,14 @@ class ArsipController extends Controller
 
         $model = new PencarianUnitForm();
 
-        $idUnit = Unit::find()->all();
+
+        $idUnit = null;
+        $role = AuthAssignment::findOne(['user_id'=>Yii::$app->user->identity->getId()]);
+        if($role->item_name === 'unit'){
+            $idUnit = Yii::$app->user->identity->profilUser->getUnit()->all();
+        }
+        else $idUnit = Unit::find()->all();
+
         $dataUnit = ArrayHelper::map($idUnit, 'id', 'nama');
 
 

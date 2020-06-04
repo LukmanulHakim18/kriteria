@@ -3,6 +3,7 @@
 namespace akreditasi\modules\unit\controllers;
 
 use akreditasi\models\unit\KegiatanDetailUploadForm;
+use akreditasi\models\unit\KegiatanUnitForm;
 use common\helpers\UnitDirectoryHelper;
 use common\models\unit\KegiatanUnitDetail;
 use Yii;
@@ -23,25 +24,15 @@ use yii\web\UploadedFile;
 /**
  * KegiatanController implements the CRUD actions for KegiatanUnit model.
  */
-class KegiatanController extends Controller
+class KegiatanController extends BaseController
 {
 
-    public $layout = 'main';
     /**
      * {@inheritdoc}
      */
     public function behaviors()
     {
         return [
-            'access'=>[
-                'class'=>AccessControl::className(),
-                'rules'=>[
-                    ['actions'=>['index','create','update','view','delete','download-detail','hapus-detail'],
-                     'allow'=>true,
-                     'roles'=>['@']
-                    ]
-                ]
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -77,7 +68,7 @@ class KegiatanController extends Controller
     {
         $model = $this->findModel($id);
         $detailData = $model->kegiatanUnitDetails;
-        $path = UnitDirectoryHelper::getUnitUrl($unit);
+        $path = UnitDirectoryHelper::getUrl($unit);
 
 
         return $this->render('view', [
@@ -94,55 +85,41 @@ class KegiatanController extends Controller
      */
     public function actionCreate($unit)
     {
-        $model = new KegiatanUnit();
-        $detailModel = new KegiatanDetailUploadForm();
-        $detailData = [];
-        $path = UnitDirectoryHelper::getUnitUrl($unit);
+        $model = new KegiatanUnitForm();
+        $urlPath = UnitDirectoryHelper::getUrl($unit);
+        $path = UnitDirectoryHelper::getPath($unit);
 
-        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
-            $model->id_unit = $unit;
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
+//        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+//            $model->id_unit = $unit;
+//            Yii::$app->response->format = Response::FORMAT_JSON;
+//            return ActiveForm::validate($model);
+//        }
         if ($model->load(Yii::$app->request->post())) {
             $model->id_unit = $unit;
-            $transaction = Yii::$app->db->beginTransaction();
-            $model->save(false);
-            $detailModel->load(Yii::$app->request->post());
-            $detailModel->berkas = UploadedFile::getInstances($detailModel,'berkas');
-            $path = UnitDirectoryHelper::getUnitPath($model->id_unit);
+            $model->sk_kegiatan = UploadedFile::getInstance($model,'sk_kegiatan');
+            $model->absensi = UploadedFile::getInstance($model,'absensi');
+            $model->laporan_kegiatan = UploadedFile::getInstance($model,'absensi');
+            $model->foto_kegiatan = UploadedFile::getInstances($model,'foto_kegiatan');
+            $model->sertifikat = UploadedFile::getInstances($model,'sertifikat');
+            $model->dokumen_lainnya = UploadedFile::getInstances($model,'dokumen_lainnya');
 
-            $files = $detailModel->upload($path);
-            if(!$files){
-                $transaction->rollBack();
-                Yii::$app->session->setFlash('warning','Gagal Menyimpan files');
+            if($kegiatan = $model->save($path)){
+                Yii::$app->session->setFlash('success','Berhasil menambahkan KegiatanUnit.');
 
-                return $this->redirect(Url::current());
-            }
-            foreach ($files as $file){
-                $detail = new KegiatanUnitDetail();
-                $detail->id_kegiatan_unit = $model->id;
-                $detail->nama_file = $file['filename'];
-                $detail->bentuk_file = $file['bentuk_file'];
-
-                $detail->save(false);
+                return $this->redirect(['view', 'id' => $kegiatan->id,'unit'=>$unit]);
             }
 
-            $transaction->commit();
 
-            Yii::$app->session->setFlash('success','Berhasil menambahkan KegiatanUnit.');
-
-            return $this->redirect(['view', 'id' => $model->id,'unit'=>$unit]);
         }
 
         elseif (Yii::$app->request->isAjax){
-            return $this->renderAjax('_form',['model'=>$model,'detailModel'=>$detailModel,
-                'detailData'=>$detailData,
-            'path'=>$path]);
+            return $this->renderAjax('_form',['model'=>$model,
+            'path'=>$urlPath]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'path'=>$urlPath
         ]);
     }
 
@@ -155,23 +132,32 @@ class KegiatanController extends Controller
      */
     public function actionUpdate($unit, $id)
     {
-        $model = $this->findModel($id);
-        $detailModel = new KegiatanDetailUploadForm();
-        $detailData = $model->kegiatanUnitDetails;
-        $path = UnitDirectoryHelper::getUnitUrl($model->id_unit);
+        $model = new KegiatanUnitForm($id);
+        $detailData = $model->getKegiatan()->kegiatanUnitDetails;
+        $urlPath = UnitDirectoryHelper::getUrl($unit);
+        $path = UnitDirectoryHelper::getPath($unit);
         if ($model->load(Yii::$app->request->post()) ) {
 
-            $model->save();
-            Yii::$app->session->setFlash('success','Berhasil mengubah KegiatanUnit.');
+            $model->sk_kegiatan = UploadedFile::getInstance($model,'sk_kegiatan');
+            $model->absensi = UploadedFile::getInstance($model,'absensi');
+            $model->laporan_kegiatan = UploadedFile::getInstance($model,'laporan_kegiatan');
+            $model->foto_kegiatan = UploadedFile::getInstances($model,'foto_kegiatan');
+            $model->sertifikat = UploadedFile::getInstances($model,'sertifikat');
+            $model->dokumen_lainnya = UploadedFile::getInstances($model,'dokumen_lainnya');
 
-            return $this->redirect(['view', 'id' => $model->id,'unit'=>$unit]);
+            if( $update = $model->update($path)){
+                Yii::$app->session->setFlash('success','Berhasil mengubah KegiatanUnit.');
+
+                return $this->redirect(['view', 'id' => $update->id,'unit'=>$unit]);
+            }
+
+
         }
 
         return $this->render('update', [
             'model' => $model,
-            'detailModel'=>$detailModel,
             'detailData'=>$detailData,
-            'path'=>$path
+            'path'=>$urlPath
         ]);
     }
 
@@ -194,7 +180,7 @@ class KegiatanController extends Controller
     public function actionDownloadDetail($dokumen, $unit, $id){
         ini_set('max_execution_time', 5 * 60);
         $model = KegiatanUnitDetail::findOne($dokumen);
-        $fileDokumen = UnitDirectoryHelper::getUnitPath($unit). '/'.$model->nama_file;
+        $fileDokumen = UnitDirectoryHelper::getPath($unit). '/'.$model->nama_file;
 
         return Yii::$app->response->sendFile($fileDokumen);
     }
@@ -209,7 +195,7 @@ class KegiatanController extends Controller
             $model = KegiatanUnitDetail::findOne($dokumenId);
             $nama_file = $model->nama_file;
             if($model->delete()){
-                FileHelper::unlink(UnitDirectoryHelper::getUnitPath($unitId).'/'.$nama_file);
+                FileHelper::unlink(UnitDirectoryHelper::getPath($unitId).'/'.$nama_file);
             }
 
 

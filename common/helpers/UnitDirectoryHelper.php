@@ -12,24 +12,18 @@ namespace common\helpers;
 
 use Yii;
 
-class UnitDirectoryHelper
+class UnitDirectoryHelper implements DirectoryHelper
 {
 
-    public static function getUnitPath($id){
-        $p = Yii::$app->params['uploadUnit'];
+    public static function getPath($id){
+        $p = Yii::getAlias('@uploadUnit');
         $replacement = ['{id_unit}'=>$id];
-        $path = strtr($p,$replacement);
-        $realPath = Yii::getAlias('@uploadAkreditasi/'.$path);
-
-        return $realPath;
+        return strtr($p,$replacement);
     }
 
-    public static function getUnitUrl($id){
-        $p = Yii::$app->params['uploadUnit'];
+    public static function getUrl($id){
+        $p = Yii::getAlias('@.uploadUnit');
         $replacement = ['{id_unit}'=>$id];
-        $path = strtr($p,$replacement);
-        $realPath = Yii::getAlias('@web/upload/'.$path);
-
-        return $realPath;
+        return strtr($p,$replacement);
     }
 }

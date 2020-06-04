@@ -11,14 +11,15 @@ use yii\behaviors\TimestampBehavior;
  * @property int $id
  * @property int $id_user
  * @property string $nama_lengkap
- * @property int $id_prodi
- * @property int $id_fakultas
  * @property int $created_at
  * @property int $updated_at
  *
  * @property ProgramStudi $prodi
  * @property FakultasAkademi $fakultas
  * @property User $user
+ * @property ProfilUserRole $profilUserRole
+ *
+ * @property Unit $unit
  */
 class ProfilUser extends \yii\db\ActiveRecord
 {
@@ -71,7 +72,10 @@ class ProfilUser extends \yii\db\ActiveRecord
      */
     public function getProdi()
     {
-        return $this->hasOne(ProgramStudi::className(), ['id' => 'id_prodi']);
+
+        return $this->hasOne(ProgramStudi::className(), ['id' => 'external_id'])->viaTable(ProfilUserRole::tableName(),['id_profil'=>'id'],function ($query){
+            $query->andWhere(['type'=>ProfilUserRole::TIPE_PRODI]);
+        });
     }
 
     /**
@@ -79,7 +83,18 @@ class ProfilUser extends \yii\db\ActiveRecord
      */
     public function getFakultas()
     {
-        return $this->hasOne(FakultasAkademi::className(), ['id' => 'id_fakultas']);
+        return $this->hasOne(FakultasAkademi::className(), ['id' => 'external_id'])->viaTable(ProfilUserRole::tableName(),['id_profil'=>'id'],function ($query){
+            $query->andWhere(['type'=>ProfilUserRole::TIPE_FAKULTAS]);
+        });
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUnit(){
+        return $this->hasOne(Unit::class,['id'=>'external_id'])->viaTable(ProfilUserRole::tableName(),['id_profil'=>'id'], function($query){
+            $query->andWhere(['type'=>ProfilUserRole::TIPE_UNIT]);
+        });
     }
 
     /**
@@ -88,5 +103,12 @@ class ProfilUser extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'id_user']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProfilUserRole(){
+        return $this->hasOne(ProfilUserRole::class,['id_profil'=>'id']);
     }
 }

@@ -11,14 +11,31 @@ use Yii;
  */
 class DefaultController extends BaseController
 {
+//    public function behaviors()
+//    {
+//        return [
+//            'access'=>[
+//                'class'=>'yii\filters\AccessControl',
+//                'rules' => [
+//                    'allow'=>true,
+//                    'action'=>['index'],
+//                    'roles'=>['izinProdi'],
+//                    'roleParams'=>['prodi'=>Yii::$app->request->get('prodi')]
+//                ]
+//            ]
+//        ];
+//    }
+
     public function actionIndex()
     {
         $id_prodi = Yii::$app->request->get('prodi');
 
         $modelProdi = ProgramStudi::findOne(['id' => $id_prodi]);
+        $profil = $modelProdi->profil;
 
         return $this->render('index', [
-            'modelProdi' => $modelProdi
+            'modelProdi' => $modelProdi,
+            'profil'=>$profil
         ]);
     }
 }

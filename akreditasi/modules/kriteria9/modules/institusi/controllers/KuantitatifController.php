@@ -4,7 +4,6 @@
 namespace akreditasi\modules\kriteria9\modules\institusi\controllers;
 
 
-use akreditasi\modules\kriteria9\controllers\BaseController;
 use Carbon\Carbon;
 use common\helpers\kriteria9\K9InstitusiDirectoryHelper;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
