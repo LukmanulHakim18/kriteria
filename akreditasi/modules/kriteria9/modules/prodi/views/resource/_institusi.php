@@ -1,7 +1,8 @@
 <?php
 /**
  * @var $this yii\web\View
- * @var $profilInstitusi common\models\ProfilInstitusi[]
+ * @var $profilInstitusi common\models\Profil
+ * @var $berkasInstitusi common\models\Berkas[]
  */
 
 ?>
@@ -23,7 +24,9 @@
                 <?= $this->render('_profil', ['profil'=>$profilInstitusi])?>
             </div>
             <div class="tab-pane" id="institusi_berkas" role="tabpanel">
-                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                <h3>Berkas Institusi</h3>
+                <div class="kt-separator"></div>
+                    <?=$this->render('_berkas',['berkas'=>$berkasInstitusi])?>
             </div>
         </div>
 

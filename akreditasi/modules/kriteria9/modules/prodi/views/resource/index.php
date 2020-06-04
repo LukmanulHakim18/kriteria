@@ -7,6 +7,7 @@
  * @var $profilUnit common\models\Profil[]
  * @var $kegiatanUnit common\models\unit\KegiatanUnit[]
  * @var $berkasFakultas common\models\Berkas[]
+ * @var $berkasInstitusi common\models\Berkas[]
  *
  */
 
@@ -49,7 +50,7 @@ $this->title = 'Shared Resource'
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="kt_tabs_9_1" role="tabpanel">
-              <?= $this->render('_institusi', ['profilInstitusi'=>$profilInstitusi]) ?>
+              <?= $this->render('_institusi', ['profilInstitusi'=>$profilInstitusi,'berkasInstitusi'=>$berkasInstitusi]) ?>
             </div>
             <div class="tab-pane" id="kt_tabs_9_2" role="tabpanel">
                <?=$this->render('_fakultas', ['berkasFakultas'=>$berkasFakultas,'profilFakultas'=>$profilFakultas])?>

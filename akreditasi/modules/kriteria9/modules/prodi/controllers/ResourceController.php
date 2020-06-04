@@ -4,9 +4,13 @@
 namespace akreditasi\modules\kriteria9\modules\prodi\controllers;
 
 use akreditasi\modules\kriteria9\controllers\BaseController;
+use common\models\Berkas;
+use common\models\DetailBerkas;
 use common\models\Profil;
 use common\models\ProgramStudi;
+use common\models\Unit;
 use common\models\unit\KegiatanUnit;
+use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
 use yii\web\NotFoundHttpException;
 
@@ -21,14 +25,15 @@ class ResourceController extends BaseController
     {
 
         $profilInstitusi = $this->findProfilInstitusi();
+        $berkasInstitusi = new ActiveDataProvider(['query' => $this->findBerkasInstitusi()]);
         $model = $this->findProdi($prodi);
         $fakultas = $model->fakultasAkademi;
         $profilFakultas = $fakultas->profil;
-        $berkasFakultas = $fakultas->berkas;
+        $berkasFakultas = new ActiveDataProvider(['query' =>$fakultas->getBerkas() ]);
         $kegiatanUnit = $this->findKegiatanUnit();
-        $profilUnit = $this->findProfilUnit();
+        $profilUnit = $this->findUnit()->all();
 
-        return $this->render('index', compact('model', 'berkasFakultas', 'kegiatanUnit', 'profilInstitusi','profilFakultas','profilUnit'));
+        return $this->render('index', compact('model', 'berkasFakultas', 'kegiatanUnit', 'profilInstitusi', 'profilFakultas', 'profilUnit', 'berkasInstitusi'));
     }
 
     public function actionPopulateLedLk()
@@ -45,6 +50,19 @@ class ResourceController extends BaseController
     {
     }
 
+    public function actionBerkasDetail()
+    {
+        if (isset($_POST['expandRowKey'])) {
+            $model = new ActiveDataProvider(['query' => DetailBerkas::find()->where(['id_berkas'=>$_POST['expandRowKey']])->indexBy('id')]);
+            return $this->renderPartial('_detail_berkas', ['model'=>$model]);
+        }
+
+        return '<div class="alert alert-danger">No data found</div>';
+    }
+    protected function findBerkasInstitusi()
+    {
+        return Berkas::find()->where(['type'=>Berkas::TYPE_INSTITUSI]);
+    }
     /**
      * @return array|ActiveRecord[]
      */
@@ -53,8 +71,17 @@ class ResourceController extends BaseController
         return KegiatanUnit::find()->all();
     }
 
-    protected function findProfilUnit(){
+    protected function findProfilUnit()
+    {
         if ($model = Profil::findAll(['type'=>Profil::TIPE_UNIT])) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('Data yang anda cari tidak ditemukan');
+    }
+
+    protected function findUnit(){
+        if ($model = Unit::find()) {
             return $model;
         }
 
@@ -83,6 +110,5 @@ class ResourceController extends BaseController
         }
 
         throw new NotFoundHttpException('Data yang anda cari tidak ditemukan');
-
     }
 }

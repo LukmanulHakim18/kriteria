@@ -24,7 +24,9 @@
                 <?= $this->render('_profil', ['profil'=>$profilFakultas])?>
             </div>
             <div class="tab-pane" id="fakultas_berkas" role="tabpanel">
-                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                <h3>Berkas Fakultas</h3>
+                <div class="kt-separator"></div>
+                <?=$this->render('_berkas',['berkas'=>$berkasFakultas])?>
             </div>
         </div>
 

@@ -2,7 +2,7 @@
 /**
  * @var $this yii\web\View
  * @var $kegiatanUnit common\models\unit\KegiatanUnit[]
- * @var $profilUnit common\models\Profil[]
+ * @var $profilUnit common\models\Unit[]
  */
 
 ?>
@@ -21,14 +21,20 @@
             <div class="tab-pane active" id="unit_profil" role="tabpanel">
                 <h3>Profil Unit</h3>
                 <div class="kt-separator"></div>
-                <?php foreach ($profilUnit as $profil): ?>
-                    <h5><?=$profil->owner->nama?></h5>
-                    <?= $this->render('_profil', ['profil'=>$profil])?>
+                <?php foreach ($profilUnit as $unit): ?>
+                    <h5><?=$unit->nama?></h5>
+                    <?= $this->render('_profil', ['profil'=>$unit->profil])?>
                     <div class="kt-separator kt-separator--dashed"></div>
                 <?php endforeach; ?>
             </div>
             <div class="tab-pane" id="unit_berkas" role="tabpanel">
-                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                <h3>Berkas Unit</h3>
+                <div class="kt-separator"></div>
+                <?php foreach ($profilUnit as $unit): ?>
+                    <h5><?=$unit->nama?></h5>
+                    <?= $this->render('_berkas', ['berkas'=>new \yii\data\ActiveDataProvider(['query' => $unit->getBerkas()])])?>
+                    <div class="kt-separator kt-separator--dashed"></div>
+                <?php endforeach; ?>
             </div>
         </div>
 
