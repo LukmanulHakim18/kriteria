@@ -4,7 +4,7 @@
  */
 
 use common\models\Profil;
-
+use supplyhog\ClipboardJs\ClipboardJsWidget;
 ?>
 
 <div class="table-responsive">
@@ -21,38 +21,83 @@ use common\models\Profil;
             <tr>
                 <td>1</td>
                 <td>Visi</td>
-                <td><?=$profil->visi?></td>
-                <td></td>
+                <td><?=strip_tags($profil->visi)?></td>
+                <td><?= ClipboardJsWidget::widget([
+                    'text' => strip_tags($profil->visi),
+                        'label' => '<i class="flaticon2-copy"></i> Salin',
+                        'successText' =>'Berhasil di salin',
+                        'tag' => 'button',
+                        'htmlOptions' => ['class'=>'btn btn-dark btn-pill btn-elevate btn-elevate-air']
+
+                    ])?></td>
+
             </tr>
             <tr>
                 <td>2</td>
                 <td>Misi</td>
-                <td><?=$profil->misi?></td>
-                <td></td>
+                <td><?=strip_tags($profil->misi)?></td>
+                <td><?= ClipboardJsWidget::widget([
+                        'text' => strip_tags($profil->misi),
+                        'label' => '<i class="flaticon2-copy"></i> Salin',
+                        'successText' =>'Berhasil di salin',
+                        'tag' => 'button',
+                        'htmlOptions' => ['class'=>'btn btn-dark btn-pill btn-elevate btn-elevate-air']
+
+                    ])?></td>
+
             </tr>
             <tr>
                 <td>3</td>
                 <td>Tujuan</td>
-                <td><?=$profil->tujuan?></td>
-                <td></td>
+                <td><?=strip_tags($profil->tujuan)?></td>
+                <td><?= ClipboardJsWidget::widget([
+                        'text' => strip_tags($profil->tujuan),
+                        'label' => '<i class="flaticon2-copy"></i> Salin',
+                        'successText' =>'Berhasil di salin',
+                        'tag' => 'button',
+                        'htmlOptions' => ['class'=>'btn btn-dark btn-pill btn-elevate btn-elevate-air']
+
+                    ])?></td>
+
             </tr>
             <tr>
                 <td>4</td>
                 <td>Sasaran</td>
-                <td><?=$profil->sasaran?></td>
-                <td></td>
+                <td><?=strip_tags($profil->sasaran)?></td>
+                <td><?= ClipboardJsWidget::widget([
+                        'text' => strip_tags($profil->sasaran),
+                        'label' => '<i class="flaticon2-copy"></i> Salin',
+                        'successText' =>'Berhasil di salin',
+                        'tag' => 'button',
+                        'htmlOptions' => ['class'=>'btn btn-dark btn-pill btn-elevate btn-elevate-air']
+
+                    ])?></td>
             </tr>
             <tr>
                 <td>5</td>
                 <td>Motto</td>
-                <td><?=$profil->motto?></td>
-                <td></td>
+                <td><?=strip_tags($profil->motto)?></td>
+                <td><?= ClipboardJsWidget::widget([
+                        'text' => strip_tags($profil->motto),
+                        'label' => '<i class="flaticon2-copy"></i> Salin',
+                        'successText' =>'Berhasil di salin',
+                        'tag' => 'button',
+                        'htmlOptions' => ['class'=>'btn btn-dark btn-pill btn-elevate btn-elevate-air']
+
+                    ])?></td>
             </tr>
             <tr>
                 <td>6</td>
                 <td>Sambutan</td>
-                <td><?=$profil->sambutan?></td>
-                <td></td>
+                <td><?=strip_tags($profil->sambutan)?></td>
+                <td><?= ClipboardJsWidget::widget([
+                        'text' => strip_tags($profil->sambutan),
+                        'label' => '<i class="flaticon2-copy"></i> Salin',
+                        'successText' =>'Berhasil di salin',
+                        'tag' => 'button',
+                        'htmlOptions' => ['class'=>'btn btn-dark btn-pill btn-elevate btn-elevate-air']
+
+                    ])?></td>
             </tr>
             <tr>
                 <td>7</td>
