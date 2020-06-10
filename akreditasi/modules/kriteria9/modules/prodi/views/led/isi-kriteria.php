@@ -243,7 +243,7 @@ use yii\bootstrap4\Progress;
                                                         <?php ActiveForm::end() ?>
 
                                                         <?php Modal::end() ?>
-                                                        <?=Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=>\yii\helpers\Url::to(['resource/index','prodi'=>$_GET['prodi']]),'title'=>'Gunakan Data Untuk : '.$doksum['kode'].'.'.' '.$doksum['dokumen'] ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton'])?>
+                                                        <?=Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=>\yii\helpers\Url::to(['resource/index','prodi'=>$_GET['prodi'],'kriteria'=>$kriteria,'kode'=>$doksum['kode'],'jenis'=>Constants::LED,'id_led_lk'=>$_GET['led']]),'title'=>'Gunakan Data Untuk : '.$doksum['kode'].'.'.' '.$doksum['dokumen'] ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton'])?>
                                                     </div>
                                                 </div>
 

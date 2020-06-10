@@ -3,6 +3,11 @@
  * @var $this yii\web\View
  * @var $profilInstitusi common\models\Profil
  * @var $berkasInstitusi common\models\Berkas[]
+ * @var $prodi common\models\ProgramStudi
+ * @var $kode string
+ * @var $jenis string
+ * @var $id_led_lk int
+ * @var $kriteria int
  */
 
 ?>
@@ -26,7 +31,8 @@
             <div class="tab-pane" id="institusi_berkas" role="tabpanel">
                 <h3>Berkas Institusi</h3>
                 <div class="kt-separator"></div>
-                    <?=$this->render('_berkas',['berkas'=>$berkasInstitusi])?>
+                    <?=$this->render('_berkas',['berkas'=>$berkasInstitusi,'prodi'=>$prodi,'kode'=>$kode
+                    ,'jenis'=>$jenis,'id_led_lk'=>$id_led_lk, 'kriteria'=>$kriteria])?>
             </div>
         </div>
 

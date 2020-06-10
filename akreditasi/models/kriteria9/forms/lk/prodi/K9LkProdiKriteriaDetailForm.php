@@ -4,7 +4,6 @@ namespace akreditasi\models\kriteria9\forms\lk\prodi;
 
 use Carbon\Carbon;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
-use common\models\kriteria9\lk\fakultas\K9LkFakultasKriteria1Detail;
 use common\models\kriteria9\lk\prodi\K9LkProdiKriteria1Detail;
 use yii\base\Model;
 

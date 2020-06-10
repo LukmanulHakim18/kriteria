@@ -2,6 +2,11 @@
 /**
  * @var $this yii\web\View
  * @var $model common\models\Berkas
+ * @var $prodi common\models\ProgramStudi
+ * @var $kode string
+ * @var $jenis string
+ * @var $id_led_lk int
+ * @var $kriteria int
  */
 
 use yii\bootstrap4\Html;
@@ -24,8 +29,12 @@ use yii\helpers\Url;
                         'lihat'=>function ($url, $model, $key) {
             return Html::button('<i class="flaticon2-magnifier-tool"></i> Lihat',['value'=>Url::to(['resource/lihat-berkas-detail','id'=>$model->id]),'title'=>$model->isi_berkas,'class'=>'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air showModalBerkasButton']);
                         },
-                        'gunakan'=>function ($url, $model, $key) {
-                            return Html::button('<i class="flaticon2-laptop"></i> Gunakan', ['value'=> Url::to(['resource/gunakan','id'=>$model->id,'prodi'=>$_GET['prodi']]),'title'=>"Gunakan {$model->berkas->nama_berkas}",'class'=>'btn btn-success btn-sm btn-pill btn-elevate btn-elevate-air showModalButton']);
+                        'gunakan'=>function ($url, $model, $key) use ($prodi,$kode,$jenis,$id_led_lk,$kriteria) {
+                            return Html::a('<i class="flaticon2-laptop"></i> Gunakan', ['resource/gunakan'],['class'=>'','data'=>[
+                                'confirm'=>"Apakah anda ingin menggunakan data: {$model->isi_berkas} untuk pengisisan $jenis kode $kode?",
+                                'method'=>'POST',
+                                'params'=>['id'=>$model->id,'prodi'=>$prodi->id,'kode'=>$kode,'jenis'=>$jenis,'id_led_lk'=>$id_led_lk,'kriteria'=>$kriteria]
+                            ]]);
                         }
                     ]]
             ]])?>

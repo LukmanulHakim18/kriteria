@@ -8,7 +8,10 @@
  * @var $kegiatanUnit common\models\unit\KegiatanUnit[]
  * @var $berkasFakultas common\models\Berkas[]
  * @var $berkasInstitusi common\models\Berkas[]
- *
+ * @var $kode string
+ * @var $jenis string
+ * @var $id_led_lk int
+ * @var $kriteria int
  */
 
 
@@ -50,13 +53,13 @@ $this->title = 'Shared Resource'
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="kt_tabs_9_1" role="tabpanel">
-              <?= $this->render('_institusi', ['profilInstitusi'=>$profilInstitusi,'berkasInstitusi'=>$berkasInstitusi]) ?>
+              <?= $this->render('_institusi', ['profilInstitusi'=>$profilInstitusi,'berkasInstitusi'=>$berkasInstitusi,'prodi'=>$model,'kode'=>$kode,'jenis'=>$jenis,'id_led_lk'=>$id_led_lk,'kriteria'=>$kriteria]) ?>
             </div>
             <div class="tab-pane" id="kt_tabs_9_2" role="tabpanel">
-               <?=$this->render('_fakultas', ['berkasFakultas'=>$berkasFakultas,'profilFakultas'=>$profilFakultas])?>
+               <?=$this->render('_fakultas', ['berkasFakultas'=>$berkasFakultas,'profilFakultas'=>$profilFakultas,'prodi'=>$model])?>
             </div>
             <div class="tab-pane" id="kt_tabs_9_3" role="tabpanel">
-               <?=$this->render('_unit', ['kegiatanUnit'=>$kegiatanUnit,'profilUnit'=>$profilUnit])?>
+               <?=$this->render('_unit', ['kegiatanUnit'=>$kegiatanUnit,'profilUnit'=>$profilUnit,'prodi'=>$model])?>
             </div>
         </div>
     </div>
