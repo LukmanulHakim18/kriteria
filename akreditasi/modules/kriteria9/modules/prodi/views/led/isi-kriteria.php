@@ -455,6 +455,7 @@ use yii\bootstrap4\Progress;
                                                         <?php ActiveForm::end() ?>
 
                                                         <?php Modal::end() ?>
+                                                        <?=Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=>\yii\helpers\Url::to(['resource/index','prodi'=>$_GET['prodi'],'kriteria'=>$kriteria,'kode'=>$dokpen['kode'],'jenis'=>Constants::LED,'id_led_lk'=>$_GET['led'],'jenis_dokumen'=>Constants::PENDUKUNG]),'title'=>'Gunakan Data Untuk : '.$dokpen['kode'].'.'.' '.$dokpen['dokumen'] ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton'])?>
                                                     </div>
                                                 </div>
 
@@ -648,6 +649,7 @@ use yii\bootstrap4\Progress;
                                                     <?php ActiveForm::end() ?>
 
                                                     <?php Modal::end() ?>
+                                                    <?=Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=>\yii\helpers\Url::to(['resource/index','prodi'=>$_GET['prodi'],'kriteria'=>$kriteria,'kode'=>'','jenis'=>Constants::LED,'id_led_lk'=>$_GET['led'],'jenis_dokumen'=>Constants::LAINNYA]),'title'=>'Gunakan Data Untuk Dokumen lainnya ' ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton pull-right'])?>
                                                 </div>
                                             </div>
 
