@@ -12,6 +12,8 @@
  * @var $jenis string
  * @var $id_led_lk int
  * @var $kriteria int
+ * @var $model \common\models\ProgramStudi
+ * @var $jenis_dokumen string
  */
 
 
@@ -53,13 +55,13 @@ $this->title = 'Shared Resource'
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="kt_tabs_9_1" role="tabpanel">
-              <?= $this->render('_institusi', ['profilInstitusi'=>$profilInstitusi,'berkasInstitusi'=>$berkasInstitusi,'prodi'=>$model,'kode'=>$kode,'jenis'=>$jenis,'id_led_lk'=>$id_led_lk,'kriteria'=>$kriteria]) ?>
+              <?= $this->render('_institusi', ['profilInstitusi'=>$profilInstitusi,'berkasInstitusi'=>$berkasInstitusi,'prodi'=>$model,'kode'=>$kode,'jenis'=>$jenis,'id_led_lk'=>$id_led_lk,'kriteria'=>$kriteria,'jenis_dokumen'=>$jenis_dokumen]) ?>
             </div>
             <div class="tab-pane" id="kt_tabs_9_2" role="tabpanel">
-               <?=$this->render('_fakultas', ['berkasFakultas'=>$berkasFakultas,'profilFakultas'=>$profilFakultas,'prodi'=>$model])?>
+               <?=$this->render('_fakultas', ['berkasFakultas'=>$berkasFakultas,'profilFakultas'=>$profilFakultas,'prodi'=>$model,'kode'=>$kode,'jenis'=>$jenis,'id_led_lk'=>$id_led_lk,'kriteria'=>$kriteria,'jenis_dokumen'=>$jenis_dokumen])?>
             </div>
             <div class="tab-pane" id="kt_tabs_9_3" role="tabpanel">
-               <?=$this->render('_unit', ['kegiatanUnit'=>$kegiatanUnit,'profilUnit'=>$profilUnit,'prodi'=>$model])?>
+               <?=$this->render('_unit', ['kegiatanUnit'=>$kegiatanUnit,'profilUnit'=>$profilUnit,'prodi'=>$model,'kode'=>$kode,'jenis'=>$jenis,'id_led_lk'=>$id_led_lk,'kriteria'=>$kriteria,'jenis_dokumen'=>$jenis_dokumen])?>
             </div>
         </div>
     </div>

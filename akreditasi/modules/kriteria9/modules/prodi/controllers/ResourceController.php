@@ -18,6 +18,7 @@ use common\models\Unit;
 use common\models\unit\KegiatanUnit;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
+use yii\db\Exception;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
 use yii\helpers\Json;
@@ -36,7 +37,7 @@ class ResourceController extends BaseController
         ]];
     }
 
-    public function actionIndex($prodi, $kriteria, $kode, $jenis, $id_led_lk)
+    public function actionIndex($prodi, $kriteria, $kode, $jenis, $id_led_lk,$jenis_dokumen)
     {
 
         $profilInstitusi = $this->findProfilInstitusi();
@@ -61,7 +62,9 @@ class ResourceController extends BaseController
                 'kode',
                 'jenis',
                 'id_led_lk',
-                'kriteria'
+                'kriteria',
+                'jenis_dokumen'
+
             )
         );
     }
@@ -94,50 +97,63 @@ class ResourceController extends BaseController
         $jenis = $params['jenis'];
         $id_led_lk = $params['id_led_lk'];
         $kriteria = $params['kriteria'];
+        $jenis_dokumen = $params['jenis_dokumen'];
         $pathDetail = $this->findBerkasPath($detail);
+        $transaction = \Yii::$app->db->beginTransaction();
 
 //        $model = new ResourceProdiForm();
 //        $model->id = $detail->id;
 //        $model->nama = $detail->isi_berkas;
-        if ($kode === Constants::LED) {
-            $detailClass = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria' . $kriteria . 'Detail';
-            $detailAttr = 'id_led_prodi_kriteria' . $kriteria;
-            $detailRelation = 'ledProdiKriteria' . $kriteria;
-            $detailLedModel = new $detailClass;
+        try{
+            if ($jenis === Constants::LED) {
+                $detailClass = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria' . $kriteria . 'Detail';
+                $detailAttr = 'id_led_prodi_kriteria' . $kriteria;
+                $detailRelation = 'ledProdiKriteria' . $kriteria;
+                $detailLedModel = new $detailClass;
 
-            $detailLedModel->$detailAttr = $id_led_lk;
-            $detailLedModel->kode_dokumen = $kode;
-            $detailLedModel->nama_dokumen = $detail->berkas->nama_berkas;
-            $detailLedModel->isi_dokumen = $detail->isi_berkas;
-            $detailLedModel->jenis_dokumen = $jenis;
-            $detailLedModel->bentuk_dokumen = $detail->bentuk_berkas;
-            if($detailLedModel->save(false)){
+                $detailLedModel->$detailAttr = $id_led_lk;
+                $detailLedModel->kode_dokumen = $kode;
+                $detailLedModel->nama_dokumen = $detail->berkas->nama_berkas;
+                $detailLedModel->isi_dokumen = $detail->isi_berkas;
+                $detailLedModel->jenis_dokumen = $jenis_dokumen;
+                $detailLedModel->bentuk_dokumen = $detail->bentuk_berkas;
+
+                if(!$detailLedModel->save(false)){
+                    throw new Exception('Gagal menyimpan detail');
+                }
                 $pathProdi = K9ProdiDirectoryHelper::getDetailLedPath($detailLedModel->$detailRelation->ledProdi->akreditasiProdi);
-                copy("$pathDetail/$detail->isi_berkas", "$pathProdi/{$detail->isi_berkas}");
-            }
+                copy("$pathDetail/$detail->isi_berkas", "$pathProdi/{$jenis_dokumen}/{$detail->isi_berkas}");
+                $transaction->commit();
 
 
-        } elseif ($kode === Constants::LK) {
-            $detailClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria'.$kriteria.'Detail';
-            $detailAttrLk = 'id_lk_prodi_kriteria'.$kriteria;
-            $detailLkModel= new $detailClass;
-            $detailLkRelation = 'lkProdiKriteria'.$kriteria;
+            } elseif ($jenis === Constants::LK) {
+                $detailClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria'.$kriteria.'Detail';
+                $detailAttrLk = 'id_lk_prodi_kriteria'.$kriteria;
+                $detailLkModel= new $detailClass;
+                $detailLkRelation = 'lkProdiKriteria'.$kriteria;
 
-            $detailLkModel->$detailAttrLk = $id_led_lk;
-            $detailLkModel->kode_dokumen = $kode;
-            $detailLkModel->nama_dokumen = $detail->berkas->nama_berkas;
-            $detailLkModel->isi_dokumen = $detail->isi_berkas;
-            $detailLkModel->jenis_dokumen = $jenis;
-            $detailLkModel->bentuk_dokumen = $detail->bentuk_berkas;
-            if($detailLkModel->save(false)){
+                $detailLkModel->$detailAttrLk = $id_led_lk;
+                $detailLkModel->kode_dokumen = $kode;
+                $detailLkModel->nama_dokumen = $detail->berkas->nama_berkas;
+                $detailLkModel->isi_dokumen = $detail->isi_berkas;
+                $detailLkModel->jenis_dokumen = $jenis_dokumen;
+                $detailLkModel->bentuk_dokumen = $detail->bentuk_berkas;
+                if(!$detailLkModel->save(false)){
+                    throw new Exception('Gagal menyimpan detail');
+                }
                 $pathProdi = K9ProdiDirectoryHelper::getDetailLkPath($detailLkModel->$detailLkRelation->lkProdi->akreditasiProdi);
-                copy("$pathDetail/{$detail->isi_berkas}","$pathProdi/{$detail->isi_berkas}");
+                copy("$pathDetail/{$detail->isi_berkas}","$pathProdi/$jenis_dokumen/{$detail->isi_berkas}");
+                $transaction->commit();
             }
+        }catch (Exception $e){
+            $transaction->rollBack();
+            throw $e;
         }
+
 
         \Yii::$app->session->setFlash('success','Berhasil Menggunakan Berkas');
 
-        return $this->redirect(['led/isi-kriteria','kriteria'=>$kriteria,'led'=>$id_led_lk]);
+        return $this->redirect(['led/isi-kriteria','kriteria'=>$kriteria,'led'=>$id_led_lk,'prodi'=>$prodi->id]);
     }
 
     protected function findBerkasPath($detail)

@@ -27,6 +27,7 @@ use common\helpers\FileTypeHelper;
 use common\models\Constants;
 use dosamigos\tinymce\TinyMce;
 use kartik\file\FileInput;
+use yii\bootstrap4\Accordion;
 use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;
@@ -58,7 +59,6 @@ use yii\bootstrap4\Progress;
 
     <div class="kt-portlet__body">
         <div class="kt-section kt-section--first" style="margin-bottom: 0;">
-
             <!--begin::Accordion-->
             <div class="accordion accordion-solid  accordion-toggle-plus" id="accordion">
 
@@ -243,7 +243,7 @@ use yii\bootstrap4\Progress;
                                                         <?php ActiveForm::end() ?>
 
                                                         <?php Modal::end() ?>
-                                                        <?=Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=>\yii\helpers\Url::to(['resource/index','prodi'=>$_GET['prodi'],'kriteria'=>$kriteria,'kode'=>$doksum['kode'],'jenis'=>Constants::LED,'id_led_lk'=>$_GET['led']]),'title'=>'Gunakan Data Untuk : '.$doksum['kode'].'.'.' '.$doksum['dokumen'] ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton'])?>
+                                                        <?=Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=>\yii\helpers\Url::to(['resource/index','prodi'=>$_GET['prodi'],'kriteria'=>$kriteria,'kode'=>$doksum['kode'],'jenis'=>Constants::LED,'id_led_lk'=>$_GET['led'],'jenis_dokumen'=>Constants::SUMBER]),'title'=>'Gunakan Data Untuk : '.$doksum['kode'].'.'.' '.$doksum['dokumen'] ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton'])?>
                                                     </div>
                                                 </div>
 

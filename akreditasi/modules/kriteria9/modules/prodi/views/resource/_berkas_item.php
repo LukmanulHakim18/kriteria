@@ -5,6 +5,7 @@
  * @var $prodi common\models\ProgramStudi
  * @var $kode string
  * @var $jenis string
+ * @var $jenis_dokumen string
  * @var $id_led_lk int
  * @var $kriteria int
  */
@@ -29,11 +30,11 @@ use yii\helpers\Url;
                         'lihat'=>function ($url, $model, $key) {
             return Html::button('<i class="flaticon2-magnifier-tool"></i> Lihat',['value'=>Url::to(['resource/lihat-berkas-detail','id'=>$model->id]),'title'=>$model->isi_berkas,'class'=>'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air showModalBerkasButton']);
                         },
-                        'gunakan'=>function ($url, $model, $key) use ($prodi,$kode,$jenis,$id_led_lk,$kriteria) {
-                            return Html::a('<i class="flaticon2-laptop"></i> Gunakan', ['resource/gunakan'],['class'=>'','data'=>[
+                        'gunakan'=>function ($url, $model, $key) use ($prodi,$kode,$jenis,$id_led_lk,$kriteria, $jenis_dokumen) {
+                            return Html::a('<i class="flaticon2-laptop"></i> Gunakan', ['resource/gunakan'],['class'=>'btn btn-primary btn-pill btn-elevate btn-elevate-air','data'=>[
                                 'confirm'=>"Apakah anda ingin menggunakan data: {$model->isi_berkas} untuk pengisisan $jenis kode $kode?",
                                 'method'=>'POST',
-                                'params'=>['id'=>$model->id,'prodi'=>$prodi->id,'kode'=>$kode,'jenis'=>$jenis,'id_led_lk'=>$id_led_lk,'kriteria'=>$kriteria]
+                                'params'=>['id'=>$model->id,'prodi'=>$prodi->id,'kode'=>$kode,'jenis'=>$jenis,'id_led_lk'=>$id_led_lk,'kriteria'=>$kriteria,'jenis_dokumen'=>$jenis_dokumen]
                             ]]);
                         }
                     ]]

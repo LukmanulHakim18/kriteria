@@ -6,6 +6,7 @@
  * @var $prodi common\models\ProgramStudi
  * @var $kode string
  * @var $jenis string
+ * @var $jenis_dokumen string
  * @var $id_led_lk int
  * @var $kriteria int
  */
@@ -32,7 +33,7 @@
                 <h3>Berkas Institusi</h3>
                 <div class="kt-separator"></div>
                     <?=$this->render('_berkas',['berkas'=>$berkasInstitusi,'prodi'=>$prodi,'kode'=>$kode
-                    ,'jenis'=>$jenis,'id_led_lk'=>$id_led_lk, 'kriteria'=>$kriteria])?>
+                    ,'jenis'=>$jenis,'id_led_lk'=>$id_led_lk, 'kriteria'=>$kriteria,'jenis_dokumen'=>$jenis_dokumen])?>
             </div>
         </div>
 
