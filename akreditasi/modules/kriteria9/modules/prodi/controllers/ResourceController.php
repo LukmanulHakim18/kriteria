@@ -100,6 +100,7 @@ class ResourceController extends BaseController
         $jenis_dokumen = $params['jenis_dokumen'];
         $pathDetail = $this->findBerkasPath($detail);
         $transaction = \Yii::$app->db->beginTransaction();
+        $url = [];
 
 //        $model = new ResourceProdiForm();
 //        $model->id = $detail->id;
@@ -123,6 +124,8 @@ class ResourceController extends BaseController
                 }
                 $pathProdi = K9ProdiDirectoryHelper::getDetailLedPath($detailLedModel->$detailRelation->ledProdi->akreditasiProdi);
                 copy("$pathDetail/$detail->isi_berkas", "$pathProdi/{$jenis_dokumen}/{$detail->isi_berkas}");
+                $url = ['led/isi-kriteria','kriteria'=>$kriteria,'led'=>$id_led_lk,'prodi'=>$prodi->id];
+
                 $transaction->commit();
 
 
@@ -143,6 +146,7 @@ class ResourceController extends BaseController
                 }
                 $pathProdi = K9ProdiDirectoryHelper::getDetailLkPath($detailLkModel->$detailLkRelation->lkProdi->akreditasiProdi);
                 copy("$pathDetail/{$detail->isi_berkas}","$pathProdi/$jenis_dokumen/{$detail->isi_berkas}");
+                $url = ['lk/isi-kriteria','kriteria'=>$kriteria,'lk'=>$id_led_lk,'prodi'=>$prodi->id];
                 $transaction->commit();
             }
         }catch (Exception $e){
@@ -153,7 +157,7 @@ class ResourceController extends BaseController
 
         \Yii::$app->session->setFlash('success','Berhasil Menggunakan Berkas');
 
-        return $this->redirect(['led/isi-kriteria','kriteria'=>$kriteria,'led'=>$id_led_lk,'prodi'=>$prodi->id]);
+        return $this->redirect($url);
     }
 
     protected function findBerkasPath($detail)

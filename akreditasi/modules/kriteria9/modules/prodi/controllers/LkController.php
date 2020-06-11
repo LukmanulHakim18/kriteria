@@ -132,6 +132,7 @@ class LkController extends BaseController
         $dataKriteria = $json[$kriteria - 1];
         $poinKriteria = $dataKriteria['butir'];
         $lkProdi = K9LkProdi::findOne($lk);
+        $path = K9ProdiDirectoryHelper::getDokumenLkUrl($lkProdi->akreditasiProdi);
 
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\prodi\\K9LkProdiNarasiKriteria' . $kriteria . 'Form';
         $modelNarasi = call_user_func($modelNarasiClass . '::findOne', $lk);
@@ -194,7 +195,8 @@ class LkController extends BaseController
             'dokTextModel' => $dokTextModel,
             'dokLinkModel' => $dokLinkModel,
             'dataKriteria' => $dataKriteria,
-            'poinKriteria' => $poinKriteria
+            'poinKriteria' => $poinKriteria,
+            'path'=>$path
         ]);
     }
 
