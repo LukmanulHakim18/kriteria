@@ -1,30 +1,24 @@
 <?php
 /**
  * @var $berkas common\models\Berkas[]
+ * @var $prodi common\models\ProgramStudi
+ * @var $kode string
+ * @var $jenis string
+ * @var $jenis_dokumen string
+ * @var $id_led_lk int
+ * @var $kriteria
  */
 
 use kartik\grid\GridView;
+use yii\widgets\ListView;
 
 ?>
 
 
 <div class="berkas">
-    <?=\kartik\grid\GridView::widget([
-        'dataProvider' => $berkas,
+    <?= ListView::widget(['dataProvider' => $berkas,
+        'itemView' => '_berkas_item',
         'summary' => false,
-        'columns' => [
-            ['class'=>'kartik\grid\SerialColumn','header' => 'No'],
-            'nama_berkas',
-            [
-                'class'=>'kartik\grid\ExpandRowColumn',
-                'expandOneOnly' => true,
-                'detailUrl' => \yii\helpers\Url::to(['resource/berkas-detail']),
-                'value' => function ($model, $key, $index) {
-                    return GridView::ROW_EXPANDED;
-                },
-                'header' => 'Detail'],
+        'viewParams' => ['prodi'=>$prodi,'kode'=>$kode,'jenis'=>$jenis,'id_led_lk'=>$id_led_lk,'kriteria'=>$kriteria,'jenis_dokumen'=>$jenis_dokumen]])?>
 
-
-        ]
-    ]) ?>
 </div>

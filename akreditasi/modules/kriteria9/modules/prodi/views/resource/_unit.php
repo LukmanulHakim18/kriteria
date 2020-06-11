@@ -3,6 +3,12 @@
  * @var $this yii\web\View
  * @var $kegiatanUnit common\models\unit\KegiatanUnit[]
  * @var $profilUnit common\models\Unit[]
+ * @var $prodi common\models\ProgramStudi
+ * @var $kode string
+ * @var $jenis string
+ * @var $jenis_dokumen string
+ * @var $id_led_lk int
+ * @var $kriteria int
  */
 
 ?>
@@ -32,7 +38,8 @@
                 <div class="kt-separator"></div>
                 <?php foreach ($profilUnit as $unit): ?>
                     <h5><?=$unit->nama?></h5>
-                    <?= $this->render('_berkas', ['berkas'=>new \yii\data\ActiveDataProvider(['query' => $unit->getBerkas()])])?>
+                    <?= $this->render('_berkas', ['berkas'=>new \yii\data\ActiveDataProvider(['query' => $unit->getBerkas()]),'prodi'=>$prodi,'kode'=>$kode
+                        ,'jenis'=>$jenis,'id_led_lk'=>$id_led_lk, 'kriteria'=>$kriteria,'jenis_dokumen'=>$jenis_dokumen])?>
                     <div class="kt-separator kt-separator--dashed"></div>
                 <?php endforeach; ?>
             </div>

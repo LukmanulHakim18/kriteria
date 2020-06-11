@@ -17,6 +17,8 @@ class Constants
         'institusi'=> 'Perguruan Tinggi'
     ];
 
+    const LED = 'led';
+    const LK = 'lk';
     const STANDAR7 = '7standar';
     const KRITERIA9 = '9kriteria';
 

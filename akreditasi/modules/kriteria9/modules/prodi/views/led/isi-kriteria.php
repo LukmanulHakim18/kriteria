@@ -27,6 +27,7 @@ use common\helpers\FileTypeHelper;
 use common\models\Constants;
 use dosamigos\tinymce\TinyMce;
 use kartik\file\FileInput;
+use yii\bootstrap4\Accordion;
 use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;
@@ -58,7 +59,6 @@ use yii\bootstrap4\Progress;
 
     <div class="kt-portlet__body">
         <div class="kt-section kt-section--first" style="margin-bottom: 0;">
-
             <!--begin::Accordion-->
             <div class="accordion accordion-solid  accordion-toggle-plus" id="accordion">
 
@@ -104,10 +104,10 @@ use yii\bootstrap4\Progress;
                                             'language' => 'id',
                                             'clientOptions' => [
                                                 'plugins' => [
-                                                    "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
+                                                    "advlist autolink lists link image charmap print preview hr anchor pagebreak ",
                                                     "searchreplace wordcount visualblocks visualchars code fullscreen",
-                                                    "insertdatetime media nonbreaking save table contextmenu directionality",
-                                                    "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
+                                                    "insertdatetime media nonbreaking save table  directionality",
+                                                    "emoticons template paste   textpattern imagetools codesample toc noneditable",
                                                 ],
                                                 'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link | image"
 
@@ -175,10 +175,10 @@ use yii\bootstrap4\Progress;
                                                             'clientOptions' => [
 
                                                                 'plugins' => [
-                                                                    "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
+                                                                    "advlist autolink lists link image charmap print preview hr anchor pagebreak ",
                                                                     "searchreplace wordcount visualblocks visualchars code fullscreen",
-                                                                    "insertdatetime media nonbreaking save table contextmenu directionality",
-                                                                    "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
+                                                                    "insertdatetime media nonbreaking save table  directionality",
+                                                                    "emoticons template paste   textpattern imagetools codesample toc noneditable",
                                                                 ],
                                                                 'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link"
 
@@ -243,6 +243,7 @@ use yii\bootstrap4\Progress;
                                                         <?php ActiveForm::end() ?>
 
                                                         <?php Modal::end() ?>
+                                                        <?=Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=>\yii\helpers\Url::to(['resource/index','prodi'=>$_GET['prodi'],'kriteria'=>$kriteria,'kode'=>$doksum['kode'],'jenis'=>Constants::LED,'id_led_lk'=>$_GET['led'],'jenis_dokumen'=>Constants::SUMBER]),'title'=>'Gunakan Data Untuk : '.$doksum['kode'].'.'.' '.$doksum['dokumen'] ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton'])?>
                                                     </div>
                                                 </div>
 
@@ -386,10 +387,10 @@ use yii\bootstrap4\Progress;
                                                             'clientOptions' => [
 
                                                                 'plugins' => [
-                                                                    "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
+                                                                    "advlist autolink lists link image charmap print preview hr anchor pagebreak ",
                                                                     "searchreplace wordcount visualblocks visualchars code fullscreen",
-                                                                    "insertdatetime media nonbreaking save table contextmenu directionality",
-                                                                    "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
+                                                                    "insertdatetime media nonbreaking save table  directionality",
+                                                                    "emoticons template paste   textpattern imagetools codesample toc noneditable",
                                                                 ],
                                                                 'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link"
 
@@ -454,6 +455,7 @@ use yii\bootstrap4\Progress;
                                                         <?php ActiveForm::end() ?>
 
                                                         <?php Modal::end() ?>
+                                                        <?=Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=>\yii\helpers\Url::to(['resource/index','prodi'=>$_GET['prodi'],'kriteria'=>$kriteria,'kode'=>$dokpen['kode'],'jenis'=>Constants::LED,'id_led_lk'=>$_GET['led'],'jenis_dokumen'=>Constants::PENDUKUNG]),'title'=>'Gunakan Data Untuk : '.$dokpen['kode'].'.'.' '.$dokpen['dokumen'] ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton'])?>
                                                     </div>
                                                 </div>
 
@@ -577,10 +579,10 @@ use yii\bootstrap4\Progress;
                                                         'clientOptions' => [
 
                                                             'plugins' => [
-                                                                "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
+                                                                "advlist autolink lists link image charmap print preview hr anchor pagebreak ",
                                                                 "searchreplace wordcount visualblocks visualchars code fullscreen",
-                                                                "insertdatetime media nonbreaking save table contextmenu directionality",
-                                                                "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
+                                                                "insertdatetime media nonbreaking save table  directionality",
+                                                                "emoticons template paste   textpattern imagetools codesample toc noneditable",
                                                             ],
                                                             'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link"
 
@@ -647,6 +649,7 @@ use yii\bootstrap4\Progress;
                                                     <?php ActiveForm::end() ?>
 
                                                     <?php Modal::end() ?>
+                                                    <?=Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=>\yii\helpers\Url::to(['resource/index','prodi'=>$_GET['prodi'],'kriteria'=>$kriteria,'kode'=>'','jenis'=>Constants::LED,'id_led_lk'=>$_GET['led'],'jenis_dokumen'=>Constants::LAINNYA]),'title'=>'Gunakan Data Untuk Dokumen lainnya ' ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton pull-right'])?>
                                                 </div>
                                             </div>
 
