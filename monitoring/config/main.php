@@ -21,6 +21,17 @@ return [
         ],
         'eksekutif' => [
             'class' => 'monitoring\modules\eksekutif\Eksekutif',
+            'modules'=>[
+                'eksekutif-prodi' => [
+                    'class' => 'monitoring\modules\eksekutif\modules\prodi\Prodi',
+                ],
+                'eksekutif-fakultas'=>[
+                    'class'=>'monitoring\modules\eksekutif\modules\fakultas\Fakultas'
+                ],
+                'eksekutif-institusi' => [
+                    'class' => 'monitoring\modules\eksekutif\modules\institusi\Institusi',
+                ],
+            ]
         ],
         'datecontrol' => [
             'class' => 'kartik\datecontrol\Module',
