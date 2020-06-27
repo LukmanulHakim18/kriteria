@@ -7,7 +7,7 @@ use yii\web\Controller;
 /**
  * Default controller for the `eksekutif-prodi` module
  */
-class DefaultController extends Controller
+class DefaultController extends BaseController
 {
     /**
      * Renders the index view for the module
@@ -15,6 +15,11 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $id = \Yii::$app->request->get('prodi');
+        $prodi = $this->findProdi($id);
+        $profil = $prodi->profil;
+        $akreditasiProdi = $prodi->getK9AkreditasiProdis()->orderBy('id DESC')->one();
+        return $this->render('index',['prodi'=>$prodi,'akreditasiProdi'=>$akreditasiProdi,'profil'=>$profil]);
     }
+
 }
