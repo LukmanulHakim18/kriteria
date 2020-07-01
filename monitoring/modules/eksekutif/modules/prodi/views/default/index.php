@@ -9,8 +9,9 @@
 use yii\bootstrap4\Html;
 
 $this->title = 'Akreditasi Program Studi';
+$this->params['breadcrumbs']= ['label'=>$this->title];
 
-echo $this->render('@monitoring/views/common/_prodi_progress',['prodi'=>$prodi,'akreditasiProdi'=>$akreditasiProdi]);
+echo $this->render('@monitoring/views/common/_prodi_progress', ['prodi'=>$prodi,'model'=>$akreditasiProdi]);
 
 ?>
 
@@ -114,8 +115,8 @@ echo $this->render('@monitoring/views/common/_prodi_progress',['prodi'=>$prodi,'
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title">Struktur Organisasi</h5>
-                                        <?php if($profil->struktur_organisasi):?>
-                                            <?=Html::img(Yii::getAlias("@.uploadStruktur/{$profil->type}/{$prodi->id}/{$profil->struktur_organisasi}"),['width'=>'80%'])?>
+                                        <?php if ($profil->struktur_organisasi):?>
+                                            <?=Html::img(Yii::getAlias("@.uploadStruktur/{$profil->type}/{$prodi->id}/{$profil->struktur_organisasi}"), ['width'=>'80%'])?>
                                         <?php endif;?>
                                     </div>
                                 </div>
