@@ -7,31 +7,31 @@
  */
 $prodi = $_GET['prodi'];
 $this->title = 'Kriteria ' . $_GET['kriteria'];
-$this->params['breadcrumbs'][] = ['label' => 'Akreditasi Prodi', 'url' => ['akreditasi/index','prodi'=>$_GET['prodi']]];
-$this->params['breadcrumbs'][] = ['label' => "Akreditasi: {$akreditasiProdi->akreditasi->nama} - {$modelProdi->nama}", 'url' => ['akreditasi/detail','id'=>$akreditasiProdi->id,'prodi'=>$modelProdi->id]];
+$this->params['breadcrumbs'][] = [
+    'label' => 'Akreditasi Prodi',
+    'url' => ['akreditasi/index', 'prodi' => $_GET['prodi']]
+];
+$this->params['breadcrumbs'][] = [
+    'label' => "Akreditasi: {$akreditasiProdi->akreditasi->nama} - {$modelProdi->nama}",
+    'url' => ['akreditasi/detail', 'id' => $akreditasiProdi->id, 'prodi' => $modelProdi->id]
+];
 $this->params['breadcrumbs'][] = $this->title;
 $kriteria = $_GET['kriteria'];
 
-use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiLinkForm;
-use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiTeksForm;
-use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiUploadForm;
 use common\helpers\FileIconHelper;
 use common\helpers\FileTypeHelper;
 use common\models\Constants;
-use dosamigos\tinymce\TinyMce;
-use FontLib\EOT\File;
-use kartik\file\FileInput;
-use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;
-use yii\bootstrap4\Progress; ?>
+use yii\bootstrap4\Progress;
+
+?>
 
 <div class="kt-portlet">
     <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
             <h3 class="kt-portlet__head-title">
                 <?= Html::encode($this->title) ?>
-
             </h3>
         </div>
         <div class="kt-portlet__head-toolbar">

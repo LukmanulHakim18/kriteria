@@ -1,6 +1,5 @@
 <?php
 
-
 namespace monitoring\modules\eksekutif\modules\prodi\controllers;
 
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria1;
@@ -50,9 +49,17 @@ class BaseController extends Controller
         $kriteria8 = K9LedProdiKriteria8::findOne(['id_led_prodi' => $led]);
         $kriteria9 = K9LedProdiKriteria9::findOne(['id_led_prodi' => $led]);
 
-        $kriteria = [$kriteria1, $kriteria2, $kriteria3, $kriteria4, $kriteria5, $kriteria6, $kriteria7, $kriteria8, $kriteria9];
-
-        return $kriteria;
+        return [
+            $kriteria1,
+            $kriteria2,
+            $kriteria3,
+            $kriteria4,
+            $kriteria5,
+            $kriteria6,
+            $kriteria7,
+            $kriteria8,
+            $kriteria9
+        ];
     }
     protected function getArrayKriteriaLk($lk)
     {
@@ -65,8 +72,6 @@ class BaseController extends Controller
         $kriteria7 = K9LkProdiKriteria7::findOne(['id_lk_prodi' => $lk]);
         $kriteria8 = K9LkProdiKriteria8::findOne(['id_lk_prodi' => $lk]);
 
-        $kriteria = [$kriteria1, $kriteria2, $kriteria3, $kriteria4, $kriteria5, $kriteria6, $kriteria7, $kriteria8];
-
-        return $kriteria;
+        return [$kriteria1, $kriteria2, $kriteria3, $kriteria4, $kriteria5, $kriteria6, $kriteria7, $kriteria8];
     }
 }
