@@ -11,9 +11,7 @@
 
 namespace common\helpers\kriteria9;
 
-
 use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
-use common\models\kriteria9\led\prodi\K9LedProdi;
 use Yii;
 
 class K9ProdiDirectoryHelper extends K9DirectoryHelper
@@ -28,10 +26,7 @@ class K9ProdiDirectoryHelper extends K9DirectoryHelper
             '{level}'=>'prodi',
             '{id}'=>$akreditasiProdi->id_prodi
         ];
-        $result = strtr($pathData,$pathReplacements);
-        $realPath = "$result";
-
-        return $realPath;
+        return strtr($pathData, $pathReplacements);
     }
 
     public static function getDokumenLedPath($akreditasi)
@@ -39,105 +34,83 @@ class K9ProdiDirectoryHelper extends K9DirectoryHelper
 
         $path = Yii::getAlias('@uploadAkreditasi');
         $documentPath = self::getK9ProdiPath($akreditasi);
-        $realPath = "$path/$documentPath/led";
-
-        return $realPath;
+        return "$path/$documentPath/led";
     }
 
     public static function getDokumenLedUrl($akreditasi)
     {
-        $path = Yii::getAlias('@web/upload');
+        $path = Yii::getAlias('@.uploadAkreditasi');
         $documentPath = self::getK9ProdiPath($akreditasi);
-        $realPath = "$path/$documentPath/led";
-
-        return $realPath;
+        return "$path/$documentPath/led";
     }
 
     public static function getDetailLedPath($akreditasi)
     {
         $path = Yii::getAlias('@uploadAkreditasi');
         $documentPath = self::getK9ProdiPath($akreditasi);
-        $realPath = "$path/$documentPath/led";
-
-        return $realPath;
+        return "$path/$documentPath/led";
     }
 
     public static function getDetailLedUrl($akreditasi)
     {
-        $path = Yii::getAlias('@web/upload');
+        $path = Yii::getAlias('@.uploadAkreditasi');
         $documentPath = self::getK9ProdiPath($akreditasi);
-        $realPath = "$path/$documentPath/led";
-
-        return $realPath;
+        return "$path/$documentPath/led";
     }
 
     public static function getDokumenLkPath($akreditasi)
     {
         $path = Yii::getAlias('@uploadAkreditasi');
         $documentPath = self::getK9ProdiPath($akreditasi);
-        $realPath = "$path/$documentPath/lk";
-
-        return $realPath;
+        return "$path/$documentPath/lk";
     }
 
     public static function getDokumenLkUrl($akreditasi)
     {
-        $path = Yii::getAlias('@web/upload');
+        $path = Yii::getAlias('@.uploadAkreditasi');
         $documentPath = self::getK9ProdiPath($akreditasi);
-        $realPath = "$path/$documentPath/lk";
-
-        return $realPath;
+        return "$path/$documentPath/lk";
     }
 
     public static function getDetailLkPath($akreditasi)
     {
         $path = Yii::getAlias('@uploadAkreditasi');
         $documentPath = self::getK9ProdiPath($akreditasi);
-        $realPath = "$path/$documentPath/lk";
-
-        return $realPath;
+        return "$path/$documentPath/lk";
     }
 
     public static function getDetailLkUrl($akreditasi)
     {
-        $path = Yii::getAlias('@web/upload');
+        $path = Yii::getAlias('@.uploadAkreditasi');
         $documentPath = self::getK9ProdiPath($akreditasi);
-        $realPath = "$path/$documentPath/lk";
-
-        return $realPath;
+        return "$path/$documentPath/lk";
     }
 
     public static function getKuantitatifPath($akreditasi)
     {
         $path = Yii::getAlias('@uploadAkreditasi');
         $documentPath = self::getK9ProdiPath($akreditasi);
-        $realPath = "$path/$documentPath/matriks-kuantitatif";
-
-        return $realPath;
+        return "$path/$documentPath/matriks-kuantitatif";
     }
 
     public static function getKuantitatifUrl($akreditasi)
     {
-        $path = Yii::getAlias('@web/upload');
+        $path = Yii::getAlias('@.uploadAkreditasi');
         $documentPath = self::getK9ProdiPath($akreditasi);
-        $realPath = "$path/$documentPath/matriks-kuantitatif";
-
-        return $realPath;
+        return "$path/$documentPath/matriks-kuantitatif";
     }
 
 
-    public static function getTemplateLkPath(){
+    public static function getTemplateLkPath()
+    {
         $path = Yii::getAlias('@required');
         $pathReplacement = [
-            '{borang}'=>'kriteria9',
-            '{jenis_dokumen}'=>'aps',
-            '{template}'=>'template',
-            '{untuk}'=>'lk'
+            '{borang}' => 'kriteria9',
+            '{jenis_dokumen}' => 'aps',
+            '{template}' => 'template',
+            '{untuk}' => 'lk'
 
         ];
-        $templatePath = parent::getTemplateLk($pathReplacement);
-        $realPath =  "$path/$templatePath";
-
-        return $realPath;
+        return parent::getTemplateLk($pathReplacement);
     }
 }
