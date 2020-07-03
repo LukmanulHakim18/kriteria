@@ -4,10 +4,24 @@
  * @var $this yii\web\View
  * @var $prodi common\models\ProgramStudi
  * @var $model common\models\kriteria9\akreditasi\K9AkreditasiProdi
+ * @var $jenis string
  */
 
+use common\models\FakultasAkademi;
+use common\models\ProgramStudi;
+use yii\bootstrap4\Html;
 use yii\bootstrap4\Progress;
 
+$url = ($jenis === ProgramStudi::PROGRAM_STUDI || $jenis === 'institusi') ? [
+    'akreditasi/detail',
+    'id' => $model->id,
+    'prodi' => $prodi->id
+] : ($jenis === FakultasAkademi::FAKULTAS_AKADEMI) ? [
+    'akreditasi/detail',
+    'id' => $model->id,
+    'prodi' => $prodi->id,
+    'fakultas' => $prodi->fakultasAkademi->id
+] : '';
 ?>
 <div class="row">
     <div class="col-lg-12">
@@ -18,10 +32,10 @@ use yii\bootstrap4\Progress;
                         <div class="kt-widget__pic kt-widget__pic--danger kt-font-danger kt-font-boldest kt-font-light">
                             <?php
                             $initial = '';
-                            $prodiName = preg_split("/\s+/",$prodi->nama);
+                            $prodiName = preg_split('/\s+/', $prodi->nama);
 
-                            foreach ($prodiName as $word){
-                                $initial.=$word[0];
+                            foreach ($prodiName as $word) {
+                                $initial .= $word[0];
                             }
 
                             echo $initial
@@ -30,17 +44,17 @@ use yii\bootstrap4\Progress;
                         <div class="kt-widget__content">
                             <div class="kt-widget__head">
                                 <a href="#" class="kt-widget__username">
-                                    <?=$prodi->nama?>
+                                    <?= $prodi->nama ?>
                                     <i class="flaticon2-correct"></i>
                                 </a>
                                 <div class="kt-widget__action">
-                                    <?=\yii\bootstrap4\Html::a('Detail',['akreditasi/detail','id'=>$model->id,'prodi'=>$prodi->id],['class'=>'btn btn-brand btn-sm btn-upper'])?>
+                                    <?= Html::a('Detail', $url, ['class' => 'btn btn-brand btn-sm btn-upper']) ?>
                                 </div>
                             </div>
                             <div class="kt-widget__subhead">
-                                <a href="#"><i class="flaticon2-new-email"></i><?=$model->akreditasi->nama?></a>
-                                <a href="#"><i class="flaticon2-calendar-3"></i><?=$model->akreditasi->tahun?></a>
-                                <a href="#"><i class="flaticon2-placeholder"></i><?=$model->akreditasi->lembaga?></a>
+                                <a href="#"><i class="flaticon2-new-email"></i><?= $model->akreditasi->nama ?></a>
+                                <a href="#"><i class="flaticon2-calendar-3"></i><?= $model->akreditasi->tahun ?></a>
+                                <a href="#"><i class="flaticon2-placeholder"></i><?= $model->akreditasi->lembaga ?></a>
                             </div>
                             <div class="kt-widget__info">
                                 <div class="kt-widget__desc">

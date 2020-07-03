@@ -2,12 +2,10 @@
 
 namespace monitoring\modules\eksekutif\modules\institusi\controllers;
 
-use yii\web\Controller;
-
 /**
  * Default controller for the `eksekutif-institusi` module
  */
-class DefaultController extends Controller
+class DefaultController extends BaseController
 {
     /**
      * Renders the index view for the module

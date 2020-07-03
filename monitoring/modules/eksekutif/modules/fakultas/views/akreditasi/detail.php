@@ -15,7 +15,7 @@
 
 use common\helpers\FileIconHelper;
 use common\helpers\FileTypeHelper;
-use common\models\ProgramStudi;
+use common\models\FakultasAkademi;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;
 use yii\bootstrap4\Progress;
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
 
 
 <?= $this->render('@monitoring/views/common/_prodi_progress',
-    ['prodi' => $modelProdi, 'model' => $akreditasiProdi, 'jenis' => ProgramStudi::PROGRAM_STUDI]) ?>
+    ['prodi' => $modelProdi, 'model' => $akreditasiProdi, 'jenis' => FakultasAkademi::FAKULTAS_AKADEMI]) ?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($dokumenLed as $key => $item) : ?>
+                        <?php foreach ($dokumenLed as $key => $item): ?>
                             <tr>
                                 <td><?= $key + 1 ?></td>
                                 <td>
@@ -91,13 +91,17 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                                             if ($type === FileTypeHelper::TYPE_IMAGE || $type === FileTypeHelper::TYPE_PDF):?>
                                                 <?php Modal::begin([
                                                     'title' => $item->nama_dokumen,
-                                                    'toggleButton' => ['label' => '<i class="la la-eye"></i> &nbsp;Lihat', 'class' => 'btn btn-info btn-pill btn-elevate btn-elevate-air'],
+                                                    'toggleButton' => [
+                                                        'label' => '<i class="la la-eye"></i> &nbsp;Lihat',
+                                                        'class' => 'btn btn-info btn-pill btn-elevate btn-elevate-air'
+                                                    ],
                                                     'size' => 'modal-lg',
                                                     'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
                                                 ]); ?>
                                                 <?php switch ($type) {
                                                     case FileTypeHelper::TYPE_IMAGE:
-                                                        echo Html::img("$urlLed/{$item->nama_dokumen}", ['height' => '100%', 'width' => '100%']);
+                                                        echo Html::img("$urlLed/{$item->nama_dokumen}",
+                                                            ['height' => '100%', 'width' => '100%']);
                                                         break;
                                                     case FileTypeHelper::TYPE_PDF:
                                                         echo '<embed src="' . $urlLed . '/' . $item->nama_dokumen . '" type="application/pdf" height="100%" width="100%">
@@ -106,7 +110,9 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                                                 } ?>
                                                 <?php Modal::end(); ?>
                                             <?php endif; ?>
-                                            <?= Html::a('<i class ="la la-download"></i> Unduh', ['led/download-dokumen', 'dokumen' => $item->id], ['class' => 'btn btn-warning btn-pill btn-elevate btn-elevate-air']) ?>
+                                            <?= Html::a('<i class ="la la-download"></i> Unduh',
+                                                ['led/download-dokumen', 'dokumen' => $item->id],
+                                                ['class' => 'btn btn-warning btn-pill btn-elevate btn-elevate-air']) ?>
                                         </div>
 
                                     </div>
@@ -147,7 +153,13 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                                     ]); ?>
                                 </td>
                                 <td style="padding-top: 15px;">
-                                    <?= Html::a("<i class='la la-folder-open'></i>Lihat", ['led/lihat', 'led' => $_GET['id'], 'kriteria' => $kriteriaJson['kriteria'],'prodi'=>$modelProdi->id], ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
+                                    <?= Html::a("<i class='la la-folder-open'></i>Lihat", [
+                                        'led/lihat',
+                                        'led' => $_GET['id'],
+                                        'kriteria' => $kriteriaJson['kriteria'],
+                                        'prodi' => $modelProdi->id,
+                                        'fakultas' => $_GET['fakultas']
+                                    ], ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
 
                                     <!--                        <button type="button" class="btn btn-danger">Lihat</button>-->
                                 </td>
@@ -213,7 +225,13 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                                     ]); ?>
                                 </td>
                                 <td style="padding-top: 15px;">
-                                    <?= Html::a("<i class='la la-folder-open'></i>Lihat", ['lk/lihat', 'lk' => $_GET['id'], 'kriteria' => $kriteriaJson['kriteria'], 'prodi' => $modelProdi->id], ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
+                                    <?= Html::a("<i class='la la-folder-open'></i>Lihat", [
+                                        'lk/lihat',
+                                        'lk' => $_GET['id'],
+                                        'kriteria' => $kriteriaJson['kriteria'],
+                                        'prodi' => $modelProdi->id,
+                                        'fakultas' => $_GET['fakultas']
+                                    ], ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
 
                                     <!--                        <button type="button" class="btn btn-danger">Lihat</button>-->
                                 </td>

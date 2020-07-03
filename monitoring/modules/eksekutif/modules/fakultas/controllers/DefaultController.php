@@ -7,14 +7,17 @@ use yii\web\Controller;
 /**
  * Default controller for the `eksekutif-fakultas` module
  */
-class DefaultController extends Controller
+class DefaultController extends BaseController
 {
     /**
      * Renders the index view for the module
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex($fakultas)
     {
-        return $this->render('index');
+        $modelFakultas = $this->findFakultas($fakultas);
+        $prodis = $modelFakultas->programStudis;
+        $profil = $modelFakultas->profil;
+        return $this->render('index', compact('modelFakultas', 'prodis', 'profil'));
     }
 }

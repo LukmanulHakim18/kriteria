@@ -74,9 +74,14 @@ class ArsipController extends BaseController
             if (!$url) {
                 throw new NotFoundHttpException();
             }
-            return  $this->redirect($url);
+            return $this->redirect($url);
         }
 
-        return $this->render('fakultas', ['model'=>$model,'dataFakultas'=>$dataFakultas]);
+        return $this->render('fakultas', ['model' => $model, 'dataFakultas' => $dataFakultas]);
+    }
+
+    public function actionInstitusi()
+    {
+        return $this->redirect(['/eksekutif/eksekutif-institusi/default/index']);
     }
 }

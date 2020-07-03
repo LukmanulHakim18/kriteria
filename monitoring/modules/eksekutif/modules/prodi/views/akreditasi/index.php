@@ -5,16 +5,17 @@
  * @var $akreditasiDataProvider yii\data\ActiveDataProvider
  */
 
-use yii\bootstrap4\Html;
+use common\models\ProgramStudi;
+use yii\widgets\ListView;
 
-$this->title = 'Akreditasi Program Studi: '.$prodi->nama;
+$this->title = 'Akreditasi Program Studi: ' . $prodi->nama;
 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<?=\yii\widgets\ListView::widget([
+<?= ListView::widget([
     'dataProvider' => $akreditasiDataProvider,
     'summary' => false,
     'itemView' => '@monitoring/views/common/_prodi_progress',
-    'viewParams' => ['prodi'=>$prodi]
-])?>
+    'viewParams' => ['prodi' => $prodi, 'jenis' => ProgramStudi::PROGRAM_STUDI]
+]);

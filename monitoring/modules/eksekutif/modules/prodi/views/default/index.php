@@ -6,12 +6,14 @@
  * @var $profil common\models\Profil
  */
 
+use common\models\ProgramStudi;
 use yii\bootstrap4\Html;
 
 $this->title = 'Akreditasi Program Studi';
 $this->params['breadcrumbs']= ['label'=>$this->title];
 
-echo $this->render('@monitoring/views/common/_prodi_progress', ['prodi'=>$prodi,'model'=>$akreditasiProdi]);
+echo $this->render('@monitoring/views/common/_prodi_progress',
+    ['prodi' => $prodi, 'model' => $akreditasiProdi, 'jenis' => ProgramStudi::PROGRAM_STUDI]);
 
 ?>
 
@@ -219,4 +221,3 @@ echo $this->render('@monitoring/views/common/_prodi_progress', ['prodi'=>$prodi,
         </div>
     </div>
 </div>
-
