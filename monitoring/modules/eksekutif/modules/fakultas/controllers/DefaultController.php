@@ -15,9 +15,11 @@ class DefaultController extends BaseController
      */
     public function actionIndex($fakultas)
     {
-        $modelFakultas = $this->findFakultas($fakultas);
+        $model = $this->findFakultas($fakultas);
         $prodis = $modelFakultas->programStudis;
         $profil = $modelFakultas->profil;
-        return $this->render('index', compact('modelFakultas', 'prodis', 'profil'));
+
+        $akreditasiTerakhir = $this->findAkreditasiProdiTerakhir();
+        return $this->render('index', compact('model', 'prodis', 'profil', 'akreditasiTerakhir'));
     }
 }

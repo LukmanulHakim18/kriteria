@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "620cd8a16ba7f906ef73a94f18f626c0",
+    "content-hash": "886b25e50d6c97e912dd5888ff6dd5b5",
     "packages": [
         {
             "name": "2amigos/yii2-tinymce-widget",
@@ -4924,6 +4924,97 @@
                 "wysiwyg"
             ],
             "time": "2020-05-27T04:42:29+00:00"
+        },
+        {
+            "name": "yii2mod/collection",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yii2mod/collection.git",
+                "reference": "c82989f222acdd4f7b05a2eb8ebb8f198eb74b8a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yii2mod/collection/zipball/c82989f222acdd4f7b05a2eb8ebb8f198eb74b8a",
+                "reference": "c82989f222acdd4f7b05a2eb8ebb8f198eb74b8a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1",
+                "yii2mod/yii2-helpers": "*",
+                "yiisoft/yii2": "*"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~2.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yii2mod\\collection\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Chepurnoy",
+                    "email": "igorzfort@gmail.com"
+                }
+            ],
+            "description": "Basic collection library",
+            "keywords": [
+                "collection",
+                "yii2",
+                "yii2 collection"
+            ],
+            "time": "2017-08-27T18:42:43+00:00"
+        },
+        {
+            "name": "yii2mod/yii2-helpers",
+            "version": "1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yii2mod/yii2-helpers.git",
+                "reference": "e7c789fb9aa7872bc11116ad784ff8c8c36800ad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yii2mod/yii2-helpers/zipball/e7c789fb9aa7872bc11116ad784ff8c8c36800ad",
+                "reference": "e7c789fb9aa7872bc11116ad784ff8c8c36800ad",
+                "shasum": ""
+            },
+            "require": {
+                "yii2mod/collection": "*",
+                "yiisoft/yii2": ">=2.0.5"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~1.7"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yii2mod\\helpers\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Chepurnoy",
+                    "email": "igorzfort@gmail.com"
+                }
+            ],
+            "description": "Collection of useful helper functions for Yii Framework 2.0",
+            "keywords": [
+                "yii2",
+                "yii2 array helpers",
+                "yii2 helpers"
+            ],
+            "time": "2016-11-22T15:51:26+00:00"
         },
         {
             "name": "yiisoft/yii2",

@@ -3,7 +3,10 @@
 
 namespace monitoring\modules\eksekutif\modules\fakultas\controllers;
 
+use common\models\Constants;
 use common\models\FakultasAkademi;
+use common\models\kriteria9\akreditasi\K9Akreditasi;
+use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria1;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria2;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria3;
@@ -86,5 +89,10 @@ class BaseController extends Controller
         $kriteria8 = K9LkProdiKriteria8::findOne(['id_lk_prodi' => $lk]);
 
         return [$kriteria1, $kriteria2, $kriteria3, $kriteria4, $kriteria5, $kriteria6, $kriteria7, $kriteria8];
+    }
+
+    protected function findAkreditasiProdiTerakhir()
+    {
+        return K9Akreditasi::find()->where(['jenis_akreditasi'=>Constants::PRODI])->orderBy('id DESC')->one();
     }
 }

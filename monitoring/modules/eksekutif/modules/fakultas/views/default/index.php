@@ -2,8 +2,9 @@
 /**
  * @var $this yii\web\View
  * @var $prodis common\models\ProgramStudi[]
- * @var $modelFakultas common\models\FakultasAkademi
+ * @var $model common\models\FakultasAkademi
  * @var $profil common\models\Profil
+ * @var $akreditasiTerakhir common\models\kriteria9\akreditasi\K9Akreditasi
  */
 
 use common\models\FakultasAkademi;
@@ -12,19 +13,19 @@ use yii\bootstrap4\Html;
 $this->title = 'Akreditasi Program Studi';
 $this->params['breadcrumbs'] = ['label' => $this->title];
 
-//echo $this->render('@monitoring/views/common/_prodi_progress', ['prodi'=>$prodi,'model'=>$akreditasiProdi]);
+echo $this->render('//common/_fakultas_progress', ['akreditasiTerakhir'=>$akreditasiTerakhir,'model'=>$model]);
 
 ?>
 
 <?php
-foreach ($prodis as $prodi):
-    echo $this->render('@monitoring/views/common/_prodi_progress', [
-        'prodi' => $prodi,
-        'model' => $prodi->getK9AkreditasiProdis()->orderBy('id DESC')->one(),
-        'jenis' => FakultasAkademi::FAKULTAS_AKADEMI
-    ])
-    ?>
-<?php endforeach; ?>
+//foreach ($prodis as $prodi):
+//    echo $this->render('@monitoring/views/common/_prodi_progress', [
+//        'prodi' => $prodi,
+//        'model' => $prodi->getK9AkreditasiProdis()->orderBy('id DESC')->one(),
+//        'jenis' => FakultasAkademi::FAKULTAS_AKADEMI
+//    ])
+//    ?>
+<?php //endforeach; ?>
 <div class="kt-portlet">
     <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
@@ -126,8 +127,10 @@ foreach ($prodis as $prodi):
                                     <div class="card-body">
                                         <h5 class="card-title">Struktur Organisasi</h5>
                                         <?php if ($profil->struktur_organisasi): ?>
-                                            <?= Html::img(Yii::getAlias("@.uploadStruktur/{$profil->type}/{$prodi->id}/{$profil->struktur_organisasi}"),
-                                                ['width' => '80%']) ?>
+                                            <?= Html::img(
+                                                Yii::getAlias("@.uploadStruktur/{$profil->type}/{$model->id}/{$profil->struktur_organisasi}"),
+                                                ['width' => '80%']
+                                            ) ?>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -137,9 +140,6 @@ foreach ($prodis as $prodi):
                     </div>
                 </div>
             </div>
-            <hr>
-
-
         </div>
     </div>
 </div>
