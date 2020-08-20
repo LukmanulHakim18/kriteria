@@ -165,7 +165,7 @@ class K9AkreditasiInstitusiForm extends Model
             throw new InvalidArgumentException($this->_lk_institusi->errors);
 
         }
-        $fileJson = 'lkpt_institusi.json';
+        $fileJson = 'lkpt_institusi_akademik.json';
         $json = Json::decode(file_get_contents(Yii::getAlias('@common/required/kriteria9/apt/' . $fileJson)));
         $attr = ['id_lk_institusi' => $this->_lk_institusi->id, 'progress' => 0];
         foreach ($json as $kriteria) {

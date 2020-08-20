@@ -73,7 +73,7 @@ class LkController extends BaseController
 
     protected function getJsonData()
     {
-        $fileJson = 'lkpt_institusi.json';
+        $fileJson = 'lkpt_institusi_akademik.json';
         $json = Json::decode(file_get_contents(Yii::getAlias('@common/required/kriteria9/apt/' . $fileJson)));
         return $json;
     }
