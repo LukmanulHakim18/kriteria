@@ -120,7 +120,8 @@ return [
             'site/login',
             'site/error',
             'site/logout',
-            'datecontrol/*'
+            'datecontrol/*',
+            'grid/*'
 //            'admin/*',
 //            'debug/*',
 //            'sertifikat/*',

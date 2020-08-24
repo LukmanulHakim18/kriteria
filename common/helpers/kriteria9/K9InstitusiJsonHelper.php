@@ -30,7 +30,7 @@ class K9InstitusiJsonHelper implements IK9JsonHelper
                 $filename = 'led_institusi.json';
                 break;
             case 'lk':
-                $filename = 'lkpt_institusi.json';
+                $filename = 'lkpt_institusi_akademik.json';
                 break;
         }
         $path = Yii::getAlias('@required/kriteria9/apt/' . $filename);

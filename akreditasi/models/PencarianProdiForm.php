@@ -16,7 +16,7 @@ class PencarianProdiForm extends Model
 {
     public $id_prodi;
 
-    private $_prodi;
+    protected $_prodi;
 
     /**
      * @return array
@@ -48,9 +48,7 @@ class PencarianProdiForm extends Model
         $this->_prodi = ProgramStudi::findOne($this->id_prodi);
         if(!$this->_prodi) return null;
 
-        $url = ['k9-prodi/default','prodi'=>$this->_prodi->id];
-
-        return $url;
+        return ['k9-prodi/default','prodi'=>$this->_prodi->id];
     }
 
     /**

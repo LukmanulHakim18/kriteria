@@ -79,7 +79,7 @@ class K9InstitusiProgressHelper implements IK9ProgressHelper
     public static function getDokumenLkProgress($lk, $dokumen, $kriteria)
     {
         $progress = 0;
-        $filename = 'lkpt_institusi.json';
+        $filename = 'lkpt_institusi_akademik.json';
         $filejson = file_get_contents(Yii::getAlias('@required/kriteria9/apt/'.$filename));
 
         $json = Json::decode($filejson);

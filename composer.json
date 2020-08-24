@@ -44,7 +44,8 @@
         "oxyaction/yii2-polymorphic-relation-behavior": "^1.0",
         "mpdf/mpdf": "^8.0",
         "dmstr/yii2-ajax-button": "^1.0",
-        "supplyhog/yii2-clipboardjs": "dev-master"
+        "supplyhog/yii2-clipboardjs": "dev-master",
+        "yii2mod/collection": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

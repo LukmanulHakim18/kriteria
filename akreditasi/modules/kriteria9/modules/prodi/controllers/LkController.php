@@ -3,7 +3,6 @@
 
 namespace akreditasi\modules\kriteria9\modules\prodi\controllers;
 
-
 use akreditasi\models\kriteria9\forms\lk\prodi\K9LinkLkProdiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\prodi\K9LkProdiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\prodi\K9TextLkProdiKriteriaDetailForm;
@@ -50,7 +49,6 @@ class LkController extends BaseController
 
 
         if ($model->load(Yii::$app->request->post())) {
-
             if (Yii::$app->request->isAjax) {
                 $url = $model->cari($target);
                 $lk = $model->getLk();
@@ -62,7 +60,6 @@ class LkController extends BaseController
                 }
                 return $this->renderAjax('_hasil-arsip', ['lk' => $lk, 'url' => $newUrl]);
             }
-
         }
         return $this->render('arsip', [
             'model' => $model,
@@ -106,7 +103,6 @@ class LkController extends BaseController
         $fileJson = 'lkps_prodi_Sarjana.json';
         $json = Json::decode(file_get_contents(Yii::getAlias('@common/required/kriteria9/aps/' . $fileJson)));
         return $json;
-
     }
 
     protected function getArrayKriteria($lk)
@@ -142,11 +138,9 @@ class LkController extends BaseController
         $dokLinkModel = new K9LinkLkProdiKriteriaDetailForm();
 
         if ($dokModel->load(Yii::$app->request->post())) {
-
             $dokModel->isiDokumen = UploadedFile::getInstance($dokModel, 'isiDokumen');
 
             if ($dokModel->uploadDokumen($lk, $kriteria)) {
-
 //              Alert jika nama sama belum selesai
 
                 Yii::$app->session->setFlash('success', 'Berhasil Upload');
@@ -162,7 +156,6 @@ class LkController extends BaseController
             $modelNarasi->save();
             Yii::$app->session->setFlash('success', 'Berhasil Memperbarui Entri');
             return $this->redirect(Url::current());
-
         }
 
 
@@ -237,16 +230,15 @@ class LkController extends BaseController
         $path = K9ProdiDirectoryHelper::getDokumenLkPath($model->lkProdiKriteria1->lkProdi->akreditasiProdi);
         $file = $model->isi_dokumen;
 
-        if ($model->jenis_dokumen == 'lainnya') {
+        if ($model->jenis_dokumen === 'lainnya') {
             return Yii::$app->response->sendFile("$path/lainnya/$file");
-        } elseif ($model->jenis_dokumen == 'sumber') {
+        } elseif ($model->jenis_dokumen === 'sumber') {
             return Yii::$app->response->sendFile("$path/sumber/$file");
-        } elseif ($model->jenis_dokumen == 'pendukung') {
+        } elseif ($model->jenis_dokumen === 'pendukung') {
             return Yii::$app->response->sendFile("$path/pendukung/$file");
         } else {
             return Yii::$app->response->sendFile("$path/$file");
         }
-
     }
 
     public function actionHapusDok()
@@ -264,32 +256,32 @@ class LkController extends BaseController
             $path = K9ProdiDirectoryHelper::getDokumenLkPath($model->lkProdiKriteria1->lkProdi->akreditasiProdi);
             $file = $model->isi_dokumen;
 
-            if ($model->bentuk_dokumen == 'text') {
+            if ($model->bentuk_dokumen === 'text') {
                 $model->delete();
                 Yii::$app->session->setFlash('success', "Teks Tabel $model->kode_dokumen berhasil dihapus");
                 return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk, 'prodi' => $prodi]);
             }
-            if ($model->bentuk_dokumen == 'link') {
+            if ($model->bentuk_dokumen === 'link') {
                 $model->delete();
                 Yii::$app->session->setFlash('success', "Tautan Tabel $model->kode_dokumen berhasil dihapus");
                 return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk, 'prodi' => $prodi]);
             }
 
-            if ($model->jenis_dokumen == 'lainnya') {
+            if ($model->jenis_dokumen === 'lainnya') {
                 unlink("$path/lainnya/$file");
                 $model->delete();
 
                 Yii::$app->session->setFlash('success', "Dokumen Tabel $model->kode_dokumen berhasil dihapus");
                 return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk, 'prodi' => $prodi]);
             }
-            if ($model->jenis_dokumen == 'sumber') {
+            if ($model->jenis_dokumen === 'sumber') {
                 unlink("$path/sumber/$file");
                 $model->delete();
 
                 Yii::$app->session->setFlash('success', "Dokumen Tabel $model->kode_dokumen berhasil dihapus");
                 return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk, 'prodi' => $prodi]);
             }
-            if ($model->jenis_dokumen == 'pendukung') {
+            if ($model->jenis_dokumen === 'pendukung') {
                 unlink("$path/pendukung/$file");
                 $model->delete();
 
@@ -305,5 +297,4 @@ class LkController extends BaseController
         }
         throw new BadRequestHttpException('Request Harus Post');
     }
-
 }
