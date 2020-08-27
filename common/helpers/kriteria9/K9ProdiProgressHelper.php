@@ -110,7 +110,7 @@ class K9ProdiProgressHelper implements IK9ProgressHelper
         $dokumenKriteria = $dokumen->select('kode_dokumen')->distinct()->andWhere(['jenis_dokumen' => Constants::SUMBER])->orWhere(['jenis_dokumen' => Constants::PENDUKUNG])->all();
         $totalDokumenKriteria = sizeof($dokumenKriteria);
 
-        $progress = round((($totalDokumenKriteria / $totalDokumenJson) * 100), 2);
+        $progress = round((($totalDokumenKriteria / $totalDokumenJson) * 50), 2);
 
         return $progress;
 

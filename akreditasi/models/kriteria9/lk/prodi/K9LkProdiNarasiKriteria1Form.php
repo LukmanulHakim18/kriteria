@@ -17,19 +17,20 @@ use common\models\kriteria9\lk\prodi\K9LkProdiKriteria1;
 class K9LkProdiNarasiKriteria1Form extends K9LkProdiKriteria1
 {
 
+    /**
+     * @param bool $insert
+     * @return bool
+     */
     public function beforeSave($insert)
     {
-        $this->updateProgress();
-        $this->lkProdi->updateProgress();
+        $this->progress = $this->hitungNarasi();
+        var_dump($this->progress);
         $this->lkProdi->akreditasiProdi->updateProgress();
         return parent::beforeSave($insert);
     }
 
-    public function updateProgress()
-    {
-
-
-        $json = K9ProdiJsonHelper::getJsonKriteriaLk(1, $this->lkProdi->akreditasiProdi->prodi->jenjang);
+    public function hitungNarasi(){
+        $json = K9ProdiJsonHelper::getJsonKriteriaLk(1,$this->lkProdi->akreditasiProdi->prodi->jenjang);
         $count = 0;
 
         $exclude = ['id', 'id_lk_prodi', 'progress', 'created_at', 'updated_at'];
@@ -43,24 +44,16 @@ class K9LkProdiNarasiKriteria1Form extends K9LkProdiKriteria1
 
         foreach ($attributeKeys as $k => $attribute) {
             $template = $json['butir'][$k]['template'];
-            $hashTemplate = sha1($template);
+            $wordCountTemplate = strlen($template);
 
             $data = $this->$attribute;
-            $hashData = sha1($data);
+            $wordCountData = strlen($data);
 
-            if ($hashTemplate !== $hashData) {
-                $count += 1;
+            if ($wordCountTemplate !== $wordCountData) {
+                ++$count;
             }
         }
 
-
-        $progress1 = round(($count / $total) * 50, 2);
-
-        $dokumen = K9ProdiProgressHelper::getDokumenLkProgress($this->id_lk_prodi, $this->getK9LkProdiKriteria1Details(), 1);
-
-        $progress2 = round(($dokumen), 2);
-        $this->progress = $progress1 + $progress2;
-
-        return true;
+        return round(($count / $total) * 50, 2);
     }
 }
