@@ -223,7 +223,7 @@ class LkController extends BaseController
         return Yii::$app->response->sendFile("$path/$file");
     }
 
-    public function actionDownloadDok($id)
+    public function actionDownloadDetail($id)
     {
         ini_set('max_execution_time', 5 * 60);
         $model = K9LkProdiKriteria1Detail::findOne($id);
@@ -241,19 +241,21 @@ class LkController extends BaseController
         }
     }
 
-    public function actionHapusDok()
+    public function actionHapusDetail()
     {
         if (Yii::$app->request->isPost) {
-            $id = Yii::$app->request->post('id');
+            $id = Yii::$app->request->post('dokumen');
             $kriteria = Yii::$app->request->post('kriteria');
             $lk = Yii::$app->request->post('lk');
             $prodi = Yii::$app->request->post('prodi');
 
-            $namespace = 'common\\models\\kriteria9\\lk\\prodi\\K9';
-            $class = $namespace . 'LkProdiKriteria' . $kriteria . 'Detail';
+            $namespace = 'common\\models\\kriteria9\\lk\\prodi';
+            $class = $namespace . '\\K9LkProdiKriteria' . $kriteria . 'Detail';
             $model = call_user_func($class . '::findOne', $id);
+            $attr = 'lkProdiKriteria'.$kriteria;
 
-            $path = K9ProdiDirectoryHelper::getDokumenLkPath($model->lkProdiKriteria1->lkProdi->akreditasiProdi);
+
+            $path = K9ProdiDirectoryHelper::getDokumenLkPath($model->$attr->lkProdi->akreditasiProdi);
             $file = $model->isi_dokumen;
 
             if ($model->bentuk_dokumen === 'text') {

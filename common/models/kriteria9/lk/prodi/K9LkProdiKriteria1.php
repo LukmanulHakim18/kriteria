@@ -74,10 +74,10 @@ class K9LkProdiKriteria1 extends \yii\db\ActiveRecord
     public function updateProgress()
     {
         $dokumen = K9ProdiProgressHelper::getDokumenLkProgress($this->id_lk_prodi, $this->getK9LkProdiKriteria1Details(), 1);
-
-        $progress = round(($dokumen) / 1, 2);
+        $progress = round($dokumen, 2);
         $this->progress = $progress;
-        $this->save(false);
+
+        return $this;
     }
 
     /**
@@ -87,4 +87,6 @@ class K9LkProdiKriteria1 extends \yii\db\ActiveRecord
     {
         return $this->hasMany(K9LkProdiKriteria1Detail::className(), ['id_lk_prodi_kriteria1' => 'id']);
     }
+
+
 }

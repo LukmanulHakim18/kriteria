@@ -104,7 +104,7 @@ class K9LkProdiKriteria1Detail extends \yii\db\ActiveRecord
 
     public function afterSave($insert, $changedAttributes)
     {
-        $this->lkProdiKriteria1->updateProgress();
+        $this->lkProdiKriteria1->updateProgress()->save(false);
         $this->lkProdiKriteria1->lkProdi->updateProgress();
         $this->lkProdiKriteria1->lkProdi->akreditasiProdi->updateProgress();
         return parent::afterSave($insert, $changedAttributes);

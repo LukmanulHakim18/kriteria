@@ -23,6 +23,7 @@ use yii\bootstrap4\Progress;
 /* @var $dokLinkModel K9LinkLkProdiKriteriaDetailForm */
 /* @var $dataKriteria */
 /* @var $poinKriteria */
+/* @var $path string */
 
 $prodi = Yii::$app->request->get('prodi');
 $kriteria = Yii::$app->request->get('kriteria');
@@ -97,12 +98,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <div class="col-lg-12">
                                                     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $modelAttribute . '-form']) ?>
 
+                                                    <?php
+                                                    var_dump(strlen($item['template']));
+                                                    var_dump(strlen($modelNarasi->$modelAttribute));
+                                                    ?>
                                                     <?= $form->field($modelNarasi, $modelAttribute)->widget(TinyMce::class, [
-                                                        'options' => ['rows' => 6, 'id' => $modelAttribute . '-tinymce-kriteria'],
+                                                        'options' => ['rows' => 16, 'id' => $modelAttribute . '-tinymce-kriteria'],
                                                         'language' => 'id',
                                                         'clientOptions' => [
                                                             'plugins' => [
-                                                                "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
+                                                                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
                                                                 "searchreplace wordcount visualblocks visualchars code fullscreen",
                                                                 "insertdatetime media nonbreaking save table contextmenu directionality",
                                                                 "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
@@ -320,9 +325,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                                             <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
 
                                                             <?php else: ?>
-                                                                <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['led/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'lk' => $_GET['lk'], 'jenis' => Constants::SUMBER], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
+                                                                <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['lk/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'lk' => $_GET['lk'], 'jenis' => Constants::SUMBER], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
                                                             <?php endif; ?>
-                                                            <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['led/hapus-detail'], [
+                                                            <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['lk/hapus-detail'], [
                                                                 'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
                                                                 'data' => [
                                                                     'method' => 'POST',
@@ -528,13 +533,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                     ]); ?>
                                                                     <?php switch ($type) {
                                                                         case FileTypeHelper::TYPE_IMAGE:
-                                                                            echo Html::img("$path/sumber/{$v->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
+                                                                            echo Html::img("$path/pendukung/{$v->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
                                                                             break;
                                                                         case FileTypeHelper::TYPE_STATIC_TEXT:
                                                                             echo $v->isi_dokumen;
                                                                             break;
                                                                         case FileTypeHelper::TYPE_PDF:
-                                                                            echo '<embed src="' . $path . '/sumber/' . $v->isi_dokumen . '" type="application/pdf" height="100%" width="100%">
+                                                                            echo '<embed src="' . $path . '/pendukung/' . $v->isi_dokumen . '" type="application/pdf" height="100%" width="100%">
 ';
                                                                             break;
                                                                     } ?>
@@ -545,9 +550,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                 <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
 
                                                                 <?php else: ?>
-                                                                    <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['led/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'lk' => $_GET['lk'], 'jenis' => Constants::PENDUKUNG], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
+                                                                    <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['lk/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'lk' => $_GET['lk'], 'jenis' => Constants::PENDUKUNG], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
                                                                 <?php endif; ?>
-                                                                <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['led/hapus-detail'], [
+                                                                <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['lk/hapus-detail'], [
                                                                     'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
                                                                     'data' => [
                                                                         'method' => 'POST',
@@ -667,13 +672,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                         ]); ?>
                                                                         <?php switch ($type) {
                                                                             case FileTypeHelper::TYPE_IMAGE:
-                                                                                echo Html::img("$path/sumber/{$v->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
+                                                                                echo Html::img("$path/lainnya/{$v->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
                                                                                 break;
                                                                             case FileTypeHelper::TYPE_STATIC_TEXT:
                                                                                 echo $v->isi_dokumen;
                                                                                 break;
                                                                             case FileTypeHelper::TYPE_PDF:
-                                                                                echo '<embed src="' . $path . '/sumber/' . $v->isi_dokumen . '" type="application/pdf" height="100%" width="100%">
+                                                                                echo '<embed src="' . $path . '/lainnya/' . $v->isi_dokumen . '" type="application/pdf" height="100%" width="100%">
 ';
                                                                                 break;
                                                                         } ?>
@@ -684,9 +689,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                     <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
 
                                                                     <?php else: ?>
-                                                                        <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['led/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'lk' => $_GET['lk'], 'jenis' => Constants::LAINNYA], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
+                                                                        <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['lk/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'lk' => $_GET['lk'], 'jenis' => Constants::LAINNYA], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
                                                                     <?php endif; ?>
-                                                                    <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['led/hapus-detail'], [
+                                                                    <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['lk/hapus-detail'], [
                                                                         'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
                                                                         'data' => [
                                                                             'method' => 'POST',
