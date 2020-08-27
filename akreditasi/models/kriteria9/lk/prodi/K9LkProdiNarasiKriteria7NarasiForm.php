@@ -12,9 +12,9 @@ namespace akreditasi\models\kriteria9\lk\prodi;
 
 use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\helpers\kriteria9\K9ProdiProgressHelper;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria7;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria7Narasi;
 
-class K9LkProdiNarasiKriteria7Form extends K9LkProdiKriteria7
+class K9LkProdiNarasiKriteria7NarasiForm extends K9LkProdiKriteria7Narasi
 {
 
     public function beforeSave($insert)

@@ -12,15 +12,15 @@ use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\forms\lk\K9PencarianLkProdiForm;
 use common\models\kriteria9\lk\K9LkTemplate;
 use common\models\kriteria9\lk\prodi\K9LkProdi;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria1;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria1Narasi;
 use common\models\kriteria9\lk\prodi\K9LkProdiKriteria1Detail;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria2;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria3;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria4;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria5;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria6;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria7;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria8;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria2Narasi;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria3Narasi;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria4Narasi;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria5Narasi;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria6Narasi;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria7Narasi;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria8Narasi;
 use common\models\ProgramStudi;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -107,14 +107,14 @@ class LkController extends BaseController
 
     protected function getArrayKriteria($lk)
     {
-        $kriteria1 = K9LkProdiKriteria1::findOne(['id_lk_prodi' => $lk]);
-        $kriteria2 = K9LkProdiKriteria2::findOne(['id_lk_prodi' => $lk]);
-        $kriteria3 = K9LkProdiKriteria3::findOne(['id_lk_prodi' => $lk]);
-        $kriteria4 = K9LkProdiKriteria4::findOne(['id_lk_prodi' => $lk]);
-        $kriteria5 = K9LkProdiKriteria5::findOne(['id_lk_prodi' => $lk]);
-        $kriteria6 = K9LkProdiKriteria6::findOne(['id_lk_prodi' => $lk]);
-        $kriteria7 = K9LkProdiKriteria7::findOne(['id_lk_prodi' => $lk]);
-        $kriteria8 = K9LkProdiKriteria8::findOne(['id_lk_prodi' => $lk]);
+        $kriteria1 = K9LkProdiKriteria1Narasi::findOne(['id_lk_prodi' => $lk]);
+        $kriteria2 = K9LkProdiKriteria2Narasi::findOne(['id_lk_prodi' => $lk]);
+        $kriteria3 = K9LkProdiKriteria3Narasi::findOne(['id_lk_prodi' => $lk]);
+        $kriteria4 = K9LkProdiKriteria4Narasi::findOne(['id_lk_prodi' => $lk]);
+        $kriteria5 = K9LkProdiKriteria5Narasi::findOne(['id_lk_prodi' => $lk]);
+        $kriteria6 = K9LkProdiKriteria6Narasi::findOne(['id_lk_prodi' => $lk]);
+        $kriteria7 = K9LkProdiKriteria7Narasi::findOne(['id_lk_prodi' => $lk]);
+        $kriteria8 = K9LkProdiKriteria8Narasi::findOne(['id_lk_prodi' => $lk]);
 
         $kriteria = [$kriteria1, $kriteria2, $kriteria3, $kriteria4, $kriteria5, $kriteria6, $kriteria7, $kriteria8];
 

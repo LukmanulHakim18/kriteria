@@ -3,7 +3,7 @@
 use akreditasi\models\kriteria9\forms\lk\prodi\K9LinkLkProdiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\prodi\K9LkProdiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\prodi\K9TextLkProdiKriteriaDetailForm;
-use akreditasi\models\kriteria9\lk\prodi\K9LkProdiNarasiKriteria1Form;
+use akreditasi\models\kriteria9\lk\prodi\K9LkProdiNarasiKriteria1NarasiForm;
 use common\helpers\FileIconHelper;
 use common\models\Constants;
 use common\models\kriteria9\lk\prodi\K9LkProdi;
@@ -16,7 +16,7 @@ use yii\bootstrap4\Progress;
 
 /* @var $this yii\web\View */
 /* @var $lkProdi K9LkProdi */
-/* @var $modelNarasi K9LkProdiNarasiKriteria1Form */
+/* @var $modelNarasi K9LkProdiNarasiKriteria1NarasiForm */
 /* @var $dataKriteria */
 /* @var $poinKriteria */
 

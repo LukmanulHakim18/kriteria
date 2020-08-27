@@ -3,7 +3,7 @@
 use akreditasi\models\kriteria9\forms\lk\prodi\K9LinkLkProdiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\prodi\K9LkProdiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\prodi\K9TextLkProdiKriteriaDetailForm;
-use akreditasi\models\kriteria9\lk\prodi\K9LkProdiNarasiKriteria1Form;
+use akreditasi\models\kriteria9\lk\prodi\K9LkProdiNarasiKriteria1NarasiForm;
 use common\helpers\FileIconHelper;
 use common\helpers\FileTypeHelper;
 use common\models\Constants;
@@ -17,7 +17,7 @@ use yii\bootstrap4\Progress;
 
 /* @var $this yii\web\View */
 /* @var $lkProdi K9LkProdi */
-/* @var $modelNarasi K9LkProdiNarasiKriteria1Form */
+/* @var $modelNarasi K9LkProdiNarasiKriteria1NarasiForm */
 /* @var $dokModel K9LkProdiKriteriaDetailForm */
 /* @var $dokTextModel K9TextLkProdiKriteriaDetailForm */
 /* @var $dokLinkModel K9LinkLkProdiKriteriaDetailForm */
@@ -98,10 +98,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <div class="col-lg-12">
                                                     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $modelAttribute . '-form']) ?>
 
-                                                    <?php
-                                                    var_dump(strlen($item['template']));
-                                                    var_dump(strlen($modelNarasi->$modelAttribute));
-                                                    ?>
+                                                    <h5>Tabel <?=$item['tabel']?> <?=$item['nama']?></h5>
+                                                    <p><?=$item['petunjuk']?></p>
+
                                                     <?= $form->field($modelNarasi, $modelAttribute)->widget(TinyMce::class, [
                                                         'options' => ['rows' => 16, 'id' => $modelAttribute . '-tinymce-kriteria'],
                                                         'language' => 'id',
@@ -117,6 +116,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         ]
                                                     ])->label('') ?>
 
+                                                    <?php if(!empty($item['keterangan'])):?>
+                                                    <h6>Keterangan</h6>
+                                                        <?=$item['keterangan']?>
+                                                    <?php endif;?>
                                                     <div class="form-group pull-right">
                                                         <?= Html::submitButton('<i class="la la-save"></i> Simpan', ['class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air ']) ?>
                                                     </div>

@@ -12,9 +12,10 @@ namespace akreditasi\models\kriteria9\lk\prodi;
 
 use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\helpers\kriteria9\K9ProdiProgressHelper;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria1;
+use common\helpers\NomorKriteriaHelper;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria1Narasi;
 
-class K9LkProdiNarasiKriteria1Form extends K9LkProdiKriteria1
+class K9LkProdiNarasiKriteria1NarasiForm extends K9LkProdiKriteria1Narasi
 {
 
     /**
@@ -24,7 +25,6 @@ class K9LkProdiNarasiKriteria1Form extends K9LkProdiKriteria1
     public function beforeSave($insert)
     {
         $this->progress = $this->hitungNarasi();
-        var_dump($this->progress);
         $this->lkProdi->akreditasiProdi->updateProgress();
         return parent::beforeSave($insert);
     }
@@ -43,15 +43,18 @@ class K9LkProdiNarasiKriteria1Form extends K9LkProdiKriteria1
         $attributeKeys = array_keys($filters);
 
         foreach ($attributeKeys as $k => $attribute) {
-            $template = $json['butir'][$k]['template'];
-            $wordCountTemplate = strlen($template);
+            if($attribute === $json['butir'][$k]['template']){
+                $template = $json['butir'][$k]['template'];
+                $wordCountTemplate = strlen($template);
 
-            $data = $this->$attribute;
-            $wordCountData = strlen($data);
+                $data = $this->$attribute;
+                $wordCountData = strlen($data);
 
-            if ($wordCountTemplate !== $wordCountData) {
-                ++$count;
+                if ($wordCountTemplate !== $wordCountData) {
+                    ++$count;
+                }
             }
+
         }
 
         return round(($count / $total) * 50, 2);

@@ -77,7 +77,6 @@ class K9ProdiProgressHelper implements IK9ProgressHelper
 
     public static function getDokumenLkProgress($lk, $dokumen, $kriteria)
     {
-        $progress = 0;
         $filename = 'lkps_prodi_Sarjana.json';
         $filejson = file_get_contents(Yii::getAlias('@required/kriteria9/aps/' . $filename));
 
@@ -100,7 +99,6 @@ class K9ProdiProgressHelper implements IK9ProgressHelper
                 }
             }
 
-
             $dataSumber = sizeof($butir['dokumen_sumber']);
             $dataPendukung = sizeof($butir['dokumen_pendukung']);
             $data = $dataSumber + $dataPendukung - $missing;
@@ -110,9 +108,7 @@ class K9ProdiProgressHelper implements IK9ProgressHelper
         $dokumenKriteria = $dokumen->select('kode_dokumen')->distinct()->andWhere(['jenis_dokumen' => Constants::SUMBER])->orWhere(['jenis_dokumen' => Constants::PENDUKUNG])->all();
         $totalDokumenKriteria = sizeof($dokumenKriteria);
 
-        $progress = round((($totalDokumenKriteria / $totalDokumenJson) * 50), 2);
-
-        return $progress;
+        return round((($totalDokumenKriteria / $totalDokumenJson) * 50), 2);
 
     }
 }

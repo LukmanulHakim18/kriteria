@@ -15,14 +15,14 @@ use yii\behaviors\TimestampBehavior;
  * @property int $updated_at
  *
  * @property K9AkreditasiProdi $akreditasiProdi
- * @property K9LkProdiKriteria1 $k9LkProdiKriteria1s
- * @property K9LkProdiKriteria2 $k9LkProdiKriteria2s
- * @property K9LkProdiKriteria3 $k9LkProdiKriteria3s
- * @property K9LkProdiKriteria4 $k9LkProdiKriteria4s
- * @property K9LkProdiKriteria5 $k9LkProdiKriteria5s
- * @property K9LkProdiKriteria6 $k9LkProdiKriteria6s
- * @property K9LkProdiKriteria7 $k9LkProdiKriteria7s
- * @property K9LkProdiKriteria8 $k9LkProdiKriteria8s
+ * @property K9LkProdiKriteria1Narasi $k9LkProdiKriteria1s
+ * @property K9LkProdiKriteria2Narasi $k9LkProdiKriteria2s
+ * @property K9LkProdiKriteria3Narasi $k9LkProdiKriteria3s
+ * @property K9LkProdiKriteria4Narasi $k9LkProdiKriteria4s
+ * @property K9LkProdiKriteria5Narasi $k9LkProdiKriteria5s
+ * @property K9LkProdiKriteria6Narasi $k9LkProdiKriteria6s
+ * @property K9LkProdiKriteria7Narasi $k9LkProdiKriteria7s
+ * @property K9LkProdiKriteria8Narasi $k9LkProdiKriteria8s
  */
 class K9LkProdi extends \yii\db\ActiveRecord
 {
@@ -80,7 +80,7 @@ class K9LkProdi extends \yii\db\ActiveRecord
      */
     public function getK9LkProdiKriteria1s()
     {
-        return $this->hasOne(K9LkProdiKriteria1::className(), ['id_lk_prodi' => 'id']);
+        return $this->hasOne(K9LkProdiKriteria1Narasi::className(), ['id_lk_prodi' => 'id']);
     }
 
     /**
@@ -88,7 +88,7 @@ class K9LkProdi extends \yii\db\ActiveRecord
      */
     public function getK9LkProdiKriteria2s()
     {
-        return $this->hasOne(K9LkProdiKriteria2::className(), ['id_lk_prodi' => 'id']);
+        return $this->hasOne(K9LkProdiKriteria2Narasi::className(), ['id_lk_prodi' => 'id']);
     }
 
     /**
@@ -96,7 +96,7 @@ class K9LkProdi extends \yii\db\ActiveRecord
      */
     public function getK9LkProdiKriteria3s()
     {
-        return $this->hasOne(K9LkProdiKriteria3::className(), ['id_lk_prodi' => 'id']);
+        return $this->hasOne(K9LkProdiKriteria3Narasi::className(), ['id_lk_prodi' => 'id']);
     }
 
     /**
@@ -104,7 +104,7 @@ class K9LkProdi extends \yii\db\ActiveRecord
      */
     public function getK9LkProdiKriteria4s()
     {
-        return $this->hasOne(K9LkProdiKriteria4::className(), ['id_lk_prodi' => 'id']);
+        return $this->hasOne(K9LkProdiKriteria4Narasi::className(), ['id_lk_prodi' => 'id']);
     }
 
     /**
@@ -112,7 +112,7 @@ class K9LkProdi extends \yii\db\ActiveRecord
      */
     public function getK9LkProdiKriteria5s()
     {
-        return $this->hasOne(K9LkProdiKriteria5::className(), ['id_lk_prodi' => 'id']);
+        return $this->hasOne(K9LkProdiKriteria5Narasi::className(), ['id_lk_prodi' => 'id']);
     }
 
     /**
@@ -120,7 +120,7 @@ class K9LkProdi extends \yii\db\ActiveRecord
      */
     public function getK9LkProdiKriteria6s()
     {
-        return $this->hasOne(K9LkProdiKriteria6::className(), ['id_lk_prodi' => 'id']);
+        return $this->hasOne(K9LkProdiKriteria6Narasi::className(), ['id_lk_prodi' => 'id']);
     }
 
     /**
@@ -128,7 +128,7 @@ class K9LkProdi extends \yii\db\ActiveRecord
      */
     public function getK9LkProdiKriteria7s()
     {
-        return $this->hasOne(K9LkProdiKriteria7::className(), ['id_lk_prodi' => 'id']);
+        return $this->hasOne(K9LkProdiKriteria7Narasi::className(), ['id_lk_prodi' => 'id']);
     }
 
     /**
@@ -136,7 +136,7 @@ class K9LkProdi extends \yii\db\ActiveRecord
      */
     public function getK9LkProdiKriteria8s()
     {
-        return $this->hasOne(K9LkProdiKriteria8::className(), ['id_lk_prodi' => 'id']);
+        return $this->hasOne(K9LkProdiKriteria8Narasi::className(), ['id_lk_prodi' => 'id']);
     }
 
 

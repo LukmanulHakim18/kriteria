@@ -9,12 +9,11 @@
 
 namespace akreditasi\models\kriteria9\lk\prodi;
 
-
 use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\helpers\kriteria9\K9ProdiProgressHelper;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria4;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria8Narasi;
 
-class K9LkProdiNarasiKriteria4Form extends K9LkProdiKriteria4
+class K9LkProdiNarasiKriteria8NarasiForm extends K9LkProdiKriteria8Narasi
 {
 
     public function beforeSave($insert)
@@ -27,7 +26,7 @@ class K9LkProdiNarasiKriteria4Form extends K9LkProdiKriteria4
 
     public function updateProgress()
     {
-        $json = K9ProdiJsonHelper::getJsonKriteriaLk(4,$this->lkProdi->akreditasiProdi->prodi->jenjang);
+        $json = K9ProdiJsonHelper::getJsonKriteriaLk(8, $this->lkProdi->akreditasiProdi->prodi->jenjang);
         $count = 0;
 
         $exclude = ['id', 'id_lk_prodi', 'progress', 'created_at', 'updated_at'];
@@ -54,7 +53,7 @@ class K9LkProdiNarasiKriteria4Form extends K9LkProdiKriteria4
 
         $progress1 = round(($count / $total) * 50, 2);
 
-        $dokumen = K9ProdiProgressHelper::getDokumenLkProgress($this->id_lk_prodi, $this->getK9LkProdiKriteria4Details(), 4);
+        $dokumen = K9ProdiProgressHelper::getDokumenLkProgress($this->id_lk_prodi, $this->getK9LkProdiKriteria8Details(), 8);
 
         $progress2 = round(($dokumen), 2);
         $this->progress = $progress1 + $progress2;

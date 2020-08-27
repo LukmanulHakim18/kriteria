@@ -126,12 +126,24 @@ class K9AkreditasiProdiForm extends Model
 
         }
 
-        $fileJson = 'lkps_prodi_Sarjana.json';
+        $prodi = $this->_akreditasiProdi->prodi;
+        $fileJson = 'lkps_prodi_'.$prodi->jenjang.'.json';
         $json = Json::decode(file_get_contents(Yii::getAlias('@common/required/kriteria9/aps/' . $fileJson)));
-        $attr = ['id_lk_prodi' => $this->_lk_prodi->id, 'progress' => 0];
+
         foreach ($json as $kriteria) {
-            $class = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria['kriteria'];
+            $kritClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria'.$kriteria['kriteria'];
+            $kritProdi = new $kritClass;
+            $kritProdi->setAttributes(['id_lk_prodi'=>$this->_lk_prodi->id,'progress_narasi'=>0,'progress_dokumen'=>0]);
+
+            if(!$kritProdi->save(false)){
+                $transaction->rollBack();
+                throw new InvalidArgumentException($kritProdi->errors);
+            }
+
+            $class = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria['kriteria'] . 'Narasi';
             $kriteriaProdi = new $class;
+
+            $attr = ['id_lk_prodi_kriteria'.$kriteria['kriteria'] => $kritProdi->id, 'progress' => 0];
             $kriteriaProdi->setAttributes($attr);
             foreach ($kriteria['butir'] as $key => $item) {
                 $modelAttribute = '_' . str_replace('.', '_', $item['tabel']);
