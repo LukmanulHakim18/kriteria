@@ -96,6 +96,10 @@ class K9LkProdiKriteria6 extends \yii\db\ActiveRecord
         $this->progress_narasi = $this->k9LkProdiKriteria6Narasi->progress;
         return $this;
     }
+
+    public function getProgress(){
+        return round(( $this->progress_narasi + $this->progress_dokumen)/2,2);
+    }
     public function updateProgressDokumen()
     {
         $dokumen = K9ProdiProgressHelper::getDokumenLkProgress($this, $this->getK9LkProdiKriteria6Details(), 6);

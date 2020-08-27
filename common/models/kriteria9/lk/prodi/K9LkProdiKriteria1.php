@@ -19,6 +19,7 @@ use yii\behaviors\TimestampBehavior;
  * @property K9LkProdi $lkProdi
  * @property K9LkProdiKriteria1Narasi $k9LkProdiKriteria1Narasi
  * @property K9LkProdiKriteria1Detail[] $k9LkProdiKriteria1Details
+ * @property float $progress
  */
 class K9LkProdiKriteria1 extends \yii\db\ActiveRecord
 {
@@ -92,6 +93,9 @@ class K9LkProdiKriteria1 extends \yii\db\ActiveRecord
         return $this->hasMany(K9LkProdiKriteria1Detail::className(), ['id_lk_prodi_kriteria1' => 'id']);
     }
 
+    public function getProgress(){
+        return round(( $this->progress_narasi + $this->progress_dokumen)/2,2);
+    }
     public function updateProgressNarasi(){
 
         $this->progress_narasi = $this->k9LkProdiKriteria1Narasi->progress;

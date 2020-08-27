@@ -204,15 +204,19 @@ class LkController extends BaseController
         $poinKriteria = $dataKriteria['butir'];
         $lkProdi = K9LkProdi::findOne($lk);
 
+        $lkKriteriaClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria'.$kriteria;
+        $modelKriteria = call_user_func($lkKriteriaClass.'::findOne',['id_lk_prodi'=>$lkProdi->id]);
+
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\prodi\\K9LkProdiNarasiKriteria' . $kriteria . 'Form';
-        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', $lk);
+        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_lk_prodi_kriteria'.$kriteria=>$modelKriteria->id]);
 
         return $this->render('lihat-kriteria', [
             'modelNarasi' => $modelNarasi,
             'lkProdi' => $lkProdi,
             'json' => $json,
             'dataKriteria' => $dataKriteria,
-            'poinKriteria' => $poinKriteria
+            'poinKriteria' => $poinKriteria,
+            'modelKriteria'=>$modelKriteria
         ]);
     }
 

@@ -92,6 +92,10 @@ class K9LkProdiKriteria2 extends \yii\db\ActiveRecord
         return $this->hasMany(K9LkProdiKriteria2Detail::className(), ['id_lk_prodi_kriteria2' => 'id']);
     }
 
+    public function getProgress(){
+        return round(( $this->progress_narasi + $this->progress_dokumen)/2,2);
+    }
+
      public function updateProgressNarasi(){
 
         $this->progress_narasi = $this->k9LkProdiKriteria2Narasi->progress;

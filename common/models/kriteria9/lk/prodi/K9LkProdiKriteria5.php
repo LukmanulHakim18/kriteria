@@ -84,6 +84,9 @@ class K9LkProdiKriteria5 extends \yii\db\ActiveRecord
         return $this->hasOne(K9LkProdiKriteria5Narasi::className(), ['id_lk_prodi_kriteria5' => 'id']);
     }
 
+    public function getProgress(){
+        return round(( $this->progress_narasi + $this->progress_dokumen)/2,2);
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
