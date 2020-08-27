@@ -66,7 +66,7 @@ class K9LkProdiKriteria7Narasi extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getLkProdiKriteriaKriteria7()
+    public function getLkProdiKriteria7()
     {
         return $this->hasOne(K9LkProdiKriteria7::className(), ['id' => 'id_lk_prodi_kriteria7']);
     }

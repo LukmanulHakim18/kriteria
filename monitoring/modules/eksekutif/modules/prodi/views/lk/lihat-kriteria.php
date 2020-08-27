@@ -1,6 +1,6 @@
 <?php
 
-use akreditasi\models\kriteria9\lk\prodi\K9LkProdiNarasiKriteria1NarasiForm;
+use akreditasi\models\kriteria9\lk\prodi\K9LkProdiNarasiKriteria1Form;
 use common\helpers\FileIconHelper;
 use common\models\Constants;
 use common\models\kriteria9\lk\prodi\K9LkProdi;
@@ -9,7 +9,7 @@ use yii\bootstrap4\Progress;
 
 /* @var $this yii\web\View */
 /* @var $lkProdi K9LkProdi */
-/* @var $modelNarasi K9LkProdiNarasiKriteria1NarasiForm */
+/* @var $modelNarasi K9LkProdiNarasiKriteria1Form */
 /* @var $dataKriteria */
 /* @var $poinKriteria */
 

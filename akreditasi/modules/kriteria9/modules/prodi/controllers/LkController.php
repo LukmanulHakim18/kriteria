@@ -12,15 +12,15 @@ use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\forms\lk\K9PencarianLkProdiForm;
 use common\models\kriteria9\lk\K9LkTemplate;
 use common\models\kriteria9\lk\prodi\K9LkProdi;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria1Narasi;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria1;
 use common\models\kriteria9\lk\prodi\K9LkProdiKriteria1Detail;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria2Narasi;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria3Narasi;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria4Narasi;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria5Narasi;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria6Narasi;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria7Narasi;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria8Narasi;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria2;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria3;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria4;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria5;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria6;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria7;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria8;
 use common\models\ProgramStudi;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -107,14 +107,14 @@ class LkController extends BaseController
 
     protected function getArrayKriteria($lk)
     {
-        $kriteria1 = K9LkProdiKriteria1Narasi::findOne(['id_lk_prodi' => $lk]);
-        $kriteria2 = K9LkProdiKriteria2Narasi::findOne(['id_lk_prodi' => $lk]);
-        $kriteria3 = K9LkProdiKriteria3Narasi::findOne(['id_lk_prodi' => $lk]);
-        $kriteria4 = K9LkProdiKriteria4Narasi::findOne(['id_lk_prodi' => $lk]);
-        $kriteria5 = K9LkProdiKriteria5Narasi::findOne(['id_lk_prodi' => $lk]);
-        $kriteria6 = K9LkProdiKriteria6Narasi::findOne(['id_lk_prodi' => $lk]);
-        $kriteria7 = K9LkProdiKriteria7Narasi::findOne(['id_lk_prodi' => $lk]);
-        $kriteria8 = K9LkProdiKriteria8Narasi::findOne(['id_lk_prodi' => $lk]);
+        $kriteria1 = K9LkProdiKriteria1::findOne(['id_lk_prodi' => $lk]);
+        $kriteria2 = K9LkProdiKriteria2::findOne(['id_lk_prodi' => $lk]);
+        $kriteria3 = K9LkProdiKriteria3::findOne(['id_lk_prodi' => $lk]);
+        $kriteria4 = K9LkProdiKriteria4::findOne(['id_lk_prodi' => $lk]);
+        $kriteria5 = K9LkProdiKriteria5::findOne(['id_lk_prodi' => $lk]);
+        $kriteria6 = K9LkProdiKriteria6::findOne(['id_lk_prodi' => $lk]);
+        $kriteria7 = K9LkProdiKriteria7::findOne(['id_lk_prodi' => $lk]);
+        $kriteria8 = K9LkProdiKriteria8::findOne(['id_lk_prodi' => $lk]);
 
         $kriteria = [$kriteria1, $kriteria2, $kriteria3, $kriteria4, $kriteria5, $kriteria6, $kriteria7, $kriteria8];
 
@@ -129,9 +129,11 @@ class LkController extends BaseController
         $poinKriteria = $dataKriteria['butir'];
         $lkProdi = K9LkProdi::findOne($lk);
         $path = K9ProdiDirectoryHelper::getDokumenLkUrl($lkProdi->akreditasiProdi);
+        $lkProdiKriteriaClass= 'common\\models\\kriteria9\lk\\prodi\K9LkProdiKriteria'.$kriteria;
+        $lkProdiKriteria = call_user_func($lkProdiKriteriaClass.'::findOne',['id_lk_prodi'=>$lkProdi->id]);
 
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\prodi\\K9LkProdiNarasiKriteria' . $kriteria . 'Form';
-        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', $lk);
+        $modelNarasi = call_user_func($modelNarasiClass . '::findOne',['id_lk_prodi_kriteria'.$kriteria=>$lkProdiKriteria->id]);
 
         $dokModel = new K9LkProdiKriteriaDetailForm();
         $dokTextModel = new K9TextLkProdiKriteriaDetailForm();
@@ -140,7 +142,7 @@ class LkController extends BaseController
         if ($dokModel->load(Yii::$app->request->post())) {
             $dokModel->isiDokumen = UploadedFile::getInstance($dokModel, 'isiDokumen');
 
-            if ($dokModel->uploadDokumen($lk, $kriteria)) {
+            if ($dokModel->uploadDokumen($lkProdiKriteria->id, $kriteria)) {
 //              Alert jika nama sama belum selesai
 
                 Yii::$app->session->setFlash('success', 'Berhasil Upload');
@@ -160,7 +162,7 @@ class LkController extends BaseController
 
 
         if ($dokTextModel->load(Yii::$app->request->post())) {
-            if ($dokTextModel->uploadText($lk, $kriteria)) {
+            if ($dokTextModel->uploadText($lkProdiKriteria->id, $kriteria)) {
                 Yii::$app->session->setFlash('success', 'Berhasil Tambah Teks');
                 return $this->redirect(Url::current());
             } else {
@@ -170,7 +172,7 @@ class LkController extends BaseController
         }
 
         if ($dokLinkModel->load(Yii::$app->request->post())) {
-            if ($dokLinkModel->uploadLink($lk, $kriteria)) {
+            if ($dokLinkModel->uploadLink($lkProdiKriteria->id, $kriteria)) {
                 Yii::$app->session->setFlash('success', 'Berhasil Tambah Tautan');
                 return $this->redirect(Url::current());
             } else {
@@ -189,6 +191,7 @@ class LkController extends BaseController
             'dokLinkModel' => $dokLinkModel,
             'dataKriteria' => $dataKriteria,
             'poinKriteria' => $poinKriteria,
+            'modelKriteria'=>$lkProdiKriteria,
             'path'=>$path
         ]);
     }

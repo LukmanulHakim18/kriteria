@@ -3,7 +3,7 @@
 use akreditasi\models\kriteria9\forms\lk\prodi\K9LinkLkProdiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\prodi\K9LkProdiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\prodi\K9TextLkProdiKriteriaDetailForm;
-use akreditasi\models\kriteria9\lk\prodi\K9LkProdiNarasiKriteria1NarasiForm;
+use akreditasi\models\kriteria9\lk\prodi\K9LkProdiNarasiKriteria1Form;
 use common\helpers\FileIconHelper;
 use common\helpers\FileTypeHelper;
 use common\models\Constants;
@@ -17,13 +17,14 @@ use yii\bootstrap4\Progress;
 
 /* @var $this yii\web\View */
 /* @var $lkProdi K9LkProdi */
-/* @var $modelNarasi K9LkProdiNarasiKriteria1NarasiForm */
+/* @var $modelNarasi K9LkProdiNarasiKriteria1Form */
 /* @var $dokModel K9LkProdiKriteriaDetailForm */
 /* @var $dokTextModel K9TextLkProdiKriteriaDetailForm */
 /* @var $dokLinkModel K9LinkLkProdiKriteriaDetailForm */
 /* @var $dataKriteria */
 /* @var $poinKriteria */
 /* @var $path string */
+/* @var $modelKriteria */
 
 $prodi = Yii::$app->request->get('prodi');
 $kriteria = Yii::$app->request->get('kriteria');
@@ -46,11 +47,12 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-actions">
-                <strong>Kelengkapan Berkas &nbsp; : <?= $modelNarasi->progress; ?> %</strong>
+                <?php $jumlah = ($modelKriteria->progress_narasi + $modelKriteria->progress_dokumen )/2 ?>
+                <strong>Kelengkapan Berkas &nbsp; : <?= $jumlah ?> %</strong>
                 <div class="kt-space-10"></div>
                 <?=
                 Progress::widget([
-                    'percent' => $modelNarasi->progress,
+                    'percent' => $jumlah,
                     'barOptions' => ['class' => 'progress-bar-info'],
                     'options' => ['class' => 'progress-sm']
                 ]);
@@ -268,7 +270,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <?php
 
                                         $detailClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria . 'Detail';
-                                        $detail = call_user_func($detailClass . "::find")->where(['id_lk_prodi_kriteria' . $kriteria => $modelNarasi->id]);
+                                        $detail = call_user_func($detailClass . "::find")->where(['id_lk_prodi_kriteria' . $kriteria => $modelKriteria->id]);
 
                                         $detail1 = $detail->andWhere(['kode_dokumen' => $doksum['kode'], 'jenis_dokumen' => Constants::SUMBER])->all();
                                         foreach ($detail1 as $k => $v) : ?>
@@ -493,7 +495,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                             <?php
                                             $detailClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria . 'Detail';
-                                            $detail = call_user_func($detailClass . "::find")->where(['id_lk_prodi_kriteria' . $kriteria => $modelNarasi->id]);
+                                            $detail = call_user_func($detailClass . "::find")->where(['id_lk_prodi_kriteria' . $kriteria => $modelKriteria->id]);
 
                                             $detail1 = $detail->andWhere(['kode_dokumen' => $dokpen['kode'], 'jenis_dokumen' => Constants::PENDUKUNG])->all();
 
@@ -631,7 +633,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <tbody>
                                         <?php
                                         $detailClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria . "Detail";
-                                        $detail = call_user_func($detailClass . "::find")->where(['id_lk_prodi_kriteria' . $kriteria => $modelNarasi->id]);
+                                        $detail = call_user_func($detailClass . "::find")->where(['id_lk_prodi_kriteria' . $kriteria => $modelKriteria->id]);
 
                                         $detail1 = $detail->andWhere(['jenis_dokumen' => Constants::LAINNYA])->all();
                                         if (!empty($detail1)) {

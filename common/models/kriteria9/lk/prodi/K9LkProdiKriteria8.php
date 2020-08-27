@@ -2,6 +2,7 @@
 
 namespace common\models\kriteria9\lk\prodi;
 
+use common\helpers\kriteria9\K9ProdiProgressHelper;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 
@@ -16,7 +17,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int|null $updated_at
  *
  * @property K9LkProdi $lkProdi
- * @property K9LkProdiKriteria8Narasi[] $k9LkProdiKriteria8Narasis
+ * @property K9LkProdiKriteria8Narasi $k9LkProdiKriteria8Narasi
  * @property K9LkProdiKriteria8Detail[] $k9LkProdiKriteria8Details
  */
 class K9LkProdiKriteria8 extends \yii\db\ActiveRecord
@@ -74,13 +75,13 @@ class K9LkProdiKriteria8 extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[K9LkProdiKriteria8Narasis]].
+     * Gets query for [[K9LkProdiKriteria8Narasi]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getK9LkProdiKriteria8Narasis()
+    public function getK9LkProdiKriteria8Narasi()
     {
-        return $this->hasMany(K9LkProdiKriteria8Narasi::className(), ['id_lk_prodi_kriteria8' => 'id']);
+        return $this->hasOne(K9LkProdiKriteria8Narasi::className(), ['id_lk_prodi_kriteria8' => 'id']);
     }
 
     /**
@@ -89,5 +90,18 @@ class K9LkProdiKriteria8 extends \yii\db\ActiveRecord
     public function getK9LkProdiKriteria8Details()
     {
         return $this->hasMany(K9LkProdiKriteria8Detail::className(), ['id_lk_prodi_kriteria8' => 'id']);
+    }
+
+    public function updateProgressNarasi(){
+
+        $this->progress_narasi = $this->k9LkProdiKriteria8Narasi->progress;
+        return $this;
+    }
+    public function updateProgressDokumen()
+    {
+        $dokumen = K9ProdiProgressHelper::getDokumenLkProgress($this, $this->getK9LkProdiKriteria8Details(), 8);
+        $progress = round($dokumen, 2);
+        $this->progress_dokumen = $progress;
+        return $this;
     }
 }

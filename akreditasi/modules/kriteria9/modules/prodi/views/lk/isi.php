@@ -106,17 +106,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($json as $kriteriaJson): ?>
+                <?php foreach ($json as $kriteriaJson):
+                    $jumlah = round(($kriteria[$kriteriaJson['kriteria'] - 1]->progress_narasi + $kriteria[$kriteriaJson['kriteria'] - 1]->progress_dokumen)/2,2)
+                    ?>
                     <tr>
                         <th scope="row"><?= Html::encode($kriteriaJson['kriteria']) ?></th>
                         <td>
                             <strong>Tabel <?= Html::encode($kriteriaJson['kriteria']) ?>
-                                : <?= $kriteria[$kriteriaJson['kriteria'] - 1]->progress ?>%</strong><br>
+                                : <?= $jumlah ?>%</strong><br>
                             <?= $kriteriaJson['judul'] ?>
                             <div class="kt-space-10"></div>
                             <?=
                             Progress::widget([
-                                'percent' => $kriteria[$kriteriaJson['kriteria'] - 1]->progress,
+                                'percent' =>$jumlah,
                                 'barOptions' => ['class' => 'progress-bar-info m-progress-lg'],
                                 'options' => ['class' => 'progress-sm']
                             ]); ?>
