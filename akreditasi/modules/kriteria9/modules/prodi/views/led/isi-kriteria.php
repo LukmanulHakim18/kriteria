@@ -258,7 +258,8 @@ use yii\bootstrap4\Progress;
                                         foreach ($detail1 as $k => $v):
                                             ?>
                                             <tr>
-                                                <td colspan="2">
+                                                <td><?= $k + 1 ?></td>
+                                                <td >
                                                     <div class="row">
                                                         <div class="col-lg-12 text-center">
 
