@@ -148,10 +148,11 @@ class K9AkreditasiProdiForm extends Model
             foreach ($kriteria['butir'] as $key => $item) {
                 $modelAttribute = '_' . str_replace('.', '_', $item['tabel']);
                 $kriteriaProdi->$modelAttribute = $item['template'];
-                if (!$kriteriaProdi->save()) {
-                    $transaction->rollBack();
-                    throw new InvalidArgumentException($kriteriaProdi->errors);
-                }
+
+            }
+            if (!$kriteriaProdi->save()) {
+                $transaction->rollBack();
+                throw new InvalidArgumentException($kriteriaProdi->errors);
             }
         }
         $this->createFolder();
