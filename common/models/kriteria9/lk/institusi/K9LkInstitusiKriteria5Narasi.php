@@ -23,13 +23,14 @@ use yii\behaviors\TimestampBehavior;
  * @property string $_5_c_2_e
  * @property string $_5_c_2_f
  * @property string $_5_c_2_g
+ * @property string $_5_d
  * @property string $_5_d_1
  * @property string $_5_d_2
+ * @property string $_5_e
  * @property string $_5_e_1
  * @property string $_5_e_2
  * @property string $_5_f
- * @property string $_5_g_1
- * @property string $_5_g_2
+ * @property string $_5_g
  * @property string $_5_h
  * @property double $progress
  * @property int $created_at
@@ -62,7 +63,7 @@ class K9LkInstitusiKriteria5Narasi extends \yii\db\ActiveRecord
         return [
             [['id_lk_institusi_kriteria5', 'created_at', 'updated_at'], 'integer'],
             [['progress'], 'number'],
-            [['_5_a_1', '_5_a_2', '_5_b_1', '_5_b_2', '_5_c_1', '_5_c_2_a', '_5_c_2_b', '_5_c_2_c_1', '_5_c_2_c_2', '_5_c_2_d', '_5_c_2_e', '_5_c_2_f', '_5_c_2_g', '_5_d_1', '_5_d_2', '_5_e_1', '_5_e_2', '_5_f', '_5_g_1', '_5_g_2', '_5_h'], 'string'],
+            [['_5_a_1', '_5_a_2', '_5_b_1', '_5_b_2', '_5_c_1', '_5_c_2_a', '_5_c_2_b', '_5_c_2_c_1', '_5_c_2_c_2', '_5_c_2_d', '_5_c_2_e', '_5_c_2_f', '_5_c_2_g', '_5_d', '_5_d_1', '_5_d_2', '_5_e', '_5_e_1', '_5_e_2', '_5_f', '_5_g', '_5_h'], 'string'],
             [['id_lk_institusi_kriteria5'], 'exist', 'skipOnError' => true, 'targetClass' => K9LkInstitusiKriteria5::className(), 'targetAttribute' => ['id_lk_institusi_kriteria5' => 'id']],
         ];
     }
@@ -88,13 +89,14 @@ class K9LkInstitusiKriteria5Narasi extends \yii\db\ActiveRecord
             '_5_c_2_e' => '5 C 2 E',
             '_5_c_2_f' => '5 C 2 F',
             '_5_c_2_g' => '5 C 2 G',
+            '_5_d' => '5 D',
             '_5_d_1' => '5 D 1',
             '_5_d_2' => '5 D 2',
+            '_5_e' => '5 E',
             '_5_e_1' => '5 E 1',
             '_5_e_2' => '5 E 2',
             '_5_f' => '5 F',
-            '_5_g_1' => '5 G 1',
-            '_5_g_2' => '5 G 2',
+            '_5_g' => '5 G',
             '_5_h' => '5 H',
             'progress' => 'Progress',
             'created_at' => 'Created At',

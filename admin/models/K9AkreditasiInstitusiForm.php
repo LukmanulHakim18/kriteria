@@ -167,18 +167,30 @@ class K9AkreditasiInstitusiForm extends Model
         }
         $fileJson = 'lkpt_institusi_akademik.json';
         $json = Json::decode(file_get_contents(Yii::getAlias('@common/required/kriteria9/apt/' . $fileJson)));
-        $attr = ['id_lk_institusi' => $this->_lk_institusi->id, 'progress' => 0];
         foreach ($json as $kriteria) {
-            $class = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria' . $kriteria['kriteria'];
+            $kritClass = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria'.$kriteria['kriteria'];
+            $kritModel = new $kritClass;
+            $kritModel->setAttributes(['id_lk_institusi'=>$this->_lk_institusi->id,'progress_narasi'=>0,'progress_dokumen'=>0]);
+
+            if(!$kritModel->save(false)){
+                $transaction->rollBack();
+                throw new InvalidArgumentException($kritModel->errors);
+            }
+
+            $class = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria' . $kriteria['kriteria'].'Narasi';
+            $attr = ['id_lk_institusi_kriteria'.$kriteria['kriteria'] => $kritModel->id, 'progress' => 0];
+
             $kriteriaInstitusi = new $class;
             $kriteriaInstitusi->setAttributes($attr);
             foreach ($kriteria['butir'] as $key => $item) {
+
                 $modelAttribute = '_' . str_replace('.', '_', $item['tabel']);
                 $kriteriaInstitusi->$modelAttribute = $item['template'];
-                if (!$kriteriaInstitusi->save()) {
-                    $transaction->rollBack();
-                    throw new InvalidArgumentException($kriteriaInstitusi->errors);
-                }
+
+            }
+            if (!$kriteriaInstitusi->save()) {
+                $transaction->rollBack();
+                throw new InvalidArgumentException($kriteriaInstitusi->errors);
             }
         }
 
