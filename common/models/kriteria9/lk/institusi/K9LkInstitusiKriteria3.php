@@ -88,6 +88,9 @@ class K9LkInstitusiKriteria3 extends \yii\db\ActiveRecord
     }
 
     public function getProgress(){
+        if ($this->progress_dokumen === 0.0){
+            return $this->progress_narasi;
+        }
         return round(( $this->progress_narasi + $this->progress_dokumen)/2,2);
     }
     public function updateProgressNarasi(){

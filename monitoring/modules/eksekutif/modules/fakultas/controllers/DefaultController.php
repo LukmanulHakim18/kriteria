@@ -16,8 +16,8 @@ class DefaultController extends BaseController
     public function actionIndex($fakultas)
     {
         $model = $this->findFakultas($fakultas);
-        $prodis = $modelFakultas->programStudis;
-        $profil = $modelFakultas->profil;
+        $prodis = $model->programStudis;
+        $profil = $model->profil;
 
         $akreditasiTerakhir = $this->findAkreditasiProdiTerakhir();
         return $this->render('index', compact('model', 'prodis', 'profil', 'akreditasiTerakhir'));
