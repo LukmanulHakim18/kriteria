@@ -125,6 +125,6 @@ class K9LkInstitusi extends \yii\db\ActiveRecord
         $progress = round((($kriteria1 + $kriteria2 + $kriteria3 + $kriteria4 + $kriteria5) / 5), 2);
         $this->progress = $progress;
 
-        $this->save(false);
+        return $this;
     }
 }

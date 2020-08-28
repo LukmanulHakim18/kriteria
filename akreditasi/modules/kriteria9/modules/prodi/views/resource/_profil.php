@@ -21,8 +21,9 @@ use supplyhog\ClipboardJs\ClipboardJsWidget;
             <tr>
                 <td>1</td>
                 <td>Visi</td>
-                <td><?=strip_tags($profil->visi)?></td>
+                <td id=<?="{$profil->type}-visi}"?>><?=strip_tags($profil->visi)?></td>
                 <td><?= ClipboardJsWidget::widget([
+                    'inputId' => "{$profil->type}-visi}",
                     'text' => strip_tags($profil->visi),
                         'label' => '<i class="flaticon2-copy"></i> Salin',
                         'successText' =>'Berhasil di salin',
@@ -100,6 +101,7 @@ use supplyhog\ClipboardJs\ClipboardJsWidget;
                     ])?></td>
             </tr>
             <tr>
+                <!-- TODO: Tambahkan tombol gunakan struktur organisasi. Copy gambarnya terus update di database -->
                 <td>7</td>
                 <td>Struktur Organisasi</td>
                 <td><?=$profil->struktur_organisasi?></td>

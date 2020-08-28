@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m200709_092201_insert_profil_institusi_data
+ * Class m200827_045244_insert_profil_institusi_table
  */
-class m200709_092201_insert_profil_institusi_data extends Migration
+class m200827_045244_insert_profil_institusi_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -19,6 +19,7 @@ class m200709_092201_insert_profil_institusi_data extends Migration
         ];
 
         $this->batchInsert('{{%profil_institusi}}', ['nama', 'isi', 'created_at', 'updated_at'], $data);
+
     }
 
     /**
@@ -38,7 +39,7 @@ class m200709_092201_insert_profil_institusi_data extends Migration
 
     public function down()
     {
-        echo "m200709_092201_insert_profil_institusi_data cannot be reverted.\n";
+        echo "m200827_045244_insert_profil_institusi_table cannot be reverted.\n";
 
         return false;
     }

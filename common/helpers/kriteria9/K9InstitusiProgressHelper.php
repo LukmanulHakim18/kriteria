@@ -19,6 +19,7 @@ use yii\helpers\Json;
 
 class K9InstitusiProgressHelper implements IK9ProgressHelper
 {
+    use K9ProgressTrait;
 
 
     /**
@@ -39,41 +40,7 @@ class K9InstitusiProgressHelper implements IK9ProgressHelper
         $filename = 'led_institusi.json';
         $filejson = file_get_contents(Yii::getAlias('@required/kriteria9/apt/'.$filename));
 
-        $json = Json::decode($filejson);
-
-        $dataJson = $json[$kriteria-1];
-        $totalDokumenJson = 0;
-        foreach ($dataJson['butir'] as $butir){
-
-            $missing = 0;
-            foreach ($butir['dokumen_sumber'] as $doksum){
-                if(empty($doksum['kode'])) {
-                    $missing +=1;
-                }
-            }
-
-            foreach ($butir['dokumen_pendukung'] as $dokpen){
-                if(empty($dokpen['kode'])) {
-                    $missing +=1;
-                }
-            }
-
-
-            $dataSumber = sizeof($butir['dokumen_sumber']);
-            $dataPendukung = sizeof($butir['dokumen_pendukung']);
-            $data = $dataSumber+$dataPendukung - $missing;
-            $totalDokumenJson+=$data;
-        }
-
-        $dokumenKriteria = $detail->select('kode_dokumen')->distinct()->andWhere(['jenis_dokumen'=>Constants::SUMBER])->orWhere(['jenis_dokumen'=>Constants::PENDUKUNG])->all();
-        $totalDokumenKriteria = sizeof($dokumenKriteria);
-
-        $progress = round((($totalDokumenKriteria / $totalDokumenJson) *100),2);
-
-
-
-        return $progress;
-
+       return self::hitung($detail,$kriteria,$filejson);
     }
 
     public static function getDokumenLkProgress($lk, $dokumen, $kriteria)
@@ -82,42 +49,6 @@ class K9InstitusiProgressHelper implements IK9ProgressHelper
         $filename = 'lkpt_institusi_akademik.json';
         $filejson = file_get_contents(Yii::getAlias('@required/kriteria9/apt/'.$filename));
 
-        $json = Json::decode($filejson);
-
-        $dataJson = $json[$kriteria-1];
-        $totalDokumenJson = 0;
-        foreach ($dataJson['butir'] as $butir){
-
-            $missing = 0;
-            foreach ($butir['dokumen_sumber'] as $doksum){
-                if(empty($doksum['kode'])) {
-                    $missing +=1;
-                }
-            }
-
-            foreach ($butir['dokumen_pendukung'] as $dokpen){
-                if(empty($dokpen['kode'])) {
-                    $missing +=1;
-                }
-            }
-
-            $dataSumber = sizeof($butir['dokumen_sumber']);
-            $dataPendukung = sizeof($butir['dokumen_pendukung']);
-            $dataTemplate = 1;
-            if (empty($butir['template'])){
-                $dataTemplate = 0;
-            }
-            $data = $dataTemplate+$dataSumber+$dataPendukung - $missing;
-
-            $totalDokumenJson+=$data;
-        }
-
-        $dokumenKriteria = $dokumen->select('kode_dokumen')->distinct()->andWhere(['jenis_dokumen'=>Constants::SUMBER])->orWhere(['jenis_dokumen'=>Constants::PENDUKUNG])->orWhere(['jenis_dokumen'=>Constants::TEMPLATE])->all();
-
-        $totalDokumenKriteria = sizeof($dokumenKriteria);
-
-        $progress = round((($totalDokumenKriteria / $totalDokumenJson) *100),2);
-
-        return $progress;
+       return self::hitung($dokumen,$kriteria,$filejson);
     }
 }

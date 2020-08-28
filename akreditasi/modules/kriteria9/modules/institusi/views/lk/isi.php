@@ -8,11 +8,12 @@ use yii\bootstrap4\Progress;
 /* @var $kriteria1 [] */
 /* @var $kriteria */
 /* @var $institusi */
+/* @var $json [] */
 
 $this->title = "Isi Laporan Kinerja";
 $this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
-$this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/k9/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Institusi', 'url' => ['/site/index']];
+$this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9/default/index']];
+$this->params['breadcrumbs'][] = ['label' => 'Institusi', 'url' => ['/kriteria9/k9-institusi/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

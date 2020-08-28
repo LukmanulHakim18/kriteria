@@ -257,44 +257,44 @@ class m190724_052006_create_tabel_lk extends Migration
     {
         $this->addForeignKey('fk-k9_lk_prodi-k9_akreditasi_prodi', '{{%k9_lk_prodi}}', 'id_akreditasi_prodi', '{{%k9_akreditasi_prodi}}', 'id', 'cascade', 'cascade');
 
-        $this->addForeignKey('fk-k9_lk_prodi_kt1-k9_lk_prodi', '{{k9_lk_prodi_kriteria1}}', 'id_lk_prodi', '{{%k9_lk_prodi}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt2-k9_lk_prodi', '{{k9_lk_prodi_kriteria2}}', 'id_lk_prodi', '{{%k9_lk_prodi}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt3-k9_lk_prodi', '{{k9_lk_prodi_kriteria3}}', 'id_lk_prodi', '{{%k9_lk_prodi}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt4-k9_lk_prodi', '{{k9_lk_prodi_kriteria4}}', 'id_lk_prodi', '{{%k9_lk_prodi}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt5-k9_lk_prodi', '{{k9_lk_prodi_kriteria5}}', 'id_lk_prodi', '{{%k9_lk_prodi}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt6-k9_lk_prodi', '{{k9_lk_prodi_kriteria6}}', 'id_lk_prodi', '{{%k9_lk_prodi}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt7-k9_lk_prodi', '{{k9_lk_prodi_kriteria7}}', 'id_lk_prodi', '{{%k9_lk_prodi}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt8-k9_lk_prodi', '{{k9_lk_prodi_kriteria8}}', 'id_lk_prodi', '{{%k9_lk_prodi}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt1-k9_lk_prodi', '{{%k9_lk_prodi_kriteria1}}', 'id_lk_prodi', '{{%k9_lk_prodi}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt2-k9_lk_prodi', '{{%k9_lk_prodi_kriteria2}}', 'id_lk_prodi', '{{%k9_lk_prodi}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt3-k9_lk_prodi', '{{%k9_lk_prodi_kriteria3}}', 'id_lk_prodi', '{{%k9_lk_prodi}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt4-k9_lk_prodi', '{{%k9_lk_prodi_kriteria4}}', 'id_lk_prodi', '{{%k9_lk_prodi}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt5-k9_lk_prodi', '{{%k9_lk_prodi_kriteria5}}', 'id_lk_prodi', '{{%k9_lk_prodi}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt6-k9_lk_prodi', '{{%k9_lk_prodi_kriteria6}}', 'id_lk_prodi', '{{%k9_lk_prodi}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt7-k9_lk_prodi', '{{%k9_lk_prodi_kriteria7}}', 'id_lk_prodi', '{{%k9_lk_prodi}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt8-k9_lk_prodi', '{{%k9_lk_prodi_kriteria8}}', 'id_lk_prodi', '{{%k9_lk_prodi}}', 'id', 'cascade', 'cascade');
 
 
-        $this->addForeignKey('fk-k9_lk_prodi_kt1_detail-k9_lk_prodi_kt1', '{{k9_lk_prodi_kriteria1_detail}}', 'id_lk_prodi_kriteria1', '{{%k9_lk_prodi_kriteria1}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt2_detail-k9_lk_prodi_kt2', '{{k9_lk_prodi_kriteria2_detail}}', 'id_lk_prodi_kriteria2', '{{%k9_lk_prodi_kriteria2}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt3_detail-k9_lk_prodi_kt3', '{{k9_lk_prodi_kriteria3_detail}}', 'id_lk_prodi_kriteria3', '{{%k9_lk_prodi_kriteria3}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt4_detail-k9_lk_prodi_kt4', '{{k9_lk_prodi_kriteria4_detail}}', 'id_lk_prodi_kriteria4', '{{%k9_lk_prodi_kriteria4}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt5_detail-k9_lk_prodi_kt5', '{{k9_lk_prodi_kriteria5_detail}}', 'id_lk_prodi_kriteria5', '{{%k9_lk_prodi_kriteria5}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt6_detail-k9_lk_prodi_kt6', '{{k9_lk_prodi_kriteria6_detail}}', 'id_lk_prodi_kriteria6', '{{%k9_lk_prodi_kriteria6}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt7_detail-k9_lk_prodi_kt7', '{{k9_lk_prodi_kriteria7_detail}}', 'id_lk_prodi_kriteria7', '{{%k9_lk_prodi_kriteria7}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt8_detail-k9_lk_prodi_kt8', '{{k9_lk_prodi_kriteria8_detail}}', 'id_lk_prodi_kriteria8', '{{%k9_lk_prodi_kriteria8}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt1_detail-k9_lk_prodi_kt1', '{{%k9_lk_prodi_kriteria1_detail}}', 'id_lk_prodi_kriteria1', '{{%k9_lk_prodi_kriteria1}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt2_detail-k9_lk_prodi_kt2', '{{%k9_lk_prodi_kriteria2_detail}}', 'id_lk_prodi_kriteria2', '{{%k9_lk_prodi_kriteria2}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt3_detail-k9_lk_prodi_kt3', '{{%k9_lk_prodi_kriteria3_detail}}', 'id_lk_prodi_kriteria3', '{{%k9_lk_prodi_kriteria3}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt4_detail-k9_lk_prodi_kt4', '{{%k9_lk_prodi_kriteria4_detail}}', 'id_lk_prodi_kriteria4', '{{%k9_lk_prodi_kriteria4}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt5_detail-k9_lk_prodi_kt5', '{{%k9_lk_prodi_kriteria5_detail}}', 'id_lk_prodi_kriteria5', '{{%k9_lk_prodi_kriteria5}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt6_detail-k9_lk_prodi_kt6', '{{%k9_lk_prodi_kriteria6_detail}}', 'id_lk_prodi_kriteria6', '{{%k9_lk_prodi_kriteria6}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt7_detail-k9_lk_prodi_kt7', '{{%k9_lk_prodi_kriteria7_detail}}', 'id_lk_prodi_kriteria7', '{{%k9_lk_prodi_kriteria7}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt8_detail-k9_lk_prodi_kt8', '{{%k9_lk_prodi_kriteria8_detail}}', 'id_lk_prodi_kriteria8', '{{%k9_lk_prodi_kriteria8}}', 'id', 'cascade', 'cascade');
 
 
-        $this->addForeignKey('fk-k9_lk_prodi_kt1_dtl_crd-usr_crd', '{{k9_lk_prodi_kriteria1_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt2_dtl_crd-usr_crd', '{{k9_lk_prodi_kriteria2_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt3_dtl_crd-usr_crd', '{{k9_lk_prodi_kriteria3_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt4_dtl_crd-usr_crd', '{{k9_lk_prodi_kriteria4_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt5_dtl_crd-usr_crd', '{{k9_lk_prodi_kriteria5_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt6_dtl_crd-usr_crd', '{{k9_lk_prodi_kriteria6_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt7_dtl_crd-usr_crd', '{{k9_lk_prodi_kriteria7_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt8_dtl_crd-usr_crd', '{{k9_lk_prodi_kriteria8_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt1_dtl_crd-usr_crd', '{{%k9_lk_prodi_kriteria1_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt2_dtl_crd-usr_crd', '{{%k9_lk_prodi_kriteria2_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt3_dtl_crd-usr_crd', '{{%k9_lk_prodi_kriteria3_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt4_dtl_crd-usr_crd', '{{%k9_lk_prodi_kriteria4_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt5_dtl_crd-usr_crd', '{{%k9_lk_prodi_kriteria5_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt6_dtl_crd-usr_crd', '{{%k9_lk_prodi_kriteria6_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt7_dtl_crd-usr_crd', '{{%k9_lk_prodi_kriteria7_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt8_dtl_crd-usr_crd', '{{%k9_lk_prodi_kriteria8_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
 
 
-        $this->addForeignKey('fk-k9_lk_prodi_kt1_dtl_upd-usr_upd', '{{k9_lk_prodi_kriteria1_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt2_dtl_upd-usr_upd', '{{k9_lk_prodi_kriteria2_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt3_dtl_upd-usr_upd', '{{k9_lk_prodi_kriteria3_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt4_dtl_upd-usr_upd', '{{k9_lk_prodi_kriteria4_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt5_dtl_upd-usr_upd', '{{k9_lk_prodi_kriteria5_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt6_dtl_upd-usr_upd', '{{k9_lk_prodi_kriteria6_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt7_dtl_upd-usr_upd', '{{k9_lk_prodi_kriteria7_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_prodi_kt8_dtl_upd-usr_upd', '{{k9_lk_prodi_kriteria8_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt1_dtl_upd-usr_upd', '{{%k9_lk_prodi_kriteria1_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt2_dtl_upd-usr_upd', '{{%k9_lk_prodi_kriteria2_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt3_dtl_upd-usr_upd', '{{%k9_lk_prodi_kriteria3_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt4_dtl_upd-usr_upd', '{{%k9_lk_prodi_kriteria4_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt5_dtl_upd-usr_upd', '{{%k9_lk_prodi_kriteria5_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt6_dtl_upd-usr_upd', '{{%k9_lk_prodi_kriteria6_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt7_dtl_upd-usr_upd', '{{%k9_lk_prodi_kriteria7_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_prodi_kt8_dtl_upd-usr_upd', '{{%k9_lk_prodi_kriteria8_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
 
 
     }
@@ -474,31 +474,31 @@ class m190724_052006_create_tabel_lk extends Migration
     {
         $this->addForeignKey('fk-k9_lk_institusi-k9_akreditasi_institusi', '{{%k9_lk_institusi}}', 'id_akreditasi_institusi', '{{%k9_akreditasi_institusi}}', 'id', 'cascade', 'cascade');
 
-        $this->addForeignKey('fk-k9_lk_institusi_kt1-k9_lk_institusi', '{{k9_lk_institusi_kriteria1}}', 'id_lk_institusi', '{{%k9_lk_institusi}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_institusi_kt2-k9_lk_institusi', '{{k9_lk_institusi_kriteria2}}', 'id_lk_institusi', '{{%k9_lk_institusi}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_institusi_kt3-k9_lk_institusi', '{{k9_lk_institusi_kriteria3}}', 'id_lk_institusi', '{{%k9_lk_institusi}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_institusi_kt4-k9_lk_institusi', '{{k9_lk_institusi_kriteria4}}', 'id_lk_institusi', '{{%k9_lk_institusi}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_institusi_kt5-k9_lk_institusi', '{{k9_lk_institusi_kriteria5}}', 'id_lk_institusi', '{{%k9_lk_institusi}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt1-k9_lk_institusi', '{{%k9_lk_institusi_kriteria1}}', 'id_lk_institusi', '{{%k9_lk_institusi}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt2-k9_lk_institusi', '{{%k9_lk_institusi_kriteria2}}', 'id_lk_institusi', '{{%k9_lk_institusi}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt3-k9_lk_institusi', '{{%k9_lk_institusi_kriteria3}}', 'id_lk_institusi', '{{%k9_lk_institusi}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt4-k9_lk_institusi', '{{%k9_lk_institusi_kriteria4}}', 'id_lk_institusi', '{{%k9_lk_institusi}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt5-k9_lk_institusi', '{{%k9_lk_institusi_kriteria5}}', 'id_lk_institusi', '{{%k9_lk_institusi}}', 'id', 'cascade', 'cascade');
 
 
-        $this->addForeignKey('fk-k9_lk_institusi_kt1_detail-k9_lk_institusi_kt1', '{{k9_lk_institusi_kriteria1_detail}}', 'id_lk_institusi_kriteria1', '{{%k9_lk_institusi_kriteria1}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_institusi_kt2_detail-k9_lk_institusi_kt2', '{{k9_lk_institusi_kriteria2_detail}}', 'id_lk_institusi_kriteria2', '{{%k9_lk_institusi_kriteria2}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_institusi_kt3_detail-k9_lk_institusi_kt3', '{{k9_lk_institusi_kriteria3_detail}}', 'id_lk_institusi_kriteria3', '{{%k9_lk_institusi_kriteria3}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_institusi_kt4_detail-k9_lk_institusi_kt4', '{{k9_lk_institusi_kriteria4_detail}}', 'id_lk_institusi_kriteria4', '{{%k9_lk_institusi_kriteria4}}', 'id', 'cascade', 'cascade');
-        $this->addForeignKey('fk-k9_lk_institusi_kt5_detail-k9_lk_institusi_kt5', '{{k9_lk_institusi_kriteria5_detail}}', 'id_lk_institusi_kriteria5', '{{%k9_lk_institusi_kriteria5}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt1_detail-k9_lk_institusi_kt1', '{{%k9_lk_institusi_kriteria1_detail}}', 'id_lk_institusi_kriteria1', '{{%k9_lk_institusi_kriteria1}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt2_detail-k9_lk_institusi_kt2', '{{%k9_lk_institusi_kriteria2_detail}}', 'id_lk_institusi_kriteria2', '{{%k9_lk_institusi_kriteria2}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt3_detail-k9_lk_institusi_kt3', '{{%k9_lk_institusi_kriteria3_detail}}', 'id_lk_institusi_kriteria3', '{{%k9_lk_institusi_kriteria3}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt4_detail-k9_lk_institusi_kt4', '{{%k9_lk_institusi_kriteria4_detail}}', 'id_lk_institusi_kriteria4', '{{%k9_lk_institusi_kriteria4}}', 'id', 'cascade', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt5_detail-k9_lk_institusi_kt5', '{{%k9_lk_institusi_kriteria5_detail}}', 'id_lk_institusi_kriteria5', '{{%k9_lk_institusi_kriteria5}}', 'id', 'cascade', 'cascade');
 
 
-        $this->addForeignKey('fk-k9_lk_institusi_kt1_dtl_crd-usr_crd', '{{k9_lk_institusi_kriteria1_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_institusi_kt2_dtl_crd-usr_crd', '{{k9_lk_institusi_kriteria2_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_institusi_kt3_dtl_crd-usr_crd', '{{k9_lk_institusi_kriteria3_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_institusi_kt4_dtl_crd-usr_crd', '{{k9_lk_institusi_kriteria4_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_institusi_kt5_dtl_crd-usr_crd', '{{k9_lk_institusi_kriteria5_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt1_dtl_crd-usr_crd', '{{%k9_lk_institusi_kriteria1_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt2_dtl_crd-usr_crd', '{{%k9_lk_institusi_kriteria2_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt3_dtl_crd-usr_crd', '{{%k9_lk_institusi_kriteria3_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt4_dtl_crd-usr_crd', '{{%k9_lk_institusi_kriteria4_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt5_dtl_crd-usr_crd', '{{%k9_lk_institusi_kriteria5_detail}}', 'created_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
 
-        $this->addForeignKey('fk-k9_lk_institusi_kt1_dtl_upd-usr_upd', '{{k9_lk_institusi_kriteria1_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_institusi_kt2_dtl_upd-usr_upd', '{{k9_lk_institusi_kriteria2_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_institusi_kt3_dtl_upd-usr_upd', '{{k9_lk_institusi_kriteria3_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_institusi_kt4_dtl_upd-usr_upd', '{{k9_lk_institusi_kriteria4_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
-        $this->addForeignKey('fk-k9_lk_institusi_kt5_dtl_upd-usr_upd', '{{k9_lk_institusi_kriteria5_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt1_dtl_upd-usr_upd', '{{%k9_lk_institusi_kriteria1_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt2_dtl_upd-usr_upd', '{{%k9_lk_institusi_kriteria2_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt3_dtl_upd-usr_upd', '{{%k9_lk_institusi_kriteria3_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt4_dtl_upd-usr_upd', '{{%k9_lk_institusi_kriteria4_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
+        $this->addForeignKey('fk-k9_lk_institusi_kt5_dtl_upd-usr_upd', '{{%k9_lk_institusi_kriteria5_detail}}', 'updated_by', '{{%user}}', 'id', 'CASCADE', 'cascade');
     }
 
     /**
@@ -546,46 +546,46 @@ class m190724_052006_create_tabel_lk extends Migration
     {
         $this->dropForeignKey('fk-k9_lk_prodi-k9_akreditasi_prodi', '{{%k9_akreditasi_prodi}}');
 
-        $this->dropForeignKey('fk-k9_lk_prodi_kt1-k9_lk_prodi', '{{k9_lk_prodi_kriteria1}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt2-k9_lk_prodi', '{{k9_lk_prodi_kriteria2}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt3-k9_lk_prodi', '{{k9_lk_prodi_kriteria3}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt4-k9_lk_prodi', '{{k9_lk_prodi_kriteria4}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt5-k9_lk_prodi', '{{k9_lk_prodi_kriteria5}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt6-k9_lk_prodi', '{{k9_lk_prodi_kriteria6}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt7-k9_lk_prodi', '{{k9_lk_prodi_kriteria7}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt8-k9_lk_prodi', '{{k9_lk_prodi_kriteria8}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt9-k9_lk_prodi', '{{k9_lk_prodi_kriteria9}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt1-k9_lk_prodi', '{{%k9_lk_prodi_kriteria1}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt2-k9_lk_prodi', '{{%k9_lk_prodi_kriteria2}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt3-k9_lk_prodi', '{{%k9_lk_prodi_kriteria3}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt4-k9_lk_prodi', '{{%k9_lk_prodi_kriteria4}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt5-k9_lk_prodi', '{{%k9_lk_prodi_kriteria5}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt6-k9_lk_prodi', '{{%k9_lk_prodi_kriteria6}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt7-k9_lk_prodi', '{{%k9_lk_prodi_kriteria7}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt8-k9_lk_prodi', '{{%k9_lk_prodi_kriteria8}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt9-k9_lk_prodi', '{{%k9_lk_prodi_kriteria9}}');
 
-        $this->dropForeignKey('fk-k9_lk_prodi_kt1_detail-k9_lk_prodi_kt1', '{{k9_lk_prodi_kriteria1_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt2_detail-k9_lk_prodi_kt2', '{{k9_lk_prodi_kriteria2_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt3_detail-k9_lk_prodi_kt3', '{{k9_lk_prodi_kriteria3_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt4_detail-k9_lk_prodi_kt4', '{{k9_lk_prodi_kriteria4_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt5_detail-k9_lk_prodi_kt5', '{{k9_lk_prodi_kriteria5_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt6_detail-k9_lk_prodi_kt6', '{{k9_lk_prodi_kriteria6_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt7_detail-k9_lk_prodi_kt7', '{{k9_lk_prodi_kriteria7_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt8_detail-k9_lk_prodi_kt8', '{{k9_lk_prodi_kriteria8_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt9_detail-k9_lk_prodi_kt9', '{{k9_lk_prodi_kriteria9_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt1_detail-k9_lk_prodi_kt1', '{{%k9_lk_prodi_kriteria1_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt2_detail-k9_lk_prodi_kt2', '{{%k9_lk_prodi_kriteria2_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt3_detail-k9_lk_prodi_kt3', '{{%k9_lk_prodi_kriteria3_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt4_detail-k9_lk_prodi_kt4', '{{%k9_lk_prodi_kriteria4_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt5_detail-k9_lk_prodi_kt5', '{{%k9_lk_prodi_kriteria5_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt6_detail-k9_lk_prodi_kt6', '{{%k9_lk_prodi_kriteria6_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt7_detail-k9_lk_prodi_kt7', '{{%k9_lk_prodi_kriteria7_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt8_detail-k9_lk_prodi_kt8', '{{%k9_lk_prodi_kriteria8_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt9_detail-k9_lk_prodi_kt9', '{{%k9_lk_prodi_kriteria9_detail}}');
 
 
-        $this->dropForeignKey('fk-k9_lk_prodi_kt1_dtl_crd-usr_crd', '{{k9_lk_prodi_kriteria1_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt2_dtl_crd-usr_crd', '{{k9_lk_prodi_kriteria2_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt3_dtl_crd-usr_crd', '{{k9_lk_prodi_kriteria3_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt4_dtl_crd-usr_crd', '{{k9_lk_prodi_kriteria4_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt5_dtl_crd-usr_crd', '{{k9_lk_prodi_kriteria5_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt6_dtl_crd-usr_crd', '{{k9_lk_prodi_kriteria6_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt7_dtl_crd-usr_crd', '{{k9_lk_prodi_kriteria7_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt8_dtl_crd-usr_crd', '{{k9_lk_prodi_kriteria8_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt9_dtl_crd-usr_crd', '{{k9_lk_prodi_kriteria9_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt1_dtl_crd-usr_crd', '{{%k9_lk_prodi_kriteria1_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt2_dtl_crd-usr_crd', '{{%k9_lk_prodi_kriteria2_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt3_dtl_crd-usr_crd', '{{%k9_lk_prodi_kriteria3_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt4_dtl_crd-usr_crd', '{{%k9_lk_prodi_kriteria4_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt5_dtl_crd-usr_crd', '{{%k9_lk_prodi_kriteria5_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt6_dtl_crd-usr_crd', '{{%k9_lk_prodi_kriteria6_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt7_dtl_crd-usr_crd', '{{%k9_lk_prodi_kriteria7_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt8_dtl_crd-usr_crd', '{{%k9_lk_prodi_kriteria8_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt9_dtl_crd-usr_crd', '{{%k9_lk_prodi_kriteria9_detail}}');
 
-        $this->dropForeignKey('fk-k9_lk_prodi_kt1_dtl_upd-usr_upd', '{{k9_lk_prodi_kriteria1_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt2_dtl_upd-usr_upd', '{{k9_lk_prodi_kriteria2_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt3_dtl_upd-usr_upd', '{{k9_lk_prodi_kriteria3_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt4_dtl_upd-usr_upd', '{{k9_lk_prodi_kriteria4_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt5_dtl_upd-usr_upd', '{{k9_lk_prodi_kriteria5_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt6_dtl_upd-usr_upd', '{{k9_lk_prodi_kriteria6_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt7_dtl_upd-usr_upd', '{{k9_lk_prodi_kriteria7_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt8_dtl_upd-usr_upd', '{{k9_lk_prodi_kriteria8_detail}}');
-        $this->dropForeignKey('fk-k9_lk_prodi_kt9_dtl_upd-usr_upd', '{{k9_lk_prodi_kriteria9_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt1_dtl_upd-usr_upd', '{{%k9_lk_prodi_kriteria1_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt2_dtl_upd-usr_upd', '{{%k9_lk_prodi_kriteria2_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt3_dtl_upd-usr_upd', '{{%k9_lk_prodi_kriteria3_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt4_dtl_upd-usr_upd', '{{%k9_lk_prodi_kriteria4_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt5_dtl_upd-usr_upd', '{{%k9_lk_prodi_kriteria5_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt6_dtl_upd-usr_upd', '{{%k9_lk_prodi_kriteria6_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt7_dtl_upd-usr_upd', '{{%k9_lk_prodi_kriteria7_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt8_dtl_upd-usr_upd', '{{%k9_lk_prodi_kriteria8_detail}}');
+        $this->dropForeignKey('fk-k9_lk_prodi_kt9_dtl_upd-usr_upd', '{{%k9_lk_prodi_kriteria9_detail}}');
 
     }
 
@@ -621,46 +621,46 @@ class m190724_052006_create_tabel_lk extends Migration
     {
         $this->dropForeignKey('fk-k9_lk_institusi-k9_akreditasi_institusi', '{{%k9_akreditasi_institusi}}');
 
-        $this->dropForeignKey('fk-k9_lk_institusi_kt1-k9_lk_institusi', '{{k9_lk_institusi_kriteria1}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt2-k9_lk_institusi', '{{k9_lk_institusi_kriteria2}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt3-k9_lk_institusi', '{{k9_lk_institusi_kriteria3}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt4-k9_lk_institusi', '{{k9_lk_institusi_kriteria4}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt5-k9_lk_institusi', '{{k9_lk_institusi_kriteria5}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt6-k9_lk_institusi', '{{k9_lk_institusi_kriteria6}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt7-k9_lk_institusi', '{{k9_lk_institusi_kriteria7}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt8-k9_lk_institusi', '{{k9_lk_institusi_kriteria8}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt9-k9_lk_institusi', '{{k9_lk_institusi_kriteria9}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt1-k9_lk_institusi', '{{%k9_lk_institusi_kriteria1}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt2-k9_lk_institusi', '{{%k9_lk_institusi_kriteria2}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt3-k9_lk_institusi', '{{%k9_lk_institusi_kriteria3}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt4-k9_lk_institusi', '{{%k9_lk_institusi_kriteria4}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt5-k9_lk_institusi', '{{%k9_lk_institusi_kriteria5}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt6-k9_lk_institusi', '{{%k9_lk_institusi_kriteria6}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt7-k9_lk_institusi', '{{%k9_lk_institusi_kriteria7}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt8-k9_lk_institusi', '{{%k9_lk_institusi_kriteria8}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt9-k9_lk_institusi', '{{%k9_lk_institusi_kriteria9}}');
 
-        $this->dropForeignKey('fk-k9_lk_institusi_kt1_detail-k9_lk_institusi_kt1', '{{k9_lk_institusi_kriteria1_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt2_detail-k9_lk_institusi_kt2', '{{k9_lk_institusi_kriteria2_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt3_detail-k9_lk_institusi_kt3', '{{k9_lk_institusi_kriteria3_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt4_detail-k9_lk_institusi_kt4', '{{k9_lk_institusi_kriteria4_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt5_detail-k9_lk_institusi_kt5', '{{k9_lk_institusi_kriteria5_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt6_detail-k9_lk_institusi_kt6', '{{k9_lk_institusi_kriteria6_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt7_detail-k9_lk_institusi_kt7', '{{k9_lk_institusi_kriteria7_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt8_detail-k9_lk_institusi_kt8', '{{k9_lk_institusi_kriteria8_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt9_detail-k9_lk_institusi_kt9', '{{k9_lk_institusi_kriteria9_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt1_detail-k9_lk_institusi_kt1', '{{%k9_lk_institusi_kriteria1_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt2_detail-k9_lk_institusi_kt2', '{{%k9_lk_institusi_kriteria2_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt3_detail-k9_lk_institusi_kt3', '{{%k9_lk_institusi_kriteria3_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt4_detail-k9_lk_institusi_kt4', '{{%k9_lk_institusi_kriteria4_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt5_detail-k9_lk_institusi_kt5', '{{%k9_lk_institusi_kriteria5_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt6_detail-k9_lk_institusi_kt6', '{{%k9_lk_institusi_kriteria6_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt7_detail-k9_lk_institusi_kt7', '{{%k9_lk_institusi_kriteria7_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt8_detail-k9_lk_institusi_kt8', '{{%k9_lk_institusi_kriteria8_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt9_detail-k9_lk_institusi_kt9', '{{%k9_lk_institusi_kriteria9_detail}}');
 
 
-        $this->dropForeignKey('fk-k9_lk_institusi_kt1_dtl_crd-usr_crd', '{{k9_lk_institusi_kriteria1_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt2_dtl_crd-usr_crd', '{{k9_lk_institusi_kriteria2_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt3_dtl_crd-usr_crd', '{{k9_lk_institusi_kriteria3_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt4_dtl_crd-usr_crd', '{{k9_lk_institusi_kriteria4_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt5_dtl_crd-usr_crd', '{{k9_lk_institusi_kriteria5_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt6_dtl_crd-usr_crd', '{{k9_lk_institusi_kriteria6_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt7_dtl_crd-usr_crd', '{{k9_lk_institusi_kriteria7_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt8_dtl_crd-usr_crd', '{{k9_lk_institusi_kriteria8_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt9_dtl_crd-usr_crd', '{{k9_lk_institusi_kriteria9_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt1_dtl_crd-usr_crd', '{{%k9_lk_institusi_kriteria1_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt2_dtl_crd-usr_crd', '{{%k9_lk_institusi_kriteria2_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt3_dtl_crd-usr_crd', '{{%k9_lk_institusi_kriteria3_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt4_dtl_crd-usr_crd', '{{%k9_lk_institusi_kriteria4_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt5_dtl_crd-usr_crd', '{{%k9_lk_institusi_kriteria5_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt6_dtl_crd-usr_crd', '{{%k9_lk_institusi_kriteria6_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt7_dtl_crd-usr_crd', '{{%k9_lk_institusi_kriteria7_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt8_dtl_crd-usr_crd', '{{%k9_lk_institusi_kriteria8_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt9_dtl_crd-usr_crd', '{{%k9_lk_institusi_kriteria9_detail}}');
 
-        $this->dropForeignKey('fk-k9_lk_institusi_kt1_dtl_upd-usr_upd', '{{k9_lk_institusi_kriteria1_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt2_dtl_upd-usr_upd', '{{k9_lk_institusi_kriteria2_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt3_dtl_upd-usr_upd', '{{k9_lk_institusi_kriteria3_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt4_dtl_upd-usr_upd', '{{k9_lk_institusi_kriteria4_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt5_dtl_upd-usr_upd', '{{k9_lk_institusi_kriteria5_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt6_dtl_upd-usr_upd', '{{k9_lk_institusi_kriteria6_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt7_dtl_upd-usr_upd', '{{k9_lk_institusi_kriteria7_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt8_dtl_upd-usr_upd', '{{k9_lk_institusi_kriteria8_detail}}');
-        $this->dropForeignKey('fk-k9_lk_institusi_kt9_dtl_upd-usr_upd', '{{k9_lk_institusi_kriteria9_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt1_dtl_upd-usr_upd', '{{%k9_lk_institusi_kriteria1_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt2_dtl_upd-usr_upd', '{{%k9_lk_institusi_kriteria2_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt3_dtl_upd-usr_upd', '{{%k9_lk_institusi_kriteria3_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt4_dtl_upd-usr_upd', '{{%k9_lk_institusi_kriteria4_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt5_dtl_upd-usr_upd', '{{%k9_lk_institusi_kriteria5_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt6_dtl_upd-usr_upd', '{{%k9_lk_institusi_kriteria6_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt7_dtl_upd-usr_upd', '{{%k9_lk_institusi_kriteria7_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt8_dtl_upd-usr_upd', '{{%k9_lk_institusi_kriteria8_detail}}');
+        $this->dropForeignKey('fk-k9_lk_institusi_kt9_dtl_upd-usr_upd', '{{%k9_lk_institusi_kriteria9_detail}}');
     }
 
     /*

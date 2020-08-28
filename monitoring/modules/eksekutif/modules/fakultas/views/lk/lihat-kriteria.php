@@ -12,6 +12,11 @@ use yii\bootstrap4\Progress;
 /* @var $modelNarasi K9LkProdiNarasiKriteria1Form */
 /* @var $dataKriteria */
 /* @var $poinKriteria */
+/* @var $modelKriteria */
+/* @var $akreditasiProdi */
+/* @var $modelProdi */
+/* @var $modelKriteria  */
+
 
 $prodi = $_GET['prodi'];
 $this->title = 'Kriteria ' . $_GET['kriteria'];
@@ -39,11 +44,12 @@ $kriteria = $_GET['kriteria'];
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-actions">
-                <strong>Kelengkapan Berkas &nbsp; : <?= $modelNarasi->progress; ?> %</strong>
+
+                <strong>Kelengkapan Berkas &nbsp; : <?= $modelKriteria->progress ?> %</strong>
                 <div class="kt-space-10"></div>
                 <?=
                 Progress::widget([
-                    'percent' => $modelNarasi->progress,
+                    'percent' => $modelKriteria->progress,
                     'barOptions' => ['class' => 'progress-bar-info'],
                     'options' => ['class' => 'progress-sm']
                 ]);
@@ -147,7 +153,7 @@ $kriteria = $_GET['kriteria'];
                                                 <td></td>
                                                 <td>
                                                     <div class="text-center">
-                                                        <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') : ?>
+                                                        <?php if ($v->bentuk_dokumen !== 'text' && $v->bentuk_dokumen !== 'link') : ?>
                                                             <div class="icon">
                                                                 <?= FileIconHelper::getIconByExtension($v->bentuk_dokumen) ?>
                                                             </div>
@@ -161,7 +167,7 @@ $kriteria = $_GET['kriteria'];
                                                                 ], ['target' => '_blank', 'data-pjax' => "0"]) ?>
 
                                                         <?php else :
-                                                            if ($v->bentuk_dokumen == 'link') {
+                                                            if ($v->bentuk_dokumen === 'link') {
                                                                 echo '<a href=' . $v['isi_dokumen'] . ' target="_blank">' . $v["isi_dokumen"] . ' <i class=\'fa fa-external-link-alt\'></i></a>';
                                                             } else {
                                                                 echo $v['isi_dokumen'];
@@ -171,7 +177,7 @@ $kriteria = $_GET['kriteria'];
                                                 </td>
                                                 <td class="text-right">
 
-                                                    <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') {
+                                                    <?php if ($v->bentuk_dokumen !== 'text' && $v->bentuk_dokumen !== 'link') {
                                                         echo Html::a('<i class="la la-download"></i> &nbsp;Unduh',
                                                             ['lk/download-dok', 'id' => $v['id']],
                                                             ['class' => 'btn btn-warning btn-pill btn-elevate btn-elevate-air']);
@@ -242,7 +248,7 @@ $kriteria = $_GET['kriteria'];
                                                     <td></td>
                                                     <td>
                                                         <div class="text-center">
-                                                            <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') { ?>
+                                                            <?php if ($v->bentuk_dokumen !== 'text' && $v->bentuk_dokumen !== 'link') { ?>
                                                                 <div class="icon">
                                                                     <?= FileIconHelper::getIconByExtension($v->bentuk_dokumen) ?>
                                                                 </div>
@@ -256,7 +262,7 @@ $kriteria = $_GET['kriteria'];
                                                                     ], ['target' => '_blank', 'data-pjax' => "0"]) ?>
 
                                                             <?php } else {
-                                                                if ($v->bentuk_dokumen == 'link') {
+                                                                if ($v->bentuk_dokumen === 'link') {
                                                                     echo '<a href=' . $v['isi_dokumen'] . ' target="_blank">' . $v["isi_dokumen"] . ' <i class=\'fa fa-external-link-alt\'></i></a>';
                                                                 } else {
                                                                     echo $v['isi_dokumen'];
@@ -266,7 +272,7 @@ $kriteria = $_GET['kriteria'];
                                                     </td>
                                                     <td class="text-right">
 
-                                                        <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') {
+                                                        <?php if ($v->bentuk_dokumen !== 'text' && $v->bentuk_dokumen !== 'link') {
                                                             echo Html::a('<i class="la la-download"></i> &nbsp;Unduh',
                                                                 ['lk/download-dok', 'id' => $v->id],
                                                                 ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-warning']);
@@ -308,12 +314,12 @@ $kriteria = $_GET['kriteria'];
                                         $detail1 = $detail->andWhere(['jenis_dokumen' => Constants::LAINNYA])->all();
                                         if (!empty($detail1)) {
                                             foreach ($detail1 as $k => $v) {
-                                                if ($v['tabel'] == $v['kode_dokumen'] && $v['jenis_dokumen'] == 'lainnya') { ?>
+                                                if ($v['tabel'] == $v['kode_dokumen'] && $v['jenis_dokumen'] === 'lainnya') { ?>
                                                     <tr>
                                                         <td><strong><?= $k + 1 ?></strong></td>
                                                         <td>
                                                             <div class="text-center">
-                                                                <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') { ?>
+                                                                <?php if ($v->bentuk_dokumen !== 'text' && $v->bentuk_dokumen !== 'link') { ?>
                                                                     <div class="icon">
                                                                         <?= FileIconHelper::getIconByExtension($v->bentuk_dokumen) ?>
                                                                     </div>
@@ -323,7 +329,7 @@ $kriteria = $_GET['kriteria'];
                                                                         ['target' => '_blank', 'data-pjax' => "0"]) ?>
 
                                                                 <?php } else {
-                                                                    if ($v->bentuk_dokumen == 'link') {
+                                                                    if ($v->bentuk_dokumen === 'link') {
                                                                         echo '<a href=' . $v['isi_dokumen'] . ' target="_blank">' . $v["isi_dokumen"] . ' <i class=\'fa fa-external-link-alt\'></i></a>';
                                                                     } else {
                                                                         echo $v['isi_dokumen'];
@@ -332,7 +338,7 @@ $kriteria = $_GET['kriteria'];
                                                             </div>
                                                         </td>
                                                         <td class="pull-right">
-                                                            <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') {
+                                                            <?php if ($v->bentuk_dokumen !== 'text' && $v->bentuk_dokumen !== 'link') {
                                                                 echo Html::a('<i class="la la-download"></i> &nbsp;Unduh',
                                                                     ['lk/download-dok', 'id' => $v->id],
                                                                     ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-warning']);
