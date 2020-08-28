@@ -107,7 +107,7 @@ class LkController extends BaseController
 
         $path = K9InstitusiDirectoryHelper::getDokumenLkUrl($lkInstitusi->akreditasiInstitusi);
 
-        $lkInstitusiKriteriaClass= '$common\\models\\kriteria9\lk\\institusi\\K9lkInstitusiKriteria' . $kriteria;
+        $lkInstitusiKriteriaClass= 'common\\models\\kriteria9\lk\\institusi\\K9lkInstitusiKriteria' . $kriteria;
         $lkInstitusiKriteria = call_user_func($lkInstitusiKriteriaClass . '::findOne', ['id_lk_institusi'=>$lkInstitusi->id]);
 
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiNarasiKriteria' . $kriteria . 'Form';
@@ -267,7 +267,7 @@ class LkController extends BaseController
 
         $path = K9InstitusiDirectoryHelper::getDokumenLkUrl($lkInstitusi->akreditasiInstitusi);
 
-        $lkInstitusiKriteriaClass= '$common\\models\\kriteria9\lk\\institusi\\K9lkInstitusiKriteria' . $kriteria;
+        $lkInstitusiKriteriaClass= 'common\\models\\kriteria9\lk\\institusi\\K9lkInstitusiKriteria' . $kriteria;
         $lkInstitusiKriteria = call_user_func($lkInstitusiKriteriaClass . '::findOne', ['id_lk_institusi'=>$lkInstitusi->id]);
 
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiNarasiKriteria' . $kriteria . 'Form';

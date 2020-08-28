@@ -15,7 +15,7 @@ trait HitungNarasiLkTrait
             return in_array($attribute, $exclude, true) === false;
         }, ARRAY_FILTER_USE_KEY);
 
-        $total = sizeof($filters);
+
         $attributeKeys = array_map(function ($element) {
             return NomorKriteriaHelper::changeToJsonFormat($element);
         }, array_keys($filters));
@@ -25,6 +25,7 @@ trait HitungNarasiLkTrait
         $keysJson = array_keys($indexJson);
 
         $arrayIntersect = array_values(array_intersect($attributeKeys, $keysJson));
+        $total = sizeof($arrayIntersect);
         foreach ($arrayIntersect as $k => $attribute) {
             $nomor = NomorKriteriaHelper::changeToDbFormat($attribute);
             if ($attribute === $json['butir'][$k]['tabel']) {

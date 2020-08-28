@@ -52,6 +52,10 @@ trait K9ProgressTrait
         $dokumenKriteria = $dokumen->select('kode_dokumen')->distinct()->andWhere(['jenis_dokumen' => Constants::SUMBER])->orWhere(['jenis_dokumen' => Constants::PENDUKUNG])->all();
         $totalDokumenKriteria = sizeof($dokumenKriteria);
 
+        if ($totalDokumenJson === 0) {
+            return 0;
+        }
+
         return round((($totalDokumenKriteria / $totalDokumenJson) * 100), 2);
     }
 }
