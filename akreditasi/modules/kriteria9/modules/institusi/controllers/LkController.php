@@ -11,11 +11,16 @@ use common\helpers\kriteria9\K9InstitusiDirectoryHelper;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\forms\lk\K9PencarianLkInstitusiForm;
 use common\models\kriteria9\lk\institusi\K9LkInstitusi;
+use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria1;
 use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria1Narasi;
 use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria1Detail;
+use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria2;
 use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria2Narasi;
+use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria3;
 use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria3Narasi;
+use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria4;
 use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria4Narasi;
+use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria5;
 use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria5Narasi;
 use common\models\kriteria9\lk\K9LkTemplate;
 use Yii;
@@ -38,11 +43,11 @@ class LkController extends BaseController
 
     protected function getArrayKriteria($lk)
     {
-        $kriteria1 = K9LkInstitusiKriteria1Narasi::findOne(['id_lk_institusi' => $lk]);
-        $kriteria2 = K9LkInstitusiKriteria2Narasi::findOne(['id_lk_institusi' => $lk]);
-        $kriteria3 = K9LkInstitusiKriteria3Narasi::findOne(['id_lk_institusi' => $lk]);
-        $kriteria4 = K9LkInstitusiKriteria4Narasi::findOne(['id_lk_institusi' => $lk]);
-        $kriteria5 = K9LkInstitusiKriteria5Narasi::findOne(['id_lk_institusi' => $lk]);
+        $kriteria1 = K9LkInstitusiKriteria1::findOne(['id_lk_institusi' => $lk]);
+        $kriteria2 = K9LkInstitusiKriteria2::findOne(['id_lk_institusi' => $lk]);
+        $kriteria3 = K9LkInstitusiKriteria3::findOne(['id_lk_institusi' => $lk]);
+        $kriteria4 = K9LkInstitusiKriteria4::findOne(['id_lk_institusi' => $lk]);
+        $kriteria5 = K9LkInstitusiKriteria5::findOne(['id_lk_institusi' => $lk]);
 
         return [$kriteria1, $kriteria2, $kriteria3, $kriteria4, $kriteria5];
     }
