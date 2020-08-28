@@ -21,7 +21,6 @@ use yii\bootstrap4\Progress;
 /* @var $dokModel K9LkProdiKriteriaDetailForm */
 /* @var $dokTextModel K9TextLkProdiKriteriaDetailForm */
 /* @var $dokLinkModel K9LinkLkProdiKriteriaDetailForm */
-/* @var $dataKriteria */
 /* @var $poinKriteria */
 /* @var $path string */
 /* @var $modelKriteria */
@@ -47,12 +46,11 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-actions">
-                <?php $jumlah = ($modelKriteria->progress_narasi + $modelKriteria->progress_dokumen )/2 ?>
-                <strong>Kelengkapan Berkas &nbsp; : <?= $jumlah ?> %</strong>
+                <strong>Kelengkapan Berkas &nbsp; : <?= $modelKriteria->progress ?> %</strong>
                 <div class="kt-space-10"></div>
                 <?=
                 Progress::widget([
-                    'percent' => $jumlah,
+                    'percent' => $modelKriteria->progress,
                     'barOptions' => ['class' => 'progress-bar-info'],
                     'options' => ['class' => 'progress-sm']
                 ]);
@@ -638,7 +636,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         $detail1 = $detail->andWhere(['jenis_dokumen' => Constants::LAINNYA])->all();
                                         if (!empty($detail1)) {
                                             foreach ($detail1 as $k => $v) {
-                                                if ( $v['jenis_dokumen'] == 'lainnya') { ?>
+                                                if ( $v['jenis_dokumen'] === 'lainnya') { ?>
                                                     <tr>
                                                         <td><strong><?= $k + 1 ?></strong></td>
                                                         <td>

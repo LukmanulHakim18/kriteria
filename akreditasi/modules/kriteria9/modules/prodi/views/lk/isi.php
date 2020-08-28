@@ -8,6 +8,7 @@ use yii\bootstrap4\Progress;
 /* @var $kriteria1 [] */
 /* @var $kriteria */
 /* @var $institusi */
+/* @var $json [] */
 
 $prodi = Yii::$app->request->get('prodi');
 $this->title = "Isi Laporan Kinerja";
@@ -107,18 +108,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 </thead>
                 <tbody>
                 <?php foreach ($json as $kriteriaJson):
-                    $jumlah = round(($kriteria[$kriteriaJson['kriteria'] - 1]->progress_narasi + $kriteria[$kriteriaJson['kriteria'] - 1]->progress_dokumen)/2,2)
                     ?>
                     <tr>
                         <th scope="row"><?= Html::encode($kriteriaJson['kriteria']) ?></th>
                         <td>
                             <strong>Tabel <?= Html::encode($kriteriaJson['kriteria']) ?>
-                                : <?= $jumlah ?>%</strong><br>
+                                : <?= $kriteria[$kriteriaJson['kriteria'] - 1]->progress ?>%</strong><br>
                             <?= $kriteriaJson['judul'] ?>
                             <div class="kt-space-10"></div>
                             <?=
                             Progress::widget([
-                                'percent' =>$jumlah,
+                                'percent' =>$kriteria[$kriteriaJson['kriteria'] - 1]->progress,
                                 'barOptions' => ['class' => 'progress-bar-info m-progress-lg'],
                                 'options' => ['class' => 'progress-sm']
                             ]); ?>

@@ -3,22 +3,22 @@
 namespace common\models\kriteria9\lk\institusi;
 
 use common\helpers\kriteria9\K9InstitusiProgressHelper;
-use yii\behaviors\TimestampBehavior;
+use Yii;
 
 /**
  * This is the model class for table "k9_lk_institusi_kriteria2".
  *
  * @property int $id
- * @property int $id_lk_institusi
- * @property string $_2_a
- * @property string $_2_b
- * @property string $_2_c
- * @property double $progress
- * @property int $created_at
- * @property int $updated_at
+ * @property int|null $id_lk_institusi
+ * @property float|null $progress_narasi
+ * @property float|null $progress_dokumen
+ * @property int|null $created_at
+ * @property int|null $updated_at
+ * @property float $progress
  *
  * @property K9LkInstitusi $lkInstitusi
  * @property K9LkInstitusiKriteria2Detail[] $k9LkInstitusiKriteria2Details
+ * @property K9LkInstitusiKriteria2Narasi $k9LkInstitusiKriteria2Narasi
  */
 class K9LkInstitusiKriteria2 extends \yii\db\ActiveRecord
 {
@@ -30,13 +30,6 @@ class K9LkInstitusiKriteria2 extends \yii\db\ActiveRecord
         return 'k9_lk_institusi_kriteria2';
     }
 
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::class,
-        ];
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -44,8 +37,7 @@ class K9LkInstitusiKriteria2 extends \yii\db\ActiveRecord
     {
         return [
             [['id_lk_institusi', 'created_at', 'updated_at'], 'integer'],
-            [['progress'], 'number'],
-            [['_2_a', '_2_b', '_2_c'], 'string'],
+            [['progress_narasi', 'progress_dokumen'], 'number'],
             [['id_lk_institusi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LkInstitusi::className(), 'targetAttribute' => ['id_lk_institusi' => 'id']],
         ];
     }
@@ -58,16 +50,16 @@ class K9LkInstitusiKriteria2 extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_lk_institusi' => 'Id Lk Institusi',
-            '_2_a' => '2 A',
-            '_2_b' => '2 B',
-            '_2_c' => '2 C',
-            'progress' => 'Progress',
+            'progress_narasi' => 'Progress Narasi',
+            'progress_dokumen' => 'Progress Dokumen',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
     }
 
     /**
+     * Gets query for [[LkInstitusi]].
+     *
      * @return \yii\db\ActiveQuery
      */
     public function getLkInstitusi()
@@ -75,21 +67,39 @@ class K9LkInstitusiKriteria2 extends \yii\db\ActiveRecord
         return $this->hasOne(K9LkInstitusi::className(), ['id' => 'id_lk_institusi']);
     }
 
-    public function updateProgress()
-    {
-
-        $dokumen = K9InstitusiProgressHelper::getDokumenLkProgress($this->id_lk_institusi, $this->getK9LkInstitusiKriteria2Details(), 2);
-
-        $progress = round(($dokumen) / 1, 2);
-        $this->progress = $progress;
-        $this->save(false);
-    }
-
     /**
+     * Gets query for [[K9LkInstitusiKriteria2Details]].
+     *
      * @return \yii\db\ActiveQuery
      */
     public function getK9LkInstitusiKriteria2Details()
     {
         return $this->hasMany(K9LkInstitusiKriteria2Detail::className(), ['id_lk_institusi_kriteria2' => 'id']);
+    }
+
+    /**
+     * Gets query for [[K9LkInstitusiKriteria2Narasis]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getK9LkInstitusiKriteria2Narasi()
+    {
+        return $this->hasOne(K9LkInstitusiKriteria2Narasi::className(), ['id_lk_institusi_kriteria2' => 'id']);
+    }
+
+    public function getProgress(){
+        return round(( $this->progress_narasi + $this->progress_dokumen)/2,2);
+    }
+    public function updateProgressNarasi(){
+
+        $this->progress_narasi = $this->k9LkInstitusiKriteria2Narasi->progress;
+        return $this;
+    }
+    public function updateProgressDokumen()
+    {
+        $dokumen = K9InstitusiProgressHelper::getDokumenLkProgress($this, $this->getK9LkInstitusiKriteria2Details(), 2);
+        $progress = round($dokumen, 2);
+        $this->progress_dokumen = $progress;
+        return $this;
     }
 }

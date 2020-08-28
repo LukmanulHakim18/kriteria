@@ -113,7 +113,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ]); ?>
                         </td>
                         <td style="padding-top: 15px;">
-                            <?= Html::a("<i class='la la-folder-open'></i>Lihat", ['lk/isi-kriteria', 'lk' => $_GET['lk'], 'kriteria' => $kriteriaJson['kriteria']], ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
+                            <?= Html::a("<i class='la la-folder-open'></i>Lihat", ['lk/lihat-kriteria', 'lk' => $_GET['lk'], 'kriteria' => $kriteriaJson['kriteria']], ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
 
                             <!--                        <button type="button" class="btn btn-danger">Lihat</button>-->
                         </td>

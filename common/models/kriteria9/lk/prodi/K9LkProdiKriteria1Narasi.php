@@ -69,15 +69,4 @@ class K9LkProdiKriteria1Narasi extends \yii\db\ActiveRecord
     {
         return $this->hasOne(K9LkProdiKriteria1::className(), ['id' => 'id_lk_prodi_kriteria1']);
     }
-
-    public function updateProgressNarasi()
-    {
-//
-        return $this;
-    }
-
-
-
-
-
 }

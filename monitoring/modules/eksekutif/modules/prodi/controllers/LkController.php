@@ -3,6 +3,7 @@
 
 namespace monitoring\modules\eksekutif\modules\prodi\controllers;
 
+use common\helpers\DownloadDokumenTrait;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\models\kriteria9\lk\K9LkTemplate;
@@ -11,6 +12,7 @@ use Yii;
 
 class LkController extends BaseController
 {
+    use DownloadDokumenTrait;
 
     public function actionLihat($lk, $kriteria, $prodi)
     {
@@ -44,21 +46,21 @@ class LkController extends BaseController
         return Yii::$app->response->sendFile("$path/$file");
     }
 
-    public function actionDownloadDok($id)
+    public function actionDownloadDok($id, $kriteria, $lk, $prodi)
     {
         ini_set('max_execution_time', 5 * 60);
-        $model = K9LkProdiKriteria1Detail::findOne($id);
-        $path = K9ProdiDirectoryHelper::getDokumenLkPath($model->lkProdiKriteria1->lkProdi->akreditasiProdi);
+
+        $detailClass = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria' . $kriteria . 'Detail';
+
+        $model = call_user_func($detailClass . '::findOne', $id);
+        $attribute = 'lkProdiKriteria' . $kriteria;
+
+        $path = K9ProdiDirectoryHelper::getDokumenLkPath($model->$attribute->lkProdi->akreditasiProdi);
         $file = $model->isi_dokumen;
 
-        if ($model->jenis_dokumen === 'lainnya') {
-            return Yii::$app->response->sendFile("$path/lainnya/$file");
-        } elseif ($model->jenis_dokumen === 'sumber') {
-            return Yii::$app->response->sendFile("$path/sumber/$file");
-        } elseif ($model->jenis_dokumen === 'pendukung') {
-            return Yii::$app->response->sendFile("$path/pendukung/$file");
-        } else {
-            return Yii::$app->response->sendFile("$path/$file");
-        }
+        $this->download($model, $path, $file);
+
+
+        return Yii::$app->response->sendFile("$path/$file");
     }
 }

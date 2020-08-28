@@ -10,6 +10,7 @@
 namespace akreditasi\models\kriteria9\lk\prodi;
 
 
+use common\helpers\HitungNarasiLkTrait;
 use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\helpers\kriteria9\K9ProdiProgressHelper;
 use common\helpers\NomorKriteriaHelper;
@@ -18,6 +19,7 @@ use yii2mod\helpers\ArrayHelper;
 
 class K9LkProdiNarasiKriteria1Form extends K9LkProdiKriteria1Narasi
 {
+    use HitungNarasiLkTrait;
 
     /**
      * @param bool $insert
@@ -46,40 +48,11 @@ class K9LkProdiNarasiKriteria1Form extends K9LkProdiKriteria1Narasi
     {
         $json = K9ProdiJsonHelper::getJsonKriteriaLk(1,
             $this->lkProdiKriteria1->lkProdi->akreditasiProdi->prodi->jenjang);
-        $count = 0;
+
 
         $exclude = ['id', 'id_lk_prodi_kriteria1', 'progress', 'created_at', 'updated_at'];
 
-        $filters = array_filter($this->attributes, function ($attribute) use ($exclude) {
-            return in_array($attribute, $exclude, true) === false;
-        }, ARRAY_FILTER_USE_KEY);
+        return $this->hitung($this, $exclude,$json);
 
-        $total = sizeof($filters);
-        $attributeKeys = array_map(function ($element) {
-            return NomorKriteriaHelper::changeToJsonFormat($element);
-        }, array_keys($filters));
-
-
-        $indexJson = ArrayHelper::index($json['butir'], 'tabel');
-        $keysJson = array_keys($indexJson);
-
-        $arrayIntersect = array_values(array_intersect($attributeKeys, $keysJson));
-        foreach ($arrayIntersect as $k => $attribute) {
-            $nomor = NomorKriteriaHelper::changeToDbFormat($attribute);
-            if ($attribute === $json['butir'][$k]['tabel']) {
-                $template = $json['butir'][$k]['template'];
-                $wordCountTemplate = strlen($template);
-
-                $data = $this->$nomor;
-                $wordCountData = strlen($data);
-
-                if ($wordCountTemplate !== $wordCountData) {
-                    ++$count;
-                }
-            }
-
-        }
-
-        return round(($count / $total) * 100, 2);
     }
 }

@@ -19,6 +19,7 @@ use yii\behaviors\TimestampBehavior;
  * @property K9LkProdi $lkProdi
  * @property K9LkProdiKriteria3Narasi $k9LkProdiKriteria3Narasi
  * @property K9LkProdiKriteria3Detail[] $k9LkProdiKriteria3Details
+ * @property float $progress
  */
 class K9LkProdiKriteria3 extends \yii\db\ActiveRecord
 {

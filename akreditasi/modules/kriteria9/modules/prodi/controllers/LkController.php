@@ -7,6 +7,7 @@ use akreditasi\models\kriteria9\forms\lk\prodi\K9LinkLkProdiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\prodi\K9LkProdiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\prodi\K9TextLkProdiKriteriaDetailForm;
 use akreditasi\modules\kriteria9\controllers\BaseController;
+use common\helpers\DownloadDokumenTrait;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\forms\lk\K9PencarianLkProdiForm;
@@ -31,6 +32,28 @@ use yii\web\UploadedFile;
 
 class LkController extends BaseController
 {
+
+    use DownloadDokumenTrait;
+    protected function getJsonData()
+    {
+        $fileJson = 'lkps_prodi_Sarjana.json';
+        $json = Json::decode(file_get_contents(Yii::getAlias('@common/required/kriteria9/aps/' . $fileJson)));
+        return $json;
+    }
+
+    protected function getArrayKriteria($lk)
+    {
+        $kriteria1 = K9LkProdiKriteria1::findOne(['id_lk_prodi' => $lk]);
+        $kriteria2 = K9LkProdiKriteria2::findOne(['id_lk_prodi' => $lk]);
+        $kriteria3 = K9LkProdiKriteria3::findOne(['id_lk_prodi' => $lk]);
+        $kriteria4 = K9LkProdiKriteria4::findOne(['id_lk_prodi' => $lk]);
+        $kriteria5 = K9LkProdiKriteria5::findOne(['id_lk_prodi' => $lk]);
+        $kriteria6 = K9LkProdiKriteria6::findOne(['id_lk_prodi' => $lk]);
+        $kriteria7 = K9LkProdiKriteria7::findOne(['id_lk_prodi' => $lk]);
+        $kriteria8 = K9LkProdiKriteria8::findOne(['id_lk_prodi' => $lk]);
+
+        return [$kriteria1, $kriteria2, $kriteria3, $kriteria4, $kriteria5, $kriteria6, $kriteria7, $kriteria8];
+    }
 
     public function actionArsip($target, $prodi)
     {
@@ -98,28 +121,6 @@ class LkController extends BaseController
         ]);
     }
 
-    protected function getJsonData()
-    {
-        $fileJson = 'lkps_prodi_Sarjana.json';
-        $json = Json::decode(file_get_contents(Yii::getAlias('@common/required/kriteria9/aps/' . $fileJson)));
-        return $json;
-    }
-
-    protected function getArrayKriteria($lk)
-    {
-        $kriteria1 = K9LkProdiKriteria1::findOne(['id_lk_prodi' => $lk]);
-        $kriteria2 = K9LkProdiKriteria2::findOne(['id_lk_prodi' => $lk]);
-        $kriteria3 = K9LkProdiKriteria3::findOne(['id_lk_prodi' => $lk]);
-        $kriteria4 = K9LkProdiKriteria4::findOne(['id_lk_prodi' => $lk]);
-        $kriteria5 = K9LkProdiKriteria5::findOne(['id_lk_prodi' => $lk]);
-        $kriteria6 = K9LkProdiKriteria6::findOne(['id_lk_prodi' => $lk]);
-        $kriteria7 = K9LkProdiKriteria7::findOne(['id_lk_prodi' => $lk]);
-        $kriteria8 = K9LkProdiKriteria8::findOne(['id_lk_prodi' => $lk]);
-
-        $kriteria = [$kriteria1, $kriteria2, $kriteria3, $kriteria4, $kriteria5, $kriteria6, $kriteria7, $kriteria8];
-
-        return $kriteria;
-    }
 
     public function actionIsiKriteria($lk, $kriteria, $prodi)
     {
@@ -129,11 +130,11 @@ class LkController extends BaseController
         $poinKriteria = $dataKriteria['butir'];
         $lkProdi = K9LkProdi::findOne($lk);
         $path = K9ProdiDirectoryHelper::getDokumenLkUrl($lkProdi->akreditasiProdi);
-        $lkProdiKriteriaClass= 'common\\models\\kriteria9\lk\\prodi\K9LkProdiKriteria'.$kriteria;
-        $lkProdiKriteria = call_user_func($lkProdiKriteriaClass.'::findOne',['id_lk_prodi'=>$lkProdi->id]);
+        $lkProdiKriteriaClass= 'common\\models\\kriteria9\lk\\prodi\\K9LkProdiKriteria' . $kriteria;
+        $lkProdiKriteria = call_user_func($lkProdiKriteriaClass . '::findOne', ['id_lk_prodi'=>$lkProdi->id]);
 
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\prodi\\K9LkProdiNarasiKriteria' . $kriteria . 'Form';
-        $modelNarasi = call_user_func($modelNarasiClass . '::findOne',['id_lk_prodi_kriteria'.$kriteria=>$lkProdiKriteria->id]);
+        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_lk_prodi_kriteria' . $kriteria=>$lkProdiKriteria->id]);
 
         $dokModel = new K9LkProdiKriteriaDetailForm();
         $dokTextModel = new K9TextLkProdiKriteriaDetailForm();
@@ -185,11 +186,9 @@ class LkController extends BaseController
         return $this->render('isi-kriteria', [
             'modelNarasi' => $modelNarasi,
             'lkProdi' => $lkProdi,
-            'json' => $json,
             'dokModel' => $dokModel,
             'dokTextModel' => $dokTextModel,
             'dokLinkModel' => $dokLinkModel,
-            'dataKriteria' => $dataKriteria,
             'poinKriteria' => $poinKriteria,
             'modelKriteria'=>$lkProdiKriteria,
             'path'=>$path
@@ -204,48 +203,36 @@ class LkController extends BaseController
         $poinKriteria = $dataKriteria['butir'];
         $lkProdi = K9LkProdi::findOne($lk);
 
-        $lkKriteriaClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria'.$kriteria;
-        $modelKriteria = call_user_func($lkKriteriaClass.'::findOne',['id_lk_prodi'=>$lkProdi->id]);
+        $lkKriteriaClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria;
+        $modelKriteria = call_user_func($lkKriteriaClass . '::findOne', ['id_lk_prodi'=>$lkProdi->id]);
 
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\prodi\\K9LkProdiNarasiKriteria' . $kriteria . 'Form';
-        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_lk_prodi_kriteria'.$kriteria=>$modelKriteria->id]);
+        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_lk_prodi_kriteria' . $kriteria=>$modelKriteria->id]);
 
         return $this->render('lihat-kriteria', [
             'modelNarasi' => $modelNarasi,
             'lkProdi' => $lkProdi,
-            'json' => $json,
-            'dataKriteria' => $dataKriteria,
             'poinKriteria' => $poinKriteria,
             'modelKriteria'=>$modelKriteria
         ]);
     }
 
-    public function actionDownloadTemplate($id)
+    public function actionDownloadDetail($dokumen, $kriteria, $lk, $prodi, $jenis)
     {
         ini_set('max_execution_time', 5 * 60);
-        $template = K9LkTemplate::findOne($id);
-        $path = K9ProdiDirectoryHelper::getTemplateLkPath();
-        $file = $template->nama_file;
 
-        return Yii::$app->response->sendFile("$path/$file");
-    }
+        $detailClass = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria' . $kriteria . 'Detail';
 
-    public function actionDownloadDetail($id)
-    {
-        ini_set('max_execution_time', 5 * 60);
-        $model = K9LkProdiKriteria1Detail::findOne($id);
-        $path = K9ProdiDirectoryHelper::getDokumenLkPath($model->lkProdiKriteria1->lkProdi->akreditasiProdi);
+        $model = call_user_func($detailClass . '::findOne', $dokumen);
+        $attribute = 'lkProdiKriteria' . $kriteria;
+
+        $path = K9ProdiDirectoryHelper::getDokumenLkPath($model->$attribute->lkProdi->akreditasiProdi);
         $file = $model->isi_dokumen;
 
-        if ($model->jenis_dokumen === 'lainnya') {
-            return Yii::$app->response->sendFile("$path/lainnya/$file");
-        } elseif ($model->jenis_dokumen === 'sumber') {
-            return Yii::$app->response->sendFile("$path/sumber/$file");
-        } elseif ($model->jenis_dokumen === 'pendukung') {
-            return Yii::$app->response->sendFile("$path/pendukung/$file");
-        } else {
-            return Yii::$app->response->sendFile("$path/$file");
-        }
+        $this->download($model, $path, $file);
+
+
+        return Yii::$app->response->sendFile("$path/$file");
     }
 
     public function actionHapusDetail()
@@ -259,7 +246,7 @@ class LkController extends BaseController
             $namespace = 'common\\models\\kriteria9\\lk\\prodi';
             $class = $namespace . '\\K9LkProdiKriteria' . $kriteria . 'Detail';
             $model = call_user_func($class . '::findOne', $id);
-            $attr = 'lkProdiKriteria'.$kriteria;
+            $attr = 'lkProdiKriteria' . $kriteria;
 
 
             $path = K9ProdiDirectoryHelper::getDokumenLkPath($model->$attr->lkProdi->akreditasiProdi);

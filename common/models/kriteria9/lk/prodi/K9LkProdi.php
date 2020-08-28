@@ -142,14 +142,14 @@ class K9LkProdi extends \yii\db\ActiveRecord
 
     public function updateProgress()
     {
-        $kriteria1 = ($this->k9LkProdiKriteria1s->progress_narasi + $this->k9LkProdiKriteria1s->progress_dokumen)/2;
-        $kriteria2 = ($this->k9LkProdiKriteria2s->progress_narasi+ $this->k9LkProdiKriteria2s->progress_dokumen)/2;
-        $kriteria3 = ($this->k9LkProdiKriteria3s->progress_narasi+ $this->k9LkProdiKriteria3s->progress_dokumen)/2;
-        $kriteria4 = ($this->k9LkProdiKriteria4s->progress_narasi+ $this->k9LkProdiKriteria4s->progress_dokumen)/2;
-        $kriteria5 = ($this->k9LkProdiKriteria5s->progress_narasi+ $this->k9LkProdiKriteria5s->progress_dokumen)/2;
-        $kriteria6 = ($this->k9LkProdiKriteria6s->progress_narasi+ $this->k9LkProdiKriteria6s->progress_dokumen)/2;
-        $kriteria7 = ($this->k9LkProdiKriteria7s->progress_narasi+ $this->k9LkProdiKriteria7s->progress_dokumen)/2;
-        $kriteria8 = ($this->k9LkProdiKriteria8s->progress_narasi+ $this->k9LkProdiKriteria8s->progress_dokumen)/2;
+        $kriteria1 = $this->k9LkProdiKriteria1s->progress;
+        $kriteria2 = $this->k9LkProdiKriteria2s->progress;
+        $kriteria3 = $this->k9LkProdiKriteria3s->progress;
+        $kriteria4 = $this->k9LkProdiKriteria4s->progress;
+        $kriteria5 = $this->k9LkProdiKriteria5s->progress;
+        $kriteria6 = $this->k9LkProdiKriteria6s->progress;
+        $kriteria7 = $this->k9LkProdiKriteria7s->progress;
+        $kriteria8 = $this->k9LkProdiKriteria8s->progress;
         $progress = round((($kriteria1 + $kriteria2 + $kriteria3 + $kriteria4 + $kriteria5 + $kriteria6 + $kriteria7 + $kriteria8) / 8), 2);
         $this->progress = $progress;
 

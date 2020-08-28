@@ -73,14 +73,4 @@ class K9LkProdiKriteria6Narasi extends \yii\db\ActiveRecord
         return $this->hasOne(K9LkProdiKriteria6::className(), ['id' => 'id_lk_prodi_kriteria6']);
     }
 
-    public function updateProgress()
-    {
-//        $dokumen = K9ProdiProgressHelper::getDokumenLkProgress($this->id_lk_prodi_kriteria6, $this->getK9LkProdiKriteria6Details(), 6);
-//
-//        $progress = round(($dokumen) / 1, 2);
-//        $this->progress = $progress;
-//        $this->save(false);
-    }
-
-
 }
