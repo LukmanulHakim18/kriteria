@@ -12,6 +12,9 @@ use yii\bootstrap4\Progress;
 /* @var $modelNarasi K9LkProdiNarasiKriteria1Form */
 /* @var $dataKriteria */
 /* @var $poinKriteria */
+/* @var $akreditasiProdi common\models\kriteria9\akreditasi\K9AkreditasiProdi */
+/* @var $modelKriteria  */
+/* @var $modelProdi  */
 
 $prodi = $_GET['prodi'];
 $this->title = 'Kriteria ' . $_GET['kriteria'];
@@ -39,11 +42,11 @@ $kriteria = $_GET['kriteria'];
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-actions">
-                <strong>Kelengkapan Berkas &nbsp; : <?= $modelNarasi->progress; ?> %</strong>
+                <strong>Kelengkapan Berkas &nbsp; : <?= $modelKriteria->progress ?> %</strong>
                 <div class="kt-space-10"></div>
                 <?=
                 Progress::widget([
-                    'percent' => $modelNarasi->progress,
+                    'percent' => $modelKriteria->progress,
                     'barOptions' => ['class' => 'progress-bar-info'],
                     'options' => ['class' => 'progress-sm']
                 ]);

@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-actions">
-                <strong>Kelengkapan Berkas &nbsp; : <?= $modelKriteria->progress; ?> %</strong>
+                <strong>Kelengkapan Berkas &nbsp; : <?= $modelKriteria->progress ?> %</strong>
                 <div class="kt-space-10"></div>
                 <?=
                 Progress::widget([
@@ -147,7 +147,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <td></td>
                                                 <td>
                                                     <div class="text-center">
-                                                        <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') : ?>
+                                                        <?php if ($v->bentuk_dokumen !== 'text' && $v->bentuk_dokumen !== 'link') : ?>
                                                             <div class="icon">
                                                                 <?= FileIconHelper::getIconByExtension($v->bentuk_dokumen) ?>
                                                             </div>
@@ -155,7 +155,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                             <?= Html::a($v['isi_dokumen'] . " <i class='fa fa-external-link-alt'></i>", ['lk/lihat-dok', 'kriteria' => $kriteria, 'dok' => $v['id'], 'lk' => $_GET['lk']], ['target' => '_blank', 'data-pjax' => "0"]) ?>
 
                                                         <?php else :
-                                                            if ($v->bentuk_dokumen == 'link') {
+                                                            if ($v->bentuk_dokumen === 'link') {
                                                                 echo '<a href=' . $v['isi_dokumen'] . ' target="_blank">' . $v["isi_dokumen"] . ' <i class=\'fa fa-external-link-alt\'></i></a>';
                                                             } else {
                                                                 echo $v['isi_dokumen'];
@@ -165,7 +165,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 </td>
                                                 <td class="text-right">
 
-                                                    <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') {
+                                                    <?php if ($v->bentuk_dokumen !== 'text' && $v->bentuk_dokumen !== 'link') {
                                                         echo Html::a('<i class="la la-download"></i> &nbsp;Unduh', ['lk/download-dok', 'id' => $v['id']], ['class' => 'btn btn-warning btn-pill btn-elevate btn-elevate-air']);
                                                     } ?>
 
@@ -231,7 +231,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     <td></td>
                                                     <td>
                                                         <div class="text-center">
-                                                            <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') { ?>
+                                                            <?php if ($v->bentuk_dokumen !== 'text' && $v->bentuk_dokumen !== 'link') { ?>
                                                                 <div class="icon">
                                                                     <?= FileIconHelper::getIconByExtension($v->bentuk_dokumen) ?>
                                                                 </div>
@@ -239,7 +239,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                 <?= Html::a($v['isi_dokumen'] . " <i class='fa fa-external-link-alt'></i>", ['lk/lihat-dok', 'standar' => $kriteria, 'dok' => $v['id'], 'lk' => $_GET['lk']], ['target' => '_blank', 'data-pjax' => "0"]) ?>
 
                                                             <?php } else {
-                                                                if ($v->bentuk_dokumen == 'link') {
+                                                                if ($v->bentuk_dokumen === 'link') {
                                                                     echo '<a href=' . $v['isi_dokumen'] . ' target="_blank">' . $v["isi_dokumen"] . ' <i class=\'fa fa-external-link-alt\'></i></a>';
                                                                 } else {
                                                                     echo $v['isi_dokumen'];
@@ -249,7 +249,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     </td>
                                                     <td class="text-right">
 
-                                                        <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') {
+                                                        <?php if ($v->bentuk_dokumen !== 'text' && $v->bentuk_dokumen !== 'link') {
                                                             echo Html::a('<i class="la la-download"></i> &nbsp;Unduh', ['lk/download-dok', 'id' => $v->id], ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-warning']);
                                                         } ?>
 
@@ -289,12 +289,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                         $detail1 = $detail->andWhere(['jenis_dokumen' => Constants::LAINNYA])->all();
                                         if (!empty($detail1)) {
                                             foreach ($detail1 as $k => $v) {
-                                                if ($v['tabel'] == $v['kode_dokumen'] && $v['jenis_dokumen'] == 'lainnya') { ?>
+                                                if ($v['tabel'] == $v['kode_dokumen'] && $v['jenis_dokumen'] === 'lainnya') { ?>
                                                     <tr>
                                                         <td><strong><?= $k + 1 ?></strong></td>
                                                         <td>
                                                             <div class="text-center">
-                                                                <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') { ?>
+                                                                <?php if ($v->bentuk_dokumen !== 'text' && $v->bentuk_dokumen !== 'link') { ?>
                                                                     <div class="icon">
                                                                         <?= FileIconHelper::getIconByExtension($v->bentuk_dokumen) ?>
                                                                     </div>
@@ -302,7 +302,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                     <?= Html::a($v['isi_dokumen'] . " <i class='fa fa-external-link-alt'></i>", ['lk/lihat-dok', 'id' => $v['id']], ['target' => '_blank', 'data-pjax' => "0"]) ?>
 
                                                                 <?php } else {
-                                                                    if ($v->bentuk_dokumen == 'link') {
+                                                                    if ($v->bentuk_dokumen === 'link') {
                                                                         echo '<a href=' . $v['isi_dokumen'] . ' target="_blank">' . $v["isi_dokumen"] . ' <i class=\'fa fa-external-link-alt\'></i></a>';
                                                                     } else {
                                                                         echo $v['isi_dokumen'];
@@ -311,7 +311,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                             </div>
                                                         </td>
                                                         <td class="pull-right">
-                                                            <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') {
+                                                            <?php if ($v->bentuk_dokumen !== 'text' && $v->bentuk_dokumen !== 'link') {
                                                                 echo Html::a('<i class="la la-download"></i> &nbsp;Unduh', ['lk/download-dok', 'id' => $v->id], ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-warning']);
                                                             } ?>
 

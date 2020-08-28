@@ -38,7 +38,7 @@ class K9LedProdiNarasiKriteria5Form extends K9LedProdiNarasiKriteria5
         $exclude = ['id','id_led_prodi_kriteria5','progress','created_at','updated_at','created_by','updated_by'];
 
         $filters = array_filter($this->attributes, function ($attribute) use ($exclude){
-            return in_array($attribute,$exclude) === false;
+            return in_array($attribute, $exclude, true) === false;
         },ARRAY_FILTER_USE_KEY);
 
         $total = sizeof($filters);

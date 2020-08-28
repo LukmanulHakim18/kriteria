@@ -38,7 +38,7 @@ class K9LedProdiNarasiKriteria1Form extends K9LedProdiNarasiKriteria1
         $exclude = ['id','id_led_prodi_kriteria1','progress','created_at','updated_at','created_by','updated_by'];
 
         $filters = array_filter($this->attributes, function ($attribute) use ($exclude){
-            return in_array($attribute,$exclude) === false;
+            return in_array($attribute, $exclude, true) === false;
         },ARRAY_FILTER_USE_KEY);
 
         $total = sizeof($filters);
@@ -50,9 +50,6 @@ class K9LedProdiNarasiKriteria1Form extends K9LedProdiNarasiKriteria1
         }
 
         $progress = round(($count/$total) * 100,2);
-//        var_dump($progress);
-//        exit();
-
         $this->progress = $progress;
 
         return true;
