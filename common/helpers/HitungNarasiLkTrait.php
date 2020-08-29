@@ -24,7 +24,9 @@ trait HitungNarasiLkTrait
         $indexJson = ArrayHelper::index($json['butir'], 'tabel');
         $keysJson = array_keys($indexJson);
 
+
         $arrayIntersect = array_values(array_intersect($attributeKeys, $keysJson));
+
         $total = sizeof($arrayIntersect);
         foreach ($arrayIntersect as $k => $attribute) {
             $nomor = NomorKriteriaHelper::changeToDbFormat($attribute);
