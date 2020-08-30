@@ -872,7 +872,7 @@
       {
         "nomor": "3.9",
         "isi": "Kesimpulan hasil evaluasi ketercapaian standar serta tindak lanjut",
-        "deskrips": "Berisi ringkasan dari: pemosisian, masalah dan akar masalah, serta rencana perbaikan dan pengembangan kemahasiswaan.",
+        "deskripsi": "Berisi ringkasan dari: pemosisian, masalah dan akar masalah, serta rencana perbaikan dan pengembangan kemahasiswaan.",
         "dokumen_sumber": [
           {
             "kode": "3.9.1.1",
@@ -1170,7 +1170,7 @@
       {
         "nomor": "4.8",
         "isi": "Kepuasan Pengguna",
-        "deksripsi": "a)Deskripsi sistem untuk mengukur kepuasan dosen dan tenaga kependidikan, termasuk kejelasan instrumen yang digunakan, pelaksanaan, perekaman dan analisis datanya.\nb)Ketersediaan bukti yang sahih tentang hasil pengukuran kepuasan pengguna yang dilaksanakan secara konsisten, dan ditindaklanjuti secara berkala dan tersistem.",
+        "deskripsi": "a)Deskripsi sistem untuk mengukur kepuasan dosen dan tenaga kependidikan, termasuk kejelasan instrumen yang digunakan, pelaksanaan, perekaman dan analisis datanya.\nb)Ketersediaan bukti yang sahih tentang hasil pengukuran kepuasan pengguna yang dilaksanakan secara konsisten, dan ditindaklanjuti secara berkala dan tersistem.",
         "dokumen_sumber": [
           {
             "kode": "4.8.1.1",
