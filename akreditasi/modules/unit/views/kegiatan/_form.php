@@ -150,6 +150,7 @@ $action = Yii::$app->controller->action->id;
                     <thead class="thead-dark">
                     <tr>
                         <th class="text-center">Nama berkas</th>
+                        <th class="text-center">Jenis Berkas</th>
                         <th class="text-center">Aksi</th>
                     </tr>
                     </thead>
@@ -166,11 +167,12 @@ $action = Yii::$app->controller->action->id;
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12 text-center">
-                                        <?= \yii\bootstrap4\Html::encode($datum->nama_file) ?>
+                                        <?= \yii\bootstrap4\Html::encode($datum->isi_file) ?>
 
                                     </div>
                                 </div>
                             </td>
+                            <td><?=$datum->nama_file?></td>
                             <td>
                                 <div class="row pull-right">
                                     <div class="col-lg-12 ">

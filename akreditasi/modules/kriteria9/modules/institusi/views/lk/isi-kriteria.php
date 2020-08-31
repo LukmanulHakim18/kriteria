@@ -248,8 +248,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     <?= $form->field($dokLinkModel, 'jenisDokumen')->textInput(['value' => 'sumber', 'readonly' => true]) ?>
                                                     <?= $form->field($dokLinkModel, 'kodeDokumen')->textInput(['value' => $doksum['kode'], 'readonly' => true]) ?>
                                                     <?= $form->field($dokLinkModel, 'namaDokumen')->textInput(['value' => $doksum['dokumen'], 'readonly' => true]) ?>
-                                                    <?= $form->field($dokLinkModel, 'isiDokumen')->textInput() ?>
-
+                                                    <?= $form->field($dokLinkModel, 'isiDokumen')->textInput(['
+                                                    placeholder'=>'https://www.contoh.com'])->label('Tautan')->hint('https:// atau http:// harus dimasukkan.') ?>
                                                     <div class="form-group text-right">
                                                         <?= Html::submitButton("<i class='la la-save'></i> Simpan", ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-primary ']) ?>
                                                     </div>
@@ -467,8 +467,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         <?= $form->field($dokLinkModel, 'jenisDokumen')->textInput(['value' => 'pendukung', 'readonly' => true]) ?>
                                                         <?= $form->field($dokLinkModel, 'kodeDokumen')->textInput(['value' => $dokpen['kode'], 'readonly' => true]) ?>
                                                         <?= $form->field($dokLinkModel, 'namaDokumen')->textInput(['value' => $dokpen['dokumen'], 'readonly' => true]) ?>
-                                                        <?= $form->field($dokLinkModel, 'isiDokumen')->textInput() ?>
-
+                                                        <?= $form->field($dokLinkModel, 'isiDokumen')->textInput(['
+                                                    placeholder'=>'https://www.contoh.com'])->label('Tautan')->hint('https:// atau http:// harus dimasukkan.') ?>
                                                         <div class="form-group text-right">
                                                             <?= Html::submitButton("<i class='la la-save'></i> Simpan", ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-primary ']) ?>
                                                         </div>

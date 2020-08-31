@@ -249,8 +249,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     <?= $form->field($dokLinkModel, 'jenisDokumen')->textInput(['value' => 'sumber', 'readonly' => true]) ?>
                                                     <?= $form->field($dokLinkModel, 'kodeDokumen')->textInput(['value' => $doksum['kode'], 'readonly' => true]) ?>
                                                     <?= $form->field($dokLinkModel, 'namaDokumen')->textInput(['value' => $doksum['dokumen'], 'readonly' => true]) ?>
-                                                    <?= $form->field($dokLinkModel, 'isiDokumen')->textInput() ?>
-
+                                                    <?= $form->field($dokLinkModel, 'isiDokumen')->textInput(['
+                                                    placeholder'=>'https://www.contoh.com'])->label('Tautan')->hint('https:// atau http:// harus dimasukkan.') ?>
                                                     <div class="form-group text-right">
                                                         <?= Html::submitButton("<i class='la la-save'></i> Simpan", ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-primary ']) ?>
                                                     </div>
@@ -469,8 +469,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         <?= $form->field($dokLinkModel, 'jenisDokumen')->textInput(['value' => 'pendukung', 'readonly' => true]) ?>
                                                         <?= $form->field($dokLinkModel, 'kodeDokumen')->textInput(['value' => $dokpen['kode'], 'readonly' => true]) ?>
                                                         <?= $form->field($dokLinkModel, 'namaDokumen')->textInput(['value' => $dokpen['dokumen'], 'readonly' => true]) ?>
-                                                        <?= $form->field($dokLinkModel, 'isiDokumen')->textInput() ?>
-
+                                                        <?= $form->field($dokLinkModel, 'isiDokumen')->textInput(['
+                                                    placeholder'=>'https://www.contoh.com'])->label('Tautan')->hint('https:// atau http:// harus dimasukkan.') ?>
                                                         <div class="form-group text-right">
                                                             <?= Html::submitButton("<i class='la la-save'></i> Simpan", ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-primary ']) ?>
                                                         </div>
@@ -583,7 +583,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                             <th colspan="2" class="text-left">Dokumen Lainnya</th>
                                             <th>
                                                 <?php Modal::begin([
-                                                    'title' => 'Unggah Dokumen Dokumentasi',
+                                                    'title' => 'Unggah Dokumen Lainnya',
                                                     'toggleButton' => ['label' => '<i class="la la-upload"></i> &nbsp;Unggah', 'class' => 'btn btn-light btn-pill btn-elevate btn-elevate-air pull-right'],
                                                     'size' => 'modal-lg',
                                                     'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
@@ -593,7 +593,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                                 <?= $form->field($dokModel, 'jenisDokumen')->textInput(['value' => 'lainnya', 'readonly' => true]) ?>
                                                 <?= $form->field($dokModel, 'kodeDokumen')->textInput(['value' => $item['tabel'], 'readonly' => true]) ?>
-                                                <?= $form->field($dokModel, 'namaDokumen')->textInput(['value' => 'Dokumen Lainnya ' . $item['tabel'], 'readonly' => true]) ?>
+                                                <?= $form->field($dokModel, 'namaDokumen')->textInput() ?>
 
                                                 <?= $form->field($dokModel, 'isiDokumen')->widget(FileInput::class, [
                                                     'options' => ['id' => 'isiDokumenLainnya' . str_replace('.', '_', $item['tabel'])],
@@ -617,6 +617,69 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <?php ActiveForm::end() ?>
 
                                                 <?php Modal::end(); ?>
+
+                                                <!--                                                    Text-->
+
+                                                <?php Modal::begin([
+                                                    'title' => 'Isi Teks Dokumentasi',
+                                                    'toggleButton' => ['label' => '<i class="la la-file-text"></i> &nbsp;Teks', 'class' => 'btn btn-success btn-pill btn-sm btn-elevate btn-elevate-air pull-right'],
+                                                    'size' => 'modal-lg',
+                                                    'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
+                                                ]); ?>
+
+                                                <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => 'pendukung']) ?>
+
+                                                <?= $form->field($dokTextModel, 'jenisDokumen')->textInput(['value' => 'lainnya', 'readonly' => true]) ?>
+                                                <?= $form->field($dokTextModel, 'kodeDokumen')->textInput(['value' => $item['tabel'], 'readonly' => true]) ?>
+                                                <?= $form->field($dokTextModel, 'namaDokumen')->textInput() ?>
+
+                                                <?= $form->field($dokTextModel, 'isiDokumen')->widget(TinyMce::class, [
+                                                    'options' => ['rows' => 6, 'id' => 'lainnya-isi_teks'],
+                                                    'language' => 'id',
+                                                    'clientOptions' => [
+                                                        'plugins' => [
+                                                            "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
+                                                            "searchreplace wordcount visualblocks visualchars code fullscreen",
+                                                            "insertdatetime media nonbreaking save table contextmenu directionality",
+                                                            "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
+                                                        ],
+                                                        'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link | image"
+
+                                                    ]
+                                                ])->label('Isi Dokumen') ?>
+
+                                                <div class="form-group text-right">
+                                                    <?= Html::submitButton("<i class='la la-save'></i> Simpan", ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-primary ']) ?>
+                                                </div>
+                                                <?php ActiveForm::end() ?>
+
+                                                <?php Modal::end(); ?>
+
+                                                <!--                                                    Link-->
+
+                                                <?php Modal::begin([
+                                                    'title' => 'Isi Tautan Dokumen Lainnya',
+                                                    'toggleButton' => ['label' => '<i class="la la-link"></i> &nbsp;Tautan', 'class' => 'btn btn-info btn-pill btn-sm btn-elevate btn-elevate-air pull-right'],
+                                                    'size' => 'modal-lg',
+                                                    'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
+                                                ]); ?>
+
+                                                <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
+
+                                                <?= $form->field($dokLinkModel, 'jenisDokumen')->textInput(['value' => 'lainnya', 'readonly' => true]) ?>
+                                                <?= $form->field($dokLinkModel, 'kodeDokumen')->textInput(['value' =>$item['tabel'], 'readonly' => true]) ?>
+                                                <?= $form->field($dokLinkModel, 'namaDokumen')->textInput() ?>
+                                                <?= $form->field($dokLinkModel, 'isiDokumen')->textInput(['
+                                                    placeholder'=>'https://www.contoh.com'])->label('Tautan')->hint('https:// atau http:// harus dimasukkan.') ?>
+                                                <div class="form-group text-right">
+                                                    <?= Html::submitButton("<i class='la la-save'></i> Simpan", ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-primary ']) ?>
+                                                </div>
+
+                                                <?php ActiveForm::end() ?>
+
+                                                <?php Modal::end(); ?>
+
+
 
                                                 <?=Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=>\yii\helpers\Url::to(['resource/index','prodi'=>$_GET['prodi'],'kriteria'=>$kriteria,'kode'=>'','jenis'=>Constants::LK,'id_led_lk'=>$_GET['lk'],'jenis_dokumen'=>Constants::LAINNYA]),'title'=>'Gunakan Data Untuk Dokumen lainnya ' ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton pull-right'])?>
                                             </th>
