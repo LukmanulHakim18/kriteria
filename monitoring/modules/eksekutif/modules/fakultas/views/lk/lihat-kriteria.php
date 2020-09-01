@@ -22,11 +22,11 @@ $prodi = $_GET['prodi'];
 $this->title = 'Kriteria ' . $_GET['kriteria'];
 $this->params['breadcrumbs'][] = [
     'label' => 'Akreditasi Prodi',
-    'url' => ['akreditasi/index', 'prodi' => $_GET['prodi']]
+    'url' => ['akreditasi/index', 'prodi' => $_GET['prodi'],'fakultas'=>$_GET['fakultas']]
 ];
 $this->params['breadcrumbs'][] = [
     'label' => "Akreditasi: {$akreditasiProdi->akreditasi->nama} - {$modelProdi->nama}",
-    'url' => ['akreditasi/detail', 'id' => $akreditasiProdi->id, 'prodi' => $modelProdi->id]
+    'url' => ['akreditasi/detail', 'id' => $akreditasiProdi->id, 'prodi' => $modelProdi->id,'fakultas'=>$_GET['fakultas']]
 ];
 $this->params['breadcrumbs'][] = $this->title;
 $kriteria = $_GET['kriteria'];
@@ -98,6 +98,7 @@ $kriteria = $_GET['kriteria'];
 
                                                     <?= $modelNarasi->$modelAttribute ?>
 
+                                                    <?=$item['keterangan']?>
                                                 </div>
                                             </div>
                                         </div>

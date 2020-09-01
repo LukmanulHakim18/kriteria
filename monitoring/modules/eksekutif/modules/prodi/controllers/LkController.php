@@ -26,7 +26,7 @@ class LkController extends BaseController
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\prodi\\K9LkProdiNarasiKriteria' . $kriteria . 'Form';
         $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_lk_prodi_kriteria'.$kriteria=>$modelKriteria->id]);
 
-        $akreditasiProdi = $modelNarasi->lkProdi->akreditasiProdi;
+        $akreditasiProdi = $modelKriteria->lkProdi->akreditasiProdi;
         return $this->render('lihat-kriteria', [
             'akreditasiProdi' => $akreditasiProdi,
             'modelProdi' => $modelProdi,
@@ -50,7 +50,7 @@ class LkController extends BaseController
     {
         ini_set('max_execution_time', 5 * 60);
 
-        $detailClass = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria' . $kriteria . 'Detail';
+        $detailClass = 'common\\models\\kriteria9\\lk\\institusi\\K9LkProdiKriteria' . $kriteria . 'Detail';
 
         $model = call_user_func($detailClass . '::findOne', $id);
         $attribute = 'lkProdiKriteria' . $kriteria;

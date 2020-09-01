@@ -94,6 +94,7 @@ $kriteria = $_GET['kriteria'];
                                                 <div class="col-lg-12">
 
                                                     <?= $modelNarasi->$modelAttribute ?>
+                                                    <?=$item['keterangan']?>
 
                                                 </div>
                                             </div>
