@@ -95,7 +95,7 @@ class K9AkreditasiInstitusi extends \yii\db\ActiveRecord
 
         $progress = round((($led+$lk)/2),2);
         $this->progress = $progress;
-        $this->save(false);
+        return $this;
     }
 
 }

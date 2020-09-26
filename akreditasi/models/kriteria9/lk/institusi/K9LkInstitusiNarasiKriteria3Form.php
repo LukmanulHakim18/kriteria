@@ -10,55 +10,43 @@
 namespace akreditasi\models\kriteria9\lk\institusi;
 
 
+use common\helpers\HitungNarasiLkTrait;
 use common\helpers\kriteria9\K9InstitusiJsonHelper;
-use common\helpers\kriteria9\K9InstitusiProgressHelper;
-use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria3;
+use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria3Narasi;
 
-class K9LkInstitusiNarasiKriteria3Form extends K9LkInstitusiKriteria3
+class K9LkInstitusiNarasiKriteria3Form extends K9LkInstitusiKriteria3Narasi
 {
 
+    use HitungNarasiLkTrait;
+
+    /**
+     * @param bool $insert
+     * @return bool
+     */
     public function beforeSave($insert)
     {
-        $this->updateProgress();
-        $this->lkInstitusi->updateProgress();
-        $this->lkInstitusi->akreditasiInstitusi->updateProgress();
+        $this->progress = $this->hitungNarasi();
+
         return parent::beforeSave($insert);
     }
 
-    public function updateProgress()
+    /**
+     * @param bool $insert
+     * @param array $changedAttributes
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        $this->lkInstitusiKriteria3->updateProgressNarasi()->save(false);
+        $this->lkInstitusiKriteria3->lkInstitusi->updateProgress()->save(false);
+        $this->lkInstitusiKriteria3->lkInstitusi->akreditasiInstitusi->updateProgress()->save(false);
+        parent::afterSave($insert, $changedAttributes);
+    }
+
+    public function hitungNarasi()
     {
         $json = K9InstitusiJsonHelper::getJsonKriteriaLk(3);
-        $count = 0;
+        $exclude = ['id', 'id_lk_institusi_kriteria3', 'progress', 'created_at', 'updated_at'];
 
-        $exclude = ['id', 'id_lk_institusi', 'progress', 'created_at', 'updated_at'];
-
-        $filters = array_filter($this->attributes, function ($attribute) use ($exclude) {
-            return in_array($attribute, $exclude) === false;
-        }, ARRAY_FILTER_USE_KEY);
-
-        $total = sizeof($filters);
-        $attributeKeys = array_keys($filters);
-
-        foreach ($attributeKeys as $k => $attribute) {
-            $template = $json['butir'][$k]['template'];
-            $hashTemplate = sha1($template);
-
-            $data = $this->$attribute;
-            $hashData = sha1($data);
-
-            if ($hashTemplate !== $hashData) {
-                $count += 1;
-            }
-        }
-
-
-        $progress1 = round(($count / $total) * 100, 2);
-
-        $dokumen = K9InstitusiProgressHelper::getDokumenLkProgress($this->id_lk_institusi, $this->getK9LkInstitusiKriteria3Details(), 3);
-
-        $progress2 = round(($dokumen), 2);
-        $this->progress = $progress1 + $progress2;
-
-        return true;
+        return $this->hitung($this, $exclude, $json);
     }
 }

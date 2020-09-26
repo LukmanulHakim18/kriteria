@@ -41,7 +41,7 @@ $menuItems = [
             [
                 'label' => 'Program Studi',
                 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',
-                'url' => ['/ekeskutif/arsip/prodi']
+                'url' => ['/eksekutif/arsip/prodi']
             ]
 
         ],

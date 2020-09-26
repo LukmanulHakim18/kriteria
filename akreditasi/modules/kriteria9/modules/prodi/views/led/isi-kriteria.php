@@ -202,7 +202,8 @@ use yii\bootstrap4\Progress;
                                                         <?= $form->field($linkModel, 'kode_dokumen')->textInput(['value' => $doksum['kode'], 'readonly' => true]) ?>
                                                         <?= $form->field($linkModel, 'jenis_dokumen')->textInput(['value' => Constants::SUMBER, 'readonly' => true]) ?>
                                                         <?= $form->field($linkModel, 'nama_dokumen')->textInput()->label('Nama Tautan') ?>
-                                                        <?= $form->field($linkModel, 'berkasDokumen')->textInput()->label('Tautan') ?>
+                                                        <?= $form->field($linkModel, 'berkasDokumen')->textInput(['
+                                                    placeholder'=>'https://www.contoh.com'])->label('Tautan')->hint('https:// atau http:// harus dimasukkan.') ?>
 
                                                         <div class="form-group pull-right">
                                                             <?= Html::submitButton('<i class="la la-save"></i> Simpan', ['class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air']) ?>
@@ -258,7 +259,8 @@ use yii\bootstrap4\Progress;
                                         foreach ($detail1 as $k => $v):
                                             ?>
                                             <tr>
-                                                <td colspan="2">
+                                                <td><?= $k + 1 ?></td>
+                                                <td >
                                                     <div class="row">
                                                         <div class="col-lg-12 text-center">
 
@@ -414,7 +416,8 @@ use yii\bootstrap4\Progress;
                                                         <?= $form->field($linkModel, 'kode_dokumen')->textInput(['value' => $dokpen['kode'], 'readonly' => true]) ?>
                                                         <?= $form->field($linkModel, 'jenis_dokumen')->textInput(['value' => Constants::PENDUKUNG, 'readonly' => true]) ?>
                                                         <?= $form->field($linkModel, 'nama_dokumen')->textInput()->label('Nama Tautan') ?>
-                                                        <?= $form->field($linkModel, 'berkasDokumen')->textInput()->label('Tautan') ?>
+                                                        <?= $form->field($linkModel, 'berkasDokumen')->textInput(['
+                                                    placeholder'=>'https://www.contoh.com'])->label('Tautan')->hint('https:// atau http:// harus dimasukkan.') ?>
 
                                                         <div class="form-group pull-right">
                                                             <?= Html::submitButton('<i class="la la-save"></i> Simpan', ['class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air']) ?>
@@ -605,8 +608,8 @@ use yii\bootstrap4\Progress;
 
                                                     <?= $form->field($linkModel, 'jenis_dokumen')->textInput(['value' => Constants::LAINNYA, 'readonly' => true]) ?>
                                                     <?= $form->field($linkModel, 'nama_dokumen')->textInput()->label('Nama Tautan') ?>
-                                                    <?= $form->field($linkModel, 'berkasDokumen')->textInput()->label('Tautan') ?>
-
+                                                    <?= $form->field($linkModel, 'berkasDokumen')->textInput(['
+                                                    placeholder'=>'https://www.contoh.com'])->label('Tautan')->hint('https:// atau http:// harus dimasukkan.') ?>
                                                     <div class="form-group pull-right">
                                                         <?= Html::submitButton('<i class="la la-save"></i> Simpan', ['class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air']) ?>
                                                     </div>

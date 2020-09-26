@@ -104,17 +104,17 @@ class K9LkInstitusiKriteria3Detail extends \yii\db\ActiveRecord
 
     public function afterSave($insert, $changedAttributes)
     {
-        $this->lkInstitusiKriteria3->updateProgress();
-        $this->lkInstitusiKriteria3->lkInstitusi->updateProgress();
-        $this->lkInstitusiKriteria3->lkInstitusi->akreditasiInstitusi->updateProgress();
+        $this->lkInstitusiKriteria3->updateProgressDokumen()->save(false);
+        $this->lkInstitusiKriteria3->lkInstitusi->updateProgress()->save(false);
+        $this->lkInstitusiKriteria3->lkInstitusi->akreditasiInstitusi->updateProgress()->save(false);
         return parent::afterSave($insert, $changedAttributes);
     }
 
     public function afterDelete()
     {
-        $this->lkInstitusiKriteria3->updateProgress();
-        $this->lkInstitusiKriteria3->lkInstitusi->updateProgress();
-        $this->lkInstitusiKriteria3->lkInstitusi->akreditasiInstitusi->updateProgress();
+        $this->lkInstitusiKriteria3->updateProgressDokumen()->save(false);
+        $this->lkInstitusiKriteria3->lkInstitusi->updateProgress()->save(false);
+        $this->lkInstitusiKriteria3->lkInstitusi->akreditasiInstitusi->updateProgress()->save(false);
         parent::afterDelete();
     }
 }

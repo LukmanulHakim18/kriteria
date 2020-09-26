@@ -9,20 +9,19 @@ use yii\bootstrap4\Progress;
 
 /* @var $this yii\web\View */
 /* @var $lkProdi K9LkProdi */
+/* @var $modelKriteria common\models\kriteria9\lk\prodi\K9LkProdiKriteria1 */
 /* @var $modelNarasi K9LkProdiNarasiKriteria1Form */
 /* @var $dataKriteria */
 /* @var $poinKriteria */
 
-$prodi = $_GET['prodi'];
 $this->title = 'Kriteria ' . $_GET['kriteria'];
 $this->params['breadcrumbs'][] = [
-    'label' => 'Akreditasi Prodi',
-    'url' => ['akreditasi/index', 'prodi' => $_GET['prodi']]
+    'label' => 'Akreditasi Institusi',
+    'url' => ['akreditasi/index']
 ];
 $this->params['breadcrumbs'][] = [
-    'label' => "Akreditasi: {$akreditasiProdi->akreditasi->nama} - {$modelProdi->nama}",
-    'url' => ['akreditasi/detail', 'id' => $akreditasiProdi->id, 'prodi' => $modelProdi->id]
-];
+    'label' => "Akreditasi: {$akreditasiInstitusi->akreditasi->nama} - {$profilInstitusi['nama']}",
+    'url' => ['akreditasi/detail', 'id' => $akreditasiInstitusi->id]];
 $this->params['breadcrumbs'][] = $this->title;
 $kriteria = $_GET['kriteria'];
 
@@ -39,11 +38,11 @@ $kriteria = $_GET['kriteria'];
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-actions">
-                <strong>Kelengkapan Berkas &nbsp; : <?= $modelNarasi->progress; ?> %</strong>
+                <strong>Kelengkapan Berkas &nbsp; : <?= $modelKriteria->progress; ?> %</strong>
                 <div class="kt-space-10"></div>
                 <?=
                 Progress::widget([
-                    'percent' => $modelNarasi->progress,
+                    'percent' => $modelKriteria->progress,
                     'barOptions' => ['class' => 'progress-bar-info'],
                     'options' => ['class' => 'progress-sm']
                 ]);

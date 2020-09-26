@@ -2,8 +2,12 @@
 
 namespace common\models;
 
+use common\models\unit\KegiatanUnit;
 use oxyaction\behaviors\RelatedPolymorphicBehavior;
+use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "unit".
@@ -15,9 +19,10 @@ use yii\behaviors\TimestampBehavior;
  * @property int $updated_at
  *
  * @property Profil $profil
- * @property Berkas $berkas
+ * @property Berkas[] $berkas
+ * @property KegiatanUnit[] $kegiatans
  */
-class Unit extends \yii\db\ActiveRecord
+class Unit extends ActiveRecord
 {
     const UNIT = 'unit';
     const JENIS_UNIT = 0;
@@ -70,14 +75,14 @@ class Unit extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nama' => 'Nama',
-            'jenis'=>\Yii::t('app', 'Jenis'),
+            'jenis'=> Yii::t('app', 'Jenis'),
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getProfil()
     {
@@ -85,10 +90,19 @@ class Unit extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getBerkas()
     {
         return $this->hasMany(Berkas::class, ['external_id'=>'id'])->andWhere(['type'=>self::UNIT]);
+    }
+
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getKegiatans()
+    {
+        return $this->hasMany(KegiatanUnit::class, ['id_unit'=>'id']);
     }
 }

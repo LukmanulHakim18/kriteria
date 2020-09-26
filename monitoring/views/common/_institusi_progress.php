@@ -10,7 +10,7 @@
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Progress;
 
-$url = ['akreditasi/detail-pt','$id'=>$model->id]
+$url = ['akreditasi/detail-pt','id'=>$model->id]
 ?>
 <div class="row">
     <div class="col-lg-12">

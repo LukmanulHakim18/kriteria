@@ -1,7 +1,6 @@
 <?php
 namespace akreditasi\models\kriteria9\forms\lk\prodi;
 
-
 use Carbon\Carbon;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\models\kriteria9\lk\prodi\K9LkProdiKriteria1Detail;
@@ -25,19 +24,19 @@ class K9LkProdiKriteriaDetailForm extends Model
         ];
     }
 
-    public function uploadDokumen($id, $kriteria){
+    public function uploadDokumen($id, $kriteria)
+    {
 
-        if ($this->validate()){
-
-            $detailClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria'.$kriteria.'Detail';
+        if ($this->validate()) {
+            $detailClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria . 'Detail';
             $this->_dokumenLk = new $detailClass;
 
             $carbon = Carbon::now('Asia/Jakarta');
             $tgl = $carbon->format('U');
 
-            $fileName = $this->isiDokumen->getBaseName().'-'.$this->jenisDokumen.'-'.$tgl.'.'.$this->isiDokumen->getExtension();
+            $fileName = $this->isiDokumen->getBaseName() . '-' . $this->jenisDokumen . '-' . $tgl . '.' . $this->isiDokumen->getExtension();
 
-            $detailAttr = 'id_lk_prodi_kriteria'.$kriteria;
+            $detailAttr = 'id_lk_prodi_kriteria' . $kriteria;
             $this->_dokumenLk->$detailAttr = $id;
             $this->_dokumenLk->nama_dokumen = $this->namaDokumen;
             $this->_dokumenLk->isi_dokumen = $fileName;
@@ -45,14 +44,14 @@ class K9LkProdiKriteriaDetailForm extends Model
             $this->_dokumenLk->bentuk_dokumen = $this->isiDokumen->getExtension();
             $this->_dokumenLk->jenis_dokumen = $this->jenisDokumen;
 
-            $lkAttr = 'lkProdiKriteria'.$kriteria;
+            $lkAttr = 'lkProdiKriteria' . $kriteria;
             $path = K9ProdiDirectoryHelper::getDokumenLkPath($this->_dokumenLk->$lkAttr->lkProdi->akreditasiProdi);
 
-            if ($this->jenisDokumen == 'sumber'){
+            if ($this->jenisDokumen === 'sumber') {
                 $this->isiDokumen->saveAs("$path/sumber/$fileName");
-            } elseif ($this->jenisDokumen == 'pendukung'){
+            } elseif ($this->jenisDokumen === 'pendukung') {
                 $this->isiDokumen->saveAs("$path/pendukung/$fileName");
-            } elseif ($this->jenisDokumen == 'lainnya'){
+            } elseif ($this->jenisDokumen === 'lainnya') {
                 $this->isiDokumen->saveAs("$path/lainnya/$fileName");
             } else {
                 $this->isiDokumen->saveAs("$path/$fileName");

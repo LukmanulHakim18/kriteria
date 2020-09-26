@@ -153,6 +153,6 @@ class K9LkProdi extends \yii\db\ActiveRecord
         $progress = round((($kriteria1 + $kriteria2 + $kriteria3 + $kriteria4 + $kriteria5 + $kriteria6 + $kriteria7 + $kriteria8) / 8), 2);
         $this->progress = $progress;
 
-        $this->save(false);
+        return $this;
     }
 }

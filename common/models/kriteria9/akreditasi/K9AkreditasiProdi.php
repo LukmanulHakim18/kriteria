@@ -101,11 +101,12 @@ class K9AkreditasiProdi extends \yii\db\ActiveRecord
     }
 
     public function updateProgress(){
-        $led = $this->k9LedProdis->progress;
-        $lk = $this->k9LkProdis->progress;
+        $led = $this->k9LedProdi->progress;
+        $lk = $this->k9LkProdi->progress;
 
         $progress = round((($led+$lk)/2),2);
         $this->progress = $progress;
-        $this->save(false);
+
+        return $this;
     }
 }

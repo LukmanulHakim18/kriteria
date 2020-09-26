@@ -9,55 +9,46 @@
 
 namespace akreditasi\models\kriteria9\lk\prodi;
 
+use common\helpers\HitungNarasiLkTrait;
 use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\helpers\kriteria9\K9ProdiProgressHelper;
-use common\models\kriteria9\lk\prodi\K9LkProdiKriteria8;
+use common\helpers\NomorKriteriaHelper;
+use common\models\kriteria9\lk\prodi\K9LkProdiKriteria8Narasi;
+use yii2mod\helpers\ArrayHelper;
 
-class K9LkProdiNarasiKriteria8Form extends K9LkProdiKriteria8
+class K9LkProdiNarasiKriteria8Form extends K9LkProdiKriteria8Narasi
 {
+    use HitungNarasiLkTrait;
 
+    /**
+     * @param bool $insert
+     * @return bool
+     */
     public function beforeSave($insert)
     {
-        $this->updateProgress();
-        $this->lkProdi->updateProgress();
-        $this->lkProdi->akreditasiProdi->updateProgress();
+        $this->progress = $this->hitungNarasi();
+
         return parent::beforeSave($insert);
     }
 
-    public function updateProgress()
+    /**
+     * @param bool $insert
+     * @param array $changedAttributes
+     */
+    public function afterSave($insert, $changedAttributes)
     {
-        $json = K9ProdiJsonHelper::getJsonKriteriaLk(8, $this->lkProdi->akreditasiProdi->prodi->jenjang);
+        $this->lkProdiKriteria8->updateProgressNarasi()->save(false);
+        $this->lkProdiKriteria8->lkProdi->updateProgress()->save(false);
+        $this->lkProdiKriteria8->lkProdi->akreditasiProdi->updateProgress()->save(false);
+        parent::afterSave($insert, $changedAttributes);
+    }
+
+    public function hitungNarasi(){
+        $json = K9ProdiJsonHelper::getJsonKriteriaLk(8,$this->lkProdiKriteria8->lkProdi->akreditasiProdi->prodi->jenjang);
         $count = 0;
 
-        $exclude = ['id', 'id_lk_prodi', 'progress', 'created_at', 'updated_at'];
+        $exclude = ['id', 'id_lk_prodi_kriteria8', 'progress', 'created_at', 'updated_at'];
 
-        $filters = array_filter($this->attributes, function ($attribute) use ($exclude) {
-            return in_array($attribute, $exclude) === false;
-        }, ARRAY_FILTER_USE_KEY);
-
-        $total = sizeof($filters);
-        $attributeKeys = array_keys($filters);
-
-        foreach ($attributeKeys as $k => $attribute) {
-            $template = $json['butir'][$k]['template'];
-            $hashTemplate = sha1($template);
-
-            $data = $this->$attribute;
-            $hashData = sha1($data);
-
-            if ($hashTemplate !== $hashData) {
-                $count += 1;
-            }
-        }
-
-
-        $progress1 = round(($count / $total) * 50, 2);
-
-        $dokumen = K9ProdiProgressHelper::getDokumenLkProgress($this->id_lk_prodi, $this->getK9LkProdiKriteria8Details(), 8);
-
-        $progress2 = round(($dokumen), 2);
-        $this->progress = $progress1 + $progress2;
-
-        return true;
+        return $this->hitung($this, $exclude,$json);
     }
 }

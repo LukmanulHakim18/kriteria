@@ -21,8 +21,9 @@ use yii\bootstrap4\Progress;
 /* @var $dokModel K9LkProdiKriteriaDetailForm */
 /* @var $dokTextModel K9TextLkProdiKriteriaDetailForm */
 /* @var $dokLinkModel K9LinkLkProdiKriteriaDetailForm */
-/* @var $dataKriteria */
 /* @var $poinKriteria */
+/* @var $path string */
+/* @var $modelKriteria */
 
 $prodi = Yii::$app->request->get('prodi');
 $kriteria = Yii::$app->request->get('kriteria');
@@ -45,11 +46,11 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-actions">
-                <strong>Kelengkapan Berkas &nbsp; : <?= $modelNarasi->progress; ?> %</strong>
+                <strong>Kelengkapan Berkas &nbsp; : <?= $modelKriteria->progress ?> %</strong>
                 <div class="kt-space-10"></div>
                 <?=
                 Progress::widget([
-                    'percent' => $modelNarasi->progress,
+                    'percent' => $modelKriteria->progress,
                     'barOptions' => ['class' => 'progress-bar-info'],
                     'options' => ['class' => 'progress-sm']
                 ]);
@@ -97,12 +98,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <div class="col-lg-12">
                                                     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $modelAttribute . '-form']) ?>
 
+                                                    <h5>Tabel <?=$item['tabel']?> <?=$item['nama']?></h5>
+                                                    <p><?=$item['petunjuk']?></p>
+
                                                     <?= $form->field($modelNarasi, $modelAttribute)->widget(TinyMce::class, [
-                                                        'options' => ['rows' => 6, 'id' => $modelAttribute . '-tinymce-kriteria'],
+                                                        'options' => ['rows' => 16, 'id' => $modelAttribute . '-tinymce-kriteria'],
                                                         'language' => 'id',
                                                         'clientOptions' => [
                                                             'plugins' => [
-                                                                "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
+                                                                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
                                                                 "searchreplace wordcount visualblocks visualchars code fullscreen",
                                                                 "insertdatetime media nonbreaking save table contextmenu directionality",
                                                                 "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
@@ -112,6 +116,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         ]
                                                     ])->label('') ?>
 
+                                                    <?php if(!empty($item['keterangan'])):?>
+                                                    <h6>Keterangan</h6>
+                                                        <?=$item['keterangan']?>
+                                                    <?php endif;?>
                                                     <div class="form-group pull-right">
                                                         <?= Html::submitButton('<i class="la la-save"></i> Simpan', ['class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air ']) ?>
                                                     </div>
@@ -241,8 +249,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     <?= $form->field($dokLinkModel, 'jenisDokumen')->textInput(['value' => 'sumber', 'readonly' => true]) ?>
                                                     <?= $form->field($dokLinkModel, 'kodeDokumen')->textInput(['value' => $doksum['kode'], 'readonly' => true]) ?>
                                                     <?= $form->field($dokLinkModel, 'namaDokumen')->textInput(['value' => $doksum['dokumen'], 'readonly' => true]) ?>
-                                                    <?= $form->field($dokLinkModel, 'isiDokumen')->textInput() ?>
-
+                                                    <?= $form->field($dokLinkModel, 'isiDokumen')->textInput(['
+                                                    placeholder'=>'https://www.contoh.com'])->label('Tautan')->hint('https:// atau http:// harus dimasukkan.') ?>
                                                     <div class="form-group text-right">
                                                         <?= Html::submitButton("<i class='la la-save'></i> Simpan", ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-primary ']) ?>
                                                     </div>
@@ -260,7 +268,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <?php
 
                                         $detailClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria . 'Detail';
-                                        $detail = call_user_func($detailClass . "::find")->where(['id_lk_prodi_kriteria' . $kriteria => $modelNarasi->id]);
+                                        $detail = call_user_func($detailClass . "::find")->where(['id_lk_prodi_kriteria' . $kriteria => $modelKriteria->id]);
 
                                         $detail1 = $detail->andWhere(['kode_dokumen' => $doksum['kode'], 'jenis_dokumen' => Constants::SUMBER])->all();
                                         foreach ($detail1 as $k => $v) : ?>
@@ -320,9 +328,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                                             <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
 
                                                             <?php else: ?>
-                                                                <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['led/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'lk' => $_GET['lk'], 'jenis' => Constants::SUMBER], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
+                                                                <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['lk/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'lk' => $_GET['lk'], 'jenis' => Constants::SUMBER], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
                                                             <?php endif; ?>
-                                                            <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['led/hapus-detail'], [
+                                                            <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['lk/hapus-detail'], [
                                                                 'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
                                                                 'data' => [
                                                                     'method' => 'POST',
@@ -461,8 +469,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         <?= $form->field($dokLinkModel, 'jenisDokumen')->textInput(['value' => 'pendukung', 'readonly' => true]) ?>
                                                         <?= $form->field($dokLinkModel, 'kodeDokumen')->textInput(['value' => $dokpen['kode'], 'readonly' => true]) ?>
                                                         <?= $form->field($dokLinkModel, 'namaDokumen')->textInput(['value' => $dokpen['dokumen'], 'readonly' => true]) ?>
-                                                        <?= $form->field($dokLinkModel, 'isiDokumen')->textInput() ?>
-
+                                                        <?= $form->field($dokLinkModel, 'isiDokumen')->textInput(['
+                                                    placeholder'=>'https://www.contoh.com'])->label('Tautan')->hint('https:// atau http:// harus dimasukkan.') ?>
                                                         <div class="form-group text-right">
                                                             <?= Html::submitButton("<i class='la la-save'></i> Simpan", ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-primary ']) ?>
                                                         </div>
@@ -485,7 +493,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                             <?php
                                             $detailClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria . 'Detail';
-                                            $detail = call_user_func($detailClass . "::find")->where(['id_lk_prodi_kriteria' . $kriteria => $modelNarasi->id]);
+                                            $detail = call_user_func($detailClass . "::find")->where(['id_lk_prodi_kriteria' . $kriteria => $modelKriteria->id]);
 
                                             $detail1 = $detail->andWhere(['kode_dokumen' => $dokpen['kode'], 'jenis_dokumen' => Constants::PENDUKUNG])->all();
 
@@ -528,13 +536,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                     ]); ?>
                                                                     <?php switch ($type) {
                                                                         case FileTypeHelper::TYPE_IMAGE:
-                                                                            echo Html::img("$path/sumber/{$v->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
+                                                                            echo Html::img("$path/pendukung/{$v->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
                                                                             break;
                                                                         case FileTypeHelper::TYPE_STATIC_TEXT:
                                                                             echo $v->isi_dokumen;
                                                                             break;
                                                                         case FileTypeHelper::TYPE_PDF:
-                                                                            echo '<embed src="' . $path . '/sumber/' . $v->isi_dokumen . '" type="application/pdf" height="100%" width="100%">
+                                                                            echo '<embed src="' . $path . '/pendukung/' . $v->isi_dokumen . '" type="application/pdf" height="100%" width="100%">
 ';
                                                                             break;
                                                                     } ?>
@@ -545,9 +553,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                 <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
 
                                                                 <?php else: ?>
-                                                                    <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['led/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'lk' => $_GET['lk'], 'jenis' => Constants::PENDUKUNG], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
+                                                                    <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['lk/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'lk' => $_GET['lk'], 'jenis' => Constants::PENDUKUNG], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
                                                                 <?php endif; ?>
-                                                                <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['led/hapus-detail'], [
+                                                                <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['lk/hapus-detail'], [
                                                                     'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
                                                                     'data' => [
                                                                         'method' => 'POST',
@@ -575,7 +583,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                             <th colspan="2" class="text-left">Dokumen Lainnya</th>
                                             <th>
                                                 <?php Modal::begin([
-                                                    'title' => 'Unggah Dokumen Dokumentasi',
+                                                    'title' => 'Unggah Dokumen Lainnya',
                                                     'toggleButton' => ['label' => '<i class="la la-upload"></i> &nbsp;Unggah', 'class' => 'btn btn-light btn-pill btn-elevate btn-elevate-air pull-right'],
                                                     'size' => 'modal-lg',
                                                     'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
@@ -585,7 +593,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                                 <?= $form->field($dokModel, 'jenisDokumen')->textInput(['value' => 'lainnya', 'readonly' => true]) ?>
                                                 <?= $form->field($dokModel, 'kodeDokumen')->textInput(['value' => $item['tabel'], 'readonly' => true]) ?>
-                                                <?= $form->field($dokModel, 'namaDokumen')->textInput(['value' => 'Dokumen Lainnya ' . $item['tabel'], 'readonly' => true]) ?>
+                                                <?= $form->field($dokModel, 'namaDokumen')->textInput() ?>
 
                                                 <?= $form->field($dokModel, 'isiDokumen')->widget(FileInput::class, [
                                                     'options' => ['id' => 'isiDokumenLainnya' . str_replace('.', '_', $item['tabel'])],
@@ -610,6 +618,69 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                                 <?php Modal::end(); ?>
 
+                                                <!--                                                    Text-->
+
+                                                <?php Modal::begin([
+                                                    'title' => 'Isi Teks Dokumentasi',
+                                                    'toggleButton' => ['label' => '<i class="la la-file-text"></i> &nbsp;Teks', 'class' => 'btn btn-success btn-pill btn-sm btn-elevate btn-elevate-air pull-right'],
+                                                    'size' => 'modal-lg',
+                                                    'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
+                                                ]); ?>
+
+                                                <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => 'pendukung']) ?>
+
+                                                <?= $form->field($dokTextModel, 'jenisDokumen')->textInput(['value' => 'lainnya', 'readonly' => true]) ?>
+                                                <?= $form->field($dokTextModel, 'kodeDokumen')->textInput(['value' => $item['tabel'], 'readonly' => true]) ?>
+                                                <?= $form->field($dokTextModel, 'namaDokumen')->textInput() ?>
+
+                                                <?= $form->field($dokTextModel, 'isiDokumen')->widget(TinyMce::class, [
+                                                    'options' => ['rows' => 6, 'id' => 'lainnya-isi_teks'],
+                                                    'language' => 'id',
+                                                    'clientOptions' => [
+                                                        'plugins' => [
+                                                            "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
+                                                            "searchreplace wordcount visualblocks visualchars code fullscreen",
+                                                            "insertdatetime media nonbreaking save table contextmenu directionality",
+                                                            "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
+                                                        ],
+                                                        'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link | image"
+
+                                                    ]
+                                                ])->label('Isi Dokumen') ?>
+
+                                                <div class="form-group text-right">
+                                                    <?= Html::submitButton("<i class='la la-save'></i> Simpan", ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-primary ']) ?>
+                                                </div>
+                                                <?php ActiveForm::end() ?>
+
+                                                <?php Modal::end(); ?>
+
+                                                <!--                                                    Link-->
+
+                                                <?php Modal::begin([
+                                                    'title' => 'Isi Tautan Dokumen Lainnya',
+                                                    'toggleButton' => ['label' => '<i class="la la-link"></i> &nbsp;Tautan', 'class' => 'btn btn-info btn-pill btn-sm btn-elevate btn-elevate-air pull-right'],
+                                                    'size' => 'modal-lg',
+                                                    'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
+                                                ]); ?>
+
+                                                <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
+
+                                                <?= $form->field($dokLinkModel, 'jenisDokumen')->textInput(['value' => 'lainnya', 'readonly' => true]) ?>
+                                                <?= $form->field($dokLinkModel, 'kodeDokumen')->textInput(['value' =>$item['tabel'], 'readonly' => true]) ?>
+                                                <?= $form->field($dokLinkModel, 'namaDokumen')->textInput() ?>
+                                                <?= $form->field($dokLinkModel, 'isiDokumen')->textInput(['
+                                                    placeholder'=>'https://www.contoh.com'])->label('Tautan')->hint('https:// atau http:// harus dimasukkan.') ?>
+                                                <div class="form-group text-right">
+                                                    <?= Html::submitButton("<i class='la la-save'></i> Simpan", ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-primary ']) ?>
+                                                </div>
+
+                                                <?php ActiveForm::end() ?>
+
+                                                <?php Modal::end(); ?>
+
+
+
                                                 <?=Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=>\yii\helpers\Url::to(['resource/index','prodi'=>$_GET['prodi'],'kriteria'=>$kriteria,'kode'=>'','jenis'=>Constants::LK,'id_led_lk'=>$_GET['lk'],'jenis_dokumen'=>Constants::LAINNYA]),'title'=>'Gunakan Data Untuk Dokumen lainnya ' ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton pull-right'])?>
                                             </th>
                                         </tr>
@@ -623,12 +694,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <tbody>
                                         <?php
                                         $detailClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria . "Detail";
-                                        $detail = call_user_func($detailClass . "::find")->where(['id_lk_prodi_kriteria' . $kriteria => $modelNarasi->id]);
+                                        $detail = call_user_func($detailClass . "::find")->where(['id_lk_prodi_kriteria' . $kriteria => $modelKriteria->id]);
 
                                         $detail1 = $detail->andWhere(['jenis_dokumen' => Constants::LAINNYA])->all();
                                         if (!empty($detail1)) {
                                             foreach ($detail1 as $k => $v) {
-                                                if ( $v['jenis_dokumen'] == 'lainnya') { ?>
+                                                if ( $v['jenis_dokumen'] === 'lainnya') { ?>
                                                     <tr>
                                                         <td><strong><?= $k + 1 ?></strong></td>
                                                         <td>
@@ -667,13 +738,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                         ]); ?>
                                                                         <?php switch ($type) {
                                                                             case FileTypeHelper::TYPE_IMAGE:
-                                                                                echo Html::img("$path/sumber/{$v->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
+                                                                                echo Html::img("$path/lainnya/{$v->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
                                                                                 break;
                                                                             case FileTypeHelper::TYPE_STATIC_TEXT:
                                                                                 echo $v->isi_dokumen;
                                                                                 break;
                                                                             case FileTypeHelper::TYPE_PDF:
-                                                                                echo '<embed src="' . $path . '/sumber/' . $v->isi_dokumen . '" type="application/pdf" height="100%" width="100%">
+                                                                                echo '<embed src="' . $path . '/lainnya/' . $v->isi_dokumen . '" type="application/pdf" height="100%" width="100%">
 ';
                                                                                 break;
                                                                         } ?>
@@ -684,9 +755,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                     <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
 
                                                                     <?php else: ?>
-                                                                        <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['led/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'lk' => $_GET['lk'], 'jenis' => Constants::LAINNYA], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
+                                                                        <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['lk/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'lk' => $_GET['lk'], 'jenis' => Constants::LAINNYA], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
                                                                     <?php endif; ?>
-                                                                    <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['led/hapus-detail'], [
+                                                                    <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['lk/hapus-detail'], [
                                                                         'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
                                                                         'data' => [
                                                                             'method' => 'POST',

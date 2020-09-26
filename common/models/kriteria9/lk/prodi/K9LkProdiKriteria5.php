@@ -3,22 +3,23 @@
 namespace common\models\kriteria9\lk\prodi;
 
 use common\helpers\kriteria9\K9ProdiProgressHelper;
+use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "k9_lk_prodi_kriteria5".
  *
  * @property int $id
- * @property int $id_lk_prodi
- * @property double $progress
- * @property string $_5_a
- * @property string $_5_b
- * @property string $_5_c
- * @property int $created_at
- * @property int $updated_at
+ * @property int|null $id_lk_prodi
+ * @property float|null $progress_narasi
+ * @property float|null $progress_dokumen
+ * @property int|null $created_at
+ * @property int|null $updated_at
  *
  * @property K9LkProdi $lkProdi
+ * @property K9LkProdiKriteria5Narasi $k9LkProdiKriteria5Narasi
  * @property K9LkProdiKriteria5Detail[] $k9LkProdiKriteria5Details
+ * @property float $progress
  */
 class K9LkProdiKriteria5 extends \yii\db\ActiveRecord
 {
@@ -33,7 +34,7 @@ class K9LkProdiKriteria5 extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::class,
+            TimestampBehavior::class
         ];
     }
 
@@ -44,8 +45,7 @@ class K9LkProdiKriteria5 extends \yii\db\ActiveRecord
     {
         return [
             [['id_lk_prodi', 'created_at', 'updated_at'], 'integer'],
-            [['progress'], 'number'],
-            [['_5_a', '_5_b', '_5_c'], 'string'],
+            [['progress_narasi', 'progress_dokumen'], 'number'],
             [['id_lk_prodi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LkProdi::className(), 'targetAttribute' => ['id_lk_prodi' => 'id']],
         ];
     }
@@ -58,16 +58,16 @@ class K9LkProdiKriteria5 extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_lk_prodi' => 'Id Lk Prodi',
-            '_5_a' => '5 A',
-            '_5_b' => '5 B',
-            '_5_c' => '5 C',
-            'progress' => 'Progress',
+            'progress_narasi' => 'Progress Narasi',
+            'progress_dokumen' => 'Progress Dokumen',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
     }
 
     /**
+     * Gets query for [[LkProdi]].
+     *
      * @return \yii\db\ActiveQuery
      */
     public function getLkProdi()
@@ -75,20 +75,37 @@ class K9LkProdiKriteria5 extends \yii\db\ActiveRecord
         return $this->hasOne(K9LkProdi::className(), ['id' => 'id_lk_prodi']);
     }
 
-    public function updateProgress()
+    /**
+     * Gets query for [[K9LkProdiKriteria5Narasi]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getK9LkProdiKriteria5Narasi()
     {
-        $dokumen = K9ProdiProgressHelper::getDokumenLkProgress($this->id_lk_prodi, $this->getK9LkProdiKriteria5Details(), 5);
-
-        $progress = round(($dokumen) / 1, 2);
-        $this->progress = $progress;
-        $this->save(false);
+        return $this->hasOne(K9LkProdiKriteria5Narasi::className(), ['id_lk_prodi_kriteria5' => 'id']);
     }
 
+    public function getProgress(){
+        return round(( $this->progress_narasi + $this->progress_dokumen)/2,2);
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getK9LkProdiKriteria5Details()
     {
         return $this->hasMany(K9LkProdiKriteria5Detail::className(), ['id_lk_prodi_kriteria5' => 'id']);
+    }
+
+    public function updateProgressNarasi(){
+
+        $this->progress_narasi = $this->k9LkProdiKriteria5Narasi->progress;
+        return $this;
+    }
+    public function updateProgressDokumen()
+    {
+        $dokumen = K9ProdiProgressHelper::getDokumenLkProgress($this, $this->getK9LkProdiKriteria5Details(), 5);
+        $progress = round($dokumen, 2);
+        $this->progress_dokumen = $progress;
+        return $this;
     }
 }

@@ -3,8 +3,9 @@
 use akreditasi\models\kriteria9\forms\lk\institusi\K9LinkLkInstitusiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\institusi\K9LkInstitusiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\institusi\K9TextLkInstitusiKriteriaDetailForm;
-use akreditasi\models\kriteria9\lk\prodi\K9LkInstitusiNarasiKriteria1Form;
+use akreditasi\models\kriteria9\lk\institusi\K9LkInstitusiNarasiKriteria1Form;
 use common\helpers\FileIconHelper;
+use common\helpers\FileTypeHelper;
 use common\models\Constants;
 use common\models\kriteria9\lk\institusi\K9LkInstitusi;
 use dosamigos\tinymce\TinyMce;
@@ -20,8 +21,9 @@ use yii\bootstrap4\Progress;
 /* @var $dokModel K9LkInstitusiKriteriaDetailForm */
 /* @var $dokTextModel K9TextLkInstitusiKriteriaDetailForm */
 /* @var $dokLinkModel K9LinkLkInstitusiKriteriaDetailForm */
-/* @var $dataKriteria */
 /* @var $poinKriteria */
+/* @var $path string */
+/* @var $modelKriteria */
 
 $kriteria = Yii::$app->request->get('kriteria');
 $this->title = "Kriteria " . $kriteria;
@@ -43,11 +45,11 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-actions">
-                <strong>Kelengkapan Berkas &nbsp; : <?= $modelNarasi->progress; ?> %</strong>
+                <strong>Kelengkapan Berkas &nbsp; : <?= $modelKriteria->progress ?> %</strong>
                 <div class="kt-space-10"></div>
                 <?=
                 Progress::widget([
-                    'percent' => $modelNarasi->progress,
+                    'percent' => $modelKriteria->progress,
                     'barOptions' => ['class' => 'progress-bar-info'],
                     'options' => ['class' => 'progress-sm']
                 ]);
@@ -90,24 +92,20 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <div class="card-body">
 
                                     <div class="kt-portlet kt-portlet--mobile">
-                                        <div class="kt-portlet__head">
-                                            <div class="kt-portlet__head-label">
-                                                <h3 class="kt-portlet__head-title">
-                                                    Template <small>Berikut adalah referensi template</small>
-                                                </h3>
-                                            </div>
-                                        </div>
                                         <div class="kt-portlet__body">
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $modelAttribute . '-form']) ?>
 
+                                                    <h5>Tabel <?=$item['tabel']?> <?=$item['nama']?></h5>
+                                                    <p><?=$item['petunjuk']?></p>
+
                                                     <?= $form->field($modelNarasi, $modelAttribute)->widget(TinyMce::class, [
-                                                        'options' => ['rows' => 6, 'id' => $modelAttribute . '-tinymce-kriteria'],
+                                                        'options' => ['rows' => 16, 'id' => $modelAttribute . '-tinymce-kriteria'],
                                                         'language' => 'id',
                                                         'clientOptions' => [
                                                             'plugins' => [
-                                                                "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
+                                                                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
                                                                 "searchreplace wordcount visualblocks visualchars code fullscreen",
                                                                 "insertdatetime media nonbreaking save table contextmenu directionality",
                                                                 "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
@@ -117,6 +115,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         ]
                                                     ])->label('') ?>
 
+                                                    <?php if(!empty($item['keterangan'])):?>
+                                                        <h6>Keterangan</h6>
+                                                        <?=$item['keterangan']?>
+                                                    <?php endif;?>
                                                     <div class="form-group pull-right">
                                                         <?= Html::submitButton('<i class="la la-save"></i> Simpan', ['class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air ']) ?>
                                                     </div>
@@ -246,16 +248,17 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     <?= $form->field($dokLinkModel, 'jenisDokumen')->textInput(['value' => 'sumber', 'readonly' => true]) ?>
                                                     <?= $form->field($dokLinkModel, 'kodeDokumen')->textInput(['value' => $doksum['kode'], 'readonly' => true]) ?>
                                                     <?= $form->field($dokLinkModel, 'namaDokumen')->textInput(['value' => $doksum['dokumen'], 'readonly' => true]) ?>
-                                                    <?= $form->field($dokLinkModel, 'isiDokumen')->textInput() ?>
-
+                                                    <?= $form->field($dokLinkModel, 'isiDokumen')->textInput(['
+                                                    placeholder'=>'https://www.contoh.com'])->label('Tautan')->hint('https:// atau http:// harus dimasukkan.') ?>
                                                     <div class="form-group text-right">
                                                         <?= Html::submitButton("<i class='la la-save'></i> Simpan", ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-primary ']) ?>
                                                     </div>
+                                                    <?php ActiveForm::end() ?>
+
+                                                    <?php Modal::end(); ?>
                                                 </td>
                                             </tr>
-                                            <?php ActiveForm::end() ?>
 
-                                            <?php Modal::end(); ?>
 
                                         <?php else :
                                             echo '<tr><td>Tidak ada dokumen</td></tr>';
@@ -263,7 +266,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <?php
 
                                         $detailClass = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria' . $kriteria . 'Detail';
-                                        $detail = call_user_func($detailClass . "::find")->where(['id_lk_institusi_kriteria' . $kriteria => $modelNarasi->id]);
+                                        $detail = call_user_func($detailClass . "::find")->where(['id_lk_institusi_kriteria' . $kriteria => $modelKriteria->id]);
 
                                         $detail1 = $detail->andWhere(['kode_dokumen' => $doksum['kode'], 'jenis_dokumen' => Constants::SUMBER])->all();
                                         foreach ($detail1 as $k => $v) : ?>
@@ -271,39 +274,71 @@ $this->params['breadcrumbs'][] = $this->title;
                                             <tr>
                                                 <td></td>
                                                 <td>
-                                                    <div class="text-center">
-                                                        <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') : ?>
-                                                            <div class="icon">
-                                                                <?= FileIconHelper::getIconByExtension($v->bentuk_dokumen) ?>
-                                                            </div>
-                                                            <div class="kt-space-5"></div>
-                                                            <?= Html::a($v['isi_dokumen'] . " <i class='fa fa-external-link-alt'></i>", ['lk/lihat-dok', 'kriteria' => $kriteria, 'dok' => $v['id'], 'lk' => $_GET['lk']], ['target' => '_blank', 'data-pjax' => "0"]) ?>
+                                                    <div class="row">
+                                                        <div class="col-lg-12 text-center">
 
-                                                        <?php else :
-                                                            if ($v->bentuk_dokumen == 'link') {
-                                                                echo '<a href=' . $v['isi_dokumen'] . ' target="_blank">' . $v["isi_dokumen"] . ' <i class=\'fa fa-external-link-alt\'></i></a>';
-                                                            } else {
-                                                                echo $v['isi_dokumen'];
-                                                            }
-                                                        endif; ?>
+                                                            <?= FileIconHelper::getIconByExtension($v->bentuk_dokumen) ?>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12 text-center">
+                                                            <?php $type = FileTypeHelper::getType($v->bentuk_dokumen);
+
+                                                            if ($type === FileTypeHelper::TYPE_STATIC_TEXT || $type === FileTypeHelper::TYPE_LINK) : ?>
+                                                                <?= Html::encode($v->nama_dokumen) ?>
+
+                                                            <?php else: ?>
+                                                                <?= Html::encode($v->isi_dokumen) ?>
+                                                            <?php endif; ?>
+
+                                                        </div>
                                                     </div>
                                                 </td>
                                                 <td class="text-right">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <?php $type = FileTypeHelper::getType($v->bentuk_dokumen);
+                                                            if ($type === FileTypeHelper::TYPE_IMAGE || $type === FileTypeHelper::TYPE_PDF || $type === FileTypeHelper::TYPE_STATIC_TEXT):?>
 
-                                                    <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') {
-                                                        echo Html::a('<i class="la la-download"></i> &nbsp;Unduh', ['lk/download-dok', 'id' => $v['id']], ['class' => 'btn btn-warning btn-pill btn-elevate btn-elevate-air']);
-                                                    } ?>
+                                                                <?php Modal::begin([
+                                                                    'title' => $v->nama_dokumen,
+                                                                    'toggleButton' => ['label' => '<i class="la la-eye"></i> &nbsp;Lihat', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'],
+                                                                    'size' => 'modal-lg',
+                                                                    'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
+                                                                ]); ?>
+                                                                <?php switch ($type) {
+                                                                    case FileTypeHelper::TYPE_IMAGE:
+                                                                        echo Html::img("$path/sumber/{$v->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
+                                                                        break;
+                                                                    case FileTypeHelper::TYPE_STATIC_TEXT:
+                                                                        echo $v->isi_dokumen;
+                                                                        break;
+                                                                    case FileTypeHelper::TYPE_PDF:
+                                                                        echo '<embed src="' . $path . '/sumber/' . $v->isi_dokumen . '" type="application/pdf" height="100%" width="100%">
+';
+                                                                        break;
+                                                                } ?>
+                                                                <?php Modal::end(); ?>
+                                                            <?php elseif ($type === FileTypeHelper::TYPE_LINK): ?>
+                                                                <?= Html::a('<i class="la la-external-link"></i> Lihat', $v->isi_dokumen, ['class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air', 'target' => '_blank']) ?>
+                                                            <?php endif; ?>
+                                                            <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
 
+                                                            <?php else: ?>
+                                                                <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['lk/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'lk' => $_GET['lk'], 'jenis' => Constants::SUMBER], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
+                                                            <?php endif; ?>
+                                                            <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['lk/hapus-detail'], [
+                                                                'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
+                                                                'data' => [
+                                                                    'method' => 'POST',
+                                                                    'confirm' => 'Apakah anda yakin menghapus item ini?',
+                                                                    'params' => ['dokumen' => $v->id, 'kriteria' => $kriteria, 'lk' => $_GET['lk'], 'jenis' => Constants::SUMBER]
+                                                                ]
+                                                            ]) ?>
+                                                        </div>
 
-                                                    <div class="kt-space-10"></div>
-
-                                                    <?= Html::a('<i class="la la-trash"></i> &nbsp;Hapus', ['lk/hapus-dok'], ['class' => 'btn btn-danger btn-pill btn-elevate btn-elevate-air',
-                                                        'data' => [
-                                                            'method' => 'POST',
-                                                            'confirm' => 'Apakah anda yakin menghapus item ini ?',
-                                                            'params' => ['id' => $v->id, 'kriteria' => $kriteria, 'lk' => $_GET['lk'],]
-                                                        ]]) ?>
-
+                                                    </div>
                                                 </td>
                                             </tr>
 
@@ -432,18 +467,19 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         <?= $form->field($dokLinkModel, 'jenisDokumen')->textInput(['value' => 'pendukung', 'readonly' => true]) ?>
                                                         <?= $form->field($dokLinkModel, 'kodeDokumen')->textInput(['value' => $dokpen['kode'], 'readonly' => true]) ?>
                                                         <?= $form->field($dokLinkModel, 'namaDokumen')->textInput(['value' => $dokpen['dokumen'], 'readonly' => true]) ?>
-                                                        <?= $form->field($dokLinkModel, 'isiDokumen')->textInput() ?>
-
+                                                        <?= $form->field($dokLinkModel, 'isiDokumen')->textInput(['
+                                                    placeholder'=>'https://www.contoh.com'])->label('Tautan')->hint('https:// atau http:// harus dimasukkan.') ?>
                                                         <div class="form-group text-right">
                                                             <?= Html::submitButton("<i class='la la-save'></i> Simpan", ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-primary ']) ?>
                                                         </div>
 
+                                                        <?php ActiveForm::end() ?>
+
+                                                        <?php Modal::end(); ?>
                                                     </td>
 
                                                 </tr>
-                                                <?php ActiveForm::end() ?>
 
-                                                <?php Modal::end(); ?>
 
                                             <?php } else {
                                                 echo '<tr><td>Tidak ada dokumen</td></tr>';
@@ -452,47 +488,79 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                             <?php
                                             $detailClass = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria' . $kriteria . 'Detail';
-                                            $detail = call_user_func($detailClass . "::find")->where(['id_lk_institusi_kriteria' . $kriteria => $modelNarasi->id]);
+                                            $detail = call_user_func($detailClass . "::find")->where(['id_lk_institusi_kriteria' . $kriteria => $modelKriteria->id]);
 
                                             $detail1 = $detail->andWhere(['kode_dokumen' => $dokpen['kode'], 'jenis_dokumen' => Constants::PENDUKUNG])->all();
 
                                             foreach ($detail1 as $k => $v) :
                                                 ?>
                                                 <tr>
-                                                    <td></td>
-                                                    <td>
-                                                        <div class="text-center">
-                                                            <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') { ?>
-                                                                <div class="icon">
-                                                                    <?= FileIconHelper::getIconByExtension($v->bentuk_dokumen) ?>
-                                                                </div>
-                                                                <div class="kt-space-5"></div>
-                                                                <?= Html::a($v['isi_dokumen'] . " <i class='fa fa-external-link-alt'></i>", ['lk/lihat-dok', 'standar' => $kriteria, 'dok' => $v['id'], 'lk' => $_GET['lk']], ['target' => '_blank', 'data-pjax' => "0"]) ?>
+                                                    <td colspan="2">
+                                                        <div class="row">
+                                                            <div class="col-lg-12 text-center">
 
-                                                            <?php } else {
-                                                                if ($v->bentuk_dokumen == 'link') {
-                                                                    echo '<a href=' . $v['isi_dokumen'] . ' target="_blank">' . $v["isi_dokumen"] . ' <i class=\'fa fa-external-link-alt\'></i></a>';
-                                                                } else {
-                                                                    echo $v['isi_dokumen'];
-                                                                }
-                                                            } ?>
+                                                                <?= FileIconHelper::getIconByExtension($v->bentuk_dokumen) ?>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12 text-center">
+                                                                <?php $type = FileTypeHelper::getType($v->bentuk_dokumen);
+
+                                                                if ($type === FileTypeHelper::TYPE_STATIC_TEXT || $type === FileTypeHelper::TYPE_LINK) : ?>
+                                                                    <?= Html::encode($v->nama_dokumen) ?>
+
+                                                                <?php else: ?>
+                                                                    <?= Html::encode($v->isi_dokumen) ?>
+                                                                <?php endif; ?>
+
+                                                            </div>
                                                         </div>
                                                     </td>
-                                                    <td class="text-right">
+                                                    <td class="pull-right">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <?php $type = FileTypeHelper::getType($v->bentuk_dokumen);
+                                                                if ($type === FileTypeHelper::TYPE_IMAGE || $type === FileTypeHelper::TYPE_PDF || $type === FileTypeHelper::TYPE_STATIC_TEXT):?>
 
-                                                        <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') {
-                                                            echo Html::a('<i class="la la-download"></i> &nbsp;Unduh', ['lk/download-dok', 'id' => $v->id], ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-warning']);
-                                                        } ?>
+                                                                    <?php Modal::begin([
+                                                                        'title' => $v->nama_dokumen,
+                                                                        'toggleButton' => ['label' => '<i class="la la-eye"></i> &nbsp;Lihat', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'],
+                                                                        'size' => 'modal-lg',
+                                                                        'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
+                                                                    ]); ?>
+                                                                    <?php switch ($type) {
+                                                                        case FileTypeHelper::TYPE_IMAGE:
+                                                                            echo Html::img("$path/pendukung/{$v->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
+                                                                            break;
+                                                                        case FileTypeHelper::TYPE_STATIC_TEXT:
+                                                                            echo $v->isi_dokumen;
+                                                                            break;
+                                                                        case FileTypeHelper::TYPE_PDF:
+                                                                            echo '<embed src="' . $path . '/pendukung/' . $v->isi_dokumen . '" type="application/pdf" height="100%" width="100%">
+';
+                                                                            break;
+                                                                    } ?>
+                                                                    <?php Modal::end(); ?>
+                                                                <?php elseif ($type === FileTypeHelper::TYPE_LINK): ?>
+                                                                    <?= Html::a('<i class="la la-external-link"></i> Lihat', $v->isi_dokumen, ['class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air', 'target' => '_blank']) ?>
+                                                                <?php endif; ?>
+                                                                <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
 
-                                                        <div class="kt-space-10"></div>
+                                                                <?php else: ?>
+                                                                    <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['lk/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'lk' => $_GET['lk'], 'jenis' => Constants::PENDUKUNG], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
+                                                                <?php endif; ?>
+                                                                <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['lk/hapus-detail'], [
+                                                                    'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
+                                                                    'data' => [
+                                                                        'method' => 'POST',
+                                                                        'confirm' => 'Apakah anda yakin menghapus item ini?',
+                                                                        'params' => ['dokumen' => $v->id, 'kriteria' => $kriteria, 'lk' => $_GET['lk'], 'jenis' => Constants::PENDUKUNG]
+                                                                    ]
+                                                                ]) ?>
+                                                            </div>
 
-                                                        <?= Html::a('<i class="la la-trash"></i> &nbsp;Hapus', ['lk/hapus-dok'], ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-danger',
-                                                            'data' => [
-                                                                'method' => 'POST',
-                                                                'confirm' => 'Apakah anda yakin menghapus item ini ?',
-                                                                'params' => ['id' => $v->id, 'kriteria' => $kriteria, 'lk' => $_GET['lk'],]
-                                                            ]]) ?>
-
+                                                        </div>
                                                     </td>
 
 
@@ -557,45 +625,80 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <tbody>
                                         <?php
                                         $detailClass = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria' . $kriteria . "Detail";
-                                        $detail = call_user_func($detailClass . "::find")->where(['id_lk_institusi_kriteria' . $kriteria => $modelNarasi->id]);
+                                        $detail = call_user_func($detailClass . "::find")->where(['id_lk_institusi_kriteria' . $kriteria => $modelKriteria->id]);
 
                                         $detail1 = $detail->andWhere(['jenis_dokumen' => Constants::LAINNYA])->all();
                                         if (!empty($detail1)) {
                                             foreach ($detail1 as $k => $v) {
-                                                if ($v['tabel'] == $v['kode_dokumen'] && $v['jenis_dokumen'] == 'lainnya') { ?>
+                                                if ( $v['jenis_dokumen'] === 'lainnya') { ?>
                                                     <tr>
                                                         <td><strong><?= $k + 1 ?></strong></td>
                                                         <td>
-                                                            <div class="text-center">
-                                                                <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') { ?>
-                                                                    <div class="icon">
-                                                                        <?= FileIconHelper::getIconByExtension($v->bentuk_dokumen) ?>
-                                                                    </div>
-                                                                    <div class="kt-space-5"></div>
-                                                                    <?= Html::a($v['isi_dokumen'] . " <i class='fa fa-external-link-alt'></i>", ['lk/lihat-dok', 'id' => $v['id']], ['target' => '_blank', 'data-pjax' => "0"]) ?>
+                                                            <div class="row">
+                                                                <div class="col-lg-12 text-center">
 
-                                                                <?php } else {
-                                                                    if ($v->bentuk_dokumen == 'link') {
-                                                                        echo '<a href=' . $v['isi_dokumen'] . ' target="_blank">' . $v["isi_dokumen"] . ' <i class=\'fa fa-external-link-alt\'></i></a>';
-                                                                    } else {
-                                                                        echo $v['isi_dokumen'];
-                                                                    }
-                                                                } ?>
+                                                                    <?= FileIconHelper::getIconByExtension($v->bentuk_dokumen) ?>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-12 text-center">
+                                                                    <?php $type = FileTypeHelper::getType($v->bentuk_dokumen);
+
+                                                                    if ($type === FileTypeHelper::TYPE_STATIC_TEXT || $type === FileTypeHelper::TYPE_LINK) : ?>
+                                                                        <?= Html::encode($v->nama_dokumen) ?>
+
+                                                                    <?php else: ?>
+                                                                        <?= Html::encode($v->isi_dokumen) ?>
+                                                                    <?php endif; ?>
+
+                                                                </div>
                                                             </div>
                                                         </td>
-                                                        <td class="pull-right">
-                                                            <?php if ($v->bentuk_dokumen != 'text' && $v->bentuk_dokumen != 'link') {
-                                                                echo Html::a('<i class="la la-download"></i> &nbsp;Unduh', ['lk/download-dok', 'id' => $v->id], ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-warning']);
-                                                            } ?>
+                                                        <td class="text-right">
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <?php $type = FileTypeHelper::getType($v->bentuk_dokumen);
+                                                                    if ($type === FileTypeHelper::TYPE_IMAGE || $type === FileTypeHelper::TYPE_PDF || $type === FileTypeHelper::TYPE_STATIC_TEXT):?>
 
-                                                            <!--                                                <div class="kt-space-10"></div>-->
+                                                                        <?php Modal::begin([
+                                                                            'title' => $v->nama_dokumen,
+                                                                            'toggleButton' => ['label' => '<i class="la la-eye"></i> &nbsp;Lihat', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'],
+                                                                            'size' => 'modal-lg',
+                                                                            'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
+                                                                        ]); ?>
+                                                                        <?php switch ($type) {
+                                                                            case FileTypeHelper::TYPE_IMAGE:
+                                                                                echo Html::img("$path/lainnya/{$v->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
+                                                                                break;
+                                                                            case FileTypeHelper::TYPE_STATIC_TEXT:
+                                                                                echo $v->isi_dokumen;
+                                                                                break;
+                                                                            case FileTypeHelper::TYPE_PDF:
+                                                                                echo '<embed src="' . $path . '/lainnya/' . $v->isi_dokumen . '" type="application/pdf" height="100%" width="100%">
+';
+                                                                                break;
+                                                                        } ?>
+                                                                        <?php Modal::end(); ?>
+                                                                    <?php elseif ($type === FileTypeHelper::TYPE_LINK): ?>
+                                                                        <?= Html::a('<i class="la la-external-link"></i> Lihat', $v->isi_dokumen, ['class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air', 'target' => '_blank']) ?>
+                                                                    <?php endif; ?>
+                                                                    <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
 
-                                                            <?= Html::a('<i class="la la-trash"></i> &nbsp;Hapus', ['lk/hapus-dok'], ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-danger',
-                                                                'data' => [
-                                                                    'method' => 'POST',
-                                                                    'confirm' => 'Apakah anda yakin menghapus item ini ?',
-                                                                    'params' => ['id' => $v->id, 'kriteria' => $kriteria, 'lk' => $_GET['lk'],]
-                                                                ]]) ?>
+                                                                    <?php else: ?>
+                                                                        <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['lk/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'lk' => $_GET['lk'], 'jenis' => Constants::LAINNYA], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
+                                                                    <?php endif; ?>
+                                                                    <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['lk/hapus-detail'], [
+                                                                        'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
+                                                                        'data' => [
+                                                                            'method' => 'POST',
+                                                                            'confirm' => 'Apakah anda yakin menghapus item ini?',
+                                                                            'params' => ['dokumen' => $v->id, 'kriteria' => $kriteria, 'lk' => $_GET['lk'], 'jenis' => Constants::LAINNYA]
+                                                                        ]
+                                                                    ]) ?>
+                                                                </div>
+
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                 <?php }
