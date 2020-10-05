@@ -88,10 +88,6 @@ class FakultasAkademiController extends Controller
                 $profil->external_id = $model->id;
                 $profil->type = FakultasAkademi::FAKULTAS_AKADEMI;
                 $profil->save(false);
-
-                $struktur = new StrukturOrganisasi();
-                $struktur->id_profil = $profil->id;
-                $struktur->save(false);
                 $transaction->commit();
                 Yii::$app->session->setFlash('success','Berhasil menambahkan Fakultas.');
 

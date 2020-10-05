@@ -92,11 +92,6 @@ class ProgramStudiController extends Controller
                 $profil->external_id = $model->id;
                 $profil->type = ProgramStudi::PROGRAM_STUDI;
                 $profil->save(false);
-
-                $struktur = new StrukturOrganisasi();
-                $struktur->id_profil = $profil->id;
-                $struktur->save(false);
-
                 $db->commit();
                 Yii::$app->session->setFlash('success','Berhasil menambahkan ProgramStudi.');
 

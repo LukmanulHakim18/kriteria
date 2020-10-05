@@ -259,9 +259,10 @@ class K9AkreditasiProdiForm extends Model
                 $transaction->rollBack();
                 throw new InvalidArgumentException($kriteriaProdi->errors);
             }
+            $narasiAttr = 'id_led_prodi_kriteria'.$i;
 
             $narasiKriteriaProdi = new $kriteria_narasi_class_path;
-            $narasiKriteriaProdi->id_led_prodi_kriteria1 = $kriteriaProdi->id;
+            $narasiKriteriaProdi->$narasiAttr = $kriteriaProdi->id;
             $narasiKriteriaProdi->progress = 0;
 
             if (!$narasiKriteriaProdi->save()) {

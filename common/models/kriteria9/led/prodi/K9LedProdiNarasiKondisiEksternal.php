@@ -13,7 +13,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string|null $isi
  * @property int|null $created_at
  * @property int|null $updated_at
- * @property float $progress
+ * @property double $progress
  *
  * @property K9LedProdi $ledProdi
  */
@@ -35,7 +35,7 @@ class K9LedProdiNarasiKondisiEksternal extends \yii\db\ActiveRecord
         return [
             [['id_led_prodi', 'created_at', 'updated_at'], 'integer'],
             [['isi'], 'string'],
-            [['progress'], 'float'],
+            [['progress'], 'double'],
             [['id_led_prodi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LedProdi::className(), 'targetAttribute' => ['id_led_prodi' => 'id']],
         ];
     }
