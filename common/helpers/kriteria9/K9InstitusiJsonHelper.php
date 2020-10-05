@@ -9,20 +9,19 @@
 
 namespace common\helpers\kriteria9;
 
-
+use JsonMapper;
 use Yii;
 use yii\helpers\Json;
 
 class K9InstitusiJsonHelper implements IK9JsonHelper
 {
 
-    public static function getAllJsonLk()
+    public static function getAllJsonLk($jenis)
     {
         return self::getJson('lk');
-
     }
 
-    static function getJson($tipe)
+    static function getJson($tipe, $jenis = '')
     {
         $filename = '';
         switch ($tipe) {
@@ -30,28 +29,52 @@ class K9InstitusiJsonHelper implements IK9JsonHelper
                 $filename = 'led_institusi.json';
                 break;
             case 'lk':
-                $filename = 'lkpt_institusi_akademik.json';
+                $filename = "lkpt_institusi_$jenis.json";
                 break;
         }
         $path = Yii::getAlias('@required/kriteria9/apt/' . $filename);
-        $json = Json::decode(file_get_contents($path));
-        return $json;
+        return Json::decode(file_get_contents($path));
     }
 
-    public static function getJsonKriteriaLk(int $kriteria)
+    public static function getJsonKriteriaLk(int $kriteria, $jenis)
     {
         $json = self::getJson('lk');
         return $json[$kriteria - 1];
     }
 
-    public static function getAllJsonLed()
+    public static function getAllJsonLed($jenis = '')
     {
-        return self::getJson('led');
+        return self::getJson('led', $jenis);
     }
 
     public static function getJsonKriteriaLed(int $kriteria)
     {
         $json = self::getJson('led');
         return $json[$kriteria - 1];
+    }
+
+    public static function getJsonLedKondisiEksternal()
+    {
+        // TODO: Implement getJsonLedKondisiEksternal() method.
+    }
+
+    public static function getJsonLedProfil()
+    {
+        // TODO: Implement getJsonLedProfil() method.
+    }
+
+    public static function getJsonLedAnalisis()
+    {
+        // TODO: Implement getJsonLedAnalisis() method.
+    }
+
+    public static function getJsonPenilaian($jenis)
+    {
+        // TODO: Implement getJsonPenilaian() method.
+    }
+
+    static function provideMapper()
+    {
+        return new JsonMapper();
     }
 }

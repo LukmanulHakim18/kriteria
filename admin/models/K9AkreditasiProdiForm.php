@@ -3,8 +3,9 @@
 
 namespace admin\models;
 
-
+use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
+use common\models\kriteria9\led\Led;
 use common\models\kriteria9\led\prodi\K9LedProdi;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria1;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria2;
@@ -15,6 +16,8 @@ use common\models\kriteria9\led\prodi\K9LedProdiKriteria6;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria7;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria8;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria9;
+use common\models\kriteria9\led\prodi\K9LedProdiNarasiAnalisis;
+use common\models\kriteria9\led\prodi\K9LedProdiNarasiKondisiEksternal;
 use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria1;
 use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria2;
 use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria3;
@@ -24,7 +27,10 @@ use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria6;
 use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria7;
 use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria8;
 use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria9;
+use common\models\kriteria9\led\prodi\K9LedProdiNarasiProfilUpps;
+use common\models\kriteria9\lk\Lk;
 use common\models\kriteria9\lk\prodi\K9LkProdi;
+use common\models\kriteria9\lk\TabelLk;
 use InvalidArgumentException;
 use Yii;
 use yii\base\Exception;
@@ -123,32 +129,29 @@ class K9AkreditasiProdiForm extends Model
         if (!$this->_lk_prodi->save(false)) {
             $transaction->rollback();
             throw new InvalidArgumentException($this->_lk_prodi->errors);
-
         }
 
         $prodi = $this->_akreditasiProdi->prodi;
-        $fileJson = 'lkps_prodi_'.$prodi->jenjang.'.json';
-        $json = Json::decode(file_get_contents(Yii::getAlias('@common/required/kriteria9/aps/' . $fileJson)));
-
-        foreach ($json as $kriteria) {
-            $kritClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria'.$kriteria['kriteria'];
+        $fileJson = 'lkps_prodi_' . $prodi->jenjang . '.json';
+        $json = K9ProdiJsonHelper::getAllJsonLk($prodi->jenjang);
+        foreach ($json as /** @var Lk $kriteria */ $kriteria) {
+            $kritClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria->kriteria;
             $kritProdi = new $kritClass;
             $kritProdi->setAttributes(['id_lk_prodi'=>$this->_lk_prodi->id,'progress_narasi'=>0,'progress_dokumen'=>0]);
 
-            if(!$kritProdi->save(false)){
+            if (!$kritProdi->save(false)) {
                 $transaction->rollBack();
                 throw new InvalidArgumentException($kritProdi->errors);
             }
 
-            $class = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria['kriteria'] . 'Narasi';
+            $class = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria->kriteria . 'Narasi';
             $kriteriaProdi = new $class;
 
-            $attr = ['id_lk_prodi_kriteria'.$kriteria['kriteria'] => $kritProdi->id, 'progress' => 0];
+            $attr = ['id_lk_prodi_kriteria' . $kriteria->kriteria => $kritProdi->id, 'progress' => 0];
             $kriteriaProdi->setAttributes($attr);
-            foreach ($kriteria['butir'] as $key => $item) {
-                $modelAttribute = '_' . str_replace('.', '_', $item['tabel']);
-                $kriteriaProdi->$modelAttribute = $item['template'];
-
+            foreach ($kriteria->butir as $key => /** @var $item TabelLk */$item) {
+                $modelAttribute = '_' . str_replace('.', '_', $item->tabel);
+                $kriteriaProdi->$modelAttribute = $item->template;
             }
             if (!$kriteriaProdi->save()) {
                 $transaction->rollBack();
@@ -156,7 +159,6 @@ class K9AkreditasiProdiForm extends Model
             }
         }
         $this->createFolder();
-
     }
 
     /**
@@ -202,8 +204,6 @@ class K9AkreditasiProdiForm extends Model
         } catch (Exception $e) {
             throw $e;
         }
-
-
     }
 
     /**
@@ -220,151 +220,54 @@ class K9AkreditasiProdiForm extends Model
         if (!$this->_led_prodi->save(false)) {
             $transaction->rollback();
             throw new InvalidArgumentException($this->_led_prodi->errors);
-
         }
 
         $attr = ['id_led_prodi' => $this->_led_prodi->id, 'progress' => 0];
 
-        $kriteria1Prodi = new K9LedProdiKriteria1();
-        $kriteria2Prodi = new K9LedProdiKriteria2();
-        $kriteria3Prodi = new K9LedProdiKriteria3();
-        $kriteria4Prodi = new K9LedProdiKriteria4();
-        $kriteria5Prodi = new K9LedProdiKriteria5();
-        $kriteria6Prodi = new K9LedProdiKriteria6();
-        $kriteria7Prodi = new K9LedProdiKriteria7();
-        $kriteria8Prodi = new K9LedProdiKriteria8();
-        $kriteria9Prodi = new K9LedProdiKriteria9();
+        $kondisiEksternal  = new K9LedProdiNarasiKondisiEksternal();
+        $profilUpps = new K9LedProdiNarasiProfilUpps();
+        $analisis = new K9LedProdiNarasiAnalisis();
 
-        $narasiKriteria1Prodi = new K9LedProdiNarasiKriteria1();
-        $narasiKriteria2Prodi = new K9LedProdiNarasiKriteria2();
-        $narasiKriteria3Prodi = new K9LedProdiNarasiKriteria3();
-        $narasiKriteria4Prodi = new K9LedProdiNarasiKriteria4();
-        $narasiKriteria5Prodi = new K9LedProdiNarasiKriteria5();
-        $narasiKriteria6Prodi = new K9LedProdiNarasiKriteria6();
-        $narasiKriteria7Prodi = new K9LedProdiNarasiKriteria7();
-        $narasiKriteria8Prodi = new K9LedProdiNarasiKriteria8();
-        $narasiKriteria9Prodi = new K9LedProdiNarasiKriteria9();
+        $kondisiEksternal->attributes = $attr;
+        $profilUpps->attributes = $attr;
+        $analisis->attributes = $attr;
 
-
-        $kriteria1Prodi->attributes = $attr;
-        $kriteria2Prodi->attributes = $attr;
-        $kriteria3Prodi->attributes = $attr;
-        $kriteria4Prodi->attributes = $attr;
-        $kriteria5Prodi->attributes = $attr;
-        $kriteria6Prodi->attributes = $attr;
-        $kriteria7Prodi->attributes = $attr;
-        $kriteria8Prodi->attributes = $attr;
-        $kriteria9Prodi->attributes = $attr;
-
-
-        if (!$kriteria1Prodi->save()) {
+        if(!$kondisiEksternal->save()){
             $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria1Prodi->errors);
-        }
-        $narasiKriteria1Prodi->id_led_prodi_kriteria1 = $kriteria1Prodi->id;
-        $narasiKriteria1Prodi->progress = 0;
 
-        if (!$kriteria2Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria2Prodi->errors);
+            throw new \yii\db\Exception($kondisiEksternal->errors);
         }
-        $narasiKriteria2Prodi->id_led_prodi_kriteria2 = $kriteria2Prodi->id;
-        $narasiKriteria2Prodi->progress = 0;
+        if(!$profilUpps->save()){
+            $transaction->rollBack();
 
-        if (!$kriteria3Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria3Prodi->errors);
+            throw new \yii\db\Exception($profilUpps->errors);
         }
+        if(!$analisis->save()){
+            $transaction->rollBack();
 
-        $narasiKriteria3Prodi->id_led_prodi_kriteria3 = $kriteria3Prodi->id;
-        $narasiKriteria3Prodi->progress = 0;
+            throw new \yii\db\Exception($analisis->errors);
+        }
+        for ($i = 1; $i <= 9; $i++) {
 
-        if (!$kriteria4Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria4Prodi->errors);
-        }
+            $kriteria_class_path = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria' . $i;
+            $kriteria_narasi_class_path = 'common\\models\kriteria9\\led\\prodi\\K9LedProdiNarasiKriteria' . $i;
 
-        $narasiKriteria4Prodi->id_led_prodi_kriteria4 = $kriteria4Prodi->id;
-        $narasiKriteria4Prodi->progress = 0;
+            $kriteriaProdi = new $kriteria_class_path;
+            $kriteriaProdi->attributes = $attr;
 
-        if (!$kriteria5Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria5Prodi->errors);
-        }
+            if (!$kriteriaProdi->save()) {
+                $transaction->rollBack();
+                throw new InvalidArgumentException($kriteriaProdi->errors);
+            }
 
-        $narasiKriteria5Prodi->id_led_prodi_kriteria5 = $kriteria5Prodi->id;
-        $narasiKriteria5Prodi->progress = 0;
+            $narasiKriteriaProdi = new $kriteria_narasi_class_path;
+            $narasiKriteriaProdi->id_led_prodi_kriteria1 = $kriteriaProdi->id;
+            $narasiKriteriaProdi->progress = 0;
 
-        if (!$kriteria6Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria6Prodi->errors);
+            if (!$narasiKriteriaProdi->save()) {
+                $transaction->rollBack();
+                throw new InvalidArgumentException($narasiKriteriaProdi->errors);
+            }
         }
-        $narasiKriteria6Prodi->id_led_prodi_kriteria6 = $kriteria6Prodi->id;
-        $narasiKriteria6Prodi->progress = 0;
-
-        if (!$kriteria7Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria7Prodi->errors);
-        }
-        $narasiKriteria7Prodi->id_led_prodi_kriteria7 = $kriteria7Prodi->id;
-        $narasiKriteria7Prodi->progress = 0;
-
-        if (!$kriteria8Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria8Prodi->errors);
-        }
-        $narasiKriteria8Prodi->id_led_prodi_kriteria8 = $kriteria8Prodi->id;
-        $narasiKriteria8Prodi->progress = 0;
-
-        if (!$kriteria9Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria9Prodi->errors);
-        }
-        $narasiKriteria9Prodi->id_led_prodi_kriteria9 = $kriteria9Prodi->id;
-        $narasiKriteria9Prodi->progress = 0;
-
-        if (!$narasiKriteria1Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($narasiKriteria1Prodi->errors);
-        }
-        if (!$narasiKriteria2Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($narasiKriteria2Prodi->errors);
-        }
-        if (!$narasiKriteria3Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($narasiKriteria3Prodi->errors);
-        }
-        if (!$narasiKriteria4Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($narasiKriteria4Prodi->errors);
-        }
-        if (!$narasiKriteria5Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($narasiKriteria6Prodi->errors);
-        }
-        if (!$narasiKriteria6Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($narasiKriteria6Prodi->errors);
-        }
-
-        if (!$narasiKriteria7Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($narasiKriteria7Prodi->errors);
-        }
-
-        if (!$narasiKriteria8Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($narasiKriteria8Prodi->errors);
-        }
-
-        if (!$narasiKriteria9Prodi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($narasiKriteria9Prodi->errors);
-        }
-
-
     }
-
-
 }

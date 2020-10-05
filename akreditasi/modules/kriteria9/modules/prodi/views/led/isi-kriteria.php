@@ -1,5 +1,6 @@
 <?php
 /**
+ * @var $this yii\web\View
  * @var $model ;
  * @var $modelNarasi ;
  * @var $poinKriteria [];
@@ -7,6 +8,8 @@
  * @var $detailModel K9DetailLedProdiUploadForm ;
  * @var $textModel K9DetailLedProdiTeksForm ;
  * @var $linkModel K9DetailLedProdiLinkForm ;
+ * @var $path string
+ * @var $detailCollection yii2mod\collection\Collection
  */
 $prodi = $_GET['prodi'];
 $kriteria = $_GET['kriteria'];
@@ -63,7 +66,7 @@ use yii\bootstrap4\Progress;
             <div class="accordion accordion-solid  accordion-toggle-plus" id="accordion">
 
                 <?php foreach ($poinKriteria as $key => $item):
-                    $modelAttribute = '_' . str_replace('.', '_', $item['nomor']);
+                    $modelAttribute = '_' . str_replace('.', '_', $item->nomor);
 
                     ?>
                     <div class="card">
@@ -73,12 +76,12 @@ use yii\bootstrap4\Progress;
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <i class="flaticon-file-2"></i> <?=
-                                        $item['nomor'] ?>&nbsp;
+                                        $item->nomor ?>&nbsp;
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <small>&nbsp;<?= $item['isi'] ?></small>
+                                        <small>&nbsp;<?= $item->nama ?></small>
 
                                     </div>
                                 </div>
@@ -86,10 +89,11 @@ use yii\bootstrap4\Progress;
                         </div>
                         <div id="collapse<?= $key ?>" class="collapse" aria-labelledby="heading<?= $key ?>"
                              data-parent="#accordion" style="">
+                            <?php \yii\widgets\Pjax::begin()?>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <?= $item['deskripsi'] ?>
+                                        <?= $item->deskripsi ?>
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
@@ -100,18 +104,8 @@ use yii\bootstrap4\Progress;
                                         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $modelAttribute . '-form']) ?>
 
                                         <?= $form->field($modelNarasi, $modelAttribute)->widget(TinyMce::class, [
-                                            'options' => ['rows' => 6, 'id' => $modelAttribute . '-tinymce-kriteria'],
-                                            'language' => 'id',
-                                            'clientOptions' => [
-                                                'plugins' => [
-                                                    "advlist autolink lists link image charmap print preview hr anchor pagebreak ",
-                                                    "searchreplace wordcount visualblocks visualchars code fullscreen",
-                                                    "insertdatetime media nonbreaking save table  directionality",
-                                                    "emoticons template paste   textpattern imagetools codesample toc noneditable",
-                                                ],
-                                                'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link | image"
+                                            'options' => ['id' => $modelAttribute . '-tinymce-kriteria'],
 
-                                            ]
                                         ])->label('') ?>
 
                                         <div class="form-group pull-right">
@@ -123,432 +117,33 @@ use yii\bootstrap4\Progress;
                                 </div>
 
 
-                                <!--                            Tabel dokumen sumber-->
-                                <table class="table table-striped table-hover">
-                                    <thead class="thead-light">
-                                    <tr>
-                                        <th colspan="3" class="text-center">Dokumen Sumber</th>
-                                    </tr>
-                                    </thead>
-                                    <thead class="thead-dark">
-                                    <tr>
-                                        <th>Kode</th>
-                                        <th colspan="2">Nama Dokumen</th>
-                                    </tr>
-                                    </thead>
 
-                                    <tbody>
-                                    <?php
-                                    foreach ($item['dokumen_sumber'] as $keyDoksum => $doksum):
-                                        $doksumAttr = '_' . str_replace('.', '_', $doksum['kode']);
-                                        ?>
-                                        <?php if (empty($doksum['kode'])) : ?>
-                                        <tr>
-                                            <td colspan="3">Tidak ada dokumen</td>
-                                        </tr>
-                                    <?php else: ?>
-                                        <tr>
-                                            <th scope="row">
-                                                <?= $doksum['kode'] ?>
-                                            </th>
-                                            <td>
-                                                <?= $doksum['dokumen'] ?>
-                                            </td>
-                                            <td>
-                                                <div class="row pull-right">
-                                                    <div class="col-lg-12">
-                                                        <?php Modal::begin([
-                                                            'title' => 'Dokumen Sumber Led',
-                                                            'toggleButton' => ['label' => '<i class="la la-file-text"></i> &nbsp;Teks', 'class' => 'btn btn-success btn-sm btn-pill btn-elevate btn-elevate-air pull-right'],
-                                                            'size' => 'modal-lg',
-                                                            'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
-                                                        ]) ?>
-                                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $doksumAttr . '-text-sumber-form']) ?>
+                                <?=$this->render('_item_dokumen',[
+                                    'linkModel'=>$linkModel,
+                                    'textModel'=>$textModel,
+                                    'detailModel'=>$detailModel,
+                                    'model'=>$model,
+                                    'kriteria'=>$kriteria,
+                                    'prodi'=>$prodi,
+                                    'path'=>$path,
+                                    'json_dokumen'=>$item->dokumen_sumber,
+                                    'jenis'=>Constants::SUMBER,
+                                    'detailCollection'=>$detailCollection
+                                ])?>
 
-                                                        <?= $form->field($textModel, 'kode_dokumen')->textInput(['value' => $doksum['kode'], 'readonly' => true]) ?>
-                                                        <?= $form->field($textModel, 'jenis_dokumen')->textInput(['value' => Constants::SUMBER, 'readonly' => true]) ?>
-                                                        <?= $form->field($textModel, 'nama_dokumen')->textInput()->label('Nama Teks') ?>
-                                                        <?= $form->field($textModel, 'berkasDokumen')->widget(TinyMce::class, [
-                                                            'options' => ['rows' => 6, 'id' => $doksumAttr . '-text-sumber-input',],
+                                <?=$this->render('_item_dokumen',[
+                                    'linkModel'=>$linkModel,
+                                    'textModel'=>$textModel,
+                                    'detailModel'=>$detailModel,
+                                    'model'=>$model,
+                                    'kriteria'=>$kriteria,
+                                    'prodi'=>$prodi,
+                                    'path'=>$path,
+                                    'json_dokumen'=>$item->dokumen_pendukung,
+                                    'jenis'=>Constants::PENDUKUNG,
+                                    'detailCollection'=>$detailCollection
 
-                                                            'language' => 'id',
-                                                            'clientOptions' => [
-
-                                                                'plugins' => [
-                                                                    "advlist autolink lists link image charmap print preview hr anchor pagebreak ",
-                                                                    "searchreplace wordcount visualblocks visualchars code fullscreen",
-                                                                    "insertdatetime media nonbreaking save table  directionality",
-                                                                    "emoticons template paste   textpattern imagetools codesample toc noneditable",
-                                                                ],
-                                                                'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link"
-
-                                                            ]
-                                                        ])->label('Teks') ?>
-
-                                                        <div class="form-group pull-right">
-                                                            <?= Html::submitButton('<i class="la la-save"></i> Simpan', ['class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air']) ?>
-                                                        </div>
-                                                        <?php ActiveForm::end() ?>
-
-                                                        <?php Modal::end() ?>
-                                                        <?php Modal::begin([
-                                                            'title' => 'Dokumen Sumber Led',
-                                                            'toggleButton' => ['label' => '<i class="la la-link"></i> &nbsp;Tautan', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air pull-right'],
-                                                            'size' => 'modal-lg',
-                                                            'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
-                                                        ]) ?>
-                                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $doksumAttr . '-link-sumber-form']) ?>
-
-                                                        <?= $form->field($linkModel, 'kode_dokumen')->textInput(['value' => $doksum['kode'], 'readonly' => true]) ?>
-                                                        <?= $form->field($linkModel, 'jenis_dokumen')->textInput(['value' => Constants::SUMBER, 'readonly' => true]) ?>
-                                                        <?= $form->field($linkModel, 'nama_dokumen')->textInput()->label('Nama Tautan') ?>
-                                                        <?= $form->field($linkModel, 'berkasDokumen')->textInput(['
-                                                    placeholder'=>'https://www.contoh.com'])->label('Tautan')->hint('https:// atau http:// harus dimasukkan.') ?>
-
-                                                        <div class="form-group pull-right">
-                                                            <?= Html::submitButton('<i class="la la-save"></i> Simpan', ['class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air']) ?>
-                                                        </div>
-                                                        <?php ActiveForm::end() ?>
-
-                                                        <?php Modal::end() ?>
-                                                        <?php Modal::begin([
-                                                            'title' => 'Upload Dokumen Sumber Led',
-                                                            'toggleButton' => ['label' => '<i class="la la-upload"></i> &nbsp;Unggah', 'class' => 'btn btn-light btn-sm btn-pill btn-elevate btn-elevate-air pull-right'],
-                                                            'size' => 'modal-lg',
-                                                            'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
-                                                        ]) ?>
-                                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $doksumAttr . '-upload-sumber-form']) ?>
-
-                                                        <?= $form->field($detailModel, 'kode_dokumen')->textInput(['value' => $doksum['kode'], 'readonly' => true]) ?>
-                                                        <?= $form->field($detailModel, 'nama_dokumen')->textInput(['value' => $doksum['dokumen'], 'readonly' => true]) ?>
-                                                        <?= $form->field($detailModel, 'jenis_dokumen')->textInput(['value' => Constants::SUMBER, 'readonly' => true]) ?>
-                                                        <?= $form->field($detailModel, 'berkasDokumen')->widget(FileInput::class, [
-                                                            'options' => ['id' => 'dokumenSumber' . $doksumAttr],
-                                                            'pluginOptions' => [
-                                                                'theme' => 'explorer-fas',
-                                                                'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
-                                                                'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-                                                                'showUpload' => false,
-                                                                'previewFileType' => 'any',
-                                                                'fileActionSettings' => [
-                                                                    'showZoom' => true,
-                                                                    'showRemove' => false,
-                                                                    'showUpload' => false,
-                                                                ],
-                                                            ]
-                                                        ]) ?>
-
-                                                        <div class="form-group pull-right">
-                                                            <?= Html::submitButton('<i class="la la-save"></i> Simpan', ['class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air']) ?>
-                                                        </div>
-                                                        <?php ActiveForm::end() ?>
-
-                                                        <?php Modal::end() ?>
-                                                        <?=Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=>\yii\helpers\Url::to(['resource/index','prodi'=>$_GET['prodi'],'kriteria'=>$kriteria,'kode'=>$doksum['kode'],'jenis'=>Constants::LED,'id_led_lk'=>$_GET['led'],'jenis_dokumen'=>Constants::SUMBER]),'title'=>'Gunakan Data Untuk : '.$doksum['kode'].'.'.' '.$doksum['dokumen'] ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton'])?>
-                                                    </div>
-                                                </div>
-
-                                            </td>
-                                        </tr>
-                                        <?php
-                                        $detailClass = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria' . $kriteria . 'Detail';
-                                        $detail = call_user_func($detailClass . "::find")->where(['id_led_prodi_kriteria' . $kriteria => $model->id]);
-
-                                        $detail1 = $detail->andWhere(['kode_dokumen' => $doksum['kode'], 'jenis_dokumen' => Constants::SUMBER])->all();
-
-                                        foreach ($detail1 as $k => $v):
-                                            ?>
-                                            <tr>
-                                                <td><?= $k + 1 ?></td>
-                                                <td >
-                                                    <div class="row">
-                                                        <div class="col-lg-12 text-center">
-
-                                                            <?= FileIconHelper::getIconByExtension($v->bentuk_dokumen) ?>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12 text-center">
-                                                            <?php $type = FileTypeHelper::getType($v->bentuk_dokumen);
-
-                                                            if ($type === FileTypeHelper::TYPE_STATIC_TEXT || $type === FileTypeHelper::TYPE_LINK) : ?>
-                                                                <?= Html::encode($v->nama_dokumen) ?>
-
-                                                            <?php else: ?>
-                                                                <?= Html::encode($v->isi_dokumen) ?>
-                                                            <?php endif; ?>
-
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="pull-right">
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <?php $type = FileTypeHelper::getType($v->bentuk_dokumen);
-                                                            if ($type === FileTypeHelper::TYPE_IMAGE || $type === FileTypeHelper::TYPE_PDF || $type === FileTypeHelper::TYPE_STATIC_TEXT):?>
-
-                                                                <?php Modal::begin([
-                                                                    'title' => $v->nama_dokumen,
-                                                                    'toggleButton' => ['label' => '<i class="la la-eye"></i> &nbsp;Lihat', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'],
-                                                                    'size' => 'modal-lg',
-                                                                    'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
-                                                                ]); ?>
-                                                                <?php switch ($type) {
-                                                                    case FileTypeHelper::TYPE_IMAGE:
-                                                                        echo Html::img("$path/sumber/{$v->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
-                                                                        break;
-                                                                    case FileTypeHelper::TYPE_STATIC_TEXT:
-                                                                        echo $v->isi_dokumen;
-                                                                        break;
-                                                                    case FileTypeHelper::TYPE_PDF:
-                                                                        echo '<embed src="' . $path . '/sumber/' . $v->isi_dokumen . '" type="application/pdf" height="100%" width="100%">
-';
-                                                                        break;
-                                                                } ?>
-                                                                <?php Modal::end(); ?>
-                                                            <?php elseif ($type === FileTypeHelper::TYPE_LINK): ?>
-                                                                <?= Html::a('<i class="la la-external-link"></i> Lihat', $v->isi_dokumen, ['class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air', 'target' => '_blank']) ?>
-                                                            <?php endif; ?>
-                                                            <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
-
-                                                            <?php else: ?>
-                                                                <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['led/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'led' => $_GET['led'], 'jenis' => Constants::SUMBER], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
-                                                            <?php endif; ?>
-                                                            <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['led/hapus-detail'], [
-                                                                'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
-                                                                'data' => [
-                                                                    'method' => 'POST',
-                                                                    'confirm' => 'Apakah anda yakin menghapus item ini?',
-                                                                    'params' => ['dokumen' => $v->id, 'kriteria' => $kriteria, 'prodi' => $prodi, 'led' => $_GET['led'], 'jenis' => Constants::SUMBER]
-                                                                ]
-                                                            ]) ?>
-                                                        </div>
-
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                        <?php endforeach; ?>
-                                    <?php endif; ?>
-                                    <?php endforeach; ?>
-
-
-                                    </tbody>
-                                </table>
-
-                                <!--                            Tabel dokumen pendukung-->
-                                <table class="table table-striped table-hover">
-                                    <thead class="thead-light">
-                                    <tr>
-                                        <th colspan="3" class="text-center">Dokumen Pendukung</th>
-                                    </tr>
-                                    </thead>
-                                    <thead class="thead-dark">
-                                    <tr>
-                                        <th>Kode</th>
-                                        <th colspan="2">Nama Dokumen</th>
-                                    </tr>
-                                    </thead>
-
-                                    <tbody>
-                                    <?php
-                                    foreach ($item['dokumen_pendukung'] as $keyDokpen => $dokpen):
-                                        $dokpenAttr = '_' . str_replace('.', '_', $dokpen['kode']);
-                                        ?>
-                                        <?php if (empty($dokpen['kode'])) : ?>
-                                        <tr>
-                                            <td colspan="3">Tidak ada dokumen</td>
-                                        </tr>
-                                    <?php else: ?>
-                                        <tr>
-                                            <th scope="row">
-                                                <?= $dokpen['kode'] ?>
-                                            </th>
-                                            <td>
-                                                <?= $dokpen['dokumen'] ?>
-                                            </td>
-                                            <td>
-                                                <div class="row pull-right">
-                                                    <div class="col-lg-12">
-                                                        <?php Modal::begin([
-                                                            'title' => 'Dokumen Pendukung Led',
-                                                            'toggleButton' => ['label' => '<i class="la la-file-text"></i> &nbsp;Teks', 'class' => 'btn btn-success btn-sm btn-pill btn-elevate btn-elevate-air pull-right'],
-                                                            'size' => 'modal-lg',
-                                                            'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
-                                                        ]) ?>
-                                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $doksumAttr . '-text-pendukung-form']) ?>
-
-                                                        <?= $form->field($textModel, 'kode_dokumen')->textInput(['value' => $dokpen['kode'], 'readonly' => true]) ?>
-                                                        <?= $form->field($textModel, 'jenis_dokumen')->textInput(['value' => Constants::PENDUKUNG, 'readonly' => true]) ?>
-                                                        <?= $form->field($textModel, 'nama_dokumen')->textInput()->label('Nama Teks') ?>
-                                                        <?= $form->field($textModel, 'berkasDokumen')->widget(TinyMce::class, [
-                                                            'options' => ['rows' => 6, 'id' => $dokpenAttr . '-text-sumber-input',],
-
-                                                            'language' => 'id',
-                                                            'clientOptions' => [
-
-                                                                'plugins' => [
-                                                                    "advlist autolink lists link image charmap print preview hr anchor pagebreak ",
-                                                                    "searchreplace wordcount visualblocks visualchars code fullscreen",
-                                                                    "insertdatetime media nonbreaking save table  directionality",
-                                                                    "emoticons template paste   textpattern imagetools codesample toc noneditable",
-                                                                ],
-                                                                'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link"
-
-                                                            ]
-                                                        ])->label('Teks') ?>
-
-                                                        <div class="form-group pull-right">
-                                                            <?= Html::submitButton('<i class="la la-save"></i> Simpan', ['class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air']) ?>
-                                                        </div>
-                                                        <?php ActiveForm::end() ?>
-
-                                                        <?php Modal::end() ?>
-                                                        <?php Modal::begin([
-                                                            'title' => 'Dokumen Pendukung Led',
-                                                            'toggleButton' => ['label' => '<i class="la la-link"></i> &nbsp;Tautan', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air pull-right'],
-                                                            'size' => 'modal-lg',
-                                                            'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
-                                                        ]) ?>
-                                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $dokpenAttr . '-link-pendukung-form']) ?>
-
-                                                        <?= $form->field($linkModel, 'kode_dokumen')->textInput(['value' => $dokpen['kode'], 'readonly' => true]) ?>
-                                                        <?= $form->field($linkModel, 'jenis_dokumen')->textInput(['value' => Constants::PENDUKUNG, 'readonly' => true]) ?>
-                                                        <?= $form->field($linkModel, 'nama_dokumen')->textInput()->label('Nama Tautan') ?>
-                                                        <?= $form->field($linkModel, 'berkasDokumen')->textInput(['
-                                                    placeholder'=>'https://www.contoh.com'])->label('Tautan')->hint('https:// atau http:// harus dimasukkan.') ?>
-
-                                                        <div class="form-group pull-right">
-                                                            <?= Html::submitButton('<i class="la la-save"></i> Simpan', ['class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air']) ?>
-                                                        </div>
-                                                        <?php ActiveForm::end() ?>
-
-                                                        <?php Modal::end() ?>
-                                                        <?php Modal::begin([
-                                                            'title' => 'Upload Dokumen Pendukung Led',
-                                                            'toggleButton' => ['label' => '<i class="la la-upload"></i> &nbsp;Unggah', 'class' => 'btn btn-light btn-sm btn-pill btn-elevate btn-elevate-air pull-right'],
-                                                            'size' => 'modal-lg',
-                                                            'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
-                                                        ]) ?>
-                                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $dokpenAttr . '-pendukung-form']) ?>
-
-                                                        <?= $form->field($detailModel, 'kode_dokumen')->textInput(['value' => $dokpen['kode'], 'readonly' => true]) ?>
-                                                        <?= $form->field($detailModel, 'nama_dokumen')->textInput(['value' => $dokpen['dokumen'], 'readonly' => true]) ?>
-                                                        <?= $form->field($detailModel, 'jenis_dokumen')->textInput(['value' => Constants::PENDUKUNG, 'readonly' => true]) ?>
-                                                        <?= $form->field($detailModel, 'berkasDokumen')->widget(FileInput::class, [
-                                                            'options' => ['id' => 'dokumenPendukung' . $dokpenAttr],
-                                                            'pluginOptions' => [
-                                                                'theme' => 'explorer-fas',
-                                                                'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
-                                                                'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-                                                                'showUpload' => false,
-                                                                'previewFileType' => 'any',
-                                                                'fileActionSettings' => [
-                                                                    'showZoom' => true,
-                                                                    'showRemove' => false,
-                                                                    'showUpload' => false,
-                                                                ],
-                                                            ]
-                                                        ]) ?>
-
-                                                        <div class="form-group pull-right">
-                                                            <?= Html::submitButton('<i class="la la-save"></i> Simpan', ['class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air']) ?>
-                                                        </div>
-                                                        <?php ActiveForm::end() ?>
-
-                                                        <?php Modal::end() ?>
-                                                        <?=Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=>\yii\helpers\Url::to(['resource/index','prodi'=>$_GET['prodi'],'kriteria'=>$kriteria,'kode'=>$dokpen['kode'],'jenis'=>Constants::LED,'id_led_lk'=>$_GET['led'],'jenis_dokumen'=>Constants::PENDUKUNG]),'title'=>'Gunakan Data Untuk : '.$dokpen['kode'].'.'.' '.$dokpen['dokumen'] ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton'])?>
-                                                    </div>
-                                                </div>
-
-                                            </td>
-                                        </tr>
-                                        <?php
-                                        $detailClass = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria' . $kriteria . 'Detail';
-                                        $detail = call_user_func($detailClass . "::find")->where(['id_led_prodi_kriteria' . $kriteria => $model->id]);
-
-                                        $detail1 = $detail->andWhere(['kode_dokumen' => $dokpen['kode'], 'jenis_dokumen' => Constants::PENDUKUNG])->all();
-
-                                        foreach ($detail1 as $k => $v):
-                                            ?>
-                                            <tr>
-                                                <td><?= $k + 1 ?></td>
-                                                <td>
-                                                    <div class="row">
-                                                        <div class="col-lg-12 text-center">
-                                                            <?= FileIconHelper::getIconByExtension($v->bentuk_dokumen) ?>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12 text-center">
-                                                            <?php $type = FileTypeHelper::getType($v->bentuk_dokumen);
-
-                                                            if ($type === FileTypeHelper::TYPE_STATIC_TEXT || $type === FileTypeHelper::TYPE_LINK) : ?>
-                                                                <?= Html::encode($v->nama_dokumen) ?>
-
-                                                            <?php else: ?>
-                                                                <?= Html::encode($v->isi_dokumen) ?>
-                                                            <?php endif; ?>
-
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="pull-right">
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <?php $type = FileTypeHelper::getType($v->bentuk_dokumen);
-                                                            if ($type === FileTypeHelper::TYPE_IMAGE || $type === FileTypeHelper::TYPE_PDF || $type === FileTypeHelper::TYPE_STATIC_TEXT):?>
-
-                                                                <?php Modal::begin([
-                                                                    'title' => $v->nama_dokumen,
-                                                                    'toggleButton' => ['label' => '<i class="la la-eye"></i> &nbsp;Lihat', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'],
-                                                                    'size' => 'modal-lg',
-                                                                    'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
-                                                                ]); ?>
-                                                                <?php switch ($type) {
-                                                                    case FileTypeHelper::TYPE_IMAGE:
-                                                                        echo Html::img("$path/pendukung/{$v->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
-                                                                        break;
-                                                                    case FileTypeHelper::TYPE_STATIC_TEXT:
-                                                                        echo $v->isi_dokumen;
-                                                                        break;
-                                                                    case FileTypeHelper::TYPE_PDF:
-                                                                        echo '<embed src="' . $path . '/pendukung/' . $v->isi_dokumen . '" type="application/pdf" height="100%" width="100%">
-';
-                                                                        break;
-                                                                } ?>
-                                                                <?php Modal::end(); ?>
-                                                            <?php elseif ($type === FileTypeHelper::TYPE_LINK): ?>
-                                                                <?= Html::a('<i class="la la-external-link"></i> Lihat', $v->isi_dokumen, ['class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air', 'target' => '_blank']) ?>
-                                                            <?php endif; ?>
-                                                            <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
-
-                                                            <?php else: ?>
-                                                                <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['led/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'led' => $_GET['led'], 'jenis' => Constants::PENDUKUNG], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
-                                                            <?php endif; ?>
-                                                            <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['led/hapus-detail'], [
-                                                                'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
-                                                                'data' => [
-                                                                    'method' => 'POST',
-                                                                    'confirm' => 'Apakah anda yakin menghapus item ini?',
-                                                                    'params' => ['dokumen' => $v->id, 'kriteria' => $kriteria, 'led' => $_GET['led'], 'jenis' => Constants::PENDUKUNG, 'prodi' => $prodi]
-                                                                ]
-                                                            ]) ?>
-                                                        </div>
-
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                        <?php endforeach; ?>
-                                    <?php endif; ?>
-                                    <?php endforeach; ?>
-
-
-                                    </tbody>
-                                </table>
+                                ])?>
 
 
                                 <!--                            Tabel dokumen Lainnya-->
@@ -626,7 +221,7 @@ use yii\bootstrap4\Progress;
 
                                                     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $modelAttribute . '-lainnya-form']) ?>
 
-                                                    <?= $form->field($detailModel, 'nomorDokumen')->textInput(['value' => $item['nomor'], 'readonly' => true]) ?>
+                                                    <?= $form->field($detailModel, 'nomorDokumen')->textInput(['value' => $item->nomor, 'readonly' => true]) ?>
                                                     <?= $form->field($detailModel, 'nama_dokumen')->textInput() ?>
                                                     <?= $form->field($detailModel, 'jenis_dokumen')->textInput(['value' => Constants::LAINNYA, 'readonly' => true]) ?>
 
@@ -634,16 +229,7 @@ use yii\bootstrap4\Progress;
                                                     <?= $form->field($detailModel, 'berkasDokumen')->widget(FileInput::class, [
                                                         'options' => ['id' => 'dokumenLainnya' . $modelAttribute],
                                                         'pluginOptions' => [
-                                                            'theme' => 'explorer-fas',
-                                                            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
                                                             'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-                                                            'showUpload' => false,
-                                                            'previewFileType' => 'any',
-                                                            'fileActionSettings' => [
-                                                                'showZoom' => true,
-                                                                'showRemove' => false,
-                                                                'showUpload' => false,
-                                                            ],
                                                         ]
                                                     ]) ?>
                                                     <div class="form-group pull-right">
@@ -743,6 +329,7 @@ use yii\bootstrap4\Progress;
                                 </table>
 
                             </div>
+                            <?php \yii\widgets\Pjax::end()?>
                         </div>
                     </div>
 

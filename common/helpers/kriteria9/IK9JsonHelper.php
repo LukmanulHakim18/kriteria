@@ -13,13 +13,21 @@ namespace common\helpers\kriteria9;
 interface IK9JsonHelper
 {
 
-    public static function getAllJsonLk();
+    public static function getAllJsonLk(string $jenis);
 
-    public static function getJsonKriteriaLk(int $kriteria);
+    public static function getJsonKriteriaLk(int $kriteria, string $jenis);
 
-    public static function getAllJsonLed();
+    public static function getAllJsonLed(string $jenis);
 
     public static function getJsonKriteriaLed(int $kriteria);
 
-    static function getJson($tipe);
+    public static function getJson($tipe, $jenis);
+
+    public static function getJsonLedKondisiEksternal();
+    public static function getJsonLedProfil();
+    public static function getJsonLedAnalisis();
+
+    public static function getJsonPenilaian($jenis);
+
+    static function provideMapper();
 }

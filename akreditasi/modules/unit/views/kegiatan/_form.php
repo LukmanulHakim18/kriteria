@@ -48,85 +48,38 @@ $action = Yii::$app->controller->action->id;
 
     <?=$form->field($model,'sk_kegiatan')->widget(FileInput::className(),[
         'pluginOptions' => [
-            'theme' => 'explorer-fas',
-            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
             'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-            'showUpload' => false,
-            'fileActionSettings' => [
-                'showZoom' => true,
-                'showRemove' => false,
-                'showUpload' => false,
-            ],
         ]
     ])?>
     <?=$form->field($model,'laporan_kegiatan')->widget(FileInput::className(),[
         'pluginOptions' => [
-            'theme' => 'explorer-fas',
-            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
             'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-            'showUpload' => false,
-            'fileActionSettings' => [
-                'showZoom' => true,
-                'showRemove' => false,
-                'showUpload' => false,
-            ],
         ]
     ])?>
     <?=$form->field($model,'absensi')->widget(FileInput::className(),[
         'pluginOptions' => [
-            'theme' => 'explorer-fas',
-            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
             'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-            'showUpload' => false,
-            'fileActionSettings' => [
-                'showZoom' => true,
-                'showRemove' => false,
-                'showUpload' => false,
-            ],
         ]
     ])?>
 
     <?= $form->field($model, 'foto_kegiatan[]')->widget(FileInput::class,[
             'options' => ['multiple'=>true],
             'pluginOptions' => [
-            'theme' => 'explorer-fas',
-            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
             'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-            'showUpload' => false,
-            'fileActionSettings' => [
-                'showZoom' => true,
-                'showRemove' => false,
-                'showUpload' => false,
-            ],
         ]
     ]) ?>
     <?= $form->field($model, 'sertifikat[]')->widget(FileInput::class,[
         'options' => ['multiple'=>true],
         'pluginOptions' => [
-            'theme' => 'explorer-fas',
-            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
             'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-            'showUpload' => false,
-            'fileActionSettings' => [
-                'showZoom' => true,
-                'showRemove' => false,
-                'showUpload' => false,
-            ],
+
         ]
     ]) ?>
 
     <?= $form->field($model, 'dokumen_lainnya[]')->widget(FileInput::class,[
-        'options' => ['multiple'=>true],
+        'options' => ['mutiple'=>true],
         'pluginOptions' => [
-            'theme' => 'explorer-fas',
-            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
             'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-            'showUpload' => false,
-            'fileActionSettings' => [
-                'showZoom' => true,
-                'showRemove' => false,
-                'showUpload' => false,
-            ],
         ]
     ]) ?>
 

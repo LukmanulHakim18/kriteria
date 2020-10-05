@@ -9,21 +9,22 @@
 
 namespace common\helpers;
 
-
 use Yii;
 
 class UnitDirectoryHelper implements DirectoryHelper
 {
 
-    public static function getPath($id){
+    public static function getPath($id)
+    {
         $p = Yii::getAlias('@uploadUnit');
         $replacement = ['{id_unit}'=>$id];
-        return strtr($p,$replacement);
+        return strtr($p, $replacement);
     }
 
-    public static function getUrl($id){
+    public static function getUrl($id)
+    {
         $p = Yii::getAlias('@.uploadUnit');
         $replacement = ['{id_unit}'=>$id];
-        return strtr($p,$replacement);
+        return strtr($p, $replacement);
     }
 }

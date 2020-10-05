@@ -26,11 +26,7 @@ class K9ProdiProgressHelper implements IK9ProgressHelper
     public static function getDokumenLedProgress($led, $detail, $kriteria)
     {
 
-        $progress = 0;
-        $filename = 'led_prodi.json';
-        $filejson = file_get_contents(Yii::getAlias('@required/kriteria9/aps/' . $filename));
-
-        return self::hitung($detail,$kriteria,$filejson);
+      return self::hitung($detail,$kriteria,K9ProdiJsonHelper::getJsonKriteriaLed($kriteria));
 
     }
 
@@ -38,10 +34,7 @@ class K9ProdiProgressHelper implements IK9ProgressHelper
     {
 
         $prodi = $lk->lkProdi->akreditasiProdi->prodi;
-        $filename = 'lkps_prodi_'.$prodi->jenjang.'.json';
-        $filejson = file_get_contents(Yii::getAlias('@required/kriteria9/aps/' . $filename));
-
-        return self::hitung($dokumen, $kriteria,$filejson);
+        return self::hitung($dokumen, $kriteria,K9ProdiJsonHelper::getJsonKriteriaLk($kriteria,$prodi->jenjang));
 
 
     }

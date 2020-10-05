@@ -9,15 +9,30 @@
 
 namespace common\helpers\kriteria9;
 
+use common\models\kriteria9\led\Led;
+use common\models\kriteria9\lk\Lk;
+use JsonMapper;
 use Yii;
 use yii\helpers\Json;
+use yii\helpers\StringHelper;
+use yii2mod\collection\Collection;
 
-class K9ProdiJsonHelper
+class K9ProdiJsonHelper implements IK9JsonHelper
 {
 
+    static function provideMapper()
+    {
+        return new JsonMapper();
+    }
     public static function getAllJsonLk($jenis)
     {
-        return self::getJson('lk', $jenis);
+        $out = [];
+        $json = self::getJson('lk', $jenis);
+        foreach ($json as $jsonObj) {
+            $out[] =  self::provideMapper()->map($jsonObj, new Lk());
+        }
+
+        return $out;
     }
 
     public static function getJson($tipe, $jenis = '')
@@ -30,25 +45,51 @@ class K9ProdiJsonHelper
             case 'lk':
                 $filename = "lkps_prodi_$jenis.json";
                 break;
+            case 'penilaian':
+                $filename = 'penilaian_prodi_' . $jenis . '.json';
         }
         $path = Yii::getAlias('@required/kriteria9/aps/' . $filename);
-        return Json::decode(file_get_contents($path));
+        return Json::decode(file_get_contents($path), false);
     }
 
     public static function getJsonKriteriaLk(int $kriteria, string $jenis)
     {
-        $json = self::getJson('lk', $jenis);
-        return $json[$kriteria - 1];
+        $json = self::getJson('lk', $jenis)[$kriteria - 1];
+        return self::provideMapper()->map($json, new Lk());
     }
 
-    public static function getAllJsonLed()
+    public static function getAllJsonLed($jenis = '')
     {
-        return self::getJson('led');
+        return self::provideMapper()->map(self::getJson('led')[2], new Led());
     }
 
+    /**
+     * @param int $kriteria
+     * @return mixed|Led
+     * @throws \JsonMapper_Exception
+     */
     public static function getJsonKriteriaLed(int $kriteria)
     {
-        $json = self::getJson('led');
-        return $json[$kriteria - 1];
+        return self::provideMapper()->map(self::getJson('led')[2]->butir[$kriteria-1], new Led());
+    }
+
+    public static function getJsonLedKondisiEksternal()
+    {
+        return self::provideMapper()->map(self::getJson('led')[0], new Led());
+    }
+
+    public static function getJsonLedProfil()
+    {
+        return self::provideMapper()->map(self::getJson('led')[1], new Led());
+    }
+
+    public static function getJsonLedAnalisis()
+    {
+        return self::provideMapper()->map(self::getJson('led')[3], new Led());
+    }
+
+    public static function getJsonPenilaian($jenis)
+    {
+        // TODO: Implement getJsonPenilaian() method.
     }
 }

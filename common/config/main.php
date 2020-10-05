@@ -1,4 +1,7 @@
 <?php
+
+use common\models\Constants;
+
 return [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -25,4 +28,35 @@ return [
 
         ],
     ],
+    'container'=>[
+        'definitions'=>[
+            'dosamigos\tinymce\TinyMce'=>[
+                'options'=>['rows'=>8],
+                'language' => 'id',
+                'clientOptions' => [
+                    'plugins' => [
+                        "advlist autolink lists link image charmap print preview hr anchor pagebreak ",
+                        "searchreplace wordcount visualblocks visualchars code fullscreen",
+                        "insertdatetime media nonbreaking save table directionality",
+                        "emoticons template paste textpattern imagetools codesample toc noneditable",
+                    ],
+                    'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link | image"
+
+                ]
+            ],
+            'kartik\file\FileInput'=>[
+                'pluginOptions' => [
+                    'theme' => 'explorer-fas',
+                    'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
+                    'showUpload' => false,
+                    'previewFileType' => 'any',
+                    'fileActionSettings' => [
+                        'showZoom' => true,
+                        'showRemove' => false,
+                        'showUpload' => false,
+                    ],
+                ]
+            ]
+        ]
+    ]
 ];

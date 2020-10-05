@@ -222,16 +222,7 @@ use yii\bootstrap4\Progress; ?>
                                                         <?= $form->field($detailModel, 'berkasDokumen')->widget(FileInput::class, [
                                                             'options' => ['id' => 'dokumenSumber' . $doksumAttr],
                                                             'pluginOptions' => [
-                                                                'theme' => 'explorer-fas',
-                                                                'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
                                                                 'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-                                                                'showUpload' => false,
-                                                                'previewFileType' => 'any',
-                                                                'fileActionSettings' => [
-                                                                    'showZoom' => true,
-                                                                    'showRemove' => false,
-                                                                    'showUpload' => false,
-                                                                ],
                                                             ]
                                                         ]) ?>
 
@@ -435,16 +426,7 @@ use yii\bootstrap4\Progress; ?>
                                                         <?= $form->field($detailModel, 'berkasDokumen')->widget(FileInput::class, [
                                                             'options' => ['id' => 'dokumenPendukung' . $dokpenAttr],
                                                             'pluginOptions' => [
-                                                                'theme' => 'explorer-fas',
-                                                                'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
                                                                 'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-                                                                'showUpload' => false,
-                                                                'previewFileType' => 'any',
-                                                                'fileActionSettings' => [
-                                                                    'showZoom' => true,
-                                                                    'showRemove' => false,
-                                                                    'showUpload' => false,
-                                                                ],
                                                             ]
                                                         ]) ?>
 
@@ -630,16 +612,7 @@ use yii\bootstrap4\Progress; ?>
                                                     <?= $form->field($detailModel, 'berkasDokumen')->widget(FileInput::class, [
                                                         'options' => ['id' => 'dokumenLainnya' . $modelAttribute],
                                                         'pluginOptions' => [
-                                                            'theme' => 'explorer-fas',
-                                                            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
                                                             'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-                                                            'showUpload' => false,
-                                                            'previewFileType' => 'any',
-                                                            'fileActionSettings' => [
-                                                                'showZoom' => true,
-                                                                'showRemove' => false,
-                                                                'showUpload' => false,
-                                                            ],
                                                         ]
                                                     ]) ?>
                                                     <div class="form-group pull-right">

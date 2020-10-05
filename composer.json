@@ -45,7 +45,9 @@
         "mpdf/mpdf": "^8.0",
         "dmstr/yii2-ajax-button": "^1.0",
         "supplyhog/yii2-clipboardjs": "dev-master",
-        "yii2mod/collection": "*"
+        "yii2mod/collection": "*",
+        "netresearch/jsonmapper": "^3.1",
+        "iiifx-production/yii2-autocomplete-helper": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

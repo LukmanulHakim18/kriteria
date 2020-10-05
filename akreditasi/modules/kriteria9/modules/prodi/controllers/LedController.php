@@ -16,20 +16,15 @@ use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiUploadForm;
 use akreditasi\models\kriteria9\forms\led\K9DokumenLedProdiUploadForm;
 use akreditasi\modules\kriteria9\controllers\BaseController;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
+use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\models\Constants;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\forms\led\K9PencarianLedProdiForm;
 use common\models\kriteria9\led\prodi\K9DokumenLedProdi;
 use common\models\kriteria9\led\prodi\K9LedProdi;
-use common\models\kriteria9\led\prodi\K9LedProdiKriteria1;
-use common\models\kriteria9\led\prodi\K9LedProdiKriteria2;
-use common\models\kriteria9\led\prodi\K9LedProdiKriteria3;
-use common\models\kriteria9\led\prodi\K9LedProdiKriteria4;
-use common\models\kriteria9\led\prodi\K9LedProdiKriteria5;
-use common\models\kriteria9\led\prodi\K9LedProdiKriteria6;
-use common\models\kriteria9\led\prodi\K9LedProdiKriteria7;
-use common\models\kriteria9\led\prodi\K9LedProdiKriteria8;
-use common\models\kriteria9\led\prodi\K9LedProdiKriteria9;
+use common\models\kriteria9\led\prodi\K9LedProdiNarasiAnalisis;
+use common\models\kriteria9\led\prodi\K9LedProdiNarasiKondisiEksternal;
+use common\models\kriteria9\led\prodi\K9LedProdiNarasiProfilUpps;
 use common\models\ProgramStudi;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -38,6 +33,7 @@ use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\MethodNotAllowedHttpException;
 use yii\web\UploadedFile;
+use yii2mod\collection\Collection;
 
 class LedController extends BaseController
 {
@@ -73,65 +69,13 @@ class LedController extends BaseController
 
     }
 
-    public function actionIsi($led, $prodi)
-    {
-        $ledProdi = K9LedProdi::findOne($led);
-
-        $modelDokumen = new K9DokumenLedProdiUploadForm();
-        $dataDokumen = K9DokumenLedProdi::findAll(['id_led_prodi' => $led]);
-        $json = $this->getJsonData();
-        $kriteria = $this->getArrayKriteria($led);
-        $realPath = K9ProdiDirectoryHelper::getDokumenLedUrl($ledProdi->akreditasiProdi);
-
-        if ($modelDokumen->load(Yii::$app->request->post())) {
-
-            $dokumen = $this->uploadDokumenLed($led);
-            if ($dokumen) {
-                $model = new K9DokumenLedProdi();
-                $model->id_led_prodi = $ledProdi->id;
-                $model->nama_dokumen = $dokumen->getNamaDokumen();
-                $model->bentuk_dokumen = $dokumen->getBentukDokumen();
-                $model->save(false);
-
-                Yii::$app->session->setFlash('success', 'Berhasil mengunggah Dokumen LED');
-                return $this->redirect(Url::current());
-            }
-            Yii::$app->session->setFlash('warning', 'Gagal mengunggah Dokumen LED');
-            return $this->redirect(Url::current());
-        }
-
-        return $this->render('led', [
-            'led' => $ledProdi,
-            'modelDokumen' => $modelDokumen,
-            'dataDokumen' => $dataDokumen,
-            'json' => $json,
-            'kriteria' => $kriteria,
-            'path' => $realPath
-        ]);
-    }
-
-    protected function getJsonData()
-    {
-        $fileJson = 'led_prodi.json';
-        $json = Json::decode(file_get_contents(Yii::getAlias('@common/required/kriteria9/aps/' . $fileJson)));
-        return $json;
-
-    }
-
     protected function getArrayKriteria($led)
     {
-        $kriteria1 = K9LedProdiKriteria1::findOne(['id_led_prodi' => $led]);
-        $kriteria2 = K9LedProdiKriteria2::findOne(['id_led_prodi' => $led]);
-        $kriteria3 = K9LedProdiKriteria3::findOne(['id_led_prodi' => $led]);
-        $kriteria4 = K9LedProdiKriteria4::findOne(['id_led_prodi' => $led]);
-        $kriteria5 = K9LedProdiKriteria5::findOne(['id_led_prodi' => $led]);
-        $kriteria6 = K9LedProdiKriteria6::findOne(['id_led_prodi' => $led]);
-        $kriteria7 = K9LedProdiKriteria7::findOne(['id_led_prodi' => $led]);
-        $kriteria8 = K9LedProdiKriteria8::findOne(['id_led_prodi' => $led]);
-        $kriteria9 = K9LedProdiKriteria9::findOne(['id_led_prodi' => $led]);
-
-        $kriteria = [$kriteria1, $kriteria2, $kriteria3, $kriteria4, $kriteria5, $kriteria6, $kriteria7, $kriteria8, $kriteria9];
-
+        $kriteria = [];
+        for ($i = 1; $i<=9; $i++){
+            $classpath = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria'.$i;
+            $kriteria[] = call_user_func($classpath.'::findOne',['id_led_prodi'=>$led]);
+        }
         return $kriteria;
     }
 
@@ -192,18 +136,75 @@ class LedController extends BaseController
         return Yii::$app->response->sendFile($file);
     }
 
+    public function actionIsi($led, $prodi)
+    {
+        $ledProdi = K9LedProdi::findOne($led);
+
+        $json_kriteria = K9ProdiJsonHelper::getAllJsonLed();
+        $json_eksternal = K9ProdiJsonHelper::getJsonLedKondisiEksternal();
+        $json_profil = K9ProdiJsonHelper::getJsonLedProfil();
+        $json_analisis = K9ProdiJsonHelper::getJsonLedAnalisis();
+
+        $modelEksternal = K9LedProdiNarasiKondisiEksternal::findOne(['id_led_prodi'=>$ledProdi->id]);
+        $modelProfil = K9LedProdiNarasiProfilUpps::findOne(['id_led_prodi'=>$ledProdi->id]);
+        $modelAnalisis = K9LedProdiNarasiAnalisis::findOne(['id_led_prodi'=>$ledProdi->id]);
+        $modelDokumen = new K9DokumenLedProdiUploadForm();
+        $dataDokumen = K9DokumenLedProdi::findAll(['id_led_prodi' => $ledProdi->id]);
+        $kriteria = $this->getArrayKriteria($led);
+        $realPath = K9ProdiDirectoryHelper::getDokumenLedUrl($ledProdi->akreditasiProdi);
+
+        if ($modelDokumen->load(Yii::$app->request->post())) {
+
+            $dokumen = $this->uploadDokumenLed($led);
+            if ($dokumen) {
+                $model = new K9DokumenLedProdi();
+                $model->id_led_prodi = $ledProdi->id;
+                $model->nama_dokumen = $dokumen->getNamaDokumen();
+                $model->bentuk_dokumen = $dokumen->getBentukDokumen();
+                $model->save(false);
+
+                Yii::$app->session->setFlash('success', 'Berhasil mengunggah Dokumen LED');
+                return $this->redirect(Url::current());
+            }
+            Yii::$app->session->setFlash('warning', 'Gagal mengunggah Dokumen LED');
+            return $this->redirect(Url::current());
+        }
+
+        return $this->render('led', [
+            'led' => $ledProdi,
+            'modelDokumen' => $modelDokumen,
+            'dataDokumen' => $dataDokumen,
+            'json' => $json_kriteria,
+            'json_eksternal'=>$json_eksternal,
+            'json_profil'=>$json_profil,
+            'json_analisis'=>$json_analisis,
+            'kriteria' => $kriteria,
+            'path' => $realPath,
+            'modelEksternal'=>$modelEksternal,
+            'modelAnalisis'=>$modelAnalisis,
+            'modelProfil'=>$modelProfil,
+            'prodi'=>$ledProdi->akreditasiProdi->prodi,
+            'untuk'=>'isi'
+        ]);
+    }
     public function actionIsiKriteria($led, $kriteria, $prodi)
     {
 
         $modelLedClass = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria' . $kriteria;
         $modelLed = call_user_func($modelLedClass . '::findOne', $led);
-
+        $detailAttr = 'k9LedProdiKriteria'.$kriteria.'Details';
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\led\\prodi\\K9LedProdiNarasiKriteria' . $kriteria . 'Form';
         $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_led_prodi_kriteria' . $kriteria => $modelLed->id]);
 
-        $json = $this->getJsonData();
-        $dataKriteria = $json[$kriteria - 1];
-        $poinKriteria = $dataKriteria['butir'];
+        $detail = $modelLed->$detailAttr;
+
+        $detailCollection = Collection::make($detail);
+
+
+        $json = K9ProdiJsonHelper::getJsonKriteriaLed($kriteria);
+        $dataKriteria = $json;
+        $poinKriteria = $dataKriteria->butir;
+
 
 
         $detailModel = new K9DetailLedProdiUploadForm();
@@ -214,6 +215,10 @@ class LedController extends BaseController
         $realPath = K9ProdiDirectoryHelper::getDetailLedUrl($modelLed->ledProdi->akreditasiProdi);
 
 
+        if(Yii::$app->request->isAjax){
+
+            return $this->render('_item_kriteria');
+        }
         if ($modelNarasi->load(Yii::$app->request->post())) {
             $modelNarasi->save();
             Yii::$app->session->setFlash('success', 'Berhasil Memperbarui Entri');
@@ -262,16 +267,24 @@ class LedController extends BaseController
             'path' => $realPath,
             'textModel' => $textModel,
             'linkModel' => $linkModel,
+            'detailCollection'=>$detailCollection
+
 
         ]);
     }
+    public function actionButirItem(){
+
+    }
+    public function actionIsiEksternal($led,$prodi){}
+    public function actionIsiProfil($led,$prodi){}
+    public function actionIsiAnalisis($led,$prodi){}
 
     public function actionLihat($led, $prodi)
     {
         $ledProdi = K9LedProdi::findOne($led);
 
         $dataDokumen = K9DokumenLedProdi::findAll(['id_led_prodi' => $led]);
-        $json = $this->getJsonData();
+        $json = K9ProdiJsonHelper::getAllJsonLed();
         $kriteria = $this->getArrayKriteria($led);
         $realPath = K9ProdiDirectoryHelper::getDokumenLedUrl($ledProdi->akreditasiProdi);
 
@@ -284,19 +297,19 @@ class LedController extends BaseController
             'path' => $realPath
         ]);
     }
-
     public function actionLihatKriteria($led, $kriteria, $prodi)
     {
 
+        $ledProdi = K9LedProdi::findOne($led);
         $modelLedClass = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria' . $kriteria;
-        $modelLed = call_user_func($modelLedClass . '::findOne', $led);
+        $modelLed = call_user_func($modelLedClass . '::findOne', ['id_led_prodi'=>$ledProdi->id]);
 
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\led\\prodi\\K9LedProdiNarasiKriteria' . $kriteria . 'Form';
         $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_led_prodi_kriteria' . $kriteria => $modelLed->id]);
         $relasiNarasiAttr = 'ledProdiKriteria' . $kriteria;
 
 
-        $json = $this->getJsonData();
+        $json = K9ProdiJsonHelper::getAllJsonLed();
         $dataKriteria = $json[$kriteria - 1];
         $poinKriteria = $dataKriteria['butir'];
 
@@ -310,6 +323,9 @@ class LedController extends BaseController
             'path' => $realPath,
         ]);
     }
+    public function actionLihatEksternal($led,$prodi){}
+    public function actionLihatProdil($led,$prodi){}
+    public function actionLihatAnalisis($led,$prodi){}
 
     public function actionHapusDetail()
     {
@@ -348,5 +364,15 @@ class LedController extends BaseController
         $model = call_user_func($className . '::findOne', $dokumen);
         $file = K9ProdiDirectoryHelper::getDokumenLedPath($led->akreditasiProdi) . "/$jenis/{$model->isi_dokumen}";
         return Yii::$app->response->sendFile($file);
+    }
+
+    public function getLedKriteriaNomor($kriteria, $search){
+
+        $data = \common\helpers\kriteria9\K9ProdiJsonHelper::getJsonKriteriaLed($kriteria);
+        $collection  = new \yii2mod\collection\Collection($data->butir);
+        $item = $collection->filter(function ($value, $key) use ($search) {
+            return $value->nomor === $search;
+        })->first();
+
     }
 }

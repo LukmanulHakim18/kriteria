@@ -24,27 +24,25 @@ trait K9ProgressTrait
      * @return float
      */
     static function hitung($dokumen,$kriteria,$filejson){
-        $json = Json::decode($filejson);
 
-        $dataJson = $json[$kriteria - 1];
         $totalDokumenJson = 0;
-        foreach ($dataJson['butir'] as $butir) {
+        foreach ($filejson->butir as $butir) {
 
             $missing = 0;
-            foreach ($butir['dokumen_sumber'] as $doksum) {
-                if (empty($doksum['kode'])) {
+            foreach ($butir->dokumen_sumber as $doksum) {
+                if (empty($doksum->kode)) {
                     ++$missing;
                 }
             }
 
-            foreach ($butir['dokumen_pendukung'] as $dokpen) {
-                if (empty($dokpen['kode'])) {
+            foreach ($butir->dokumen_pendukung as $dokpen) {
+                if (empty($dokpen->kode)) {
                     ++$missing;
                 }
             }
 
-            $dataSumber = sizeof($butir['dokumen_sumber']);
-            $dataPendukung = sizeof($butir['dokumen_pendukung']);
+            $dataSumber = sizeof($butir->dokumen_sumber);
+            $dataPendukung = sizeof($butir->dokumen_pendukung);
             $data = $dataSumber + $dataPendukung - $missing;
             $totalDokumenJson += $data;
         }
