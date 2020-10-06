@@ -189,21 +189,16 @@ class LedController extends BaseController
     }
     public function actionIsiKriteria($led, $kriteria, $prodi)
     {
-
-        $modelLedClass = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria' . $kriteria;
-        $modelLed = call_user_func($modelLedClass . '::findOne', $led);
-        $detailAttr = 'k9LedProdiKriteria'.$kriteria.'Details';
-        $modelNarasiClass = 'akreditasi\\models\\kriteria9\\led\\prodi\\K9LedProdiNarasiKriteria' . $kriteria . 'Form';
-        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_led_prodi_kriteria' . $kriteria => $modelLed->id]);
-
-        $detail = $modelLed->$detailAttr;
-
-        $detailCollection = Collection::make($detail);
-
+        $ledProdi = K9LedProdi::findOne(['id'=>$led]);
+        $attr = 'k9LedProdiKriteria'.$kriteria.'s';
+        $modelLed = $ledProdi->$attr;
 
         $json = K9ProdiJsonHelper::getJsonKriteriaLed($kriteria);
         $dataKriteria = $json;
         $poinKriteria = $dataKriteria->butir;
+
+        $modelNarasiClass = 'akreditasi\\models\\kriteria9\\led\\prodi\\K9LedProdiNarasiKriteria' . $kriteria . 'Form';
+        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_led_prodi_kriteria' . $kriteria => $modelLed->id]);
 
 
 
@@ -211,14 +206,6 @@ class LedController extends BaseController
         $textModel = new K9DetailLedProdiTeksForm();
         $linkModel = new K9DetailLedProdiLinkForm();
 
-
-        $realPath = K9ProdiDirectoryHelper::getDetailLedUrl($modelLed->ledProdi->akreditasiProdi);
-
-
-        if(Yii::$app->request->isAjax){
-
-            return $this->render('_item_kriteria');
-        }
         if ($modelNarasi->load(Yii::$app->request->post())) {
             $modelNarasi->save();
             Yii::$app->session->setFlash('success', 'Berhasil Memperbarui Entri');
@@ -258,22 +245,50 @@ class LedController extends BaseController
 
         }
 
-
         return $this->render('isi-kriteria', [
             'model' => $modelLed,
-            'modelNarasi' => $modelNarasi,
             'poinKriteria' => $poinKriteria,
+        ]);
+    }
+    public function actionButirItem($led,$kriteria,$poin,$prodi){
+
+        $ledProdi = K9LedProdi::findOne(['id'=>$led]);
+        $attr = 'k9LedProdiKriteria'.$kriteria.'s';
+        $modelLed = $ledProdi->$attr;
+        $detailAttr = 'k9LedProdiKriteria'.$kriteria.'Details';
+        $detail = $modelLed->$detailAttr;
+
+        $detailCollection = Collection::make($detail);
+
+        $json = K9ProdiJsonHelper::getJsonKriteriaLed($kriteria);
+        $kriteriaCollection = new Collection($json->butir);
+        $currentPoint = $kriteriaCollection->where('nomor',$poin)->first();
+
+        $modelNarasiClass = 'akreditasi\\models\\kriteria9\\led\\prodi\\K9LedProdiNarasiKriteria' . $kriteria . 'Form';
+        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_led_prodi_kriteria' . $kriteria => $modelLed->id]);
+
+
+        $detailModel = new K9DetailLedProdiUploadForm();
+        $textModel = new K9DetailLedProdiTeksForm();
+        $linkModel = new K9DetailLedProdiLinkForm();
+
+
+        $realPath = K9ProdiDirectoryHelper::getDetailLedUrl($modelLed->ledProdi->akreditasiProdi);
+
+
+        return $this->renderAjax('_isi_led',[
+            'model'=>$modelLed,
+            'modelNarasi' => $modelNarasi,
             'detailModel' => $detailModel,
             'path' => $realPath,
             'textModel' => $textModel,
             'linkModel' => $linkModel,
-            'detailCollection'=>$detailCollection
-
-
+            'detailCollection'=>$detailCollection,
+            'modelAttribute'=> '_' . str_replace('.', '_', $poin),
+            'item'=>$currentPoint,
+            'kriteria'=>$kriteria,
+            'prodi'=>$prodi
         ]);
-    }
-    public function actionButirItem(){
-
     }
     public function actionIsiEksternal($led,$prodi){}
     public function actionIsiProfil($led,$prodi){}

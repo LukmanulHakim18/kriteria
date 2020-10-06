@@ -17,7 +17,7 @@ use common\helpers\FileIconHelper;
 use common\helpers\FileTypeHelper;
 use common\models\Constants;
 use dosamigos\tinymce\TinyMce;
-use kartik\widgets\FileInput;
+use kartik\file\FileInput;
 use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;

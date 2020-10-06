@@ -10,7 +10,7 @@
 use akreditasi\models\kriteria9\forms\led\K9DokumenLedProdiUploadForm;
 use common\helpers\FileTypeHelper;
 use common\models\Constants;
-use kartik\widgets\FileInput;
+use kartik\file\FileInput;
 use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;
