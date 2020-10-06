@@ -55,12 +55,13 @@ $attr = 'dokumen_'.$jenis
                 <div class="row pull-right">
                     <div class="col-lg-12">
                         <?php Modal::begin([
+                            'id' => 'text-'.$jenis.'-'.$dokAttr,
                             'title' => "Dokumen $jenis Led",
                             'toggleButton' => ['label' => '<i class="la la-file-text"></i> &nbsp;Teks', 'class' => 'btn btn-success btn-sm btn-pill btn-elevate btn-elevate-air pull-right'],
                             'size' => 'modal-lg',
                             'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
                         ]) ?>
-                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $dokAttr . "-text-$jenis-form"]) ?>
+                        <?php $form = ActiveForm::begin(['action' => \yii\helpers\Url::to(['led/isi-kriteria','led'=>$model->id,'prodi'=>$prodi,'kriteria'=>$kriteria]),'options' => ['enctype' => 'multipart/form-data'], 'id' => $dokAttr . "-text-$jenis-form"]) ?>
 
                         <?= $form->field($textModel, 'kode_dokumen')->textInput(['value' => $dok->kode, 'readonly' => true]) ?>
                         <?= $form->field($textModel, 'jenis_dokumen')->textInput(['value' => $jenis, 'readonly' => true]) ?>
@@ -78,12 +79,13 @@ $attr = 'dokumen_'.$jenis
 
                         <?php Modal::end() ?>
                         <?php Modal::begin([
+                            'id' => 'tautan-'.$jenis.'-'.$dokAttr,
                             'title' => "Dokumen $jenis Led",
                             'toggleButton' => ['label' => '<i class="la la-link"></i> &nbsp;Tautan', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air pull-right'],
                             'size' => 'modal-lg',
                             'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
                         ]) ?>
-                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $dokAttr . "-link-$jenis-form"]) ?>
+                        <?php $form = ActiveForm::begin(['action' => \yii\helpers\Url::to(['led/isi-kriteria','led'=>$model->id,'prodi'=>$prodi,'kriteria'=>$kriteria]),'options' => ['enctype' => 'multipart/form-data'], 'id' => $dokAttr . "-link-$jenis-form"]) ?>
 
                         <?= $form->field($linkModel, 'kode_dokumen')->textInput(['value' => $dok->kode, 'readonly' => true]) ?>
                         <?= $form->field($linkModel, 'jenis_dokumen')->textInput(['value' => $jenis, 'readonly' => true]) ?>
@@ -98,12 +100,13 @@ $attr = 'dokumen_'.$jenis
 
                         <?php Modal::end() ?>
                         <?php Modal::begin([
+                            'id' => 'upload-'.$jenis.'-'.$dokAttr,
                             'title' => "Upload Dokumen $jenis Led",
                             'toggleButton' => ['label' => '<i class="la la-upload"></i> &nbsp;Unggah', 'class' => 'btn btn-light btn-sm btn-pill btn-elevate btn-elevate-air pull-right'],
                             'size' => 'modal-lg',
                             'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
                         ]) ?>
-                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => $dokAttr . "-upload-$jenis-form"]) ?>
+                        <?php $form = ActiveForm::begin(['action' => \yii\helpers\Url::to(['led/isi-kriteria','led'=>$model->id,'prodi'=>$prodi,'kriteria'=>$kriteria]),'options' => ['enctype' => 'multipart/form-data'], 'id' => $dokAttr . "-upload-$jenis-form"]) ?>
 
                         <?= $form->field($detailModel, 'kode_dokumen')->textInput(['value' => $dok->kode, 'readonly' => true]) ?>
                         <?= $form->field($detailModel, 'nama_dokumen')->textInput(['value' => $dok->dokumen, 'readonly' => true]) ?>

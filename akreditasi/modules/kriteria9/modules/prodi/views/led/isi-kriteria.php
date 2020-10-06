@@ -107,7 +107,6 @@ var url = new URL("{$url}");
 var target = t.target.children[0].children[0];
 var poin = target.dataset.poin
 url.searchParams.append('poin',poin)
-console.log(loaded[poin])
 if(loaded[poin]==null){
 $.ajax({
 url:url,
@@ -120,7 +119,6 @@ dataType:"html"
 
 })
 }
-console.log(loaded)
 
 })
 JS;

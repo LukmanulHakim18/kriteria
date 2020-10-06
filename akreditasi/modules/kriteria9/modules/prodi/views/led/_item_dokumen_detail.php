@@ -43,28 +43,27 @@ use yii\bootstrap4\Modal;
         <div class="row">
             <div class="col-lg-12">
                 <?php $type = FileTypeHelper::getType($detail->bentuk_dokumen);
-                if ($type === FileTypeHelper::TYPE_IMAGE || $type === FileTypeHelper::TYPE_PDF || $type === FileTypeHelper::TYPE_STATIC_TEXT):?>
+                if ($type !== FileTypeHelper::TYPE_LINK):?>
 
                     <?php Modal::begin([
                         'title' => $detail->nama_dokumen,
                         'toggleButton' => ['label' => '<i class="la la-eye"></i> &nbsp;Lihat', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'],
-                        'size' => 'modal-lg',
+                        'size' => 'modal-xl',
                         'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
                     ]); ?>
                     <?php switch ($type) {
                         case FileTypeHelper::TYPE_IMAGE:
-                            echo Html::img("$path/sumber/{$detail->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
+                            echo Html::img("$path/{$jenis}/{$detail->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
                             break;
                         case FileTypeHelper::TYPE_STATIC_TEXT:
                             echo $detail->isi_dokumen;
                             break;
-                        case FileTypeHelper::TYPE_PDF:
-                            echo '<embed src="' . $path . '/sumber/' . $detail->isi_dokumen . '" type="application/pdf" height="100%" width="100%">
-';
+                        default:
+                            echo '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://docs.google.com/gview?url='.$path.'/'.$jenis.'/'.rawurlencode($detail->isi_dokumen).'&embedded=true"></iframe></div>';
                             break;
                     } ?>
                     <?php Modal::end(); ?>
-                <?php elseif ($type === FileTypeHelper::TYPE_LINK): ?>
+                <?php else: ?>
                     <?= Html::a('<i class="la la-external-link"></i> Lihat', $detail->isi_dokumen, ['class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air', 'target' => '_blank']) ?>
                 <?php endif; ?>
                 <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
