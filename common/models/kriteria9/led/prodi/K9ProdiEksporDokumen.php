@@ -17,17 +17,18 @@ use yii\behaviors\TimestampBehavior;
  * @property int $updated_at
  * @property int $created_by
  * @property int $updated_by
+ * @property string kode_dokumen
  *
  * @property K9LedProdi $ledProdi
  */
-class K9DokumenLedProdi extends \yii\db\ActiveRecord
+class K9ProdiEksporDokumen extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'k9_dokumen_led_prodi';
+        return 'k9_prodi_ekspor_dokumen';
     }
 
     /**
@@ -37,7 +38,7 @@ class K9DokumenLedProdi extends \yii\db\ActiveRecord
     {
         return [
             [['id_led_prodi', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['nama_dokumen', 'bentuk_dokumen'], 'string', 'max' => 255],
+            [['nama_dokumen', 'bentuk_dokumen','kode_dokumen'], 'string', 'max' => 255],
             [['id_led_prodi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LedProdi::className(), 'targetAttribute' => ['id_led_prodi' => 'id']],
         ];
     }
@@ -60,6 +61,7 @@ class K9DokumenLedProdi extends \yii\db\ActiveRecord
             'id_led_prodi' => 'Id Led Prodi',
             'nama_dokumen' => 'Nama Dokumen',
             'bentuk_dokumen' => 'Bentuk Dokumen',
+            'kode_dokumen'=>'Kode Dokumen',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'created_by' => 'Created By',

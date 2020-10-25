@@ -12,7 +12,7 @@ use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\akreditasi\K9AkreditasiInstitusi;
 use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
 use common\models\kriteria9\led\institusi\K9DokumenLedInstitusi;
-use common\models\kriteria9\led\prodi\K9DokumenLedProdi;
+use common\models\kriteria9\led\prodi\K9ProdiEksporDokumen;
 use common\models\Profil;
 use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
@@ -51,7 +51,7 @@ class AkreditasiController extends BaseController
         //led
         $jsonLed = K9ProdiJsonHelper::getAllJsonLed();
         $ledProdi = $akreditasiProdi->k9LedProdi;
-        $dokumenLed = K9DokumenLedProdi::findAll(['id_led_prodi' => $ledProdi->id]);
+        $dokumenLed = K9ProdiEksporDokumen::findAll(['id_led_prodi' => $ledProdi->id]);
         $kriteriaLed = $this->getArrayKriteraLed($ledProdi->id);
         $urlLed = K9ProdiDirectoryHelper::getDokumenLedUrl($ledProdi->akreditasiProdi);
 

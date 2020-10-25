@@ -44,25 +44,25 @@ use yii\bootstrap4\Progress;
 
             <div class="row">
                 <div class="col-lg-12">
-                    <?=$this->render('_tabel_led_eksternal',compact('json_eksternal','modelEksternal','untuk','prodi'))?>
+                    <?=$this->render('_tabel_led_eksternal',compact('json_eksternal','modelEksternal','untuk','prodi','led'))?>
 
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <?= $this->render('_tabel_led_profil',compact('json_profil','modelProfil','untuk','prodi')) ?>
+                    <?= $this->render('_tabel_led_profil',compact('json_profil','modelProfil','untuk','prodi','led')) ?>
 
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <?=$this->render('_tabel_led_kriteria', compact('json', 'kriteria', 'prodi', 'untuk'))?>
+                    <?=$this->render('_tabel_led_kriteria', compact('json', 'kriteria', 'prodi', 'untuk','led'))?>
 
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <?=$this->render('_tabel_led_analisis',compact('json_analisis','modelAnalisis','untuk','prodi'))?>
+                    <?=$this->render('_tabel_led_analisis',compact('json_analisis','modelAnalisis','untuk','prodi','led'))?>
 
                 </div>
             </div>

@@ -5,7 +5,7 @@ namespace monitoring\modules\eksekutif\modules\prodi\controllers;
 
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\helpers\kriteria9\K9ProdiJsonHelper;
-use common\models\kriteria9\led\prodi\K9DokumenLedProdi;
+use common\models\kriteria9\led\prodi\K9ProdiEksporDokumen;
 use common\models\kriteria9\led\prodi\K9LedProdi;
 use Yii;
 

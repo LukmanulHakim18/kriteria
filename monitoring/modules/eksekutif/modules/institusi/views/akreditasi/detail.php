@@ -5,7 +5,7 @@
  * @var $akreditasiProdi common\models\kriteria9\akreditasi\K9AkreditasiProdi
  * @var $ledProdi common\models\kriteria9\led\prodi\K9LedProdi
  * @var $jsonLed array
- * @var $dokumenLed common\models\kriteria9\led\prodi\K9DokumenLedProdi
+ * @var $dokumenLed common\models\kriteria9\led\prodi\K9ProdiEksporDokumen
  * @var $kriteriaLed array
  * @var $urlLed string
  * @var $jsonLk array

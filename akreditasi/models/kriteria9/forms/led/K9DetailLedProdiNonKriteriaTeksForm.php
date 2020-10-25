@@ -4,7 +4,7 @@
  * @author Adryan Eka Vandra <adryanekavandra@gmail.com>
  */
 /**
- * Class K9DetailLedProdiLinkForm
+ * Class K9DetailLedProdiUploadForm
  * @package akreditasi\models\kriteria9\forms\led
  */
 
@@ -12,10 +12,14 @@
 namespace akreditasi\models\kriteria9\forms\led;
 
 
+use Carbon\Carbon;
+use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\models\Constants;
+use common\models\kriteria9\led\prodi\K9LedProdiNonKriteriaDokumen;
 use yii\base\Model;
+use yii\web\UploadedFile;
 
-class K9DetailLedProdiLinkForm extends Model
+class K9DetailLedProdiNonKriteriaTeksForm extends Model
 {
 
     public $kode_dokumen;
@@ -33,29 +37,26 @@ class K9DetailLedProdiLinkForm extends Model
         ];
     }
 
-    public function save($led, $kriteria)
+    public function save($led)
     {
 
         if(!$this->validate()){
             return false;
         }
 
-        $detailClass = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria'.$kriteria.'Detail';
-        $detailAttr = 'id_led_prodi_kriteria'.$kriteria;
-        $this->_detailLedProdi = new $detailClass;
+        $this->_detailLedProdi = new K9LedProdiNonKriteriaDokumen();
 
-        $this->_detailLedProdi->$detailAttr = $led;
+        $this->_detailLedProdi->id_led_prodi = $led;
 
         $this->_detailLedProdi->kode_dokumen = $this->kode_dokumen;
         $this->_detailLedProdi->nama_dokumen = $this->nama_dokumen;
         $this->_detailLedProdi->isi_dokumen = $this->berkasDokumen;
         $this->_detailLedProdi->jenis_dokumen = $this->jenis_dokumen;
-        $this->_detailLedProdi->bentuk_dokumen = Constants::LINK;
+        $this->_detailLedProdi->bentuk_dokumen = Constants::TEXT;
 
         $this->_detailLedProdi->save(false);
 
         return $this->_detailLedProdi;
 
     }
-
 }

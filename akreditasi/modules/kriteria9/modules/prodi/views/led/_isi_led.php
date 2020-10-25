@@ -78,7 +78,7 @@ use yii\web\View;
             <th colspan="3" class="text-center">Dokumen Lainnya</th>
         </tr>
         </thead>
-        <thead class="thead-dark">
+        <thead class="thead-light">
         <tr>
             <th>No</th>
             <th>Dokumen Lainnya</th>
@@ -86,6 +86,7 @@ use yii\web\View;
                 <div class="row">
                     <div class="col-lg-12">
                         <?php Modal::begin([
+                            'id'=>'teks-lainnya-'.$modelAttribute,
                             'title' => 'Dokumen Lainnya Led',
                             'toggleButton' => ['label' => '<i class="la la-file-text"></i> &nbsp;Teks', 'class' => 'btn btn-success btn-sm btn-pill btn-elevate btn-elevate-air pull-right'],
                             'size' => 'modal-lg',
@@ -93,6 +94,8 @@ use yii\web\View;
                         ]) ?>
                         <?php $form = ActiveForm::begin(['action' => \yii\helpers\Url::to(['led/isi-kriteria','led'=>$model->id,'prodi'=>$prodi,'kriteria'=>$kriteria]),
                             'options' => ['enctype' => 'multipart/form-data'], 'id' => $modelAttribute . '-text-lainnya-form']) ?>
+
+                        <?= $form->field($textModel, 'kode_dokumen')->textInput(['value' => $item->nomor, 'readonly' => true]) ?>
 
                         <?= $form->field($textModel, 'jenis_dokumen')->textInput(['value' => Constants::LAINNYA, 'readonly' => true]) ?>
                         <?= $form->field($textModel, 'nama_dokumen')->textInput()->label('Nama Teks') ?>
@@ -107,6 +110,8 @@ use yii\web\View;
 
                         <?php Modal::end() ?>
                         <?php Modal::begin([
+                            'id'=>'link-lainnya-'.$modelAttribute,
+
                             'title' => 'Dokumen Lainnya Led',
                             'toggleButton' => ['label' => '<i class="la la-link"></i> &nbsp;Tautan', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air pull-right'],
                             'size' => 'modal-lg',
@@ -114,6 +119,7 @@ use yii\web\View;
                         ]) ?>
                         <?php $form = ActiveForm::begin(['action' => \yii\helpers\Url::to(['led/isi-kriteria','led'=>$model->id,'prodi'=>$prodi,'kriteria'=>$kriteria]),'options' => ['enctype' => 'multipart/form-data'], 'id' => $modelAttribute . '-link-lainnya-form']) ?>
 
+                        <?= $form->field($linkModel, 'kode_dokumen')->textInput(['value' => $item->nomor, 'readonly' => true]) ?>
                         <?= $form->field($linkModel, 'jenis_dokumen')->textInput(['value' => Constants::LAINNYA, 'readonly' => true]) ?>
                         <?= $form->field($linkModel, 'nama_dokumen')->textInput()->label('Nama Tautan') ?>
                         <?= $form->field($linkModel, 'berkasDokumen')->textInput(['
@@ -126,6 +132,7 @@ use yii\web\View;
                         <?php Modal::end() ?>
 
                         <?php Modal::begin([
+                            'id'=>'upload-lainnya-'.$modelAttribute,
                             'title' => 'Upload Dokumen Lainnya Borang',
                             'toggleButton' => ['label' => '<i class="la la-upload"></i> &nbsp;Unggah', 'class' => 'btn btn-light btn-sm btn-pill btn-elevate btn-elevate-air pull-right'],
                             'size' => 'modal-lg',
@@ -134,7 +141,7 @@ use yii\web\View;
 
                         <?php $form = ActiveForm::begin(['action' => \yii\helpers\Url::to(['led/isi-kriteria','led'=>$model->id,'prodi'=>$prodi,'kriteria'=>$kriteria]),'options' => ['enctype' => 'multipart/form-data'], 'id' => $modelAttribute . '-lainnya-form']) ?>
 
-                        <?= $form->field($detailModel, 'nomorDokumen')->textInput(['value' => $item->nomor, 'readonly' => true]) ?>
+                        <?= $form->field($detailModel, 'kode_dokumen')->textInput(['value' => $item->nomor, 'readonly' => true]) ?>
                         <?= $form->field($detailModel, 'nama_dokumen')->textInput() ?>
                         <?= $form->field($detailModel, 'jenis_dokumen')->textInput(['value' => Constants::LAINNYA, 'readonly' => true]) ?>
 
@@ -194,6 +201,7 @@ use yii\web\View;
                             if ($type === FileTypeHelper::TYPE_IMAGE || $type === FileTypeHelper::TYPE_PDF || $type === FileTypeHelper::TYPE_STATIC_TEXT):?>
 
                                 <?php Modal::begin([
+
                                     'title' => $v->nama_dokumen,
                                     'toggleButton' => ['label' => '<i class="la la-eye"></i> &nbsp;Lihat', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'],
                                     'size' => 'modal-lg',

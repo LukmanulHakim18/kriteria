@@ -2,6 +2,7 @@
 
 namespace common\models\kriteria9\led\prodi;
 
+use common\helpers\HitungNarasiLedTrait;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 
@@ -10,15 +11,19 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property int $id
  * @property int|null $id_led_prodi
- * @property string|null $isi
+ * @property string|null $_A
  * @property int|null $created_at
  * @property int|null $updated_at
  * @property double $progress
  *
  * @property K9LedProdi $ledProdi
+ * @property K9LedProdiNonKriteriaDokumen $documents
  */
 class K9LedProdiNarasiKondisiEksternal extends \yii\db\ActiveRecord
 {
+
+    use HitungNarasiLedTrait;
+
     /**
      * {@inheritdoc}
      */
@@ -34,7 +39,7 @@ class K9LedProdiNarasiKondisiEksternal extends \yii\db\ActiveRecord
     {
         return [
             [['id_led_prodi', 'created_at', 'updated_at'], 'integer'],
-            [['isi'], 'string'],
+            [['_A'], 'string'],
             [['progress'], 'double'],
             [['id_led_prodi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LedProdi::className(), 'targetAttribute' => ['id_led_prodi' => 'id']],
         ];
@@ -58,7 +63,7 @@ class K9LedProdiNarasiKondisiEksternal extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_led_prodi' => 'Id Led Prodi',
-            'isi' => 'Isi',
+            '_A' => 'A',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -72,5 +77,45 @@ class K9LedProdiNarasiKondisiEksternal extends \yii\db\ActiveRecord
     public function getLedProdi()
     {
         return $this->hasOne(K9LedProdi::className(), ['id' => 'id_led_prodi']);
+    }
+
+    /**
+     * @param bool $insert
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
+
+        $this->progress =  $this->updateProgress();
+
+        return parent::beforeSave($insert);
+    }
+
+    /**
+     * @return float
+     */
+    public function updateProgress()
+    {
+        $exclude = ['id','id_led_prodi','progress','created_at','updated_at'];
+        return $this->hitung($this, $exclude);
+    }
+
+    /**
+     * @param bool $insert
+     * @param array $changedAttributes
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        $this->ledProdi->updateProgress();
+        $this->ledProdi->akreditasiProdi->updateProgress()->save(false);
+        parent::afterSave($insert, $changedAttributes);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDocuments()
+    {
+        return $this->hasMany(K9LedProdiNonKriteriaDokumen::class, ['id_led_prodi'=>'id'])->andWhere(['like','kode_dokumen','A.%',false]);
     }
 }

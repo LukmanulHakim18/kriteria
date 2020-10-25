@@ -36,7 +36,7 @@ use common\models\kriteria9\led\prodi\K9LedProdiKriteria6;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria7;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria8;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria9;
-use common\models\kriteria9\led\prodi\K9DokumenLedProdi;
+use common\models\kriteria9\led\prodi\K9ProdiEksporDokumen;
 use kartik\file\FileInput;
 use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;

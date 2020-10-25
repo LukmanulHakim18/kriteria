@@ -13,9 +13,10 @@ namespace akreditasi\models\kriteria9\forms\led;
 
 
 use common\models\Constants;
+use common\models\kriteria9\led\prodi\K9LedProdiNonKriteriaDokumen;
 use yii\base\Model;
 
-class K9DetailLedProdiLinkForm extends Model
+class K9DetailLedProdiNonKriteriaLinkForm extends Model
 {
 
     public $kode_dokumen;
@@ -33,19 +34,15 @@ class K9DetailLedProdiLinkForm extends Model
         ];
     }
 
-    public function save($led, $kriteria)
+    public function save($led)
     {
 
         if(!$this->validate()){
             return false;
         }
+        $this->_detailLedProdi = new K9LedProdiNonKriteriaDokumen();
 
-        $detailClass = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria'.$kriteria.'Detail';
-        $detailAttr = 'id_led_prodi_kriteria'.$kriteria;
-        $this->_detailLedProdi = new $detailClass;
-
-        $this->_detailLedProdi->$detailAttr = $led;
-
+        $this->_detailLedProdi->id_led_prodi = $led;
         $this->_detailLedProdi->kode_dokumen = $this->kode_dokumen;
         $this->_detailLedProdi->nama_dokumen = $this->nama_dokumen;
         $this->_detailLedProdi->isi_dokumen = $this->berkasDokumen;
