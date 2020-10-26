@@ -12,6 +12,7 @@ use common\helpers\UnitDirectoryHelper;
 use common\models\Berkas;
 use common\models\Constants;
 use common\models\DetailBerkas;
+use common\models\kriteria9\led\prodi\K9LedProdiNonKriteriaDokumen;
 use common\models\Profil;
 use common\models\ProgramStudi;
 use common\models\Unit;
@@ -176,6 +177,53 @@ class ResourceController extends BaseController
 
         return $this->redirect($url);
     }
+    public function actionGunakanNonKriteria()
+    {
+        $params = Yii::$app->request->post();
+        $detail = $this->findDetailBerkas($params['id']);
+        $prodi = $this->findProdi($params['prodi']);
+        $kode = $params['kode'];
+        $jenis = $params['jenis'];
+        $id_led_lk = $params['id_led_lk'];
+        $poin = $params['poin'];
+        $nomor = $params['nomor'];
+        $jenis_dokumen = $params['jenis_dokumen'];
+        $pathDetail = $this->findBerkasPath($detail);
+        $transaction = Yii::$app->db->beginTransaction();
+        $url = [];
+
+//        $model = new ResourceProdiForm();
+//        $model->id = $detail->id;
+//        $model->nama = $detail->isi_berkas;
+        try {
+               $detailLedModel = new K9LedProdiNonKriteriaDokumen();
+               $detailLedModel->id_led_prodi = $id_led_lk;
+
+                $detailLedModel->kode_dokumen = $poin.'.'.$nomor;
+                $detailLedModel->nama_dokumen = $detail->berkas->nama_berkas;
+                $detailLedModel->isi_dokumen = $detail->isi_berkas;
+                $detailLedModel->jenis_dokumen = $jenis_dokumen;
+                $detailLedModel->bentuk_dokumen = $detail->bentuk_berkas;
+
+            if (!$detailLedModel->save(false)) {
+                throw new Exception('Gagal menyimpan detail');
+            }
+                $pathProdi = K9ProdiDirectoryHelper::getDetailLedPath($detailLedModel->ledProdi->akreditasiProdi);
+                copy("$pathDetail/$detail->isi_berkas", "$pathProdi/{$jenis_dokumen}/{$detail->isi_berkas}");
+
+                $url = ['led/isi-non-kriteria','poin'=>$poin,'led'=>$id_led_lk,'prodi'=>$prodi->id];
+
+                $transaction->commit();
+        } catch (Exception $e) {
+            $transaction->rollBack();
+            throw $e;
+        }
+
+
+        Yii::$app->session->setFlash('success', 'Berhasil Menggunakan Berkas');
+
+        return $this->redirect($url);
+    }
 
     public function actionGunakanKegiatan()
     {
@@ -234,6 +282,49 @@ class ResourceController extends BaseController
                 $url = ['lk/isi-kriteria','kriteria'=>$kriteria,'lk'=>$id_led_lk,'prodi'=>$prodi->id];
                 $transaction->commit();
             }
+        } catch (Exception $e) {
+            $transaction->rollBack();
+            throw $e;
+        }
+
+
+        Yii::$app->session->setFlash('success', 'Berhasil Menggunakan Kegiatan');
+
+        return $this->redirect($url);
+    }
+    public function actionGunakanKegiatanNonKriteria()
+    {
+        $params = Yii::$app->request->post();
+        $detail = $this->findDetailKegiatan($params['id']);
+        $prodi = $this->findProdi($params['prodi']);
+        $kode = $params['kode'];
+        $jenis = $params['jenis'];
+        $id_led_lk = $params['id_led_lk'];
+        $poin = $params['poin'];
+        $nomor = $params['nomor'];
+        $jenis_dokumen = $params['jenis_dokumen'];
+        $pathDetail = UnitDirectoryHelper::getPath($detail->kegiatanUnit->id_unit);
+        $transaction = Yii::$app->db->beginTransaction();
+        $url = [];
+
+        try {
+              $detailLedModel = new K9LedProdiNonKriteriaDokumen();
+                $detailLedModel->id_led_prodi = $id_led_lk;
+                $detailLedModel->kode_dokumen = $poin.'.'.$nomor;
+                $detailLedModel->nama_dokumen = $detail->nama_file;
+                $detailLedModel->isi_dokumen = $detail->isi_file;
+                $detailLedModel->jenis_dokumen = $jenis_dokumen;
+                $detailLedModel->bentuk_dokumen = $detail->bentuk_file;
+
+            if (!$detailLedModel->save(false)) {
+                throw new Exception('Gagal menyimpan detail');
+            }
+                $pathProdi = K9ProdiDirectoryHelper::getDetailLedPath($detailLedModel->$detailRelation->ledProdi->akreditasiProdi);
+                copy("$pathDetail/$detail->isi_file", "$pathProdi/{$jenis_dokumen}/{$detail->isi_file}");
+
+                $url = ['led/isi-non-kriteria','poin'=>$poin,'led'=>$id_led_lk,'prodi'=>$prodi->id];
+
+                $transaction->commit();
         } catch (Exception $e) {
             $transaction->rollBack();
             throw $e;

@@ -397,10 +397,6 @@ break;
         ]);
     }
 
-
-
-
-
     public function actionLihat($led, $prodi)
     {
         $ledProdi = K9LedProdi::findOne($led);
@@ -445,13 +441,7 @@ break;
             'path' => $realPath,
         ]);
     }
-    public function actionLihatEksternal($led, $prodi)
-    {
-    }
-    public function actionLihatProdil($led, $prodi)
-    {
-    }
-    public function actionLihatAnalisis($led, $prodi)
+    public function actionLihatNonKriteria($led, $prodi)
     {
     }
 
