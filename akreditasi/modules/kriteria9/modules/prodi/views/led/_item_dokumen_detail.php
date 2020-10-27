@@ -71,6 +71,7 @@ use yii\bootstrap4\Modal;
                 <?php else: ?>
                     <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['led/download-detail', 'kriteria' => $kriteria, 'dokumen' => $detail->id, 'led' => $_GET['led'], 'jenis' => $jenis], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
                 <?php endif; ?>
+                <?php if($untuk === 'isi'): ?>
                 <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['led/hapus-detail'], [
                     'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
                     'data' => [
@@ -79,6 +80,7 @@ use yii\bootstrap4\Modal;
                         'params' => ['dokumen' => $detail->id, 'kriteria' => $kriteria, 'prodi' => $prodi, 'led' => $_GET['led'], 'jenis' => $jenis]
                     ]
                 ]) ?>
+                <?php endif; ?>
             </div>
 
         </div>

@@ -3,6 +3,7 @@
  * @var $this yii\web\View
  * @var $model ;
  * @var $poinKriteria [];
+ * @var $untuk string
 
  */
 $prodi = $_GET['prodi'];
@@ -11,8 +12,8 @@ $this->title = "Kriteria " . $kriteria;
 $this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
 $this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9/default/index']];
 $this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['/kriteria9/k9-prodi/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Pencarian Data Prodi', 'url' => ['/kriteria9/k9-prodi/arsip', 'target' => 'isi', 'prodi' => $prodi]];
-$this->params['breadcrumbs'][] = ['label' => 'Isi Led', 'url' => ['/kriteria9/k9-prodi/led/isi', 'led' => $_GET['led'], 'prodi' => $prodi]];
+$this->params['breadcrumbs'][] = ['label' => 'Pencarian Data Prodi', 'url' => ['/kriteria9/k9-prodi/arsip', 'target' => 'untuk', 'prodi' => $prodi]];
+$this->params['breadcrumbs'][] = ['label' => \yii\helpers\StringHelper::mb_ucfirst($untuk).' Led', 'url' => ['/kriteria9/k9-prodi/led/'.$untuk, 'led' => $_GET['led'], 'prodi' => $prodi]];
 $this->params['breadcrumbs'][] = $this->title;
 
 
@@ -99,7 +100,7 @@ use yii\bootstrap4\Progress;
     </div>
 </div>
 <?php
-$url = \yii\helpers\Url::to(['led/butir-item','kriteria'=>$kriteria,'led'=>$model->id,'prodi'=>$prodi],true);
+$url = \yii\helpers\Url::to(['led/butir-item','kriteria'=>$kriteria,'led'=>$model->id,'prodi'=>$prodi,'untuk'=>$untuk],true);
 $js = <<<JS
 var loaded = {};
 $('#accordion').on('shown.bs.collapse',function(t) {

@@ -54,6 +54,7 @@ $attr = 'dokumen_'.$jenis
             <td>
                 <div class="row pull-right">
                     <div class="col-lg-12">
+                        <?php if ($untuk === 'isi'): ?>
                         <?php Modal::begin([
                             'id' => 'text-'.$jenis.'-'.$dokAttr,
                             'title' => "Dokumen $jenis Led",
@@ -125,6 +126,8 @@ $attr = 'dokumen_'.$jenis
 
                         <?php Modal::end() ?>
                         <?=Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=>\yii\helpers\Url::to(['resource/index','prodi'=>$_GET['prodi'],'poin'=>$poin,'kode'=>$dok->kode,'jenis'=>Constants::LED,'id_led_lk'=>$_GET['led'],'jenis_dokumen'=>$jenis]),'title'=>'Gunakan Data Untuk : '.$dok->kode.'.'.' '.$dok->dokumen ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton'])?>
+
+                        <?php endif?>
                     </div>
                 </div>
 
@@ -142,7 +145,9 @@ $attr = 'dokumen_'.$jenis
             'jenis'=>$jenis,
             'detail'=>$v,
             'nomor'=>$k+1,
-            'prodi'=>$prodi
+            'prodi'=>$prodi,
+            'untuk'=>$untuk,
+            'led'=>$model
         ])?>
 
         <?php endforeach; ?>

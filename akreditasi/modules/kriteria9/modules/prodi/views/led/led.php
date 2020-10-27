@@ -9,7 +9,6 @@
 /**
  * @var $this View
  * @var $led K9LedProdi
- * @var $modelDokumen K9DokumenLedProdiUploadForm;
  * @var $dataDokumen [];
  * @var $json Led;
  * @var $kriteria [];
@@ -44,13 +43,13 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= $this->render('_info_akreditasi',compact('led')) ?>
 
 
-<?= $this->render('_dokumen_led',compact('modelDokumen','dataDokumen','path','prodi')) ?>
+<?= $this->render('_dokumen_led',compact('modelDokumen','dataDokumen','path','prodi','untuk')) ?>
 
 <?= $this->render('_tabel_led',[
     'kriteria'=>$kriteria,
     'json'=>$json,
     'prodi' => $prodi,
-    'untuk' => 'isi',
+    'untuk' => $untuk,
     'led'=>$led,
     'json_eksternal'=>$json_eksternal,
     'json_profil'=>$json_profil,

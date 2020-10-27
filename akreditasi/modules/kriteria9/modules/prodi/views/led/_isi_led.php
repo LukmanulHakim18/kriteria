@@ -1,6 +1,7 @@
 <?php
 /**
  * @var $this View
+ * @var $untuk string
  */
 
 use common\helpers\FileIconHelper;
@@ -21,11 +22,13 @@ use yii\web\View;
             <?= $item->deskripsi ?>
         </div>
     </div>
+    <br>
     <div class="clearfix"></div>
 
 
     <div class="row">
         <div class="col-lg-12">
+            <?php if($untuk === 'isi'): ?>
             <?php $form = ActiveForm::begin(['action' => \yii\helpers\Url::to(['led/isi-kriteria','led'=>$model->id,'prodi'=>$prodi,'kriteria'=>$kriteria]),'options' => ['enctype' => 'multipart/form-data'], 'id' => $modelAttribute . '-form']) ?>
 
             <?= $form->field($modelNarasi, $modelAttribute)->widget(TinyMce::class, [
@@ -38,9 +41,16 @@ use yii\web\View;
             </div>
             <?php ActiveForm::end() ?>
 
+            <?php else: ?>
+                <div class="card bg-light p-3">
+                    <div class="card-body">
+                        <?=$modelNarasi->$modelAttribute?>
+                    </div>
+                </div>
+            <?php endif?>
         </div>
     </div>
-
+<div class="kt-separator"></div>
 
 
     <?=$this->render('_item_dokumen',[
@@ -53,7 +63,8 @@ use yii\web\View;
         'path'=>$path,
         'json_dokumen'=>$item->dokumen_sumber,
         'jenis'=>Constants::SUMBER,
-        'detailCollection'=>$detailCollection
+        'detailCollection'=>$detailCollection,
+        'untuk'=>$untuk
     ])?>
 
     <?=$this->render('_item_dokumen',[
@@ -66,7 +77,8 @@ use yii\web\View;
         'path'=>$path,
         'json_dokumen'=>$item->dokumen_pendukung,
         'jenis'=>Constants::PENDUKUNG,
-        'detailCollection'=>$detailCollection
+        'detailCollection'=>$detailCollection,
+        'untuk'=>$untuk
 
     ])?>
 
@@ -85,6 +97,7 @@ use yii\web\View;
             <th>
                 <div class="row">
                     <div class="col-lg-12">
+                        <?php if($untuk === 'isi'): ?>
                         <?php Modal::begin([
                             'id'=>'teks-lainnya-'.$modelAttribute,
                             'title' => 'Dokumen Lainnya Led',
@@ -159,6 +172,8 @@ use yii\web\View;
 
                         <?php Modal::end() ?>
                         <?=Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=>\yii\helpers\Url::to(['resource/index','prodi'=>$_GET['prodi'],'kriteria'=>$kriteria,'kode'=>'','jenis'=>Constants::LED,'id_led_lk'=>$_GET['led'],'jenis_dokumen'=>Constants::LAINNYA]),'title'=>'Gunakan Data Untuk Dokumen lainnya ' ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton pull-right'])?>
+
+                        <?php endif; ?>
                     </div>
                 </div>
 
@@ -172,75 +187,16 @@ use yii\web\View;
 
         foreach ($detail as $k => $v):
             ?>
-            <tr>
-                <td><?= $k + 1 ?></td>
-                <td>
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <?= FileIconHelper::getIconByExtension($v->bentuk_dokumen) ?>
-                        </div>
 
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <?php $type = FileTypeHelper::getType($v->bentuk_dokumen);
-
-                            if ($type === FileTypeHelper::TYPE_STATIC_TEXT || $type === FileTypeHelper::TYPE_LINK) : ?>
-                                <?= Html::encode($v->nama_dokumen) ?>
-
-                            <?php else: ?>
-                                <?= Html::encode($v->isi_dokumen) ?>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                </td>
-                <td class="pull-right">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <?php $type = FileTypeHelper::getType($v->bentuk_dokumen);
-                            if ($type === FileTypeHelper::TYPE_IMAGE || $type === FileTypeHelper::TYPE_PDF || $type === FileTypeHelper::TYPE_STATIC_TEXT):?>
-
-                                <?php Modal::begin([
-
-                                    'title' => $v->nama_dokumen,
-                                    'toggleButton' => ['label' => '<i class="la la-eye"></i> &nbsp;Lihat', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'],
-                                    'size' => 'modal-lg',
-                                    'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
-                                ]); ?>
-                                <?php switch ($type) {
-                                    case FileTypeHelper::TYPE_IMAGE:
-                                        echo Html::img("$path/lainnya/{$v->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
-                                        break;
-                                    case FileTypeHelper::TYPE_STATIC_TEXT:
-                                        echo $v->isi_dokumen;
-                                        break;
-                                    case FileTypeHelper::TYPE_PDF:
-                                        echo '<embed src="' . $path . '/lainnya/' . $v->isi_dokumen . '" type="application/pdf" height="100%" width="100%">
-';
-                                        break;
-                                } ?>
-                                <?php Modal::end(); ?>
-                            <?php elseif ($type === FileTypeHelper::TYPE_LINK): ?>
-                                <?= Html::a('<i class="la la-external-link"></i> Lihat', $v->isi_dokumen, ['class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air', 'target' => '_blank']) ?>
-                            <?php endif; ?>
-                            <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
-
-                            <?php else: ?>
-                                <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['led/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'led' => $_GET['led'], 'jenis' => Constants::LAINNYA], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
-                            <?php endif; ?>
-                            <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['led/hapus-detail'], [
-                                'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
-                                'data' => [
-                                    'method' => 'POST',
-                                    'confirm' => 'Apakah anda yakin menghapus item ini?',
-                                    'params' => ['dokumen' => $v->id, 'kriteria' => $kriteria, 'led' => $_GET['led'], 'jenis' => Constants::LAINNYA, 'prodi' => $prodi]
-                                ]
-                            ]) ?>
-                        </div>
-
-                    </div>
-                </td>
-            </tr>
+            <?=$this->render('_item_dokumen_detail',[
+            'path'=>$path,
+            'kriteria'=>$kriteria,
+            'jenis'=>Constants::LAINNYA,
+            'detail'=>$v,
+            'nomor'=>$k+1,
+            'prodi'=>$prodi,
+            'untuk'=>$untuk
+        ])?>
 
         <?php endforeach; ?>
         </tbody>

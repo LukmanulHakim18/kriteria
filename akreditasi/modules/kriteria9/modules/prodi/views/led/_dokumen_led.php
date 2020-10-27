@@ -8,6 +8,7 @@
  */
 
 use akreditasi\models\kriteria9\forms\led\K9DokumenLedProdiUploadForm;
+use common\helpers\FileIconHelper;
 use common\helpers\FileTypeHelper;
 use common\models\Constants;
 use kartik\file\FileInput;
@@ -22,11 +23,11 @@ use yii\bootstrap4\Modal;
         <div class="kt-portlet__head-label">
             <h3 class="kt-portlet__head-title">
                 Dokumen LED
-                <small>Silahkan unggah dokumen led yang telah disusun.</small>
             </h3>
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-actions">
+                <?php if($untuk === 'isi'):?>
                 <?php Modal::begin([
                     'title' => 'Unggah Dokumen Led',
                     'toggleButton' => ['label' => '<i class="la la-upload"></i> &nbsp;Unggah', 'class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air'],
@@ -48,6 +49,7 @@ aw
                 <?php ActiveForm::end() ?>
 
                 <?php Modal::end(); ?>
+                <?php endif;?>
             </div>
         </div>
 
