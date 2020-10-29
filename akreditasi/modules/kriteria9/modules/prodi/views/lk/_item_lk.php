@@ -27,9 +27,13 @@ use yii\helpers\Url;
             <h5>Tabel <?=$item->tabel?> <?=$item->nama?></h5>
             <p><?=$item->petunjuk?></p>
 
+            <?php if($untuk === 'isi'): ?>
             <?= $form->field($modelNarasi, $modelAttribute)->widget(TinyMce::class, [
                 'options' => ['id' => $modelAttribute . '-tinymce-kriteria'],
             ])->label('') ?>
+            <?php else: ?>
+            <?=$modelNarasi->$modelAttribute?>
+            <?php endif ?>
 
             <?php if(!empty($item->keterangan)):?>
                 <h6>Keterangan</h6>
@@ -54,7 +58,8 @@ use yii\helpers\Url;
         'dokLinkModel'=>$dokLinkModel,
         'kriteria'=>$kriteria,
         'jenis'=>Constants::SUMBER,
-        'lkCollection'=>$lkCollection
+        'lkCollection'=>$lkCollection,
+        'untuk'=>$untuk
     ])?>
     <?=$this->render('_dokumen',[
         'lkProdi'=>$lkProdi,
@@ -66,7 +71,8 @@ use yii\helpers\Url;
         'dokLinkModel'=>$dokLinkModel,
         'kriteria'=>$kriteria,
         'jenis'=>Constants::PENDUKUNG,
-        'lkCollection'=>$lkCollection
+        'lkCollection'=>$lkCollection,
+        'untuk'=>$untuk
     ])?>
 
     <!--                                Tabel dokumen lainnya-->
@@ -75,6 +81,7 @@ use yii\helpers\Url;
         <tr>
             <th colspan="2" class="text-left">Dokumen Lainnya</th>
             <th>
+                <?php if($untuk === 'isi'):?>
                 <?php Modal::begin([
                     'id'=>'upload-'.$item->tabel,
                     'title' => 'Unggah Dokumen Lainnya',
@@ -159,6 +166,7 @@ use yii\helpers\Url;
 
 
                 <?=Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=> Url::to(['resource/index','prodi'=>$prodi->id,'kriteria'=>$kriteria,'kode'=>'','jenis'=>Constants::LK,'id_led_lk'=>$lkProdi->id,'jenis_dokumen'=>Constants::LAINNYA]),'title'=>'Gunakan Data Untuk Dokumen lainnya ' ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton pull-right'])?>
+                <?php endif?>
             </th>
         </tr>
         </thead>
@@ -180,7 +188,8 @@ use yii\helpers\Url;
                     'v'=>$v,
                     'prodi'=>$prodi,
                     'lkProdi'=>$lkProdi,
-                    'jenis'=>Constants::LAINNYA
+                    'jenis'=>Constants::LAINNYA,
+                    'untuk'=>$untuk
                 ])?>
                 <?php
             endforeach;

@@ -48,6 +48,7 @@ $attr = 'dokumen_'.$jenis;
             </td>
             <td class="pull-right">
 
+                <?php if($untuk==='isi'): ?>
                 <!--                                                    File-->
                 <?php Modal::begin([
                     'id'=>'upload-'.$kodeSumber,
@@ -129,6 +130,7 @@ $attr = 'dokumen_'.$jenis;
 
                 <?php Modal::end(); ?>
                 <?=Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=>\yii\helpers\Url::to(['resource/index','prodi'=>$prodi->id,'kriteria'=>$kriteria,'kode'=>$doksum->kode,'jenis'=>Constants::LK,'id_led_lk'=>$lkProdi->id,'jenis_dokumen'=>$jenis]),'title'=>'Gunakan Data Untuk : '.$doksum->kode.'.'.' '.$doksum->dokumen ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton'])?>
+                <?php endif ?>
             </td>
         </tr>
 
@@ -148,7 +150,8 @@ $attr = 'dokumen_'.$jenis;
             'v'=>$v,
             'prodi'=>$prodi,
             'lkProdi'=>$lkProdi,
-            'jenis'=>$jenis
+            'jenis'=>$jenis,
+            'untuk'=>$untuk
         ])?>
 
     <?php

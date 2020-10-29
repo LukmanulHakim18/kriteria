@@ -120,15 +120,18 @@ class LkController extends BaseController
     public function actionLihat($lk, $prodi)
     {
         $lkProdi = K9LkProdi::findOne($lk);
-        $json = $this->getJsonData();
+        $programStudi = $lkProdi->akreditasiProdi->prodi;
+        $json = K9ProdiJsonHelper::getAllJsonLk($programStudi->jenjang);
         $kriteria = $this->getArrayKriteria($lk);
         $institusi = Yii::$app->params['institusi'];
 
-        return $this->render('lihat', [
+        return $this->render('isi', [
             'lkProdi' => $lkProdi,
             'kriteria' => $kriteria,
             'institusi' => $institusi,
-            'json' => $json
+            'json' => $json,
+            'prodi'=>$programStudi,
+            'untuk'=>'lihat'
         ]);
     }
 
@@ -143,8 +146,8 @@ class LkController extends BaseController
         $poinKriteria = $json->butir;
 
         $path = K9ProdiDirectoryHelper::getDokumenLkUrl($lkProdi->akreditasiProdi);
-        $lkProdiKriteriaClass= 'common\\models\\kriteria9\lk\\prodi\\K9LkProdiKriteria' . $kriteria;
-        $lkProdiKriteria = call_user_func($lkProdiKriteriaClass . '::findOne', ['id_lk_prodi'=>$lkProdi->id]);
+        $attrKriteria = 'k9LkProdiKriteria'.$kriteria.'s';
+        $lkProdiKriteria = $lkProdi->$attrKriteria;
 
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\prodi\\K9LkProdiNarasiKriteria' . $kriteria . 'Form';
         $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_lk_prodi_kriteria' . $kriteria=>$lkProdiKriteria->id]);
@@ -240,30 +243,37 @@ class LkController extends BaseController
             'modelAttribute'=>'_' . str_replace('.', '_', $poin),
             'kriteria'=>$kriteria,
             'poin'=>$poin,
-            'lkCollection'=>$lkCollection
+            'lkCollection'=>$lkCollection,
+            'untuk'=>$untuk
         ]);
 
     }
 
     public function actionLihatKriteria($lk, $kriteria, $prodi)
     {
-
-        $json = $this->getJsonData();
-        $dataKriteria = $json[$kriteria - 1];
-        $poinKriteria = $dataKriteria['butir'];
         $lkProdi = K9LkProdi::findOne($lk);
 
-        $lkKriteriaClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria;
-        $modelKriteria = call_user_func($lkKriteriaClass . '::findOne', ['id_lk_prodi'=>$lkProdi->id]);
+        $programStudi = $lkProdi->akreditasiProdi->prodi;
+        $json = K9ProdiJsonHelper::getJsonKriteriaLk($kriteria,$programStudi->jenjang);
+
+        $poinKriteria = $json->butir;
+
+        $path = K9ProdiDirectoryHelper::getDokumenLkUrl($lkProdi->akreditasiProdi);
+        $attrKriteria = 'k9LkProdiKriteria'.$kriteria.'s';
+        $lkProdiKriteria = $lkProdi->$attrKriteria;
+
 
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\prodi\\K9LkProdiNarasiKriteria' . $kriteria . 'Form';
-        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_lk_prodi_kriteria' . $kriteria=>$modelKriteria->id]);
+        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_lk_prodi_kriteria' . $kriteria=>$lkProdiKriteria->id]);
 
-        return $this->render('lihat-kriteria', [
+        return $this->render('isi-kriteria', [
             'modelNarasi' => $modelNarasi,
             'lkProdi' => $lkProdi,
             'poinKriteria' => $poinKriteria,
-            'modelKriteria'=>$modelKriteria
+            'modelKriteria'=>$lkProdiKriteria,
+            'untuk'=>'lihat',
+            'prodi'=>$programStudi,
+            'kriteria'=>$kriteria
         ]);
     }
 
