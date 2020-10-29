@@ -5,16 +5,17 @@ use yii\bootstrap4\Html;
 use yii\bootstrap4\Progress;
 
 /* @var $lkProdi K9LkProdi */
-/* @var $kriteria1 [] */
 /* @var $kriteria */
 /* @var $institusi */
-/* @var $json [] */
+/* @var $json common\models\kriteria9\lk\Lk[] */
+/* @var $untuk string */
+/* @var $prodi common\models\ProgramStudi */
 
-$prodi = Yii::$app->request->get('prodi');
-$this->title = "Isi Laporan Kinerja";
+$untukUC = \yii\helpers\StringHelper::mb_ucfirst($untuk);
+$this->title = $untukUC." Laporan Kinerja";
 $this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
 $this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9/default/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Prodi', 'url' => ['/kriteria9/k9-prodi/default/index', 'prodi' => $prodi]];
+$this->params['breadcrumbs'][] = ['label' => 'Prodi', 'url' => ['/kriteria9/k9-prodi/default/index', 'prodi' => $prodi->id]];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -23,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
             <h3 class="kt-portlet__head-title">
-                Form Laporan Kinerja Program Studi
+                Laporan Kinerja Program Studi
             </h3>
         </div>
     </div>
@@ -36,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <tbody>
                 <tr>
                     <th scope="row">Laporan Kinerja</th>
-                    <td>Akreditasi Program Studi</td>
+                    <td>Akreditasi <?=\yii\helpers\StringHelper::mb_ucfirst($lkProdi->akreditasiProdi->akreditasi->jenis_akreditasi)?></td>
                 </tr>
                 <tr>
                     <th scope="row">Nama Institusi</th>
@@ -60,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </tr>
                 <tr>
                     <td><strong>Jenis Akreditasi</strong></td>
-                    <td><?= Html::encode($lkProdi->akreditasiProdi->akreditasi->jenis_akreditasi) ?></td>
+                    <td><?= Html::encode(\yii\helpers\StringHelper::mb_ucfirst($lkProdi->akreditasiProdi->akreditasi->jenis_akreditasi)) ?></td>
                 </tr>
                 <tr>
                     <th scope="row">Keterangan</th>
@@ -110,21 +111,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php foreach ($json as $kriteriaJson):
                     ?>
                     <tr>
-                        <th scope="row"><?= Html::encode($kriteriaJson['kriteria']) ?></th>
+                        <th scope="row"><?= Html::encode($kriteriaJson->kriteria) ?></th>
                         <td>
-                            <strong>Tabel <?= Html::encode($kriteriaJson['kriteria']) ?>
-                                : <?= $kriteria[$kriteriaJson['kriteria'] - 1]->progress ?>%</strong><br>
-                            <?= $kriteriaJson['judul'] ?>
+                            <strong>Tabel <?= Html::encode($kriteriaJson->kriteria) ?>
+                                : <?= $kriteria[$kriteriaJson->kriteria - 1]->progress ?>%</strong><br>
+                            <?= $kriteriaJson->judul ?>
                             <div class="kt-space-10"></div>
                             <?=
                             Progress::widget([
-                                'percent' =>$kriteria[$kriteriaJson['kriteria'] - 1]->progress,
+                                'percent' =>$kriteria[$kriteriaJson->kriteria - 1]->progress,
                                 'barOptions' => ['class' => 'progress-bar-info m-progress-lg'],
                                 'options' => ['class' => 'progress-sm']
                             ]); ?>
                         </td>
                         <td style="padding-top: 15px;">
-                            <?= Html::a("<i class='la la-folder-open'></i>Lihat", ['lk/isi-kriteria', 'lk' => $_GET['lk'], 'kriteria' => $kriteriaJson['kriteria'], 'prodi' => $prodi], ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
+                            <?= Html::a("<i class='la la-folder-open'></i>Lihat", ['lk/'.$untuk.'-kriteria', 'lk' => $lkProdi->id, 'kriteria' => $kriteriaJson->kriteria, 'prodi' => $prodi->id], ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
 
                             <!--                        <button type="button" class="btn btn-danger">Lihat</button>-->
                         </td>

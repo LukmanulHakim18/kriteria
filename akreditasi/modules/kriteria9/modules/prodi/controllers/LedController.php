@@ -557,13 +557,11 @@ break;
         return Yii::$app->response->sendFile($file);
     }
 
-    public function getLedKriteriaNomor($kriteria, $search)
+    protected function getLedKriteriaNomor($kriteria, $search)
     {
 
         $data = K9ProdiJsonHelper::getJsonKriteriaLed($kriteria);
         $collection  = new Collection($data->butir);
-        $item = $collection->filter(function ($value, $key) use ($search) {
-            return $value->nomor === $search;
-        })->first();
+        return $collection->where('nomor',$search)->first();
     }
 }

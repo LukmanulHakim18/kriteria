@@ -66,9 +66,7 @@ use yii\bootstrap4\Modal;
                 <?php else: ?>
                     <?= Html::a('<i class="la la-external-link"></i> Lihat', $detail->isi_dokumen, ['class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air', 'target' => '_blank']) ?>
                 <?php endif; ?>
-                <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
-
-                <?php else: ?>
+                <?php if ($type !== FileTypeHelper::TYPE_LINK || !$type !== FileTypeHelper::TYPE_STATIC_TEXT): ?>
                     <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['led/download-detail', 'kriteria' => $kriteria, 'dokumen' => $detail->id, 'led' => $_GET['led'], 'jenis' => $jenis], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
                 <?php endif; ?>
                 <?php if($untuk === 'isi'): ?>
