@@ -6,12 +6,15 @@
  * @var $untuk string
 
  */
-$this->title = "Kriteria " . $kriteria;
-$this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
-$this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9/default/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['/kriteria9/k9-prodi/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Pencarian Data Prodi', 'url' => ['/kriteria9/k9-prodi/arsip', 'target' => 'untuk', 'prodi' => $prodi->id]];
-$this->params['breadcrumbs'][] = ['label' => \yii\helpers\StringHelper::mb_ucfirst($untuk).' Led', 'url' => ['/kriteria9/k9-prodi/led/'.$untuk, 'led' => $_GET['led'], 'prodi' => $prodi->id]];
+$this->title = 'Kriteria ' . $kriteria;
+$this->params['breadcrumbs'][] = [
+    'label' => 'Akreditasi Prodi',
+    'url' => ['akreditasi/index', 'prodi' => $modelProdi->id]
+];
+$this->params['breadcrumbs'][] = [
+    'label' => "Akreditasi: {$akreditasiProdi->akreditasi->nama} - {$modelProdi->nama}",
+    'url' => ['akreditasi/detail', 'id' => $akreditasiProdi->id, 'prodi' => $modelProdi->id]
+];
 $this->params['breadcrumbs'][] = $this->title;
 
 
@@ -98,7 +101,7 @@ use yii\bootstrap4\Progress;
     </div>
 </div>
 <?php
-$url = \yii\helpers\Url::to(['led/butir-item','kriteria'=>$kriteria,'led'=>$model->id,'prodi'=>$prodi->id,'untuk'=>$untuk],true);
+$url = \yii\helpers\Url::to(['led/butir-item','kriteria'=>$kriteria,'led'=>$model->id,'prodi'=>$modelProdi->id,'untuk'=>$untuk],true);
 $js = <<<JS
 var loaded = {};
 $('#accordion').on('shown.bs.collapse',function(t) {

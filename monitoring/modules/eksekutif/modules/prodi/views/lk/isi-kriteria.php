@@ -1,33 +1,41 @@
 <?php
-/**
- * @var $this yii\web\View
- * @var $model ;
- * @var $poinKriteria [];
- * @var $untuk string
 
- */
-$this->title = "Kriteria " . $kriteria;
-$this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
-$this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9/default/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['/kriteria9/k9-prodi/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Pencarian Data Prodi', 'url' => ['/kriteria9/k9-prodi/arsip', 'target' => 'untuk', 'prodi' => $prodi->id]];
-$this->params['breadcrumbs'][] = ['label' => \yii\helpers\StringHelper::mb_ucfirst($untuk).' Led', 'url' => ['/kriteria9/k9-prodi/led/'.$untuk, 'led' => $_GET['led'], 'prodi' => $prodi->id]];
-$this->params['breadcrumbs'][] = $this->title;
-
-
-use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiLinkForm;
-use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiTeksForm;
-use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiUploadForm;
+use akreditasi\models\kriteria9\forms\lk\prodi\K9LinkLkProdiKriteriaDetailForm;
+use akreditasi\models\kriteria9\forms\lk\prodi\K9LkProdiKriteriaDetailForm;
+use akreditasi\models\kriteria9\forms\lk\prodi\K9TextLkProdiKriteriaDetailForm;
+use akreditasi\models\kriteria9\lk\prodi\K9LkProdiNarasiKriteria1Form;
 use common\helpers\FileIconHelper;
 use common\helpers\FileTypeHelper;
 use common\models\Constants;
+use common\models\kriteria9\lk\prodi\K9LkProdi;
 use dosamigos\tinymce\TinyMce;
 use kartik\file\FileInput;
-use yii\bootstrap4\Accordion;
 use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;
 use yii\bootstrap4\Progress;
+
+/* @var $this yii\web\View */
+/* @var $lkProdi K9LkProdi */
+/* @var $modelNarasi K9LkProdiNarasiKriteria1Form */
+/* @var $poinKriteria */
+/* @var $path string */
+/* @var $modelKriteria */
+/* @var $prodi common\models\ProgramStudi */
+/* @var $untuk string */
+/* @var $kriteria int */
+
+
+$this->title = 'Kriteria ' . $_GET['kriteria'];
+$this->params['breadcrumbs'][] = [
+    'label' => 'Akreditasi Prodi',
+    'url' => ['akreditasi/index', 'prodi' =>$prodi->id]
+];
+$this->params['breadcrumbs'][] = [
+    'label' => "Akreditasi: {$akreditasiProdi->akreditasi->nama} - {$prodi->nama}",
+    'url' => ['akreditasi/detail', 'id' => $akreditasiProdi->id, 'prodi' => $prodi->id]
+];
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
@@ -35,33 +43,36 @@ use yii\bootstrap4\Progress;
     <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
             <h3 class="kt-portlet__head-title">
-                <?= Html::encode($this->title) ?>
+                <?= $this->title ?>
 
             </h3>
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-actions">
-                <strong>Kelengkapan Berkas &nbsp; : <?= $model->progress ?> %</strong>
+                <strong>Kelengkapan Berkas &nbsp; : <?= $modelKriteria->progress ?> %</strong>
                 <div class="kt-space-10"></div>
                 <?=
                 Progress::widget([
-                    'percent' => $model->progress,
-                    'barOptions' => ['class' => 'progress-bar-info m-progress-lg'],
+                    'percent' => $modelKriteria->progress,
+                    'barOptions' => ['class' => 'progress-bar-info'],
                     'options' => ['class' => 'progress-sm']
-                ]); ?>
+                ]);
+                ?>
             </div>
         </div>
     </div>
 
     <div class="kt-portlet__body">
         <div class="kt-section kt-section--first" style="margin-bottom: 0;">
+
             <!--begin::Accordion-->
-            <div class="accordion accordion-solid  accordion-toggle-plus" id="accordion">
+            <div class="accordion accordion-solid  accordion-toggle-arrow" id="accordion">
 
-                <?php foreach ($poinKriteria as $key => $item):
-                    $modelAttribute = '_' . str_replace('.', '_', $item->nomor);
+                <?php foreach ($poinKriteria
 
-                    ?>
+                               as $key => $item) :
+                    $modelAttribute = '_' . str_replace('.', '_', $item->tabel); ?>
+
                     <div class="card">
                         <div class="card-header" id="heading<?= $key ?>">
                             <div class="card-title collapsed" data-toggle="collapse" data-target="#collapse<?= $key ?>"
@@ -69,12 +80,12 @@ use yii\bootstrap4\Progress;
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <i class="flaticon-file-2"></i> <?=
-                                        $item->nomor ?>&nbsp;
+                                        $item->tabel ?>&nbsp;
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <small>&nbsp;<?= $item->nama ?></small>
+                                        <small>&nbsp;<?= $item->isi ?></small>
 
                                     </div>
                                 </div>
@@ -82,23 +93,24 @@ use yii\bootstrap4\Progress;
                         </div>
                         <div id="collapse<?= $key ?>" class="collapse" aria-labelledby="heading<?= $key ?>">
                             <div class="card-body">
-                                    <div class="kt-spinner kt-spinner--center kt-spinner--primary kt-spinner--v2" id="spinner-<?=$key?>" data-poin="<?=$item->nomor?>"></div>
-                                <div id="result-<?=$item->nomor?>"></div>
-                            </div>
+                                <div class="kt-spinner kt-spinner--center kt-spinner--primary kt-spinner--v2" id="spinner-<?=$key?>" data-poin="<?=$item->tabel?>"></div>
+                                <div id="result-<?=$item->tabel?>"></div>
 
+
+                            </div>
                         </div>
+
+
                     </div>
 
                 <?php endforeach; ?>
+                <!--end::Accordion-->
             </div>
-
-            <!--end::Accordion-->
-
         </div>
     </div>
-</div>
+
 <?php
-$url = \yii\helpers\Url::to(['led/butir-item','kriteria'=>$kriteria,'led'=>$model->id,'prodi'=>$prodi->id,'untuk'=>$untuk],true);
+$url = \yii\helpers\Url::to(['lk/butir-item','kriteria'=>$kriteria,'lk'=>$lkProdi->id,'prodi'=>$prodi->id,'untuk'=>$untuk],true);
 $js = <<<JS
 var loaded = {};
 $('#accordion').on('shown.bs.collapse',function(t) {

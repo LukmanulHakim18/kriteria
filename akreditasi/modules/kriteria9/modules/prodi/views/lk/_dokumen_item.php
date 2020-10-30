@@ -32,6 +32,7 @@ use yii\bootstrap4\Modal;
                 <?php $type = FileTypeHelper::getType($v->bentuk_dokumen);
                 if ($type !== FileTypeHelper::TYPE_LINK ):?>
                     <?php Modal::begin([
+                        'id'=>'lihat-'.$v->id,
                         'title' => $v->nama_dokumen,
                         'toggleButton' => ['label' => '<i class="la la-eye"></i> &nbsp;Lihat', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'],
                         'size' => 'modal-xl',

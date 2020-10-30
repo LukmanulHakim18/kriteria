@@ -135,6 +135,7 @@ class LedController extends BaseController
     public function actionIsi($led, $prodi)
     {
         $ledProdi = K9LedProdi::findOne($led);
+        $programStudi = $ledProdi->akreditasiProdi->prodi;
 
         $json_kriteria = K9ProdiJsonHelper::getAllJsonLed();
         $json_eksternal = K9ProdiJsonHelper::getJsonLedKondisiEksternal();
@@ -178,7 +179,7 @@ class LedController extends BaseController
             'modelEksternal'=>$modelEksternal,
             'modelAnalisis'=>$modelAnalisis,
             'modelProfil'=>$modelProfil,
-            'prodi'=>$ledProdi->akreditasiProdi->prodi,
+            'prodi'=>$programStudi,
             'untuk'=>'isi'
         ]);
     }
@@ -332,7 +333,7 @@ class LedController extends BaseController
         $realPath = K9ProdiDirectoryHelper::getDetailLedUrl($modelLed->ledProdi->akreditasiProdi);
 
 
-        return $this->renderAjax('_isi_led', [
+        return $this->renderAjax('@akreditasi/modules/kriteria9/modules/prodi/views/led/_isi_led', [
             'model'=>$modelLed,
             'modelNarasi' => $modelNarasi,
             'detailModel' => $detailModel,
@@ -344,7 +345,8 @@ class LedController extends BaseController
             'item'=>$currentPoint,
             'kriteria'=>$kriteria,
             'prodi'=>$prodi,
-            'untuk'=>$untuk
+            'untuk'=>$untuk,
+            'poin'=>$poin
         ]);
     }
     public function actionButirItemNonKriteria($led, $poin, $nomor, $prodi,$untuk)
@@ -382,7 +384,7 @@ break;
         $textModel = new K9DetailLedProdiNonKriteriaUploadForm();
         $realPath = K9ProdiDirectoryHelper::getDetailLedUrl($ledProdi->akreditasiProdi);
 
-        return $this->renderAjax('_isi_led_non_kriteria', [
+        return $this->renderAjax('@akreditasi/modules/kriteria9/modules/prodi/views/led/_isi_led_non_kriteria', [
 
             'modelNarasi'=>$modelNarasi,
             'item'=>$currentPoint,
@@ -417,7 +419,7 @@ break;
         $realPath = K9ProdiDirectoryHelper::getDokumenLedUrl($ledProdi->akreditasiProdi);
 
 
-        return $this->render('led', [
+        return $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/led', [
             'led' => $ledProdi,
             'modelDokumen' => $modelDokumen,
             'dataDokumen' => $dataDokumen,
@@ -438,29 +440,24 @@ break;
     {
 
         $ledProdi = K9LedProdi::findOne(['id'=>$led]);
+        $programStudi = $ledProdi->akreditasiProdi->prodi;
         $attr = 'k9LedProdiKriteria' . $kriteria . 's';
         $modelLed = $ledProdi->$attr;
 
         $json = K9ProdiJsonHelper::getJsonKriteriaLed($kriteria);
         $poinKriteria = $json->butir;
-
-        $modelNarasiClass = 'akreditasi\\models\\kriteria9\\led\\prodi\\K9LedProdiNarasiKriteria' . $kriteria . 'Form';
-        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_led_prodi_kriteria' . $kriteria => $modelLed->id]);
-
-
-
-        $detailModel = new K9DetailLedProdiUploadForm();
-        $textModel = new K9DetailLedProdiTeksForm();
-        $linkModel = new K9DetailLedProdiLinkForm();
-        return $this->render('isi-kriteria', [
+        return $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/isi-kriteria', [
             'model' => $modelLed,
             'poinKriteria' => $poinKriteria,
-            'untuk'=>'lihat'
+            'untuk'=>'lihat',
+            'kriteria'=>$kriteria,
+            'prodi'=>$programStudi
         ]);
     }
     public function actionLihatNonKriteria($led, $prodi,$poin)
     {
         $ledProdi = K9LedProdi::findOne($led);
+        $programStudi = $ledProdi->akreditasiProdi->prodi;
 
         switch ($poin) {
             case 'A':
@@ -484,7 +481,16 @@ break;
 
         $untuk = 'lihat';
 
-        return $this->render('isi-non_kriteria', compact('ledProdi', 'json', 'poin', 'modelNarasi', 'detail', 'untuk', 'prodi'));
+        return $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/isi-non_kriteria', [
+            'ledProdi'=>$ledProdi,
+            'json'=>$json,
+            'poin'=>$poin,
+            'modelNarasi'=>$modelNarasi,
+            'detail'=>$detail,
+            'untuk'=>$untuk,
+            'prodi'=>$programStudi
+        ],
+            compact('ledProdi', 'json', 'poin', 'modelNarasi', 'detail', 'untuk', 'prodi'));
     }
 
     public function actionHapusDetail()

@@ -27,14 +27,22 @@ class AkreditasiController extends BaseController
         $akreditasiProdi = $modelProdi->getK9AkreditasiProdis()->where(['id'=>$id])->one();
 
         //led
-        $jsonLed = K9ProdiJsonHelper::getJson('led', '');
+        $jsonLed = K9ProdiJsonHelper::getAllJsonLed();
+        $json_kriteria = K9ProdiJsonHelper::getAllJsonLed();
+        $json_eksternal = K9ProdiJsonHelper::getJsonLedKondisiEksternal();
+        $json_profil = K9ProdiJsonHelper::getJsonLedProfil();
+        $json_analisis = K9ProdiJsonHelper::getJsonLedAnalisis();
         $ledProdi = $akreditasiProdi->k9LedProdi;
         $dokumenLed = K9ProdiEksporDokumen::findAll(['id_led_prodi' => $ledProdi->id]);
         $kriteriaLed = $this->getArrayKriteraLed($ledProdi->id);
         $urlLed = K9ProdiDirectoryHelper::getDokumenLedUrl($ledProdi->akreditasiProdi);
+        $modelEksternal = $ledProdi->narasiEksternal;
+        $modelProfil = $ledProdi->narasiProfil;
+        $modelAnalisis = $ledProdi->narasiAnalisis;
+
 
         //lk
-        $jsonLk = K9ProdiJsonHelper::getJson('lk', $modelProdi->jenjang);
+        $jsonLk = K9ProdiJsonHelper::getAllJsonLk($modelProdi->jenjang);
         $lkProdi = $akreditasiProdi->k9LkProdi;
         $kriteriaLk = $this->getArrayKriteriaLk($lkProdi->id);
         return $this->render('detail', [
@@ -47,6 +55,14 @@ class AkreditasiController extends BaseController
             'urlLed'=>$urlLed,
             'jsonLk'=>$jsonLk,
             'lkProdi'=>$lkProdi,
-            'kriteriaLk'=>$kriteriaLk]);
+            'kriteriaLk'=>$kriteriaLk,
+            'json' => $json_kriteria,
+            'json_eksternal'=>$json_eksternal,
+            'json_profil'=>$json_profil,
+            'json_analisis'=>$json_analisis,
+            'modelEksternal'=>$modelEksternal,
+            'modelAnalisis'=>$modelAnalisis,
+            'modelProfil'=>$modelProfil,
+            ]);
     }
 }

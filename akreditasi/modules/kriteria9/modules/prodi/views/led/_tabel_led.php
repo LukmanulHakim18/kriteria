@@ -22,7 +22,7 @@ use yii\bootstrap4\Progress;
     <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
             <h3 class="kt-portlet__head-title">
-                <?=\yii\helpers\StringHelper::mb_ucfirst($untuk)?> Led
+               Laporan Evaluasi Program Studi
             </h3>
         </div>
         <div class="kt-portlet__head-toolbar">

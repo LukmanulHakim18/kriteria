@@ -125,7 +125,7 @@ class LkController extends BaseController
         $kriteria = $this->getArrayKriteria($lk);
         $institusi = Yii::$app->params['institusi'];
 
-        return $this->render('isi', [
+        return $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/lk/isi', [
             'lkProdi' => $lkProdi,
             'kriteria' => $kriteria,
             'institusi' => $institusi,
@@ -230,7 +230,7 @@ class LkController extends BaseController
         $dokTextModel = new K9TextLkProdiKriteriaDetailForm();
         $dokLinkModel = new K9LinkLkProdiKriteriaDetailForm();
 
-        return $this->renderAjax('_item_lk',[
+        return $this->renderAjax('@akreditasi/modules/kriteria9/modules/prodi/views/lk/_item_lk',[
             'lkProdi'=>$lkProdi,
             'prodi'=>$programStudi,
             'item'=>$currentPoint,
@@ -266,7 +266,7 @@ class LkController extends BaseController
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\prodi\\K9LkProdiNarasiKriteria' . $kriteria . 'Form';
         $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_lk_prodi_kriteria' . $kriteria=>$lkProdiKriteria->id]);
 
-        return $this->render('isi-kriteria', [
+        return $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/lk/isi-kriteria', [
             'modelNarasi' => $modelNarasi,
             'lkProdi' => $lkProdi,
             'poinKriteria' => $poinKriteria,

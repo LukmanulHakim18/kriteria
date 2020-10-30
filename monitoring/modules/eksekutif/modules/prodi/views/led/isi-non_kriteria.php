@@ -5,13 +5,15 @@
  * @var $json common\models\kriteria9\led\Led
  * @var $detail common\models\kriteria9\led\prodi\K9LedProdiNonKriteriaDokumen
  */
-
-$this->title = "Narasi ".$json->nama;
-$this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
-$this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9/default/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['/kriteria9/k9-prodi/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Pencarian Data Prodi', 'url' => ['/kriteria9/k9-prodi/arsip', 'target' => $untuk, 'prodi' => $prodi->id]];
-$this->params['breadcrumbs'][] = ['label' => \yii\helpers\StringHelper::mb_ucfirst($untuk).' Led', 'url' => ['/kriteria9/k9-prodi/led/'.$untuk, 'led' => $_GET['led'], 'prodi' => $prodi->id]];
+$this->title = $json->nama;
+$this->params['breadcrumbs'][] = [
+    'label' => 'Akreditasi Prodi',
+    'url' => ['akreditasi/index', 'prodi' => $prodi->id]
+];
+$this->params['breadcrumbs'][] = [
+    'label' => "Akreditasi: {$akreditasiProdi->akreditasi->nama} - {$prodi->nama}",
+    'url' => ['akreditasi/detail', 'id' => $akreditasiProdi->id, 'prodi' => $prodi->id]
+];
 $this->params['breadcrumbs'][] = $this->title;
 
 

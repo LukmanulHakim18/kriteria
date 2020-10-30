@@ -7,60 +7,39 @@ use common\helpers\DownloadDokumenTrait;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\models\kriteria9\lk\K9LkTemplate;
+use common\models\kriteria9\lk\prodi\K9LkProdi;
 use common\models\kriteria9\lk\prodi\K9LkProdiKriteria1Detail;
 use Yii;
 
-class LkController extends BaseController
+class LkController extends \akreditasi\modules\kriteria9\modules\prodi\controllers\LkController
 {
-    use DownloadDokumenTrait;
-
-    public function actionLihat($lk, $kriteria, $prodi)
+    public function actionLihatKriteria($lk, $kriteria, $prodi)
     {
+        $lkProdi = K9LkProdi::findOne($lk);
+        $akreditasiProdi = $lkProdi->akreditasiProdi;
 
-        $modelProdi = $this->findProdi($prodi);
-        $json = K9ProdiJsonHelper::getJson('lk', $modelProdi->jenjang);
-        $dataKriteria = $json[$kriteria - 1];
-        $poinKriteria = $dataKriteria['butir'];
-        $lkKriteriaClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria'.$kriteria;
-        $modelKriteria = call_user_func($lkKriteriaClass.'::findOne',['id_lk_prodi'=>$lk]);
+        $programStudi = $akreditasiProdi->prodi;
+        $json = K9ProdiJsonHelper::getJsonKriteriaLk($kriteria,$programStudi->jenjang);
+
+        $poinKriteria = $json->butir;
+
+        $path = K9ProdiDirectoryHelper::getDokumenLkUrl($lkProdi->akreditasiProdi);
+        $attrKriteria = 'k9LkProdiKriteria'.$kriteria.'s';
+        $lkProdiKriteria = $lkProdi->$attrKriteria;
+
+
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\prodi\\K9LkProdiNarasiKriteria' . $kriteria . 'Form';
-        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_lk_prodi_kriteria'.$kriteria=>$modelKriteria->id]);
+        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_lk_prodi_kriteria' . $kriteria=>$lkProdiKriteria->id]);
 
-        $akreditasiProdi = $modelKriteria->lkProdi->akreditasiProdi;
-        return $this->render('lihat-kriteria', [
-            'akreditasiProdi' => $akreditasiProdi,
-            'modelProdi' => $modelProdi,
+        return $this->render('isi-kriteria', [
             'modelNarasi' => $modelNarasi,
+            'lkProdi' => $lkProdi,
             'poinKriteria' => $poinKriteria,
-            'modelKriteria'=>$modelKriteria
+            'modelKriteria'=>$lkProdiKriteria,
+            'untuk'=>'lihat',
+            'prodi'=>$programStudi,
+            'kriteria'=>$kriteria,
+            'akreditasiProdi'=>$akreditasiProdi
         ]);
-    }
-
-    public function actionDownloadTemplate($id)
-    {
-        ini_set('max_execution_time', 5 * 60);
-        $template = K9LkTemplate::findOne($id);
-        $path = K9ProdiDirectoryHelper::getTemplateLkPath();
-        $file = $template->nama_file;
-
-        return Yii::$app->response->sendFile("$path/$file");
-    }
-
-    public function actionDownloadDok($id, $kriteria, $lk, $prodi)
-    {
-        ini_set('max_execution_time', 5 * 60);
-
-        $detailClass = 'common\\models\\kriteria9\\lk\\institusi\\K9LkProdiKriteria' . $kriteria . 'Detail';
-
-        $model = call_user_func($detailClass . '::findOne', $id);
-        $attribute = 'lkProdiKriteria' . $kriteria;
-
-        $path = K9ProdiDirectoryHelper::getDokumenLkPath($model->$attribute->lkProdi->akreditasiProdi);
-        $file = $model->isi_dokumen;
-
-        $this->download($model, $path, $file);
-
-
-        return Yii::$app->response->sendFile("$path/$file");
     }
 }
