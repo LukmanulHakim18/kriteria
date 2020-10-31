@@ -17,22 +17,12 @@ class LkController extends \akreditasi\modules\kriteria9\modules\prodi\controlle
     {
         $lkProdi = K9LkProdi::findOne($lk);
         $akreditasiProdi = $lkProdi->akreditasiProdi;
-
         $programStudi = $akreditasiProdi->prodi;
         $json = K9ProdiJsonHelper::getJsonKriteriaLk($kriteria,$programStudi->jenjang);
-
         $poinKriteria = $json->butir;
-
-        $path = K9ProdiDirectoryHelper::getDokumenLkUrl($lkProdi->akreditasiProdi);
         $attrKriteria = 'k9LkProdiKriteria'.$kriteria.'s';
         $lkProdiKriteria = $lkProdi->$attrKriteria;
-
-
-        $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\prodi\\K9LkProdiNarasiKriteria' . $kriteria . 'Form';
-        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_lk_prodi_kriteria' . $kriteria=>$lkProdiKriteria->id]);
-
         return $this->render('isi-kriteria', [
-            'modelNarasi' => $modelNarasi,
             'lkProdi' => $lkProdi,
             'poinKriteria' => $poinKriteria,
             'modelKriteria'=>$lkProdiKriteria,

@@ -26,7 +26,7 @@ class LedController extends \akreditasi\modules\kriteria9\modules\prodi\controll
 
         $json = K9ProdiJsonHelper::getJsonKriteriaLed($kriteria);
         $poinKriteria = $json->butir;
-        return $this->render('isi-kriteria', [
+        return $this->render('@monitoring/modules/eksekutif/modules/prodi/views/led/isi-kriteria', [
             'model' => $modelLed,
             'poinKriteria' => $poinKriteria,
             'untuk'=>'lihat',
@@ -63,6 +63,13 @@ class LedController extends \akreditasi\modules\kriteria9\modules\prodi\controll
 
         $untuk = 'lihat';
 
-        return $this->render('isi-non_kriteria', compact('ledProdi', 'json', 'poin', 'modelNarasi', 'detail', 'untuk', 'prodi','akreditasiProdi'));
+        return $this->render('@monitoring/modules/eksekutif/modules/prodi/views/led/isi-non_kriteria',  ['ledProdi'=>$ledProdi,
+            'json'=>$json,
+            'poin'=>$poin,
+            'modelNarasi'=>$modelNarasi,
+            'detail'=>$detail,
+            'untuk'=>$untuk,
+            'prodi'=>$programStudi,
+            'akreditasiProdi'=>$akreditasiProdi]);
     }
 }
