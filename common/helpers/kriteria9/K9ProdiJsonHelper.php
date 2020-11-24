@@ -11,6 +11,7 @@ namespace common\helpers\kriteria9;
 
 use common\models\kriteria9\led\Led;
 use common\models\kriteria9\lk\Lk;
+use common\models\kriteria9\penilaian\Penilaian;
 use JsonMapper;
 use Yii;
 use yii\helpers\Json;
@@ -88,8 +89,25 @@ class K9ProdiJsonHelper implements IK9JsonHelper
         return self::provideMapper()->map(self::getJson('led')[3], new Led());
     }
 
-    public static function getJsonPenilaian($jenis)
+    public static function getJsonPenilaianKondisiEksternal($jenis)
     {
-        // TODO: Implement getJsonPenilaian() method.
+        return self::provideMapper()->map(self::getJson('penilaian',$jenis)[0], new Penilaian());
+    }
+
+    public static function getJsonPenilaianProfil($jenis)
+    {
+        return self::provideMapper()->map(self::getJson('penilaian',$jenis)[1], new Penilaian());
+
+    }
+
+    public static function getJsonPenilaianKriteria($jenis)
+    {
+        return self::provideMapper()->map(self::getJson('penilaian',$jenis)[2], new Penilaian());
+    }
+
+    public static function getJsonPenilaianAnalisis($jenis)
+    {
+        return self::provideMapper()->map(self::getJson('penilaian',$jenis)[3], new Penilaian());
+
     }
 }

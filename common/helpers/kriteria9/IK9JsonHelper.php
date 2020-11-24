@@ -27,7 +27,10 @@ interface IK9JsonHelper
     public static function getJsonLedProfil();
     public static function getJsonLedAnalisis();
 
-    public static function getJsonPenilaian($jenis);
+    public static function getJsonPenilaianKondisiEksternal($jenis);
+    public static function getJsonPenilaianProfil($jenis);
+    public static function getJsonPenilaianKriteria($jenis);
+    public static function getJsonPenilaianAnalisis($jenis);
 
     static function provideMapper();
 }
