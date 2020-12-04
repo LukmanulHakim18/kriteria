@@ -2,10 +2,14 @@
 
 namespace common\models\kriteria9\penilaian\prodi;
 
+use common\helpers\HitungPenilaianTrait;
+use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
 use common\models\User;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "k9_penilaian_prodi_kriteria".
@@ -15,9 +19,13 @@ use yii\behaviors\TimestampBehavior;
  * @property int|null $_1_4_1
  * @property int|null $_1_4_2
  * @property int|null $_1_4_3
- * @property int|null $_2_4_a
- * @property int|null $_2_4_b
- * @property int|null $_2_4_c
+ * @property int|null $_2_4_a_A
+ * @property int|null $_2_4_a_B
+ * @property int|null $_2_4_b_A
+ * @property int|null $_2_4_b_B
+ * @property int|null $_2_4_c_1
+ * @property int|null $_2_4_c_A
+ * @property int|null $_2_4_c_B
  * @property int|null $_2_5_1
  * @property int|null $_2_6_1
  * @property int|null $_2_7_1
@@ -66,6 +74,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int|null $_6_4_d_C
  * @property int|null $_6_4_d_D
  * @property int|null $_6_4_d_E
+ * @property int|null $_6_4_d_1
  * @property int|null $_6_4_e_1
  * @property int|null $_6_4_f_A
  * @property int|null $_6_4_f_B
@@ -108,8 +117,15 @@ use yii\behaviors\TimestampBehavior;
  * @property User $createdBy
  * @property User $updatedBy
  */
-class K9PenilaianProdiKriteria extends \yii\db\ActiveRecord
+class K9PenilaianProdiKriteria extends ActiveRecord
 {
+    use HitungPenilaianTrait;
+
+    const STATUS_READY = 'ready';
+    const STATUS_FINSIH = 'finish';
+
+    const STATUS_PENILAIAN = [self::STATUS_READY => self::STATUS_READY, self::STATUS_FINSIH => self::STATUS_FINSIH];
+
     /**
      * {@inheritdoc}
      */
@@ -141,9 +157,13 @@ class K9PenilaianProdiKriteria extends \yii\db\ActiveRecord
                     '_1_4_1',
                     '_1_4_2',
                     '_1_4_3',
-                    '_2_4_a',
-                    '_2_4_b',
-                    '_2_4_c',
+                    '_2_4_a_A',
+                    '_2_4_a_B',
+                    '_2_4_b_A',
+                    '_2_4_b_B',
+                    '_2_4_c_1',
+                    '_2_4_c_A',
+                    '_2_4_c_B',
                     '_2_5_1',
                     '_2_6_1',
                     '_2_7_1',
@@ -191,6 +211,7 @@ class K9PenilaianProdiKriteria extends \yii\db\ActiveRecord
                     '_6_4_d_B',
                     '_6_4_d_C',
                     '_6_4_d_D',
+                    '_6_4_d_1',
                     '_6_4_d_E',
                     '_6_4_e_1',
                     '_6_4_f_A',
@@ -267,9 +288,13 @@ class K9PenilaianProdiKriteria extends \yii\db\ActiveRecord
             '_1_4_1' => '1 4 1',
             '_1_4_2' => '1 4 2',
             '_1_4_3' => '1 4 3',
-            '_2_4_a' => '2 4 A',
-            '_2_4_b' => '2 4 B',
-            '_2_4_c' => '2 4 C',
+            '_2_4_a_A' => '2 4 a A',
+            '_2_4_a_B' => '2 4 a B',
+            '_2_4_b_a' => '2 4 b A',
+            '_2_4_b_B' => '2 4 b B',
+            '_2_4_c_1' => '2 4 c 1',
+            '_2_4_c_A' => '2 4 c A',
+            '_2_4_c_B' => '2 4 c B',
             '_2_5_1' => '2 5 1',
             '_2_6_1' => '2 6 1',
             '_2_7_1' => '2 7 1',
@@ -318,6 +343,7 @@ class K9PenilaianProdiKriteria extends \yii\db\ActiveRecord
             '_6_4_d_C' => '6 4 D C',
             '_6_4_d_D' => '6 4 D D',
             '_6_4_d_E' => '6 4 D E',
+            '_6_4_d_1' => '6 4 D 1',
             '_6_4_e_1' => '6 4 E 1',
             '_6_4_f_A' => '6 4 F A',
             '_6_4_f_B' => '6 4 F B',
@@ -359,9 +385,51 @@ class K9PenilaianProdiKriteria extends \yii\db\ActiveRecord
     }
 
     /**
+     * @param bool $insert
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
+        $json = K9ProdiJsonHelper::getJsonPenilaianKriteria($this->akreditasiProdi->prodi->jenjang);
+
+        $indikator = [];
+
+        foreach ($json->butir as $butir1) {
+            foreach ($butir1->butir as $butir2) {
+                if (!empty($butir2->butir)) {
+                    foreach ($butir2->butir as $butir3) {
+                        foreach ($butir3->indikators as $ind) {
+                            $indikator[] = $ind->nomor;
+                        }
+                    }
+                } else {
+                    foreach ($butir2->indikators as $ind) {
+                        $indikator[] = $ind->nomor;
+                    }
+                }
+            }
+        }
+
+        $exclude = [
+            'id',
+            'id_akreditasi_prodi',
+            'total',
+            'status',
+            'created_at',
+            'updated_at',
+            'created_by',
+            'updated_by'
+        ];
+
+        $skor = $this->hitung($this, $exclude, $indikator);
+        $this->total = $skor;
+        return parent::beforeSave($insert);
+    }
+
+    /**
      * Gets query for [[AkreditasiProdi]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getAkreditasiProdi()
     {
@@ -371,7 +439,7 @@ class K9PenilaianProdiKriteria extends \yii\db\ActiveRecord
     /**
      * Gets query for [[CreatedBy]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getCreatedBy()
     {
@@ -381,7 +449,7 @@ class K9PenilaianProdiKriteria extends \yii\db\ActiveRecord
     /**
      * Gets query for [[UpdatedBy]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getUpdatedBy()
     {

@@ -2,20 +2,24 @@
 
 namespace common\models\kriteria9\penilaian\prodi;
 
+use common\helpers\HitungPenilaianTrait;
+use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
 use common\models\User;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "k9_penilaian_prodi_analisis".
  *
  * @property int $id
  * @property int|null $id_akreditasi_prodi
- * @property int|null $_1
- * @property int|null $_2
- * @property int|null $_3
- * @property int|null $_4
+ * @property int|null $_1_1
+ * @property int|null $_2_1
+ * @property int|null $_3_1
+ * @property int|null $_4_1
  * @property int|null $total
  * @property string|null $status
  * @property int|null $created_at
@@ -27,8 +31,15 @@ use yii\behaviors\TimestampBehavior;
  * @property User $createdBy
  * @property User $updatedBy
  */
-class K9PenilaianProdiAnalisis extends \yii\db\ActiveRecord
+class K9PenilaianProdiAnalisis extends ActiveRecord
 {
+    use HitungPenilaianTrait;
+
+    const STATUS_READY = 'ready';
+    const STATUS_FINSIH = 'finish';
+
+    const STATUS_PENILAIAN = [self::STATUS_READY => self::STATUS_READY, self::STATUS_FINSIH => self::STATUS_FINSIH];
+
     /**
      * {@inheritdoc}
      */
@@ -57,10 +68,10 @@ class K9PenilaianProdiAnalisis extends \yii\db\ActiveRecord
             [
                 [
                     'id_akreditasi_prodi',
-                    '_1',
-                    '_2',
-                    '_3',
-                    '_4',
+                    '_1_1',
+                    '_2_1',
+                    '_3_1',
+                    '_4_1',
                     'total',
                     'created_at',
                     'updated_at',
@@ -102,10 +113,10 @@ class K9PenilaianProdiAnalisis extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_akreditasi_prodi' => 'Id Akreditasi Prodi',
-            '_1' => '1',
-            '_2' => '2',
-            '_3' => '3',
-            '_4' => '4',
+            '_1_1' => '1.1',
+            '_2_1' => '2.1',
+            '_3_1' => '3.1',
+            '_4_1' => '4.1',
             'total' => 'Total',
             'status' => 'Status',
             'created_at' => 'Created At',
@@ -116,9 +127,40 @@ class K9PenilaianProdiAnalisis extends \yii\db\ActiveRecord
     }
 
     /**
+     * @param bool $insert
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
+        $json = K9ProdiJsonHelper::getJsonPenilaianAnalisis($this->akreditasiProdi->prodi->jenjang);
+
+        $indikator = [];
+        foreach ($json->butir as $butir) {
+            foreach ($butir->indikators as $ind) {
+                $indikator[] = $ind->nomor;
+            }
+        }
+
+        $exclude = [
+            'id',
+            'id_akreditasi_prodi',
+            'total',
+            'status',
+            'created_at',
+            'updated_at',
+            'created_by',
+            'updated_by'
+        ];
+
+        $skor = $this->hitung($this, $exclude, $indikator);
+        $this->total = $skor;
+        return parent::beforeSave($insert);
+    }
+
+    /**
      * Gets query for [[AkreditasiProdi]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getAkreditasiProdi()
     {
@@ -128,7 +170,7 @@ class K9PenilaianProdiAnalisis extends \yii\db\ActiveRecord
     /**
      * Gets query for [[CreatedBy]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getCreatedBy()
     {
@@ -138,7 +180,7 @@ class K9PenilaianProdiAnalisis extends \yii\db\ActiveRecord
     /**
      * Gets query for [[UpdatedBy]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getUpdatedBy()
     {

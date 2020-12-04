@@ -2,10 +2,14 @@
 
 namespace common\models\kriteria9\penilaian\prodi;
 
+use common\helpers\HitungPenilaianTrait;
+use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
 use common\models\User;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "k9_penilaian_prodi_eksternal".
@@ -24,8 +28,16 @@ use yii\behaviors\TimestampBehavior;
  * @property User $createdBy
  * @property User $updatedBy
  */
-class K9PenilaianProdiEksternal extends \yii\db\ActiveRecord
+class K9PenilaianProdiEksternal extends ActiveRecord
 {
+
+    use HitungPenilaianTrait;
+
+    const STATUS_READY = 'ready';
+    const STATUS_FINSIH = 'finish';
+
+    const STATUS_PENILAIAN = [self::STATUS_READY => self::STATUS_READY, self::STATUS_FINSIH => self::STATUS_FINSIH];
+
     /**
      * {@inheritdoc}
      */
@@ -96,9 +108,37 @@ class K9PenilaianProdiEksternal extends \yii\db\ActiveRecord
     }
 
     /**
+     * @param bool $insert
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
+        $json = K9ProdiJsonHelper::getJsonPenilaianKondisiEksternal($this->akreditasiProdi->prodi->jenjang);
+
+        $indikator = [];
+        foreach ($json->indikators as $ind) {
+            $indikator[] = $ind->nomor;
+        }
+        $exclude = [
+            'id',
+            'id_akreditasi_prodi',
+            'total',
+            'status',
+            'created_at',
+            'updated_at',
+            'created_by',
+            'updated_by'
+        ];
+
+        $skor = $this->hitung($this, $exclude, $indikator);
+        $this->total = $skor;
+        return parent::beforeSave($insert);
+    }
+
+    /**
      * Gets query for [[AkreditasiProdi]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getAkreditasiProdi()
     {
@@ -108,7 +148,7 @@ class K9PenilaianProdiEksternal extends \yii\db\ActiveRecord
     /**
      * Gets query for [[CreatedBy]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getCreatedBy()
     {
@@ -118,10 +158,11 @@ class K9PenilaianProdiEksternal extends \yii\db\ActiveRecord
     /**
      * Gets query for [[UpdatedBy]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getUpdatedBy()
     {
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
     }
+
 }

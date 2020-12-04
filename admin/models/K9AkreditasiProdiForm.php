@@ -5,39 +5,23 @@ namespace admin\models;
 
 use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
-use common\models\kriteria9\led\Led;
 use common\models\kriteria9\led\prodi\K9LedProdi;
-use common\models\kriteria9\led\prodi\K9LedProdiKriteria1;
-use common\models\kriteria9\led\prodi\K9LedProdiKriteria2;
-use common\models\kriteria9\led\prodi\K9LedProdiKriteria3;
-use common\models\kriteria9\led\prodi\K9LedProdiKriteria4;
-use common\models\kriteria9\led\prodi\K9LedProdiKriteria5;
-use common\models\kriteria9\led\prodi\K9LedProdiKriteria6;
-use common\models\kriteria9\led\prodi\K9LedProdiKriteria7;
-use common\models\kriteria9\led\prodi\K9LedProdiKriteria8;
-use common\models\kriteria9\led\prodi\K9LedProdiKriteria9;
 use common\models\kriteria9\led\prodi\K9LedProdiNarasiAnalisis;
 use common\models\kriteria9\led\prodi\K9LedProdiNarasiKondisiEksternal;
-use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria1;
-use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria2;
-use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria3;
-use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria4;
-use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria5;
-use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria6;
-use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria7;
-use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria8;
-use common\models\kriteria9\led\prodi\K9LedProdiNarasiKriteria9;
 use common\models\kriteria9\led\prodi\K9LedProdiNarasiProfilUpps;
 use common\models\kriteria9\lk\Lk;
 use common\models\kriteria9\lk\prodi\K9LkProdi;
 use common\models\kriteria9\lk\TabelLk;
+use common\models\kriteria9\penilaian\prodi\K9PenilaianProdiAnalisis;
+use common\models\kriteria9\penilaian\prodi\K9PenilaianProdiEksternal;
+use common\models\kriteria9\penilaian\prodi\K9PenilaianProdiKriteria;
+use common\models\kriteria9\penilaian\prodi\K9PenilaianProdiProfil;
 use InvalidArgumentException;
 use Yii;
 use yii\base\Exception;
 use yii\base\Model;
 use yii\db\Transaction;
 use yii\helpers\FileHelper;
-use yii\helpers\Json;
 
 class K9AkreditasiProdiForm extends Model
 {
@@ -104,6 +88,7 @@ class K9AkreditasiProdiForm extends Model
 
             $this->createLk($transaction);
             $this->createLed($transaction);
+            $this->createPenilaian($transaction);
 
             $transaction->commit();
         } catch (\ErrorException $e) {
@@ -137,7 +122,11 @@ class K9AkreditasiProdiForm extends Model
         foreach ($json as /** @var Lk $kriteria */ $kriteria) {
             $kritClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria->kriteria;
             $kritProdi = new $kritClass;
-            $kritProdi->setAttributes(['id_lk_prodi'=>$this->_lk_prodi->id,'progress_narasi'=>0,'progress_dokumen'=>0]);
+            $kritProdi->setAttributes([
+                'id_lk_prodi' => $this->_lk_prodi->id,
+                'progress_narasi' => 0,
+                'progress_dokumen' => 0
+            ]);
 
             if (!$kritProdi->save(false)) {
                 $transaction->rollBack();
@@ -149,7 +138,7 @@ class K9AkreditasiProdiForm extends Model
 
             $attr = ['id_lk_prodi_kriteria' . $kriteria->kriteria => $kritProdi->id, 'progress' => 0];
             $kriteriaProdi->setAttributes($attr);
-            foreach ($kriteria->butir as $key => /** @var $item TabelLk */$item) {
+            foreach ($kriteria->butir as $key => /** @var $item TabelLk */ $item) {
                 $modelAttribute = '_' . str_replace('.', '_', $item->tabel);
                 $kriteriaProdi->$modelAttribute = $item->template;
             }
@@ -224,7 +213,7 @@ class K9AkreditasiProdiForm extends Model
 
         $attr = ['id_led_prodi' => $this->_led_prodi->id, 'progress' => 0];
 
-        $kondisiEksternal  = new K9LedProdiNarasiKondisiEksternal();
+        $kondisiEksternal = new K9LedProdiNarasiKondisiEksternal();
         $profilUpps = new K9LedProdiNarasiProfilUpps();
         $analisis = new K9LedProdiNarasiAnalisis();
 
@@ -232,17 +221,17 @@ class K9AkreditasiProdiForm extends Model
         $profilUpps->attributes = $attr;
         $analisis->attributes = $attr;
 
-        if(!$kondisiEksternal->save()){
+        if (!$kondisiEksternal->save()) {
             $transaction->rollBack();
 
             throw new \yii\db\Exception($kondisiEksternal->errors);
         }
-        if(!$profilUpps->save()){
+        if (!$profilUpps->save()) {
             $transaction->rollBack();
 
             throw new \yii\db\Exception($profilUpps->errors);
         }
-        if(!$analisis->save()){
+        if (!$analisis->save()) {
             $transaction->rollBack();
 
             throw new \yii\db\Exception($analisis->errors);
@@ -259,7 +248,7 @@ class K9AkreditasiProdiForm extends Model
                 $transaction->rollBack();
                 throw new InvalidArgumentException($kriteriaProdi->errors);
             }
-            $narasiAttr = 'id_led_prodi_kriteria'.$i;
+            $narasiAttr = 'id_led_prodi_kriteria' . $i;
 
             $narasiKriteriaProdi = new $kriteria_narasi_class_path;
             $narasiKriteriaProdi->$narasiAttr = $kriteriaProdi->id;
@@ -270,5 +259,32 @@ class K9AkreditasiProdiForm extends Model
                 throw new InvalidArgumentException($narasiKriteriaProdi->errors);
             }
         }
+    }
+
+
+    /**
+     * @param Transaction|null $transaction
+     */
+    private function createPenilaian(?Transaction $transaction)
+    {
+        $eksternal = new K9PenilaianProdiEksternal();
+        $profil = new K9PenilaianProdiProfil();
+        $kriteria = new K9PenilaianProdiKriteria();
+        $analisis = new K9PenilaianProdiAnalisis();
+
+        $attr = [
+            'id_akreditasi_prodi' => $this->_akreditasiProdi->id,
+            'status' => K9PenilaianProdiAnalisis::STATUS_READY
+        ];
+        $eksternal->setAttributes($attr);
+        $profil->setAttributes($attr);
+        $kriteria->setAttributes($attr);
+        $analisis->setAttributes($attr);
+
+        $eksternal->save(false);
+        $profil->save(false);
+        $kriteria->save(false);
+        $analisis->save(false);
+
     }
 }

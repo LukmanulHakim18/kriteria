@@ -30,7 +30,33 @@ class ProdiController extends BaseController
         $jsonKriteria = K9ProdiJsonHelper::getJsonPenilaianKriteria($prodi->jenjang);
         $jsonAnalisis = K9ProdiJsonHelper::getJsonPenilaianAnalisis($prodi->jenjang);
 
-        return $this->render('index',compact('akreditasiProdi','prodi','jsonEksternal','jsonProfil','jsonKriteria','jsonAnalisis'));
+        $modelEksternal = $akreditasiProdi->penilaianEksternal;
+        $modelProfil = $akreditasiProdi->penilaianProfil;
+        $modelKriteria = $akreditasiProdi->penilaianKriteria;
+        $modelAnalisis = $akreditasiProdi->penilaianAnalisis;
+
+        if ($modelEksternal->load(\Yii::$app->request->post())) {
+            $modelEksternal->save();
+            \Yii::$app->session->setFlash('success', 'Berhasil mengisi penilaian Kondisi Eksternal');
+        }
+        if ($modelProfil->load(\Yii::$app->request->post())) {
+            $modelProfil->save();
+            \Yii::$app->session->setFlash('success', 'Berhasil mengisi penilaian Profil UPPS');
+
+        }
+        if ($modelKriteria->load(\Yii::$app->request->post())) {
+            $modelKriteria->save();
+            \Yii::$app->session->setFlash('success', 'Berhasil mengisi penilaian Kriteria');
+
+        }
+        if ($modelAnalisis->load(\Yii::$app->request->post())) {
+            $modelAnalisis->save();
+            \Yii::$app->session->setFlash('success', 'Berhasil mengisi penilaian Analisis');
+
+        }
+        return $this->render('index',
+            compact('akreditasiProdi', 'prodi', 'jsonEksternal', 'jsonProfil', 'jsonKriteria', 'jsonAnalisis',
+                'modelEksternal', 'modelProfil', 'modelKriteria', 'modelAnalisis'));
 
     }
 
