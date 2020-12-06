@@ -12,35 +12,62 @@
 
 use kartik\grid\GridView;
 use yii\bootstrap4\Html;
-use yii\bootstrap4\Modal;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Url;
 
 ?>
     <div class="row">
         <div class="col-lg-12">
-            <h4><?=$key . '. ' . $model->nama?></h4>
-            <?= GridView::widget(['dataProvider' => new ActiveDataProvider(['query' => $model->getKegiatanUnitDetails()]),
+            <h4><?= $key . '. ' . $model->nama ?></h4>
+            <?= GridView::widget([
+                'dataProvider' => new ActiveDataProvider(['query' => $model->getKegiatanUnitDetails()]),
                 'summary' => false,
                 'columns' => [
-                    ['class'=>'kartik\grid\SerialColumn','header' => 'No'],
+                    ['class' => 'kartik\grid\SerialColumn', 'header' => 'No'],
                     'isi_file',
-                    ['class'=>'common\widgets\ActionColumn','header' => 'Aksi',
+                    [
+                        'class' => 'common\widgets\ActionColumn',
+                        'header' => 'Aksi',
                         'template' => '{lihat}{gunakan}',
                         'buttons' => [
 
-                            'lihat'=>function ($url, $model, $key) {
-                                return Html::button('<i class="flaticon2-magnifier-tool"></i> Lihat', ['value'=>Url::to(['resource/lihat-kegiatan-detail','id'=>$model->id]),'title'=>$model->isi_file,'class'=>'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air showModalKegiatanButton']);
+                            'lihat' => function ($url, $model, $key) {
+                                return Html::button('<i class="flaticon2-magnifier-tool"></i> Lihat', [
+                                    'value' => Url::to(['resource/lihat-kegiatan-detail', 'id' => $model->id]),
+                                    'title' => $model->isi_file,
+                                    'class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air showModalKegiatanButton'
+                                ]);
                             },
-                            'gunakan'=>function ($url, $model, $key) use ($prodi, $kode, $jenis, $id_led_lk, $kriteria, $jenis_dokumen) {
-                                return Html::a('<i class="flaticon2-laptop"></i> Gunakan', ['resource/gunakan-kegiatan'], ['class'=>'btn btn-primary btn-pill btn-elevate btn-elevate-air','data'=>[
-                                    'confirm'=>"Apakah anda ingin menggunakan data: {$model->isi_file} untuk pengisisan $jenis kode $kode?",
-                                    'method'=>'POST',
-                                    'params'=>['id'=>$model->id,'prodi'=>$prodi->id,'kode'=>$kode,'jenis'=>$jenis,'id_led_lk'=>$id_led_lk,'kriteria'=>$kriteria,'jenis_dokumen'=>$jenis_dokumen]
-                                ]]);
+                            'gunakan' => function ($url, $model, $key) use (
+                                $prodi,
+                                $kode,
+                                $jenis,
+                                $id_led_lk,
+                                $kriteria,
+                                $jenis_dokumen
+                            ) {
+                                return Html::a('<i class="flaticon2-laptop"></i> Gunakan',
+                                    ['resource/gunakan-kegiatan'], [
+                                        'class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air',
+                                        'data' => [
+                                            'confirm' => "Apakah anda ingin menggunakan data: {$model->isi_file} untuk pengisisan $jenis kode $kode?",
+                                            'method' => 'POST',
+                                            'params' => [
+                                                'id' => $model->id,
+                                                'prodi' => $prodi->id,
+                                                'kode' => $kode,
+                                                'jenis' => $jenis,
+                                                'id_led_lk' => $id_led_lk,
+                                                'kriteria' => $kriteria,
+                                                'jenis_dokumen' => $jenis_dokumen
+                                            ]
+                                        ]
+                                    ]);
                             }
-                        ]]
-                ]])?>
+                        ]
+                    ]
+                ]
+            ]) ?>
         </div>
     </div>
 
@@ -49,7 +76,8 @@ use yii\helpers\Url;
     'headerOptions' => ['id' => 'modalKegiatanHeader'],
     'id' => 'modalKegiatan',
     'size' => 'modal-lg',
-    'clientOptions' => ['backdrop' => 'static']
+    'clientOptions' => ['backdrop' => 'static'],
+    'closeButton' => false
 
 
 ]);

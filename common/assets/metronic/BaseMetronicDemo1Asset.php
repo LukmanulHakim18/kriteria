@@ -6,6 +6,7 @@
  * Date: 9/30/2019
  * Time: 10:13 PM
  */
+
 namespace common\assets\metronic;
 
 class BaseMetronicDemo1Asset extends \yii\web\AssetBundle
@@ -15,10 +16,10 @@ class BaseMetronicDemo1Asset extends \yii\web\AssetBundle
 
 
     public $css = [
-        'css/demo1/skins/header/base/light.css',
-        'css/demo1/skins/header/menu/light.css',
-        'css/demo1/skins/brand/dark.css',
-        'css/demo1/skins/aside/dark.css'
+        'css/skins/header/base/light.css',
+        'css/skins/header/menu/light.css',
+        'css/skins/brand/dark.css',
+        'css/skins/aside/dark.css'
     ];
 
     public $depends = [

@@ -64,12 +64,26 @@ $this->title = 'Peniliaian Akreditasi Program Studi';
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td colspan="5">
-                                                <h5><?=
-                                                    $jsonEksternal->nomor . '. ' . $jsonEksternal->judul ?></h5>
-                                            </td>
-                                        </tr>
+                                        <?php
+
+                                        echo '<tr>';
+
+                                        echo '<td colspan="5">';
+                                        echo '<h5>' . $jsonEksternal->nomor . '. ' . $jsonEksternal->judul . '</h5>';
+                                        echo Html::button('Lihat LED', [
+                                            'class' => 'btn btn-primary btn-elevate btn-elevate-air showModalButton',
+                                            'title' => $jsonEksternal->nomor,
+                                            'value' => Url::to([
+                                                'prodi/lihat-led-non-kriteria',
+                                                'akreditasi' => $akreditasiProdi->id,
+                                                'nomorLed' => $jsonEksternal->nomor,
+                                                'poin' => 'A'
+                                            ])
+                                        ]);
+                                        echo '</td>';
+                                        echo '</tr>';
+                                        ?>
+
                                         <?php
                                         foreach ($jsonEksternal->indikators as $k => $indikator):
                                             $modelAttribute = \common\helpers\NomorKriteriaHelper::changeToDbFormat($indikator->nomor);
@@ -137,7 +151,7 @@ $this->title = 'Peniliaian Akreditasi Program Studi';
                                     </table>
 
                                     <?= $formExternal->field($modelEksternal,
-                                        'status')->dropDownList(\common\models\kriteria9\penilaian\prodi\K9PenilaianProdiEksternal::STATUS_PENILAIAN) ?>
+                                        'status')->dropDownList(\common\models\kriteria9\penilaian\prodi\K9PenilaianProdiEksternal::STATUS_PENILAIAN)->hint("Ubah status menjadi \"finish\" jika sudah selesai menilai.") ?>
                                     <?= Html::submitButton('<i class="fa fa-save"></i>Simpan',
                                         ['class' => 'btn btn-pill btn-primary btn-elevate btn-elevate-air pull-right']) ?>
                                 </div>
@@ -186,12 +200,26 @@ $this->title = 'Peniliaian Akreditasi Program Studi';
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td colspan="5">
-                                                <h5><?=
-                                                    $jsonProfil->nomor . '. ' . $jsonProfil->judul ?></h5>
-                                            </td>
-                                        </tr>
+                                        <?php
+
+                                        echo '<tr>';
+
+                                        echo '<td colspan="5">';
+                                        echo '<h5>' . $jsonProfil->nomor . '. ' . $jsonProfil->judul . '</h5>';
+                                        echo Html::button('Lihat LED', [
+                                            'class' => 'btn btn-primary btn-elevate btn-elevate-air showModalButton',
+                                            'title' => $jsonProfil->nomor,
+                                            'value' => Url::to([
+                                                'prodi/lihat-led-non-kriteria',
+                                                'akreditasi' => $akreditasiProdi->id,
+                                                'nomorLed' => $jsonProfil->nomor,
+                                                'poin' => 'B'
+
+                                            ])
+                                        ]);
+                                        echo '</td>';
+                                        echo '</tr>';
+                                        ?>
                                         <?php
                                         foreach ($jsonProfil->indikators as $k => $indikator):
 
@@ -260,7 +288,7 @@ $this->title = 'Peniliaian Akreditasi Program Studi';
                                         </tbody>
                                     </table>
                                     <?= $formProfil->field($modelProfil,
-                                        'status')->dropDownList(\common\models\kriteria9\penilaian\prodi\K9PenilaianProdiEksternal::STATUS_PENILAIAN) ?>
+                                        'status')->dropDownList(\common\models\kriteria9\penilaian\prodi\K9PenilaianProdiEksternal::STATUS_PENILAIAN)->hint("Ubah status menjadi \"finish\" jika sudah selesai menilai.") ?>
                                     <?= Html::submitButton('<i class="fa fa-save"></i>Simpan',
                                         ['class' => 'btn btn-pill btn-primary btn-elevate btn-elevate-air pull-right']) ?>
                                 </div>
@@ -309,14 +337,29 @@ $this->title = 'Peniliaian Akreditasi Program Studi';
                                         <tbody>
                                         <?php
                                         foreach ($jsonKriteria->butir as $key1 => $butir1) {
-                                            echo '<tr><td colspan="6"><h5>' . $butir1->nomor . '. ' . $butir1->judul . '</h5></td></tr>';
+                                            echo '<tr><td colspan="5"><h5>' . $butir1->nomor . '. ' . $butir1->judul . '</h5></td></tr>';
 
                                             foreach ($butir1->butir as $key2 => $butir2) {
-                                                echo '<tr><td colspan="6"><h6>' . $butir2->nomor . '. ' . $butir2->judul . '</h6></td></tr>';
+
 
                                                 if (!empty($butir2->butir)) {
+
                                                     foreach ($butir2->butir as $key3 => $butir3) {
-                                                        echo '<tr><td colspan="6"><h6>' . $butir3->nomor . '. ' . $butir3->judul . '</h6></td></tr>';
+                                                        echo '<tr>';
+
+                                                        echo '<td colspan="5">';
+                                                        echo '<h6>' . $butir3->nomor . '. ' . $butir3->judul . '</h6>';
+                                                        echo Html::button('Lihat LED', [
+                                                            'class' => 'btn btn-primary btn-elevate btn-elevate-air showModalButton',
+                                                            'title' => $butir2->nomor,
+                                                            'value' => Url::to([
+                                                                'prodi/lihat-led',
+                                                                'akreditasi' => $akreditasiProdi->id,
+                                                                'nomorLed' => $butir3->nomor
+                                                            ])
+                                                        ]);
+                                                        echo '</td>';
+                                                        echo '</tr>';
                                                         foreach ($butir3->indikators as $indikator):
                                                             $modelAttribute = \common\helpers\NomorKriteriaHelper::changeToDbFormat($indikator->nomor);
                                                             $arrayGrade = [];
@@ -380,6 +423,21 @@ $this->title = 'Peniliaian Akreditasi Program Studi';
                                                         <?php endforeach;
                                                     }
                                                 } else {
+                                                    echo '<tr>';
+
+                                                    echo '<td colspan="5">';
+                                                    echo '<h6>' . $butir2->nomor . '. ' . $butir2->judul . '</h6>';
+                                                    echo Html::button('Lihat LED', [
+                                                        'class' => 'btn btn-primary btn-elevate btn-elevate-air showModalButton',
+                                                        'title' => $butir2->nomor,
+                                                        'value' => Url::to([
+                                                            'prodi/lihat-led',
+                                                            'akreditasi' => $akreditasiProdi->id,
+                                                            'nomorLed' => $butir2->nomor
+                                                        ])
+                                                    ]);
+                                                    echo '</td>';
+                                                    echo '</tr>';
                                                     foreach ($butir2->indikators as $indikator):
                                                         $modelAttribute = \common\helpers\NomorKriteriaHelper::changeToDbFormat($indikator->nomor);
                                                         $arrayGrade = [];
@@ -448,7 +506,7 @@ $this->title = 'Peniliaian Akreditasi Program Studi';
                                         </tbody>
                                     </table>
                                     <?= $formKriteria->field($modelKriteria,
-                                        'status')->dropDownList(\common\models\kriteria9\penilaian\prodi\K9PenilaianProdiEksternal::STATUS_PENILAIAN) ?>
+                                        'status')->dropDownList(\common\models\kriteria9\penilaian\prodi\K9PenilaianProdiEksternal::STATUS_PENILAIAN)->hint("Ubah status menjadi \"finish\" jika sudah selesai menilai.") ?>
                                     <?= Html::submitButton('<i class="fa fa-save"></i>Simpan',
                                         ['class' => 'btn btn-pill btn-primary btn-elevate btn-elevate-air pull-right']) ?>
                                 </div>
@@ -504,16 +562,26 @@ $this->title = 'Peniliaian Akreditasi Program Studi';
                                             </td>
                                         </tr>
                                         <?php
-                                        foreach ($jsonAnalisis->butir as $butir):?>
-                                            <tr>
-                                                <td colspan="5">
-                                                    <h6>
-                                                        <?=
-                                                        $butir->nomor . '. ' . $butir->judul ?>
-                                                    </h6>
+                                        foreach ($jsonAnalisis->butir as $butir):
+                                            echo '<tr>';
 
-                                                </td>
-                                            </tr>
+                                            echo '<td colspan="5">';
+                                            echo '<h6>' . $butir->nomor . '. ' . $butir->judul . '</h6>';
+                                            echo Html::button('Lihat LED', [
+                                                'class' => 'btn btn-primary btn-elevate btn-elevate-air showModalButton',
+                                                'title' => $butir->nomor,
+                                                'value' => Url::to([
+                                                    'prodi/lihat-led-non-kriteria',
+                                                    'akreditasi' => $akreditasiProdi->id,
+                                                    'nomorLed' => $butir->nomor,
+                                                    'poin' => 'D'
+
+                                                ])
+                                            ]);
+                                            echo '</td>';
+                                            echo '</tr>';
+
+                                            ?>
 
                                             <?php
                                             foreach ($butir->indikators as $k => $indikator):
@@ -587,7 +655,7 @@ $this->title = 'Peniliaian Akreditasi Program Studi';
                                         </tbody>
                                     </table>
                                     <?= $formAnalisis->field($modelAnalisis,
-                                        'status')->dropDownList(\common\models\kriteria9\penilaian\prodi\K9PenilaianProdiEksternal::STATUS_PENILAIAN) ?>
+                                        'status')->dropDownList(\common\models\kriteria9\penilaian\prodi\K9PenilaianProdiEksternal::STATUS_PENILAIAN)->hint("Ubah status menjadi \"finish\" jika sudah selesai menilai.") ?>
                                     <?= Html::submitButton('<i class="fa fa-save"></i>Simpan',
                                         ['class' => 'btn btn-pill btn-primary btn-elevate btn-elevate-air pull-right']) ?>
 

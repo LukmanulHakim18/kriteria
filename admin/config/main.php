@@ -97,7 +97,7 @@ return [
             'bundles' => [
                 'yii\bootstrap4\BootstrapAsset' => [
                     'sourcePath' => '@common/assets/metronic/assets',
-                    'css' => ['css/demo1/style.bundle.css']
+                    'css' => ['css/style.bundle.css']
                 ]
             ]
         ],

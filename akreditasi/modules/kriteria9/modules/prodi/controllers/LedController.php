@@ -22,17 +22,16 @@ use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\models\Constants;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\forms\led\K9PencarianLedProdiForm;
-use common\models\kriteria9\led\prodi\K9LedProdiNonKriteriaDokumen;
-use common\models\kriteria9\led\prodi\K9ProdiEksporDokumen;
 use common\models\kriteria9\led\prodi\K9LedProdi;
 use common\models\kriteria9\led\prodi\K9LedProdiNarasiAnalisis;
 use common\models\kriteria9\led\prodi\K9LedProdiNarasiKondisiEksternal;
 use common\models\kriteria9\led\prodi\K9LedProdiNarasiProfilUpps;
+use common\models\kriteria9\led\prodi\K9LedProdiNonKriteriaDokumen;
+use common\models\kriteria9\led\prodi\K9ProdiEksporDokumen;
 use common\models\ProgramStudi;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
-use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\MethodNotAllowedHttpException;
 use yii\web\UploadedFile;
@@ -71,35 +70,6 @@ class LedController extends BaseController
             'dataAkreditasi' => $dataAkreditasi,
             'dataProdi' => $dataProdi
         ]);
-    }
-
-    protected function getArrayKriteria($led)
-    {
-        $kriteria = [];
-        for ($i = 1; $i<=9; $i++) {
-            $classpath = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria' . $i;
-            $kriteria[] = call_user_func($classpath . '::findOne', ['id_led_prodi'=>$led]);
-        }
-        return $kriteria;
-    }
-
-    protected function uploadDokumenLed($led)
-    {
-        $ledProdi = K9LedProdi::findOne($led);
-
-        $dokumenLed = new K9DokumenLedProdiUploadForm();
-        $dokumenLed->dokumenLed = UploadedFile::getInstance($dokumenLed, 'dokumenLed');
-        $realPath = K9ProdiDirectoryHelper::getDokumenLedPath($ledProdi->akreditasiProdi);
-        $response = null;
-
-        if ($dokumenLed->validate()) {
-            $uploaded = $dokumenLed->uploadDokumen($realPath);
-            if ($uploaded) {
-                $response = $dokumenLed;
-            }
-        }
-
-        return $response;
     }
 
     public function actionHapusDokumenLed()
@@ -142,9 +112,9 @@ class LedController extends BaseController
         $json_profil = K9ProdiJsonHelper::getJsonLedProfil();
         $json_analisis = K9ProdiJsonHelper::getJsonLedAnalisis();
 
-        $modelEksternal = K9LedProdiNarasiKondisiEksternal::findOne(['id_led_prodi'=>$ledProdi->id]);
-        $modelProfil = K9LedProdiNarasiProfilUpps::findOne(['id_led_prodi'=>$ledProdi->id]);
-        $modelAnalisis = K9LedProdiNarasiAnalisis::findOne(['id_led_prodi'=>$ledProdi->id]);
+        $modelEksternal = K9LedProdiNarasiKondisiEksternal::findOne(['id_led_prodi' => $ledProdi->id]);
+        $modelProfil = K9LedProdiNarasiProfilUpps::findOne(['id_led_prodi' => $ledProdi->id]);
+        $modelAnalisis = K9LedProdiNarasiAnalisis::findOne(['id_led_prodi' => $ledProdi->id]);
         $modelDokumen = new K9DokumenLedProdiUploadForm();
         $dataDokumen = K9ProdiEksporDokumen::findAll(['id_led_prodi' => $ledProdi->id]);
         $kriteria = $this->getArrayKriteria($led);
@@ -171,21 +141,52 @@ class LedController extends BaseController
             'modelDokumen' => $modelDokumen,
             'dataDokumen' => $dataDokumen,
             'json' => $json_kriteria,
-            'json_eksternal'=>$json_eksternal,
-            'json_profil'=>$json_profil,
-            'json_analisis'=>$json_analisis,
+            'json_eksternal' => $json_eksternal,
+            'json_profil' => $json_profil,
+            'json_analisis' => $json_analisis,
             'kriteria' => $kriteria,
             'path' => $realPath,
-            'modelEksternal'=>$modelEksternal,
-            'modelAnalisis'=>$modelAnalisis,
-            'modelProfil'=>$modelProfil,
-            'prodi'=>$programStudi,
-            'untuk'=>'isi'
+            'modelEksternal' => $modelEksternal,
+            'modelAnalisis' => $modelAnalisis,
+            'modelProfil' => $modelProfil,
+            'prodi' => $programStudi,
+            'untuk' => 'isi'
         ]);
     }
+
+    protected function getArrayKriteria($led)
+    {
+        $kriteria = [];
+        for ($i = 1; $i <= 9; $i++) {
+            $classpath = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria' . $i;
+            $kriteria[] = call_user_func($classpath . '::findOne', ['id_led_prodi' => $led]);
+        }
+        return $kriteria;
+    }
+
+    protected function uploadDokumenLed($led)
+    {
+        $ledProdi = K9LedProdi::findOne($led);
+
+        $dokumenLed = new K9DokumenLedProdiUploadForm();
+        $dokumenLed->dokumenLed = UploadedFile::getInstance($dokumenLed, 'dokumenLed');
+        $realPath = K9ProdiDirectoryHelper::getDokumenLedPath($ledProdi->akreditasiProdi);
+        $response = null;
+
+        if ($dokumenLed->validate()) {
+            $uploaded = $dokumenLed->uploadDokumen($realPath);
+            if ($uploaded) {
+                $response = $dokumenLed;
+            }
+        }
+
+        return $response;
+    }
+
     public function actionIsiKriteria($led, $kriteria, $prodi)
     {
-        $ledProdi = K9LedProdi::findOne(['id'=>$led]);
+        $ledProdi = K9LedProdi::findOne(['id' => $led]);
+        $programStudi = $ledProdi->akreditasiProdi->prodi;
         $attr = 'k9LedProdiKriteria' . $kriteria . 's';
         $modelLed = $ledProdi->$attr;
 
@@ -193,8 +194,8 @@ class LedController extends BaseController
         $poinKriteria = $json->butir;
 
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\led\\prodi\\K9LedProdiNarasiKriteria' . $kriteria . 'Form';
-        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_led_prodi_kriteria' . $kriteria => $modelLed->id]);
-
+        $modelNarasi = call_user_func($modelNarasiClass . '::findOne',
+            ['id_led_prodi_kriteria' . $kriteria => $modelLed->id]);
 
 
         $detailModel = new K9DetailLedProdiUploadForm();
@@ -238,12 +239,16 @@ class LedController extends BaseController
         return $this->render('isi-kriteria', [
             'model' => $modelLed,
             'poinKriteria' => $poinKriteria,
-            'untuk'=>'isi'
+            'untuk' => 'isi',
+            'kriteria' => $kriteria,
+            'prodi' => $programStudi
         ]);
     }
+
     public function actionIsiNonKriteria($led, $prodi, $poin)
     {
         $ledProdi = K9LedProdi::findOne($led);
+        $programStudi = $ledProdi->akreditasiProdi->prodi;
 
         switch ($poin) {
             case 'A':
@@ -261,8 +266,6 @@ class LedController extends BaseController
         }
 
         $poin = $json->butir;
-
-        $detail = $modelNarasi->documents;
 
         $modelLink = new K9DetailLedProdiNonKriteriaLinkForm();
         $modelUpload = new K9DetailLedProdiNonKriteriaUploadForm();
@@ -303,13 +306,21 @@ class LedController extends BaseController
             Yii::$app->session->setFlash('warning', 'Gagal Menambahkan Dokumen');
             return $this->redirect(Url::current());
         }
-        return $this->render('isi-non_kriteria', compact('ledProdi', 'json', 'poin', 'modelNarasi', 'detail', 'modelLink', 'modelUpload', 'modelTeks', 'untuk', 'prodi'));
+        return $this->render('isi-non_kriteria',
+            [
+                'ledProdi' => $ledProdi,
+                'json' => $json,
+                'poin' => $poin,
+                'modelNarasi' => $modelNarasi,
+                'untuk' => $untuk,
+                'prodi' => $programStudi
+            ]);
     }
 
-    public function actionButirItem($led, $kriteria, $poin, $prodi,$untuk)
+    public function actionButirItem($led, $kriteria, $poin, $prodi, $untuk)
     {
 
-        $ledProdi = K9LedProdi::findOne(['id'=>$led]);
+        $ledProdi = K9LedProdi::findOne(['id' => $led]);
         $attr = 'k9LedProdiKriteria' . $kriteria . 's';
         $modelLed = $ledProdi->$attr;
         $detailAttr = 'k9LedProdiKriteria' . $kriteria . 'Details';
@@ -322,7 +333,8 @@ class LedController extends BaseController
         $currentPoint = $kriteriaCollection->where('nomor', $poin)->first();
 
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\led\\prodi\\K9LedProdiNarasiKriteria' . $kriteria . 'Form';
-        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_led_prodi_kriteria' . $kriteria => $modelLed->id]);
+        $modelNarasi = call_user_func($modelNarasiClass . '::findOne',
+            ['id_led_prodi_kriteria' . $kriteria => $modelLed->id]);
 
 
         $detailModel = new K9DetailLedProdiUploadForm();
@@ -334,39 +346,43 @@ class LedController extends BaseController
 
 
         return $this->renderAjax('@akreditasi/modules/kriteria9/modules/prodi/views/led/_isi_led', [
-            'model'=>$modelLed,
+            'model' => $modelLed,
             'modelNarasi' => $modelNarasi,
             'detailModel' => $detailModel,
             'path' => $realPath,
             'textModel' => $textModel,
             'linkModel' => $linkModel,
-            'detailCollection'=>$detailCollection,
-            'modelAttribute'=> '_' . str_replace('.', '_', $poin),
-            'item'=>$currentPoint,
-            'kriteria'=>$kriteria,
-            'prodi'=>$prodi,
-            'untuk'=>$untuk,
-            'poin'=>$poin
+            'detailCollection' => $detailCollection,
+            'modelAttribute' => '_' . str_replace('.', '_', $poin),
+            'item' => $currentPoint,
+            'kriteria' => $kriteria,
+            'prodi' => $prodi,
+            'untuk' => $untuk,
+            'poin' => $poin
         ]);
     }
-    public function actionButirItemNonKriteria($led, $poin, $nomor, $prodi,$untuk)
+
+    public function actionButirItemNonKriteria($led, $poin, $nomor, $prodi, $untuk)
     {
 
         $ledProdi = K9LedProdi::findOne($led);
 
         switch ($poin) {
-            case 'A': $json = K9ProdiJsonHelper::getJsonLedKondisiEksternal();
+            case 'A':
+                $json = K9ProdiJsonHelper::getJsonLedKondisiEksternal();
                 $modelNarasi = $ledProdi->narasiEksternal;
 
-break;
-            case 'B': $json = K9ProdiJsonHelper::getJsonLedProfil();
+                break;
+            case 'B':
+                $json = K9ProdiJsonHelper::getJsonLedProfil();
                 $modelNarasi = $ledProdi->narasiProfil;
 
-break;
-            case 'D': $json = K9ProdiJsonHelper::getJsonLedAnalisis();
+                break;
+            case 'D':
+                $json = K9ProdiJsonHelper::getJsonLedAnalisis();
                 $modelNarasi = $ledProdi->narasiAnalisis;
 
-break;
+                break;
         }
 
 
@@ -386,18 +402,18 @@ break;
 
         return $this->renderAjax('@akreditasi/modules/kriteria9/modules/prodi/views/led/_isi_led_non_kriteria', [
 
-            'modelNarasi'=>$modelNarasi,
-            'item'=>$currentPoint,
-            'linkModel'=>$linkModel,
-            'uploadModel'=>$uploadModel,
-            'textModel'=>$textModel,
-            'path'=>$realPath,
-            'modelAttribute'=>$modelAttribute,
-            'prodi'=>$ledProdi->akreditasiProdi->prodi,
-            'detailCollection'=>$detailCollection,
-            'model'=>$ledProdi,
-            'poin'=>$poin,
-            'untuk'=>$untuk
+            'modelNarasi' => $modelNarasi,
+            'item' => $currentPoint,
+            'linkModel' => $linkModel,
+            'uploadModel' => $uploadModel,
+            'textModel' => $textModel,
+            'path' => $realPath,
+            'modelAttribute' => $modelAttribute,
+            'prodi' => $ledProdi->akreditasiProdi->prodi,
+            'detailCollection' => $detailCollection,
+            'model' => $ledProdi,
+            'poin' => $poin,
+            'untuk' => $untuk
         ]);
     }
 
@@ -410,9 +426,9 @@ break;
         $json_profil = K9ProdiJsonHelper::getJsonLedProfil();
         $json_analisis = K9ProdiJsonHelper::getJsonLedAnalisis();
 
-        $modelEksternal = K9LedProdiNarasiKondisiEksternal::findOne(['id_led_prodi'=>$ledProdi->id]);
-        $modelProfil = K9LedProdiNarasiProfilUpps::findOne(['id_led_prodi'=>$ledProdi->id]);
-        $modelAnalisis = K9LedProdiNarasiAnalisis::findOne(['id_led_prodi'=>$ledProdi->id]);
+        $modelEksternal = K9LedProdiNarasiKondisiEksternal::findOne(['id_led_prodi' => $ledProdi->id]);
+        $modelProfil = K9LedProdiNarasiProfilUpps::findOne(['id_led_prodi' => $ledProdi->id]);
+        $modelAnalisis = K9LedProdiNarasiAnalisis::findOne(['id_led_prodi' => $ledProdi->id]);
         $modelDokumen = new K9DokumenLedProdiUploadForm();
         $dataDokumen = K9ProdiEksporDokumen::findAll(['id_led_prodi' => $ledProdi->id]);
         $kriteria = $this->getArrayKriteria($led);
@@ -424,22 +440,23 @@ break;
             'modelDokumen' => $modelDokumen,
             'dataDokumen' => $dataDokumen,
             'json' => $json_kriteria,
-            'json_eksternal'=>$json_eksternal,
-            'json_profil'=>$json_profil,
-            'json_analisis'=>$json_analisis,
+            'json_eksternal' => $json_eksternal,
+            'json_profil' => $json_profil,
+            'json_analisis' => $json_analisis,
             'kriteria' => $kriteria,
             'path' => $realPath,
-            'modelEksternal'=>$modelEksternal,
-            'modelAnalisis'=>$modelAnalisis,
-            'modelProfil'=>$modelProfil,
-            'prodi'=>$ledProdi->akreditasiProdi->prodi,
-            'untuk'=>'lihat'
+            'modelEksternal' => $modelEksternal,
+            'modelAnalisis' => $modelAnalisis,
+            'modelProfil' => $modelProfil,
+            'prodi' => $ledProdi->akreditasiProdi->prodi,
+            'untuk' => 'lihat'
         ]);
     }
+
     public function actionLihatKriteria($led, $kriteria, $prodi)
     {
 
-        $ledProdi = K9LedProdi::findOne(['id'=>$led]);
+        $ledProdi = K9LedProdi::findOne(['id' => $led]);
         $programStudi = $ledProdi->akreditasiProdi->prodi;
         $attr = 'k9LedProdiKriteria' . $kriteria . 's';
         $modelLed = $ledProdi->$attr;
@@ -449,12 +466,13 @@ break;
         return $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/isi-kriteria', [
             'model' => $modelLed,
             'poinKriteria' => $poinKriteria,
-            'untuk'=>'lihat',
-            'kriteria'=>$kriteria,
-            'prodi'=>$programStudi
+            'untuk' => 'lihat',
+            'kriteria' => $kriteria,
+            'prodi' => $programStudi
         ]);
     }
-    public function actionLihatNonKriteria($led, $prodi,$poin)
+
+    public function actionLihatNonKriteria($led, $prodi, $poin)
     {
         $ledProdi = K9LedProdi::findOne($led);
         $programStudi = $ledProdi->akreditasiProdi->prodi;
@@ -482,13 +500,13 @@ break;
         $untuk = 'lihat';
 
         return $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/isi-non_kriteria', [
-            'ledProdi'=>$ledProdi,
-            'json'=>$json,
-            'poin'=>$poin,
-            'modelNarasi'=>$modelNarasi,
-            'detail'=>$detail,
-            'untuk'=>$untuk,
-            'prodi'=>$programStudi
+            'ledProdi' => $ledProdi,
+            'json' => $json,
+            'poin' => $poin,
+            'modelNarasi' => $modelNarasi,
+            'detail' => $detail,
+            'untuk' => $untuk,
+            'prodi' => $programStudi
         ],
             compact('ledProdi', 'json', 'poin', 'modelNarasi', 'detail', 'untuk', 'prodi'));
     }
@@ -519,6 +537,7 @@ break;
 
         return new MethodNotAllowedHttpException('Penghapusan harus sesuai prosedur.');
     }
+
     public function actionHapusDetailNonKriteria()
     {
         if (Yii::$app->request->isPost) {
@@ -529,7 +548,7 @@ break;
             $jenis = $data['jenis'];
             $prodi = $data['prodi'];
 
-           $model = K9LedProdiNonKriteriaDokumen::findOne($idDokumen);
+            $model = K9LedProdiNonKriteriaDokumen::findOne($idDokumen);
             $led = K9LedProdi::findOne($idLed);
             if (!$model->bentuk_dokumen === Constants::TEXT && !$model->bentuk_dokumen === Constants::LINK) {
                 $dokumenPath = K9ProdiDirectoryHelper::getDokumenLedPath($led->akreditasiProdi);
@@ -554,6 +573,7 @@ break;
         $file = K9ProdiDirectoryHelper::getDokumenLedPath($led->akreditasiProdi) . "/$jenis/{$model->isi_dokumen}";
         return Yii::$app->response->sendFile($file);
     }
+
     public function actionDownloadDetailNonKriteria($poin, $dokumen, $led, $jenis)
     {
         ini_set('max_execution_time', 5 * 60);
@@ -567,7 +587,7 @@ break;
     {
 
         $data = K9ProdiJsonHelper::getJsonKriteriaLed($kriteria);
-        $collection  = new Collection($data->butir);
-        return $collection->where('nomor',$search)->first();
+        $collection = new Collection($data->butir);
+        return $collection->where('nomor', $search)->first();
     }
 }
