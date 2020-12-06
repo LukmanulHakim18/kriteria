@@ -33,6 +33,10 @@ use yii\helpers\Url;
                 <?= $form->field($modelNarasi, $modelAttribute)->widget(TinyMce::class, [
                     'options' => ['id' => $modelAttribute . '-tinymce-kriteria'],
                 ])->label('') ?>
+                <div class="form-group pull-right">
+                    <?= Html::submitButton('<i class="la la-save"></i> Simpan',
+                        ['class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air ']) ?>
+                </div>
             <?php else: ?>
                 <?= $modelNarasi->$modelAttribute ?>
             <?php endif ?>
@@ -41,10 +45,7 @@ use yii\helpers\Url;
                 <h6>Keterangan</h6>
                 <?= $item->keterangan ?>
             <?php endif; ?>
-            <div class="form-group pull-right">
-                <?= Html::submitButton('<i class="la la-save"></i> Simpan',
-                    ['class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air ']) ?>
-            </div>
+
             <?php ActiveForm::end() ?>
 
         </div>

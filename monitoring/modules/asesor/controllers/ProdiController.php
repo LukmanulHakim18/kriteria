@@ -8,8 +8,12 @@ use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiNonKriteriaLinkForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiNonKriteriaUploadForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiTeksForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiUploadForm;
+use akreditasi\models\kriteria9\forms\lk\prodi\K9LinkLkProdiKriteriaDetailForm;
+use akreditasi\models\kriteria9\forms\lk\prodi\K9LkProdiKriteriaDetailForm;
+use akreditasi\models\kriteria9\forms\lk\prodi\K9TextLkProdiKriteriaDetailForm;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\helpers\kriteria9\K9ProdiJsonHelper;
+use common\helpers\NomorKriteriaHelper;
 use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
 use Yii;
 use yii\web\MethodNotAllowedHttpException;
@@ -22,8 +26,61 @@ class ProdiController extends BaseController
     {
     }
 
-    public function actionLihatLK()
+    public function actionLihatLk($akreditasi, $tabel)
     {
+        if (Yii::$app->request->isAjax) {
+            $akreditasiProdi = $this->findAkreditasiProdi($akreditasi);
+            $programStudi = $akreditasiProdi->prodi;
+            $kriteria = $tabel[0];
+            $lk = $akreditasiProdi->k9LkProdi;
+            $json = K9ProdiJsonHelper::getJsonKriteriaLk($kriteria, $programStudi->jenjang);
+            $collection = Collection::make($json->butir);
+            $current = $collection->where('tabel', $tabel)->first();
+            $path = K9ProdiDirectoryHelper::getDokumenLkUrl($akreditasiProdi);
+            $lkProdiKriteriaClass = 'common\\models\\kriteria9\lk\\prodi\\K9LkProdiKriteria' . $kriteria;
+            $lkProdiKriteria = call_user_func($lkProdiKriteriaClass . '::findOne', ['id_lk_prodi' => $lk->id]);
+            $detailAttr = 'k9LkProdiKriteria' . $kriteria . 'Details';
+            $detail = $lkProdiKriteria->$detailAttr;
+            $lkCollection = Collection::make($detail);
+            $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\prodi\\K9LkProdiNarasiKriteria' . $kriteria . 'Form';
+            $modelNarasi = call_user_func($modelNarasiClass . '::findOne',
+                ['id_lk_prodi_kriteria' . $kriteria => $lkProdiKriteria->id]);
+
+            $dokUploadModel = new K9LkProdiKriteriaDetailForm();
+            $dokTextModel = new K9TextLkProdiKriteriaDetailForm();
+            $dokLinkModel = new K9LinkLkProdiKriteriaDetailForm();
+
+            return $this->renderAjax('@akreditasi/modules/kriteria9/modules/prodi/views/lk/_item_lk', [
+                'lkProdi' => $lk,
+                'prodi' => $programStudi,
+                'item' => $current,
+                'path' => $path,
+                'modelKriteria' => $lkProdiKriteria,
+                'modelNarasi' => $modelNarasi,
+                'dokUploadModel' => $dokUploadModel,
+                'dokTextModel' => $dokTextModel,
+                'dokLinkModel' => $dokLinkModel,
+                'modelAttribute' => NomorKriteriaHelper::changeToDbFormat($tabel),
+                'kriteria' => $kriteria,
+                'poin' => $tabel,
+                'lkCollection' => $lkCollection,
+                'untuk' => 'lihat'
+            ]);
+        }
+        throw new MethodNotAllowedHttpException();
+    }
+
+    /**
+     * @param $id
+     * @return K9AkreditasiProdi|null
+     * @throws NotFoundHttpException
+     */
+    protected function findAkreditasiProdi($id)
+    {
+        if ($model = K9AkreditasiProdi::findOne($id)) {
+            return $model;
+        }
+        throw new NotFoundHttpException();
     }
 
     public function actionLihatLed($akreditasi, $nomorLed)
@@ -71,19 +128,6 @@ class ProdiController extends BaseController
         }
 
         throw new MethodNotAllowedHttpException();
-    }
-
-    /**
-     * @param $id
-     * @return K9AkreditasiProdi|null
-     * @throws NotFoundHttpException
-     */
-    protected function findAkreditasiProdi($id)
-    {
-        if ($model = K9AkreditasiProdi::findOne($id)) {
-            return $model;
-        }
-        throw new NotFoundHttpException();
     }
 
     public function actionLihatLedNonKriteria($akreditasi, $nomorLed, $poin)
