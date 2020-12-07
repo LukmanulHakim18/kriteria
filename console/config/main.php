@@ -13,13 +13,20 @@ return [
     'controllerNamespace' => 'console\controllers',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'controllerMap' => [
         'fixture' => [
             'class' => 'yii\console\controllers\FixtureController',
             'namespace' => 'common\fixtures',
-          ],
+        ],
+        'migrate' => [
+            'class' => \yii\console\controllers\MigrateController::class,
+            'migrationNamespaces' => [
+                //...
+                'zhuravljov\yii\queue\monitor\migrations',
+            ],
+        ],
     ],
     'components' => [
         'log' => [
@@ -33,17 +40,26 @@ return [
         'autocomplete' => [
             'class' => 'iiifx\Yii2\Autocomplete\Component',
             'config' => [
-                   '@common/config/main.php',
-                    '@common/config/main-local.php',
-                    '@akreditasi/config/main.php',
-                    '@akreditasi/config/main-local.php',
-                    '@admin/config/main.php',
-                    '@admin/config/main-local.php',
-                    '@monitoring/config/main.php',
-                    '@monitoring/config/main-local.php',
-                    '@console/config/main.php',
-                    '@console/config/main-local.php',
+                '@common/config/main.php',
+                '@common/config/main-local.php',
+                '@akreditasi/config/main.php',
+                '@akreditasi/config/main-local.php',
+                '@admin/config/main.php',
+                '@admin/config/main-local.php',
+                '@monitoring/config/main.php',
+                '@monitoring/config/main-local.php',
+                '@console/config/main.php',
+                '@console/config/main-local.php',
             ],
+        ],
+        'queue' => [
+            'class' => \yii\queue\db\Queue::class,
+            'db' => 'db', // DB connection component or its config
+            'tableName' => '{{%queue}}', // Table name
+            'channel' => 'default', // Queue channel key
+            'mutex' => \yii\mutex\MysqlMutex::class, // Mutex that used to sync queries
+            'as jobMonitor' => \zhuravljov\yii\queue\monitor\JobMonitor::class,
+            'as workerMonitor' => \zhuravljov\yii\queue\monitor\WorkerMonitor::class,
         ],
     ],
     'params' => $params,

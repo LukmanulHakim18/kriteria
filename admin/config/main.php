@@ -14,7 +14,7 @@ return [
     'name' => $params['nama_sistem'],
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'admin\controllers',
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'queue', 'monitor',],
     'modules' => [
         'admin' => [
             'class' => \mdm\admin\Module::class,
@@ -52,7 +52,10 @@ return [
             // automatically use kartik\widgets for each of the above formats
             'autoWidget' => true,
 
-        ]
+        ],
+        'monitor' => [
+            'class' => \zhuravljov\yii\queue\monitor\Module::class,
+        ],
     ],
     'components' => [
         'request' => [
@@ -100,6 +103,15 @@ return [
                     'css' => ['css/style.bundle.css']
                 ]
             ]
+        ],
+        'queue' => [
+            'class' => \yii\queue\db\Queue::class,
+            'db' => 'db', // DB connection component or its config
+            'tableName' => '{{%queue}}', // Table name
+            'channel' => 'default', // Queue channel key
+            'mutex' => \yii\mutex\MysqlMutex::class, // Mutex that used to sync queries
+            'as jobMonitor' => \zhuravljov\yii\queue\monitor\JobMonitor::class,
+            'as workerMonitor' => \zhuravljov\yii\queue\monitor\WorkerMonitor::class,
         ],
     ],
     'as access' => [

@@ -47,7 +47,8 @@
         "supplyhog/yii2-clipboardjs": "dev-master",
         "yii2mod/collection": "*",
         "netresearch/jsonmapper": "^3.1",
-        "iiifx-production/yii2-autocomplete-helper": "^2.0"
+        "iiifx-production/yii2-autocomplete-helper": "^2.0",
+        "zhuravljov/yii2-queue-monitor": "^0.3.4"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
