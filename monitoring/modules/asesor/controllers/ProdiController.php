@@ -14,8 +14,12 @@ use akreditasi\models\kriteria9\forms\lk\prodi\K9TextLkProdiKriteriaDetailForm;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\helpers\NomorKriteriaHelper;
+use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
+use common\models\ProgramStudi;
 use Yii;
+use yii\base\DynamicModel;
+use yii\helpers\ArrayHelper;
 use yii\web\MethodNotAllowedHttpException;
 use yii\web\NotFoundHttpException;
 use yii2mod\collection\Collection;
@@ -24,6 +28,36 @@ class ProdiController extends BaseController
 {
     public function actionArsip()
     {
+        $model = new DynamicModel(['akreditasi', 'prodi']);
+        $model->addRule(['akreditasi', 'prodi'], 'required')
+            ->addRule(['akreditasi'], 'integer')
+            ->addRule(['prodi'], 'integer');
+
+        $prodis = ProgramStudi::find()->all();
+        $dataProdi = ArrayHelper::map($prodis, 'id', function ($prodi) {
+            return $prodi->nama . ' (' . $prodi->jenjang . ')';
+        });
+
+        $dataAkreditasi = ArrayHelper::map(
+            K9Akreditasi::findAll(['jenis_akreditasi' => K9Akreditasi::JENIS_PRODI]),
+            'id',
+            function ($akreditasi) {
+                return $akreditasi->lembaga . ' (' . $akreditasi->tahun . ')';
+            }
+        );
+        if ($model->load(Yii::$app->request->post())) {
+            $akreditasiProdi = K9AkreditasiProdi::findOne([
+                'id_akreditasi' => $model->akreditasi,
+                'id_prodi' => $model->prodi
+            ]);
+            if (!$akreditasiProdi) {
+                throw new NotFoundHttpException('Data yang anda cari tidak ditemukan.');
+            }
+            return $this->redirect(['prodi/index', 'id' => $akreditasiProdi->id]);
+        }
+
+        return $this->render('arsip',
+            ['model' => $model, 'dataProdi' => $dataProdi, 'dataAkreditasi' => $dataAkreditasi]);
     }
 
     public function actionLihatLk($akreditasi, $tabel)
@@ -43,8 +77,10 @@ class ProdiController extends BaseController
             $detail = $lkProdiKriteria->$detailAttr;
             $lkCollection = Collection::make($detail);
             $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\prodi\\K9LkProdiNarasiKriteria' . $kriteria . 'Form';
-            $modelNarasi = call_user_func($modelNarasiClass . '::findOne',
-                ['id_lk_prodi_kriteria' . $kriteria => $lkProdiKriteria->id]);
+            $modelNarasi = call_user_func(
+                $modelNarasiClass . '::findOne',
+                ['id_lk_prodi_kriteria' . $kriteria => $lkProdiKriteria->id]
+            );
 
             $dokUploadModel = new K9LkProdiKriteriaDetailForm();
             $dokTextModel = new K9TextLkProdiKriteriaDetailForm();
@@ -176,7 +212,6 @@ class ProdiController extends BaseController
                 'poin' => $poin,
                 'untuk' => 'lihat'
             ]);
-
         }
 
         throw new MethodNotAllowedHttpException();
