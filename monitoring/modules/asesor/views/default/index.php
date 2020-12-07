@@ -6,6 +6,9 @@
  */
 
 
+use common\widgets\ActionColumn;
+use kartik\grid\GridView;
+use kartik\grid\SerialColumn;
 use yii\bootstrap4\Html;
 
 $this->title = 'Index Asesor';
@@ -22,11 +25,11 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
         <div class="kt-portlet__body">
-            <?= \kartik\grid\GridView::widget([
+            <?= GridView::widget([
                 'dataProvider' => $apsDataProvider,
                 'summary' => false,
                 'columns' => [
-                    ['class' => \kartik\grid\SerialColumn::class, 'header' => 'No.'],
+                    ['class' => SerialColumn::class, 'header' => 'No.'],
                     'akreditasi.lembaga',
                     'akreditasi.tahun',
                     'prodi.nama',
@@ -43,23 +46,41 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     ],
                     [
-                        'class' => \common\widgets\ActionColumn::class,
+                        'class' => ActionColumn::class,
                         'header' => 'Aksi',
-                        'template' => '{led}{lk}{nilai}',
+                        'template' => '{led} {lk} {kuantitatif} {nilai}',
                         'buttons' => [
                             'nilai' => function ($url, $model) {
-                                return Html::a('Nilai', ['prodi/index', 'id' => $model->id],
-                                    ['class' => 'btn btn-primary btn-pill btn-sm']);
+                                return Html::a(
+                                    'Penilaian',
+                                    ['prodi/index', 'id' => $model->id],
+                                    ['class' => 'btn btn-primary btn-sm']
+                                );
                             },
                             'led' => function ($url, $model) {
-                                return Html::a('Led',
+                                return Html::a(
+                                    'Led',
                                     ['led-prodi/lihat', 'led' => $model->k9LedProdi->id, 'prodi' => $model->prodi->id],
-                                    ['class' => 'btn btn-success btn-pill btn-sm']);
+                                    ['class' => 'btn btn-success btn-sm']
+                                );
                             },
                             'lk' => function ($url, $model) {
-                                return Html::a('Lk',
+                                return Html::a(
+                                    'Lk',
                                     ['lk-prodi/lihat', 'lk' => $model->k9LkProdi->id, 'prodi' => $model->prodi->id],
-                                    ['class' => 'btn btn-warning btn-pill btn-sm']);
+                                    ['class' => 'btn btn-warning btn-sm']
+                                );
+                            },
+                            'kuantitatif' => function ($url, $model) {
+                                return !empty($model->kuantitatif) ? Html::a(
+                                    'Kuantitatif',
+                                    ['default/kuantitatif-prodi', 'id' => $model->id],
+                                    ['class' => 'btn btn-dark btn-sm']
+                                ) : Html::a(
+                                    'Kuantitatif',
+                                    '#',
+                                    ['class' => 'btn btn-dark btn-sm disabled', 'aria-disabled' => true]
+                                );
                             }
                         ]
                     ]
@@ -79,11 +100,11 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
         <div class="kt-portlet__body">
-            <?= \kartik\grid\GridView::widget([
+            <?= GridView::widget([
                 'dataProvider' => $aptDataProvider,
                 'summary' => false,
                 'columns' => [
-                    ['class' => \kartik\grid\SerialColumn::class, 'header' => 'No.'],
+                    ['class' => SerialColumn::class, 'header' => 'No.'],
                     'akreditasi.lembaga',
                     'akreditasi.tahun',
                     [
@@ -99,13 +120,41 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     ],
                     [
-                        'class' => \common\widgets\ActionColumn::class,
+                        'class' => ActionColumn::class,
                         'header' => 'Aksi',
-                        'template' => '{nilai}',
+                        'template' => '{led} {lk} {kuantitatif} {nilai}',
                         'buttons' => [
                             'nilai' => function ($url, $model) {
-                                return Html::a('Nilai', ['institusi/index', 'id' => $model->id],
-                                    ['class' => 'btn btn-primary btn-pill btn-xs']);
+                                return Html::a(
+                                    'Penilaian',
+                                    ['institusi/index', 'id' => $model->id],
+                                    ['class' => 'btn btn-primary btn-sm']
+                                );
+                            },
+                            'led' => function ($url, $model) {
+                                return Html::a(
+                                    'Led',
+                                    ['led-institusi/lihat', 'led' => $model->k9LedInstitusi->id],
+                                    ['class' => 'btn btn-success btn-sm']
+                                );
+                            },
+                            'lk' => function ($url, $model) {
+                                return Html::a(
+                                    'Lk',
+                                    ['lk-institusi/lihat', 'lk' => $model->k9LkInstitusi->id],
+                                    ['class' => 'btn btn-warning btn-sm']
+                                );
+                            },
+                            'kuantitatif' => function ($url, $model) {
+                                return !empty($model->kuantitatif) ? Html::a(
+                                    'Kuantitatif',
+                                    ['default/kuantitatif-institusi', 'id' => $model->id],
+                                    ['class' => 'btn btn-dark btn-sm']
+                                ) : Html::a(
+                                    'Kuantitatif',
+                                    '#',
+                                    ['class' => 'btn btn-dark btn-sm disabled', 'aria-disabled' => true]
+                                );
                             }
                         ]
                     ]

@@ -2,6 +2,7 @@
 
 namespace common\models\kriteria9\akreditasi;
 
+use common\models\kriteria9\kuantitatif\prodi\K9DataKuantitatifProdi;
 use common\models\kriteria9\led\prodi\K9LedProdi;
 use common\models\kriteria9\lk\prodi\K9LkProdi;
 use common\models\kriteria9\penilaian\prodi\K9PenilaianProdiAnalisis;
@@ -29,6 +30,7 @@ use yii\behaviors\TimestampBehavior;
  * @property K9PenilaianProdiProfil $penilaianProfil
  * @property K9PenilaianProdiKriteria $penilaianKriteria
  * @property K9PenilaianProdiAnalisis $penilaianAnalisis
+ * @property K9DataKuantitatifProdi $kuantitatif
  */
 class K9AkreditasiProdi extends \yii\db\ActiveRecord
 {
@@ -152,6 +154,17 @@ class K9AkreditasiProdi extends \yii\db\ActiveRecord
         return $this->hasOne(K9PenilaianProdiAnalisis::class, ['id_akreditasi_prodi' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getKuantitatif()
+    {
+        return $this->hasOne(K9DataKuantitatifProdi::class, ['id_akreditasi_prodi' => 'id']);
+    }
+
+    /**
+     * @return $this
+     */
     public function updateProgress()
     {
         $led = $this->k9LedProdi->progress;
