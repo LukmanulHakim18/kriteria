@@ -62,7 +62,7 @@ use yii\bootstrap4\Modal;
                 <?php endif; ?>
                 <?php if (!($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT)): ?>
                     <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', [
-                        'lk/download-detail',
+                        'lk-prodi/download-detail',
                         'kriteria' => $kriteria,
                         'dokumen' => $v->id,
                         'lk' => $lkProdi->id,
@@ -70,22 +70,6 @@ use yii\bootstrap4\Modal;
                         'prodi' => $prodi->id
                     ], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
                 <?php endif; ?>
-                <?php if ($untuk === 'isi'): ?>
-                    <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['lk/hapus-detail'], [
-                        'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
-                        'data' => [
-                            'method' => 'POST',
-                            'confirm' => 'Apakah anda yakin menghapus item ini?',
-                            'params' => [
-                                'dokumen' => $v->id,
-                                'kriteria' => $kriteria,
-                                'prodi' => $prodi->id,
-                                'lk' => $lkProdi->id,
-                                'jenis' => $jenis
-                            ]
-                        ]
-                    ]) ?>
-                <?php endif ?>
             </div>
 
         </div>

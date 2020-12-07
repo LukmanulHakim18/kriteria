@@ -33,7 +33,7 @@ use yii\bootstrap4\Modal;
                     <?= Html::encode($detail->nama_dokumen) ?>
 
                 <?php else: ?>
-                    <?= Html::encode($detail->isi_dokumen) ?>
+                    <?= $detail->nama_dokumen . ' (' . $detail->isi_dokumen . ')' ?>
                 <?php endif; ?>
 
             </div>

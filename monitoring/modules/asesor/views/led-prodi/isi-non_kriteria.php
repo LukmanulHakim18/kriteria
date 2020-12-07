@@ -11,10 +11,6 @@ $this->params['breadcrumbs'][] = [
     'url' => ['/asesor/default/index']
 ];
 $this->params['breadcrumbs'][] = [
-    'label' => 'Penilaian Prodi',
-    'url' => ['/asesor/penialaian/index', 'id' => $akreditasiProdi->id]
-];
-$this->params['breadcrumbs'][] = [
     'label' => "Led",
     'url' => ['led-prodi/lihat', 'led' => $ledProdi->id, 'prodi' => $prodi->id]
 ];
