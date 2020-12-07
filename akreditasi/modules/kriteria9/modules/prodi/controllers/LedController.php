@@ -40,6 +40,10 @@ use yii2mod\collection\Collection;
 class LedController extends BaseController
 {
 
+    protected $lihatLedView = '@akreditasi/modules/kriteria9/modules/prodi/views/led/led';
+    protected $lihatKriteriaView = '@akreditasi/modules/kriteria9/modules/prodi/views/led/isi-kriteria';
+    protected $lihatNonKriteriaView = '@akreditasi/modules/kriteria9/modules/prodi/views/led/isi-non_kriteria';
+
     public function actionArsip($target, $prodi)
     {
 
@@ -236,7 +240,7 @@ class LedController extends BaseController
             return $this->redirect(Url::current());
         }
 
-        return $this->render('isi-kriteria', [
+        return $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/isi-kriteria', [
             'model' => $modelLed,
             'poinKriteria' => $poinKriteria,
             'untuk' => 'isi',
@@ -306,7 +310,7 @@ class LedController extends BaseController
             Yii::$app->session->setFlash('warning', 'Gagal Menambahkan Dokumen');
             return $this->redirect(Url::current());
         }
-        return $this->render('isi-non_kriteria',
+        return $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/isi-non_kriteria',
             [
                 'ledProdi' => $ledProdi,
                 'json' => $json,
@@ -435,7 +439,7 @@ class LedController extends BaseController
         $realPath = K9ProdiDirectoryHelper::getDokumenLedUrl($ledProdi->akreditasiProdi);
 
 
-        return $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/led', [
+        return $this->render($this->lihatLedView, [
             'led' => $ledProdi,
             'modelDokumen' => $modelDokumen,
             'dataDokumen' => $dataDokumen,
@@ -463,7 +467,7 @@ class LedController extends BaseController
 
         $json = K9ProdiJsonHelper::getJsonKriteriaLed($kriteria);
         $poinKriteria = $json->butir;
-        return $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/isi-kriteria', [
+        return $this->render($this->lihatKriteriaView, [
             'model' => $modelLed,
             'poinKriteria' => $poinKriteria,
             'untuk' => 'lihat',
@@ -499,7 +503,7 @@ class LedController extends BaseController
 
         $untuk = 'lihat';
 
-        return $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/isi-non_kriteria', [
+        return $this->render($this->lihatNonKriteriaView, [
             'ledProdi' => $ledProdi,
             'json' => $json,
             'poin' => $poin,

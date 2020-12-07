@@ -7,12 +7,16 @@
  */
 $this->title = 'Kriteria ' . $kriteria;
 $this->params['breadcrumbs'][] = [
-    'label' => 'Akreditasi Prodi',
-    'url' => ['akreditasi/index', 'prodi' => $prodi->id]
+    'label' => 'Asesor',
+    'url' => ['/asesor/default/index']
 ];
 $this->params['breadcrumbs'][] = [
-    'label' => "Akreditasi: {$akreditasiProdi->akreditasi->nama} - {$prodi->nama}",
-    'url' => ['akreditasi/detail', 'id' => $akreditasiProdi->id, 'prodi' => $prodi->id]
+    'label' => 'Penilaian Prodi',
+    'url' => ['/asesor/penialaian/index', 'id' => $akreditasiProdi->id]
+];
+$this->params['breadcrumbs'][] = [
+    'label' => "Led",
+    'url' => ['led-prodi/lihat', 'led' => $model->id, 'prodi' => $prodi->id]
 ];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -92,7 +96,7 @@ use yii\bootstrap4\Progress;
     </div>
 <?php
 $url = \yii\helpers\Url::to([
-    'led/butir-item',
+    'led-prodi/butir-item',
     'kriteria' => $kriteria,
     'led' => $model->id,
     'prodi' => $prodi->id,

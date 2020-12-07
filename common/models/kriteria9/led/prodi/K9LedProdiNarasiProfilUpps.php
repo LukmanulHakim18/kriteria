@@ -48,7 +48,13 @@ class K9LedProdiNarasiProfilUpps extends \yii\db\ActiveRecord
             [['id_led_prodi', 'created_at', 'updated_at'], 'integer'],
             [['progress'], 'double'],
             [['_1', '_2', '_3', '_4', '_5', '_6', '_7', '_8'], 'string'],
-            [['id_led_prodi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LedProdi::className(), 'targetAttribute' => ['id_led_prodi' => 'id']],
+            [
+                ['id_led_prodi'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => K9LedProdi::className(),
+                'targetAttribute' => ['id_led_prodi' => 'id']
+            ],
         ];
     }
 
@@ -57,7 +63,7 @@ class K9LedProdiNarasiProfilUpps extends \yii\db\ActiveRecord
      */
     public function behaviors()
     {
-        return[
+        return [
             TimestampBehavior::class
         ];
     }
@@ -90,7 +96,7 @@ class K9LedProdiNarasiProfilUpps extends \yii\db\ActiveRecord
     public function beforeSave($insert)
     {
 
-        $this->progress =  $this->updateProgress();
+        $this->progress = $this->updateProgress();
 
         return parent::beforeSave($insert);
     }
@@ -100,7 +106,7 @@ class K9LedProdiNarasiProfilUpps extends \yii\db\ActiveRecord
      */
     public function updateProgress()
     {
-        $exclude = ['id','id_led_prodi','progress','created_at','updated_at'];
+        $exclude = ['id', 'id_led_prodi', 'progress', 'created_at', 'updated_at'];
         return $this->hitung($this, $exclude);
     }
 
@@ -116,7 +122,7 @@ class K9LedProdiNarasiProfilUpps extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[LedProdi]].
+     * Gets query for [[LedProdiController]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -130,6 +136,10 @@ class K9LedProdiNarasiProfilUpps extends \yii\db\ActiveRecord
      */
     public function getDocuments()
     {
-        return $this->hasMany(K9LedProdiNonKriteriaDokumen::class, ['id_led_prodi'=>'id'])->andWhere(['like','kode_dokumen','B%']);
+        return $this->hasMany(K9LedProdiNonKriteriaDokumen::class, ['id_led_prodi' => 'id'])->andWhere([
+            'like',
+            'kode_dokumen',
+            'B%'
+        ]);
     }
 }

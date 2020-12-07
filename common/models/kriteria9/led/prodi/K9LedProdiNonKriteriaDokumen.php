@@ -47,9 +47,27 @@ class K9LedProdiNonKriteriaDokumen extends \yii\db\ActiveRecord
             [['id_led_prodi', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['isi_dokumen'], 'string'],
             [['kode_dokumen', 'nama_dokumen', 'bentuk_dokumen', 'jenis_dokumen'], 'string', 'max' => 255],
-            [['id_led_prodi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LedProdi::className(), 'targetAttribute' => ['id_led_prodi' => 'id']],
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
-            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
+            [
+                ['id_led_prodi'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => K9LedProdi::className(),
+                'targetAttribute' => ['id_led_prodi' => 'id']
+            ],
+            [
+                ['created_by'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => User::className(),
+                'targetAttribute' => ['created_by' => 'id']
+            ],
+            [
+                ['updated_by'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => User::className(),
+                'targetAttribute' => ['updated_by' => 'id']
+            ],
         ];
     }
 
@@ -82,7 +100,7 @@ class K9LedProdiNonKriteriaDokumen extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[LedProdi]].
+     * Gets query for [[LedProdiController]].
      *
      * @return ActiveQuery
      */
@@ -114,13 +132,17 @@ class K9LedProdiNonKriteriaDokumen extends \yii\db\ActiveRecord
     /**
      * @return ActiveQuery
      */
-    public function getNarasi(){
-        $initial = substr($this->kode_dokumen,'0','1');
+    public function getNarasi()
+    {
+        $initial = substr($this->kode_dokumen, '0', '1');
 
-        switch ($initial){
-            case 'A': return $this->hasOne(K9LedProdiNarasiKondisiEksternal::class,['id_led_prodi'=>'id_led_prodi']);
-            case 'B': return $this->hasOne(K9LedProdiNarasiProfilUpps::class,['id_led_prodi'=>'id_led_prodi']);
-            case 'D': return $this->hasOne(K9LedProdiNarasiAnalisis::class,['id_led_prodi'=>'id_led_prodi']);
+        switch ($initial) {
+            case 'A':
+                return $this->hasOne(K9LedProdiNarasiKondisiEksternal::class, ['id_led_prodi' => 'id_led_prodi']);
+            case 'B':
+                return $this->hasOne(K9LedProdiNarasiProfilUpps::class, ['id_led_prodi' => 'id_led_prodi']);
+            case 'D':
+                return $this->hasOne(K9LedProdiNarasiAnalisis::class, ['id_led_prodi' => 'id_led_prodi']);
         }
 
         return new ActiveQuery($this);
