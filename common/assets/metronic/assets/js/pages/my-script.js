@@ -91,14 +91,21 @@ $('form').on('beforeSubmit', function () {
     submit.html('<i class="flaticon2-refresh"></i> Sedang Memproses');
     submit.prop('disabled', true);
 
-    KTApp.blockPage({
-        overlayColor: '#000000',
-        type: 'v2',
-        state: 'primary',
-        message: 'Sedang memproses...'
-    });
+    // KTApp.blockPage({
+    //     overlayColor: '#000000',
+    //     type: 'v2',
+    //     state: 'primary',
+    //     message: 'Sedang memproses...'
+    // });
 
 });
 
+function normalizeButton(id, normal = {icon: '', text: ''}) {
+    var button = $('#' + id);
+    console.log(id);
+    console.log(normal.icon);
+    button.prop('disabled', false);
+    button.html(`<i class="${normal.icon}"></i> ${normal.text}`);
 
+}
 

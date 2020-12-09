@@ -58,10 +58,10 @@ class m201208_081357_alter_lkprodi_narasi_table extends Migration
 
 
         //8.f.4-1 - 8.f.4-4
-        $this->renameColumn('{{%k9_lk_prodi_kriteria8_narasi}}', '_8_b_4__1', '_8_b_4');
-        $this->dropColumn('{{%k9_lk_prodi_kriteria8_narasi}}', '_8_b_4__2');
-        $this->dropColumn('{{%k9_lk_prodi_kriteria8_narasi}}', '_8_b_4__3');
-        $this->dropColumn('{{%k9_lk_prodi_kriteria8_narasi}}', '_8_b_4__4');
+        $this->renameColumn('{{%k9_lk_prodi_kriteria8_narasi}}', '_8_f_4__1', '_8_f_4');
+        $this->dropColumn('{{%k9_lk_prodi_kriteria8_narasi}}', '_8_f_4__2');
+        $this->dropColumn('{{%k9_lk_prodi_kriteria8_narasi}}', '_8_f_4__3');
+        $this->dropColumn('{{%k9_lk_prodi_kriteria8_narasi}}', '_8_f_4__4');
     }
 
     /*

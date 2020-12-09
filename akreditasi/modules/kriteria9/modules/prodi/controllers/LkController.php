@@ -10,6 +10,7 @@ use akreditasi\modules\kriteria9\controllers\BaseController;
 use common\helpers\DownloadDokumenTrait;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\helpers\kriteria9\K9ProdiJsonHelper;
+use common\helpers\NomorKriteriaHelper;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\forms\lk\K9PencarianLkProdiForm;
 use common\models\kriteria9\lk\prodi\K9LkProdi;
@@ -231,7 +232,7 @@ class LkController extends BaseController
             'dokUploadModel' => $dokUploadModel,
             'dokTextModel' => $dokTextModel,
             'dokLinkModel' => $dokLinkModel,
-            'modelAttribute' => '_' . str_replace('.', '_', $poin),
+            'modelAttribute' => NomorKriteriaHelper::changeToDbFormat($poin),
             'kriteria' => $kriteria,
             'poin' => $poin,
             'lkCollection' => $lkCollection,
