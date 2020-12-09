@@ -68,7 +68,10 @@ class K9LkProdiKriteria8Narasi extends \yii\db\ActiveRecord
                     '_8_f_1',
                     '_8_f_2',
                     '_8_f_3',
-                    '_8_f_4'
+                    '_8_f_4__1',
+                    '_8_f_4__2',
+                    '_8_f_4__3',
+                    '_8_f_4__4',
                 ],
                 'string'
             ],
