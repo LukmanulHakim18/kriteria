@@ -2,7 +2,6 @@
 
 namespace common\models\kriteria9\lk\prodi;
 
-use common\helpers\kriteria9\K9ProdiProgressHelper;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -18,6 +17,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $_8_d_2
  * @property string $_8_e_1
  * @property string $_8_e_2
+ * @property string $_8_e_2__ref
  * @property string $_8_f_1
  * @property string $_8_f_2
  * @property string $_8_f_3
@@ -54,9 +54,32 @@ class K9LkProdiKriteria8Narasi extends \yii\db\ActiveRecord
         return [
             [['id_lk_prodi_kriteria8', 'created_at', 'updated_at'], 'integer'],
             [['progress'], 'number'],
-            [['_8_a', '_8_b_1', '_8_b_2', '_8_c', '_8_d_1', '_8_d_2', '_8_e_1', '_8_e_2', '_8_f_1', '_8_f_2', '_8_f_3', '_8_f_4'], 'string'],
+            [
+                [
+                    '_8_a',
+                    '_8_b_1',
+                    '_8_b_2',
+                    '_8_c',
+                    '_8_d_1',
+                    '_8_d_2',
+                    '_8_e_1',
+                    '_8_e_2',
+                    '_8_e_2__ref',
+                    '_8_f_1',
+                    '_8_f_2',
+                    '_8_f_3',
+                    '_8_f_4'
+                ],
+                'string'
+            ],
 
-            [['id_lk_prodi_kriteria8'], 'exist', 'skipOnError' => true, 'targetClass' => K9LkProdiKriteria8::className(), 'targetAttribute' => ['id_lk_prodi_kriteria8' => 'id']],
+            [
+                ['id_lk_prodi_kriteria8'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => K9LkProdiKriteria8::className(),
+                'targetAttribute' => ['id_lk_prodi_kriteria8' => 'id']
+            ],
         ];
     }
 
@@ -68,18 +91,22 @@ class K9LkProdiKriteria8Narasi extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_lk_prodi_kriteria8' => 'Id Lk Prodi',
-            '_8_a' => '8 A',
-            '_8_b_1' => '8 B 1',
-            '_8_b_2' => '8 B 2',
-            '_8_c' => '8 C',
-            '_8_d_1' => '8 D 1',
-            '_8_d_2' => '8 D 2',
-            '_8_e_1' => '8 E 1',
-            '_8_e_2' => '8 E 2',
-            '_8_f_1' => '8 F 1',
-            '_8_f_2' => '8 F 2',
-            '_8_f_3' => '8 F 3',
-            '_8_f_4' => '8 F 4',
+            '_8_a' => '8.a',
+            '_8_b_1' => '8.b.1',
+            '_8_b_2' => '8.b.2',
+            '_8_c' => '8.c',
+            '_8_d_1' => '8.d.1',
+            '_8_d_2' => '8.d.2',
+            '_8_e_1' => '8.e.1',
+            '_8_e_2' => '8.e.2',
+            '_8_e_2__ref' => '8.e.2-ref',
+            '_8_f_1' => '8.f.1',
+            '_8_f_2' => '8.f.2',
+            '_8_f_3' => '8.f.3',
+            '_8_f_4__1' => '8.f.4-1',
+            '_8_f_4__2' => '8.f.4-2',
+            '_8_f_4__3' => '8.f.4-3',
+            '_8_f_4__4' => '8.f.4-4',
             'progress' => 'Progress',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

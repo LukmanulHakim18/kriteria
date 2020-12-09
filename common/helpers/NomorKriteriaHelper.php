@@ -9,11 +9,13 @@ class NomorKriteriaHelper
     public static function changeToJsonFormat($param)
     {
         $first = substr($param, 1);
-        return str_replace('_', '.', $first);
+        $temp = str_replace('__', '-', $first);
+        return str_replace('_', '.', $temp);
     }
 
     public static function changeToDbFormat($param)
     {
-        return '_' . str_replace('.', '_', $param);
+        $new = str_replace('-', '__', $param);
+        return '_' . str_replace('.', '_', $new);
     }
 }
