@@ -25,6 +25,7 @@ return [
             'migrationNamespaces' => [
                 //...
                 'zhuravljov\yii\queue\monitor\migrations',
+
             ],
         ],
     ],

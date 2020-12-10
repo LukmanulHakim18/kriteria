@@ -72,6 +72,7 @@ class K9LedProdiNarasiKondisiEksternal extends \yii\db\ActiveRecord
             '_A' => 'A',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'progress'=>'Progress'
         ];
     }
 
@@ -85,37 +86,7 @@ class K9LedProdiNarasiKondisiEksternal extends \yii\db\ActiveRecord
         return $this->hasOne(K9LedProdi::className(), ['id' => 'id_led_prodi']);
     }
 
-    /**
-     * @param bool $insert
-     * @return bool
-     */
-    public function beforeSave($insert)
-    {
 
-        $this->progress = $this->updateProgress();
-
-        return parent::beforeSave($insert);
-    }
-
-    /**
-     * @return float
-     */
-    public function updateProgress()
-    {
-        $exclude = ['id', 'id_led_prodi', 'progress', 'created_at', 'updated_at'];
-        return $this->hitung($this, $exclude);
-    }
-
-    /**
-     * @param bool $insert
-     * @param array $changedAttributes
-     */
-    public function afterSave($insert, $changedAttributes)
-    {
-        $this->ledProdi->updateProgress();
-        $this->ledProdi->akreditasiProdi->updateProgress()->save(false);
-        parent::afterSave($insert, $changedAttributes);
-    }
 
     /**
      * @return \yii\db\ActiveQuery

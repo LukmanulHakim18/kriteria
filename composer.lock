@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d231f87a3e0f456a267fc5b629fb36f3",
+    "content-hash": "0374ba2deb6718500d8b3c8c1ab53e5a",
     "packages": [
         {
             "name": "2amigos/yii2-tinymce-widget",
@@ -713,6 +713,71 @@
                 "yii2"
             ],
             "time": "2015-06-08T16:07:23+00:00"
+        },
+        {
+            "name": "filp/whoops",
+            "version": "2.9.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/filp/whoops.git",
+                "reference": "307fb34a5ab697461ec4c9db865b20ff2fd40771"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/307fb34a5ab697461ec4c9db865b20ff2fd40771",
+                "reference": "307fb34a5ab697461ec4c9db865b20ff2fd40771",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9 || ^7.0 || ^8.0",
+                "psr/log": "^1.0.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9 || ^1.0",
+                "phpunit/phpunit": "^4.8.36 || ^5.7.27 || ^6.5.14 || ^7.5.20 || ^8.5.8 || ^9.3.3",
+                "symfony/var-dumper": "^2.6 || ^3.0 || ^4.0 || ^5.0"
+            },
+            "suggest": {
+                "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
+                "whoops/soap": "Formats errors as SOAP responses"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Whoops\\": "src/Whoops/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Filipe Dobreira",
+                    "homepage": "https://github.com/filp",
+                    "role": "Developer"
+                }
+            ],
+            "description": "php error handling for cool kids",
+            "homepage": "https://filp.github.io/whoops/",
+            "keywords": [
+                "error",
+                "exception",
+                "handling",
+                "library",
+                "throwable",
+                "whoops"
+            ],
+            "support": {
+                "issues": "https://github.com/filp/whoops/issues",
+                "source": "https://github.com/filp/whoops/tree/2.9.1"
+            },
+            "time": "2020-11-01T12:00:00+00:00"
         },
         {
             "name": "iiifx-production/yii2-autocomplete-helper",
@@ -2803,6 +2868,52 @@
             ],
             "description": "the fast and modern library for easy data manipulation",
             "time": "2016-10-23T13:32:37+00:00"
+        },
+        {
+            "name": "lucidtaz/yii2-whoops",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LucidTaZ/yii2-whoops.git",
+                "reference": "b95184f80800658f717b6a832a82564c47cb6abe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LucidTaZ/yii2-whoops/zipball/b95184f80800658f717b6a832a82564c47cb6abe",
+                "reference": "b95184f80800658f717b6a832a82564c47cb6abe",
+                "shasum": ""
+            },
+            "require": {
+                "filp/whoops": "^2.1",
+                "php": ">=5.6.0",
+                "yiisoft/yii2": "^2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.5"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "lucidtaz\\yii2whoops\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thijs Zumbrink",
+                    "email": "thijs@schalpoen.nl"
+                }
+            ],
+            "description": "Yii2 bindings for Whoops error handler",
+            "support": {
+                "issues": "https://github.com/LucidTaZ/yii2-whoops/issues",
+                "source": "https://github.com/LucidTaZ/yii2-whoops/tree/master"
+            },
+            "time": "2019-02-06T14:57:47+00:00"
         },
         {
             "name": "maennchen/zipstream-php",
@@ -8763,7 +8874,8 @@
         "mootensai/yii2-enhanced-gii": 20,
         "kartik-v/yii2-tree-manager": 20,
         "kartik-v/yii2-datecontrol": 20,
-        "supplyhog/yii2-clipboardjs": 20
+        "supplyhog/yii2-clipboardjs": 20,
+        "lucidtaz/yii2-whoops": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -16,6 +16,9 @@ use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiNonKriteriaUploadForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiTeksForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiUploadForm;
 use akreditasi\models\kriteria9\forms\led\K9DokumenLedProdiUploadForm;
+use akreditasi\models\kriteria9\led\prodi\K9LedProdiNarasiAnalisisForm;
+use akreditasi\models\kriteria9\led\prodi\K9LedProdiNarasiKondisiEksternalForm;
+use akreditasi\models\kriteria9\led\prodi\K9LedProdiNarasiProfilUppsForm;
 use akreditasi\modules\kriteria9\controllers\BaseController;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\helpers\kriteria9\K9ProdiJsonHelper;
@@ -116,9 +119,9 @@ class LedController extends BaseController
         $json_profil = K9ProdiJsonHelper::getJsonLedProfil();
         $json_analisis = K9ProdiJsonHelper::getJsonLedAnalisis();
 
-        $modelEksternal = K9LedProdiNarasiKondisiEksternal::findOne(['id_led_prodi' => $ledProdi->id]);
-        $modelProfil = K9LedProdiNarasiProfilUpps::findOne(['id_led_prodi' => $ledProdi->id]);
-        $modelAnalisis = K9LedProdiNarasiAnalisis::findOne(['id_led_prodi' => $ledProdi->id]);
+        $modelEksternal = K9LedProdiNarasiKondisiEksternalForm::findOne(['id_led_prodi' => $ledProdi->id]);
+        $modelProfil = K9LedProdiNarasiProfilUppsForm::findOne(['id_led_prodi' => $ledProdi->id]);
+        $modelAnalisis = K9LedProdiNarasiAnalisisForm::findOne(['id_led_prodi' => $ledProdi->id]);
         $modelDokumen = new K9DokumenLedProdiUploadForm();
         $dataDokumen = K9ProdiEksporDokumen::findAll(['id_led_prodi' => $ledProdi->id]);
         $kriteria = $this->getArrayKriteria($led);
@@ -256,15 +259,15 @@ class LedController extends BaseController
 
         switch ($poin) {
             case 'A':
-                $modelNarasi = $ledProdi->narasiEksternal;
+                $modelNarasi = K9LedProdiNarasiKondisiEksternalForm::findOne(['id_led_prodi'=>$ledProdi->id]);
                 $json = K9ProdiJsonHelper::getJsonLedKondisiEksternal();
                 break;
             case 'B':
-                $modelNarasi = $ledProdi->narasiProfil;
+                $modelNarasi = K9LedProdiNarasiProfilUppsForm::findOne(['id_led_prodi'=>$ledProdi->id]);
                 $json = K9ProdiJsonHelper::getJsonLedProfil();
                 break;
             case 'D':
-                $modelNarasi = $ledProdi->narasiAnalisis;
+                $modelNarasi = K9LedProdiNarasiAnalisisForm::findOne(['id_led_prodi'=>$ledProdi->id]);
                 $json = K9ProdiJsonHelper::getJsonLedAnalisis();
                 break;
         }
@@ -374,17 +377,17 @@ class LedController extends BaseController
         switch ($poin) {
             case 'A':
                 $json = K9ProdiJsonHelper::getJsonLedKondisiEksternal();
-                $modelNarasi = $ledProdi->narasiEksternal;
+                $modelNarasi = K9LedProdiNarasiKondisiEksternalForm::findOne(['id_led_prodi'=>$ledProdi->id]);
 
                 break;
             case 'B':
                 $json = K9ProdiJsonHelper::getJsonLedProfil();
-                $modelNarasi = $ledProdi->narasiProfil;
+                $modelNarasi = K9LedProdiNarasiProfilUppsForm::findOne(['id_led_prodi'=>$ledProdi->id]);;
 
                 break;
             case 'D':
                 $json = K9ProdiJsonHelper::getJsonLedAnalisis();
-                $modelNarasi = $ledProdi->narasiAnalisis;
+                $modelNarasi = K9LedProdiNarasiAnalisisForm::findOne(['id_led_prodi'=>$ledProdi->id]);
 
                 break;
         }

@@ -89,37 +89,6 @@ class K9LedProdiNarasiProfilUpps extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @param bool $insert
-     * @return bool
-     */
-    public function beforeSave($insert)
-    {
-
-        $this->progress = $this->updateProgress();
-
-        return parent::beforeSave($insert);
-    }
-
-    /**
-     * @return float
-     */
-    public function updateProgress()
-    {
-        $exclude = ['id', 'id_led_prodi', 'progress', 'created_at', 'updated_at'];
-        return $this->hitung($this, $exclude);
-    }
-
-    /**
-     * @param bool $insert
-     * @param array $changedAttributes
-     */
-    public function afterSave($insert, $changedAttributes)
-    {
-        $this->ledProdi->updateProgress();
-        $this->ledProdi->akreditasiProdi->updateProgress()->save(false);
-        parent::afterSave($insert, $changedAttributes);
-    }
 
     /**
      * Gets query for [[LedProdiController]].

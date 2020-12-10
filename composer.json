@@ -48,7 +48,8 @@
         "yii2mod/collection": "*",
         "netresearch/jsonmapper": "^3.1",
         "iiifx-production/yii2-autocomplete-helper": "^2.0",
-        "zhuravljov/yii2-queue-monitor": "^0.3.4"
+        "zhuravljov/yii2-queue-monitor": "^0.3.4",
+        "lucidtaz/yii2-whoops": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

@@ -4,6 +4,7 @@
 namespace admin\models;
 
 use common\helpers\kriteria9\K9ProdiJsonHelper;
+use common\helpers\NomorKriteriaHelper;
 use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
 use common\models\kriteria9\led\prodi\K9LedProdi;
 use common\models\kriteria9\led\prodi\K9LedProdiNarasiAnalisis;
@@ -117,7 +118,6 @@ class K9AkreditasiProdiForm extends Model
         }
 
         $prodi = $this->_akreditasiProdi->prodi;
-        $fileJson = 'lkps_prodi_' . $prodi->jenjang . '.json';
         $json = K9ProdiJsonHelper::getAllJsonLk($prodi->jenjang);
         foreach ($json as /** @var Lk $kriteria */ $kriteria) {
             $kritClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria->kriteria;
@@ -139,7 +139,7 @@ class K9AkreditasiProdiForm extends Model
             $attr = ['id_lk_prodi_kriteria' . $kriteria->kriteria => $kritProdi->id, 'progress' => 0];
             $kriteriaProdi->setAttributes($attr);
             foreach ($kriteria->butir as $key => /** @var $item TabelLk */ $item) {
-                $modelAttribute = '_' . str_replace('.', '_', $item->tabel);
+                $modelAttribute = NomorKriteriaHelper::changeToDbFormat($item->tabel);
                 $kriteriaProdi->$modelAttribute = $item->template;
             }
             if (!$kriteriaProdi->save()) {
@@ -213,33 +213,12 @@ class K9AkreditasiProdiForm extends Model
 
         $attr = ['id_led_prodi' => $this->_led_prodi->id, 'progress' => 0];
 
-        $kondisiEksternal = new K9LedProdiNarasiKondisiEksternal();
-        $profilUpps = new K9LedProdiNarasiProfilUpps();
-        $analisis = new K9LedProdiNarasiAnalisis();
 
-        $kondisiEksternal->attributes = $attr;
-        $profilUpps->attributes = $attr;
-        $analisis->attributes = $attr;
 
-        if (!$kondisiEksternal->save()) {
-            $transaction->rollBack();
-
-            throw new \yii\db\Exception($kondisiEksternal->errors);
-        }
-        if (!$profilUpps->save()) {
-            $transaction->rollBack();
-
-            throw new \yii\db\Exception($profilUpps->errors);
-        }
-        if (!$analisis->save()) {
-            $transaction->rollBack();
-
-            throw new \yii\db\Exception($analisis->errors);
-        }
         for ($i = 1; $i <= 9; $i++) {
 
             $kriteria_class_path = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria' . $i;
-            $kriteria_narasi_class_path = 'common\\models\kriteria9\\led\\prodi\\K9LedProdiNarasiKriteria' . $i;
+            $kriteria_narasi_class_path = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiNarasiKriteria' . $i;
 
             $kriteriaProdi = new $kriteria_class_path;
             $kriteriaProdi->attributes = $attr;
@@ -259,6 +238,24 @@ class K9AkreditasiProdiForm extends Model
                 throw new InvalidArgumentException($narasiKriteriaProdi->errors);
             }
         }
+
+        $kondisiEksternal = new K9LedProdiNarasiKondisiEksternal();
+        $profilUpps = new K9LedProdiNarasiProfilUpps();
+        $analisis = new K9LedProdiNarasiAnalisis();
+
+        $kondisiEksternal->id_led_prodi = $this->_led_prodi->id;
+        $kondisiEksternal->progress = 0;
+
+        $profilUpps->id_led_prodi = $this->_led_prodi->id;
+        $profilUpps->progress= 0;
+
+        $analisis->id_led_prodi = $this->_led_prodi->id;
+        $analisis->progress = 0;
+
+
+        $kondisiEksternal->save();
+        $profilUpps->save();
+        $analisis->save();
     }
 
 
