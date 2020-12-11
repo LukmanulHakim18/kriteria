@@ -1,19 +1,19 @@
 <?php
 
+use common\models\kriteria9\kuantitatif\prodi\K9DataKuantitatifProdi;
 use common\models\ProgramStudi;
-use common\models\standar7\kuantitatif\prodi\S7DataKuantitatifProdi;
 use yii\bootstrap4\Html;
 
-/* @var $dataKuantitatifProdi S7DataKuantitatifProdi */
-/* @var $model S7DataKuantitatifProdi */
-/* @var $akreprodis1 ProgramStudi */
+/* @var $dataKuantitatifProdi K9DataKuantitatifProdi */
+/* @var $prodi ProgramStudi */
+/* @var $akreditasiProdi ProgramStudi */
 
 $this->title = "Data Kuantitatif";
 $this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
 $this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/site/index']];
 $this->params['breadcrumbs'][] = [
     'label' => 'Program Studi',
-    'url' => ['/kriteria9/k7-prodi/default/index', 'prodi' => $_GET['prodi']]
+    'url' => ['/kriteria9/k9-prodi/default/index', 'prodi' => $prodi->id]
 ];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -31,7 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-actions">
                 <?= Html::a('Export Kuantitatif', ['kuantitatif/export'],
-                    ['class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air']) ?>
+                    [
+                        'class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air',
+                        'data-method' => 'POST',
+                        'data-params' => ['akreditasiprodi' => $akreditasiProdi->id]
+                    ]) ?>
             </div>
         </div>
     </div>

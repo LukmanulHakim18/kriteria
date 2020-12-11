@@ -13,7 +13,7 @@ return [
     'id' => 'app-akreditasi',
     'name' => $params['nama_sistem'],
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'queue'],
     'controllerNamespace' => 'akreditasi\controllers',
     'modules' => [
         'profile' => [

@@ -9,7 +9,7 @@ $params = array_merge(
 return [
     'id' => 'app-console',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log', 'autocomplete'],
+    'bootstrap' => ['log', 'autocomplete', 'queue'],
     'controllerNamespace' => 'console\controllers',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -52,15 +52,6 @@ return [
                 '@console/config/main.php',
                 '@console/config/main-local.php',
             ],
-        ],
-        'queue' => [
-            'class' => \yii\queue\db\Queue::class,
-            'db' => 'db', // DB connection component or its config
-            'tableName' => '{{%queue}}', // Table name
-            'channel' => 'default', // Queue channel key
-            'mutex' => \yii\mutex\MysqlMutex::class, // Mutex that used to sync queries
-            'as jobMonitor' => \zhuravljov\yii\queue\monitor\JobMonitor::class,
-            'as workerMonitor' => \zhuravljov\yii\queue\monitor\WorkerMonitor::class,
         ],
     ],
     'params' => $params,
