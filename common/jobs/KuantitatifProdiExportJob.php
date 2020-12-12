@@ -13,6 +13,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use Symfony\Component\DomCrawler\Crawler;
 use yii\base\BaseObject;
+use yii\helpers\FileHelper;
 use yii\helpers\Inflector;
 use yii\queue\JobInterface;
 
@@ -48,6 +49,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 break;
             case ProgramStudi::JENJANG_SARJANA:
                 $this->tabel1($prodi->jenjang);
+                $this->tabel2a($prodi->jenjang);
                 break;
             case ProgramStudi::JENJANG_SARJANA_TERAPAN:
                 break;
@@ -71,6 +73,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
         $writer->save("$path/$filename");
 
         $model = K9DataKuantitatifProdi::findOne(['id_akreditasi_prodi' => $akreditasiProdi->id]);
+        $oldName = $model->isi_dokumen;
         if (!$model) {
             $model = new K9DataKuantitatifProdi();
             $model->id_akreditasi_prodi = $akreditasiProdi->id;
@@ -78,6 +81,9 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
         $model->nama_dokumen = 'Matriks Kuantitatif ' . $prodi->nama . '(' . $akreditasiProdi->akreditasi->tahun . ')';
         $model->isi_dokumen = $filename;
         $model->save(false);
+
+        FileHelper::unlink("$path/$oldName");
+
     }
 
     private function tabel1($jenjang)
@@ -152,7 +158,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
         $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentContentRow, 1);
 
         //1-3
-        $crawler = new Crawler($tabel->_1__1);
+        $crawler = new Crawler($tabel->_1__3);
         $data = $crawler->filter('tbody')->filter('tr')->each(function ($tr, $i) {
             return $tr->filter('td')->each(function ($td, $i) {
                 return trim($td->text());
@@ -183,6 +189,10 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
         }
 
         $this->spreadsheet->getSheet(3)->removeRow($currentContentRow, 1);
+    }
+
+    private function tabel2a(string $jenjang)
+    {
     }
 
 }
