@@ -49,6 +49,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $this->tabel1($prodi->jenjang);
                 $this->tabel2($prodi->jenjang);
                 $this->tabel3($prodi->jenjang);
+                $this->tabel4($prodi->jenjang);
                 break;
             case ProgramStudi::JENJANG_SARJANA_TERAPAN:
                 break;
@@ -253,7 +254,6 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 break;
         }
     }
-
 
     private function tabel3(string $jenjang)
     {
@@ -481,5 +481,133 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             }
             $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
         }
+
+        if ($jenjang !== ProgramStudi::JENJANG_DIPLOMA) {
+            //3b5
+            $crawler = new Crawler($narasi->_3_b_5);
+            $data = $this->filter($crawler);
+            array_pop($data);
+
+            $startRow = 6;
+            $currentRow = 6;
+            $currentWorksheet = 18;
+
+            foreach ($data as $item) {
+                $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
+                $this->spreadsheet->getSheet($currentWorksheet)
+                    ->setCellValue('A' . $currentRow, $item[0])
+                    ->setCellValue('B' . $currentRow, $item[1])
+                    ->setCellValue('C' . $currentRow, $item[2])
+                    ->setCellValue('D' . $currentRow, $item[3]);
+            }
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        }
+        if ($jenjang === ProgramStudi::JENJANG_DIPLOMA || $jenjang === ProgramStudi::JENJANG_SARJANA_TERAPAN || $jenjang === ProgramStudi::JENJANG_MAGISTER_TERAPAN || $jenjang === ProgramStudi::JENJANG_DOKTOR_TERAPAN) {
+            //3b6
+            $crawler = new Crawler($narasi->_3_b_6);
+            $data = $this->filter($crawler);
+            array_pop($data);
+
+            $startRow = 6;
+            $currentRow = 6;
+            $currentWorksheet = 19;
+
+            foreach ($data as $item) {
+                $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
+                $this->spreadsheet->getSheet($currentWorksheet)
+                    ->setCellValue('A' . $currentRow, $item[0])
+                    ->setCellValue('B' . $currentRow, $item[1])
+                    ->setCellValue('C' . $currentRow, $item[2])
+                    ->setCellValue('D' . $currentRow, $item[3])
+                    ->setCellValue('E' . $currentRow, $item[4])
+                    ->setCellValue('F' . $currentRow, $item[5] ?? '');
+            }
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        }
+
+        //3b7-1
+        $crawler = new Crawler($narasi->_3_b_7__1);
+        $data = $this->filter($crawler);
+        array_pop($data);
+
+        $startRow = 7;
+        $currentRow = 7;
+        $currentWorksheet = 20;
+
+        foreach ($data as $k => $item) {
+            if ($k === 0) {
+                continue;
+            }
+            $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
+            $this->spreadsheet->getSheet($currentWorksheet)
+                ->setCellValue('A' . $currentRow, $item[0])
+                ->setCellValue('B' . $currentRow, $item[1])
+                ->setCellValue('C' . $currentRow, $item[2])
+                ->setCellValue('D' . $currentRow, $item[3]);
+        }
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+
+        //3b7-2
+        $crawler = new Crawler($narasi->_3_b_7__2);
+        $data = $this->filter($crawler);
+        array_pop($data);
+
+        $startRow = 7;
+        $currentRow = 7;
+        $currentWorksheet = 21;
+
+        foreach ($data as $k => $item) {
+            if ($k === 0) {
+                continue;
+            }
+            $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
+            $this->spreadsheet->getSheet($currentWorksheet)
+                ->setCellValue('A' . $currentRow, $item[0])
+                ->setCellValue('B' . $currentRow, $item[1])
+                ->setCellValue('C' . $currentRow, $item[2])
+                ->setCellValue('D' . $currentRow, $item[3]);
+        }
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+
+        //3b7-3
+        $crawler = new Crawler($narasi->_3_b_7__3);
+        $data = $this->filter($crawler);
+        array_pop($data);
+
+        $startRow = 7;
+        $currentRow = 7;
+        $currentWorksheet = 21;
+
+        foreach ($data as $k => $item) {
+            if ($k === 0) {
+                continue;
+            }
+            $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
+            $this->spreadsheet->getSheet($currentWorksheet)
+                ->setCellValue('A' . $currentRow, $item[0])
+                ->setCellValue('B' . $currentRow, $item[1])
+                ->setCellValue('C' . $currentRow, $item[2])
+                ->setCellValue('D' . $currentRow, $item[3]);
+        }
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+
+        //3b7-4
+        $crawler = new Crawler($narasi->_3_b_7__4);
+        $data = $this->filter($crawler);
+        array_pop($data);
+
+        $startRow = 7;
+        $currentRow = 7;
+        $currentWorksheet = 22;
+
+        foreach ($data as $item) {
+            $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
+            $this->spreadsheet->getSheet($currentWorksheet)
+                ->setCellValue('A' . $currentRow, $item[0])
+                ->setCellValue('B' . $currentRow, $item[1])
+                ->setCellValue('C' . $currentRow, $item[2])
+                ->setCellValue('D' . $currentRow, $item[3]);
+        }
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
     }
 }
