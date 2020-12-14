@@ -1096,6 +1096,8 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             }
             $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
         }
+
+        //8e1
         if ($jenjang === ProgramStudi::JENJANG_DIPLOMA || $jenjang === ProgramStudi::JENJANG_SARJANA || $jenjang === ProgramStudi::JENJANG_SARJANA_TERAPAN) {
 
             $crawler = new Crawler($narasi->_8_e_1);
@@ -1103,7 +1105,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             array_pop($data);
             $startRow = 7;
             $currentRow = 7;
-            $currentWorksheet = 33;
+            $currentWorksheet = 37;
 
             foreach ($data as $k => $item) {
 
@@ -1114,6 +1116,91 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                     ->setCellValue('D' . $currentRow, $item[3])
                     ->setCellValue('E' . $currentRow, $item[4])
                     ->setCellValue('F' . $currentRow, $item[5]);
+                $currentContentRow++;
+
+            }
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        }
+
+        //ref 8e2
+        if ($jenjang !== ProgramStudi::JENJANG_DOKTOR_TERAPAN || $jenjang !== ProgramStudi::JENJANG_DOKTOR) {
+
+            $crawler = new Crawler($narasi->_8_e_2__ref);
+            $data = $this->filter($crawler);
+            array_pop($data);
+            $startRow = 7;
+            $currentRow = 7;
+            $currentWorksheet = 38;
+
+            foreach ($data as $k => $item) {
+
+                $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
+                $this->spreadsheet->getSheet($currentWorksheet)
+                    ->setCellValue('B' . $currentRow, $item[1])
+                    ->setCellValue('C' . $currentRow, $item[2]);
+                $currentContentRow++;
+
+            }
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+
+            //8e2
+            $crawler = new Crawler($narasi->_8_e_2);
+            $data = $this->filter($crawler);
+            array_pop($data);
+            $startRow = 7;
+            $currentRow = 7;
+            $currentWorksheet = 38;
+
+            foreach ($data as $k => $item) {
+
+                $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
+                $this->spreadsheet->getSheet($currentWorksheet)
+                    ->setCellValue('C' . $currentRow, $item[2])
+                    ->setCellValue('D' . $currentRow, $item[3])
+                    ->setCellValue('E' . $currentRow, $item[4])
+                    ->setCellValue('F' . $currentRow, $item[5])
+                    ->setCellValue('G' . $currentRow, $item[6]);
+                $currentContentRow++;
+
+            }
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        }
+
+        //8f1
+        if ($jenjang === ProgramStudi::JENJANG_SARJANA || $jenjang === ProgramStudi::JENJANG_MAGISTER || $jenjang === ProgramStudi::JENJANG_DOKTOR) {
+            $crawler = new Crawler($narasi->_8_f_1);
+            $data = $this->filter($crawler);
+            array_pop($data);
+            $startRow = 7;
+            $currentRow = 7;
+            $currentWorksheet = 39;
+
+            foreach ($data as $k => $item) {
+
+                $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
+                $this->spreadsheet->getSheet($currentWorksheet)
+                    ->setCellValue('C' . $currentRow, $item[2])
+                    ->setCellValue('D' . $currentRow, $item[3])
+                    ->setCellValue('E' . $currentRow, $item[4]);
+                $currentContentRow++;
+
+            }
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        } else {
+            $crawler = new Crawler($narasi->_8_f_1);
+            $data = $this->filter($crawler);
+            array_pop($data);
+            $startRow = 7;
+            $currentRow = 7;
+            $currentWorksheet = 40;
+
+            foreach ($data as $k => $item) {
+
+                $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
+                $this->spreadsheet->getSheet($currentWorksheet)
+                    ->setCellValue('C' . $currentRow, $item[2])
+                    ->setCellValue('D' . $currentRow, $item[3])
+                    ->setCellValue('E' . $currentRow, $item[4]);
                 $currentContentRow++;
 
             }
