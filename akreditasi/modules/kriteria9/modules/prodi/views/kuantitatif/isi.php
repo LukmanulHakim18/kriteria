@@ -43,51 +43,39 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="kt-portlet__body">
         <div class="kt-section kt-section--first" style="margin-bottom: 0;">
 
-
-            <!--                            Tabel LED-->
-            <table class="table">
-                <thead class="thead-dark">
-                <tr>
-                    <th colspan="2">Dokumen Kuantitatif</th>
-
-                </tr>
-                </thead>
-                <tbody>
-
-                <?php
-
-                if ($dataKuantitatifProdi != null) {
-                    foreach ($dataKuantitatifProdi as $item):?>
-                        <tr>
-                            <td>
-                                <?= $item->nama_dokumen ?>
-                            </td>
-                            <td>
-
-                                <?= Html::a('<i class ="la la-download"></i> Unduh',
-                                    ['kuantitatif/download-dokumen', 'dokumen' => $item->id, 'prodi' => $_GET['prodi']],
-                                    ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-info']) ?>
-                                <?= Html::a('<i class ="la la-trash"></i> Hapus', ['kuantitatif/hapus-dokumen'], [
-                                    'class' => 'btn btn-pill btn-elevate btn-elevate-air btn-danger',
+            <?= \kartik\grid\GridView::widget([
+                'dataProvider' => $dataKuantitatifProdi,
+                'summary' => false,
+                'columns' => [
+                    ['class' => \kartik\grid\SerialColumn::class, 'header' => 'No'],
+                    'nama_dokumen',
+                    'isi_dokumen',
+                    'created_at:datetime',
+                    'updated_at:datetime',
+                    [
+                        'class' => \common\widgets\ActionColumn::class,
+                        'header' => 'Aksi',
+                        'template' => '{download}{hapus}',
+                        'buttons' => [
+                            'download' => function ($url, $model, $key) use ($prodi) {
+                                return Html::a('<i class ="la la-download"></i>',
+                                    ['kuantitatif/download-dokumen', 'dokumen' => $model->id, 'prodi' => $prodi->id],
+                                    ['class' => 'btn btn-pill btn-sm btn-elevate btn-elevate-air btn-info']);
+                            },
+                            'hapus' => function ($url, $model, $key) use ($prodi) {
+                                return Html::a('<i class ="la la-trash"></i>', ['kuantitatif/hapus-dokumen'], [
+                                    'class' => 'btn btn-sm btn-pill btn-elevate btn-elevate-air btn-danger',
                                     'data' => [
                                         'method' => 'POST',
-                                        'confirm' => 'Apakah anda yakin menghapus ' . $item->nama_dokumen . ' ?',
-                                        'params' => ['id' => $item->id, 'prodi' => $_GET['prodi']]
+                                        'confirm' => 'Apakah anda yakin menghapus ' . $model->nama_dokumen . ' ?',
+                                        'params' => ['id' => $model->id, 'prodi' => $prodi->id]
                                     ]
-                                ]) ?>
-                            </td>
-                        </tr>
-                    <?php
-                    endforeach;
-                }
-                ?>
-
-
-                </tbody>
-            </table>
-
-
-            <!--end::Accordion-->
+                                ]);
+                            }
+                        ]
+                    ]
+                ]
+            ]) ?>
 
         </div>
     </div>

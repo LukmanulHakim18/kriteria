@@ -13,6 +13,7 @@ use common\models\kriteria9\forms\kuantitatif\K9PencarianKuantitatifForm;
 use common\models\kriteria9\kuantitatif\prodi\K9DataKuantitatifProdi;
 use common\models\ProgramStudi;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
@@ -70,9 +71,9 @@ class KuantitatifController extends BaseController
             throw new NotFoundHttpException();
         }
 
-        $prodi = $akreditasiProdi->prodi;
+        $programStudi = $akreditasiProdi->prodi;
 
-        $dataKuantitatifProdi = K9DataKuantitatifProdi::findAll(['id_akreditasi_prodi' => $akreditasiProdi->id]);
+        $dataKuantitatifProdi = new ActiveDataProvider(['query' => K9DataKuantitatifProdi::find()->where(['id_akreditasi_prodi' => $akreditasiProdi->id])]);
 //        $model = new K9DataKuantitatifProdi();
 //
 //        if ($model->load(Yii::$app->request->post())) {
@@ -106,7 +107,7 @@ class KuantitatifController extends BaseController
         return $this->render('isi', [
             'akreditasiProdi' => $akreditasiProdi,
             'dataKuantitatifProdi' => $dataKuantitatifProdi,
-            'prodi' => $prodi
+            'prodi' => $programStudi
 //            'model' => $model
         ]);
     }
