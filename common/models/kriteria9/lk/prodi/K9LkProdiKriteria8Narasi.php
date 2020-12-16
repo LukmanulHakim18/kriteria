@@ -21,7 +21,10 @@ use yii\behaviors\TimestampBehavior;
  * @property string $_8_f_1
  * @property string $_8_f_2
  * @property string $_8_f_3
- * @property string $_8_f_4
+ * @property string $_8_f_4__1
+ * @property string $_8_f_4__2
+ * @property string $_8_f_4__3
+ * @property string $_8_f_4__4
  * @property double $progress
  * @property int $created_at
  * @property int $updated_at
