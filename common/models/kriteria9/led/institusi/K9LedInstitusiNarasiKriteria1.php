@@ -3,7 +3,6 @@
 namespace common\models\kriteria9\led\institusi;
 
 use common\models\User;
-use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
@@ -19,8 +18,6 @@ use yii\behaviors\TimestampBehavior;
  * @property string $_1_5
  * @property string $_1_6
  * @property string $_1_7
- * @property string $_1_8
- * @property string $_1_9
  * @property double $progress
  * @property int $created_at
  * @property int $updated_at
@@ -48,11 +45,29 @@ class K9LedInstitusiNarasiKriteria1 extends \yii\db\ActiveRecord
     {
         return [
             [['id_led_institusi_kriteria1', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['_1_1', '_1_2', '_1_3', '_1_4', '_1_5', '_1_6', '_1_7', '_1_8', '_1_9'], 'string'],
+            [['_1_1', '_1_2', '_1_3', '_1_4', '_1_5', '_1_6', '_1_7'], 'string'],
             [['progress'], 'number'],
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
-            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
-            [['id_led_institusi_kriteria1'], 'exist', 'skipOnError' => true, 'targetClass' => K9LedInstitusiKriteria1::className(), 'targetAttribute' => ['id_led_institusi_kriteria1' => 'id']],
+            [
+                ['created_by'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => User::className(),
+                'targetAttribute' => ['created_by' => 'id']
+            ],
+            [
+                ['updated_by'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => User::className(),
+                'targetAttribute' => ['updated_by' => 'id']
+            ],
+            [
+                ['id_led_institusi_kriteria1'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => K9LedInstitusiKriteria1::className(),
+                'targetAttribute' => ['id_led_institusi_kriteria1' => 'id']
+            ],
         ];
     }
 
@@ -76,15 +91,13 @@ class K9LedInstitusiNarasiKriteria1 extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_led_institusi_kriteria1' => 'Id Led Institusi Kriteria1',
-            '_1_1' => '1 1',
-            '_1_2' => '1 2',
-            '_1_3' => '1 3',
-            '_1_4' => '1 4',
-            '_1_5' => '1 5',
-            '_1_6' => '1 6',
-            '_1_7' => '1 7',
-            '_1_8' => '1 8',
-            '_1_9' => '1 9',
+            '_1_1' => '1.1',
+            '_1_2' => '1.2',
+            '_1_3' => '1.3',
+            '_1_4' => '1.4',
+            '_1_5' => '1.5',
+            '_1_6' => '1.6',
+            '_1_7' => '1.7',
             'progress' => 'Progress',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
