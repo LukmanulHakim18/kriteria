@@ -2,7 +2,7 @@
 
 namespace common\models\kriteria9\led\institusi;
 
-use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "k9_led_institusi_narasi_profil_institusi".
@@ -33,6 +33,11 @@ class K9LedInstitusiNarasiProfilInstitusi extends \yii\db\ActiveRecord
         return 'k9_led_institusi_narasi_profil_institusi';
     }
 
+    public function behaviors()
+    {
+        return [TimestampBehavior::class];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -42,7 +47,13 @@ class K9LedInstitusiNarasiProfilInstitusi extends \yii\db\ActiveRecord
             [['id_led_institusi', 'created_at', 'updated_at'], 'integer'],
             [['_1', '_2', '_3', '_4', '_5', '_6', '_7', '_8'], 'string'],
             [['progress'], 'number'],
-            [['id_led_institusi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LedInstitusi::className(), 'targetAttribute' => ['id_led_institusi' => 'id']],
+            [
+                ['id_led_institusi'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => K9LedInstitusi::className(),
+                'targetAttribute' => ['id_led_institusi' => 'id']
+            ],
         ];
     }
 
