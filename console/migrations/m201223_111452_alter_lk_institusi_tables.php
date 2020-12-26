@@ -22,10 +22,10 @@ class m201223_111452_alter_lk_institusi_tables extends Migration
         $this->addColumn('{{%k9_lk_institusi_kriteria1_narasi}}', '_1_a__3', $this->longText());
 
         //create ref-5.d.1-5.d.2-5.e.2
-        $this->addColumn('{{%k9_lk_institusi_kriteria5_narasi}}', 'ref__5_d_1__5_d_2__5_e_2', $this->longText());
+        $this->addColumn('{{%k9_lk_institusi_kriteria5_narasi}}', '_ref__5_d_1__5_d_2__5_e_2', $this->longText());
 
         //create ref-5.e.1
-        $this->addColumn('{{%k9_lk_institusi_kriteria5_narasi}}', 'ref__5_e_1', $this->longText());
+        $this->addColumn('{{%k9_lk_institusi_kriteria5_narasi}}', '_ref__5_e_1', $this->longText());
 
         //rename _5_h jadi _5_h__1
         $this->renameColumn('{{%k9_lk_institusi_kriteria5_narasi}}', '_5_h', '_5_h__1');
@@ -52,10 +52,10 @@ class m201223_111452_alter_lk_institusi_tables extends Migration
         $this->dropColumn('{{%k9_lk_institusi_kriteria1_narasi}}', '_1_a__3');
 
         //create ref-5.d.1-5.d.2-5.e.2
-        $this->dropColumn('{{%k9_lk_institusi_kriteria5_narasi}}', 'ref__5_d_1__5_d_2__5_e_2');
+        $this->dropColumn('{{%k9_lk_institusi_kriteria5_narasi}}', '_ref__5_d_1__5_d_2__5_e_2');
 
         //create ref-5.e.1
-        $this->dropColumn('{{%k9_lk_institusi_kriteria5_narasi}}', 'ref__5_e_1');
+        $this->dropColumn('{{%k9_lk_institusi_kriteria5_narasi}}', '_ref__5_e_1');
 
         //rename _5_h jadi _5_h__1
         $this->renameColumn('{{%k9_lk_institusi_kriteria5_narasi}}', '_5_h__1', '_5_h');

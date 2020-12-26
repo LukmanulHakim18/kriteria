@@ -17,11 +17,9 @@ use common\models\kriteria9\penilaian\prodi\K9PenilaianProdiAnalisis;
 use common\models\kriteria9\penilaian\prodi\K9PenilaianProdiEksternal;
 use common\models\kriteria9\penilaian\prodi\K9PenilaianProdiKriteria;
 use common\models\kriteria9\penilaian\prodi\K9PenilaianProdiProfil;
-use InvalidArgumentException;
 use Yii;
 use yii\base\Exception;
 use yii\base\Model;
-use yii\db\Transaction;
 use yii\helpers\FileHelper;
 
 class K9AkreditasiProdiForm extends Model
@@ -87,9 +85,10 @@ class K9AkreditasiProdiForm extends Model
 
             $this->_akreditasiProdi->save();
 
-            $this->createLk($transaction);
-            $this->createLed($transaction);
-            $this->createPenilaian($transaction);
+            $this->createFolder();
+            $this->createLk();
+            $this->createLed();
+            $this->createPenilaian();
 
             $transaction->commit();
         } catch (\ErrorException $e) {
@@ -99,55 +98,6 @@ class K9AkreditasiProdiForm extends Model
 
 
         return true;
-    }
-
-    /**
-     * @param $transaction Transaction
-     */
-    private function createLk($transaction)
-    {
-        $this->_lk_prodi = new K9LkProdi();
-
-
-        $this->_lk_prodi->id_akreditasi_prodi = $this->_akreditasiProdi->id;
-        $this->_lk_prodi->progress = 0;
-
-        if (!$this->_lk_prodi->save(false)) {
-            $transaction->rollback();
-            throw new InvalidArgumentException($this->_lk_prodi->errors);
-        }
-
-        $prodi = $this->_akreditasiProdi->prodi;
-        $json = K9ProdiJsonHelper::getAllJsonLk($prodi->jenjang);
-        foreach ($json as /** @var Lk $kriteria */ $kriteria) {
-            $kritClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria->kriteria;
-            $kritProdi = new $kritClass;
-            $kritProdi->setAttributes([
-                'id_lk_prodi' => $this->_lk_prodi->id,
-                'progress_narasi' => 0,
-                'progress_dokumen' => 0
-            ]);
-
-            if (!$kritProdi->save(false)) {
-                $transaction->rollBack();
-                throw new InvalidArgumentException($kritProdi->errors);
-            }
-
-            $class = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria->kriteria . 'Narasi';
-            $kriteriaProdi = new $class;
-
-            $attr = ['id_lk_prodi_kriteria' . $kriteria->kriteria => $kritProdi->id, 'progress' => 0];
-            $kriteriaProdi->setAttributes($attr);
-            foreach ($kriteria->butir as $key => /** @var $item TabelLk */ $item) {
-                $modelAttribute = NomorKriteriaHelper::changeToDbFormat($item->tabel);
-                $kriteriaProdi->$modelAttribute = $item->template;
-            }
-            if (!$kriteriaProdi->save()) {
-                $transaction->rollBack();
-                throw new InvalidArgumentException($kriteriaProdi->errors);
-            }
-        }
-        $this->createFolder();
     }
 
     /**
@@ -195,10 +145,44 @@ class K9AkreditasiProdiForm extends Model
         }
     }
 
-    /**
-     * @param $transaction Transaction
-     */
-    private function createLed($transaction)
+    private function createLk()
+    {
+        $this->_lk_prodi = new K9LkProdi();
+
+
+        $this->_lk_prodi->id_akreditasi_prodi = $this->_akreditasiProdi->id;
+        $this->_lk_prodi->progress = 0;
+
+        $this->_lk_prodi->save(false);
+
+        $prodi = $this->_akreditasiProdi->prodi;
+        $json = K9ProdiJsonHelper::getAllJsonLk($prodi->jenjang);
+        foreach ($json as /** @var Lk $kriteria */ $kriteria) {
+            $kritClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria->kriteria;
+            $kritProdi = new $kritClass;
+            $kritProdi->setAttributes([
+                'id_lk_prodi' => $this->_lk_prodi->id,
+                'progress_narasi' => 0,
+                'progress_dokumen' => 0
+            ]);
+
+            $kritProdi->save(false);
+
+            $class = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria->kriteria . 'Narasi';
+            $attr = ['id_lk_prodi_kriteria' . $kriteria->kriteria => $kritProdi->id, 'progress' => 0];
+
+            $kriteriaProdi = new $class;
+            $kriteriaProdi->setAttributes($attr);
+            foreach ($kriteria->butir as $key => /** @var $item TabelLk */ $item) {
+                $modelAttribute = NomorKriteriaHelper::changeToDbFormat($item->tabel);
+                $kriteriaProdi->$modelAttribute = $item->template;
+            }
+
+            $kriteriaProdi->save();
+        }
+    }
+
+    private function createLed()
     {
         $this->_led_prodi = new K9LedProdi();
 
@@ -206,37 +190,27 @@ class K9AkreditasiProdiForm extends Model
         $this->_led_prodi->id_akreditasi_prodi = $this->_akreditasiProdi->id;
         $this->_led_prodi->progress = 0;
 
-        if (!$this->_led_prodi->save(false)) {
-            $transaction->rollback();
-            throw new InvalidArgumentException($this->_led_prodi->errors);
-        }
+        $this->_led_prodi->save(false);
 
         $attr = ['id_led_prodi' => $this->_led_prodi->id, 'progress' => 0];
 
 
-
         for ($i = 1; $i <= 9; $i++) {
-
             $kriteria_class_path = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria' . $i;
             $kriteria_narasi_class_path = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiNarasiKriteria' . $i;
 
             $kriteriaProdi = new $kriteria_class_path;
             $kriteriaProdi->attributes = $attr;
 
-            if (!$kriteriaProdi->save()) {
-                $transaction->rollBack();
-                throw new InvalidArgumentException($kriteriaProdi->errors);
-            }
+            $kriteriaProdi->save();
+
             $narasiAttr = 'id_led_prodi_kriteria' . $i;
 
             $narasiKriteriaProdi = new $kriteria_narasi_class_path;
             $narasiKriteriaProdi->$narasiAttr = $kriteriaProdi->id;
             $narasiKriteriaProdi->progress = 0;
 
-            if (!$narasiKriteriaProdi->save()) {
-                $transaction->rollBack();
-                throw new InvalidArgumentException($narasiKriteriaProdi->errors);
-            }
+            $narasiKriteriaProdi->save();
         }
 
         $kondisiEksternal = new K9LedProdiNarasiKondisiEksternal();
@@ -247,7 +221,7 @@ class K9AkreditasiProdiForm extends Model
         $kondisiEksternal->progress = 0;
 
         $profilUpps->id_led_prodi = $this->_led_prodi->id;
-        $profilUpps->progress= 0;
+        $profilUpps->progress = 0;
 
         $analisis->id_led_prodi = $this->_led_prodi->id;
         $analisis->progress = 0;
@@ -258,11 +232,7 @@ class K9AkreditasiProdiForm extends Model
         $analisis->save();
     }
 
-
-    /**
-     * @param Transaction|null $transaction
-     */
-    private function createPenilaian(?Transaction $transaction)
+    private function createPenilaian()
     {
         $eksternal = new K9PenilaianProdiEksternal();
         $profil = new K9PenilaianProdiProfil();
@@ -282,6 +252,5 @@ class K9AkreditasiProdiForm extends Model
         $profil->save(false);
         $kriteria->save(false);
         $analisis->save(false);
-
     }
 }

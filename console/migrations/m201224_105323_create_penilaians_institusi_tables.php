@@ -200,9 +200,9 @@ class m201224_105323_create_penilaians_institusi_tables extends Migration
     public function safeDown()
     {
         $this->dropTable('{{%k9_penilaian_institusi_eksternal}}');
-//        $this->dropTable('{{%k9_penilaian_institusi_profil}}');
-//        $this->dropTable('{{%k9_penilaian_institusi_kriteria}}');
-//        $this->dropTable('{{%k9_penilaian_institusi_analisis}}');
+        $this->dropTable('{{%k9_penilaian_institusi_profil}}');
+        $this->dropTable('{{%k9_penilaian_institusi_kriteria}}');
+        $this->dropTable('{{%k9_penilaian_institusi_analisis}}');
     }
 
     /*
