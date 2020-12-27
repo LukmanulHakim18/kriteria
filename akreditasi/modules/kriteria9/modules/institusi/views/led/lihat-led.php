@@ -18,31 +18,19 @@ $this->title = "Lihat LED";
 $this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
 $this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9/default/index']];
 $this->params['breadcrumbs'][] = ['label' => 'Institusi', 'url' => ['/kriteria9/k9-institusi/default/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Led', 'url' => ['/kriteria9/k9-institusi/led/arsip', 'target' => 'lihat']];
+$this->params['breadcrumbs'][] = [
+    'label' => 'Led',
+    'url' => ['/kriteria9/k9-institusi/led/arsip', 'target' => 'lihat']
+];
 $this->params['breadcrumbs'][] = $this->title;
 
-use akreditasi\models\kriteria9\forms\led\K9DokumenLedInstitusiUploadForm;
 use common\helpers\FileIconHelper;
 use common\helpers\FileTypeHelper;
-use common\models\Constants;
 use common\models\kriteria9\led\institusi\K9LedInstitusi;
-use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria1;
-use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria2;
-use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria3;
-use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria4;
-use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria5;
-use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria6;
-use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria7;
-use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria8;
-use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria9;
-use common\models\kriteria9\led\institusi\K9DokumenLedInstitusi;
-use kartik\file\FileInput;
-use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;
 use yii\bootstrap4\Progress;
 use yii\helpers\StringHelper;
-use yii\helpers\Url;
 use yii\web\View;
 
 ?>
@@ -140,13 +128,17 @@ use yii\web\View;
                                     if ($type === FileTypeHelper::TYPE_IMAGE || $type === FileTypeHelper::TYPE_PDF):?>
                                         <?php Modal::begin([
                                             'title' => $item->nama_dokumen,
-                                            'toggleButton' => ['label' => '<i class="la la-eye"></i> &nbsp;Lihat', 'class' => 'btn btn-info btn-pill btn-elevate btn-elevate-air'],
+                                            'toggleButton' => [
+                                                'label' => '<i class="la la-eye"></i> &nbsp;Lihat',
+                                                'class' => 'btn btn-info btn-pill btn-elevate btn-elevate-air'
+                                            ],
                                             'size' => 'modal-lg',
                                             'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
                                         ]); ?>
                                         <?php switch ($type) {
                                             case FileTypeHelper::TYPE_IMAGE:
-                                                echo Html::img("$path/{$item->nama_dokumen}", ['height' => '100%', 'width' => '100%']);
+                                                echo Html::img("$path/{$item->nama_dokumen}",
+                                                    ['height' => '100%', 'width' => '100%']);
                                                 break;
                                             case FileTypeHelper::TYPE_PDF:
                                                 echo '<embed src="' . $path . '/' . $item->nama_dokumen . '" type="application/pdf" height="100%" width="100%">
@@ -155,7 +147,9 @@ use yii\web\View;
                                         } ?>
                                         <?php Modal::end(); ?>
                                     <?php endif; ?>
-                                    <?= Html::a('<i class ="la la-download"></i> Unduh', ['led/download-dokumen', 'dokumen' => $item->id], ['class' => 'btn btn-warning btn-pill btn-elevate btn-elevate-air']) ?>
+                                    <?= Html::a('<i class ="la la-download"></i> Unduh',
+                                        ['led/download-dokumen', 'dokumen' => $item->id],
+                                        ['class' => 'btn btn-warning btn-pill btn-elevate btn-elevate-air']) ?>
                                 </div>
 
                             </div>
@@ -222,7 +216,9 @@ use yii\web\View;
                             ]); ?>
                         </td>
                         <td style="padding-top: 15px;">
-                            <?= Html::a("<i class='la la-folder-open'></i>Lihat", ['led/lihat-kriteria', 'led' => $_GET['led'], 'kriteria' => $kriteriaJson['kriteria']], ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
+                            <?= Html::a("<i class='la la-folder-open'></i>Lihat",
+                                ['led/lihat-kriteria', 'led' => $_GET['led'], 'kriteria' => $kriteriaJson['kriteria']],
+                                ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
 
                             <!--                        <button type="button" class="btn btn-danger">Lihat</button>-->
                         </td>

@@ -2,7 +2,6 @@
 
 namespace common\models\kriteria9\led\institusi;
 
-use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
@@ -11,6 +10,7 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property int $id
  * @property int $id_led_institusi
+ * @property string $kode_dokumen
  * @property string $nama_dokumen
  * @property string $bentuk_dokumen
  * @property int $created_at
@@ -20,7 +20,7 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property K9LedInstitusi $ledInstitusi
  */
-class K9DokumenLedInstitusi extends \yii\db\ActiveRecord
+class K9InstitusiEksporDokumen extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -37,8 +37,14 @@ class K9DokumenLedInstitusi extends \yii\db\ActiveRecord
     {
         return [
             [['id_led_institusi', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['nama_dokumen', 'bentuk_dokumen'], 'string', 'max' => 255],
-            [['id_led_institusi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LedInstitusi::className(), 'targetAttribute' => ['id_led_institusi' => 'id']],
+            [['nama_dokumen', 'bentuk_dokumen', 'kode_dokumen'], 'string', 'max' => 255],
+            [
+                ['id_led_institusi'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => K9LedInstitusi::className(),
+                'targetAttribute' => ['id_led_institusi' => 'id']
+            ],
         ];
     }
 
@@ -58,6 +64,7 @@ class K9DokumenLedInstitusi extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_led_institusi' => 'Id Led Institusi',
+            'kode_dokumen' => 'Kode Dokumen',
             'nama_dokumen' => 'Nama Dokumen',
             'bentuk_dokumen' => 'Bentuk Dokumen',
             'created_at' => 'Created At',

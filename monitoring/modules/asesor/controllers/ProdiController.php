@@ -3,8 +3,8 @@
 
 namespace monitoring\modules\asesor\controllers;
 
+use akreditasi\models\kriteria9\forms\led\K9DetailLedInstitusiNonKriteriaLinkForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiLinkForm;
-use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiNonKriteriaLinkForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiNonKriteriaUploadForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiTeksForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiUploadForm;
@@ -194,7 +194,7 @@ class ProdiController extends BaseController
             $detailNarasi = $modelNarasi->documents;
             $detailCollection = Collection::make($detailNarasi);
 
-            $linkModel = new K9DetailLedProdiNonKriteriaLinkForm();
+            $linkModel = new K9DetailLedInstitusiNonKriteriaLinkForm();
             $uploadModel = new K9DetailLedProdiNonKriteriaUploadForm();
             $textModel = new K9DetailLedProdiNonKriteriaUploadForm();
             $realPath = K9ProdiDirectoryHelper::getDetailLedUrl($ledProdi->akreditasiProdi);

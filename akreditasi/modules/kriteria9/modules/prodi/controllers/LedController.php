@@ -9,8 +9,8 @@
 
 namespace akreditasi\modules\kriteria9\modules\prodi\controllers;
 
+use akreditasi\models\kriteria9\forms\led\K9DetailLedInstitusiNonKriteriaLinkForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiLinkForm;
-use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiNonKriteriaLinkForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiNonKriteriaTeksForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiNonKriteriaUploadForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiTeksForm;
@@ -22,6 +22,7 @@ use akreditasi\models\kriteria9\led\prodi\K9LedProdiNarasiProfilUppsForm;
 use akreditasi\modules\kriteria9\controllers\BaseController;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\helpers\kriteria9\K9ProdiJsonHelper;
+use common\helpers\NomorKriteriaHelper;
 use common\models\Constants;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\forms\led\K9PencarianLedProdiForm;
@@ -37,6 +38,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
 use yii\helpers\Url;
 use yii\web\MethodNotAllowedHttpException;
+use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
 use yii2mod\collection\Collection;
 
@@ -109,9 +111,16 @@ class LedController extends BaseController
         return Yii::$app->response->sendFile($file);
     }
 
+    /**
+     * @param $led
+     * @param $prodi
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
+     */
     public function actionIsi($led, $prodi)
     {
-        $ledProdi = K9LedProdi::findOne($led);
+        $ledProdi = $this->findLedProdi($led);
+
         $programStudi = $ledProdi->akreditasiProdi->prodi;
 
         $json_kriteria = K9ProdiJsonHelper::getAllJsonLed();
@@ -122,6 +131,7 @@ class LedController extends BaseController
         $modelEksternal = K9LedProdiNarasiKondisiEksternalForm::findOne(['id_led_prodi' => $ledProdi->id]);
         $modelProfil = K9LedProdiNarasiProfilUppsForm::findOne(['id_led_prodi' => $ledProdi->id]);
         $modelAnalisis = K9LedProdiNarasiAnalisisForm::findOne(['id_led_prodi' => $ledProdi->id]);
+
         $modelDokumen = new K9DokumenLedProdiUploadForm();
         $dataDokumen = K9ProdiEksporDokumen::findAll(['id_led_prodi' => $ledProdi->id]);
         $kriteria = $this->getArrayKriteria($led);
@@ -143,7 +153,7 @@ class LedController extends BaseController
             return $this->redirect(Url::current());
         }
 
-        return $this->render('led', [
+        return $this->render($this->lihatLedView, [
             'led' => $ledProdi,
             'modelDokumen' => $modelDokumen,
             'dataDokumen' => $dataDokumen,
@@ -159,6 +169,21 @@ class LedController extends BaseController
             'prodi' => $programStudi,
             'untuk' => 'isi'
         ]);
+    }
+
+    /**
+     * @param $led
+     * @return K9LedProdi|null
+     * @throws NotFoundHttpException
+     */
+    protected function findLedProdi($led)
+    {
+        $model = null;
+        if ($model = K9LedProdi::findOne($led)) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException();
     }
 
     protected function getArrayKriteria($led)
@@ -243,7 +268,7 @@ class LedController extends BaseController
             return $this->redirect(Url::current());
         }
 
-        return $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/isi-kriteria', [
+        return $this->render($this->lihatKriteriaView, [
             'model' => $modelLed,
             'poinKriteria' => $poinKriteria,
             'untuk' => 'isi',
@@ -254,27 +279,27 @@ class LedController extends BaseController
 
     public function actionIsiNonKriteria($led, $prodi, $poin)
     {
-        $ledProdi = K9LedProdi::findOne($led);
+        $ledProdi = $this->findLedProdi($led);
         $programStudi = $ledProdi->akreditasiProdi->prodi;
 
         switch ($poin) {
             case 'A':
-                $modelNarasi = K9LedProdiNarasiKondisiEksternalForm::findOne(['id_led_prodi'=>$ledProdi->id]);
+                $modelNarasi = K9LedProdiNarasiKondisiEksternalForm::findOne(['id_led_prodi' => $ledProdi->id]);
                 $json = K9ProdiJsonHelper::getJsonLedKondisiEksternal();
                 break;
             case 'B':
-                $modelNarasi = K9LedProdiNarasiProfilUppsForm::findOne(['id_led_prodi'=>$ledProdi->id]);
+                $modelNarasi = K9LedProdiNarasiProfilUppsForm::findOne(['id_led_prodi' => $ledProdi->id]);
                 $json = K9ProdiJsonHelper::getJsonLedProfil();
                 break;
             case 'D':
-                $modelNarasi = K9LedProdiNarasiAnalisisForm::findOne(['id_led_prodi'=>$ledProdi->id]);
+                $modelNarasi = K9LedProdiNarasiAnalisisForm::findOne(['id_led_prodi' => $ledProdi->id]);
                 $json = K9ProdiJsonHelper::getJsonLedAnalisis();
                 break;
         }
 
         $poin = $json->butir;
 
-        $modelLink = new K9DetailLedProdiNonKriteriaLinkForm();
+        $modelLink = new K9DetailLedInstitusiNonKriteriaLinkForm();
         $modelUpload = new K9DetailLedProdiNonKriteriaUploadForm();
         $modelTeks = new K9DetailLedProdiNonKriteriaTeksForm();
 
@@ -313,7 +338,7 @@ class LedController extends BaseController
             Yii::$app->session->setFlash('warning', 'Gagal Menambahkan Dokumen');
             return $this->redirect(Url::current());
         }
-        return $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/isi-non_kriteria',
+        return $this->render($this->lihatNonKriteriaView,
             [
                 'ledProdi' => $ledProdi,
                 'json' => $json,
@@ -360,7 +385,7 @@ class LedController extends BaseController
             'textModel' => $textModel,
             'linkModel' => $linkModel,
             'detailCollection' => $detailCollection,
-            'modelAttribute' => '_' . str_replace('.', '_', $poin),
+            'modelAttribute' => NomorKriteriaHelper::changeToDbFormat($poin),
             'item' => $currentPoint,
             'kriteria' => $kriteria,
             'prodi' => $prodi,
@@ -377,17 +402,17 @@ class LedController extends BaseController
         switch ($poin) {
             case 'A':
                 $json = K9ProdiJsonHelper::getJsonLedKondisiEksternal();
-                $modelNarasi = K9LedProdiNarasiKondisiEksternalForm::findOne(['id_led_prodi'=>$ledProdi->id]);
+                $modelNarasi = K9LedProdiNarasiKondisiEksternalForm::findOne(['id_led_prodi' => $ledProdi->id]);
 
                 break;
             case 'B':
                 $json = K9ProdiJsonHelper::getJsonLedProfil();
-                $modelNarasi = K9LedProdiNarasiProfilUppsForm::findOne(['id_led_prodi'=>$ledProdi->id]);;
+                $modelNarasi = K9LedProdiNarasiProfilUppsForm::findOne(['id_led_prodi' => $ledProdi->id]);;
 
                 break;
             case 'D':
                 $json = K9ProdiJsonHelper::getJsonLedAnalisis();
-                $modelNarasi = K9LedProdiNarasiAnalisisForm::findOne(['id_led_prodi'=>$ledProdi->id]);
+                $modelNarasi = K9LedProdiNarasiAnalisisForm::findOne(['id_led_prodi' => $ledProdi->id]);
 
                 break;
         }
@@ -395,14 +420,14 @@ class LedController extends BaseController
 
         $detailNarasi = $modelNarasi->documents;
         $detailCollection = Collection::make($detailNarasi);
-        $modelAttribute = '_' . str_replace('.', '_', $nomor);
+        $modelAttribute = NomorKriteriaHelper::changeToDbFormat($nomor);
         $currentPoint = $json;
         if ($json->butir) {
             $currentCollection = Collection::make($json->butir);
             $currentPoint = $currentCollection->where('nomor', $nomor)->first();
         }
 
-        $linkModel = new K9DetailLedProdiNonKriteriaLinkForm();
+        $linkModel = new K9DetailLedInstitusiNonKriteriaLinkForm();
         $uploadModel = new K9DetailLedProdiNonKriteriaUploadForm();
         $textModel = new K9DetailLedProdiNonKriteriaUploadForm();
         $realPath = K9ProdiDirectoryHelper::getDetailLedUrl($ledProdi->akreditasiProdi);
@@ -506,15 +531,7 @@ class LedController extends BaseController
 
         $untuk = 'lihat';
 
-        return $this->render($this->lihatNonKriteriaView, [
-            'ledProdi' => $ledProdi,
-            'json' => $json,
-            'poin' => $poin,
-            'modelNarasi' => $modelNarasi,
-            'detail' => $detail,
-            'untuk' => $untuk,
-            'prodi' => $programStudi
-        ],
+        return $this->render($this->lihatNonKriteriaView,
             compact('ledProdi', 'json', 'poin', 'modelNarasi', 'detail', 'untuk', 'prodi'));
     }
 

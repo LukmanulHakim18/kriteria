@@ -5,7 +5,7 @@ namespace monitoring\modules\eksekutif\modules\institusi\controllers;
 
 use common\helpers\kriteria9\K9InstitusiDirectoryHelper;
 use common\helpers\kriteria9\K9InstitusiJsonHelper;
-use common\models\kriteria9\led\institusi\K9DokumenLedInstitusi;
+use common\models\kriteria9\led\institusi\K9InstitusiEksporDokumen;
 use common\models\kriteria9\led\institusi\K9LedInstitusi;
 use Yii;
 
@@ -14,7 +14,7 @@ class LedInstitusiController extends BaseController
     public function actionDownloadDokumen($dokumen)
     {
         ini_set('max_execution_time', 5 * 60);
-        $model = K9DokumenLedInstitusi::findOne($dokumen);
+        $model = K9InstitusiEksporDokumen::findOne($dokumen);
         $file = K9InstitusiDirectoryHelper::getDokumenLedPath($model->ledInstitusi->akreditasiInstitusi) . "/{$model->nama_dokumen}";
         return Yii::$app->response->sendFile($file);
     }
