@@ -30,7 +30,6 @@ use common\models\kriteria9\led\institusi\K9InstitusiEksporDokumen;
 use common\models\kriteria9\led\institusi\K9LedInstitusi;
 use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiProfilInstitusi;
 use common\models\kriteria9\led\institusi\K9LedInstitusiNonKriteriaDokumen;
-use common\models\kriteria9\led\prodi\K9LedProdiNonKriteriaDokumen;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
@@ -122,6 +121,9 @@ class LedController extends BaseController
             'modelDokumen' => $modelDokumen,
             'dataDokumen' => $dataDokumen,
             'json' => $json_kriteria,
+            'json_eksternal' => $json_eksternal,
+            'json_profil' => $json_profil,
+            'json_analisis' => $json_analisis,
             'kriteria' => $kriteria,
             'path' => $realPath,
             'modelEksternal' => $modelEksternal,
@@ -148,7 +150,7 @@ class LedController extends BaseController
     protected function getArrayKriteria($led)
     {
         $kriteria = [];
-        for ($i = 0; $i < 9; $i++) {
+        for ($i = 1; $i <= 9; $i++) {
             $classPath = 'common\\models\\kriteria9\\led\institusi\\K9LedInstitusiKriteria' . $i;
             $kriteria[] = call_user_func($classPath . '::findOne', ['id_led_institusi' => $led]);
         }
@@ -279,7 +281,9 @@ class LedController extends BaseController
             'detailModel' => $detailModel,
             'path' => $realPath,
             'textModel' => $textModel,
-            'linkModel' => $linkModel
+            'linkModel' => $linkModel,
+            'kriteria' => $kriteria,
+            'untuk' => 'isi'
 
         ]);
     }
@@ -345,7 +349,7 @@ class LedController extends BaseController
         }
         return $this->render($this->lihatNonKriteriaView,
             [
-                '$ledInstitusi' => $ledInstitusi,
+                'ledInstitusi' => $ledInstitusi,
                 'json' => $json,
                 'poin' => $poin,
                 'modelNarasi' => $modelNarasi,
@@ -353,7 +357,7 @@ class LedController extends BaseController
             ]);
     }
 
-    public function actionButirItem($led, $kriteria, $poin, $prodi, $untuk)
+    public function actionButirItem($led, $kriteria, $poin, $untuk)
     {
 
         $ledInstitusi = K9LedInstitusi::findOne(['id' => $led]);
@@ -378,7 +382,7 @@ class LedController extends BaseController
         $linkModel = new K9DetailLedInstitusiLinkForm();
 
 
-        $realPath = K9InstitusiDirectoryHelper::getDetailLedUrl($modelLed->ledInstitusi->akreditasiInsitusi);
+        $realPath = K9InstitusiDirectoryHelper::getDetailLedUrl($modelLed->ledInstitusi->akreditasiInstitusi);
 
 
         return $this->renderAjax('@akreditasi/modules/kriteria9/modules/institusi/views/led/_isi_led', [
@@ -397,7 +401,7 @@ class LedController extends BaseController
         ]);
     }
 
-    public function actionButirItemNonKriteria($led, $poin, $nomor, $prodi, $untuk)
+    public function actionButirItemNonKriteria($led, $poin, $nomor, $untuk)
     {
 
         $ledInstitusi = K9LedInstitusi::findOne($led);
@@ -405,17 +409,17 @@ class LedController extends BaseController
         switch ($poin) {
             case 'A':
                 $json = K9InstitusiJsonHelper::getJsonLedKondisiEksternal();
-                $modelNarasi = K9LedInstitusiNarasiKondisiEksternalForm::findOne(['id_led_prodi' => $ledInstitusi->id]);
+                $modelNarasi = K9LedInstitusiNarasiKondisiEksternalForm::findOne(['id_led_institusi' => $ledInstitusi->id]);
 
                 break;
             case 'B':
                 $json = K9InstitusiJsonHelper::getJsonLedProfil();
-                $modelNarasi = K9LedInstitusiNarasiProfilInstitusiForm::findOne(['id_led_prodi' => $ledInstitusi->id]);;
+                $modelNarasi = K9LedInstitusiNarasiProfilInstitusiForm::findOne(['id_led_institusi' => $ledInstitusi->id]);;
 
                 break;
             case 'D':
                 $json = K9InstitusiJsonHelper::getJsonLedAnalisis();
-                $modelNarasi = K9LedInstitusiNarasiAnalisisForm::findOne(['id_led_prodi' => $ledInstitusi->id]);
+                $modelNarasi = K9LedInstitusiNarasiAnalisisForm::findOne(['id_led_institusi' => $ledInstitusi->id]);
 
                 break;
         }
@@ -486,7 +490,6 @@ class LedController extends BaseController
             $data = Yii::$app->request->post();
             $idDokumen = $data['dokumen'];
             $poin = $data['poin'];
-            $kriteria = $data['kriteria'];
             $idLed = $data['led'];
             $jenis = $data['jenis'];
 
@@ -520,7 +523,7 @@ class LedController extends BaseController
     {
         ini_set('max_execution_time', 5 * 60);
         $led = K9LedInstitusi::findOne($led);
-        $model = K9LedProdiNonKriteriaDokumen::findOne($dokumen);
+        $model = K9LedInstitusiNonKriteriaDokumen::findOne($dokumen);
         $file = K9InstitusiDirectoryHelper::getDokumenLedPath($led->akreditasiInstitusi) . "/$jenis/{$model->isi_dokumen}";
         return Yii::$app->response->sendFile($file);
     }
@@ -561,7 +564,7 @@ class LedController extends BaseController
         ]);
     }
 
-    public function actionLihatKriteria($led, $kriteria, $prodi)
+    public function actionLihatKriteria($led, $kriteria, $institusi)
     {
 
         $ledInstitusi = K9LedInstitusi::findOne(['id' => $led]);
@@ -578,7 +581,7 @@ class LedController extends BaseController
         ]);
     }
 
-    public function actionLihatNonKriteria($led, $prodi, $poin)
+    public function actionLihatNonKriteria($led, $institusi, $poin)
     {
         $ledInstitusi = K9LedInstitusi::findOne($led);
 

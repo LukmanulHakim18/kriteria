@@ -36,10 +36,10 @@ class m201224_061317_create_k9_led_institusi_non_kriteria_dokumen_table extends 
             'id_led_institusi',
             '{{%k9_led_institusi}}', 'id', 'cascade', 'cascade');
 
-        $this->addForeignKey('fk-inst_non_k_dok-user_crd', '{{%k9_led_institusi_non_kriteria_dokumen}}', 'created_at',
+        $this->addForeignKey('fk-inst_non_k_dok-user_crd', '{{%k9_led_institusi_non_kriteria_dokumen}}', 'created_by',
             '{{%user}}', 'id', 'cascade', 'cascade');
 
-        $this->addForeignKey('fk-inst_non_k_dok-user_upd', '{{%k9_led_institusi_non_kriteria_dokumen}}', 'updated_at',
+        $this->addForeignKey('fk-inst_non_k_dok-user_upd', '{{%k9_led_institusi_non_kriteria_dokumen}}', 'updated_by',
             '{{%user}}', 'id', 'cascade', 'cascade');
 
     }

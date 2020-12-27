@@ -27,7 +27,7 @@ class K9InstitusiEksporDokumen extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'k9_dokumen_led_institusi';
+        return 'k9_institusi_ekspor_dokumen';
     }
 
     /**

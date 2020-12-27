@@ -107,8 +107,8 @@ class K9AkreditasiInstitusi extends \yii\db\ActiveRecord
 
     public function updateProgress()
     {
-        $led = $this->k9LedInstitusis->progress;
-        $lk = $this->k9LkInstitusis->progress;
+        $led = $this->k9LedInstitusi->progress;
+        $lk = $this->k9LkInstitusi->progress;
 
         $progress = round((($led + $lk) / 2), 2);
         $this->progress = $progress;

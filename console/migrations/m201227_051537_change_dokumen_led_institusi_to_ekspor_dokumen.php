@@ -22,7 +22,7 @@ class m201227_051537_change_dokumen_led_institusi_to_ekspor_dokumen extends Migr
      */
     public function safeDown()
     {
-        $this->addColumn('{{%k9_institusi_ekspor_dokumen}}', 'kode_dokumen', $this->string());
+        $this->dropColumn('{{%k9_institusi_ekspor_dokumen}}', 'kode_dokumen');
         $this->renameTable('{{%k9_institusi_ekspor_dokumen}}', '{{%k9_dokumen_led_institusi}}');
     }
 

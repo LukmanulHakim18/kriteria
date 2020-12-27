@@ -18,6 +18,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int|null $updated_at
  *
  * @property K9LedInstitusi $ledInstitusi
+ * @property K9LedInstitusiNonKriteriaDokumen[] $documents
  */
 class K9LedInstitusiNarasiAnalisis extends \yii\db\ActiveRecord
 {
@@ -79,5 +80,19 @@ class K9LedInstitusiNarasiAnalisis extends \yii\db\ActiveRecord
     public function getLedInstitusi()
     {
         return $this->hasOne(K9LedInstitusi::className(), ['id' => 'id_led_institusi']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDocuments()
+    {
+        return $this->hasMany(K9LedInstitusiNonKriteriaDokumen::class,
+            ['id_led_institusi' => 'id_led_institusi'])->andWhere([
+            'like',
+            'kode_dokumen',
+            'D.%',
+            false
+        ]);
     }
 }

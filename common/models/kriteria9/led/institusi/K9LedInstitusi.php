@@ -175,7 +175,7 @@ class K9LedInstitusi extends \yii\db\ActiveRecord
         $progress_kriteria = round((($kriteria1 + $kriteria2 + $kriteria3 + $kriteria4 + $kriteria5 + $kriteria6 + $kriteria7 + $kriteria8 + $kriteria9) / 9),
             2);
 
-        $progress = round(($this->narasiEksternal->progress + $this->narasiProfil->progress + $progress_kriteria + $this->narasiAnalisis) / 4,
+        $progress = round(($this->narasiEksternal->progress + $this->narasiProfil->progress + $progress_kriteria + $this->narasiAnalisis->progress) / 4,
             2);
         $this->progress = $progress;
 

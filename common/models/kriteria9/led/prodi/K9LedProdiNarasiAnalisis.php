@@ -3,7 +3,6 @@
 namespace common\models\kriteria9\led\prodi;
 
 use common\helpers\HitungNarasiLedTrait;
-use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -96,7 +95,7 @@ class K9LedProdiNarasiAnalisis extends \yii\db\ActiveRecord
      */
     public function getDocuments()
     {
-        return $this->hasMany(K9LedProdiNonKriteriaDokumen::class, ['id_led_prodi' => 'id'])->andWhere([
+        return $this->hasMany(K9LedProdiNonKriteriaDokumen::class, ['id_led_prodi' => 'id_led_prodi'])->andWhere([
             'like',
             'kode_dokumen',
             'D%'
