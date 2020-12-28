@@ -20,6 +20,7 @@ use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;
 
+$controller = $this->context->id;
 $attr = 'dokumen_' . $jenis
 ?>
 <!--                            Tabel dokumen sumber-->
@@ -40,7 +41,7 @@ $attr = 'dokumen_' . $jenis
     <?php
     if (!empty($json_dokumen)):
         foreach ($json_dokumen as $keyDok => $dok):
-            $dokAttr = '_' . str_replace('.', '_', $dok->kode);
+            $dokAttr = \common\helpers\NomorKriteriaHelper::changeToDbFormat($dok->kode);
             ?>
             <tr>
                 <th scope="row">
@@ -65,7 +66,7 @@ $attr = 'dokumen_' . $jenis
                                 ]) ?>
                                 <?php $form = ActiveForm::begin([
                                     'action' => \yii\helpers\Url::to([
-                                        'led/isi-non-kriteria',
+                                        $controller . '/isi-non-kriteria',
                                         'led' => $model->id,
                                         'prodi' => $prodi->id,
                                         'poin' => $poin
@@ -108,7 +109,7 @@ $attr = 'dokumen_' . $jenis
                             ]) ?>
                                 <?php $form = ActiveForm::begin([
                                 'action' => \yii\helpers\Url::to([
-                                    'led/isi-non-kriteria',
+                                    $controller . '/isi-non-kriteria',
                                     'led' => $model->id,
                                     'prodi' => $prodi->id,
                                     'poin' => $poin
@@ -150,7 +151,7 @@ $attr = 'dokumen_' . $jenis
                             ]) ?>
                                 <?php $form = ActiveForm::begin([
                                 'action' => \yii\helpers\Url::to([
-                                    'led/isi-non-kriteria',
+                                    $controller . '/isi-non-kriteria',
                                     'led' => $model->id,
                                     'prodi' => $prodi->id,
                                     'poin' => $poin
@@ -188,7 +189,6 @@ $attr = 'dokumen_' . $jenis
                                 <?= Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data', [
                                     'value' => \yii\helpers\Url::to([
                                         'resource/index',
-                                        'prodi' => $_GET['prodi'],
                                         'poin' => $poin,
                                         'kode' => $dok->kode,
                                         'jenis' => Constants::LED,

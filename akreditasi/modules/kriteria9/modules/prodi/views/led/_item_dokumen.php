@@ -40,7 +40,7 @@ $attr = 'dokumen_' . $jenis
     <?php
     if (!empty($json_dokumen)):
         foreach ($json_dokumen as $keyDok => $dok):
-            $dokAttr = '_' . str_replace('.', '_', $dok->kode);
+            $dokAttr = \common\helpers\NomorKriteriaHelper::changeToDbFormat($dok->kode);
             ?>
             <tr>
                 <th scope="row">

@@ -20,7 +20,9 @@ $this->params['breadcrumbs'][] = [
 ];
 $this->params['breadcrumbs'][] = $this->title;
 
+$controller = $this->context->id;
 
+use common\helpers\NomorKriteriaHelper;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Progress;
 
@@ -57,7 +59,7 @@ use yii\bootstrap4\Progress;
                     <?php
                     if ($poin):
                         foreach ($poin as $key => $item):
-                            $modelAttribute = '_' . str_replace('.', '_', $item->nomor);
+                            $modelAttribute = NomorKriteriaHelper::changeToDbFormat($item->nomor);
 
                             ?>
                             <div class="card">
@@ -132,7 +134,7 @@ use yii\bootstrap4\Progress;
     </div>
 <?php
 $url = \yii\helpers\Url::to([
-    'led/butir-item-non-kriteria',
+    $controller . '/butir-item-non-kriteria',
     'led' => $ledInstitusi->id,
     'untuk' => $untuk
 ], true);

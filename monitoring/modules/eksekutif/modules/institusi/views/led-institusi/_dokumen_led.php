@@ -16,7 +16,6 @@ use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;
 
-$controller = $this->context->id;
 ?>
 
 <div class="kt-portlet">
@@ -121,17 +120,16 @@ $controller = $this->context->id;
                                         <?php Modal::end(); ?>
                                     <?php endif; ?>
                                     <?= Html::a('<i class ="la la-download"></i> Unduh',
-                                        [$controller . '/download-dokumen', 'dokumen' => $item->id],
+                                        ['led-institusi/download-dokumen', 'dokumen' => $item->id],
                                         ['class' => 'btn btn-warning btn-pill btn-elevate btn-elevate-air']) ?>
-                                    <?= Html::a('<i class ="la la-trash"></i> Hapus',
-                                        [$controller . '/hapus-dokumen-led'], [
-                                            'class' => 'btn btn-danger btn-pill btn-elevate btn-elevate-air',
-                                            'data' => [
-                                                'method' => 'POST',
-                                                'confirm' => 'Apakah anda yakin menghapus item ini?',
-                                                'params' => ['id' => $item->id]
-                                            ]
-                                        ]) ?>
+                                    <?= Html::a('<i class ="la la-trash"></i> Hapus', ['led/hapus-dokumen-led'], [
+                                        'class' => 'btn btn-danger btn-pill btn-elevate btn-elevate-air',
+                                        'data' => [
+                                            'method' => 'POST',
+                                            'confirm' => 'Apakah anda yakin menghapus item ini?',
+                                            'params' => ['id' => $item->id]
+                                        ]
+                                    ]) ?>
                                 </div>
 
                             </div>

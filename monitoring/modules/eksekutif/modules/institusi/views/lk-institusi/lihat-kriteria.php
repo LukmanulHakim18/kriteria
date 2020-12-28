@@ -8,9 +8,6 @@ use common\helpers\FileIconHelper;
 use common\helpers\FileTypeHelper;
 use common\models\Constants;
 use common\models\kriteria9\lk\institusi\K9LkInstitusi;
-use dosamigos\tinymce\TinyMce;
-use kartik\file\FileInput;
-use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;
 use yii\bootstrap4\Progress;
@@ -30,7 +27,10 @@ $this->title = "Kriteria " . $kriteria;
 $this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
 $this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9/default/index']];
 $this->params['breadcrumbs'][] = ['label' => 'Institusi', 'url' => ['/kriteria9/k9-institusi/default/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Isi Kriteria', 'url' => ['/kriteria9/k9-institusi/lk/lihat', 'lk' => $lkInstitusi->id,]];
+$this->params['breadcrumbs'][] = [
+    'label' => 'Isi Kriteria',
+    'url' => ['/kriteria9/k9-institusi/lk/lihat', 'lk' => $lkInstitusi->id,]
+];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -96,8 +96,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                             <div class="row">
                                                 <div class="col-lg-12">
 
-                                                    <?=$modelNarasi->$modelAttribute ?>
-                                                    <?=$item['keterangan'] ?>
+                                                    <?= $modelNarasi->$modelAttribute ?>
+                                                    <?= $item['keterangan'] ?>
 
                                                 </div>
                                             </div>
@@ -143,7 +143,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                         $detailClass = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria' . $kriteria . 'Detail';
                                         $detail = call_user_func($detailClass . "::find")->where(['id_lk_institusi_kriteria' . $kriteria => $modelKriteria->id]);
 
-                                        $detail1 = $detail->andWhere(['kode_dokumen' => $doksum['kode'], 'jenis_dokumen' => Constants::SUMBER])->all();
+                                        $detail1 = $detail->andWhere([
+                                            'kode_dokumen' => $doksum['kode'],
+                                            'jenis_dokumen' => Constants::SUMBER
+                                        ])->all();
                                         foreach ($detail1 as $k => $v) : ?>
 
                                             <tr>
@@ -178,13 +181,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                                                 <?php Modal::begin([
                                                                     'title' => $v->nama_dokumen,
-                                                                    'toggleButton' => ['label' => '<i class="la la-eye"></i> &nbsp;Lihat', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'],
+                                                                    'toggleButton' => [
+                                                                        'label' => '<i class="la la-eye"></i> &nbsp;Lihat',
+                                                                        'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'
+                                                                    ],
                                                                     'size' => 'modal-lg',
-                                                                    'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
+                                                                    'clientOptions' => [
+                                                                        'backdrop' => 'blur',
+                                                                        'keyboard' => true
+                                                                    ]
                                                                 ]); ?>
                                                                 <?php switch ($type) {
                                                                     case FileTypeHelper::TYPE_IMAGE:
-                                                                        echo Html::img("$path/sumber/{$v->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
+                                                                        echo Html::img("$path/sumber/{$v->isi_dokumen}",
+                                                                            ['height' => '100%', 'width' => '100%']);
                                                                         break;
                                                                     case FileTypeHelper::TYPE_STATIC_TEXT:
                                                                         echo $v->isi_dokumen;
@@ -196,12 +206,24 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                 } ?>
                                                                 <?php Modal::end(); ?>
                                                             <?php elseif ($type === FileTypeHelper::TYPE_LINK): ?>
-                                                                <?= Html::a('<i class="la la-external-link"></i> Lihat', $v->isi_dokumen, ['class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air', 'target' => '_blank']) ?>
+                                                                <?= Html::a('<i class="la la-external-link"></i> Lihat',
+                                                                    $v->isi_dokumen, [
+                                                                        'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air',
+                                                                        'target' => '_blank'
+                                                                    ]) ?>
                                                             <?php endif; ?>
                                                             <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
 
                                                             <?php else: ?>
-                                                                <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['lk/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'lk' => $_GET['lk'], 'jenis' => Constants::SUMBER], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
+                                                                <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh',
+                                                                    [
+                                                                        'lk/download-detail',
+                                                                        'kriteria' => $kriteria,
+                                                                        'dokumen' => $v->id,
+                                                                        'lk' => $_GET['lk'],
+                                                                        'jenis' => Constants::SUMBER
+                                                                    ],
+                                                                    ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
                                                             <?php endif; ?>
                                                         </div>
 
@@ -256,7 +278,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                             $detailClass = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria' . $kriteria . 'Detail';
                                             $detail = call_user_func($detailClass . "::find")->where(['id_lk_institusi_kriteria' . $kriteria => $modelKriteria->id]);
 
-                                            $detail1 = $detail->andWhere(['kode_dokumen' => $dokpen['kode'], 'jenis_dokumen' => Constants::PENDUKUNG])->all();
+                                            $detail1 = $detail->andWhere([
+                                                'kode_dokumen' => $dokpen['kode'],
+                                                'jenis_dokumen' => Constants::PENDUKUNG
+                                            ])->all();
 
                                             foreach ($detail1 as $k => $v) :
                                                 ?>
@@ -291,13 +316,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                                                     <?php Modal::begin([
                                                                         'title' => $v->nama_dokumen,
-                                                                        'toggleButton' => ['label' => '<i class="la la-eye"></i> &nbsp;Lihat', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'],
+                                                                        'toggleButton' => [
+                                                                            'label' => '<i class="la la-eye"></i> &nbsp;Lihat',
+                                                                            'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'
+                                                                        ],
                                                                         'size' => 'modal-lg',
-                                                                        'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
+                                                                        'clientOptions' => [
+                                                                            'backdrop' => 'blur',
+                                                                            'keyboard' => true
+                                                                        ]
                                                                     ]); ?>
                                                                     <?php switch ($type) {
                                                                         case FileTypeHelper::TYPE_IMAGE:
-                                                                            echo Html::img("$path/pendukung/{$v->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
+                                                                            echo Html::img("$path/pendukung/{$v->isi_dokumen}",
+                                                                                [
+                                                                                    'height' => '100%',
+                                                                                    'width' => '100%'
+                                                                                ]);
                                                                             break;
                                                                         case FileTypeHelper::TYPE_STATIC_TEXT:
                                                                             echo $v->isi_dokumen;
@@ -309,12 +344,24 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                     } ?>
                                                                     <?php Modal::end(); ?>
                                                                 <?php elseif ($type === FileTypeHelper::TYPE_LINK): ?>
-                                                                    <?= Html::a('<i class="la la-external-link"></i> Lihat', $v->isi_dokumen, ['class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air', 'target' => '_blank']) ?>
+                                                                    <?= Html::a('<i class="la la-external-link"></i> Lihat',
+                                                                        $v->isi_dokumen, [
+                                                                            'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air',
+                                                                            'target' => '_blank'
+                                                                        ]) ?>
                                                                 <?php endif; ?>
                                                                 <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
 
                                                                 <?php else: ?>
-                                                                    <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['lk/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'lk' => $_GET['lk'], 'jenis' => Constants::PENDUKUNG], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
+                                                                    <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh',
+                                                                        [
+                                                                            'lk/download-detail',
+                                                                            'kriteria' => $kriteria,
+                                                                            'dokumen' => $v->id,
+                                                                            'lk' => $_GET['lk'],
+                                                                            'jenis' => Constants::PENDUKUNG
+                                                                        ],
+                                                                        ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
                                                                 <?php endif; ?>
                                                             </div>
 
@@ -351,7 +398,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         $detail1 = $detail->andWhere(['jenis_dokumen' => Constants::LAINNYA])->all();
                                         if (!empty($detail1)) {
                                             foreach ($detail1 as $k => $v) {
-                                                if ( $v['jenis_dokumen'] === 'lainnya') { ?>
+                                                if ($v['jenis_dokumen'] === 'lainnya') { ?>
                                                     <tr>
                                                         <td><strong><?= $k + 1 ?></strong></td>
                                                         <td>
@@ -384,13 +431,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                                                         <?php Modal::begin([
                                                                             'title' => $v->nama_dokumen,
-                                                                            'toggleButton' => ['label' => '<i class="la la-eye"></i> &nbsp;Lihat', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'],
+                                                                            'toggleButton' => [
+                                                                                'label' => '<i class="la la-eye"></i> &nbsp;Lihat',
+                                                                                'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'
+                                                                            ],
                                                                             'size' => 'modal-lg',
-                                                                            'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
+                                                                            'clientOptions' => [
+                                                                                'backdrop' => 'blur',
+                                                                                'keyboard' => true
+                                                                            ]
                                                                         ]); ?>
                                                                         <?php switch ($type) {
                                                                             case FileTypeHelper::TYPE_IMAGE:
-                                                                                echo Html::img("$path/lainnya/{$v->isi_dokumen}", ['height' => '100%', 'width' => '100%']);
+                                                                                echo Html::img("$path/lainnya/{$v->isi_dokumen}",
+                                                                                    [
+                                                                                        'height' => '100%',
+                                                                                        'width' => '100%'
+                                                                                    ]);
                                                                                 break;
                                                                             case FileTypeHelper::TYPE_STATIC_TEXT:
                                                                                 echo $v->isi_dokumen;
@@ -402,12 +459,24 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                         } ?>
                                                                         <?php Modal::end(); ?>
                                                                     <?php elseif ($type === FileTypeHelper::TYPE_LINK): ?>
-                                                                        <?= Html::a('<i class="la la-external-link"></i> Lihat', $v->isi_dokumen, ['class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air', 'target' => '_blank']) ?>
+                                                                        <?= Html::a('<i class="la la-external-link"></i> Lihat',
+                                                                            $v->isi_dokumen, [
+                                                                                'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air',
+                                                                                'target' => '_blank'
+                                                                            ]) ?>
                                                                     <?php endif; ?>
                                                                     <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
 
                                                                     <?php else: ?>
-                                                                        <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['lk/download-detail', 'kriteria' => $kriteria, 'dokumen' => $v->id, 'lk' => $_GET['lk'], 'jenis' => Constants::LAINNYA], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
+                                                                        <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh',
+                                                                            [
+                                                                                'lk/download-detail',
+                                                                                'kriteria' => $kriteria,
+                                                                                'dokumen' => $v->id,
+                                                                                'lk' => $_GET['lk'],
+                                                                                'jenis' => Constants::LAINNYA
+                                                                            ],
+                                                                            ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
                                                                     <?php endif; ?>
                                                                 </div>
 

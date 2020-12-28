@@ -17,7 +17,7 @@ use yii\web\View;
 <div class="led-content">
     <?php if (!empty($item->butir)):
         foreach ($item->butir as $butir):
-            $modelAttribute = '_' . str_replace('.', '_', $butir->nomor);
+            $modelAttribute = NomorKriteriaHelper::changeToDbFormat($butir->nomor);
             ?>
             <div class="row">
                 <div class="col-lg-12">

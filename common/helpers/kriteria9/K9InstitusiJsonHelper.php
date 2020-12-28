@@ -19,8 +19,12 @@ use yii\helpers\Json;
 class K9InstitusiJsonHelper implements IK9JsonHelper
 {
 
-    public static function getAllJsonLk($jenis)
+    public static function getAllJsonLk($jenis = null)
     {
+        if (!$jenis) {
+            $jenis = \yii\helpers\ArrayHelper::map(\common\models\ProfilInstitusi::find()->all(),
+                'nama', 'isi')['jenis'];
+        }
         $out = [];
         $json = self::getJson('lk', $jenis);
         foreach ($json as $jsonObj) {

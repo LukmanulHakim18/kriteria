@@ -2,9 +2,10 @@
 /**
  * @var $this yii\web\View
  * @var $json_analisis common\models\kriteria9\led\Led
- * @var $modelAnalisis common\models\kriteria9\led\prodi\K9LedProdiNarasiAnalisis
+ * @var $modelAnalisis common\models\kriteria9\led\institusi\K9LedInstitusiNarasiAnalisis
  * @var $untuk string
- * @var $prodi common\models\ProgramStudi
+ * @var $institusi common\models\ProgramStudi
+ * @var $led common\models\kriteria9\led\institusi\K9LedInstitusi
  */
 
 use yii\bootstrap4\Html;
@@ -35,13 +36,9 @@ use yii\bootstrap4\Progress;
             ]); ?>
         </td>
         <td style="padding-top: 15px;">
-            <?= Html::a("<i class='la la-folder-open'></i>Lihat", [
-                'led/' . $untuk . '-non-kriteria',
-                'led' => $led->id,
-                'prodi' => $prodi->id,
-                'poin' => $json_analisis->nomor,
-                'fakultas' => $fakultas->id
-            ], ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
+            <?= Html::a("<i class='la la-folder-open'></i>Lihat",
+                ['led-institusi/' . $untuk . '-non-kriteria', 'led' => $led->id, 'poin' => $json_analisis->nomor],
+                ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
 
             <!--                        <button type="button" class="btn btn-danger">Lihat</button>-->
         </td>

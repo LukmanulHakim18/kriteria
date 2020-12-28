@@ -13,7 +13,6 @@
  * @var $modelAnalisis common\models\kriteria9\led\institusi\K9LedInstitusiNarasiAnalisis
  * @var $modelProfil common\models\kriteria9\led\institusi\K9LedInstitusiNarasiProfilInstitusi
  */
-$controller = $this->context->id;
 
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Progress;
@@ -45,28 +44,28 @@ use yii\bootstrap4\Progress;
 
             <div class="row">
                 <div class="col-lg-12">
-                    <?= $this->render('_tabel_led_eksternal',
+                    <?= $this->render('@monitoring/modules/eksekutif/modules/institusi/views/led-institusi/_tabel_led_eksternal',
                         compact('json_eksternal', 'modelEksternal', 'untuk', 'led')) ?>
 
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <?= $this->render('_tabel_led_profil',
+                    <?= $this->render('@monitoring/modules/eksekutif/modules/institusi/views/led-institusi/_tabel_led_profil',
                         compact('json_profil', 'modelProfil', 'untuk', 'led')) ?>
 
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <?= $this->render('_tabel_led_kriteria',
+                    <?= $this->render('@monitoring/modules/eksekutif/modules/institusi/views/led-institusi/_tabel_led_kriteria',
                         compact('json', 'kriteria', 'untuk', 'led')) ?>
 
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <?= $this->render('_tabel_led_analisis',
+                    <?= $this->render('@monitoring/modules/eksekutif/modules/institusi/views/led-institusi/_tabel_led_analisis',
                         compact('json_analisis', 'modelAnalisis', 'untuk', 'led')) ?>
 
                 </div>

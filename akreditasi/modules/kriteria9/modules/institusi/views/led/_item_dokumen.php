@@ -19,6 +19,7 @@ use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;
 
+$controller = $this->context->id;
 $attr = 'dokumen_' . $jenis
 ?>
 <!--                            Tabel dokumen sumber-->
@@ -39,7 +40,7 @@ $attr = 'dokumen_' . $jenis
     <?php
     if (!empty($json_dokumen)):
         foreach ($json_dokumen as $keyDok => $dok):
-            $dokAttr = '_' . str_replace('.', '_', $dok->kode);
+            $dokAttr = \common\helpers\NomorKriteriaHelper::changeToDbFormat($dok->kode);
             ?>
             <tr>
                 <th scope="row">
@@ -64,7 +65,7 @@ $attr = 'dokumen_' . $jenis
                                 ]) ?>
                                 <?php $form = ActiveForm::begin([
                                     'action' => \yii\helpers\Url::to([
-                                        'led/isi-kriteria',
+                                        $controller . '/isi-kriteria',
                                         'led' => $model->id,
                                         'kriteria' => $kriteria
                                     ]),
@@ -106,7 +107,7 @@ $attr = 'dokumen_' . $jenis
                             ]) ?>
                                 <?php $form = ActiveForm::begin([
                                 'action' => \yii\helpers\Url::to([
-                                    'led/isi-kriteria',
+                                    $controller . '/isi-kriteria',
                                     'led' => $model->id,
                                     'kriteria' => $kriteria
                                 ]),
@@ -147,7 +148,7 @@ $attr = 'dokumen_' . $jenis
                             ]) ?>
                                 <?php $form = ActiveForm::begin([
                                 'action' => \yii\helpers\Url::to([
-                                    'led/isi-kriteria',
+                                    $controller . '/isi-kriteria',
                                     'led' => $model->id,
                                     'kriteria' => $kriteria
                                 ]),

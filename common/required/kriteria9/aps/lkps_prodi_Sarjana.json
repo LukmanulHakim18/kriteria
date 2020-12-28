@@ -690,7 +690,7 @@
                         "dokumen": "Daftar IPK Lulusan"
                     }
                 ],
-                "dokumen_pendukung": null
+                "dokumen_pendukung": []
             },
             {
                 "tabel": "8.b.1",

@@ -1,10 +1,11 @@
 <?php
 /**
  * @var $this yii\web\View
- * @var $json_analisis common\models\kriteria9\led\Led
- * @var $modelAnalisis common\models\kriteria9\led\prodi\K9LedProdiNarasiAnalisis
+ * @var $json_eksternal common\models\kriteria9\led\Led
+ * @var $modelEksternal common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKondisiEksternal
+ * @var $led common\models\kriteria9\led\institusi\K9LedInstitusi
+ * @var $institusi
  * @var $untuk string
- * @var $prodi common\models\ProgramStudi
  */
 
 use yii\bootstrap4\Html;
@@ -22,26 +23,22 @@ use yii\bootstrap4\Progress;
     <tbody>
 
     <tr>
-        <th><?= Html::encode($json_analisis->nomor) ?></th>
+        <th><?= Html::encode($json_eksternal->nomor) ?></th>
         <td>
-            <strong><?= $json_analisis->nama ?>
-                : <?= $modelAnalisis->progress ?>%</strong><br>
+            <strong><?= $json_eksternal->nama ?>
+                : <?= $modelEksternal->progress ?>%</strong><br>
             <div class="kt-space-10"></div>
             <?=
             Progress::widget([
-                'percent' => $modelAnalisis->progress,
+                'percent' => $modelEksternal->progress,
                 'barOptions' => ['class' => 'progress-bar-info m-progress-lg'],
                 'options' => ['class' => 'progress-sm']
             ]); ?>
         </td>
         <td style="padding-top: 15px;">
-            <?= Html::a("<i class='la la-folder-open'></i>Lihat", [
-                'led/' . $untuk . '-non-kriteria',
-                'led' => $led->id,
-                'prodi' => $prodi->id,
-                'poin' => $json_analisis->nomor,
-                'fakultas' => $fakultas->id
-            ], ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
+            <?= Html::a("<i class='la la-folder-open'></i>Lihat",
+                ['led-institusi/' . $untuk . '-non-kriteria', 'led' => $led->id, 'poin' => $json_eksternal->nomor],
+                ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
 
             <!--                        <button type="button" class="btn btn-danger">Lihat</button>-->
         </td>

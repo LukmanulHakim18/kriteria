@@ -11,7 +11,6 @@ use common\models\kriteria9\led\Led;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Progress;
 
-$controller = $this->context->id;
 
 ?>
 <table class="table">
@@ -43,7 +42,7 @@ $controller = $this->context->id;
             </td>
             <td style="padding-top: 15px;">
                 <?= Html::a("<i class='la la-folder-open'></i>Lihat",
-                    [$controller . '/' . $untuk . '-kriteria', 'led' => $led->id, 'kriteria' => $kriteriaJson->nomor],
+                    ['led-institusi/' . $untuk . '-kriteria', 'led' => $led->id, 'kriteria' => $kriteriaJson->nomor],
                     ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
 
                 <!--                        <button type="button" class="btn btn-danger">Lihat</button>-->

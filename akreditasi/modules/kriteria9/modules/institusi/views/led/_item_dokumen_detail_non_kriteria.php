@@ -7,6 +7,7 @@
  * @var $detail
  * @var $poin
  */
+$controller = $this->context->id;
 
 use common\helpers\FileIconHelper;
 use common\helpers\FileTypeHelper;
@@ -74,11 +75,11 @@ use yii\bootstrap4\Modal;
                         'target' => '_blank'
                     ]) ?>
                 <?php endif; ?>
-                <?php if ($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT): ?>
+                <?php if ($type === FileTypeHelper::TYPE_STATIC_TEXT || $type === FileTypeHelper::TYPE_LINK): ?>
 
                 <?php else: ?>
                     <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', [
-                        'led/download-detail-non-kriteria',
+                        $controller . '/download-detail-non-kriteria',
                         'poin' => $poin,
                         'dokumen' => $detail->id,
                         'led' => $led->id,
@@ -86,19 +87,20 @@ use yii\bootstrap4\Modal;
                     ], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
                 <?php endif; ?>
                 <?php if ($untuk === 'isi'): ?>
-                    <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['led/hapus-detail-non-kriteria'], [
-                        'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
-                        'data' => [
-                            'method' => 'POST',
-                            'confirm' => 'Apakah anda yakin menghapus item ini?',
-                            'params' => [
-                                'dokumen' => $detail->id,
-                                'poin' => $poin,
-                                'led' => $led->id,
-                                'jenis' => $jenis
+                    <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus',
+                        [$controller . '/hapus-detail-non-kriteria'], [
+                            'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
+                            'data' => [
+                                'method' => 'POST',
+                                'confirm' => 'Apakah anda yakin menghapus item ini?',
+                                'params' => [
+                                    'dokumen' => $detail->id,
+                                    'poin' => $poin,
+                                    'led' => $led->id,
+                                    'jenis' => $jenis
+                                ]
                             ]
-                        ]
-                    ]) ?>
+                        ]) ?>
                 <?php endif ?>
             </div>
 

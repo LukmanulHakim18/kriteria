@@ -11,6 +11,8 @@
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Progress;
 
+$controller = $this->context->id;
+
 ?>
 <table class="table">
     <thead class="thead-dark">
@@ -37,7 +39,7 @@ use yii\bootstrap4\Progress;
         </td>
         <td style="padding-top: 15px;">
             <?= Html::a("<i class='la la-folder-open'></i>Lihat",
-                ['led/' . $untuk . '-non-kriteria', 'led' => $led->id, 'poin' => $json_profil->nomor],
+                [$controller . '/' . $untuk . '-non-kriteria', 'led' => $led->id, 'poin' => $json_profil->nomor],
                 ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
 
             <!--                        <button type="button" class="btn btn-danger">Lihat</button>-->

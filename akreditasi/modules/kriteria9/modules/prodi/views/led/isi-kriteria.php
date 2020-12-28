@@ -20,6 +20,7 @@ $this->params['breadcrumbs'][] = [
 $this->params['breadcrumbs'][] = $this->title;
 
 
+use common\helpers\NomorKriteriaHelper;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Progress;
 
@@ -53,7 +54,7 @@ use yii\bootstrap4\Progress;
                 <div class="accordion accordion-solid  accordion-toggle-plus" id="accordion">
 
                     <?php foreach ($poinKriteria as $key => $item):
-                        $modelAttribute = '_' . str_replace('.', '_', $item->nomor);
+                        $modelAttribute = NomorKriteriaHelper::changeToDbFormat($item->nomor);
 
                         ?>
                         <div class="card">

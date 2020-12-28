@@ -53,7 +53,7 @@ use yii\bootstrap4\Progress;
                     <?php
                     if ($poin):
                         foreach ($poin as $key => $item):
-                            $modelAttribute = '_' . str_replace('.', '_', $item->nomor);
+                            $modelAttribute = NomorKriteriaHelper::changeToDbFormat($item->nomor);
 
                             ?>
                             <div class="card">

@@ -9,11 +9,16 @@
 $this->title = 'Narasi ' . $json->nama;
 $this->params['breadcrumbs'][] = [
     'label' => 'Akreditasi Prodi',
-    'url' => ['akreditasi/index-prodi', 'prodi' => $prodi->id,'fakultas'=>$fakultasAkademi->id]
+    'url' => ['akreditasi/index-prodi', 'prodi' => $prodi->id, 'fakultas' => $fakultasAkademi->id]
 ];
 $this->params['breadcrumbs'][] = [
     'label' => "Akreditasi: {$akreditasiProdi->akreditasi->nama} - {$prodi->nama}",
-    'url' => ['akreditasi/detail', 'id' => $akreditasiProdi->id, 'prodi' => $prodi->id,'fakultas'=>$fakultasAkademi->id]
+    'url' => [
+        'akreditasi/detail',
+        'id' => $akreditasiProdi->id,
+        'prodi' => $prodi->id,
+        'fakultas' => $fakultasAkademi->id
+    ]
 ];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -51,39 +56,42 @@ use yii\bootstrap4\Progress;
 
 
                     <?php
-                    if($poin):
-                    foreach ($poin as $key => $item):
-                        $modelAttribute = '_' . str_replace('.', '_', $item->nomor);
+                    if ($poin):
+                        foreach ($poin as $key => $item):
+                            $modelAttribute = NomorKriteriaHelper::changeToDbFormat($item->nomor);
 
-                        ?>
-                        <div class="card">
-                            <div class="card-header" id="heading-<?=$key?>">
-                                <div class="card-title collapsed" data-toggle="collapse" data-target="#collapse-<?=$key?>"
-                                     aria-expanded="false" aria-controls="collapse-<?=$key?>">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <i class="flaticon-file-2"></i> <?=
-                                            $item->nomor ?>&nbsp;
+                            ?>
+                            <div class="card">
+                                <div class="card-header" id="heading-<?= $key ?>">
+                                    <div class="card-title collapsed" data-toggle="collapse"
+                                         data-target="#collapse-<?= $key ?>"
+                                         aria-expanded="false" aria-controls="collapse-<?= $key ?>">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <i class="flaticon-file-2"></i> <?=
+                                                $item->nomor ?>&nbsp;
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <small>&nbsp;<?= $item->nama ?></small>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <small>&nbsp;<?= $item->nama ?></small>
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div id="collapse-<?=$key?>" class="collapse" aria-labelledby="heading-<?=$key?>">
-                                <div class="card-body">
-                                    <div class="kt-spinner kt-spinner--center kt-spinner--primary kt-spinner--v2" id="spinner-<?=$key?>" data-poin="<?=$json->nomor?>" data-nomor="<?=$item->nomor?>"></div>
-                                    <div id="result-<?=$key?>"></div>
+                                <div id="collapse-<?= $key ?>" class="collapse" aria-labelledby="heading-<?= $key ?>">
+                                    <div class="card-body">
+                                        <div class="kt-spinner kt-spinner--center kt-spinner--primary kt-spinner--v2"
+                                             id="spinner-<?= $key ?>" data-poin="<?= $json->nomor ?>"
+                                             data-nomor="<?= $item->nomor ?>"></div>
+                                        <div id="result-<?= $key ?>"></div>
+                                    </div>
+
                                 </div>
-
                             </div>
-                        </div>
 
-                    <?php endforeach;
+                        <?php endforeach;
                     else:
                         ?>
                         <div class="card">
@@ -106,14 +114,16 @@ use yii\bootstrap4\Progress;
                             </div>
                             <div id="collapse-1" class="collapse" aria-labelledby="heading-1">
                                 <div class="card-body">
-                                    <div class="kt-spinner kt-spinner--center kt-spinner--primary kt-spinner--v2" id="spinner-1" data-poin="<?=$json->nomor?>" data-nomor="<?=$json->nomor?>"></div>
-                                    <div id="result-<?=$json->nomor?>"></div>
+                                    <div class="kt-spinner kt-spinner--center kt-spinner--primary kt-spinner--v2"
+                                         id="spinner-1" data-poin="<?= $json->nomor ?>"
+                                         data-nomor="<?= $json->nomor ?>"></div>
+                                    <div id="result-<?= $json->nomor ?>"></div>
                                 </div>
 
                             </div>
                         </div>
 
-                    <?php endif;?>
+                    <?php endif; ?>
                 </div>
 
                 <!--end::Accordion-->
@@ -122,7 +132,12 @@ use yii\bootstrap4\Progress;
         </div>
     </div>
 <?php
-$url = \yii\helpers\Url::to(['led/butir-item-non-kriteria','led'=>$ledProdi->id,'prodi'=>$prodi->id,'untuk'=>$untuk],true);
+$url = \yii\helpers\Url::to([
+    'led/butir-item-non-kriteria',
+    'led' => $ledProdi->id,
+    'prodi' => $prodi->id,
+    'untuk' => $untuk
+], true);
 $js = <<<JS
 var loaded = {};
 $('#accordion').on('shown.bs.collapse',function(t) {

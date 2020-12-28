@@ -7,6 +7,7 @@
  * @var $institusi common\models\ProgramStudi
  * @var $led common\models\kriteria9\led\institusi\K9LedInstitusi
  */
+$controller = $this->context->id;
 
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Progress;
@@ -37,7 +38,7 @@ use yii\bootstrap4\Progress;
         </td>
         <td style="padding-top: 15px;">
             <?= Html::a("<i class='la la-folder-open'></i>Lihat",
-                ['led/' . $untuk . '-non-kriteria', 'led' => $led->id, 'poin' => $json_analisis->nomor],
+                [$controller . '/' . $untuk . '-non-kriteria', 'led' => $led->id, 'poin' => $json_analisis->nomor],
                 ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
 
             <!--                        <button type="button" class="btn btn-danger">Lihat</button>-->

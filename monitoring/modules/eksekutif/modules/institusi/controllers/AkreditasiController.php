@@ -94,27 +94,41 @@ class AkreditasiController extends BaseController
 
         //led
         $jsonLed = K9InstitusiJsonHelper::getAllJsonLed();
-        $ledInstitusi = $apt->k9LedInstitusis;
+        $json_eksternal = K9InstitusiJsonHelper::getJsonLedKondisiEksternal();
+        $json_profil = K9InstitusiJsonHelper::getJsonLedProfil();
+        $json_analisis = K9InstitusiJsonHelper::getJsonLedAnalisis();
+        $ledInstitusi = $apt->k9LedInstitusi;
         $dokumenLed = K9InstitusiEksporDokumen::findAll(['id_led_institusi' => $ledInstitusi->id]);
         $kriteriaLed = $this->getArrayKriteraLedInstitusi($ledInstitusi->id);
         $urlLed = K9InstitusiDirectoryHelper::getDokumenLedUrl($ledInstitusi->akreditasiInstitusi);
 
+        $modelEksternal = $ledInstitusi->narasiEksternal;
+        $modelProfil = $ledInstitusi->narasiProfil;
+        $modelAnalisis = $ledInstitusi->narasiAnalisis;
         //lk
         $jsonLk = K9InstitusiJsonHelper::getAllJsonLk();
-        $lkInstitusi = $apt->k9LkInstitusis;
+        $lkInstitusi = $apt->k9LkInstitusi;
         $kriteriaLk = $this->getArrayKriteriaLkInstitusi($lkInstitusi->id);
 
         return $this->render('detail-pt', [
             'profilInstitusi' => $profilInstitusi,
             'akreditasiInstitusi' => $apt,
             'jsonLed' => $jsonLed,
-            'ledInstitusi' => $ledInstitusi,
-            'dokumenLed' => $dokumenLed,
+            'json_eksternal' => $json_eksternal,
+            'json_profil' => $json_profil,
+            'json_analisis' => $json_analisis,
+            'led' => $ledInstitusi,
+            'dataDokumen' => $dokumenLed,
+            'modelDokumen' => null,
             'kriteriaLed' => $kriteriaLed,
-            'urlLed' => $urlLed,
+            'path' => $urlLed,
             'jsonLk' => $jsonLk,
             'lkInstitusi' => $lkInstitusi,
-            'kriteriaLk' => $kriteriaLk
+            'kriteriaLk' => $kriteriaLk,
+            'untuk' => 'lihat',
+            'modelEksternal' => $modelEksternal,
+            'modelAnalisis' => $modelAnalisis,
+            'modelProfil' => $modelProfil,
         ]);
     }
 }

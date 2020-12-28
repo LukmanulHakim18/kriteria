@@ -5,14 +5,16 @@
  * @var $poinKriteria [];
  * @var $untuk string
  */
-$this->title = 'Kriteria ' . $kriteria;
+$this->title = "Kriteria " . $kriteria;
+$this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
+$this->params['breadcrumbs'][] = ['label' => 'Akreditasi Perguruan Tinggi', 'url' => ['akreditasi/index']];
 $this->params['breadcrumbs'][] = [
-    'label' => 'Akreditasi Prodi',
-    'url' => ['akreditasi/index', 'prodi' => $prodi->id]
+    'label' => $ledInstitusi->akreditasiInstitusi->akreditasi->nama,
+    'url' => ['akreditasi/detail-pt', 'id' => $ledInstitusi->akreditasiInstitusi->id]
 ];
 $this->params['breadcrumbs'][] = [
-    'label' => "Akreditasi: {$akreditasiProdi->akreditasi->nama} - {$prodi->nama}",
-    'url' => ['akreditasi/detail', 'id' => $akreditasiProdi->id, 'prodi' => $prodi->id]
+    'label' => \yii\helpers\StringHelper::mb_ucfirst($untuk) . ' Led',
+    'url' => ['led-institusi/' . $untuk, 'led' => $ledInstitusi->id]
 ];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -93,10 +95,9 @@ use yii\bootstrap4\Progress;
     </div>
 <?php
 $url = \yii\helpers\Url::to([
-    'led/butir-item',
+    'led-institusi/butir-item',
     'kriteria' => $kriteria,
     'led' => $model->id,
-    'prodi' => $prodi->id,
     'untuk' => $untuk
 ], true);
 $js = <<<JS

@@ -578,6 +578,7 @@ class LedController extends BaseController
             'poinKriteria' => $poinKriteria,
             'untuk' => 'lihat',
             'kriteria' => $kriteria,
+            'ledInstitusi' => $ledInstitusi
         ]);
     }
 

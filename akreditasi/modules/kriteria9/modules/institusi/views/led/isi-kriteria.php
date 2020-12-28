@@ -18,8 +18,9 @@ $this->params['breadcrumbs'][] = [
     'url' => ['/kriteria9/k9-institusi/led/' . $untuk, 'led' => $model->id]
 ];
 $this->params['breadcrumbs'][] = $this->title;
+$controller = $this->context->id;
 
-
+use common\helpers\NomorKriteriaHelper;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Progress;
 
@@ -53,7 +54,7 @@ use yii\bootstrap4\Progress;
                 <div class="accordion accordion-solid  accordion-toggle-plus" id="accordion">
 
                     <?php foreach ($poinKriteria as $key => $item):
-                        $modelAttribute = '_' . str_replace('.', '_', $item->nomor);
+                        $modelAttribute = NomorKriteriaHelper::changeToDbFormat($item->nomor);
 
                         ?>
                         <div class="card">
@@ -94,7 +95,12 @@ use yii\bootstrap4\Progress;
         </div>
     </div>
 <?php
-$url = \yii\helpers\Url::to(['led/butir-item', 'kriteria' => $kriteria, 'led' => $model->id, 'untuk' => $untuk], true);
+$url = \yii\helpers\Url::to([
+    $controller . '/butir-item',
+    'kriteria' => $kriteria,
+    'led' => $model->id,
+    'untuk' => $untuk
+], true);
 $js = <<<JS
 var loaded = {};
 $('#accordion').on('shown.bs.collapse',function(t) {
