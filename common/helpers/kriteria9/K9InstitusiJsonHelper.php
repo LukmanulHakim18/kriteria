@@ -50,8 +50,13 @@ class K9InstitusiJsonHelper implements IK9JsonHelper
         return new JsonMapper();
     }
 
-    public static function getJsonKriteriaLk(int $kriteria, $jenis)
+    public static function getJsonKriteriaLk(int $kriteria, $jenis = null)
     {
+        if (!$jenis) {
+            $jenis = \yii\helpers\ArrayHelper::map(\common\models\ProfilInstitusi::find()->all(),
+                'nama', 'isi')['jenis'];
+        }
+
         $json = self::getJson('lk', $jenis)[$kriteria - 1];
         return self::provideMapper()->map($json, new Lk());
     }

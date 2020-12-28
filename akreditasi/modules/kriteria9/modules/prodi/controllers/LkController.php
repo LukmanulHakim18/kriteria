@@ -27,7 +27,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\helpers\Url;
-use yii\web\BadRequestHttpException;
+use yii\web\MethodNotAllowedHttpException;
 use yii\web\UploadedFile;
 use yii2mod\collection\Collection;
 
@@ -209,7 +209,7 @@ class LkController extends BaseController
         $currentPoint = $this->getKriteriaNomor($kriteria, $poin, $programStudi->jenjang);
 
         $path = K9ProdiDirectoryHelper::getDokumenLkUrl($lkProdi->akreditasiProdi);
-        $lkProdiKriteriaClass = 'common\\models\\kriteria9\lk\\prodi\\K9LkProdiKriteria' . $kriteria;
+        $lkProdiKriteriaClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria;
         $lkProdiKriteria = call_user_func($lkProdiKriteriaClass . '::findOne', ['id_lk_prodi' => $lkProdi->id]);
         $detailAttr = 'k9LkProdiKriteria' . $kriteria . 'Details';
         $detail = $lkProdiKriteria->$detailAttr;
@@ -350,7 +350,7 @@ class LkController extends BaseController
             Yii::$app->session->setFlash('success', "Dokumen Tabel $model->kode_dokumen berhasil dihapus");
             return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk, 'prodi' => $prodi]);
         }
-        throw new BadRequestHttpException('Request Harus Post');
+        throw new MethodNotAllowedHttpException('Request Harus Post');
     }
 
     protected function getJsonData()

@@ -68,11 +68,11 @@ $menuItems = [
                 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',
                 'url' => ['lk/arsip', 'target' => 'isi']
             ],
-            [
-                'label' => 'Penanggung Jawab',
-                'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',
-                'url' => ['lk/arsip', 'target' => 'pj']
-            ],
+//            [
+//                'label' => 'Penanggung Jawab',
+//                'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',
+//                'url' => ['lk/arsip', 'target' => 'pj']
+//            ],
             [
                 'label' => 'Lihat LK',
                 'icon' => '<i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>',

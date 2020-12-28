@@ -152,7 +152,8 @@ class K9AkreditasiInstitusiForm extends Model
             $kritModel->setAttributes([
                 'id_lk_institusi' => $this->_lk_institusi->id,
                 'progress_narasi' => 0,
-                'progress_dokumen' => 0
+                'progress_dokumen' => 0,
+                'progress' => 0
             ]);
 
             $kritModel->save(false);

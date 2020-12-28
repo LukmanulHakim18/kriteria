@@ -163,7 +163,8 @@ class K9AkreditasiProdiForm extends Model
             $kritProdi->setAttributes([
                 'id_lk_prodi' => $this->_lk_prodi->id,
                 'progress_narasi' => 0,
-                'progress_dokumen' => 0
+                'progress_dokumen' => 0,
+                'progress' => 0
             ]);
 
             $kritProdi->save(false);

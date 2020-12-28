@@ -32,12 +32,11 @@ class K9InstitusiProgressHelper implements IK9ProgressHelper
     public static function getDokumenLedProgress($led, $detail, $kriteria)
     {
 
-        return self::hitung($detail, $kriteria, K9ProdiJsonHelper::getJsonKriteriaLed($kriteria));
+        return self::hitung($detail, $kriteria, K9InstitusiJsonHelper::getJsonKriteriaLed($kriteria));
     }
 
     public static function getDokumenLkProgress($lk, $dokumen, $kriteria)
     {
-        $jenis = 'akademik';
-        return self::hitung($dokumen, $kriteria, K9ProdiJsonHelper::getJsonKriteriaLk($kriteria, $jenis));
+        return self::hitung($dokumen, $kriteria, K9InstitusiJsonHelper::getJsonKriteriaLk($kriteria));
     }
 }

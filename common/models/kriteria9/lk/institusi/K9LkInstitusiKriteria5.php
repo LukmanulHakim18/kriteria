@@ -3,7 +3,6 @@
 namespace common\models\kriteria9\lk\institusi;
 
 use common\helpers\kriteria9\K9InstitusiProgressHelper;
-use Yii;
 
 /**
  * This is the model class for table "k9_lk_institusi_kriteria5".
@@ -38,7 +37,13 @@ class K9LkInstitusiKriteria5 extends \yii\db\ActiveRecord
         return [
             [['id_lk_institusi', 'created_at', 'updated_at'], 'integer'],
             [['progress_narasi', 'progress_dokumen'], 'number'],
-            [['id_lk_institusi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LkInstitusi::className(), 'targetAttribute' => ['id_lk_institusi' => 'id']],
+            [
+                ['id_lk_institusi'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => K9LkInstitusi::className(),
+                'targetAttribute' => ['id_lk_institusi' => 'id']
+            ],
         ];
     }
 
@@ -68,16 +73,6 @@ class K9LkInstitusiKriteria5 extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[K9LkInstitusiKriteria5Details]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getK9LkInstitusiKriteria5Details()
-    {
-        return $this->hasMany(K9LkInstitusiKriteria5Detail::className(), ['id_lk_institusi_kriteria5' => 'id']);
-    }
-
-    /**
      * Gets query for [[K9LkInstitusiKriteria5Narasis]].
      *
      * @return \yii\db\ActiveQuery
@@ -87,22 +82,33 @@ class K9LkInstitusiKriteria5 extends \yii\db\ActiveRecord
         return $this->hasOne(K9LkInstitusiKriteria5Narasi::className(), ['id_lk_institusi_kriteria5' => 'id']);
     }
 
-    public function getProgress(){
-        if ($this->progress_dokumen === 0.0){
-            return $this->progress_narasi;
-        }
-        return round(( $this->progress_narasi + $this->progress_dokumen)/2,2);
+    public function getProgress()
+    {
+        return round(($this->progress_narasi + $this->progress_dokumen) / 2, 2);
     }
-    public function updateProgressNarasi(){
+
+    public function updateProgressNarasi()
+    {
 
         $this->progress_narasi = $this->k9LkInstitusiKriteria5Narasi->progress;
         return $this;
     }
+
     public function updateProgressDokumen()
     {
         $dokumen = K9InstitusiProgressHelper::getDokumenLkProgress($this, $this->getK9LkInstitusiKriteria5Details(), 5);
         $progress = round($dokumen, 2);
         $this->progress_dokumen = $progress;
         return $this;
+    }
+
+    /**
+     * Gets query for [[K9LkInstitusiKriteria5Details]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getK9LkInstitusiKriteria5Details()
+    {
+        return $this->hasMany(K9LkInstitusiKriteria5Detail::className(), ['id_lk_institusi_kriteria5' => 'id']);
     }
 }

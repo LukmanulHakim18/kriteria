@@ -8,51 +8,30 @@ use akreditasi\models\kriteria9\forms\lk\institusi\K9LkInstitusiKriteriaDetailFo
 use akreditasi\models\kriteria9\forms\lk\institusi\K9TextLkInstitusiKriteriaDetailForm;
 use common\helpers\DownloadDokumenTrait;
 use common\helpers\kriteria9\K9InstitusiDirectoryHelper;
+use common\helpers\kriteria9\K9InstitusiJsonHelper;
+use common\helpers\NomorKriteriaHelper;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\forms\lk\K9PencarianLkInstitusiForm;
 use common\models\kriteria9\lk\institusi\K9LkInstitusi;
 use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria1;
-use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria1Narasi;
-use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria1Detail;
 use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria2;
-use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria2Narasi;
 use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria3;
-use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria3Narasi;
 use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria4;
-use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria4Narasi;
 use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria5;
-use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria5Narasi;
-use common\models\kriteria9\lk\K9LkTemplate;
+use common\models\ProfilInstitusi;
 use Yii;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Json;
 use yii\helpers\Url;
-use yii\web\BadRequestHttpException;
+use yii\web\MethodNotAllowedHttpException;
 use yii\web\UploadedFile;
+use yii2mod\collection\Collection;
 
 class LkController extends BaseController
 {
+    protected $lkView = '@akreditasi/modules/kriteria9/modules/institusi/views/lk/isi';
+    protected $lihatLkKriteria = '@akreditasi/modules/kriteria9/modules/institusi/views/lk/isi-kriteria';
+    protected $itemLkView = '@akreditasi/modules/kriteria9/modules/institusi/views/lk/_item_lk';
     use DownloadDokumenTrait;
-
-    protected function getJsonData()
-    {
-        $fileJson = 'lkpt_institusi_akademik.json';
-        $json = Json::decode(file_get_contents(Yii::getAlias('@common/required/kriteria9/apt/' . $fileJson)));
-        return $json;
-    }
-
-    protected function getArrayKriteria($lk)
-    {
-        $kriteria1 = K9LkInstitusiKriteria1::findOne(['id_lk_institusi' => $lk]);
-        $kriteria2 = K9LkInstitusiKriteria2::findOne(['id_lk_institusi' => $lk]);
-        $kriteria3 = K9LkInstitusiKriteria3::findOne(['id_lk_institusi' => $lk]);
-        $kriteria4 = K9LkInstitusiKriteria4::findOne(['id_lk_institusi' => $lk]);
-        $kriteria5 = K9LkInstitusiKriteria5::findOne(['id_lk_institusi' => $lk]);
-
-        return [$kriteria1, $kriteria2, $kriteria3, $kriteria4, $kriteria5];
-    }
-
-
 
     public function actionArsip($target)
     {
@@ -86,7 +65,9 @@ class LkController extends BaseController
     public function actionIsi($lk)
     {
         $lkInstitusi = K9LkInstitusi::findOne($lk);
-        $json = $this->getJsonData();
+
+        $arrayProfil = $this->getProfilInstitusi();
+        $json = K9InstitusiJsonHelper::getAllJsonLk($arrayProfil['jenis']);
         $kriteria = $this->getArrayKriteria($lk);
         $institusi = Yii::$app->params['institusi'];
 
@@ -94,24 +75,42 @@ class LkController extends BaseController
             'lkInstitusi' => $lkInstitusi,
             'kriteria' => $kriteria,
             'institusi' => $institusi,
-            'json' => $json
+            'json' => $json,
+            'untuk' => 'isi'
         ]);
+    }
+
+    protected function getProfilInstitusi()
+    {
+        return ArrayHelper::map(ProfilInstitusi::find()->all(), 'nama', 'isi');
+    }
+
+    protected function getArrayKriteria($lk)
+    {
+        $kriteria1 = K9LkInstitusiKriteria1::findOne(['id_lk_institusi' => $lk]);
+        $kriteria2 = K9LkInstitusiKriteria2::findOne(['id_lk_institusi' => $lk]);
+        $kriteria3 = K9LkInstitusiKriteria3::findOne(['id_lk_institusi' => $lk]);
+        $kriteria4 = K9LkInstitusiKriteria4::findOne(['id_lk_institusi' => $lk]);
+        $kriteria5 = K9LkInstitusiKriteria5::findOne(['id_lk_institusi' => $lk]);
+
+        return [$kriteria1, $kriteria2, $kriteria3, $kriteria4, $kriteria5];
     }
 
     public function actionIsiKriteria($lk, $kriteria)
     {
-        $json = $this->getJsonData();
-        $dataKriteria = $json[$kriteria - 1];
-        $poinKriteria = $dataKriteria['butir'];
+        $profil = $this->getProfilInstitusi();
+        $json = K9InstitusiJsonHelper::getJsonKriteriaLk($kriteria, $profil['jenis']);
+        $poinKriteria = $json->butir;
         $lkInstitusi = K9LkInstitusi::findOne($lk);
 
         $path = K9InstitusiDirectoryHelper::getDokumenLkUrl($lkInstitusi->akreditasiInstitusi);
 
-        $lkInstitusiKriteriaClass= 'common\\models\\kriteria9\lk\\institusi\\K9lkInstitusiKriteria' . $kriteria;
-        $lkInstitusiKriteria = call_user_func($lkInstitusiKriteriaClass . '::findOne', ['id_lk_institusi'=>$lkInstitusi->id]);
+        $attrKriteria = 'k9LkInstitusiKriteria' . $kriteria . 's';
+        $lkInstitusiKriteria = $lkInstitusi->$attrKriteria;
 
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiNarasiKriteria' . $kriteria . 'Form';
-        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_lk_institusi_kriteria' . $kriteria=>$lkInstitusiKriteria->id]);
+        $modelNarasi = call_user_func($modelNarasiClass . '::findOne',
+            ['id_lk_institusi_kriteria' . $kriteria => $lkInstitusiKriteria->id]);
 
         $dokModel = new K9LkInstitusiKriteriaDetailForm();
         $dokTextModel = new K9TextLkInstitusiKriteriaDetailForm();
@@ -160,15 +159,14 @@ class LkController extends BaseController
         }
 
 
-        return $this->render('isi-kriteria', [
+        return $this->render($this->lihatLkKriteria, [
             'modelNarasi' => $modelNarasi,
             'lkInstitusi' => $lkInstitusi,
-            'dokModel' => $dokModel,
-            'dokTextModel' => $dokTextModel,
-            'dokLinkModel' => $dokLinkModel,
             'poinKriteria' => $poinKriteria,
-            'modelKriteria'=>$lkInstitusiKriteria,
-            'path'=>$path
+            'modelKriteria' => $lkInstitusiKriteria,
+            'path' => $path,
+            'untuk' => 'isi',
+            'kriteria' => $kriteria
         ]);
     }
 
@@ -182,9 +180,9 @@ class LkController extends BaseController
         $path = K9InstitusiDirectoryHelper::getDokumenLkPath($model->$attribute->lkInstitusi->akreditasiInstitusi);
         $file = $model->isi_dokumen;
 
-        $this->download($model, $path, $file);
 
-        return Yii::$app->response->sendFile("$path/$file");
+        $url = $this->download($model, $path, $file);
+        return Yii::$app->response->sendFile($url);
     }
 
     public function actionHapusDetail()
@@ -197,8 +195,9 @@ class LkController extends BaseController
             $namespace = 'common\\models\\kriteria9\\lk\\institusi\\K9';
             $class = $namespace . 'LkInstitusiKriteria' . $kriteria . 'Detail';
             $model = call_user_func($class . '::findOne', $id);
+            $attr = 'lkInstitusiKriteria' . $kriteria;
 
-            $path = K9InstitusiDirectoryHelper::getDokumenLkPath($model->lkInstitusiKriteria1->lkInstitusi->akreditasiInstitusi);
+            $path = K9InstitusiDirectoryHelper::getDokumenLkPath($model->$attr->lkInstitusi->akreditasiInstitusi);
             $file = $model->isi_dokumen;
 
             if ($model->bentuk_dokumen === 'text') {
@@ -240,45 +239,97 @@ class LkController extends BaseController
             Yii::$app->session->setFlash('success', "Dokumen $model->kode_dokumen berhasil dihapus");
             return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk]);
         }
-        throw new BadRequestHttpException('Request Harus Post');
+        throw new MethodNotAllowedHttpException('Request Harus Post');
     }
 
     public function actionLihat($lk)
     {
         $lkInstitusi = K9LkInstitusi::findOne($lk);
-        $json = $this->getJsonData();
+        $profil = $this->getProfilInstitusi();
+        $json = K9InstitusiJsonHelper::getAllJsonLk($profil['jenis']);
         $kriteria = $this->getArrayKriteria($lk);
         $institusi = Yii::$app->params['institusi'];
 
-        return $this->render('lihat', [
+        return $this->render($this->lkView, [
             'lkInstitusi' => $lkInstitusi,
             'kriteria' => $kriteria,
             'institusi' => $institusi,
-            'json' => $json
+            'json' => $json,
+            'untuk' => 'lihat'
         ]);
     }
 
+
     public function actionLihatKriteria($kriteria, $lk)
     {
-        $json = $this->getJsonData();
-        $dataKriteria = $json[$kriteria - 1];
-        $poinKriteria = $dataKriteria['butir'];
+        $profil = $this->getProfilInstitusi();
+        $json = K9InstitusiJsonHelper::getJsonKriteriaLk($kriteria, $profil['jenis']);
+        $poinKriteria = $json->butir;
         $lkInstitusi = K9LkInstitusi::findOne($lk);
 
         $path = K9InstitusiDirectoryHelper::getDokumenLkUrl($lkInstitusi->akreditasiInstitusi);
 
-        $lkInstitusiKriteriaClass= 'common\\models\\kriteria9\lk\\institusi\\K9lkInstitusiKriteria' . $kriteria;
-        $lkInstitusiKriteria = call_user_func($lkInstitusiKriteriaClass . '::findOne', ['id_lk_institusi'=>$lkInstitusi->id]);
+        $attrKriteria = 'k9LkInstitusiKriteria' . $kriteria . 's';
+        $lkInstitusiKriteria = $lkInstitusi->$attrKriteria;
 
         $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiNarasiKriteria' . $kriteria . 'Form';
-        $modelNarasi = call_user_func($modelNarasiClass . '::findOne', ['id_lk_institusi_kriteria' . $kriteria=>$lkInstitusiKriteria->id]);
+        $modelNarasi = call_user_func($modelNarasiClass . '::findOne',
+            ['id_lk_institusi_kriteria' . $kriteria => $lkInstitusiKriteria->id]);
 
-        return $this->render('lihat-kriteria', [
+        return $this->render($this->lihatLkKriteria, [
             'modelNarasi' => $modelNarasi,
             'lkInstitusi' => $lkInstitusi,
             'poinKriteria' => $poinKriteria,
-            'modelKriteria'=>$lkInstitusiKriteria,
-            'path'=>$path
+            'modelKriteria' => $lkInstitusiKriteria,
+            'path' => $path,
+            'kriteria' => $kriteria,
+            'untuk' => 'lihat'
         ]);
     }
+
+    public function actionButirItem($lk, $kriteria, $untuk, $poin)
+    {
+        $lkInstitusi = K9LkInstitusi::findOne($lk);
+        $profil = $this->getProfilInstitusi();
+        $currentPoint = $this->getKriteriaNomor($kriteria, $poin, $profil['jenis']);
+
+        $path = K9InstitusiDirectoryHelper::getDokumenLkUrl($lkInstitusi->akreditasiInstitusi);
+
+        $lkInstitusiKriteriaClass = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria' . $kriteria;
+        $lkInstitusiKriteria = call_user_func($lkInstitusiKriteriaClass . '::findOne',
+            ['id_lk_institusi' => $lkInstitusi->id]);
+        $detailAttr = 'k9LkInstitusiKriteria' . $kriteria . 'Details';
+        $detail = $lkInstitusiKriteria->$detailAttr;
+        $lkCollection = Collection::make($detail);
+        $modelNarasiClass = 'akreditasi\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiNarasiKriteria' . $kriteria . 'Form';
+        $modelNarasi = call_user_func($modelNarasiClass . '::findOne',
+            ['id_lk_institusi_kriteria' . $kriteria => $lkInstitusiKriteria->id]);
+
+        $dokUploadModel = new K9LkInstitusiKriteriaDetailForm();
+        $dokTextModel = new K9TextLkInstitusiKriteriaDetailForm();
+        $dokLinkModel = new K9LinkLkInstitusiKriteriaDetailForm();
+
+        return $this->renderAjax($this->itemLkView, [
+            'lkInstitusi' => $lkInstitusi,
+            'item' => $currentPoint,
+            'path' => $path,
+            'modelKriteria' => $lkInstitusiKriteria,
+            'modelNarasi' => $modelNarasi,
+            'dokUploadModel' => $dokUploadModel,
+            'dokTextModel' => $dokTextModel,
+            'dokLinkModel' => $dokLinkModel,
+            'modelAttribute' => NomorKriteriaHelper::changeToDbFormat($poin),
+            'kriteria' => $kriteria,
+            'poin' => $poin,
+            'lkCollection' => $lkCollection,
+            'untuk' => $untuk
+        ]);
+    }
+
+    protected function getKriteriaNomor($kriteria, $item, $jenis)
+    {
+        $data = K9InstitusiJsonHelper::getJsonKriteriaLk($kriteria, $jenis);
+        return Collection::make($data->butir)->where('tabel', $item)->first();
+    }
+
 }

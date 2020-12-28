@@ -11,10 +11,7 @@ namespace akreditasi\models\kriteria9\lk\institusi;
 
 use common\helpers\HitungNarasiLkTrait;
 use common\helpers\kriteria9\K9InstitusiJsonHelper;
-use common\helpers\kriteria9\K9InstitusiProgressHelper;
-use common\helpers\NomorKriteriaHelper;
 use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria1Narasi;
-use yii2mod\helpers\ArrayHelper;
 
 class K9LkInstitusiNarasiKriteria1Form extends K9LkInstitusiKriteria1Narasi
 {
@@ -31,6 +28,15 @@ class K9LkInstitusiNarasiKriteria1Form extends K9LkInstitusiKriteria1Narasi
         return parent::beforeSave($insert);
     }
 
+    public function hitungNarasi()
+    {
+
+        $json = K9InstitusiJsonHelper::getJsonKriteriaLk(1);
+        $exclude = ['id', 'id_lk_institusi_kriteria1', 'progress', 'created_at', 'updated_at'];
+
+        return $this->hitung($this, $exclude, $json);
+    }
+
     /**
      * @param bool $insert
      * @param array $changedAttributes
@@ -41,13 +47,5 @@ class K9LkInstitusiNarasiKriteria1Form extends K9LkInstitusiKriteria1Narasi
         $this->lkInstitusiKriteria1->lkInstitusi->updateProgress()->save(false);
         $this->lkInstitusiKriteria1->lkInstitusi->akreditasiInstitusi->updateProgress()->save(false);
         parent::afterSave($insert, $changedAttributes);
-    }
-
-    public function hitungNarasi()
-    {
-        $json = K9InstitusiJsonHelper::getJsonKriteriaLk(1);
-        $exclude = ['id', 'id_lk_institusi_kriteria1', 'progress', 'created_at', 'updated_at'];
-
-        return $this->hitung($this, $exclude, $json);
     }
 }
