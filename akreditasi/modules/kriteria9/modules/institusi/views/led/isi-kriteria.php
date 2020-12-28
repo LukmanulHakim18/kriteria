@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9
 $this->params['breadcrumbs'][] = ['label' => 'Perguruan Tingi', 'url' => ['/kriteria9/k9-institusi/index']];
 $this->params['breadcrumbs'][] = [
     'label' => 'Pencarian Data Perguruan Tinggi',
-    'url' => ['/kriteria9/k9-institusi/arsip', 'target' => 'untuk']
+    'url' => ['/kriteria9/k9-institusi/led/arsip', 'target' => $untuk]
 ];
 $this->params['breadcrumbs'][] = [
     'label' => \yii\helpers\StringHelper::mb_ucfirst($untuk) . ' Led',

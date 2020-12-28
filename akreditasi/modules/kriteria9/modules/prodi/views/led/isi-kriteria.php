@@ -4,101 +4,103 @@
  * @var $model ;
  * @var $poinKriteria [];
  * @var $untuk string
-
  */
 $this->title = "Kriteria " . $kriteria;
 $this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
 $this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9/default/index']];
 $this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['/kriteria9/k9-prodi/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Pencarian Data Prodi', 'url' => ['/kriteria9/k9-prodi/arsip', 'target' => 'untuk', 'prodi' => $prodi->id]];
-$this->params['breadcrumbs'][] = ['label' => \yii\helpers\StringHelper::mb_ucfirst($untuk).' Led', 'url' => ['/kriteria9/k9-prodi/led/'.$untuk, 'led' => $_GET['led'], 'prodi' => $prodi->id]];
+$this->params['breadcrumbs'][] = [
+    'label' => 'Pencarian Data Prodi',
+    'url' => ['/kriteria9/k9-prodi/led/arsip', 'target' => $untuk, 'prodi' => $prodi->id]
+];
+$this->params['breadcrumbs'][] = [
+    'label' => \yii\helpers\StringHelper::mb_ucfirst($untuk) . ' Led',
+    'url' => ['/kriteria9/k9-prodi/led/' . $untuk, 'led' => $model->id, 'prodi' => $prodi->id]
+];
 $this->params['breadcrumbs'][] = $this->title;
 
 
-use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiLinkForm;
-use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiTeksForm;
-use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiUploadForm;
-use common\helpers\FileIconHelper;
-use common\helpers\FileTypeHelper;
-use common\models\Constants;
-use dosamigos\tinymce\TinyMce;
-use kartik\file\FileInput;
-use yii\bootstrap4\Accordion;
-use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
-use yii\bootstrap4\Modal;
 use yii\bootstrap4\Progress;
 
 ?>
 
-<div class="kt-portlet">
-    <div class="kt-portlet__head">
-        <div class="kt-portlet__head-label">
-            <h3 class="kt-portlet__head-title">
-                <?= Html::encode($this->title) ?>
+    <div class="kt-portlet">
+        <div class="kt-portlet__head">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">
+                    <?= Html::encode($this->title) ?>
 
-            </h3>
-        </div>
-        <div class="kt-portlet__head-toolbar">
-            <div class="kt-portlet__head-actions">
-                <strong>Kelengkapan Berkas &nbsp; : <?= $model->progress ?> %</strong>
-                <div class="kt-space-10"></div>
-                <?=
-                Progress::widget([
-                    'percent' => $model->progress,
-                    'barOptions' => ['class' => 'progress-bar-info m-progress-lg'],
-                    'options' => ['class' => 'progress-sm']
-                ]); ?>
+                </h3>
+            </div>
+            <div class="kt-portlet__head-toolbar">
+                <div class="kt-portlet__head-actions">
+                    <strong>Kelengkapan Berkas &nbsp; : <?= $model->progress ?> %</strong>
+                    <div class="kt-space-10"></div>
+                    <?=
+                    Progress::widget([
+                        'percent' => $model->progress,
+                        'barOptions' => ['class' => 'progress-bar-info m-progress-lg'],
+                        'options' => ['class' => 'progress-sm']
+                    ]); ?>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="kt-portlet__body">
-        <div class="kt-section kt-section--first" style="margin-bottom: 0;">
-            <!--begin::Accordion-->
-            <div class="accordion accordion-solid  accordion-toggle-plus" id="accordion">
+        <div class="kt-portlet__body">
+            <div class="kt-section kt-section--first" style="margin-bottom: 0;">
+                <!--begin::Accordion-->
+                <div class="accordion accordion-solid  accordion-toggle-plus" id="accordion">
 
-                <?php foreach ($poinKriteria as $key => $item):
-                    $modelAttribute = '_' . str_replace('.', '_', $item->nomor);
+                    <?php foreach ($poinKriteria as $key => $item):
+                        $modelAttribute = '_' . str_replace('.', '_', $item->nomor);
 
-                    ?>
-                    <div class="card">
-                        <div class="card-header" id="heading<?= $key ?>">
-                            <div class="card-title collapsed" data-toggle="collapse" data-target="#collapse<?= $key ?>"
-                                 aria-expanded="false" aria-controls="collapse<?= $key ?>">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <i class="flaticon-file-2"></i> <?=
-                                        $item->nomor ?>&nbsp;
+                        ?>
+                        <div class="card">
+                            <div class="card-header" id="heading<?= $key ?>">
+                                <div class="card-title collapsed" data-toggle="collapse"
+                                     data-target="#collapse<?= $key ?>"
+                                     aria-expanded="false" aria-controls="collapse<?= $key ?>">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <i class="flaticon-file-2"></i> <?=
+                                            $item->nomor ?>&nbsp;
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <small>&nbsp;<?= $item->nama ?></small>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <small>&nbsp;<?= $item->nama ?></small>
 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div id="collapse<?= $key ?>" class="collapse" aria-labelledby="heading<?= $key ?>">
-                            <div class="card-body">
-                                    <div class="kt-spinner kt-spinner--center kt-spinner--primary kt-spinner--v2" id="spinner-<?=$key?>" data-poin="<?=$item->nomor?>"></div>
-                                <div id="result-<?=$item->nomor?>"></div>
+                            <div id="collapse<?= $key ?>" class="collapse" aria-labelledby="heading<?= $key ?>">
+                                <div class="card-body">
+                                    <div class="kt-spinner kt-spinner--center kt-spinner--primary kt-spinner--v2"
+                                         id="spinner-<?= $key ?>" data-poin="<?= $item->nomor ?>"></div>
+                                    <div id="result-<?= $item->nomor ?>"></div>
+                                </div>
+
                             </div>
-
                         </div>
-                    </div>
 
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </div>
+
+                <!--end::Accordion-->
+
             </div>
-
-            <!--end::Accordion-->
-
         </div>
     </div>
-</div>
 <?php
-$url = \yii\helpers\Url::to(['led/butir-item','kriteria'=>$kriteria,'led'=>$model->id,'prodi'=>$prodi->id,'untuk'=>$untuk],true);
+$url = \yii\helpers\Url::to([
+    'led/butir-item',
+    'kriteria' => $kriteria,
+    'led' => $model->id,
+    'prodi' => $prodi->id,
+    'untuk' => $untuk
+], true);
 $js = <<<JS
 var loaded = {};
 $('#accordion').on('shown.bs.collapse',function(t) {

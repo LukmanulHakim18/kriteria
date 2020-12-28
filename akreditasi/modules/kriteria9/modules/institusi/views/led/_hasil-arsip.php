@@ -8,11 +8,11 @@
  */
 
 /**
- * @var $led K9LedProdi
+ * @var $led K9LedInstitusi
  * @var $url array
  */
 
-use common\models\kriteria9\led\prodi\K9LedProdi;
+use common\models\kriteria9\led\institusi\K9LedInstitusi;
 use yii\bootstrap4\Html;
 
 ?>
@@ -43,10 +43,11 @@ use yii\bootstrap4\Html;
                     <tbody>
                     <tr>
                         <td>1</td>
-                        <td><?= $led->akreditasiProdi->akreditasi->nama ?></td>
-                        <td><?= $led->akreditasiProdi->akreditasi->tahun ?></td>
-                        <td><?= $led->akreditasiProdi->akreditasi->lembaga ?></td>
-                        <td><?= Html::a('<i class="la la-folder"></i> Lihat', $url, ['class' => ['btn btn-default btn-pill btn-elevate btn-elevate-air']]) ?></td>
+                        <td><?= $led->akreditasiInstitusi->akreditasi->nama ?></td>
+                        <td><?= $led->akreditasiInstitusi->akreditasi->tahun ?></td>
+                        <td><?= $led->akreditasiInstitusi->akreditasi->lembaga ?></td>
+                        <td><?= Html::a('<i class="la la-folder"></i> Lihat', $url,
+                                ['class' => ['btn btn-default btn-pill btn-elevate btn-elevate-air']]) ?></td>
                     </tr>
 
                     </tbody>

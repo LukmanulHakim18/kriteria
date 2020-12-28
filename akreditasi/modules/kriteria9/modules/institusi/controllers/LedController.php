@@ -564,7 +564,7 @@ class LedController extends BaseController
         ]);
     }
 
-    public function actionLihatKriteria($led, $kriteria, $institusi)
+    public function actionLihatKriteria($led, $kriteria)
     {
 
         $ledInstitusi = K9LedInstitusi::findOne(['id' => $led]);
@@ -581,7 +581,7 @@ class LedController extends BaseController
         ]);
     }
 
-    public function actionLihatNonKriteria($led, $institusi, $poin)
+    public function actionLihatNonKriteria($led, $poin)
     {
         $ledInstitusi = K9LedInstitusi::findOne($led);
 

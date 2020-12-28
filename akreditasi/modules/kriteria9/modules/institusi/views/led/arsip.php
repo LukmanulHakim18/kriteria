@@ -1,7 +1,7 @@
 <?php
 /**
  * @var $this yii\web\View
- * @var $model K9PencarianLedProdiForm
+ * @var $model K9PencarianLedIstitusiForm
  * @var $dataAkreditasi array
  * @var $dataProdi array
  */
@@ -10,11 +10,13 @@ $this->title = "Pencarian LED";
 $this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
 
 $this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9/default/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['/kriteria9/k9-prodi/default/index']];
+$this->params['breadcrumbs'][] = [
+    'label' => 'Institusi Perguruan Tinggi',
+    'url' => ['/kriteria9/k9-institusi/default/index']
+];
 $this->params['breadcrumbs'][] = $this->title;
 
 
-use common\models\kriteria9\forms\led\K9PencarianLedProdiForm;
 use demogorgorn\ajax\AjaxSubmitButton;
 use kartik\select2\Select2;
 use yii\bootstrap4\ActiveForm;
@@ -41,9 +43,6 @@ use yii\web\JsExpression;
                 'data' => $dataAkreditasi,
                 'pluginOptions' => ['placeholder' => 'Pilih Akreditasi'],
 
-            ]) ?>
-            <?= $form->field($model, 'prodi')->widget(Select2::class, [
-                'data' => $dataProdi,
             ]) ?>
 
         </div>
