@@ -129,7 +129,11 @@ $this->title = 'Peniliaian Akreditasi Program Studi';
                                                                 <?= Html::button(
                                                                 '<i class="fa fa-table"></i>Tabel ' . $relasi,
                                                                 [
-                                                                    'value' => Url::to(['create']),
+                                                                    'value' => Url::to([
+                                                                        'lihat-lk',
+                                                                        'akreditasi' => $akreditasiProdi->id,
+                                                                        'tabel' => $relasi
+                                                                    ]),
                                                                     'title' => 'Tabel ' . $relasi,
                                                                     'class' => 'btn btn-outline-warning btn-sm btn-elevate btn-elevate-air showModalButton'
                                                                 ]
@@ -267,7 +271,11 @@ $this->title = 'Peniliaian Akreditasi Program Studi';
                                                                 <?= Html::button(
                                                                 '<i class="fa fa-table"></i>Tabel ' . $relasi,
                                                                 [
-                                                                    'value' => Url::to(['create']),
+                                                                    'value' => Url::to([
+                                                                        'lihat-lk',
+                                                                        'akreditasi' => $akreditasiProdi->id,
+                                                                        'tabel' => $relasi
+                                                                    ]),
                                                                     'title' => 'Tabel ' . $relasi,
                                                                     'class' => 'btn btn-outline-warning btn-sm btn-elevate btn-elevate-air showModalButton'
                                                                 ]
@@ -639,7 +647,11 @@ $this->title = 'Peniliaian Akreditasi Program Studi';
                                                                     <?= Html::button(
                                                                     '<i class="fa fa-table"></i>Tabel ' . $relasi,
                                                                     [
-                                                                        'value' => Url::to(['create']),
+                                                                        'value' => Url::to([
+                                                                            'lihat-lk',
+                                                                            'akreditasi' => $akreditasiProdi->id,
+                                                                            'tabel' => $relasi
+                                                                        ]),
                                                                         'title' => 'Tabel ' . $relasi,
                                                                         'class' => 'btn btn-outline-warning btn-sm btn-elevate btn-elevate-air showModalButton'
                                                                     ]
