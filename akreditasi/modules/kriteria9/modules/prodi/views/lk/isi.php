@@ -12,12 +12,15 @@ use yii\bootstrap4\Progress;
 /* @var $prodi common\models\ProgramStudi */
 
 $untukUC = \yii\helpers\StringHelper::mb_ucfirst($untuk);
-$this->title = $untukUC." Laporan Kinerja";
+$this->title = $untukUC . " Laporan Kinerja";
 $this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
 $this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9/default/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Prodi', 'url' => ['/kriteria9/k9-prodi/default/index', 'prodi' => $prodi->id]];
+$this->params['breadcrumbs'][] = [
+    'label' => 'Prodi',
+    'url' => ['/kriteria9/k9-prodi/default/index', 'prodi' => $prodi->id]
+];
 $this->params['breadcrumbs'][] = $this->title;
-
+$controller = $this->context->id;
 ?>
 
 <div class="kt-portlet">
@@ -37,7 +40,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <tbody>
                 <tr>
                     <th scope="row">Laporan Kinerja</th>
-                    <td>Akreditasi <?=\yii\helpers\StringHelper::mb_ucfirst($lkProdi->akreditasiProdi->akreditasi->jenis_akreditasi)?></td>
+                    <td>
+                        Akreditasi <?= \yii\helpers\StringHelper::mb_ucfirst($lkProdi->akreditasiProdi->akreditasi->jenis_akreditasi) ?></td>
                 </tr>
                 <tr>
                     <th scope="row">Nama Institusi</th>
@@ -119,13 +123,18 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="kt-space-10"></div>
                             <?=
                             Progress::widget([
-                                'percent' =>$kriteria[$kriteriaJson->kriteria - 1]->progress,
+                                'percent' => $kriteria[$kriteriaJson->kriteria - 1]->progress,
                                 'barOptions' => ['class' => 'progress-bar-info m-progress-lg'],
                                 'options' => ['class' => 'progress-sm']
                             ]); ?>
                         </td>
                         <td style="padding-top: 15px;">
-                            <?= Html::a("<i class='la la-folder-open'></i>Lihat", ['lk/'.$untuk.'-kriteria', 'lk' => $lkProdi->id, 'kriteria' => $kriteriaJson->kriteria, 'prodi' => $prodi->id], ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
+                            <?= Html::a("<i class='la la-folder-open'></i>Lihat", [
+                                $controller . '/' . $untuk . '-kriteria',
+                                'lk' => $lkProdi->id,
+                                'kriteria' => $kriteriaJson->kriteria,
+                                'prodi' => $prodi->id
+                            ], ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
 
                             <!--                        <button type="button" class="btn btn-danger">Lihat</button>-->
                         </td>

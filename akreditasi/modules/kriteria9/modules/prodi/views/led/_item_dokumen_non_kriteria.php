@@ -20,6 +20,7 @@ use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;
 
+$controller = $this->context->id;
 $attr = 'dokumen_' . $jenis
 ?>
 <!--                            Tabel dokumen sumber-->
@@ -65,7 +66,7 @@ $attr = 'dokumen_' . $jenis
                                 ]) ?>
                                 <?php $form = ActiveForm::begin([
                                     'action' => \yii\helpers\Url::to([
-                                        'led/isi-non-kriteria',
+                                        $controller . '/isi-non-kriteria',
                                         'led' => $model->id,
                                         'prodi' => $prodi->id,
                                         'poin' => $poin
@@ -108,7 +109,7 @@ $attr = 'dokumen_' . $jenis
                             ]) ?>
                                 <?php $form = ActiveForm::begin([
                                 'action' => \yii\helpers\Url::to([
-                                    'led/isi-non-kriteria',
+                                    $controller . '/isi-non-kriteria',
                                     'led' => $model->id,
                                     'prodi' => $prodi->id,
                                     'poin' => $poin
@@ -150,7 +151,7 @@ $attr = 'dokumen_' . $jenis
                             ]) ?>
                                 <?php $form = ActiveForm::begin([
                                 'action' => \yii\helpers\Url::to([
-                                    'led/isi-non-kriteria',
+                                    $controller . '/isi-non-kriteria',
                                     'led' => $model->id,
                                     'prodi' => $prodi->id,
                                     'poin' => $poin

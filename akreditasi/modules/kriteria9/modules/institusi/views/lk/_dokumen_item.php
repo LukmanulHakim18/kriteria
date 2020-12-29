@@ -8,6 +8,7 @@ use common\helpers\FileTypeHelper;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;
 
+$controller = $this->context->id;
 ?>
 <tr>
     <td></td>
@@ -62,7 +63,7 @@ use yii\bootstrap4\Modal;
                 <?php endif; ?>
                 <?php if (!($type === FileTypeHelper::TYPE_LINK || $type === FileTypeHelper::TYPE_STATIC_TEXT)): ?>
                     <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', [
-                        'lk/download-detail',
+                        $controller . '/download-detail',
                         'kriteria' => $kriteria,
                         'dokumen' => $v->id,
                         'lk' => $lkInstitusi->id,
@@ -70,7 +71,7 @@ use yii\bootstrap4\Modal;
                     ], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
                 <?php endif; ?>
                 <?php if ($untuk === 'isi'): ?>
-                    <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['lk/hapus-detail'], [
+                    <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', [$controller . '/hapus-detail'], [
                         'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
                         'data' => [
                             'method' => 'POST',

@@ -6,7 +6,6 @@ namespace monitoring\modules\eksekutif\modules\prodi\controllers;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\models\kriteria9\led\prodi\K9ProdiEksporDokumen;
-use common\models\kriteria9\led\prodi\K9LedProdi;
 use yii\data\ActiveDataProvider;
 
 class AkreditasiController extends BaseController
@@ -15,16 +14,16 @@ class AkreditasiController extends BaseController
     public function actionIndex($prodi)
     {
         $modelProdi = $this->findProdi($prodi);
-        $akreditasiDataProvider = new ActiveDataProvider(['query'=>$modelProdi->getK9AkreditasiProdis()]);
+        $akreditasiDataProvider = new ActiveDataProvider(['query' => $modelProdi->getK9AkreditasiProdis()]);
 
-        return $this->render('index', ['prodi'=>$modelProdi,'akreditasiDataProvider'=>$akreditasiDataProvider]);
+        return $this->render('index', ['prodi' => $modelProdi, 'akreditasiDataProvider' => $akreditasiDataProvider]);
     }
 
     public function actionDetail($id, $prodi)
     {
 
         $modelProdi = $this->findProdi($prodi);
-        $akreditasiProdi = $modelProdi->getK9AkreditasiProdis()->where(['id'=>$id])->one();
+        $akreditasiProdi = $modelProdi->getK9AkreditasiProdis()->where(['id' => $id])->one();
 
         //led
         $jsonLed = K9ProdiJsonHelper::getAllJsonLed();
@@ -46,23 +45,23 @@ class AkreditasiController extends BaseController
         $lkProdi = $akreditasiProdi->k9LkProdi;
         $kriteriaLk = $this->getArrayKriteriaLk($lkProdi->id);
         return $this->render('detail', [
-            'modelProdi'=>$modelProdi,
-            'akreditasiProdi'=>$akreditasiProdi,
-            'jsonLed'=>$jsonLed,
-            'ledProdi'=>$ledProdi,
-            'dokumenLed'=>$dokumenLed,
-            'kriteriaLed'=>$kriteriaLed,
-            'urlLed'=>$urlLed,
-            'jsonLk'=>$jsonLk,
-            'lkProdi'=>$lkProdi,
-            'kriteriaLk'=>$kriteriaLk,
+            'modelProdi' => $modelProdi,
+            'akreditasiProdi' => $akreditasiProdi,
+            'jsonLed' => $jsonLed,
+            'ledProdi' => $ledProdi,
+            'dokumenLed' => $dokumenLed,
+            'kriteriaLed' => $kriteriaLed,
+            'urlLed' => $urlLed,
+            'jsonLk' => $jsonLk,
+            'lkProdi' => $lkProdi,
+            'kriteriaLk' => $kriteriaLk,
             'json' => $json_kriteria,
-            'json_eksternal'=>$json_eksternal,
-            'json_profil'=>$json_profil,
-            'json_analisis'=>$json_analisis,
-            'modelEksternal'=>$modelEksternal,
-            'modelAnalisis'=>$modelAnalisis,
-            'modelProfil'=>$modelProfil,
-            ]);
+            'json_eksternal' => $json_eksternal,
+            'json_profil' => $json_profil,
+            'json_analisis' => $json_analisis,
+            'modelEksternal' => $modelEksternal,
+            'modelAnalisis' => $modelAnalisis,
+            'modelProfil' => $modelProfil,
+        ]);
     }
 }

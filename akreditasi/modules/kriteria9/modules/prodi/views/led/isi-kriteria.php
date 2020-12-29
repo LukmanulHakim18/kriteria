@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = [
 ];
 $this->params['breadcrumbs'][] = $this->title;
 
+$controller = $this->context->id;
 
 use common\helpers\NomorKriteriaHelper;
 use yii\bootstrap4\Html;
@@ -96,7 +97,7 @@ use yii\bootstrap4\Progress;
     </div>
 <?php
 $url = \yii\helpers\Url::to([
-    'led/butir-item',
+    $controller . '/butir-item',
     'kriteria' => $kriteria,
     'led' => $model->id,
     'prodi' => $prodi->id,

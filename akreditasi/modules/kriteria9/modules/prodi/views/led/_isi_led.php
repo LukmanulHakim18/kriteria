@@ -4,6 +4,7 @@
  * @var $untuk string
  */
 
+use common\helpers\NomorKriteriaHelper;
 use common\models\Constants;
 use dosamigos\tinymce\TinyMce;
 use kartik\file\FileInput;
@@ -12,6 +13,7 @@ use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;
 use yii\web\View;
 
+$controller = $this->context->id;
 ?>
 
 <div class="led-content">
@@ -33,7 +35,7 @@ use yii\web\View;
                     <?php if ($untuk === 'isi'): ?>
                         <?php $form = ActiveForm::begin([
                             'action' => \yii\helpers\Url::to([
-                                'led/isi-kriteria',
+                                $controller . '/isi-kriteria',
                                 'led' => $model->id,
                                 'prodi' => $prodi,
                                 'kriteria' => $kriteria
@@ -80,7 +82,7 @@ use yii\web\View;
                 <?php if ($untuk === 'isi'): ?>
                     <?php $form = ActiveForm::begin([
                         'action' => \yii\helpers\Url::to([
-                            'led/isi-kriteria',
+                            $controller . '/isi-kriteria',
                             'led' => $model->id,
                             'prodi' => $prodi,
                             'kriteria' => $kriteria
@@ -170,7 +172,7 @@ use yii\web\View;
                             ]) ?>
                             <?php $form = ActiveForm::begin([
                                 'action' => \yii\helpers\Url::to([
-                                    'led/isi-kriteria',
+                                    $controller . '/isi-kriteria',
                                     'led' => $model->id,
                                     'prodi' => $prodi,
                                     'kriteria' => $kriteria
@@ -213,7 +215,7 @@ use yii\web\View;
                         ]) ?>
                             <?php $form = ActiveForm::begin([
                             'action' => \yii\helpers\Url::to([
-                                'led/isi-kriteria',
+                                $controller . '/isi-kriteria',
                                 'led' => $model->id,
                                 'prodi' => $prodi,
                                 'kriteria' => $kriteria
@@ -256,7 +258,7 @@ use yii\web\View;
 
                             <?php $form = ActiveForm::begin([
                             'action' => \yii\helpers\Url::to([
-                                'led/isi-kriteria',
+                                $controller . '/isi-kriteria',
                                 'led' => $model->id,
                                 'prodi' => $prodi,
                                 'kriteria' => $kriteria

@@ -16,6 +16,7 @@ use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;
 use yii\helpers\Url;
 
+$controller = $this->context->id;
 ?>
 <div class="lk-content">
     <div class="row">
@@ -23,7 +24,12 @@ use yii\helpers\Url;
             <?php $form = ActiveForm::begin([
                 'options' => ['enctype' => 'multipart/form-data'],
                 'id' => $modelAttribute . '-form',
-                'action' => ['lk/isi-kriteria', 'lk' => $lkProdi->id, 'kriteria' => $kriteria, 'prodi' => $prodi->id]
+                'action' => [
+                    $controller . '/isi-kriteria',
+                    'lk' => $lkProdi->id,
+                    'kriteria' => $kriteria,
+                    'prodi' => $prodi->id
+                ]
             ]) ?>
 
             <h5>Tabel <?= $item->tabel ?> <?= $item->nama ?></h5>
@@ -100,7 +106,7 @@ use yii\helpers\Url;
                     <?php $form = ActiveForm::begin([
                         'options' => ['enctype' => 'multipart/form-data'],
                         'action' => Url::to([
-                            'lk/isi-kriteria',
+                            $controller . '/isi-kriteria',
                             'kriteria' => $kriteria,
                             'prodi' => $prodi->id,
                             'lk' => $lkProdi->id
@@ -149,7 +155,7 @@ use yii\helpers\Url;
                     <?php $form = ActiveForm::begin([
                     'options' => ['enctype' => 'multipart/form-data'],
                     'action' => Url::to([
-                        'lk/isi-kriteria',
+                        $controller . '/isi-kriteria',
                         'kriteria' => $kriteria,
                         'prodi' => $prodi->id,
                         'lk' => $lkProdi->id
@@ -194,7 +200,7 @@ use yii\helpers\Url;
                     <?php $form = ActiveForm::begin([
                     'options' => ['enctype' => 'multipart/form-data'],
                     'action' => Url::to([
-                        'lk/isi-kriteria',
+                        $controller . '/isi-kriteria',
                         'kriteria' => $kriteria,
                         'prodi' => $prodi->id,
                         'lk' => $lkProdi->id

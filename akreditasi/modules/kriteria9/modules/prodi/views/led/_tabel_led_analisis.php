@@ -10,11 +10,12 @@
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Progress;
 
+$controller = $this->context->id;
 ?>
 <table class="table">
     <thead class="thead-dark">
     <tr>
-        <th style="width:10%" >No.</th>
+        <th style="width:10%">No.</th>
         <th>Poin</th>
         <th style="width: 110px"></th>
     </tr>
@@ -35,7 +36,12 @@ use yii\bootstrap4\Progress;
             ]); ?>
         </td>
         <td style="padding-top: 15px;">
-            <?= Html::a("<i class='la la-folder-open'></i>Lihat", ['led/'.$untuk.'-non-kriteria', 'led' =>$led->id, 'prodi'=>$prodi->id,'poin'=>$json_analisis->nomor], ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
+            <?= Html::a("<i class='la la-folder-open'></i>Lihat", [
+                $controller . '/' . $untuk . '-non-kriteria',
+                'led' => $led->id,
+                'prodi' => $prodi->id,
+                'poin' => $json_analisis->nomor
+            ], ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
 
             <!--                        <button type="button" class="btn btn-danger">Lihat</button>-->
         </td>

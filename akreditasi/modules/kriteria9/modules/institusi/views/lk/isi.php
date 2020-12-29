@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']
 $this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9/default/index']];
 $this->params['breadcrumbs'][] = ['label' => 'Perguruan Tinggi', 'url' => ['/kriteria9/k9-institusi/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
-
+$controller = $this->context->id;
 ?>
 
 <div class="kt-portlet">
@@ -117,7 +117,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </td>
                         <td style="padding-top: 15px;">
                             <?= Html::a("<i class='la la-folder-open'></i>Lihat", [
-                                'lk/' . $untuk . '-kriteria',
+                                $controller . '/' . $untuk . '-kriteria',
                                 'lk' => $lkInstitusi->id,
                                 'kriteria' => $kriteriaJson->kriteria,
                             ], ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>

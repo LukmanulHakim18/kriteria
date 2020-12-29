@@ -13,6 +13,7 @@ use yii\bootstrap4\Modal;
 use yii\helpers\Url;
 use yii\web\View;
 
+$controller = $this->context->id;
 ?>
 
 <div class="led-content">
@@ -32,7 +33,7 @@ use yii\web\View;
             if ($untuk === 'isi'):
                 $form = ActiveForm::begin([
                     'action' => Url::to([
-                        'led/isi-non-kriteria',
+                        $controller . '/isi-non-kriteria',
                         'led' => $model->id,
                         'prodi' => $prodi->id,
                         'poin' => $poin
@@ -122,7 +123,7 @@ use yii\web\View;
                             ]) ?>
                             <?php $form = ActiveForm::begin([
                                 'action' => Url::to([
-                                    'led/isi-non-kriteria',
+                                    $controller . '/isi-non-kriteria',
                                     'led' => $model->id,
                                     'prodi' => $prodi->id,
                                     'poin' => $poin
@@ -164,7 +165,7 @@ use yii\web\View;
                             ]) ?>
                             <?php $form = ActiveForm::begin([
                                 'action' => Url::to([
-                                    'led/isi-non-kriteria',
+                                    $controller . '/isi-non-kriteria',
                                     'led' => $model->id,
                                     'prodi' => $prodi->id,
                                     'poin' => $poin
@@ -207,7 +208,7 @@ use yii\web\View;
 
                             <?php $form = ActiveForm::begin([
                                 'action' => Url::to([
-                                    'led/isi-non-kriteria',
+                                    $controller . '/isi-non-kriteria',
                                     'led' => $model->id,
                                     'prodi' => $prodi->id,
                                     'poin' => $poin

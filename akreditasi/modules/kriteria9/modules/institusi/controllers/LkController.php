@@ -266,6 +266,8 @@ class LkController extends BaseController
         $json = K9InstitusiJsonHelper::getJsonKriteriaLk($kriteria, $profil['jenis']);
         $poinKriteria = $json->butir;
         $lkInstitusi = K9LkInstitusi::findOne($lk);
+        $akreditasiInstitusi = $lkInstitusi->akreditasiInstitusi;
+        $profilInstitusi = ArrayHelper::map(ProfilInstitusi::find()->all(), 'nama', 'isi');
 
         $path = K9InstitusiDirectoryHelper::getDokumenLkUrl($lkInstitusi->akreditasiInstitusi);
 
@@ -283,7 +285,9 @@ class LkController extends BaseController
             'modelKriteria' => $lkInstitusiKriteria,
             'path' => $path,
             'kriteria' => $kriteria,
-            'untuk' => 'lihat'
+            'untuk' => 'lihat',
+            'akreditasiInstitusi' => $akreditasiInstitusi,
+            'profilInstitusi' => $profilInstitusi
         ]);
     }
 

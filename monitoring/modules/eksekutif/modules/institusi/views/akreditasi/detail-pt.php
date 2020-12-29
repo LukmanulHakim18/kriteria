@@ -17,7 +17,7 @@ use yii\bootstrap4\Html;
 use yii\bootstrap4\Progress;
 
 $this->title = "Akreditasi: {$akreditasiInstitusi->akreditasi->nama} - {$profilInstitusi['nama']}";
-$this->params['breadcrumbs'][] = ['label' => 'Akreditasi institusi', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Akreditasi Perguruan Tinggi', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $this->title];
 
 ?>
@@ -95,7 +95,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                                 </td>
                                 <td style="padding-top: 15px;">
                                     <?= Html::a("<i class='la la-folder-open'></i>Lihat", [
-                                        'lk-institusi/lihat',
+                                        'lk-institusi/lihat-kriteria',
                                         'lk' => $_GET['id'],
                                         'kriteria' => $kriteriaJson->kriteria
                                     ], ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>

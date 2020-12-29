@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = [
     'url' => ['/kriteria9/k9-institusi/lk/' . $untuk, 'lk' => $lkInstitusi->id]
 ];
 $this->params['breadcrumbs'][] = $this->title;
-
+$controller = $this->context->id;
 ?>
 
     <div class="kt-portlet">
@@ -101,7 +101,12 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
 <?php
-$url = \yii\helpers\Url::to(['lk/butir-item', 'kriteria' => $kriteria, 'lk' => $lkInstitusi->id, 'untuk' => $untuk],
+$url = \yii\helpers\Url::to([
+    $controller . '/butir-item',
+    'kriteria' => $kriteria,
+    'lk' => $lkInstitusi->id,
+    'untuk' => $untuk
+],
     true);
 $js = <<<JS
 var loaded = {};

@@ -16,6 +16,7 @@ use yii\helpers\Url;
 
 $jenisUc = \yii\helpers\StringHelper::mb_ucfirst($jenis);
 $attr = 'dokumen_' . $jenis;
+$controller = $this->context->id;
 ?>
 
 
@@ -63,7 +64,11 @@ $attr = 'dokumen_' . $jenis;
 
                     <?php $form = ActiveForm::begin([
                         'options' => ['enctype' => 'multipart/form-data'],
-                        'action' => Url::to(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lkInstitusi->id])
+                        'action' => Url::to([
+                            $controller . '/isi-kriteria',
+                            'kriteria' => $kriteria,
+                            'lk' => $lkInstitusi->id
+                        ])
                     ]) ?>
 
                     <?= $form->field($dokUploadModel, 'jenisDokumen')->textInput([
@@ -107,7 +112,11 @@ $attr = 'dokumen_' . $jenis;
 
                     <?php $form = ActiveForm::begin([
                     'options' => ['enctype' => 'multipart/form-data'],
-                    'action' => Url::to(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lkInstitusi->id])
+                    'action' => Url::to([
+                        $controller . '/isi-kriteria',
+                        'kriteria' => $kriteria,
+                        'lk' => $lkInstitusi->id
+                    ])
                 ]) ?>
 
                     <?= $form->field($dokTextModel, 'jenisDokumen')->textInput([
@@ -147,7 +156,11 @@ $attr = 'dokumen_' . $jenis;
 
                     <?php $form = ActiveForm::begin([
                     'options' => ['enctype' => 'multipart/form-data'],
-                    'action' => Url::to(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lkInstitusi->id])
+                    'action' => Url::to([
+                        $controller . '/isi-kriteria',
+                        'kriteria' => $kriteria,
+                        'lk' => $lkInstitusi->id
+                    ])
                 ]) ?>
 
                     <?= $form->field($dokLinkModel, 'jenisDokumen')->textInput([

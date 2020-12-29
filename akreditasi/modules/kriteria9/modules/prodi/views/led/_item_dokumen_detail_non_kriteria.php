@@ -14,6 +14,7 @@ use common\helpers\FileTypeHelper;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;
 
+$controller = $this->context->id;
 ?>
 <tr>
     <td><?= $nomor ?></td>
@@ -78,7 +79,7 @@ use yii\bootstrap4\Modal;
 
                 <?php else: ?>
                     <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', [
-                        'led/download-detail-non-kriteria',
+                        $controller . '/download-detail-non-kriteria',
                         'poin' => $poin,
                         'dokumen' => $detail->id,
                         'led' => $led->id,
@@ -86,20 +87,21 @@ use yii\bootstrap4\Modal;
                     ], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
                 <?php endif; ?>
                 <?php if ($untuk === 'isi'): ?>
-                    <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['led/hapus-detail-non-kriteria'], [
-                        'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
-                        'data' => [
-                            'method' => 'POST',
-                            'confirm' => 'Apakah anda yakin menghapus item ini?',
-                            'params' => [
-                                'dokumen' => $detail->id,
-                                'poin' => $poin,
-                                'prodi' => $prodi->id,
-                                'led' => $led->id,
-                                'jenis' => $jenis
+                    <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus',
+                        [$controller . '/hapus-detail-non-kriteria'], [
+                            'class' => 'btn btn-danger btn-sm btn-pill btn-elevate btn-elevate-air',
+                            'data' => [
+                                'method' => 'POST',
+                                'confirm' => 'Apakah anda yakin menghapus item ini?',
+                                'params' => [
+                                    'dokumen' => $detail->id,
+                                    'poin' => $poin,
+                                    'prodi' => $prodi->id,
+                                    'led' => $led->id,
+                                    'jenis' => $jenis
+                                ]
                             ]
-                        ]
-                    ]) ?>
+                        ]) ?>
                 <?php endif ?>
             </div>
 

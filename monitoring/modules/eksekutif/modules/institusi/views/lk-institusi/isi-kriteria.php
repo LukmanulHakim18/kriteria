@@ -1,27 +1,25 @@
 <?php
 
-use akreditasi\models\kriteria9\lk\prodi\K9LkProdiNarasiKriteria1Form;
-use common\models\kriteria9\lk\prodi\K9LkProdi;
+use akreditasi\models\kriteria9\lk\institusi\K9LkInstitusiNarasiKriteria1Form;
+use common\models\kriteria9\lk\institusi\K9LkInstitusi;
 use yii\bootstrap4\Progress;
 
 /* @var $this yii\web\View */
-/* @var $lkProdi K9LkProdi */
-/* @var $modelNarasi K9LkProdiNarasiKriteria1Form */
+/* @var $lkInstitusi K9LkInstitusi */
+/* @var $modelNarasi K9LkInstitusiNarasiKriteria1Form */
 /* @var $poinKriteria */
 /* @var $path string */
 /* @var $modelKriteria */
-/* @var $prodi common\models\ProgramStudi */
 /* @var $untuk string */
 /* @var $kriteria int */
 
 
 $this->title = "Kriteria " . $kriteria;
 $this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
-$this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9/default/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['/kriteria9/k9-prodi', 'prodi' => $prodi->id]];
+$this->params['breadcrumbs'][] = ['label' => 'Akreditasi Perguruan Tinggi', 'url' => ['akreditasi/index']];
 $this->params['breadcrumbs'][] = [
-    'label' => 'Isi Kriteria',
-    'url' => ['/kriteria9/k9-prodi/lk/' . $untuk, 'lk' => $lkProdi->id, 'prodi' => $prodi->id]
+    'label' => "Akreditasi: {$akreditasiInstitusi->akreditasi->nama} - {$profilInstitusi['nama']}",
+    'url' => ['akreditasi/detail-pt', 'id' => $akreditasiInstitusi->id]
 ];
 $this->params['breadcrumbs'][] = $this->title;
 $controller = $this->context->id;
@@ -102,10 +100,10 @@ $controller = $this->context->id;
 $url = \yii\helpers\Url::to([
     $controller . '/butir-item',
     'kriteria' => $kriteria,
-    'lk' => $lkProdi->id,
-    'prodi' => $prodi->id,
+    'lk' => $lkInstitusi->id,
     'untuk' => $untuk
-], true);
+],
+    true);
 $js = <<<JS
 var loaded = {};
 $('#accordion').on('shown.bs.collapse',function(t) {

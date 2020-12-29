@@ -489,7 +489,8 @@ class LedController extends BaseController
     {
 
         $ledProdi = K9LedProdi::findOne(['id' => $led]);
-        $programStudi = $ledProdi->akreditasiProdi->prodi;
+        $akreditasiProdi = $ledProdi->akreditasiProdi;
+        $programStudi = $akreditasiProdi->prodi;
         $attr = 'k9LedProdiKriteria' . $kriteria . 's';
         $modelLed = $ledProdi->$attr;
 
@@ -500,14 +501,16 @@ class LedController extends BaseController
             'poinKriteria' => $poinKriteria,
             'untuk' => 'lihat',
             'kriteria' => $kriteria,
-            'prodi' => $programStudi
+            'prodi' => $programStudi,
+            'akreditasiProdi' => $akreditasiProdi
         ]);
     }
 
     public function actionLihatNonKriteria($led, $prodi, $poin)
     {
         $ledProdi = K9LedProdi::findOne($led);
-        $programStudi = $ledProdi->akreditasiProdi->prodi;
+        $akreditasiProdi = $ledProdi->akreditasiProdi;
+        $programStudi = $akreditasiProdi->prodi;
 
         switch ($poin) {
             case 'A':
@@ -532,7 +535,17 @@ class LedController extends BaseController
         $untuk = 'lihat';
 
         return $this->render($this->lihatNonKriteriaView,
-            compact('ledProdi', 'json', 'poin', 'modelNarasi', 'detail', 'untuk', 'prodi'));
+            [
+                'ledProdi' => $ledProdi,
+                'json' => $json,
+                'poin' => $poin,
+                'modelNarasi' => $modelNarasi,
+                'detail' => $detail,
+                'untuk' => $untuk,
+                'prodi' => $programStudi,
+                'akreditasiProdi' => $akreditasiProdi
+            ]
+        );
     }
 
     public function actionHapusDetail()
