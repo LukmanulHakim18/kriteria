@@ -11,5 +11,4 @@ class LkProdiController extends LkController
 
     protected $lkView = '@monitoring/modules/asesor/views/lk-prodi/isi';
     protected $lihatLkKriteria = '@monitoring/modules/asesor/views/lk-prodi/isi-kriteria';
-    protected $itemLkView = '@monitoring/modules/asesor/views/lk-prodi/_item_lk';
 }

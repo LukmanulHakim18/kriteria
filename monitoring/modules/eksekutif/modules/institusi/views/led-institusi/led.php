@@ -44,10 +44,10 @@ $this->params['breadcrumbs'][] = $this->title;
     compact('led')) ?>
 
 
-<?= $this->render('@monitoring/modules/eksekutif/modules/institusi/views/led-institusi/_dokumen_led',
+<?= $this->render('@akreditasi/modules/kriteria9/modules/institusi/views/led/_dokumen_led',
     compact('modelDokumen', 'dataDokumen', 'path', 'untuk')) ?>
 
-<?= $this->render('@monitoring/modules/eksekutif/modules/institusi/views/led-institusi/_tabel_led', [
+<?= $this->render('@akreditasi/modules/kriteria9/modules/institusi/views/led/_tabel_led', [
     'kriteria' => $kriteria,
     'json' => $json,
     'untuk' => $untuk,

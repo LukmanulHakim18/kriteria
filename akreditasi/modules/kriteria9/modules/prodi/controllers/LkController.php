@@ -288,10 +288,10 @@ class LkController extends BaseController
         $path = K9ProdiDirectoryHelper::getDokumenLkPath($model->$attribute->lkProdi->akreditasiProdi);
         $file = $model->isi_dokumen;
 
-        $this->download($model, $path, $file);
+        $path = $this->download($model, $path, $file);
 
 
-        return true;
+        return Yii::$app->response->sendFile($path);
     }
 
     public function actionHapusDetail()
