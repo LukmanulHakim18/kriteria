@@ -10,7 +10,7 @@
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Progress;
 
-$url = ['akreditasi/detail-pt','$id'=>$model->id]
+$url = ['akreditasi/detail-pt', 'id' => $model->id]
 ?>
 <div class="row">
     <div class="col-lg-12">
@@ -54,14 +54,14 @@ $url = ['akreditasi/detail-pt','$id'=>$model->id]
                                         Progress
                                     </div>
                                     <?= Progress::widget([
-                                        'bars'=>[
-                                            ['percent'=>$model->progress,'options'=>['class'=>'kt-bg-success']]
+                                        'bars' => [
+                                            ['percent' => $model->progress, 'options' => ['class' => 'kt-bg-success']]
                                         ],
-                                        'options'=>['class'=>'progress','style'=>'height:5px;width:100%']
-                                    ])?>
+                                        'options' => ['class' => 'progress', 'style' => 'height:5px;width:100%']
+                                    ]) ?>
 
                                     <div class="kt-widget__stats">
-                                        <?=$model->progress?>%
+                                        <?= $model->progress ?>%
                                     </div>
                                 </div>
                             </div>
@@ -75,14 +75,17 @@ $url = ['akreditasi/detail-pt','$id'=>$model->id]
                             <div class="kt-widget__details">
                                 <span class="kt-widget__title">Laporan Evaluasi Diri</span>
                                 <span class="kt-widget__value">  <?= Progress::widget([
-                                        'bars'=>[
-                                            ['percent'=>$model->k9LedInstitusis->progress,'options'=>['class'=>'kt-bg-success']]
+                                        'bars' => [
+                                            [
+                                                'percent' => $model->k9LedInstitusi->progress,
+                                                'options' => ['class' => 'kt-bg-success']
+                                            ]
                                         ],
-                                        'options'=>['class'=>'progress','style'=>'height:5px;width:100%']
-                                    ])?>
+                                        'options' => ['class' => 'progress', 'style' => 'height:5px;width:100%']
+                                    ]) ?>
 
                                     <div class="kt-widget__stats">
-                                       <span><?=$model->k9LedInstitusis->progress?>%</span>
+                                       <span><?= $model->k9LedInstitusi->progress ?>%</span>
                                     </div>
                                 </span>
                             </div>
@@ -94,14 +97,17 @@ $url = ['akreditasi/detail-pt','$id'=>$model->id]
                             <div class="kt-widget__details">
                                 <span class="kt-widget__title">Laporan Kinerja</span>
                                 <span class="kt-widget__value">  <?= Progress::widget([
-                                        'bars'=>[
-                                            ['percent'=>$model->k9LkInstitusis->progress,'options'=>['class'=>'kt-bg-success']]
+                                        'bars' => [
+                                            [
+                                                'percent' => $model->k9LkInstitusi->progress,
+                                                'options' => ['class' => 'kt-bg-success']
+                                            ]
                                         ],
-                                        'options'=>['class'=>'progress','style'=>'height:5px;width:100%']
-                                    ])?>
+                                        'options' => ['class' => 'progress', 'style' => 'height:5px;width:100%']
+                                    ]) ?>
 
                                     <div class="kt-widget__stats">
-                                       <span><?=$model->k9LkInstitusis->progress?>%</span>
+                                       <span><?= $model->k9LkInstitusi->progress ?>%</span>
                                     </div>
                                 </span>
                             </div>

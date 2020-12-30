@@ -1,6 +1,6 @@
 <?php
  /**
-  * @var $model common\models\DetailBerkas
+  * @var $model common\models\DetailBerkas || KegiatanUnitDetail
   * @var $url string
   */
 

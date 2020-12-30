@@ -48,85 +48,38 @@ $action = Yii::$app->controller->action->id;
 
     <?=$form->field($model,'sk_kegiatan')->widget(FileInput::className(),[
         'pluginOptions' => [
-            'theme' => 'explorer-fas',
-            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
             'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-            'showUpload' => false,
-            'fileActionSettings' => [
-                'showZoom' => true,
-                'showRemove' => false,
-                'showUpload' => false,
-            ],
         ]
     ])?>
     <?=$form->field($model,'laporan_kegiatan')->widget(FileInput::className(),[
         'pluginOptions' => [
-            'theme' => 'explorer-fas',
-            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
             'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-            'showUpload' => false,
-            'fileActionSettings' => [
-                'showZoom' => true,
-                'showRemove' => false,
-                'showUpload' => false,
-            ],
         ]
     ])?>
     <?=$form->field($model,'absensi')->widget(FileInput::className(),[
         'pluginOptions' => [
-            'theme' => 'explorer-fas',
-            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
             'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-            'showUpload' => false,
-            'fileActionSettings' => [
-                'showZoom' => true,
-                'showRemove' => false,
-                'showUpload' => false,
-            ],
         ]
     ])?>
 
     <?= $form->field($model, 'foto_kegiatan[]')->widget(FileInput::class,[
             'options' => ['multiple'=>true],
             'pluginOptions' => [
-            'theme' => 'explorer-fas',
-            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
             'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-            'showUpload' => false,
-            'fileActionSettings' => [
-                'showZoom' => true,
-                'showRemove' => false,
-                'showUpload' => false,
-            ],
         ]
     ]) ?>
     <?= $form->field($model, 'sertifikat[]')->widget(FileInput::class,[
         'options' => ['multiple'=>true],
         'pluginOptions' => [
-            'theme' => 'explorer-fas',
-            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
             'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-            'showUpload' => false,
-            'fileActionSettings' => [
-                'showZoom' => true,
-                'showRemove' => false,
-                'showUpload' => false,
-            ],
+
         ]
     ]) ?>
 
     <?= $form->field($model, 'dokumen_lainnya[]')->widget(FileInput::class,[
-        'options' => ['multiple'=>true],
+        'options' => ['mutiple'=>true],
         'pluginOptions' => [
-            'theme' => 'explorer-fas',
-            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
             'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-            'showUpload' => false,
-            'fileActionSettings' => [
-                'showZoom' => true,
-                'showRemove' => false,
-                'showUpload' => false,
-            ],
         ]
     ]) ?>
 
@@ -150,6 +103,7 @@ $action = Yii::$app->controller->action->id;
                     <thead class="thead-dark">
                     <tr>
                         <th class="text-center">Nama berkas</th>
+                        <th class="text-center">Jenis Berkas</th>
                         <th class="text-center">Aksi</th>
                     </tr>
                     </thead>
@@ -166,11 +120,12 @@ $action = Yii::$app->controller->action->id;
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12 text-center">
-                                        <?= \yii\bootstrap4\Html::encode($datum->nama_file) ?>
+                                        <?= \yii\bootstrap4\Html::encode($datum->isi_file) ?>
 
                                     </div>
                                 </div>
                             </td>
+                            <td><?=$datum->nama_file?></td>
                             <td>
                                 <div class="row pull-right">
                                     <div class="col-lg-12 ">

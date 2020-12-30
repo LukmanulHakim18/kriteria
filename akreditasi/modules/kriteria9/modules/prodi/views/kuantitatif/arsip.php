@@ -1,20 +1,21 @@
 <?php
 
 
-use demogorgorn\ajax\AjaxSubmitButton;
 use kartik\select2\Select2;
 use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
-use yii\web\JsExpression;
 
 /* @var $dataProdi */
 /* @var $dataAkreditasiProdi */
 
 $this->title = "Pencarian Data Kuantitatif Program Studi";
 
-$this->params['breadcrumbs'][] = ['label'=>'Beranda','url'=>['/site/index']];
-$this->params['breadcrumbs'][] = ['label'=>'9 Kriteria','url'=>['/site/index']];
-$this->params['breadcrumbs'][] = ['label'=>'Program Studi','url'=>['/kriteria9/k9-prodi/default/index','prodi'=>$_GET['prodi']]];
+$this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
+$this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/site/index']];
+$this->params['breadcrumbs'][] = [
+    'label' => 'Program Studi',
+    'url' => ['/kriteria9/k9-prodi/default/index', 'prodi' => $_GET['prodi']]
+];
 
 ?>
 <!--card-->
@@ -33,12 +34,12 @@ $this->params['breadcrumbs'][] = ['label'=>'Program Studi','url'=>['/kriteria9/k
 
         <?php $form = ActiveForm::begin(['id' => 'form-pencarian-dokumentasi', 'options' => ['class' => 'kt-form']]) ?>
 
-        <?= $form->field($model, 'akreditasi')->widget(Select2::class,[
-            'data'=> $dataAkreditasiProdi,
+        <?= $form->field($model, 'akreditasi')->widget(Select2::class, [
+            'data' => $dataAkreditasiProdi,
             'options' => [
                 'placeholder' => 'Pilih Akreditasi'
             ]
-        ])?>
+        ]) ?>
         <?= $form->field($model, 'id_prodi')->widget(Select2::class, [
             'data' => $dataProdi,
 
@@ -55,7 +56,7 @@ $this->params['breadcrumbs'][] = ['label'=>'Program Studi','url'=>['/kriteria9/k
             //                    'type' => 'POST',
             //                    'success'=>new JsExpression('function(html){
             //                    $("#hasil-arsip").html(html);
-            //                        normalizeButton("submit-form");
+            //                        normalizeButton("submit-form",{icon:"la la-search",text:"Cari"});
             //                    }')
             //
             //
@@ -65,7 +66,8 @@ $this->params['breadcrumbs'][] = ['label'=>'Program Studi','url'=>['/kriteria9/k
             //
             //            AjaxSubmitButton::end();
 
-            echo Html::submitButton('<i class="la la-search"></i> Cari', ['class' => 'btn btn-success btn-pill btn-elevate btn-elevate-air']);
+            echo Html::submitButton('<i class="la la-search"></i> Cari',
+                ['class' => 'btn btn-success btn-pill btn-elevate btn-elevate-air']);
 
             ?>
 

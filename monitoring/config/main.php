@@ -11,7 +11,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-monitoring',
-    'name'=> $params['nama_sistem'],
+    'name' => $params['nama_sistem'],
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'monitoring\controllers',
     'bootstrap' => ['log'],
@@ -21,12 +21,12 @@ return [
         ],
         'eksekutif' => [
             'class' => 'monitoring\modules\eksekutif\Eksekutif',
-            'modules'=>[
+            'modules' => [
                 'eksekutif-prodi' => [
                     'class' => 'monitoring\modules\eksekutif\modules\prodi\Prodi',
                 ],
-                'eksekutif-fakultas'=>[
-                    'class'=>'monitoring\modules\eksekutif\modules\fakultas\Fakultas'
+                'eksekutif-fakultas' => [
+                    'class' => 'monitoring\modules\eksekutif\modules\fakultas\Fakultas'
                 ],
                 'eksekutif-institusi' => [
                     'class' => 'monitoring\modules\eksekutif\modules\institusi\Institusi',
@@ -98,19 +98,19 @@ return [
             'showScriptName' => false,
             // Disable r= routes
             'enablePrettyUrl' => true,
-            'rules' =>[
+            'rules' => [
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ],
         ],
 
-        'assetManager'=>[
-            'bundles'=>[
-                'yii\bootstrap4\BootstrapAsset'=>[
+        'assetManager' => [
+            'bundles' => [
+                'yii\bootstrap4\BootstrapAsset' => [
                     'sourcePath' => '@common/assets/metronic/assets',
 
-                    'css'=>['css/demo1/style.bundle.css']
+                    'css' => ['css/style.bundle.css']
                 ]
             ]
         ],

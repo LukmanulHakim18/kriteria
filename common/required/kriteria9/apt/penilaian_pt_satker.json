@@ -1,0 +1,1579 @@
+[
+    {
+        "nomor": "A",
+        "judul": "Kondisi Eksternal",
+        "butir": null,
+        "indikators": [
+            {
+                "nomor": "1",
+                "rumus": null,
+                "isi": "Konsistensi dengan hasil analisis SWOT dan/atau analisis lain serta rencana pengembangan ke depan.",
+                "relasi": null,
+                "_4": "Perguruan tinggi mampu: \n1) mengidentifikasi kondisi lingkungan yang relevan, komprehensif,dan strategis, \n2) menetapkan posisi perguruan tinggi relatif terhadap lingkungannya, \n3) menggunakan hasil identifikasi dan posisi yang ditetapkan untuk melakukan analisis SWOT/analisis lain yang relevan, dan \n4) menghasilkan programpengembangan yang konsisten dengan hasil analisis SWOT/analis islain yang digunakan.",
+                "_3": "Perguruan tinggi mampu: \n1) mengidentifikasi kondisi lingkungan yang relevan dan komprehensif, \n2) menetapkan posisi perguruan tinggi relatif terhadap lingkungannya, \n3) menggunakan hasil identifikasi dan posisi yang ditetapkan untuk melakukan analisis SWOT/analisis lain yang relevan, dan \n4) menghasilkan program pengembangan yang konsisten dengan hasil analisis SWOT/analisis lain yang digunakan.",
+                "_2": "Perguruan tinggi mampu:\n1) mengidentifikasi kondisi lingkungan yang relevan,\n2) menetapkan posisi perguruan tinggi relatif terhadap lingkungannya,\n3) menggunakan hasil identifikasi dan posisi yang ditetapkan untuk melakukan analisis SWOT/analisis lain yang relevan, dan\n4) menghasilkan program pengembangan yang konsisten dengan hasil analisis SWOT/analisis lain yang digunakan.",
+                "_1": "Perguruan tinggi:\n1) mampu mengidentifikasi kondisi lingkungan yang relevan,\n2) belum mampu menetapkan posisi perguruan tinggi relatif terhadap lingkungannya,\n3) belum menggunakan hasil identifikasi dan posisi yang ditetapkan untuk melakukan analisis SWOT/analisis lain yang relevan, dan\n4) menghasilkan program pengembangan yang tidak konsisten dengan hasil analisis SWOT/analisis lain yang digunakan.",
+                "_0": "Perguruan tinggi tidak melakukan analisis terhadap kondisi lingkungan."
+            }
+        ]
+    },
+    {
+        "nomor": "B",
+        "judul": "Profil Unit Pengelola Program Studi",
+        "butir": null,
+        "indikators": [
+            {
+                "nomor": "1",
+                "rumus": null,
+                "isi": "Keserbacakupan informasi dalam profil dan konsistensi antara profil dengan data dan informasi yang disampaikan pada masing-masing kriteria.",
+                "relasi": null,
+                "_4": "Deskripsi profil institusi menunjukkan keserbacakupan informasi yang disampaikan secara ringkas dan jelas, serta konsisten dengan data dan informasi yang disampaikan pada masing-masing kriteria. ",
+                "_3": "Deskripsi profil institusi menunjukkan keserbacakupan informasi yang disampaikan dengan jelas dan konsisten dengan data dan informasi yang disampaikan pada masing-masing kriteria. ",
+                "_2": "Deskripsi profil institusi menunjukkan keserbacakupan informasi dan konsisten dengan data dan informasi yang disampaikan pada masing-masing kriteria. ",
+                "_1": "Deskripsi profil institusi kurang menunjukkan keserbacakupan informasi dan kurang konsisten dengan data dan informasi yang disampaikan pada masing-masing kriteria. ",
+                "_0": "Deskripsi profil institusi tidak menunjukkan keserbacakupan informasi dan tidak konsisten dengan data dan informasi yang disampaikan pada masing-masing kriteria. "
+            }
+        ]
+    },
+    {
+        "nomor": "C",
+        "judul": "Kriteria",
+        "butir": [
+            {
+                "nomor": "1",
+                "judul": "Visi, Misi, Tujuan, dan Strategi",
+                "butir": [
+                    {
+                        "nomor": "1.4",
+                        "judul": "Indikator Kinerja Utama",
+                        "butir": null,
+                        "indikators": [
+                            {
+                                "nomor": "1.4.1",
+                                "relasi": null,
+                                "rumus": null,
+                                "isi": "Perguruan Tinggi memiliki rencana pengembangan jangka panjang, menengah, dan pendek yang memuat indikator kinerja dan targetnya untuk mengukur ketercapaian tujuan strategis yang telah ditetapkan.",
+                                "_4": "Perguruan tinggi memiliki:\n1) rencana pengembangan mencakup: jangka panjang, jangka menengah, dan jangka pendek,\n2) indikator kinerja,\n3) target yang berorientasi pada daya saing internasional, dan\n4) bukti pelaksanaan pengembangan yang konsisten.",
+                                "_3": "Perguruan tinggi memiliki:\n1) rencana pengembangan mencakup: jangka panjang, jangka menengah, dan jangka pendek,\n2) indikator kinerja,\n3) target yang berorientasi pada daya saing nasional, dan\n4) bukti pelaksanaan pengembangan yang konsisten.\n",
+                                "_2": "Perguruan tinggi memiliki:\n1) rencana pengembangan mencakup: jangka panjang, jangka menengah, dan jangka pendek,\n2) indikator kinerja,\n3) target, dan\n4) bukti pelaksanaan pengembangan\n",
+                                "_1": "Perguruan tinggi memiliki rencana pengembangan yang dilengkapi dengan 1 dari 2 aspek berikut:\n1) indikator kinerja, atau\n2) target.\n",
+                                "_0": "Perguruan tinggi tidak memiliki rencana pengembangan.",
+                                "keterangan": null
+                            }
+                        ]
+                    }
+                ],
+                "indikators": null
+            },
+            {
+                "nomor": "2",
+                "judul": "Tata Pamong, Tata Kelola dan Kerjasama",
+                "butir": [
+                    {
+                        "nomor": "2.4",
+                        "judul": "Indikator Kinerja Utama",
+                        "butir": [
+                            {
+                                "nomor": "2.4.a",
+                                "judul": "Sistem Tata Pamong",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "2.4.a.A",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan dokumen formal sistem tata pamong sesuai konteks institusi untuk menjamin akuntabilitas, keberlanjutan dan transparansi, serta mitigasi potensi risiko.",
+                                        "_4": "Perguruan tinggi memiliki dokumen formal sistem tata pamong yang dijabarkan ke dalam berbagai kebijakan dan peraturan yang digunakan secara konsisten, efektif, dan efisien sesuai konteks institusi serta menjamin akuntabilitas, keberlanjutan, transparansi, dan mitigasi potensi risiko.",
+                                        "_3": "Perguruan tinggi memiliki dokumen formal sistem tata pamong yang dijabarkan ke dalam berbagai kebijakan dan peraturan yang digunakan secara konsisten sesuai konteks institusi serta menjamin akuntabilitas, keberlanjutan, transparansi, dan mitigasi potensi risiko.",
+                                        "_2": "Perguruan tinggi memiliki dokumen formal sistem tata pamong yang dijabarkan ke dalam berbagai kebijakan dan peraturan sesuai konteks institusi serta menjamin akuntabilitas, keberlanjutan, transparansi, dan mitigasi potensi risiko.",
+                                        "_1": "Perguruan tinggi memiliki dokumen formal sistem tata pamong tetapi belum dijabarkan ke dalam berbagai kebijakan dan peraturan.",
+                                        "_0": "Perguruan tinggi belum memiliki dokumen formal sistem tata pamong.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "2.4.a.B",
+                                        "isi": "Ketersediaan bukti yang sahih terkait upaya institusi melindungi integritas akademik dan kualitas pendidikan tinggi.",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "_4": "Perguruan tinggi memiliki bukti yang sahih (dokumen formal kebijakan dan peraturan) guna menjamin integritas dan kualitas institusi yang dilaksanakan secara konsisten, efektif dan efisien.",
+                                        "_3": "Perguruan tinggi memiliki bukti yang sahih (dokumen formal kebijakan dan peraturan) guna menjamin integritas dan kualitas institusi yang dilaksanakan secara konsisten.",
+                                        "_2": "Perguruan tinggi memiliki bukti yang sahih (dokumen formal kebijakan dan peraturan) guna menjamin integritas dan kualitas institusi.",
+                                        "_1": "Perguruan tinggi memiliki dokumen yang tidak sahih (dokumen formal kebijakan dan peraturan) guna menjamin integritas dan kualitas institusi.",
+                                        "_0": "Perguruan tinggi tidak memiliki dokumen kebijakan dan peraturan guna menjamin integritas dan kualitas institusi.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "2.4.a.C",
+                                        "isi": "Ketersediaan dokumen formal struktur organisasi dan tata kerja institusi beserta tugas dan fungsinya",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "_4": "Perguruan tinggi memiliki dokumen formal struktur organisasi dan tata kerja institusi yang dilengkapi tugas dan fungsi guna menjamin terlaksananya fungsi perguruan tinggi secara konsisten, efektif, dan efisien.",
+                                        "_3": "Perguruan tinggi memiliki dokumen formal struktur organisasi dan tata kerja institusi yang dilengkapi tugas dan fungsi guna menjamin terlaksananya fungsi perguruan tinggi secara konsisten.",
+                                        "_2": "Perguruan tinggi memiliki dokumen formal struktur organisasi dan tata kerja institusi yang dilengkapi tugas dan fungsi guna menjamin terlaksananya fungsi perguruan tinggi.",
+                                        "_1": "Perguruan tinggi memiliki dokumen formal struktur organisasi dan tata kerja institusi namun tidak dilengkapi tugas dan fungsi guna menjamin terlaksananya fungsi perguruan tinggi.",
+                                        "_0": "Perguruan tinggi tidak memiliki dokumen formal struktur organisasi dan tata kerja institusi.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "2.4.a.D",
+                                        "isi": "Ketersediaan bukti yang sahih terkait praktik baik perwujudan Good University Governance (paling tidak mencakup aspek kredibilitas, transparansi, akuntabilitas, tanggung jawab, dan keadilan), dan manajemen risiko. Perguruan tinggi mengumumkan ringkasan laporan tahunan kepada masyarakat (PP No. 4 Tahun 2014 Pasal 33 ayat 3).",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "_4": "Perguruan tinggi memiliki bukti yang sahih terkait praktik baik perwujudan GUG mencakup aspek: kredibilitas, transparansi, akuntabilitas, tanggung jawab, keadilan, dan manajemen risiko secara konsisten, efektif, dan efisien. Perguruan tinggi mengumumkan ringkasan laporan tahunan kepada masyarakat.",
+                                        "_3": "Perguruan tinggi memiliki bukti yang sahih terkait praktik baik perwujudan GUG mencakup aspek: kredibilitas, transparansi, akuntabilitas, tanggung jawab, keadilan, dan manajemen risiko secara konsisten. Perguruan tinggi mengumumkan ringkasan laporan tahunan kepada masyarakat.",
+                                        "_2": "Perguruan tinggi memiliki bukti yang sahih terkait praktik penyelenggaraan GUG mencakup aspek: kredibilitas, transparansi, akuntabilitas, tanggung jawab, keadilan, dan manajemen risiko. Perguruan tinggi mengumumkan ringkasan laporan tahunan kepada masyarakat.",
+                                        "_1": "Perguruan tinggi memiliki bukti yang sahih terkait praktik penyelenggaraan GUG namun hanya mencakup beberapa aspek GUG (kredibilitas, transparansi, akuntabilitas, tanggung jawab, keadilan, dan manajemen risiko).",
+                                        "_0": "Perguruan tinggi tidak memiliki bukti yang sahih terkait praktik penyelenggaraan GUG mencakup aspek: kredibilitas, transparansi, akuntabilitas, tanggung jawab, keadilan, dan manajemen risiko.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "2.4.a.E",
+                                        "isi": "Keberadaan dan keberfungsian lembaga/fungsi penegakan kode etik untuk menjamin tata nilai dan integritas..",
+                                        "relasi": null,
+                                        "rumus": "Skor = (A + (2 x B) + C + (2 x D) + (2 x E)) / 8",
+                                        "_4": "Perguruan tinggi memiliki lembaga yang sepenuhnya melaksanakan atau fungsi yang berjalan dalam penegakan kode etik untuk menjamin tata nilai dan integritas secara konsisten, efektif, dan efisien.",
+                                        "_3": "Perguruan tinggi memiliki lembaga yang sepenuhnya melaksanakan atau fungsi yang berjalan dalam penegakan kode etik untuk menjamin tata nilai dan integritas secara konsisten.",
+                                        "_2": "Perguruan tinggi memiliki lembaga yang sepenuhnya melaksanakan atau fungsi yang berjalan dalam penegakan kode etik untuk menjamin tata nilai dan integritas.",
+                                        "_1": "Perguruan tinggi memiliki lembaga yang tidak sepenuhnya melaksanakan atau fungsi yang tidak berjalan dalam penegakan kode etik untuk menjamin tata nilai dan integritas.",
+                                        "_0": "Perguruan tinggi tidak memiliki lembaga/fungsi yang melaksanakan penegakan kode etik untuk menjamin tata nilai dan integritas.",
+                                        "keterangan": null
+                                    }
+                                ]
+                            },
+                            {
+                                "nomor": "2.4.b",
+                                "judul": "Kepemimpinan",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "2.4.b.A",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Efektivitas kepemimpinan operasional yang ditunjukkan melalui kemampuan pimpinan dalam menjalin komunikasi yang baik dengan stakeholders internal untuk merealisasikan rencana strategis dan operasional, serta kemampuan dalam mengambil keputusan strategis dalam melaksanakan kebijakan operasional.",
+                                        "_4": "Pimpinan merealisasikan seluruh rencana strategis dan operasional yang dilakukan secara terprogram dan intensif melalui komunikasi yang baik dengan stakeholders internal serta mampu mengambil keputusan strategis dan inovatif dengan risiko terukur dalam melaksanakan kebijakan operasional.",
+                                        "_3": "Pimpinan merealisasikan seluruh rencana strategis dan operasional yang dilakukan secara terprogram melalui komunikasi yang baik dengan stakeholders internal serta mampu mengambil keputusan strategis dengan risiko terukur dalam melaksanakan kebijakan operasional.",
+                                        "_2": "Pimpinan merealisasikan seluruh rencana strategis dan operasional melalui komunikasi yang baik dengan stakeholders internal serta mampu mengambil keputusan strategis dalam melaksanakan kebijakan operasional.",
+                                        "_1": "Pimpinan kurang mampu menjalin komunikasi yang baik dengan stakeholders internal yang berakibat pada terhambatnya realisasi dari sebagian rencana strategis dan operasional.",
+                                        "_0": "Pimpinan tidak mampu menjalin komunikasi dengan stakeholders internal yang berakibat pada terhambatnya realisasi dari sebagian besar rencana strategis dan operasional.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "2.4.b.B",
+                                        "isi": "Efektivitas kepemimpinan organisasional yang ditunjukkan melalui kemampuan pimpinan untuk mengambil keputusan dalam melaksanakan kebijakan organisasional, serta perannya sebagai agen perubahan sekaligus motivator akan tercapainya visi, misi, budaya dan tujuan strategis perguruan tinggi.",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "_4": "Pimpinan mampu mengambil keputusan strategis dan inovatif dengan resiko terukur dalam melaksanakan kebijakan organisasional yang menjamin keberlanjutan dan eksistensi perguruan tinggi, serta mampu berperan sebagai agen perubahan yang secara terus menerus memberikan motivasi akan tercapainya visi, misi, budaya dan tujuan strategis perguruan tinggi.",
+                                        "_3": "Pimpinan mampu mengambil keputusan strategis dengan risiko terukur dalam melaksanakan kebijakan organisasional yang menjamin keberlanjutan dan eksistensi perguruan tinggi, serta mampu berperan sebagai agen perubahan yang secara terus menerus memberikan motivasi akan tercapainya visi, misi, budaya dan tujuan strategis perguruan tinggi.",
+                                        "_2": "Pimpinan mampu mengambil keputusan strategis dalam melaksanakan kebijakan organisasional yang menjamin keberlanjutan dan eksistensi perguruan tinggi, serta mampu berperan sebagai motivator untuk mendorong tercapainya visi, misi, budaya dan tujuan strategis perguruan tinggi.",
+                                        "_1": "Pimpinan kurang mampu mengambil keputusan strategis dalam melaksanakan kebijakan organisasional yang menjamin keberlanjutan dan eksistensi perguruan tinggi.",
+                                        "_0": "Pimpinan tidak menunjukkan kemampuan untuk mengambil keputusan strategis dalam melaksanakan kebijakan organisasional yang menjamin keberlanjutan dan eksistensi perguruan tinggi.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "2.4.b.C",
+                                        "isi": "Efektivitas kepemimpinan publik yang ditunjukkan melalui kemampuan pimpinan dalam menjalin kerjasama tridharma dan menjadikan perguruan tinggi menjadi rujukan publik.",
+                                        "relasi": null,
+                                        "rumus": "Skor = ((2 x A) + (2 x B) +\nC) / 5\n",
+                                        "_4": "Pimpinan menunjukkan kemampuan untuk menjalin kerjasama tridharma yang saling menguntungkan, dan menjadikan perguruan tinggi sebagai rujukan publik di tingkat nasional/internasional.",
+                                        "_3": "Pimpinan menunjukkan kemampuan untuk menjalin kerjasama tridharma, dan menjadikan perguruan tinggi sebagai rujukan publik di tingkat wilayah/nasional.",
+                                        "_2": "Pimpinan menunjukkan kemampuan untuk menjalin kerjasama dalam rangka mendukung pelaksanaan pendidikan.",
+                                        "_1": "Pimpinan kurang menunjukkan kemampuan untuk menjalin kerjasama.",
+                                        "_0": "Pimpinan tidak menunjukkan kemampuan untuk menjalin kerjasama.",
+                                        "keterangan": null
+                                    }
+                                ]
+                            },
+                            {
+                                "nomor": "2.4.c",
+                                "judul": "Pengelolaan",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "2.4.c.A",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": ". Ketersediaan bukti formal keberfungsian sistem pengelolaan fungsional dan operasional perguruan tinggi yang mencakup 5 aspek sebagai berikut:\n1)\tperencanaan (planning ),\n2)\tpengorganisasian (organizing ),\n3)\tpenempatan personil (staffing ),\n4)\tpengarahan (leading ), dan\n5)\tpengawasan (controlling ).\n",
+                                        "_4": "Perguruan tinggi memiliki bukti formal keberfungsian sistem pengelolaan fungsional dan operasional perguruan tinggi yang mencakup 5 aspek yang dilaksanakan secara konsisten, efektif, dan efisien.",
+                                        "_3": "Perguruan tinggi memiliki bukti formal keberfungsian sistem pengelolaan fungsional dan operasional perguruan tinggi yang mencakup 5 aspek yang dilaksanakan secara konsisten.",
+                                        "_2": "Perguruan tinggi memiliki bukti formal keberfungsian sistem pengelolaan fungsional dan operasional perguruan tinggi yang mencakup 5 aspek.",
+                                        "_1": "Perguruan tinggi memiliki bukti formal keberfungsian sistem pengelolaan fungsional dan operasional perguruan tinggi namun belum mencakup semua aspek.",
+                                        "_0": "Perguruan tinggi tidak memiliki bukti formal keberfungsian sistem pengelolaan fungsional dan operasional perguruan tinggi.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "2.4.c.B",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan dokumen formal dan pedoman pengelolaan mencakup 11 aspek sebagai berikut:\n1) pendidikan,\n2) pengembangan suasana akademik dan otonomi keilmuan,\n3) kemahasiswaan,\n4) penelitian,\n5) PkM,\n6) SDM,\n7) keuangan,\n8) sarana dan prasarana,\n9) sistem informasi,\n10) sistem penjaminan mutu, dan\n11) kerjasama.\n",
+                                        "_4": "Perguruan tinggi memiliki dokumen formal dan pedoman pengelolaan yang rinci dan memiliki kesesuaian antar 11 aspek.",
+                                        "_3": "Perguruan tinggi memiliki dokumen formal dan pedoman pengelolaan yang rinci mencakup 11 aspek.",
+                                        "_2": "Perguruan tinggi memiliki dokumen formal dan pedoman pengelolaan mencakup 11 aspek.",
+                                        "_1": "Perguruan tinggi memiliki dokumen formal dan pedoman pengelolaan namun belum mencakup semua aspek.",
+                                        "_0": "Perguruan tinggi tidak memiliki dokumen formal dan pedoman pengelolaan.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "2.4.c.C",
+                                        "isi": "Ketersediaan bukti yang sahih tentang implementasi kebijakan dan pedoman pengelolaan yang mencakup 11 aspek sebagai berikut:\n1) pendidikan,\n2) pengembangan suasana akademik dan otonomi keilmuan,\n3) kemahasiswaan,\n4) penelitian,\n5) PkM,\n6) SDM,\n7) keuangan,\n8) sarana dan prasarana,\n9) sistem informasi,\n10) sistem penjaminan mutu, dan\n11) kerjasama.\n",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "_4": "Perguruan tinggi memiliki bukti yang sahih tentang implementasi kebijakan dan pedoman pengelolaan dengan penerapan yang konsisten, efektif, dan efisien mencakup 11 aspek.",
+                                        "_3": "Perguruan tinggi memiliki bukti yang sahih tentang implementasi kebijakan dan pedoman pengelolaan dengan penerapan yang konsisten mencakup 11 aspek.",
+                                        "_2": "Perguruan tinggi memiliki bukti yang sahih tentang implementasi kebijakan dan pedoman pengelolaan 11 aspek",
+                                        "_1": "Perguruan tinggi memiliki bukti yang sahih tentang implementasi kebijakan dan pedoman namun belum mencakup semua aspek.",
+                                        "_0": "Perguruan tinggi tidak memiliki bukti yang sahih tentang implementasi kebijakan dan pedoman pengelolaan.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "2.4.c.D",
+                                        "isi": "Ketersediaan dokumen formal dan bukti mekanisme persetujuan dan penetapan terhadap rencana strategis yang mencakup 5 aspek sebagai berikut:\n1) adanya keterlibatan pemangku kepentingan,\n2) mengacu kepada capaian renstra periode sebelumnya,\n3) mengacu kepada VMTS institusi,\n4) dilakukannya analisis kondisi internal dan eksternal, dan\n5) disahkan oleh organ yang memiliki kewenangan.\n",
+                                        "relasi": null,
+                                        "rumus": "Skor = ((2 x A) + B + (2 x C) + D ) / 6",
+                                        "_4": "Perguruan Tinggi memiliki dokumen formal dan bukti mekanisme persetujuan dan penetapan terhadap rencana strategis yang mencakup 5 aspek dan ada benchmark dengan perguruan tinggi sejenis tingkat internasional.",
+                                        "_3": "Perguruan Tinggi memiliki dokumen formal dan bukti mekanisme persetujuan dan penetapan terhadap rencana strategis yang mencakup 5 aspek dan ada benchmark dengan perguruan tinggi sejenis tingkat nasional.",
+                                        "_2": "Perguruan Tinggi memiliki dokumen formal dan bukti mekanisme persetujuan dan penetapan terhadap rencana strategis yang mencakup 5 aspek",
+                                        "_1": "Perguruan Tinggi memiliki dokumen formal dan bukti mekanisme persetujuan dan penetapan terhadap rencana strategis namun belum mencakup semua aspek terkait bukti mekanisme penyusunan serta persetujuan dan penetapannya.",
+                                        "_0": "Perguruan Tinggi tidak memilikidokumen formal dan bukti mekanisme persetujuan dan penetapan terhadap rencana strategis.",
+                                        "keterangan": null
+                                    }
+                                ]
+                            },
+                            {
+                                "nomor": "2.4.d-1",
+                                "judul": "Sistem Penjaminan Mutu",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "2.4.d-1.A-1",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan dokumen formal SPMI yang dibuktikan dengan keberadaan 5 aspek sebagai berikut:\n1) organ/fungsi SPMI,\n2) dokumen SPMI,\n3) auditor internal,\n4) hasil audit, dan\n5) bukti tindak lanjut.\n",
+                                        "_4": "Perguruan tinggi telah menjalankan SPMI yang dibuktikan dengan keberadaan 5 aspek, memiliki standar yang melampaui SN-DIKTI yang membawa daya saing internasional dalam kuantitas dan kualitas yang signifikan, dan efektif untuk menumbuhkembangkan budaya mutu, serta menerapkan inovasi SPM, seperti: audit berbasis resiko (Risk Based Audit ) atau inovasi lainnya.",
+                                        "_3": "Perguruan tinggi telah menjalankan SPMI yang dibuktikan dengan keberadaan 5 aspek dan memiliki standar yang melampaui SN-DIKTI yang membawa daya saing nasional dalam kuantitas dan kualitas yang signifikan, dan efektif untuk menumbuhkembangkan budaya mutu.",
+                                        "_2": "Perguruan tinggi telah menjalankan SPMI yang dibuktikan dengan keberadaan 5 aspek.",
+                                        "_1": "Perguruan tinggi telah menjalankan SPMI namun belum mencakup seluruhnya.",
+                                        "_0": "Perguruan tinggi tidak menjalankan SPMI.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "2.4.d-1.B-1",
+                                        "relasi": null,
+                                        "rumus": "Skor = (A + (2 x B)) / 3",
+                                        "isi": "Ketersediaan bukti yang sahih terkait praktik baik pengembangan budaya mutu di perguruan tinggi melalui rapat tinjauan manajemen, yang mengagendakan pembahasan unsur- unsur, yang meliputi:\n1) hasil audit internal,\n2) umpan balik,\n3) kinerja proses dan kesesuaian produk,\n4) status tindakan pencegahan dan perbaikan,\n5) tindak lanjut dari rapat tinjauan manajemen sebelumnya,\n6) perubahan yang dapat mempengaruhi sistem penjaminan mutu, dan\n7)\trekomendasi untuk peningkatan.\n",
+                                        "_4": "Perguruan tinggi memiliki bukti yang sahih terkait praktik baik pengembangan budaya mutu di perguruan tinggi melalui rapat tinjauan manajemen, yang mengagendakan pembahasan 7 unsur.",
+                                        "_3": "Perguruan tinggi memiliki bukti yang sahih terkait praktik baik pengembangan budaya mutu di perguruan tinggi melalui rapat tinjauan manajemen yang mengagendakan pembahasan sebagian dari 7 unsur.",
+                                        "_2": "Perguruan tinggi tidak memiliki bukti yang sahih terkait praktik baik pengembangan budaya mutu di perguruan tinggi melalui rapat tinjauan manajemen.",
+                                        "_1": null,
+                                        "_0": null,
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "2.4.d-1.A-2",
+                                        "isi": "Perolehan sertifikasi/ akreditasi eksternal oleh lembaga internasional atau internasional bereputasi.",
+                                        "relasi": [
+                                            "1.a-1",
+                                            "1.a-2",
+                                            "1.a-3"
+                                        ],
+                                        "rumus": null,
+                                        "_4": "Jika NK > 8 , maka Skor_A = 4 ",
+                                        "_3": "Jika NK < 8 , maka Skor_A = NK / 2 .",
+                                        "_2": "Jika NK < 8 , maka Skor_A = NK / 2 .",
+                                        "_1": null,
+                                        "_0": null,
+                                        "keterangan": "NK = 4 x NA + 2 x NB + NC\nNA = Jumlah sertifikasi/akreditasi dalam lingkup perguruan tinggi atau fakultas yang diberikan oleh lembaga internasional bereputasi.\nNB = Jumlah sertifikasi/akreditasi dalam lingkup perguruan tinggi (selain oleh BAN-PT) atau fakultas yang diberikan oleh lembaga\nnasional bereputasi.\nNC = Jumlah sertifikasi/akreditasi dalam lingkup unit (laboratorium, dll.) yang diberikan oleh lembaga internasional/nasional bereputasi.\n"
+                                    },
+                                    {
+                                        "nomor": "2.4.d-1.B-2",
+                                        "isi": "Perolehan akreditasi program studi oleh lembaga akreditasi internasional bereputasi",
+                                        "relasi": [
+                                            "1.a-1",
+                                            "1.a-2",
+                                            "1.a-3"
+                                        ],
+                                        "rumus": "Skor = (Skor_A + Skor_B) / 2",
+                                        "_4": "Jika PAI >= 5% , maka Skor_B = 4 .",
+                                        "_3": "Jika PAI < 5% ,\nmaka Skor_B = 2 + (40 x PAI) .\n",
+                                        "_2": "Jika PAI < 5% ,\nmaka Skor_B = 2 + (40 x PAI) .\n",
+                                        "_1": null,
+                                        "_0": null,
+                                        "keterangan": "PAI = (NAI / NPS) x 100%\nNAI = Jumlah program studi pada program utama yang terakreditasi oleh lembaga internasional bereputasi. NPSU = Jumlah program studi pada program utama.\n"
+                                    },
+                                    {
+                                        "nomor": "2.4.d-1.1",
+                                        "isi": "Pelaksanaan dan hasil audit eksternal keuangan di perguruan tinggi",
+                                        "relasi": [
+                                            "1.a-1",
+                                            "1.a-2",
+                                            "1.a-3"
+                                        ],
+                                        "rumus": null,
+                                        "_4": "Seluruh temuan pada hasil pemeriksaan inspektorat tahun sebelumnya telah ditindak lanjuti.",
+                                        "_3": "Sebagian besar temuan pada hasil pemeriksaan inspektorat tahun sebelumnya telah ditindak lanjuti.",
+                                        "_2": "Sebagian temuan pada hasil pemeriksaan inspektorat tahun sebelumnya telah ditindak lanjuti.",
+                                        "_1": "Seluruh temuan pada hasil pemeriksaan inspektorat tahun sebelumnya belum ditindak lanjuti.",
+                                        "_0": null,
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "2.4.d-1.2",
+                                        "isi": "Perolehan status terakreditasi program studi oleh BAN-PT atau Lembaga Akreditasi Mandiri (LAM).",
+                                        "relasi": [
+                                            "1.b"
+                                        ],
+                                        "rumus": null,
+                                        "_4": "Jika NSA ≥ 3,50 , maka Skor = 4",
+                                        "_3": "Jika NSA < 3,50 ,\nmaka Skor = NSA + 0,5 .\n",
+                                        "_2": "Jika NSA < 3,50 ,\nmaka Skor = NSA + 0,5 .\n",
+                                        "_1": "Jika NSA < 3,50 ,\nmaka Skor = NSA + 0,5 .\n",
+                                        "_0": "Jika NSA < 3,50 ,\nmaka Skor = NSA + 0,5 .\n",
+                                        "keterangan": "NSA = (4 x NUnggul + 3,5 x NA + 3 x NBaik_Sekali + 2,5 x NB + 2 x NBaik + 1,5 x NC) / (NUnggul + NA + NBaik_Sekali + NB + NBaik + NC + NK) NUnggul = Jumlah program studi terakreditasi Unggul.\nNBaik_Sekali = Jumlah program studi terakreditasi Baik Sekali. NBaik = Jumlah program studi terakreditasi Baik.\nNA = Jumlah program studi terakreditasi A. NB = Jumlah program studi terakreditasi B. NC = Jumlah program studi terakreditasi C.\nNK = Jumlah program studi tidak terakreditasi/ kadaluarsa.\nCatatan: program studi baru dengan status terakreditasi minimum tidak dimasukkan dalam perhitungan NSA.\n"
+                                    }
+                                ]
+                            },
+                            {
+                                "nomor": "2.4.d-2",
+                                "judul": "Kerjasama",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "2.4.d-2.A",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan dokumen formal kebijakan dan prosedur pengembangan jejaring dan kemitraan (dalam dan luar negeri), dan monitoring dan evaluasi kepuasan mitra kerjasama.",
+                                        "_4": "Perguruan tinggi memiliki dokumen formal kebijakan dan prosedur, yang komprehensif, rinci, terkini, dan mudah diakses oleh pemangku kepentingan, tentang pengembangan jejaring dan kemitraan (dalam dan luar negeri) termasuk bagaimana melakukan monitoring dan evaluasi kepuasan mitra kerjasama.",
+                                        "_3": "Perguruan tinggi memiliki dokumen formal kebijakan dan prosedur, yang komprehensif dan mudah diakses oleh pemangku kepentingan, tentang pengembangan jejaring dan kemitraan (dalam dan luar negeri) termasuk bagaimana melakukan monitoring dan evaluasi kepuasan mitra kerjasama.",
+                                        "_2": "Perguruan tinggi memiliki dokumen formal kebijakan dan prosedur pengembangan jejaring dan kemitraan (dalam dan luar negeri) termasuk bagaimana melakukan monitoring dan evaluasi kepuasan mitra kerjasama.",
+                                        "_1": "Perguruan tinggi memiliki dokumen formal kebijakan dan prosedur pengembangan jejaring dan kemitraan (dalam dan luar negeri).",
+                                        "_0": "Perguruan tinggi tidak memiliki dokumen formal kebijakan dan prosedur pengembangan jejaring dan kemitraan.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "2.4.d-2.B",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan dokumen perencanaan pengembangan jejaring dan kemitraan yang ditetapkan untuk mencapai visi, misi dan tujuan strategis institusi.",
+                                        "_4": "Perguruan tinggi memiliki dokumen perencanaan pengembangan jejaring dan kemitraan yang sahih dan terarah guna mencapai visi, misi, dan tujuan strategis institusi.",
+                                        "_3": "Perguruan tinggi memiliki dokumen perencanaan pengembangan jejaring dan kemitraan yang sahih guna mencapai visi, misi, dan tujuan strategis institusi.",
+                                        "_2": "Perguruan tinggi memiliki dokumen perencanaan pengembangan jejaring dan kemitraan guna mencapai visi, misi dan tujuan strategis institusi.",
+                                        "_1": "Perguruan tinggi memiliki dokumen perencanaan pengembangan jejaring dan kemitraan yang tidak mendukung pencapaian visi, misi, dan tujuan strategis institusi.",
+                                        "_0": "Perguruan tinggi tidak memiliki dokumen perencanaan pengembangan jejaring dan kemitraan.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "2.4.d-2.C",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan data jumlah, lingkup, relevansi, dan kebermanfaatan kerjasama.",
+                                        "_4": "Perguruan tinggi memiliki jejaring dan mitra kerjasama yang relevan dengan VMTS dan bermanfaat bagi pengembangan tridharma institusi yang mencakup kerjasama lokal/wilayah, nasional dan internasional.",
+                                        "_3": "Perguruan tinggi memiliki jejaring dan mitra kerjasama yang relevan dengan VMTS dan bermanfaat bagi pengembangan tridharma institusi yang mencakup kerjasama lokal/wilayah dan nasional.",
+                                        "_2": "Perguruan tinggi memiliki jejaring dan mitra kerjasama yang relevan dan bermanfaat bagi institusi.",
+                                        "_1": "Perguruan tinggi memiliki jejaring dan mitra kerjasama namun tidak relevan.",
+                                        "_0": "Perguruan tinggi tidak memiliki jejaring dan mitra kerjasama.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "2.4.d-2.D",
+                                        "relasi": null,
+                                        "rumus": "Skor = (A + B + (2 x C) + (4 x D)) / 8",
+                                        "isi": "Perguruan tinggi memiliki bukti monitoring dan evaluasi pelaksanaan program kemitraan dan tingkat kepuasan mitra kerjasama yang diukur dengan instrumen yang sahih, serta perbaikan mutu jejaring dan kemitraan yang berkelanjutan, untuk menjamin terwujudnya visi, terlaksananya misi dan tercapainya tujuan strategis.",
+                                        "_4": "Perguruan tinggi memiliki dokumen formal kebijakan dan prosedur, yang komprehensif, rinci, terkini, dan mudah diakses oleh pemangku kepentingan, tentang pengembangan jejaring dan kemitraan (dalam dan luar negeri) termasuk bagaimana melakukan monitoring dan evaluasi kepuasan mitra kerjasama.",
+                                        "_3": "Perguruan tinggi memiliki bukti monitoring dan evaluasi pelaksanaan program kemitraan dan tingkat kepuasan mitra kerjasama yang diukur dengan instrumen yang sahih, serta perbaikan mutu jejaring dan kemitraan, untuk menjamin terwujudnya visi, terlaksananya misi dan tercapainya tujuan strategis.",
+                                        "_2": "Perguruan tinggi memiliki bukti monitoring dan evaluasi pelaksanaan program kemitraan dan tingkat kepuasan kepuasan mitra kerjasama yang diukur dengan instrumen yang sahih, serta upaya perbaikan mutu jejaring dan kemitraan untuk menjamin terwujudnya visi, terlaksananya misi dan tercapainya tujuan strategis.",
+                                        "_1": "Perguruan tinggi memiliki bukti monitoring dan evaluasi pelaksanaan program kemitraan dan tingkat kepuasan kepuasan mitra kerjasama yang diukur dengan instrumen yang sahih, namun belum ada upaya perbaikan mutu jejaring dan kemitraan untuk menjamin terwujudnya visi, terlaksananya misi dan tercapainya tujuan strategis.",
+                                        "_0": "Perguruan tinggi tidak memiliki bukti monitoring dan evaluasi pelaksanaan program kemitraan.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "2.4.d-2.1",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Kerjasama perguruan tinggi di bidang pendidikan, penelitian dan PkM dalam 3 tahun terakhir.",
+                                        "_4": "Jika RI ≥ a , maka Skor = 4 .",
+                                        "_3": "Jika RI < a dan RN ≥ b , maka Skor = 3 + (RI / a) \nJika 0 < RI < a dan 0 < RN < b ,\nmaka Skor = 2 + (2 x (RI/a)) + (RN/b) - ((RI x RN) / (a x b))\n",
+                                        "_2": "Jika RI < a dan RN ≥ b , maka Skor = 3 + (RI / a) \nJika 0 < RI < a dan 0 < RN < b ,\nmaka Skor = 2 + (2 x (RI/a)) + (RN/b) - ((RI x RN) / (a x b))\n",
+                                        "_1": "Jika RI = 0 dan RN = 0 dan RL ≥ c , maka Skor = 2 \nJika RI = 0 dan RN = 0 dan RL < c , maka Skor = (2 x RL) / c .",
+                                        "_0": "Jika RI = 0 dan RN = 0 dan RL ≥ c , maka Skor = 2 \nJika RI = 0 dan RN = 0 dan RL < c , maka Skor = (2 x RL) / c .",
+                                        "keterangan": "RI = NI / NDT , RN = NN / NDT , RL = NL / NDT\tFaktor: a = 0,02 , b = 0,2 , c = 0,5\nNI = Jumlah kerjasama tridharma tingkat internasional. NN = Jumlah kerjasama tridharma tingkat nasional.\nNL = Jumlah kerjasama tridharma tingkat wilayah/lokal. NDT = Jumlah dosen tetap.\n"
+                                    }
+                                ]
+                            }
+                        ],
+                        "indikators": null
+                    },
+                    {
+                        "nomor": "2.5",
+                        "judul": "Indikator Kinerja Tambahan",
+                        "butir": null,
+                        "indikators": [
+                            {
+                                "nomor": "2.5.1",
+                                "relasi": null,
+                                "rumus": null,
+                                "isi": "Pelampauan SN-DIKTI (indikator kinerja tambahan) yang ditetapkan oleh perguruan tinggi pada tiap kriteria.",
+                                "_4": "Perguruan tinggi memiliki standar mutu yang melampaui SN-DIKTI dan memiliki daya saing internasional. Indikator kinerja tambahan mencakup seluruh standar yang ditetapkan. Data indikator kinerja telah diukur, dimonitor, dikaji, dan dianalisis untuk perbaikan berkelanjutan.",
+                                "_3": "Perguruan tinggi menetapkan standar mutu yang melampaui SN-DIKTI dan memiliki daya saing nasional. Indikator kinerja tambahan mencakup sebagian standar yang ditetapkan. Data indikator kinerja tambahan telah diukur, dimonitor, dikaji, dan dianalisis untuk perbaikan berkelanjutan.",
+                                "_2": "Perguruan tinggi tidak menetapkan indikator kinerja tambahan.",
+                                "_1": null,
+                                "_0": null,
+                                "keterangan": null
+                            }
+                        ]
+                    },
+                    {
+                        "nomor": "2.6",
+                        "judul": "Evaluasi Capaian Kinerja",
+                        "butir": null,
+                        "indikators": [
+                            {
+                                "nomor": "2.6.1",
+                                "relasi": null,
+                                "rumus": null,
+                                "isi": "Analisis keberhasilan dan/atau ketidakberhasilan pencapaian kinerja yang telah ditetapkan institusi pada tiap kriteria yang memenuhi 2 aspek sebagai berikut:\n1)\tcapaian kinerja harus diukur dengan metoda yang tepat, dan hasilnya dianalisis serta dievaluasi, dan\n2)\tanalisis terhadap capaian kinerja mencakup identifikasi akar masalah, faktor pendukung keberhasilan dan faktor penghambat ketercapaian standard, dan deskripsi singkat tindak lanjut yang akan dilakukan institusi.\n",
+                                "_4": "Analisis pencapaian kinerja perguruan tinggi yang memenuhi 2 aspek, dilaksanakan setiap tahun dan hasilnya dipublikasikan kepada para pemangku kepentingan.",
+                                "_3": "Analisis pencapaian kinerja perguruan tinggi yang memenuhi 2 aspek dan dilaksanakan setiap tahun.",
+                                "_2": "Analisis pencapaian kinerja perguruan tinggi yang memenuhi 2 aspek",
+                                "_1": "Perguruan tinggi memiliki laporan pencapaian kinerja namun belum dianalisis dan dievaluasi",
+                                "_0": "Perguruan tinggi tidak memiliki laporan pencapaian kinerja.",
+                                "keterangan": null
+                            }
+                        ]
+                    },
+                    {
+                        "nomor": "2.7",
+                        "judul": "Penjaminan Mutu",
+                        "butir": null,
+                        "indikators": [
+                            {
+                                "nomor": "2.7.1",
+                                "relasi": null,
+                                "rumus": null,
+                                "isi": "Efektivitas pelaksanaan sistem penjaminan mutu pada tiap kriteria yang memenuhi 4 aspek sebagai berikut:\n1)\tkeberadaan dokumen formal penetapan standar mutu,\n2)\tstandar mutu dilaksanakan secara konsisten,\n3)\tmonitoring, evaluasi dan pengendalian terhadap standar mutu yang telah ditetapkan, dan\n4)\thasilnya ditindak lanjuti untuk perbaikan dan peningkatan mutu.\n",
+                                "_4": "Perguruan tinggi telah melaksanakan sistem penjaminan mutu yang terbukti efektif memenuhi 4 aspek dan dilakukan review terhadap siklus penjaminan mutu yang melibatkan reviewer eksternal.",
+                                "_3": "Perguruan tinggi telah melaksanakan sistem penjaminan mutu yang terbukti efektif memenuhi 4 aspek dan dilakukan review terhadap siklus penjaminan mutu.",
+                                "_2": "Perguruan tinggi telah melaksanakan sistem penjaminan mutu yang terbukti efektif memenuhi 4 aspek.",
+                                "_1": "Perguruan tinggi telah melaksanakan sistem penjaminan mutu namun belum efektif serta belum memenuhi seluruh aspek.",
+                                "_0": "Perguruan tinggi belum melaksanakan sistem penjaminan mutu.",
+                                "keterangan": null
+                            }
+                        ]
+                    },
+                    {
+                        "nomor": "2.8",
+                        "judul": "Kepuasan Pemangku Kepentingan",
+                        "butir": null,
+                        "indikators": [
+                            {
+                                "nomor": "2.8.1",
+                                "relasi": null,
+                                "rumus": null,
+                                "isi": "Tingkat kepuasan pemangku kepentingan internal dan eksternal pada masing-masing kriteria: tata pamong dan kerjasama, mahasiswa, sumber daya manusia, keuangan, sarana dan prasarana, pendidikan, penelitian dan pengabdian kepada masyarakat yang memenuhi 4 aspek sebagai berikut:\n1)\tmenggunakan instrumen kepuasan yang sahih, andal, mudah digunakan,\n2)\tdilaksanakan secara berkala, serta datanya terekam secara komprehensif,\n3)\tdianalisis dengan metode yang tepat serta bermanfaat untuk pengambilan keputusan, dan\n4)\ttingkat kepuasan dan umpan balik ditindaklanjuti untuk perbaikan dan peningkatan mutu luaran secara berkala dan tersistem.\n",
+                                "_4": "Perguruan tinggi melaksanakan pengukuran kepuasan pemangku kepentingan internal dan eksternal pada masing-masing kriteria yang memenuhi 4 aspek, hasilnya dipublikasikan serta mudah diakses oleh kepentingan, dan dilakukan review terhadap pelaksanaan pengukuran kepuasan pengguna.",
+                                "_3": "Perguruan tinggi melaksanakan pengukuran kepuasan pemangku kepentingan internal dan eksternal pada masing-masing kriteria yang memenuhi 4 aspek dan hasilnya dipublikasikan serta mudah diakses oleh pemangku kepentingan.",
+                                "_2": "Perguruan tinggi melaksanakan pengukuran kepuasan pemangku kepentingan internal dan eksternal pada masing-masing kriteria yang memenuhi 4 aspek.",
+                                "_1": "Perguruan tinggi melaksanakan pengukuran kepuasan pemangku kepentingan internal dan eksternal pada masing-masing kriteria namun belum memenuhi seluruh aspek.",
+                                "_0": "Perguruan tinggi tidak melaksanakan pengukuran kepuasan pemangku kepentingan internal dan eksternal pada masing-masing kriteria.",
+                                "keterangan": null
+                            }
+                        ]
+                    }
+                ],
+                "indikators": null
+            },
+            {
+                "nomor": "3",
+                "judul": "Mahasiswa",
+                "butir": [
+                    {
+                        "nomor": "3.4",
+                        "judul": "Indikator Kinerja Utama",
+                        "butir": [
+                            {
+                                "nomor": "3.4.a",
+                                "judul": "Kualitas Input Mahasiswa",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "3.4.a.1",
+                                        "relasi": [
+                                            "2.a"
+                                        ],
+                                        "rumus": "Rasio = NAi / NBi\nNAi = Jumlah calon mahasiswa yang ikut seleksi pada program utama. i = 1, 2, …, atau 7. NBi = Jumlah calon mahasiswa yang lulus seleksi pada program utama. i = 1, 2, …, atau 7.\n",
+                                        "isi": "Rasio jumlah pendaftar terhadap jumlah\npendaftar yang lulus seleksi pada program utama.",
+                                        "_4": "Jika Rasio ≥ 5 , maka Skor = 4 .",
+                                        "_3": "Jika 1 < Rasio < 5 , maka Skor = (3 + Rasio) / 2 .",
+                                        "_2": "Jika 1 < Rasio < 5 , maka Skor = (3 + Rasio) / 2 .",
+                                        "_1": "Jika Rasio ≤ 1 , maka Skor = 2 x Rasio .",
+                                        "_0": "Jika Rasio ≤ 1 , maka Skor = 2 x Rasio .",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "3.4.a.2",
+                                        "relasi": [
+                                            "2.a"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Persentase jumlah mahasiswa yang mendaftar ulang terhadap jumlah pendaftar yang lulus seleksi pada program utama.",
+                                        "_4": "Jika PDU ≥ 95% , maka Skor = 4 .",
+                                        "_3": "Jika 25% < PDU < 95% ,\nmaka Skor = ((40 x PDU) - 10) / 7 .\n",
+                                        "_2": "Jika 25% < PDU < 95% ,\nmaka Skor = ((40 x PDU) - 10) / 7 .\n",
+                                        "_1": "Jika 25% < PDU < 95% ,\nmaka Skor = ((40 x PDU) - 10) / 7 .\n",
+                                        "_0": "Jika PDU ≤ 25% , maka Skor = 0 .",
+                                        "keterangan": "PDU = (NCi / NBi) x 100%\nNBi = Jumlah calon mahasiswa yang lulus seleksi pada program utama. i = 1, 2, …, atau 7. NCi = Jumlah calon mahasiswa baru reguler pada program utama. i = 1, 2, …, atau 7.\n"
+                                    },
+                                    {
+                                        "nomor": "3.4.a.3",
+                                        "relasi": [
+                                            "2.b"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Persentase jumlah mahasiswa asing terhadap jumlah seluruh mahasiswa.",
+                                        "_4": "Jika PMA ≥ 0,5% , maka Skor = 4 ",
+                                        "_3": "Jika PMA < 0,5% ,\nmaka Skor = 2 + (400 x PMA) .\n",
+                                        "_2": "Jika PMA < 0,5% ,\nmaka Skor = 2 + (400 x PMA) .\n",
+                                        "_1": null,
+                                        "_0": null,
+                                        "keterangan": "PMA = (NWNA / NM) x 100%\nNWNA = Jumlah mahasiswa asing dalam 3 tahun terakhir. NM = Jumlah mahasiswa aktif dalam 3 tahun terakhir.\n"
+                                    }
+                                ]
+                            },
+                            {
+                                "nomor": "3.4.b",
+                                "judul": "Daya Tarik Program Studi",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "3.4.b.1",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan dan mutu layanan kemahasiswaan",
+                                        "_4": "Perguruan tinggi menyediakan layanan kemahasiswaan dalam bentuk:\n1)\tpembinaan dan pengembangan minat dan bakat,\n2)\tpeningkatan kesejahteraan, serta\n3)\tpenyuluhan karir dan bimbingan kewirausahaan.\n",
+                                        "_3": "Perguruan tinggi menyediakan layanan kemahasiswaan dalam bentuk:\n1)\tpembinaan dan pengembangan minat dan bakat, dan\n2)\tpeningkatan kesejahteraan.\n",
+                                        "_2": "Perguruan tinggi menyediakan layanan kemahasiswaan yang dimanfaatkan untuk membina dan mengembangkan minat dan bakat.",
+                                        "_1": null,
+                                        "_0": "Perguruan tinggi tidak menyediakan layanan kemahasiswaan.",
+                                        "keterangan": null
+                                    }
+                                ]
+                            }
+                        ],
+                        "indikators": null
+                    }
+                ],
+                "indikators": null
+            },
+            {
+                "nomor": "4",
+                "judul": "Sumber Daya Manusia",
+                "butir": [
+                    {
+                        "nomor": "4.4",
+                        "judul": "Indikator Kinerja Utama",
+                        "butir": [
+                            {
+                                "nomor": "4.4.a",
+                                "judul": "Profil Dosen",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "4.4.a.1",
+                                        "relasi": [
+                                            "3.a.1"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Rasio jumlah dosen tetap\nyang memenuhi persyaratan dosen terhadap jumlah program studi.",
+                                        "_4": "Jika RDPS ≥ 10 , maka Skor = 4 .",
+                                        "_3": "Jika 5 ≤ RDPS < 10 ,\nmaka Skor = (2 x RDPS) / 5 .",
+                                        "_2": "Jika 5 ≤ RDPS < 10 ,\nmaka Skor = (2 x RDPS) / 5 .",
+                                        "_1": "Jika RDPS < 5 ,\nmaka Skor = 0 .",
+                                        "_0": "Jika RDPS < 5 ,\nmaka Skor = 0 .",
+                                        "keterangan": "Data dosen tetap tercantum dalam laman PD-DIKTI. RDPS = NDT / NPS\nNDT = Jumlah dosen tetap. NPS = Jumlah program studi.\n"
+                                    },
+                                    {
+                                        "nomor": "4.4.a.2",
+                                        "relasi": [
+                                            "3.a.2"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Persentase jumlah dosen yang memiliki jabatan fungsional Guru Besar terhadap jumlah seluruh dosen tetap.",
+                                        "_4": "Jika PGB ≥ 15% , maka Skor = 4 .",
+                                        "_3": "Jika PGB < 15% ,\nmaka Skor = 2 + ((40 x PGB) / 3) .",
+                                        "_2": "Jika PGB < 15% ,\nmaka Skor = 2 + ((40 x PGB) / 3) .",
+                                        "_1": null,
+                                        "_0": null,
+                                        "keterangan": "NDS3 = Jumlah DTPS yang berpendidikan tertinggi Doktor/Doktor Terapan/Subspesialis.\nNDTPS = Jumlah dosen tetap yang ditugaskan sebagai pengampu mata kuliah dengan bidang keahlian yang sesuai dengan kompetensi inti program studi yang diakreditasi.\nPDS3 = (NDS3 / NDTPS) x 100%"
+                                    },
+                                    {
+                                        "nomor": "4.4.a.3",
+                                        "relasi": [
+                                            "3.a.3"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Persentase jumlah dosen yang memiliki sertifikat pendidik profesional\n/sertifikat profesi terhadap jumlah seluruh dosen tetap.\n",
+                                        "_4": "Jika PDS ≥ 80% , maka Skor = 4 .",
+                                        "_3": "Jika PDS < 80% ,\nmaka Skor = 1 + ((15 x PDS) / 4) .",
+                                        "_2": "Jika PDS < 80% ,\nmaka Skor = 1 + ((15 x PDS) / 4) .",
+                                        "_1": "Jika PDS < 80% ,\nmaka Skor = 1 + ((15 x PDS) / 4) .",
+                                        "_0": null,
+                                        "keterangan": "PDS = (NDS / NDT) x 100%\nNDS = Jumlah dosen tetap bersertifikasi pendidik profesional/sertifikat profesi/sertifikat kompetensi. NDT = Jumlah dosen tetap.\n"
+                                    },
+                                    {
+                                        "nomor": "4.4.a.4",
+                                        "relasi": [
+                                            "3.a.4"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Persentase jumlah dosen tidak tetap terhadap jumlah seluruh dosen (dosen tetap dan dosen tidak tetap).",
+                                        "_4": "Jika PDTT ≤ 10% , maka Skor = 4 .",
+                                        "_3": "Jika 10% <PDTT ≤ 40% ,\nmaka Skor = (14 - (20 x PDTT)) / 3 .\n",
+                                        "_2": "Jika 10% <PDTT ≤ 40% ,\nmaka Skor = (14 - (20 x PDTT)) / 3 .\n",
+                                        "_1": "Jika PDTT > 40% ,\nmaka Skor = 0 .\n",
+                                        "_0": "Jika PDTT > 40% ,\nmaka Skor = 0 .\n",
+                                        "keterangan": "PDTT = (NDTT / (NDTT + NDT)) x 100%\nNDTT = Jumlah dosen tidak tetap. NDT = Jumlah dosen tetap.\n"
+                                    },
+                                    {
+                                        "nomor": "4.4.a.5",
+                                        "relasi": [
+                                            "3.b"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Rasio jumlah mahasiswa terhadap jumlah dosen tetap.",
+                                        "_4": "Jika 20 ≤ RMDT ≤ 30 , maka Skor = 4 ",
+                                        "_3": "Jika RMDT < 20 ,\nmaka Skor = RMDT / 5 .\n Jika 30 < RMDT < 50 ,\nmaka Skor = 10 - (RMDT / 5) .\n",
+                                        "_2": "Jika RMDT < 20 ,\nmaka Skor = RMDT / 5 .\n Jika 30 < RMDT < 50 ,\nmaka Skor = 10 - (RMDT / 5) .\n",
+                                        "_1": "Jika RMDT < 20 ,\nmaka Skor = RMDT / 5 .\n Jika 30 < RMDT < 50 ,\nmaka Skor = 10 - (RMDT / 5) .\n",
+                                        "_0": "Jika RMDT < 20 ,\nmaka Skor = RMDT / 5 .\n Jika RMDT ≥ 50 , maka Skor = 0 .",
+                                        "keterangan": "RMDT = NM / NDT\nNM = Jumlah mahasiswa (reguler dan transfer) pada program utama pada saat TS. NDT = Jumlah dosen tetap.\n"
+                                    }
+                                ]
+                            },
+                            {
+                                "nomor": "4.4.b",
+                                "judul": "Kinerja Dosen",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "4.4.b.1",
+                                        "relasi": [
+                                            "3.c.1"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Rata-rata penelitian/dosen/tahun dalam 3 tahun terakhir.",
+                                        "_4": "Jika RI ≥ a , maka Skor = 4 .",
+                                        "_3": "Jika RI < a dan RN ≥ b , maka Skor = 3 + (RI / a) \n Jika 0 < RI < a dan 0 < RN < b ,\nmaka Skor = 2 + (2 x (RI/a)) + (RN/b) - ((RI x RN) / (a x b))\n.",
+                                        "_2": "Jika RI < a dan RN ≥ b , maka Skor = 3 + (RI / a) \n Jika 0 < RI < a dan 0 < RN < b ,\nmaka Skor = 2 + (2 x (RI/a)) + (RN/b) - ((RI x RN) / (a x b))\n.",
+                                        "_1": "Jika RI = 0 dan RN = 0 dan RL ≥ c , maka Skor = 2 . \n Jika RI = 0 dan RN = 0 dan RL < c , maka Skor = (2 x RL) / c .",
+                                        "_0": "Jika RI = 0 dan RN = 0 dan RL ≥ c , maka Skor = 2 . \n Jika RI = 0 dan RN = 0 dan RL < c , maka Skor = (2 x RL) / c .",
+                                        "keterangan": "RI = NI / 3 / NDT , RN = NN / 3 / NDT , RL = NL / 3 / NDT\tFaktor: a = 0,1 , b = 1 , c = 2\nNI = Jumlah penelitian dengan biaya luar negeri dalam 3 tahun terakhir.\nNN = Jumlah penelitian dengan biaya dalam negeri diluar PT dalam 3 tahun terakhir. NL = Jumlah penelitian dengan biaya dari PT atau mandiri dalam 3 tahun terakhir.\nNDT = Jumlah dosen tetap.\n"
+                                    },
+                                    {
+                                        "nomor": "4.4.b.2",
+                                        "relasi": [
+                                            "3.c.2"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Rata-rata PkM/dosen/tahun dalam 3 tahun terakhir.",
+                                        "_4": "Jika RI ≥ a , maka Skor = 4 .",
+                                        "_3": "Jika RI < a dan RN ≥ b , maka Skor = 3 + (RI / a) \n Jika 0 < RI < a dan 0 < RN < b ,\nmaka Skor = 2 + (2 x (RI/a)) + (RN/b) - ((RI x RN) / (a x b))\n.",
+                                        "_2": "Jika RI < a dan RN ≥ b , maka Skor = 3 + (RI / a) \n Jika 0 < RI < a dan 0 < RN < b ,\nmaka Skor = 2 + (2 x (RI/a)) + (RN/b) - ((RI x RN) / (a x b))\n.",
+                                        "_1": "Jika RI = 0 dan RN = 0 dan RL ≥ c , maka Skor = 2 . \n Jika RI = 0 dan RN = 0 dan RL < c , maka Skor = (2 x RL) / c .",
+                                        "_0": "Jika RI = 0 dan RN = 0 dan RL ≥ c , maka Skor = 2 . \n Jika RI = 0 dan RN = 0 dan RL < c , maka Skor = (2 x RL) / c .",
+                                        "keterangan": "RI = NI / 3 / NDT , RN = NN / 3 / NDT , RL = NL / 3 / NDT\tFaktor: a = 0,05 , b = 0,5 , c = 1\nNI = Jumlah PkM dengan biaya luar negeri dalam 3 tahun terakhir.\nNN = Jumlah PkM dengan biaya dalam negeri diluar PT dalam 3 tahun terakhir. NL = Jumlah PkM dengan biaya dari PT atau mandiri dalam 3 tahun terakhir.\nNDT = Jumlah dosen tetap.\n"
+                                    },
+                                    {
+                                        "nomor": "4.4.b.3",
+                                        "relasi": [
+                                            "3.d"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Rata-rata jumlah\npengakuan atas prestasi/ kinerja dosen terhadap jumlah dosen tetap dalam 3 tahun terakhir.",
+                                        "_4": "Jika RRD ≥ 0,5 , maka Skor = 4 .",
+                                        "_3": "Jika RRD ≤  0,5 , maka Skor = 2 + (4 x RRD) .",
+                                        "_2": "Jika RRD ≤  0,5 , maka Skor = 2 + (4 x RRD) .",
+                                        "_1": null,
+                                        "_0": null,
+                                        "keterangan": "Pencapaian prestasi dosen dalam bentuk seperti:\n(1)\tmenjadi visiting professor di perguruan tinggi nasional/ internasional.\n(2)\tmenjadi keynote speaker /invited speaker pada pertemuan ilmiah tingkat nasional/ internasional.\n(3)\tmenjadi staf ahli di lembaga tingkat nasional/ internasional.\n(4)\tmenjadi editor atau mitra bestari pada jurnal nasional terakreditasi/ jurnal internasional bereputasi.\n(5)\tmendapat penghargaan atas prestasi dan kinerja di tingkat nasional/ internasional.\n\nRRD = NRD / NDT\nNRD = Jumlah pengakuan atas prestasi/kinerja dosen tetap dalam 3 tahun terakhir. NDT = Jumlah dosen tetap.\n"
+                                    }
+                                ]
+                            },
+                            {
+                                "nomor": "4.4.c",
+                                "judul": "Tenaga Kependidikan",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "4.4.c.1",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Kecukupan dan kualifikasi tenaga kependidikan berdasarkan jenis pekerjaannya (pustakawan, laboran, teknisi, dll.).",
+                                        "_4": "Perguruan tinggi memiliki tendik yang memenuhi tingkat kecukupan dan kualifikasi berdasarkan jenis pekerjaannya (pustakawan, laboran, teknisi, dll.) untuk mendukung pelaksanaan tridharma, fungsi dan pengembangan institusi secara efektif.",
+                                        "_3": "Perguruan tinggi memiliki tendik yang memenuhi tingkat kecukupan dan kualifikasi berdasarkan jenis pekerjaannya (pustakawan, laboran, teknisi, dll.) untuk mendukung pelaksanaan tridharma dan fungsi institusi secara efektif.",
+                                        "_2": "Perguruan tinggi memiliki tendik yang memenuhi tingkat kecukupan dan kualifikasi berdasarkan jenis pekerjaannya (pustakawan, laboran, teknisi, dll.) untuk mendukung pelaksanaan tridharma secara efektif.",
+                                        "_1": "Perguruan tinggi memiliki tendik yang belum memenuhi tingkat kecukupan dan kualifikasi berdasarkan jenis pekerjaannya (pustakawan, laboran, teknisi, dll.)",
+                                        "_0": null,
+                                        "keterangan": null
+                                    }
+                                ]
+                            }
+                        ],
+                        "indikators": null
+                    }
+                ],
+                "indikators": null
+            },
+            {
+                "nomor": "5",
+                "judul": "Keuangan, Sarana, dan Prasarana",
+                "butir": [
+                    {
+                        "nomor": "5.4",
+                        "judul": "Indikator Kinerja Utama",
+                        "butir": [
+                            {
+                                "nomor": "5.4.a",
+                                "judul": "Keuangan",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "5.4.a.1",
+                                        "relasi": [
+                                            "4.a"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Persentase perolehan dana yang bersumber dari mahasiswa terhadap total perolehan dana perguruan tinggi.",
+                                        "_4": "Jika PDM ≤ 50% , maka Skor = 4 .",
+                                        "_3": "Jika 50% < PDM < 65% , maka Skor = (32 - (40 x PDM)) / 3 .\n",
+                                        "_2": "Jika 50% < PDM < 65% , maka Skor = (32 - (40 x PDM)) / 3 .\n",
+                                        "_1": "Jika PDM ≥ 65% , maka Skor = (40 - (40 x PDM)) / 7.\n",
+                                        "_0": "Jika PDM ≥ 65% , maka Skor = (40 - (40 x PDM)) / 7.\n",
+                                        "keterangan": "\tPDM = (DM / DT) x 100%\nDM = Jumlah dana yang bersumber dari penerimaan mahasiswa dalam 3 tahun terakhir. DT = Jumlah penerimaan dana perguruan tinggi dalam 3 tahun terakhir.\n."
+                                    },
+                                    {
+                                        "nomor": "5.4.a.2",
+                                        "relasi": [
+                                            "4.a"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Persentase perolehan dana perguruan tinggi\nyang bersumber selain dari mahasiswa dan kementerian/lembaga terhadap total perolehan dana perguruan tinggi.",
+                                        "_4": "Jika PDL ≥ 10% , maka Skor = 4 .",
+                                        "_3": "Jika PDL < 10% ,\nmaka Skor = (20 x PDL) + 2 .\n",
+                                        "_2": "Jika PDL < 10% ,\nmaka Skor = (20 x PDL) + 2 .\n",
+                                        "_1": null,
+                                        "_0": null,
+                                        "keterangan": "Perolehan dana melalui:\na.\tpendapatan atas kegiatan/income generating activities (jasa layanan profesi dan/atau keahlian, produk institusi, kerjasama kelembagaan, dll.),\nb.\tsumber lain (hibah, dana lestari dan filantropis, dll.).\n\nPDL = (DK / DT) x 100%\nDL = Jumlah dana yang bersumber selain dari mahasiswa dalam 3 tahun terakhir. DT = Jumlah penerimaan dana perguruan tinggi dalam 3 tahun terakhir.\n"
+                                    },
+                                    {
+                                        "nomor": "5.4.a.3",
+                                        "relasi": [
+                                            "4.b"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Rata-rata dana operasional proses pembelajaran/ mahasiswa/ tahun.",
+                                        "_4": "Jika DOM ≥ 20 , maka Skor = 4 .",
+                                        "_3": "Jika DOM < 20 , maka Skor = DOM / 5 .\n",
+                                        "_2": "Jika DOM < 20 , maka Skor = DOM / 5 .\n",
+                                        "_1": "Jika DOM < 20 , maka Skor = DOM / 5 .\n",
+                                        "_0": "Jika DOM < 20 , maka Skor = DOM / 5 .\n",
+                                        "keterangan": "DOM = DOP / 3 / NM\nDOP = Jumlah dana operasional penyelenggaraan pendidikan dalam 3 tahun terakhir (Satuan: juta Rupiah). NM = Jumlah mahasiswa aktif pada saat TS.\n"
+                                    },
+                                    {
+                                        "nomor": "5.4.a.4",
+                                        "relasi": [
+                                            "4.b"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Rata-rata dana penelitian dosen/ tahun.",
+                                        "_4": "Jika DPD ≥ 20 , maka Skor = 4 .",
+                                        "_3": "Jika DPD < 20 ,maka Skor = DPD / 5 .\n",
+                                        "_2": "Jika DPD < 20 ,maka Skor = DPD / 5 .\n",
+                                        "_1": "Jika DPD < 20 ,maka Skor = DPD / 5 .\n",
+                                        "_0": "Jika DPD < 20 ,maka Skor = DPD / 5 .\n",
+                                        "keterangan": "DPD = DP / 3 / NDT\nDP = Jumlah dana penelitian yang diperoleh dosen tetap dalam 3 tahun terakhir (Satuan: juta Rupiah). NDT = Jumlah dosen tetap.\n"
+                                    },
+                                    {
+                                        "nomor": "5.4.a.5",
+                                        "relasi": [
+                                            "4.b"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Rata-rata dana PkM dosen/ tahun.",
+                                        "_4": "Jika DPkMD ≥ 5 , maka Skor = 4 .",
+                                        "_3": "Jika DPkMD < 5 , maka Skor = (4 x DPkMD) / 5 .\n",
+                                        "_2": "Jika DPkMD < 5 , maka Skor = (4 x DPkMD) / 5 .\n",
+                                        "_1": "Jika DPkMD < 5 , maka Skor = (4 x DPkMD) / 5 .\n",
+                                        "_0": "Jika DPkMD < 5 , maka Skor = (4 x DPkMD) / 5 .\n",
+                                        "keterangan": "DPkMD = DPkM / 3 / NDT\nDPkM = Jumlah dana PkM yang diperoleh dosen tetap dalam 3 tahun terakhir (Satuan: juta Rupiah). NDT = Jumlah dosen tetap.\n"
+                                    },
+                                    {
+                                        "nomor": "5.4.a.6",
+                                        "relasi": null,
+                                        "rumus": [
+                                            "4.b"
+                                        ],
+                                        "isi": "Persentase penggunaan dana penelitian terhadap total dana perguruan tinggi.",
+                                        "_4": "Jika PDP ≥ 5% , maka Skor = 4 .",
+                                        "_3": "Jika PDP < 5% , maka Skor = 80 x PDP .\n",
+                                        "_2": "Jika PDP < 5% , maka Skor = 80 x PDP .\n",
+                                        "_1": "Jika PDP < 5% , maka Skor = 80 x PDP .\n",
+                                        "_0": "Jika PDP < 5% , maka Skor = 80 x PDP .\n",
+                                        "keterangan": "\tPDP = (DP / DT) x 100%\nDP = Jumlah dana yang digunakan perguruan tinggi untuk kegiatan penelitian dalam 3 tahun terakhir. DT = Jumlah penggunaan anggaran perguruan tinggi dalam 3 tahun terakhir.\n"
+                                    },
+                                    {
+                                        "nomor": "5.4.a.7",
+                                        "relasi": [
+                                            "4.b"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Persentase penggunaan dana PkM terhadap total dana perguruan tinggi.",
+                                        "_4": "Jika PDPkM ≥ 1% , maka Skor = 4 .",
+                                        "_3": "Jika PDPkM < 1% , maka Skor = 400 x PDPkM .",
+                                        "_2": "Jika PDPkM < 1% , maka Skor = 400 x PDPkM .",
+                                        "_1": "Jika PDPkM < 1% , maka Skor = 400 x PDPkM .",
+                                        "_0": "Jika PDPkM < 1% , maka Skor = 400 x PDPkM .",
+                                        "keterangan": "PDPkM = (DPkM / DT) x 100%\nDPkM = Jumlah dana yang digunakan perguruan tinggi untuk kegiatan PkM dalam 3 tahun terakhir. DT = Jumlah penggunaan anggaran perguruan tinggi dalam 3 tahun terakhir.\n"
+                                    }
+                                ]
+                            },
+                            {
+                                "nomor": "5.4.b",
+                                "judul": "Sarana dan Prasarana",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "5.4.b.A",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Kecukupan sarana dan prasarana terlihat dari ketersediaan, kemutakhiran, dan relevansi, mencakup: fasilitas dan peralatan untuk pembelajaran, penelitian, PkM, dan memfasilitasi yang berkebutuhan khusus.",
+                                        "_4": "Perguruan tinggi memiliki sarana dan prasarana yang relevan dan mutakhir untuk mendukung pembelajaran, penelitian, PkM, dan memfasilitasi yang berkebutuhan khusus sesuai SN-DIKTI.",
+                                        "_3": "Perguruan tinggi memiliki sarana dan prasarana yang relevan untuk mendukung pembelajaran, penelitian, PkM, dan memfasilitasi yang berkebutuhan khusus sesuai SN-DIKTI",
+                                        "_2": "Perguruan tinggi memiliki sarana dan prasarana untuk mendukung pembelajaran, penelitian, PkM, dan memfasilitasi yang berkebutuhan khusus sesuai SN-DIKTI.",
+                                        "_1": "Perguruan tinggi memiliki sarana dan prasarana yang kurang mendukung pembelajaran, penelitian, PkM, dan memfasilitasi yang berkebutuhan khusus sesuai SN-DIKTI.",
+                                        "_0": "Perguruan tinggi tidak memiliki sarana dan prasarana untuk mendukung pembelajaran, penelitian, PkM dan memfasilitasi yang berkebutuhan khusus sesuai SN-DIKTI.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "5.4.b.B",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan Sistem TIK (Teknologi Informasi dan Komunikasi) untuk mengumpulkan data yang akurat, dapat dipertanggung jawabkan dan terjaga kerahasiaannya (misal: Sistem Informasi Manajemen Perguruan Tinggi/ SIMPT).",
+                                        "_4": "Perguruan tinggi memiliki sistem informasi untuk layanan administrasi yang terbukti efektif memenuhi aspek-aspek berikut:\n1)\tmencakup layanan akademik, keuangan, SDM, dan sarana dan prasarana (aset),\n2)\tmudah diakses oleh seluruh unit kerja dalam lingkup institusi,\n3)\tlengkap dan mutakhir,\n4)\tseluruh jenis layanan telah terintegrasi dan digunakan untuk pengambilan keputusan, dan\n5)\tseluruh jenis layanan yang terintegrasi dievaluasi secara berkala dan hasilnya ditindak lanjuti untuk penyempurnaan sistem informasi.\n",
+                                        "_3": "Perguruan tinggi memiliki sistem informasi untuk layanan administrasi yang terbukti efektif memenuhi aspek-aspek berikut:\n1)\tmencakup layanan akademik, keuangan, SDM, dan sarana dan prasarana (aset),\n2)\tmudah diakses oleh seluruh unit kerja dalam lingkup institusi,\n3)\tlengkap dan mutakhir, dan\n4)\tseluruh jenis layanan telah terintegrasi dan digunakan untuk pengambilan keputusan.\n",
+                                        "_2": "Perguruan tinggi memiliki sistem informasi untuk layanan administrasi yang memenuhi aspek- aspek berikut:\n1)\tmencakup layanan akademik, keuangan, SDM, dan sarana dan prasarana (aset),\n2)\tmudah diakses oleh seluruh unit kerja dalam lingkup institusi, dan\n3)\tlengkap dan mutakhir.\n",
+                                        "_1": "Perguruan tinggi memiliki sistem informasi untuk layanan administrasi namun belum memenuhi seluruh aspek.",
+                                        "_0": "Perguruan tinggi tidak memiliki sistem informasi untuk layanan administrasi",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "5.4.b.C",
+                                        "relasi": null,
+                                        "rumus": "Skor = ((2 x A) + B + C) / 4",
+                                        "isi": "Ketersediaan Sistem TIK (Teknologi Informasi dan Komunikasi) untuk mengelola dan menyebarkan ilmu pengetahuan (misal: Sistem Informasi Pendidikan/ Pembelajaran, Sistem Informasi Penelitian dan PkM, Sistem Informasi Perpustakaan, dll.).",
+                                        "_4": "Perguruan tinggi memiliki sistem informasi untuk layanan proses pembelajaran, penelitian, dan PkM yang terbukti efektif memenuhi aspek- aspek berikut:\n1)\tketersediaan layanan e-learning , perpustakaan (e-journal , e-book , e- repository , dll.),\n2)\tmudah diakses oleh sivitas akademika, dan\n3)\tseluruh jenis layanan dievaluasi secara berkala yang hasilnya ditindak lanjuti untuk penyempurnaan sistem informasi.\n",
+                                        "_3": "Perguruan tinggi memiliki sistem informasi untuk layanan proses pembelajaran, penelitian, dan PkM yang terbukti efektif memenuhi aspek- aspek berikut:\n1)\tketersediaan layanan e-learning , perpustakaan (e-journal , e-book , e- repository , dll.),\n2)\tmudah diakses oleh sivitas akademika, dan\n3)\tseluruh jenis layanan dievaluasi secara berkala.\n",
+                                        "_2": "Perguruan tinggi memiliki sistem informasi untuk layanan proses pembelajaran, penelitian, dan PkM yang memenuhi aspek-aspek sebagai berikut:\n1)\tketersediaan layanan e-learning , perpustakaan (e-journal , e-book , e- repository , dll.), dan\n2)\tmudah diakses oleh sivitas akademika.\n",
+                                        "_1": "Perguruan tinggi memiliki sistem informasi untuk layanan proses pembelajaran, penelitian, dan PkM namun belum lengkap.",
+                                        "_0": "Perguruan tinggi tidak memiliki sistem informasi untuk layanan proses pembelajaran, penelitian, dan PkM.",
+                                        "keterangan": null
+                                    }
+                                ]
+                            }
+                        ],
+                        "indikators": null
+                    }
+                ],
+                "indikators": null
+            },
+            {
+                "nomor": "6",
+                "judul": "Pendidikan",
+                "butir": [
+                    {
+                        "nomor": "6.4",
+                        "judul": "Indikator Kinerja Utama",
+                        "butir": [
+                            {
+                                "nomor": "6.4.a",
+                                "judul": "Kurikulum",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "6.4.a.A",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan kebijakan pengembangan kurikulum yang mempertimbangkan keterkaitan dengan visi dan misi (mandat) perguruan tinggi, pengembangan ilmu pengetahuan dan kebutuhan stakeholders .",
+                                        "_4": "Perguruan tinggi memiliki kebijakan pengembangan kurikulum yang mempertimbangkan keterkaitan dengan visi dan misi (mandat) perguruan tinggi, pengembangan ilmu pengetahuan dan kebutuhan stakeholders yang komprehensif dan mempertimbangkan perubahan di masa depan.",
+                                        "_3": "Perguruan tinggi memiliki kebijakan pengembangan kurikulum yang mempertimbangkan keterkaitan dengan visi dan misi (mandat) perguruan tinggi, pengembangan ilmu pengetahuan dan kebutuhan stakeholders yang komprehensif.",
+                                        "_2": "Perguruan tinggi memiliki kebijakan pengembangan kurikulum yang mempertimbangkan keterkaitan dengan visi dan misi (mandat) perguruan tinggi, pengembangan ilmu pengetahuan dan kebutuhan stakeholders .",
+                                        "_1": "Perguruan tinggi memiliki kebijakan pengembangan kurikulum yang mempertimbangkan keterkaitan dengan visi dan misi (mandat) perguruan tinggi namun belum mencakup pengembangan ilmu pengetahuan dan kebutuhan stakeholders.",
+                                        "_0": "Perguruan tinggi tidak memiliki kebijakan pengembangan kurikulum.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "6.4.a.B",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan pedoman pengembangan kurikulum.",
+                                        "_4": "Perguruan tinggi memiliki pedoman pengembangan kurikulum yang memuat:\n1)\tProfil lulusan, capaian pembelajaran yang mengacu kepada KKNI, bahan kajian, struktur kurikulum dan rencana pembelajaran semester (RPS) yang mengacu ke SN-DIKTI dan benchmark pada institusi internasional, peraturan- peraturan terkini, dan kepekaan terhadap isu- isu terkini meliputi pendidikan karakter, SDGs, NAPZA, dan pendidikan anti korupsi sesuai dengan program pendidikan yang dilaksanakan,\n2)\tMekanisme penetapan\n(legalitas) kurikulum yang melibatkan unsur-unsur yang berwenang dalam institusi secara akuntabel dan transparan.\n",
+                                        "_3": "Perguruan tinggi memiliki pedoman pengembangan kurikulum yang memuat:\n1)\tProfil lulusan, capaian pembelajaran yang mengacu kepada KKNI, bahan kajian, struktur kurikulum dan rencana pembelajaran semester (RPS) yang mengacu ke SN-DIKTI dan benchmark pada institusi nasional, peraturan- peraturan terkini, dan kepekaan terhadap isu- isu terkini meliputi pendidikan karakter, NAPZA, dan pendidikan anti korupsi sesuai dengan program pendidikan yang dilaksanakan,\n2)\tMekanisme penetapan\n(legalitas) kurikulum yang melibatkan unsur-unsur yang berwenang dalam institusi.\n",
+                                        "_2": "Perguruan tinggi memiliki pedoman pengembangan kurikulum yang memuat:\n1)\tProfil lulusan, capaian pembelajaran yang mengacu kepada KKNI, bahan kajian, struktur kurikulum dan rencana pembelajaran semester (RPS) yang mengacu ke SN-DIKTI,\n2)\tMekanisme penetapan (legalitas) kurikulum yang melibatkan unsur-unsur yang berwenang dalam institusi.\n",
+                                        "_1": "Perguruan tinggi memiliki pedoman pengembangan kurikulum namun belum lengkap.",
+                                        "_0": "Perguruan tinggi tidak memiliki pedoman pengembangan kurikulum.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "6.4.a.C",
+                                        "relasi": null,
+                                        "rumus": "Skor = (A + B + C) / 3",
+                                        "isi": "Ketersediaan pedoman pelaksanaan kurikulum yang mencakup pemantauan dan peninjauan kurikulum yang mempertimbangkan umpan balik dari para pemangku kepentingan, pencapaian isu-isu strategis untuk menjamin kesesuaian dan kemutakhirannya.",
+                                        "_4": "Perguruan tinggi memiliki pedoman implementasi kurikulum yang mencakup perencanaan, pelaksanaan, pemantauan, dan peninjauan kurikulum yang mempertimbangkan umpan balik dari para pemangku kepentingan, pencapaian isu-isu strategis untuk menjamin kesesuaian dan kemutakhirannya.",
+                                        "_3": "Perguruan tinggi memiliki pedoman implementasi kurikulum yang mencakup perencanaan, pelaksanaan, pemantauan, dan peninjauan kurikulum yang mempertimbangkan umpan balik dari para pemangku kepentingan dan pencapaian isu-isu strategis untuk menjamin kesesuaiannya.",
+                                        "_2": "Perguruan tinggi memiliki pedoman implementasi kurikulum yang mencakup perencanaan, pelaksanaan, pemantauan, dan peninjauan kurikulum yang mempertimbangkan umpan balik dari para pemangku kepentingan",
+                                        "_1": "Perguruan tinggi memiliki pedoman implementasi kurikulum namun tidak lengkap.",
+                                        "_0": "Perguruan tinggi tidak memiliki pedoman implementasi kurikulum",
+                                        "keterangan": null
+                                    }
+                                ]
+                            },
+                            {
+                                "nomor": "6.4.b",
+                                "judul": "Pembelajaran",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "6.4.b.A",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan pedoman tentang penerapan sistem penugasan dosen berdasarkan kebutuhan, kualifikasi, keahlian dan pengalaman.",
+                                        "_4": "Perguruan tinggi memiliki pedoman yang komprehensif dan rinci tentang penerapan sistem penugasan dosen berdasarkan kebutuhan, kualifikasi, keahlian dan pengalaman dalam proses pembelajaran.",
+                                        "_3": "Perguruan tinggi memiliki pedoman yang komprehensif tentang penerapan sistem penugasan dosen berdasarkan kebutuhan, kualifikasi, keahlian dan pengalaman dalam proses pembelajaran.",
+                                        "_2": "Perguruan tinggi memiliki pedoman tentang penerapan sistem penugasan dosen berdasarkan kebutuhan, kualifikasi, keahlian dan pengalaman dalam proses pembelajaran.",
+                                        "_1": "Perguruan tinggi memiliki pedoman yang belum lengkap tentang penerapan sistem penugasan dosen.",
+                                        "_0": "Perguruan tinggi tidak memiliki pedoman tentang penerapan sistem penugasan dosen",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "6.4.b.B",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan bukti yang sahih tentang penetapan strategi, metode dan media pembelajaran serta penilaian pembelajaran.",
+                                        "_4": "Perguruan tinggi memiliki pedoman yang komprehensif dan rinci tentang penetapan strategi, metode dan media pembelajaran, serta penilaian pembelajaran.",
+                                        "_3": "Perguruan tinggi memiliki pedoman yang komprehensif tentang penetapan strategi, metode dan media pembelajaran, serta penilaian pembelajaran.",
+                                        "_2": "Perguruan tinggi memiliki pedoman tentang penetapan strategi, metode dan media pembelajaran, serta penilaian pembelajaran.",
+                                        "_1": "Perguruan tinggi memiliki pedoman yang belum lengkap tentang penetapan strategi, metode dan media pembelajaran, serta penilaian pembelajaran.",
+                                        "_0": "Perguruan tinggi belum memiliki pedoman tentang penetapan strategi, metode dan media pembelajaran, serta penilaian pembelajaran.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "6.4.b.C",
+                                        "relasi": null,
+                                        "rumus": "Skor = (A + (2 x B) + (2 x C)) / 5",
+                                        "isi": "Ketersediaan bukti yang sahih tentang implementasi sistem memonitor dan evaluasi pelaksanaan dan mutu proses pembelajaran.",
+                                        "_4": "Perguruan tinggi telah melaksanakan monitoring dan evaluasi yang efektif tentang mutu proses pembelajaran yang hasilnya terdokumentasi secara komprehensif dan ditindak lanjuti secara berkelanjutan.",
+                                        "_3": "Perguruan tinggi telah melaksanakan monitoring dan evaluasi yang efektif tentang mutu proses pembelajaran yang hasilnya terdokumentasi dan ditindak lanjuti.",
+                                        "_2": "Perguruan tinggi telah melaksanakan monitoring dan evaluasi tentang mutu proses pembelajaran yang hasilnya terdokumentasi.",
+                                        "_1": "Perguruan tinggi telah melaksanakan monitoring dan evaluasi tentang mutu proses pembelajaran namun hasilnya belum terdokumentasi.",
+                                        "_0": "Perguruan tinggi belum melaksanakan monitoring dan evaluasi tentang mutu proses pembelajaran.",
+                                        "keterangan": null
+                                    }
+                                ]
+                            },
+                            {
+                                "nomor": "6.4.c",
+                                "judul": "Integrasi Penelitian dan PkM dalam Pembelajaran",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "6.4.c.A",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan dokumen formal kebijakan dan pedoman untuk mengintegrasikan kegiatan penelitian dan PkM ke dalam pembelajaran.",
+                                        "_4": "Perguruan tinggi memiliki dokumen formal kebijakan dan pedoman yang komprehensif dan rinci untuk mengintegrasikan kegiatan penelitian dan PkM ke dalam pembelajaran.",
+                                        "_3": "Perguruan tinggi memiliki dokumen formal kebijakan dan pedoman yang komprehensif untuk mengintegrasikan kegiatan penelitian dan PkM ke dalam pembelajaran.",
+                                        "_2": "Perguruan tinggi memiliki dokumen formal kebijakan dan pedoman untuk mengintegrasikan kegiatan penelitian dan PkM ke dalam pembelajaran.",
+                                        "_1": "Perguruan tinggi memiliki dokumen formal kebijakan dan pedoman yang belum lengkap untuk mengintegrasikan kegiatan penelitian atau PkM ke dalam pembelajaran.",
+                                        "_0": "Perguruan tinggi tidak memiliki dokumen formal kebijakan dan pedoman untuk mengintegrasikan kegiatan penelitian dan PkM ke dalam pembelajaran.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "6.4.c.B",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan bukti yang sahih tentang pelaksanaan, evaluasi, pengendalian, dan peningkatan kualitas secara berkelanjutan integrasi kegiatan penelitian dan PkM ke dalam pembelajaran.",
+                                        "_4": "Perguruan tinggi memiliki pedoman pelaksanaan, evaluasi, pengendalian, dan peningkatan kualitas secara berkelanjutan terintegrasi kegiatan penelitian dan PkM ke dalam pembelajaran.",
+                                        "_3": "Perguruan tinggi memiliki pedoman pelaksanaan, evaluasi, pengendalian, dan peningkatan kualitas secara terintegrasi kegiatan penelitian dan PkM ke dalam pembelajaran.",
+                                        "_2": "Perguruan tinggi memiliki pedoman pelaksanaan, evaluasi dan pengendalian secara terintegrasi kegiatan penelitian dan PkM ke dalam pembelajaran.",
+                                        "_1": "Perguruan tinggi memiliki pedoman yang belum lengkap tentang pelaksanaan, evaluasi dan pengendalian secara terintegrasi kegiatan penelitian dan PkM ke dalam pembelajaran.",
+                                        "_0": "Perguruan tinggi tidak memiliki pedoman pelaksanaan, evaluasi dan pengendalian secara terintegrasi kegiatan penelitian dan PkM ke dalam pembelajaran.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "6.4.c.C",
+                                        "relasi": null,
+                                        "rumus": "Skor = (A + (2 x B) + (4 x C)) / 7",
+                                        "isi": "Ketersedian bukti yang sahih bahwa SPMI melakukan monitoring dan evaluasi integrasi penelitian dan PkM terhadap pembelajaran.",
+                                        "_4": "Perguruan tinggi memiliki bukti yang sahih tentang hasil monitoring dan evaluasi integrasi penelitian dan PkM terhadap pembelajaran yang ditindak lanjuti secara berkelanjutan.",
+                                        "_3": "Perguruan tinggi memiliki bukti yang sahih tentang hasil monitoring dan evaluasi integrasi penelitian dan PkM terhadap pembelajaran yang ditindak lanjuti.",
+                                        "_2": "Perguruan tinggi memiliki bukti yang sahih tentang hasil monitoring dan evaluasi integrasi penelitian dan PkM terhadap pembelajaran.",
+                                        "_1": "Perguruan tinggi memiliki bukti yang sahih tentang hasil monitoring dan evaluasi integrasi penelitian dan PkM terhadap pembelajaran namun belum mencakup seluruh unit.",
+                                        "_0": "Perguruan tinggi tidak memiliki bukti yang sahih tentang hasil monitoring dan evaluasi integrasi penelitian dan PkM terhadap pembelajaran.",
+                                        "keterangan": null
+                                    }
+                                ]
+                            },
+                            {
+                                "nomor": "6.4.d",
+                                "judul": "Suasana Akademik",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "6.4.d.A",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan dokumen formal kebijakan suasana akademik yang mencakup: otonomi keilmuan, kebebasan akademik, dan kebebasan mimbar akademik.",
+                                        "_4": "Perguruan tinggi memiliki dokumen formal kebijakan suasana akademik yang komprehensif dan rinci yang mencakup: otonomi keilmuan, kebebasan akademik, dan kebebasan mimbar akademik.",
+                                        "_3": "Perguruan tinggi memiliki dokumen formal kebijakan suasana akademik yang komprehensif yang mencakup: otonomi keilmuan, kebebasan akademik, dan kebebasan mimbar akademik.",
+                                        "_2": "Perguruan tinggi memiliki dokumen formal kebijakan suasana akademik yang mencakup: otonomi keilmuan, kebebasan akademik, dan kebebasan mimbar akademik.",
+                                        "_1": "Perguruan tinggi memiliki dokumen formal yang kurang lengkap tentang kebijakan suasana akademik.",
+                                        "_0": "Perguruan tinggi tidak memiliki dokumen formal kebijakan suasana akademik.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "6.4.d.B",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan bukti yang sahih tentang terbangunnya suasana akademik yang kondusif yang dapat berupa:\na)\tKeterlaksanaan interaksi akademik antar sivitas akademika dalam kegiatan pendidikan, penelitian dan PkM baik pada skala lokal/nasional/ internasional.\nb)\tKeterlaksanaan program/kegiatan non akademik yang melibatkan seluruh warga kampus yang didukung oleh ketersediaan sarana, prasarana, dan dana yang memadai.\n",
+                                        "_4": "Perguruan tinggi memiliki bukti yang sahih tentang tingkat kepuasan dan umpan balik dari stakeholders internal tentang terbangunnya suasana akademik yang sehat dan kondusif, yang disurvey menggunakan instrumen yang sahih, andal, dan mudah digunakan serta dilakukan setiap tahun yang hasilnya (umpan balik) ditindaklanjuti bersesuaian dengan rencana strategis pengembangan suasana akademik.",
+                                        "_3": "Perguruan tinggi memiliki bukti yang sahih tentang tingkat kepuasan dan umpan balik dari stakeholders internal tentang terbangunnya suasana akademik yang sehat dan kondusif, yang disurvey menggunakan instrumen yang sahih, andal, dan mudah digunakan serta dilakukan setiap tahun namun hanya sebagian hasilnya (umpan balik) ditindaklanjuti.",
+                                        "_2": "Perguruan tinggi memiliki bukti yang sahih tentang tingkat kepuasan dan umpan balik dari stakeholders internal tentang terbangunnya suasana akademik yang sehat dan kondusif, yang disurvey menggunakan instrumen yang sahih, andal, dan mudah digunakan serta dilakukan setiap tahun",
+                                        "_1": "Perguruan tinggi memiliki bukti yang sahih tentang tingkat kepuasan stakeholders tentang terbangunnya suasana akademik yang sehat dan kondusif.",
+                                        "_0": "Perguruan tinggi tidak memiliki bukti yang sahih tentang tingkat kepuasan stakeholders tentang suasana akademik.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "6.4.d.C",
+                                        "relasi": null,
+                                        "rumus": "Skor = (A + (2 x B) + (2 x C)) / 5",
+                                        "isi": "Ketersediaan bukti yang sahih tentang langkah-langkah strategis yang dilakukan untuk meningkatkan suasana akademik.",
+                                        "_4": "Perguruan tinggi memiliki bukti yang sahih tentang analisis dan perencanaan strategis pengembangan suasana akademik dan implementasinya secara efektif dan konsisten.",
+                                        "_3": "Perguruan tinggi memiliki bukti yang sahih tentang analisis dan perencanaan strategis pengembangan suasana akademik dan implementasinya secara efektif.",
+                                        "_2": "Perguruan tinggi memiliki bukti yang sahih tentang analisis dan perencanaan strategis pengembangan suasana akademik dan implementasinya.",
+                                        "_1": "Perguruan tinggi memiliki dokumen tentang analisis dan perencanaan strategis pengembangan suasana akademik dan implementasinya namun tidak sahih.",
+                                        "_0": "Perguruan tinggi tidak memiliki dokumen analisis dan perencanaan strategis pengembangan suasana akademik dan implementasinya.",
+                                        "keterangan": null
+                                    }
+                                ]
+                            }
+                        ],
+                        "indikators": null
+                    }
+                ],
+                "indikators": null
+            },
+            {
+                "nomor": "7",
+                "judul": "Penelitian",
+                "butir": [
+                    {
+                        "nomor": "7.4",
+                        "judul": "Indikator Kinerja Utama",
+                        "butir": [
+                            {
+                                "nomor": "7.4.a",
+                                "judul": "Relevansi Penilitian",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "7.4.a.A",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan dokumen formal Rencana Strategis Penelitian yang memuat landasan pengembangan, peta jalan penelitian, sumber daya, sasaran program strategis dan indikator kinerja.",
+                                        "_4": "Perguruan tinggi memiliki dokumen formal Rencana Strategis Penelitian yang memuat landasan pengembangan, peta jalan penelitian, sumber daya (termasuk alokasi dana penelitian internal), sasaran program strategis dan indikator kinerja, serta berorientasi pada daya saing internasional.",
+                                        "_3": "Perguruan tinggi memiliki dokumen formal Rencana Strategis Penelitian yang memuat landasan pengembangan, peta jalan penelitian, sumber daya (termasuk alokasi dana penelitian internal), sasaran program strategis dan indikator kinerja, serta berorientasi pada daya saing nasional.",
+                                        "_2": "Perguruan tinggi memiliki dokumen formal Rencana Strategis Penelitian yang memuat landasan pengembangan, peta jalan penelitian, sumber daya (termasuk alokasi dana penelitian internal), sasaran program strategis dan indikator kinerja.",
+                                        "_1": null,
+                                        "_0": "Perguruan tinggi tidak memiliki dokumen Rencana Strategis Penelitian.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "7.4.a.B",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan pedoman penelitian dan bukti sosialisasinya.",
+                                        "_4": "Perguruan tinggi memiliki pedoman penelitian yang disosialisasikan, mudah diakses, sesuai dengan rencana strategis penelitian, serta dipahami oleh stakeholders .",
+                                        "_3": "Perguruan tinggi memiliki pedoman penelitian yang disosialisasikan, mudah diakses, serta dipahami oleh stakeholders .",
+                                        "_2": "Perguruan tinggi memiliki pedoman penelitian yang disosialisasikan dan mudah diakses oleh stakeholders .",
+                                        "_1": "Perguruan tinggi memiliki pedoman penelitian namun belum disosialisasikan.",
+                                        "_0": "Perguruan tinggi tidak memiliki pedoman penelitian.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "7.4.a.C",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Bukti yang sahih tentang pelaksanaan proses penelitian mencakup 6 aspek sebagai berikut:\n1)\ttatacara penilaian dan review,\n2)\tlegalitas pengangkatan reviewer,\n3)\thasil penilaian usul penelitian,\n4)\tlegalitas penugasan peneliti/kerjasama peneliti,\n5)\tberita acara hasil monitoring dan evaluasi, serta\n6)\tdokumentasi output penelitian.\n",
+                                        "_4": "Perguruan tinggi memiliki bukti yang sahih tentang pelaksanaan proses penelitian yang mencakup 6 aspek dan perguruan tinggi melakukan review terhadap pelaksanaan proses penelitian (aspek 1 s.d. 6) secara berkala dan ditindak lanjuti.",
+                                        "_3": "Perguruan tinggi memiliki bukti yang sahih tentang pelaksanaan proses penelitian yang mencakup 6 aspek dan perguruan tinggi melakukan review terhadap pelaksanaan proses penelitian (aspek 1 s.d. 6) secara berkala.",
+                                        "_2": "Perguruan tinggi memiliki bukti yang sahih tentang pelaksanaan proses penelitian yang mencakup 6 aspek",
+                                        "_1": "Perguruan tinggi memiliki bukti yang sahih tentang pelaksanaan proses penelitian yang tidak lengkap.",
+                                        "_0": "Perguruan tinggi tidak memiliki bukti yang sahih tentang pelaksanaan proses penelitian.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "7.4.a.D",
+                                        "relasi": null,
+                                        "rumus": "Skor = (A + (2 x B) + (4 x C) + D) / 8",
+                                        "isi": "Dokumen pelaporan penelitian oleh pengelola penelitian kepada pimpinan perguruan tinggi dan mitra/pemberi dana, memenuhi aspek- aspek berikut:\n1)\tkomprehensif,\n2)\trinci,\n3)\trelevan,\n4)\tmutakhir, dan\n5)\tdisampaikan tepat waktu.\n",
+                                        "_4": "Perguruan tinggi memiliki dokumen laporan kegiatan penelitian, yang memenuhi 5 aspek, yang dibuat oleh pengelola penelitian dilaporkan kepada pimpinan perguruan tinggi dan mitra/pemberi dana.",
+                                        "_3": "Perguruan tinggi memiliki dokumen laporan kegiatan penelitian yang memenuhi 3 dari 5 aspek, yang dibuat oleh pengelola penelitian kepada pimpinan perguruan tinggi dan mitra/pemberi dana terkait.",
+                                        "_2": "Perguruan tinggi memiliki dokumen laporan kegiatan penelitian yang dibuat oleh pengelola penelitian kepada pimpinan perguruan tinggi dan/atau mitra/pemberi dana terkait.",
+                                        "_1": "Perguruan tinggi memiliki dokumen laporan kegiatan penelitian yang dibuat oleh pengelola penelitian kepada pimpinan perguruan tinggi atau mitra/pemberi dana terkait.",
+                                        "_0": "Perguruan tinggi tidak memiliki dokumen laporan kegiatan penelitian.",
+                                        "keterangan": null
+                                    }
+                                ]
+                            },
+                            {
+                                "nomor": "7.4.b",
+                                "judul": "Kelompok Riset",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "7.4.b.1",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Keberadaan kelompok riset dan laboratorium riset.",
+                                        "_4": "Perguruan tinggi memiliki kelompok riset dan laboratorium riset yang fungsional yang ditunjukkan dengan:\n1)\tadanya bukti legal formal keberadaan kelompok riset dan laboratorium riset,\n2)\tketerlibatan aktif kelompok riset dalam jejaring tingkat nasional maupun internasional, serta\n3)\tdihasilkannya produk riset yang bermanfaat untuk menyelesaikan permasalahan di masyarakat, dan\n4)\tdihasilkannya produk riset yang berdaya saing internasional.\n",
+                                        "_3": "Perguruan tinggi memiliki kelompok riset dan laboratorium riset yang fungsional yang ditunjukkan dengan:\n1)\tadanya bukti legal formal keberadaan kelompok riset dan laboratorium riset,\n2)\tketerlibatan aktif kelompok riset dalam jejaring tingkat nasional, dan\n3)\tmenghasilkan produk riset yang bermanfaat untuk menyelesaikan permasalahan di masyarakat.\n",
+                                        "_2": "Perguruan tinggi memiliki kelompok riset dan laboratorium riset yang fungsional yang ditunjukkan dengan adanya bukti legal formal keberadaan kelompok riset dan laboratorium riset.",
+                                        "_1": "Perguruan tinggi mempunyai bukti yang sahih tentang keberadaan salah satu dari kelompok riset atau laboratorium riset",
+                                        "_0": "Perguruan tinggi tidak mempunyai kelompok riset dan laboratorium riset.",
+                                        "keterangan": null
+                                    }
+                                ]
+                            }
+                        ],
+                        "indikators": null
+                    }
+                ],
+                "indikators": null
+            },
+            {
+                "nomor": "8",
+                "judul": "Pengabdian kepada Masyarakat",
+                "butir": [
+                    {
+                        "nomor": "8.4",
+                        "judul": "Indikator Kinerja Utama",
+                        "butir": [
+                            {
+                                "nomor": "8.4.a-1",
+                                "judul": "Pelaksanaan PkM",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "8.4.a-1.A",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan dokumen formal Rencana Strategis PkM yang memuat landasan pengembangan, peta jalan PkM, sumber daya, sasaran program strategis dan indikator kinerja.",
+                                        "_4": "Perguruan tinggi memiliki dokumen formal Rencana Strategis PkM yang memuat landasan pengembangan, peta jalan PkM, sumber daya (termasuk alokasi dana PkM internal), sasaran program strategis dan indikator kinerja, serta berorientasi pada daya saing internasional.",
+                                        "_3": "Perguruan tinggi memiliki dokumen formal Rencana Strategis PkM yang memuat landasan pengembangan, peta jalan PkM, sumber daya (termasuk alokasi dana PkM internal), sasaran program strategis dan indikator kinerja, serta berorientasi daya saing nasional.",
+                                        "_2": "Perguruan tinggi memiliki dokumen formal Rencana Strategis PkM yang memuat landasan pengembangan, peta jalan PkM, sumber daya (termasuk alokasi dana PkM internal), sasaran program strategis dan indikator kinerja.",
+                                        "_1": null,
+                                        "_0": "Perguruan tinggi tidak memiliki dokumen Rencana Strategis PkM.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "8.4.a-1.B",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Ketersediaan pedoman PkM dan bukti sosialisasinya.",
+                                        "_4": "Perguruan tinggi memiliki pedoman PkM yang disosialisasikan, mudah diakses, sesuai dengan rencana strategis PkM, serta dipahami oleh pemangku kepentingan.",
+                                        "_3": "Perguruan tinggi memiliki pedoman PkM yang disosialisasikan, mudah diakses, serta dipahami oleh pemangku kepentingan.",
+                                        "_2": "Perguruan tinggi memiliki pedoman PkM yang disosialisasikan dan mudah diakses oleh pemangku kepentingan.",
+                                        "_1": "Perguruan tinggi memiliki pedoman PkM namun belum disosialisasikan.",
+                                        "_0": "Perguruan tinggi tidak memiliki pedoman PkM.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "8.4.a-1.C",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Bukti yang sahih tentang pelaksanaan proses PkM mencakup 6 aspek sebagai berikut:\n1)\ttatacara penilaian dan review,\n2)\tlegalitas pengangkatan reviewer,\n3)\thasil penilaian usul PkM,\n4)\tlegalitas penugasan pelaksana PkM/kerjasama PkM,\n5)\tberita acara hasil monitoring dan evaluasi, serta\n6)\tdokumentasi output PkM.\n",
+                                        "_4": "Perguruan tinggi memiliki bukti yang sahih tentang pelaksanaan proses PkM yang mencakup 6 aspek serta melakukan review terhadap pelaksanaan proses PkM (aspek 1 sampai 6) secara berkala dan ditindaklanjuti.",
+                                        "_3": "Perguruan tinggi memiliki bukti yang sahih tentang pelaksanaan proses PkM yang mencakup 6 aspek serta melakukan review terhadap pelaksanaan proses PkM (aspek 1 sampai 6) secara berkala.",
+                                        "_2": "Perguruan tinggi memiliki bukti yang sahih tentang pelaksanaan proses PkM yang mencakup 6 aspek.",
+                                        "_1": "Perguruan tinggi memiliki bukti yang sahih tentang pelaksanaan proses PkM yang tidak lengkap.",
+                                        "_0": "Perguruan tinggi tidak memiliki bukti yang sahih tentang pelaksanaan proses PkM.",
+                                        "keterangan": null
+                                    },
+                                    {
+                                        "nomor": "8.4.a-1.D",
+                                        "relasi": null,
+                                        "rumus": "Skor = (A + (2 x B) + (4 x C) + D) / 8",
+                                        "isi": "Dokumentasi pelaporan PkM oleh pengelola PkM kepada pimpinan perguruan tinggi dan mitra/pemberi dana yang memenuhi 5 aspek sebagai berikut:\n1)\tkomprehensif,\n2)\trinci,\n3)\trelevan,\n4)\tmutakhir, dan\n5)\tdisampaikan tepat waktu.\n",
+                                        "_4": "Perguruan tinggi memiliki dokumen pelaporan kegiatan PkM dari pengelola PkM kepada pimpinan perguruan tinggi dan mitra/pemberi dana terkait yang memenuhi 5 aspek serta komprehensif, rinci, relevan, mutakhir dan disampaikan tepat waktu",
+                                        "_3": "Perguruan tinggi memiliki dokumen pelaporan kegiatan PkM dari pengelola PkM kepada pimpinan perguruan tinggi dan mitra/pemberi dana terkait yang memenuhi 3 dari 5 aspek serta komprehensif, rinci, dan relevan, mutakhir dan disampaikan tepat waktu.",
+                                        "_2": "Perguruan tinggi memiliki dokumen pelaporan kegiatan PkM dari pengelola PkM kepada pimpinan perguruan tinggi dan/atau mitra/pemberi dana terkait.",
+                                        "_1": "Perguruan tinggi memiliki dokumen pelaporan kegiatan PkM dari pengelola PkM kepada pimpinan perguruan tinggi atau mitra/pemberi dana terkait.",
+                                        "_0": "Perguruan tinggi tidak memiliki dokumen pelaporan kegiatan PkM",
+                                        "keterangan": null
+                                    }
+                                ]
+                            },
+                            {
+                                "nomor": "8.4.a-2",
+                                "judul": "Kelompok Pelaksana PkM",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "8.4.a-2.1",
+                                        "relasi": null,
+                                        "rumus": null,
+                                        "isi": "Keberadaan kelompok pelaksana PkM.",
+                                        "_4": "Perguruan tinggi memiliki kelompok pelaksana PkM yang fungsional yang ditunjukkan dengan:\n1)\tadanya bukti legal formal keberadaan kelompok pelaksana PkM,\n2)\tdihasilkannya produk PkM yang bermanfaat untuk menyelesaikan permasalahan di masyarakat, dan\n3)\tdihasilkannya produk PkM yang berdaya saing nasional.\n",
+                                        "_3": "Perguruan tinggi memiliki kelompok pelaksana PkM yang fungsional yang ditunjukkan dengan:\n1)\tadanya bukti legal formal keberadaan kelompok pelaksana PkM, dan\n2)\tdihasilkannya produk PkM yang bermanfaat untuk menyelesaikan permasalahan di masyarakat.\n",
+                                        "_2": "Perguruan tinggi memiliki kelompok pelaksana PkM yang fungsional yang ditunjukkan dengan adanya bukti legal formal keberadaan kelompok pelaksana PkM",
+                                        "_1": "Perguruan tinggi tidak mempunyai bukti legal formal keberadaan kelompok pelaksana PkM.",
+                                        "_0": "Perguruan tinggi tidak mempunyai kelompok pelaksana PkM.",
+                                        "keterangan": null
+                                    }
+                                ]
+                            }
+                        ],
+                        "indikators": null
+                    }
+                ],
+                "indikators": null
+            },
+            {
+                "nomor": "9",
+                "judul": "Luaran dan Capaian Tridharma",
+                "butir": [
+                    {
+                        "nomor": "9.4",
+                        "judul": "Indikator Kinerja Utama",
+                        "butir": [
+                            {
+                                "nomor": "9.4.a",
+                                "judul": "Pendidikan",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "9.4.a.1",
+                                        "relasi": [
+                                            "5.a"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Rata-rata IPK mahasiswa dalam 3 tahun terakhir.",
+                                        "_4": "Perhitungan Skor untuk program Diploma dan Sarjana: \nJika IPK ≥ 3,25 , maka Skor = 4. \nPerhitungan Skor untuk program Profesi, Magister dan Doktor: \nJika IPK ≥ 3,50 , maka Skor = 4 .",
+                                        "_3": "Perhitungan Skor untuk program Diploma dan Sarjana: \nJika 2,00 ≤ IPK < 3,25 , maka Skor = ((8 x IPK) - 6) / 5 .\nPerhitungan Skor untuk program Profesi, Magister dan Doktor: \nJika 3,00 ≤ IPK < 3,50 , maka Skor = (4 x IPK) - 10 .\n.",
+                                        "_2": "Perhitungan Skor untuk program Diploma dan Sarjana: \nJika 2,00 ≤ IPK < 3,25 , maka Skor = ((8 x IPK) - 6) / 5 .\nPerhitungan Skor untuk program Profesi, Magister dan Doktor: \nJika 3,00 ≤ IPK < 3,50 , maka Skor = (4 x IPK) - 10 .\n.",
+                                        "_1": null,
+                                        "_0": null,
+                                        "keterangan": "Skor akhir dihitung berdasarkan perhitungan rata-rata terbobot terhadap jumlah program studi pada setiap program pendidikan. Skor akhir = S(Skori x NPi) / SNPi\nNPi = jumlah program studi pada program pendidikan ke-I , i = 1, 2, ..., 7\n"
+                                    },
+                                    {
+                                        "nomor": "9.4.a.2",
+                                        "relasi": [
+                                            "5.b.1"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Jumlah prestasi akademik mahasiswa di tingkat provinsi/wilayah, nasional, dan/atau internasional terhadap jumlah mahasiswa dalam 5 tahun terakhir (TS-2 s.d. TS).\n",
+                                        "_4": "Jika RI ≥ a , maka Skor = 4 .",
+                                        "_3": "Jika RI < a dan RN ≥ b , maka Skor = 3 + (RI / a). \nJika RI < a dan RN < b , maka Skor = 2 + (2 x (RI/a)) + (RN /b) - ((RI x RN)/(a x b)) .\n",
+                                        "_2": "Jika RI < a dan RN ≥ b , maka Skor = 3 + (RI / a). \nJika RI < a dan RN < b , maka Skor = 2 + (2 x (RI/a)) + (RN /b) - ((RI x RN)/(a x b)) .\n",
+                                        "_1": "Jika RI = 0 dan RN = 0 dan RL ≥ c , maka Skor = 2 .\nJika RI = 0 dan RN = 0 dan RL < c , maka Skor = 1 + (RL / c) \n",
+                                        "_0": null,
+                                        "keterangan": "RI = NI / NM , RN = NN / NM , RL = NL / NM\tFaktor: a = 0,05% , b = 1% , c = 5%\nNI = Jumlah prestasi akademik internasional. NN = Jumlah prestasi akademik nasional.\nNL = Jumlah prestasi akademik wilayah/lokal. NM = Jumlah mahasiswa aktif pada saat TS.\n"
+                                    },
+                                    {
+                                        "nomor": "9.4.a.3",
+                                        "relasi": [
+                                            "5.b.2"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Jumlah prestasi non- akademik mahasiswa di tingkat provinsi/wilayah, nasional, dan/atau internasional terhadap jumlah mahasiswa dalam 5 tahun terakhir (TS-2\ns.d. TS).\n",
+                                        "_4": "Jika RI ≥ a , maka Skor = 4 .",
+                                        "_3": "Jika RI < a dan RN ≥ b , maka Skor = 3 + (RI / a). \nJika RI < a dan RN < b , maka Skor = 2 + (2 x (RI/a)) + (RN /b) - ((RI x RN)/(a x b)) .\n",
+                                        "_2": "Jika RI < a dan RN ≥ b , maka Skor = 3 + (RI / a). \nJika RI < a dan RN < b , maka Skor = 2 + (2 x (RI/a)) + (RN /b) - ((RI x RN)/(a x b)) .\n",
+                                        "_1": "Jika RI = 0 dan RN = 0 dan RL ≥ c , maka Skor = 2 .\nJika RI = 0 dan RN = 0 dan RL < c , maka Skor = 1 + (RL / c) \n",
+                                        "_0": null,
+                                        "keterangan": "RI = NI / NM , RN = NN / NM , RL = NL / NM\tFaktor: a = 0,1% , b = 2% , c = 10%\nNI = Jumlah prestasi non-akademik internasional. NN = Jumlah prestasi non-akademik nasional.\nNL = Jumlah prestasi non-akademik wilayah/lokal. NM = Jumlah mahasiswa aktif pada saat TS.\n"
+                                    },
+                                    {
+                                        "nomor": "9.4.a.4",
+                                        "relasi": [
+                                            "5.c.1"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Prestasi mahasiswa di bidang nonakademik dalam 3 tahun terakhir",
+                                        "_4": "Perhitungan Skor untuk program Doktor/Subspesialis:\nJika 2,5 ≤ MS ≤ 3,5 , maka Skor1 = 4 \nPerhitungan Skor untuk program Magister/Spesialis:\n Jika 1,5 ≤ MS ≤ 2,5 , maka Skor2 = 4 \n Perhitungan Skor untuk program Profesi 1 Tahun:\n Jika 1 ≤ MS ≤ 1,5 , maka Skor3a = 4 .\n Perhitungan Skor untuk program Profesi 2 Tahun:\nJika 2 ≤ MS ≤ 2,5 , maka Skor3b = 4 . \nPerhitungan Skor untuk program Sarjana: \nJika 3,5 ≤ MS ≤ 4,5 , maka Skor4 = 4 . \nPerhitungan Skor untuk program Diploma Tiga: \nJika 3 ≤ MS ≤ 3,5 , maka Skor5 = 4. \nPerhitungan Skor untuk program Diploma Dua: \nJika 2 ≤ MS ≤ 2,5 , maka Skor5 = 4. \nPerhitungan Skor untuk program Diploma Satu:\n Jika 1,5 < MS ≤ 2 , maka Skor5 = 16 - (8 x MS) .",
+                                        "_3": "Perhitungan Skor untuk program Doktor/Subspesialis: \nJika 2 ≤ MS < 2,5 , maka Skor1 = (8 x MS) - 16\nJika 3,5 < MS ≤ 7 ,\nmaka Skor1 = (56 - (8 x MS)) / 7\n Perhitungan Skor untuk program Magister/Spesialis:\n Jika 1 ≤ MS < 1,5 , maka Skor2 = (8 x MS) - 8\nJika 2,5 < MS ≤ 4 ,\nmaka Skor2 = (32 - (8 x MS)) / 3\n Perhitungan Skor untuk program Profesi 1 Tahun:\n Jika 1,5 < MS ≤ 2 , maka Skor = 16 - (8 x MS) . \n Perhitungan Skor untuk program Profesi 2 Tahun:\nJika 2,5 < MS ≤ 3 , maka Skor3b = 24 - (8 x MS) .\nPerhitungan Skor untuk program Sarjana: \nJika 3 ≤ MS ≤ 3,5 , maka Skor4 = (8 x MS) - 24 .\n Jika 4,5 < MS ≤ 7 ,\nmaka Skor4 = (56 - (8 x MS)) / 5 . \nPerhitungan Skor untuk program Diploma Tiga: \nJika 3,5 < MS ≤ 5 ,\nmaka Skor5 = (40 - (8 x MS)) / 3 .\nPerhitungan Skor untuk program Diploma Dua: \nJika 2,5 < MS ≤ 3 , maka Skor5 = 24 - (8 x MS) .\nPerhitungan Skor untuk program Diploma Satu:\n Jika 1,5 < MS ≤ 2 , maka Skor5 = 16 - (8 x MS) .",
+                                        "_2": "Perhitungan Skor untuk program Doktor/Subspesialis: \nJika 2 ≤ MS < 2,5 , maka Skor1 = (8 x MS) - 16\nJika 3,5 < MS ≤ 7 ,\nmaka Skor1 = (56 - (8 x MS)) / 7\n Perhitungan Skor untuk program Magister/Spesialis:\n Jika 1 ≤ MS < 1,5 , maka Skor2 = (8 x MS) - 8\nJika 2,5 < MS ≤ 4 ,\nmaka Skor2 = (32 - (8 x MS)) / 3\n Perhitungan Skor untuk program Profesi 1 Tahun:\n Jika 1,5 < MS ≤ 2 , maka Skor = 16 - (8 x MS) . \n Perhitungan Skor untuk program Profesi 2 Tahun:\nJika 2,5 < MS ≤ 3 , maka Skor3b = 24 - (8 x MS) .\nPerhitungan Skor untuk program Sarjana: \nJika 3 ≤ MS ≤ 3,5 , maka Skor4 = (8 x MS) - 24 .\n Jika 4,5 < MS ≤ 7 ,\nmaka Skor4 = (56 - (8 x MS)) / 5 . \nPerhitungan Skor untuk program Diploma Tiga: \nJika 3,5 < MS ≤ 5 ,\nmaka Skor5 = (40 - (8 x MS)) / 3 .\nPerhitungan Skor untuk program Diploma Dua: \nJika 2,5 < MS ≤ 3 , maka Skor5 = 24 - (8 x MS) .\nPerhitungan Skor untuk program Diploma Satu:\n Jika 1,5 < MS ≤ 2 , maka Skor5 = 16 - (8 x MS) .",
+                                        "_1": "Perhitungan Skor untuk program Doktor/Subspesialis: \nJika 2 ≤ MS < 2,5 , maka Skor1 = (8 x MS) - 16\nJika 3,5 < MS ≤ 7 ,\nmaka Skor1 = (56 - (8 x MS)) / 7\n Perhitungan Skor untuk program Magister/Spesialis:\n Jika 1 ≤ MS < 1,5 , maka Skor2 = (8 x MS) - 8\nJika 2,5 < MS ≤ 4 ,\nmaka Skor2 = (32 - (8 x MS)) / 3\n Perhitungan Skor untuk program Profesi 1 Tahun:\n Jika 1,5 < MS ≤ 2 , maka Skor = 16 - (8 x MS) . \n Perhitungan Skor untuk program Profesi 2 Tahun:\nJika 2,5 < MS ≤ 3 , maka Skor3b = 24 - (8 x MS) .\nPerhitungan Skor untuk program Sarjana: \nJika 3 ≤ MS ≤ 3,5 , maka Skor4 = (8 x MS) - 24 .\n Jika 4,5 < MS ≤ 7 ,\nmaka Skor4 = (56 - (8 x MS)) / 5 . \nPerhitungan Skor untuk program Diploma Tiga: \nJika 3,5 < MS ≤ 5 ,\nmaka Skor5 = (40 - (8 x MS)) / 3 .\nPerhitungan Skor untuk program Diploma Dua: \nJika 2,5 < MS ≤ 3 , maka Skor5 = 24 - (8 x MS) .\nPerhitungan Skor untuk program Diploma Satu:\n Jika 1,5 < MS ≤ 2 , maka Skor5 = 16 - (8 x MS) .",
+                                        "_0": "Perhitungan Skor untuk program Doktor/Subspesialis: \nJika MS < 2 atau MS > 7, maka Skor1 = 0\n Perhitungan Skor untuk program Magister/Spesialis:\n \nJika MS < 1 atau MS > 4 , maka Skor2 = 0 \nJika 2,5 < MS ≤ 4 ,maka Skor2 = (32 - (8 x MS)) / 3\n Perhitungan Skor untuk program Profesi 1 Tahun:\n Jika MS < 1 atau MS > 2 , maka Skor3a = 0. \n Perhitungan Skor untuk program Profesi 2 Tahun:\nJika MS < 2 atau MS > 3 , maka Skor3b = 0 .\nPerhitungan Skor untuk program Sarjana: \nJika MS ≤ 3  atau MS > 7 , maka Skor4 = 0 . \nPerhitungan Skor untuk program Diploma Tiga: \nJika MS < 3  atau MS > 5 , maka Skor5 = 0 .\nPerhitungan Skor untuk program Diploma Dua: \nJika MS < 2  atau MS > 3 , maka Skor5 = 0 .\nPerhitungan Skor untuk program Diploma Satu:\n Jika MS < 1  atau MS > 2 , maka Skor5 = 0 .",
+                                        "keterangan": "Skor akhir dihitung berdasarkan perhitungan rata-rata terbobot terhadap banyaknya program studi pada setiap program pendidikan. Skor akhir = S(Skori x NPi) / SNPi\nNPi = banyaknya program studi pada program pendidikan ke-i , i = 1, 2, ..., 7\n"
+                                    },
+                                    {
+                                        "nomor": "9.4.a.5",
+                                        "relasi": [
+                                            "5.c.2.a",
+                                            "5.c.2.b",
+                                            "5.c.2.c.1",
+                                            "5.c.2.c.2",
+                                            "5.c.2.d",
+                                            "5.c.2.e",
+                                            "5.c.2.f",
+                                            "5.c.2.g"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Persentase kelulusan tepat waktu untuk setiap program.",
+                                        "_4": "Jika PTwi ≥ 50% , maka Skori = 4 .",
+                                        "_3": "Jika PTwi ≥ 50% , maka Skori = 4 .",
+                                        "_2": "Jika PTwi < 50% , maka Skori = 1 + (6 x PTWi) .",
+                                        "_1": "Jika PTwi < 50% , maka Skori = 1 + (6 x PTWi) .",
+                                        "_0": null,
+                                        "keterangan": "Persentase untuk program pendidikan ke-i dihitung dengan rumus sebagai berikut:\nPTWi = (fi / di) x 100%\nfi = Jumlah mahasiswa yang lulus tepat waktu pada program pendidikan ke-i.\ndi = Jumlah mahasiswa yang diterima pada angkatan tersebut pada program pendidikan ke-i.\n\nSkor akhir dihitung berdasarkan perhitungan rata-rata terbobot terhadap jumlah program studi pada setiap program pendidikan. Skor akhir = S(Skori x NPi) / SNPi\nNPi = banyaknya program studi pada program pendidikan ke-i , i = 1, 2, ..., 7\n"
+                                    },
+                                    {
+                                        "nomor": "9.4.a.6",
+                                        "relasi": [
+                                            "5.c.2.a",
+                                            "5.c.2.b",
+                                            "5.c.2.c.1",
+                                            "5.c.2.c.2",
+                                            "5.c.2.d",
+                                            "5.c.2.e",
+                                            "5.c.2.f",
+                                            "5.c.2.g"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Persentase keberhasilan studi untuk setiap program.",
+                                        "_4": "Jika PPsi ≥ 85% , maka Skori = 4.",
+                                        "_3": "Jika 30% < PPsi < 85% , maka Skori = ((80 x PPSi) - 24) / 11 .\n",
+                                        "_2": "Jika 30% < PPsi < 85% , maka Skori = ((80 x PPSi) - 24) / 11 .\n",
+                                        "_1": "Jika 30% < PPsi < 85% , maka Skori = ((80 x PPSi) - 24) / 11 .\n",
+                                        "_0": "Jika PPsi ≤ 30%, maka Skor = 0.",
+                                        "keterangan": "Persentase untuk program pendidikan ke-i dihitung dengan rumus sebagai berikut: PPSi = (ci / ai) x 100%\nci = Jumlah mahasiswa yang lulus sampai dengan batas masa studi pada program pendidikan ke-i. ai = Jumlah mahasiswa yang diterima pada angkatan tersebut pada program pendidikan ke-i.\n\nSkor akhir dihitung berdasarkan rata-rata terbobot terhadap jumlah program studi pada setiap program pendidikan. Skor akhir = S(Skori x NPi) / SNPi\nNPi = Jumlah program studi pada program ke-i , i = 1, 2, ..., 7\n"
+                                    },
+                                    {
+                                        "nomor": "9.4.a.7",
+                                        "relasi": [
+                                            "ref-5.d.1-5.d.2-5.e.2",
+                                            "5.d.1"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Lama waktu tunggu lulusan program utama di perguruan tinggi untuk mendapatkan pekerjaan pertama.",
+                                        "_4": "Jika WT ≤ 6 bulan, maka Skor = 4.",
+                                        "_3": "Jika 6 < WT < 18, maka Skor = (18 – WT) / 3.\n",
+                                        "_2": "Jika 6 < WT < 18, maka Skor = (18 – WT) / 3.\n",
+                                        "_1": "Jika 6 < WT < 18, maka Skor = (18 – WT) / 3.\n",
+                                        "_0": "Jika WT ≥ 18 bulan, maka Skor = 0.",
+                                        "keterangan": "NL = NL4 + NL3 + NL2 , NJ = NJ4 + NJ3 + NJ2 PJ = (NJ / NL) x 100%\nWT = rata-rata waktu tunggu lulusan = (WT4 + WT3 + WT2) / 3\n\nKetentuan persentase responden lulusan:\n-\tuntuk perguruan tinggi dengan jumlah lulusan program utama dalam 3 tahun paling sedikit 5000 orang, maka Prmin = 10%.\n-\tuntuk perguruan tinggi dengan jumlah lulusan program utama dalam 3 tahun kurang dari 5000 orang, maka Prmin = 20% - (10% / 5000) x NL.\nJika persentase responden memenuhi ketentuan diatas, maka Skor akhir = Skor.\nJika persentase responden tidak memenuhi ketentuan diatas, maka berlaku penyesuaian sebagai berikut: Skor akhir = (PJ / Prmin) x Skor.\n"
+                                    },
+                                    {
+                                        "nomor": "9.4.a.8",
+                                        "relasi": [
+                                            "5.d.1-5.d.2-5.e.2-ref",
+                                            "5.d.2"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Jika PBS ≥ 80% , maka Skor = 4.",
+                                        "_4": "Jika PBS < 80%, maka Skor = 5 x PBS .\n",
+                                        "_3": "Jika PBS < 80%, maka Skor = 5 x PBS .",
+                                        "_2": "Jika PBS < 80%, maka Skor = 5 x PBS .",
+                                        "_1": "Jika PBS < 80%, maka Skor = 5 x PBS .",
+                                        "_0": "Jika PBS < 80%, maka Skor = 5 x PBS .",
+                                        "keterangan": "NL = NL4 + NL3 + NL2 , NJ = NJ4 + NJ3 + NJ2 PJ = (NJ / NL) x 100%\nPBS = Rata-rata persentase kesesuaian bidang kerja lulusan = (KB4 + KB3 + KB2) / 3\n\nKetentuan persentase responden lulusan:\n-\tuntuk perguruan tinggi dengan jumlah lulusan program utama dalam 3 tahun paling sedikit 5000 orang, maka Prmin = 10%.\n-\tuntuk perguruan tinggi dengan jumlah lulusan program utama dalam 3 tahun kurang dari 5000 orang, maka Prmin = 20% - (10% / 5000) x NL.\nJika persentase responden memenuhi ketentuan diatas, maka Skor akhir = Skor.\nJika persentase responden tidak memenuhi ketentuan diatas, maka berlaku penyesuaian sebagai berikut: Skor akhir = (PJ / Prmin) x Skor.\n"
+                                    },
+                                    {
+                                        "nomor": "9.4.a.9",
+                                        "relasi": [
+                                            "5.e.1-ref",
+                                            "5.e.1"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Tingkat kepuasan pengguna lulusan dinilai terhadap aspek:\n 1\t: Etika,\n2\t: Keahlian pada bidang ilmu (kompetensi utama), 3 : Kemampuan berbahasa asing,\n4\t: Penggunaan teknologi informasi,\n5\t: Kemampuan berkomunikasi,\n6\t: Kerjasama tim,\n7\t: Pengembangan diri.\n",
+                                        "_4": "Skor = STKi / 7",
+                                        "_3": "Skor = STKi / 7",
+                                        "_2": "Skor = STKi / 7",
+                                        "_1": "Skor = STKi / 7",
+                                        "_0": "Skor = STKi / 7",
+                                        "keterangan": "Tingkat kepuasan aspek ke-i dihitung dengan rumus sebagai berikut:\nTKi = (4 x ai) + (3 x bi) + (2 x ci) + di i = 1, 2, ..., 7 ai = persentase “sangat baik”.\nbi = persentase “baik”. ci = persentase “cukup”.\ndi = persentase “kurang”.\n\nNL = NL4 + NL3 + NL2 , NJ = NJ4 + NJ3 + NJ2 PJ = (NJ / NL) x 100%\n\nKetentuan persentase responden pengguna lulusan:\n-\tuntuk perguruan tinggi dengan jumlah lulusan program utama dalam 3 tahun paling sedikit 5000 orang, maka Prmin = 10%.\n-\tuntuk perguruan tinggi dengan jumlah lulusan program utama dalam 3 tahun kurang dari 5000 orang, maka Prmin = 20% - (10% / 5000) x NL.\nJika persentase responden memenuhi ketentuan diatas, maka Skor akhir = Skor.\nJika persentase responden tidak memenuhi ketentuan diatas, maka berlaku penyesuaian sebagai berikut: Skor akhir = (PJ / Prmin) x Skor.\n"
+                                    },
+                                    {
+                                        "nomor": "9.4.a.10",
+                                        "relasi": [
+                                            "5.d.1-5.d.2-5.e.2-ref",
+                                            "5.e.2"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Tingkat dan ukuran tempat kerja lulusan.",
+                                        "_4": "Jika RI ≥ a , maka Skor = 4 .",
+                                        "_3": "Jika RI < a dan RN ≥ b , maka Skor = 3 + (RI / a). \nJika 0 < RI < a dan 0 < RN < b , maka Skor = 2 + (2 x (RI/a)) + (RN/b) - ((RI x RN) / (a x b))\n",
+                                        "_2": "Jika RI < a dan RN ≥ b , maka Skor = 3 + (RI / a). \nJika 0 < RI < a dan 0 < RN < b , maka Skor = 2 + (2 x (RI/a)) + (RN/b) - ((RI x RN) / (a x b))\n",
+                                        "_1": "Jika RI = 0 dan RN = 0 dan RL ≥ c , maka Skor = 2. Jika RI = 0 dan RN = 0 dan RL < c , maka Skor = (2 x RL) / c .",
+                                        "_0": "Jika RI = 0 dan RN = 0 dan RL ≥ c , maka Skor = 2. Jika RI = 0 dan RN = 0 dan RL < c , maka Skor = (2 x RL) / c .",
+                                        "keterangan": "RI = (NI / NA) x 100% , RN = (NN / NA) x 100% , RL = (NL / NA) x 100%\tFaktor: a = 5% , b = 20% , c = 90% .\nNI = Jumlah lulusan yang bekerja di badan usaha tingkat internasional/multi nasional.\nNN = Jumlah lulusan yang bekerja di badan usaha tingkat nasional atau berwirausaha yang berizin.\nNL = Jumlah lulusan yang bekerja di badan usaha tingkat wilayah/lokal atau berwirausaha tidak berizin.\n\nNL = NL4 + NL3 + NL2 , NJ = NJ4 + NJ3 + NJ2 PJ = (NJ / NL) x 100%\n\nKetentuan persentase responden lulusan:\n-\tuntuk perguruan tinggi dengan jumlah lulusan program utama dalam 3 tahun paling sedikit 5000 orang, maka Prmin = 10%.\n-\tuntuk perguruan tinggi dengan jumlah lulusan program utama dalam 3 tahun kurang dari 5000 orang, maka Prmin = 20% - (10% / 5000) x NL.\nJika persentase responden memenuhi ketentuan diatas, maka Skor akhir = Skor.\nJika persentase responden tidak memenuhi ketentuan diatas, maka berlaku penyesuaian sebagai berikut: Skor akhir = (PJ / Prmin) x Skor.\n"
+                                    }
+                                ]
+                            },
+                            {
+                                "nomor": "9.4.b",
+                                "judul": "Penelitian",
+                                "butir": null,
+                                "indikators": [
+                                    {
+                                        "nomor": "9.4.b.1",
+                                        "relasi": [
+                                            "5.f"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Jumlah publikasi di jurnal dalam 3 tahun terakhir.",
+                                        "_4": " Jika RI ≥ a , maka Skor = 4 .",
+                                        "_3": "Jika RI < a dan RN ≥ b , maka Skor = 3 + (RI / a) .\n Jika 0 < RI < a dan 0 < RN < b , maka Skor = 2 + (2 x (RI/a)) + (RN/b) - ((RI x RN) / (a x b))\n",
+                                        "_2": "Jika RI < a dan RN ≥ b , maka Skor = 3 + (RI / a) .\n Jika 0 < RI < a dan 0 < RN < b , maka Skor = 2 + (2 x (RI/a)) + (RN/b) - ((RI x RN) / (a x b))\n",
+                                        "_1": "Jika RI = 0 dan RN = 0 dan RL ≥ c , maka Skor = 2. \n Jika RI = 0 dan RN = 0 dan RL < c , maka Skor = (2 x RL) / c .",
+                                        "_0": "Jika RI = 0 dan RN = 0 dan RL ≥ c , maka Skor = 2. \n Jika RI = 0 dan RN = 0 dan RL < c , maka Skor = (2 x RL) / c .",
+                                        "keterangan": "RL = NA1 / NDT , RN = (NA2 + NA3) / NDT , RI = NA4 / NDT\tFaktor: a = 0,1 , b = 1 , c = 2\nNA1 = Jumlah publikasi di jurnal tidak terakreditasi. NA2 = Jumlah publikasi di jurnal nasional terakreditasi. NA3 = Jumlah publikasi di jurnal internasional.\nNA4 = Jumlah publikasi di jurnal internasional bereputasi. NDT = Jumlah dosen tetap.\n"
+                                    },
+                                    {
+                                        "nomor": "9.4.b.2",
+                                        "relasi": [
+                                            "5.f"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Jumlah publikasi di seminar/ tulisan di media massa dalam 3 tahun terakhir.",
+                                        "_4": "Jika RI ≥ a , maka Skor = 4 .",
+                                        "_3": "Jika RI < a dan RN ≥ b , maka Skor = 3 + (RI / a). \n Jika 0 < RI < a dan 0 < RN < b ,maka Skor = 2 + (2 x (RI/a)) + (RN/b) - ((RI x RN) / (a x b))\n",
+                                        "_2": "Jika RI < a dan RN ≥ b , maka Skor = 3 + (RI / a). \n Jika 0 < RI < a dan 0 < RN < b ,maka Skor = 2 + (2 x (RI/a)) + (RN/b) - ((RI x RN) / (a x b))\n",
+                                        "_1": "Jika RI = 0 dan RN = 0 dan RL ≥ c , maka Skor = 2. \nJika RI = 0 dan RN = 0 dan RL < c , maka Skor = (2 x RL) / c .",
+                                        "_0": "Jika RI = 0 dan RN = 0 dan RL ≥ c , maka Skor = 2. \nJika RI = 0 dan RN = 0 dan RL < c , maka Skor = (2 x RL) / c .",
+                                        "keterangan": "RL = NB1 / NDT , RN = NB2 / NDT , RI = NB3 / NDT\tFaktor: a = 0,1 , b = 1 , c = 2\nNB1 = Jumlah publikasi di seminar wilayah/lokal/perguruan tinggi. NB2 = Jumlah publikasi di seminar penelitian nasional.\nNB3 = Jumlah publikasi di seminar penelitian internasional. NC1 = Jumlah tulisan di media massa nasional.\nNC2 = Jumlah tulisan di media massa internasional. NDT = Jumlah dosen tetap.\nn"
+                                    },
+                                    {
+                                        "nomor": "9.4.b.3",
+                                        "relasi": [
+                                            "5.g"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Jumlah artikel karya ilmiah dosen tetap yang disitasi dalam 3 tahun terakhir.",
+                                        "_4": "Jika RS ≥ 0,5 , maka Skor = 4 .",
+                                        "_3": "Jika RS < 0,5 , maka Skor = 2 + (4 x RS).\n",
+                                        "_2": "Jika RS < 0,5 , maka Skor = 2 + (4 x RS).\n",
+                                        "_1": null,
+                                        "_0": null,
+                                        "keterangan": "RS = NAS / NDT\nNAS = jumlah artikel yang disitasi. NDT = Jumlah dosen tetap.\n"
+                                    },
+                                    {
+                                        "nomor": "9.4.b.4",
+                                        "relasi": [
+                                            "5.h-1",
+                                            "5.h-2",
+                                            "5.h-3",
+                                            "5.h-4"
+                                        ],
+                                        "rumus": null,
+                                        "isi": "Jumlah luaran penelitian dan PkM dosen tetap dalam 3 tahun terakhir.",
+                                        "_4": "Jika RLP ≥ 1 , maka Skor 4 .",
+                                        "_3": "Jika RLP < 1 , maka Skor = 2 + (2 x RLP) .\n",
+                                        "_2": "Jika RLP < 1 , maka Skor = 2 + (2 x RLP) .\n",
+                                        "_1": null,
+                                        "_0": null,
+                                        "keterangan": "RLP = (4 x NA + 2 x (NB + NC) + ND) / NDT\nNA = Jumlah luaran penelitian/PkM yang mendapat pengakuan HKI (Paten, Paten Sederhana)\nNB = Jumlah luaran penelitian/PkM yang mendapat pengakuan HKI (Hak Cipta, Desain Produk Industri, Perlindungan Varietas Tanaman, Desain Tata Letak Sirkuit Terpadu, dll.)\nNC = Jumlah luaran penelitian/PkM dalam bentuk Teknologi Tepat Guna, Produk (Produk Terstandarisasi, Produk Tersertifikasi),\nKarya Seni, Rekayasa Sosial.\nND = Jumlah luaran penelitian/PkM yang diterbitkan dalam bentuk Buku ber-ISBN, Book Chapter . NDT = Jumlah dosen tetap.\n"
+                                    }
+                                ]
+                            }
+                        ],
+                        "indikators": null
+                    }
+                ],
+                "indikators": null
+            }
+        ],
+        "indikators": null
+    },
+    {
+        "nomor": "D",
+        "judul": "Analisis dan Penetapan Program Pengembangan",
+        "butir": [
+            {
+                "nomor": "1",
+                "judul": "Analisis dan Capaian Kinerja",
+                "butir": null,
+                "indikators": [
+                    {
+                        "nomor": "1.1",
+                        "relasi": null,
+                        "rumus": null,
+                        "isi": "Keserbacakupan (kelengkapan, keluasan, dan kedalaman), ketepatan, ketajaman, dan kesesuaian analisis capaian kinerja serta konsistensi dengan setiap kriteria.",
+                        "_4": "Perguruan tinggi telah melakukan analisis capaian kinerja yang:\n1)\tanalisisnya didukung oleh data/informasi yang relevan (merujuk pada pencapaian standar mutu perguruan tinggi) dan berkualitas (andal dan memadai) yang didukung oleh keberadaan pangkalan data institusi yang terintegrasi.\n2)\tkonsisten dengan seluruh kriteria yang diuraikan sebelumnya,\n3)\tanalisisnya dilakukan secara komprehensif, tepat, dan tajam untuk mengidentifikasi akar masalah institusi.\n4)\thasilnya dipublikasikan kepada para pemangku kepentingan internal dan eksternal serta mudah diakses.",
+                        "_3": "Perguruan tinggi telah melakukan analisis capaian kinerja yang:\n 1)\tanalisisnya didukung oleh data/informasi yang relevan (merujuk pada pencapaian standar mutu perguruan tinggi) dan berkualitas (andal dan memadai) yang didukung oleh keberadaan pangkalan data institusi yang belum terintegrasi.\n\n2)\tkonsisten dengan sebagian besar (7 s.d. 8) kriteria yang diuraikan sebelumnya,\n3)\tanalisisnya dilakukan secara komprehensif dan tepat untuk mengidentifikasi akar masalah institusi.\n4)\thasilnya dipublikasikan kepada para pemangku kepentingan internal serta mudah diakses.\n",
+                        "_2": "Perguruan tinggi telah melakukan analisis capaian kinerja yang:\n 1)\tanalisisnya didukung oleh data/informasi yang relevan (merujuk pada pencapaian standar mutu perguruan tinggi) dan berkualitas (andal dan memadai).\n2)\tkonsisten dengan sebagian (5 s.d. 6) kriteria yang diuraikan sebelumnya,\n3)\tanalisisnya dilakukan secara komprehensif untuk mengidentifikasi akar masalah institusi.\n4)\thasilnya dipublikasikan kepada para pemangku kepentingan internal.\n",
+                        "_1": "Perguruan tinggi telah melakukan analisis capaian kinerja yang:\n 1)\tanalisisnya tidak sepenuhnya didukung oleh data/informasi yang relevan (merujuk pada pencapaian standar mutu perguruan tinggi) dan berkualitas (andal dan memadai).\n2)\tkonsisten dengan sebagian kecil (kurang dari 5) kriteria yang diuraikan sebelumnya,\n3)\tanalisisnya dilakukan tidak secara komprehensif untuk mengidentifikasi akar masalah institusi.\n4)\thasilnya tidak dipublikasikan.\n",
+                        "_0": "Perguruan tinggi tidak melakukan analisis capaian kinerja.\n",
+                        "keterangan": null
+                    }
+                ]
+            },
+            {
+                "nomor": "2",
+                "judul": "Analisis SWOT atau Analisis lain yang Relevan",
+                "butir": null,
+                "indikators": [
+                    {
+                        "nomor": "2.1",
+                        "relasi": null,
+                        "rumus": null,
+                        "isi": "Ketepatan analisis SWOT atau analisis yang relevan didalam mengembangkan strategi institusi.",
+                        "_4": "Perguruan tinggi melakukan analisis SWOT atau analisis lain yang relevan, serta memenuhi aspek-aspek sebagai berikut:\n1) melakukan identifikasi kekuatan atau faktor pendorong, kelemahan atau faktor penghambat, peluang dan ancaman yang dihadapi institusi dilakukan secara tepat,\n 2)\tmemiliki keterkaitan dengan hasil analisis capaian kinerja,\n3)\tmerumuskan strategi pengembangan institusi yang berkesesuaian, dan\n4)\tmenghasilkan program program pengembangan alternatif yang tepat.\n",
+                        "_3": "Perguruan tinggi melakukan analisis SWOT atau analisis lain yang relevan, serta memenuhi aspek-aspek sebagai berikut:\n1) melakukan identifikasi kekuatan atau faktor pendorong, kelemahan atau faktor penghambat, peluang dan ancaman yang dihadapi institusi dilakukan secara tepat,\n2)\tmemiliki keterkaitan dengan hasil analisis capaian kinerja, dan\n3)\tmerumuskan strategi pengembangan institusi yang berkesesuaian.\n",
+                        "_2": "Perguruan tinggi melakukan analisis SWOT atau analisis lain yang relevan, serta memenuhi aspek-aspek sebagai berikut:\n1) melakukan identifikasi kekuatan atau faktor pendorong, kelemahan atau faktor penghambat, peluang dan ancaman yang dihadapi institusi dilakukan secara tepat, dan\n2) memiliki keterkaitan dengan hasil analisis capaian kinerja.",
+                        "_1": "Perguruan tinggi melakukan analisis SWOT atau analisis lain yang memenuhi aspek- aspek sebagai berikut:\n1) melakukan identifikasi kekuatan atau faktor pendorong, kelemahan atau faktor penghambat, peluang dan ancaman yang dihadapi institusi, dan\n2) memiliki keterkaitan dengan hasil analisis capaian kinerja, namun tidak terstruktur dan tidak sistematis.",
+                        "_0": "Perguruan tinggi tidak melakukan analisis untuk mengembangkan strategi institusi.",
+                        "keterangan": null
+                    }
+                ]
+            },
+            {
+                "nomor": "3",
+                "judul": "Program Pengembangan",
+                "butir": null,
+                "indikators": [
+                    {
+                        "nomor": "3.1",
+                        "relasi": null,
+                        "rumus": null,
+                        "isi": "Ketepatan di dalam menetapkan prioritas program pengembangan.",
+                        "_4": "Perguruan tinggi menetapkan prioritas program pengembangan berdasarkan hasil analisis SWOT atau analisis lainnya yang mempertimbangkan secara komprehensif:\n1)\tkapasitas institusi,\n2)\tkebutuhan institusi di masa depan,\n3)\trencana strategis institusi yang berlaku,\n4)\taspirasi dari pemangku kepentingan internal dan eksternal, dan\n5)\tprogram yang menjamin keberlanjutan.\n",
+                        "_3": "Perguruan tinggi menetapkan prioritas program pengembangan berdasarkan hasil analisis SWOT atau analisis lainnya yang mempertimbangkan secara komprehensif:\n1)\tkapasitas institusi,\n2)\tkebutuhan institusi di masa depan,\n3)\trencana strategis institusi yang berlaku, dan\n4)\taspirasi dari pemangku kepentingan internal.\n",
+                        "_2": "Perguruan tinggi menetapkan prioritas program pengembangan berdasarkan hasil analisis SWOT atau analisis lainnya yang mempertimbangkan secara komprehensif:\n1)\tkapasitas institusi,\n2)\tkebutuhan institusi di masa depan, dan\n3)\trencana strategis institusi yang berlaku.\n",
+                        "_1": "Perguruan tinggi menetapkan prioritas program pengembangan namun belum mempertimbangan secara komprehensif:\n1)\tkapasitas institusi,\n2)\tkebutuhan institusi, dan\n3)\trencana strategis institusi yang berlaku.\n",
+                        "_0": "Perguruan tinggi tidak menetapkan prioritas program pengembangan.",
+                        "keterangan": null
+                    }
+                ]
+            },
+            {
+                "nomor": "4",
+                "judul": "Program Berkelanjutan",
+                "butir": null,
+                "indikators": [
+                    {
+                        "nomor": "4.1",
+                        "relasi": null,
+                        "rumus": null,
+                        "isi": "Perguruan tinggi memiliki kebijakan, ketersediaan sumberdaya, kemampuan melaksanakan, dan kerealistikan program.",
+                        "_4": "Perguruan tinggi memiliki kebijakan dan upaya yang diturunkan ke dalam berbagai peraturan untuk menjamin keberlanjutan program yang mencakup:\n1)\talokasi sumber daya,\n2)\tkemampuan melaksanakan,\n3)\trencana penjaminan mutu yang berkelanjutan, dan\n4)\tkeberadaan dukungan\nstakeholders eksternal.\n",
+                        "_3": "Perguruan tinggi memiliki kebijakan dan upaya yang diturunkan ke dalam berbagai peraturan untuk menjamin keberlanjutan program yang mencakup:\n1)\talokasi sumber daya,\n2)\tkemampuan melaksanakan, dan\n3)\trencana penjaminan mutu yang berkelanjutan.\n",
+                        "_2": "Perguruan tinggi memiliki kebijakan dan upaya untuk menjamin keberlanjutan program yang mencakup:\n1)\talokasi sumber daya,\n2)\tkemampuan melaksanakan, dan\n3)\trencana penjaminan mutu yang berkelanjutan.\n",
+                        "_1": "Perguruan tinggi memiliki kebijakan dan upaya namun belum cukup untuk menjamin keberlanjutan program.",
+                        "_0": "Perguruan tinggi tidak memiliki kebijakan dan upaya untuk menjamin keberlanjutan program.",
+                        "keterangan": null
+                    }
+                ]
+            }
+        ],
+        "indikators": null
+    }
+]

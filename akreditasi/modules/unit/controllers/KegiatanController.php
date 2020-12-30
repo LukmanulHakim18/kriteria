@@ -180,7 +180,7 @@ class KegiatanController extends BaseController
     public function actionDownloadDetail($dokumen, $unit, $id){
         ini_set('max_execution_time', 5 * 60);
         $model = KegiatanUnitDetail::findOne($dokumen);
-        $fileDokumen = UnitDirectoryHelper::getPath($unit). '/'.$model->nama_file;
+        $fileDokumen = UnitDirectoryHelper::getPath($unit). '/'.$model->isi_file;
 
         return Yii::$app->response->sendFile($fileDokumen);
     }
@@ -193,7 +193,7 @@ class KegiatanController extends BaseController
             $kegiatanId = $data['id'];
 
             $model = KegiatanUnitDetail::findOne($dokumenId);
-            $nama_file = $model->nama_file;
+            $nama_file = $model->isi_file;
             if($model->delete()){
                 FileHelper::unlink(UnitDirectoryHelper::getPath($unitId).'/'.$nama_file);
             }

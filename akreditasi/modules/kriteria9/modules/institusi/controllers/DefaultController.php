@@ -3,6 +3,7 @@
 namespace akreditasi\modules\kriteria9\modules\institusi\controllers;
 
 use common\models\FakultasAkademi;
+use common\models\Profil;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 
@@ -19,9 +20,11 @@ class DefaultController extends BaseController
     public function actionIndex()
     {
         $modelFakultas = FakultasAkademi::find()->all();
+        $modelProfil = Profil::findOne(['type'=>Profil::TIPE_INSTITUSI]);
 
         return $this->render('index',[
-            'modelFakultas'=>$modelFakultas
+            'modelFakultas'=>$modelFakultas,
+            'modelProfil'=>$modelProfil
         ]);
     }
 }

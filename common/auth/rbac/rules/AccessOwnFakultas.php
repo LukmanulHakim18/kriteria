@@ -13,6 +13,12 @@ class AccessOwnFakultas extends Rule
 {
     public $name= 'accessOwnFakultas';
 
+    /**
+     * @param int|string $user
+     * @param Item $item
+     * @param array $params
+     * @return bool
+     */
     public function execute($user, $item, $params)
     {
         $identity = User::findOne($user);

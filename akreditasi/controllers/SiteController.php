@@ -3,6 +3,7 @@ namespace akreditasi\controllers;
 
 use akreditasi\models\ResendVerificationEmailForm;
 use akreditasi\models\VerifyEmailForm;
+use common\models\ProfilInstitusi;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
@@ -74,7 +75,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $struktur = ProfilInstitusi::findAll(['nama'=>'struktur_organisasi']);
+        return $this->render('index', compact('struktur'));
     }
 
     /**

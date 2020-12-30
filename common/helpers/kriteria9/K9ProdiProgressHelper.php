@@ -20,99 +20,24 @@ use yii\helpers\Json;
 class K9ProdiProgressHelper implements IK9ProgressHelper
 {
 
+    use K9ProgressTrait;
 
-    /**
-     * Membandingkan antara json dan data yang ada.
-     * Tahap: 1. Dapatkan data dari json.
-     * 2. Hitung semua jumlah dokumen yang ada.
-     * 3. Bandingkan jumlah dokumen dengan jumlah dokumen dengan nomor unique yang ada.
-     * 4. Hitung perbedaannya dan return progress
-     * @param $led
-     * @param $detail
-     * @param $kriteria
-     * @return double
-     */
+
     public static function getDokumenLedProgress($led, $detail, $kriteria)
     {
 
-        $progress = 0;
-        $filename = 'led_prodi.json';
-        $filejson = file_get_contents(Yii::getAlias('@required/kriteria9/aps/' . $filename));
-
-        $json = Json::decode($filejson);
-
-        $dataJson = $json[$kriteria - 1];
-        $totalDokumenJson = 0;
-        foreach ($dataJson['butir'] as $butir) {
-
-            $missing = 0;
-            foreach ($butir['dokumen_sumber'] as $doksum) {
-                if (empty($doksum['kode'])) {
-                    $missing += 1;
-                }
-            }
-
-            foreach ($butir['dokumen_pendukung'] as $dokpen) {
-                if (empty($dokpen['kode'])) {
-                    $missing += 1;
-                }
-            }
-
-
-            $dataSumber = sizeof($butir['dokumen_sumber']);
-            $dataPendukung = sizeof($butir['dokumen_pendukung']);
-            $data = $dataSumber + $dataPendukung - $missing;
-            $totalDokumenJson += $data;
-        }
-
-        $dokumenKriteria = $detail->select('kode_dokumen')->distinct()->andWhere(['jenis_dokumen' => Constants::SUMBER])->orWhere(['jenis_dokumen' => Constants::PENDUKUNG])->all();
-        $totalDokumenKriteria = sizeof($dokumenKriteria);
-
-        $progress = round((($totalDokumenKriteria / $totalDokumenJson) * 100), 2);
-
-
-        return $progress;
+      return self::hitung($detail,$kriteria,K9ProdiJsonHelper::getJsonKriteriaLed($kriteria));
 
     }
 
     public static function getDokumenLkProgress($lk, $dokumen, $kriteria)
     {
-        $progress = 0;
-        $filename = 'lkps_prodi_Sarjana.json';
-        $filejson = file_get_contents(Yii::getAlias('@required/kriteria9/aps/' . $filename));
 
-        $json = Json::decode($filejson);
+        $prodi = $lk->lkProdi->akreditasiProdi->prodi;
+        return self::hitung($dokumen, $kriteria,K9ProdiJsonHelper::getJsonKriteriaLk($kriteria,$prodi->jenjang));
 
-        $dataJson = $json[$kriteria - 1];
-        $totalDokumenJson = 0;
-        foreach ($dataJson['butir'] as $butir) {
-
-            $missing = 0;
-            foreach ($butir['dokumen_sumber'] as $doksum) {
-                if (empty($doksum['kode'])) {
-                    $missing += 1;
-                }
-            }
-
-            foreach ($butir['dokumen_pendukung'] as $dokpen) {
-                if (empty($dokpen['kode'])) {
-                    $missing += 1;
-                }
-            }
-
-
-            $dataSumber = sizeof($butir['dokumen_sumber']);
-            $dataPendukung = sizeof($butir['dokumen_pendukung']);
-            $data = $dataSumber + $dataPendukung - $missing;
-            $totalDokumenJson += $data;
-        }
-
-        $dokumenKriteria = $dokumen->select('kode_dokumen')->distinct()->andWhere(['jenis_dokumen' => Constants::SUMBER])->orWhere(['jenis_dokumen' => Constants::PENDUKUNG])->all();
-        $totalDokumenKriteria = sizeof($dokumenKriteria);
-
-        $progress = round((($totalDokumenKriteria / $totalDokumenJson) * 50), 2);
-
-        return $progress;
 
     }
+
+
 }

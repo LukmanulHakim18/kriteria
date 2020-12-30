@@ -58,16 +58,7 @@ use yii\web\JsExpression;
     <?=$form->field($detailModel, 'berkas[]')->widget(kartik\file\FileInput::class, [
         'options' => ['multiple'=>true],
         'pluginOptions' => [
-            'theme' => 'explorer-fas',
-            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
             'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-            'showUpload' => false,
-            'previewFileType' => 'any',
-            'fileActionSettings' => [
-                'showZoom' => true,
-                'showRemove' => false,
-                'showUpload' => false,
-            ],
         ]
 
     ])?>

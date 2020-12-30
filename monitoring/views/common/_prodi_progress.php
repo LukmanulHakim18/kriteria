@@ -16,12 +16,12 @@ $url = ($jenis === ProgramStudi::PROGRAM_STUDI || $jenis === 'institusi') ? [
     'akreditasi/detail',
     'id' => $model->id,
     'prodi' => $prodi->id
-] : ($jenis === FakultasAkademi::FAKULTAS_AKADEMI) ? [
+] : (($jenis === FakultasAkademi::FAKULTAS_AKADEMI) ? [
     'akreditasi/detail',
     'id' => $model->id,
     'prodi' => $prodi->id,
     'fakultas' => $prodi->fakultasAkademi->id
-] : '';
+] : '');
 ?>
 <div class="row">
     <div class="col-lg-12">

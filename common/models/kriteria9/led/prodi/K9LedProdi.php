@@ -25,6 +25,10 @@ use yii\behaviors\TimestampBehavior;
  * @property K9LedProdiKriteria7 $k9LedProdiKriteria7s
  * @property K9LedProdiKriteria8 $k9LedProdiKriteria8s
  * @property K9LedProdiKriteria9 $k9LedProdiKriteria9s
+ *
+ * @property K9LedProdiNarasiKondisiEksternal $narasiEksternal
+ * @property K9LedProdiNarasiProfilUpps $narasiProfil
+ * @property K9LedProdiNarasiAnalisis $narasiAnalisis
  */
 class K9LedProdi extends \yii\db\ActiveRecord
 {
@@ -164,9 +168,24 @@ class K9LedProdi extends \yii\db\ActiveRecord
         $kriteria8 = $this->k9LedProdiKriteria8s->progress;
         $kriteria9 = $this->k9LedProdiKriteria9s->progress;
 
-        $progress = round((($kriteria1+$kriteria2+$kriteria3+$kriteria4+$kriteria5+$kriteria6+$kriteria7+$kriteria8+$kriteria9)/9), 2);
+        $progressKriteria = round((($kriteria1+$kriteria2+$kriteria3+$kriteria4+$kriteria5+$kriteria6+$kriteria7+$kriteria8+$kriteria9)/9), 2);
+
+        $progress = round(($this->narasiEksternal->progress + $this->narasiProfil->progress + $this->narasiAnalisis->progress + $progressKriteria) / 4, 2);
         $this->progress = $progress;
 
         $this->save(false);
+    }
+
+    public function getNarasiEksternal()
+    {
+        return $this->hasOne(K9LedProdiNarasiKondisiEksternal::class, ['id_led_prodi'=>'id']);
+    }
+    public function getNarasiProfil()
+    {
+        return $this->hasOne(K9LedProdiNarasiProfilUpps::class, ['id_led_prodi'=>'id']);
+    }
+    public function getNarasiAnalisis()
+    {
+        return $this->hasOne(K9LedProdiNarasiAnalisis::class, ['id_led_prodi'=>'id']);
     }
 }

@@ -3,39 +3,24 @@
 
 namespace admin\models;
 
-
+use common\helpers\kriteria9\K9InstitusiJsonHelper;
+use common\helpers\NomorKriteriaHelper;
 use common\models\kriteria9\akreditasi\K9AkreditasiInstitusi;
 use common\models\kriteria9\led\institusi\K9LedInstitusi;
-use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria1;
-use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria2;
-use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria3;
-use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria4;
-use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria5;
-use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria6;
-use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria7;
-use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria8;
-use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria9;
-use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKriteria1;
-use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKriteria2;
-use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKriteria3;
-use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKriteria4;
-use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKriteria5;
-use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKriteria6;
-use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKriteria7;
-use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKriteria8;
-use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKriteria9;
+use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiAnalisis;
+use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiKondisiEksternal;
+use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiProfilInstitusi;
 use common\models\kriteria9\lk\institusi\K9LkInstitusi;
-use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria6;
-use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria7;
-use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria8;
-use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria9;
-use InvalidArgumentException;
+use common\models\kriteria9\penilaian\institusi\K9PenilaianInstitusiAnalisis;
+use common\models\kriteria9\penilaian\institusi\K9PenilaianInstitusiEksternal;
+use common\models\kriteria9\penilaian\institusi\K9PenilaianInstitusiKriteria;
+use common\models\kriteria9\penilaian\institusi\K9PenilaianInstitusiProfil;
+use common\models\ProfilInstitusi;
 use Yii;
 use yii\base\Exception;
 use yii\base\Model;
-use yii\db\Transaction;
+use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
-use yii\helpers\Json;
 
 class K9AkreditasiInstitusiForm extends Model
 {
@@ -56,6 +41,8 @@ class K9AkreditasiInstitusiForm extends Model
      */
     private $_led_institusi;
 
+    private $_profilInstitusi;
+
     public static function findOne($id)
     {
         $model = new K9AkreditasiInstitusiForm();
@@ -67,7 +54,6 @@ class K9AkreditasiInstitusiForm extends Model
 
 
         return $model;
-
     }
 
     public function rules()
@@ -80,6 +66,8 @@ class K9AkreditasiInstitusiForm extends Model
 
     public function createAkreditasi()
     {
+        $profil = ProfilInstitusi::find()->all();
+        $this->_profilInstitusi = ArrayHelper::map($profil, 'nama', 'isi');
         $transaction = Yii::$app->db->beginTransaction();
 
         try {
@@ -90,8 +78,9 @@ class K9AkreditasiInstitusiForm extends Model
             $this->_akreditasiInstitusi->save();
 
             $this->createFolder();
-            $this->createLk($transaction);
-            $this->createLed($transaction);
+            $this->createLk();
+            $this->createLed();
+            $this->createPenilaian();
 
             $transaction->commit();
         } catch (Exception $e) {
@@ -143,15 +132,9 @@ class K9AkreditasiInstitusiForm extends Model
         } catch (Exception $e) {
             throw $e;
         }
-
-
     }
 
-    /**
-     * @param $transaction Transaction
-     * @throws Exception
-     */
-    private function createLk($transaction)
+    private function createLk()
     {
         $this->_lk_institusi = new K9LkInstitusi();
 
@@ -160,37 +143,37 @@ class K9AkreditasiInstitusiForm extends Model
         $this->_lk_institusi->progress = 0;
 
 
-        if (!$this->_lk_institusi->save(false)) {
-            $transaction->rollback();
-            throw new InvalidArgumentException($this->_lk_institusi->errors);
+        $this->_lk_institusi->save(false);
+        $json = K9InstitusiJsonHelper::getAllJsonLk($this->_profilInstitusi['jenis']);
 
-        }
-        $fileJson = 'lkpt_institusi_akademik.json';
-        $json = Json::decode(file_get_contents(Yii::getAlias('@common/required/kriteria9/apt/' . $fileJson)));
-        $attr = ['id_lk_institusi' => $this->_lk_institusi->id, 'progress' => 0];
-        foreach ($json as $kriteria) {
-            $class = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria' . $kriteria['kriteria'];
+        foreach ($json as /** @var Lk $kriteria */ $kriteria) {
+            $kritClass = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria' . $kriteria->kriteria;
+            $kritModel = new $kritClass;
+            $kritModel->setAttributes([
+                'id_lk_institusi' => $this->_lk_institusi->id,
+                'progress_narasi' => 0,
+                'progress_dokumen' => 0,
+                'progress' => 0
+            ]);
+
+            $kritModel->save(false);
+
+
+            $class = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria' . $kriteria->kriteria . 'Narasi';
+            $attr = ['id_lk_institusi_kriteria' . $kriteria->kriteria => $kritModel->id, 'progress' => 0];
+
             $kriteriaInstitusi = new $class;
             $kriteriaInstitusi->setAttributes($attr);
-            foreach ($kriteria['butir'] as $key => $item) {
-                $modelAttribute = '_' . str_replace('.', '_', $item['tabel']);
-                $kriteriaInstitusi->$modelAttribute = $item['template'];
-                if (!$kriteriaInstitusi->save()) {
-                    $transaction->rollBack();
-                    throw new InvalidArgumentException($kriteriaInstitusi->errors);
-                }
+            foreach ($kriteria->butir as $key => /** @var TabelLk */ $item) {
+                $modelAttribute = NomorKriteriaHelper::changeToDbFormat($item->tabel);
+                $kriteriaInstitusi->$modelAttribute = $item->template;
             }
+
+            $kriteriaInstitusi->save();
         }
-
-        $this->createFolder();
-
-
     }
 
-    /**
-     * @param $transaction Transaction
-     */
-    private function createLed($transaction)
+    private function createLed()
     {
         $this->_led_institusi = new K9LedInstitusi();
 
@@ -198,148 +181,64 @@ class K9AkreditasiInstitusiForm extends Model
         $this->_led_institusi->progress = 0;
 
 
-        if (!$this->_led_institusi->save(false)) {
-            $transaction->rollback();
-            throw new InvalidArgumentException($this->_led_institusi->errors);
-
-        }
+        $this->_led_institusi->save(false);
 
         $attr = ['id_led_institusi' => $this->_led_institusi->id, 'progress' => 0];
 
-        $kriteria1Institusi = new K9LedInstitusiKriteria1();
-        $kriteria2Institusi = new K9LedInstitusiKriteria2();
-        $kriteria3Institusi = new K9LedInstitusiKriteria3();
-        $kriteria4Institusi = new K9LedInstitusiKriteria4();
-        $kriteria5Institusi = new K9LedInstitusiKriteria5();
-        $kriteria6Institusi = new K9LedInstitusiKriteria6();
-        $kriteria7Institusi = new K9LedInstitusiKriteria7();
-        $kriteria8Institusi = new K9LedInstitusiKriteria8();
-        $kriteria9Institusi = new K9LedInstitusiKriteria9();
+        for ($i = 1; $i <= 9; $i++) {
+            $kriteria_class_path = 'common\\models\\kriteria9\\led\\institusi\\K9LedInstitusiKriteria' . $i;
+            $kriteria_narasi_class_path = 'common\\models\\kriteria9\\led\\institusi\\K9LedInstitusiNarasiKriteria' . $i;
 
-        $narasiKriteria1Institusi = new K9LedInstitusiNarasiKriteria1();
-        $narasiKriteria2Institusi = new K9LedInstitusiNarasiKriteria2();
-        $narasiKriteria3Institusi = new K9LedInstitusiNarasiKriteria3();
-        $narasiKriteria4Institusi = new K9LedInstitusiNarasiKriteria4();
-        $narasiKriteria5Institusi = new K9LedInstitusiNarasiKriteria5();
-        $narasiKriteria6Institusi = new K9LedInstitusiNarasiKriteria6();
-        $narasiKriteria7Institusi = new K9LedInstitusiNarasiKriteria7();
-        $narasiKriteria8Institusi = new K9LedInstitusiNarasiKriteria8();
-        $narasiKriteria9Institusi = new K9LedInstitusiNarasiKriteria9();
+            $kriteriaInstitusi = new $kriteria_class_path;
+            $kriteriaInstitusi->attributes = $attr;
+            $kriteriaInstitusi->save();
 
-        $kriteria1Institusi->attributes = $attr;
-        $kriteria2Institusi->attributes = $attr;
-        $kriteria3Institusi->attributes = $attr;
-        $kriteria4Institusi->attributes = $attr;
-        $kriteria5Institusi->attributes = $attr;
-        $kriteria6Institusi->attributes = $attr;
-        $kriteria7Institusi->attributes = $attr;
-        $kriteria8Institusi->attributes = $attr;
-        $kriteria9Institusi->attributes = $attr;
+            $narasi_attr = 'id_led_institusi_kriteria' . $i;
+            $narasiKriteriaInstitusi = new $kriteria_narasi_class_path;
+            $narasiKriteriaInstitusi->$narasi_attr = $kriteriaInstitusi->id;
+            $narasiKriteriaInstitusi->progress = 0;
 
-
-        if (!$kriteria1Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria1Institusi->errors);
-        }
-        $narasiKriteria1Institusi->id_led_institusi_kriteria1 = $kriteria1Institusi->id;
-        $narasiKriteria1Institusi->progress = 0;
-
-        if (!$kriteria2Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria2Institusi->errors);
-        }
-        $narasiKriteria2Institusi->id_led_institusi_kriteria2 = $kriteria2Institusi->id;
-        $narasiKriteria2Institusi->progress = 0;
-
-        if (!$kriteria3Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria3Institusi->errors);
-        }
-        $narasiKriteria3Institusi->id_led_institusi_kriteria3 = $kriteria3Institusi->id;
-        $narasiKriteria3Institusi->progress = 0;
-
-        if (!$kriteria4Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria4Institusi->errors);
+            $narasiKriteriaInstitusi->save();
         }
 
-        $narasiKriteria4Institusi->id_led_institusi_kriteria4 = $kriteria4Institusi->id;
-        $narasiKriteria4Institusi->progress = 0;
+        $kondisiEksternal = new K9LedInstitusiNarasiKondisiEksternal();
+        $profil = new K9LedInstitusiNarasiProfilInstitusi();
+        $analisis = new K9LedInstitusiNarasiAnalisis();
 
-        if (!$kriteria5Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria5Institusi->errors);
-        }
+        $kondisiEksternal->id_led_institusi = $this->_led_institusi->id;
+        $kondisiEksternal->progress = 0;
 
-        $narasiKriteria5Institusi->id_led_institusi_kriteria5 = $kriteria5Institusi->id;
-        $narasiKriteria5Institusi->progress = 0;
+        $profil->id_led_institusi = $this->_led_institusi->id;
+        $profil->progress = 0;
 
-        if (!$kriteria6Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria6Institusi->errors);
-        }
+        $analisis->id_led_institusi = $this->_led_institusi->id;
+        $analisis->progress = 0;
 
-        $narasiKriteria6Institusi->id_led_institusi_kriteria6 = $kriteria6Institusi->id;
-        $narasiKriteria6Institusi->progress = 0;
+        $kondisiEksternal->save();
+        $profil->save();
+        $analisis->save();
+    }
 
-        if (!$kriteria7Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria7Institusi->errors);
-        }
+    private function createPenilaian()
+    {
+        $eksternal = new K9PenilaianInstitusiEksternal();
+        $profil = new K9PenilaianInstitusiProfil();
+        $kriteria = new K9PenilaianInstitusiKriteria();
+        $analisis = new K9PenilaianInstitusiAnalisis();
 
-        $narasiKriteria7Institusi->id_led_institusi_kriteria7 = $kriteria7Institusi->id;
-        $narasiKriteria7Institusi->progress = 0;
+        $attr = [
+            'id_akreditasi_institusi' => $this->_akreditasiInstitusi->id,
+            'status' => 'ready'
+        ];
 
-        if (!$kriteria8Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria8Institusi->errors);
-        }
-        $narasiKriteria8Institusi->id_led_institusi_kriteria8 = $kriteria8Institusi->id;
-        $narasiKriteria8Institusi->progress = 0;
+        $eksternal->setAttributes($attr);
+        $profil->setAttributes($attr);
+        $kriteria->setAttributes($attr);
+        $analisis->setAttributes($attr);
 
-        if (!$kriteria9Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($kriteria9Institusi->errors);
-        }
-        $narasiKriteria9Institusi->id_led_institusi_kriteria9 = $kriteria9Institusi->id;
-        $narasiKriteria9Institusi->progress = 0;
-
-        if (!$narasiKriteria1Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($narasiKriteria1Institusi->errors);
-        }
-        if (!$narasiKriteria2Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($narasiKriteria2Institusi->errors);
-        }
-        if (!$narasiKriteria3Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($narasiKriteria3Institusi->errors);
-        }
-        if (!$narasiKriteria4Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($narasiKriteria4Institusi->errors);
-        }
-        if (!$narasiKriteria5Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($narasiKriteria5Institusi->errors);
-        }
-        if (!$narasiKriteria6Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($narasiKriteria6Institusi->errors);
-        }
-        if (!$narasiKriteria7Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($narasiKriteria7Institusi->errors);
-        }
-        if (!$narasiKriteria8Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($narasiKriteria8Institusi->errors);
-        }
-        if (!$narasiKriteria9Institusi->save()) {
-            $transaction->rollBack();
-            throw new InvalidArgumentException($narasiKriteria9Institusi->errors);
-        }
-
+        $eksternal->save(false);
+        $profil->save(false);
+        $kriteria->save(false);
+        $analisis->save(false);
     }
 }

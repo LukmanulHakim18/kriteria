@@ -3,7 +3,6 @@
 
 namespace akreditasi\models\kriteria9\forms\lk\institusi;
 
-
 use Carbon\Carbon;
 use common\helpers\kriteria9\K9InstitusiDirectoryHelper;
 use yii\base\Model;
@@ -25,14 +24,14 @@ class K9TextLkInstitusiKriteriaDetailForm extends Model
         ];
     }
 
-    public function uploadText($id, $kriteria){
+    public function uploadText($id, $kriteria)
+    {
 
-        if ($this->validate()){
-
-            $detailClass = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria'.$kriteria.'Detail';
+        if ($this->validate()) {
+            $detailClass = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria' . $kriteria . 'Detail';
             $this->_dokumenLk = new $detailClass;
 
-            $detailAttr = 'id_lk_institusi_kriteria'.$kriteria;
+            $detailAttr = 'id_lk_institusi_kriteria' . $kriteria;
             $this->_dokumenLk->$detailAttr = $id;
             $this->_dokumenLk->nama_dokumen = $this->namaDokumen;
             $this->_dokumenLk->isi_dokumen = $this->isiDokumen;

@@ -36,7 +36,7 @@ class PencarianFakultasForm extends Model
 
         $this->_fakultas = FakultasAkademi::findOne($this->id_fakultas);
         if(!$this->_fakultas) return null;
-        return ['default/index','fakultas'=>$this->_fakultas->id];
+        return ['/fakultas/default/index','fakultas'=>$this->_fakultas->id];
     }
 
     /**

@@ -7,6 +7,15 @@ use common\models\Constants;
 use common\models\FakultasAkademi;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\akreditasi\K9AkreditasiInstitusi;
+use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria1;
+use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria2;
+use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria3;
+use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria4;
+use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria5;
+use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria6;
+use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria7;
+use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria8;
+use common\models\kriteria9\led\institusi\K9LedInstitusiKriteria9;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria1;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria2;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria3;
@@ -16,6 +25,11 @@ use common\models\kriteria9\led\prodi\K9LedProdiKriteria6;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria7;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria8;
 use common\models\kriteria9\led\prodi\K9LedProdiKriteria9;
+use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria1;
+use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria2;
+use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria3;
+use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria4;
+use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria5;
 use common\models\kriteria9\lk\prodi\K9LkProdiKriteria1;
 use common\models\kriteria9\lk\prodi\K9LkProdiKriteria2;
 use common\models\kriteria9\lk\prodi\K9LkProdiKriteria3;
@@ -27,8 +41,10 @@ use common\models\kriteria9\lk\prodi\K9LkProdiKriteria8;
 use common\models\Profil;
 use common\models\ProfilInstitusi;
 use common\models\ProgramStudi;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii2mod\collection\Collection;
 
 class BaseController extends Controller
 {
@@ -122,8 +138,49 @@ class BaseController extends Controller
         return [$kriteria1, $kriteria2, $kriteria3, $kriteria4, $kriteria5, $kriteria6, $kriteria7, $kriteria8];
     }
 
+    protected function getArrayKriteraLedInstitusi($led)
+    {
+        $kriteria1 = K9LedInstitusiKriteria1::findOne(['id_led_institusi' => $led]);
+        $kriteria2 = K9LedInstitusiKriteria2::findOne(['id_led_institusi' => $led]);
+        $kriteria3 = K9LedInstitusiKriteria3::findOne(['id_led_institusi' => $led]);
+        $kriteria4 = K9LedInstitusiKriteria4::findOne(['id_led_institusi' => $led]);
+        $kriteria5 = K9LedInstitusiKriteria5::findOne(['id_led_institusi' => $led]);
+        $kriteria6 = K9LedInstitusiKriteria6::findOne(['id_led_institusi' => $led]);
+        $kriteria7 = K9LedInstitusiKriteria7::findOne(['id_led_institusi' => $led]);
+        $kriteria8 = K9LedInstitusiKriteria8::findOne(['id_led_institusi' => $led]);
+        $kriteria9 = K9LedInstitusiKriteria9::findOne(['id_led_institusi' => $led]);
+
+        return [
+            $kriteria1,
+            $kriteria2,
+            $kriteria3,
+            $kriteria4,
+            $kriteria5,
+            $kriteria6,
+            $kriteria7,
+            $kriteria8,
+            $kriteria9
+        ];
+    }
+
+    protected function getArrayKriteriaLkInstitusi($lk)
+    {
+        $kriteria1 = K9LkInstitusiKriteria1::findOne(['id_lk_institusi' => $lk]);
+        $kriteria2 = K9LkInstitusiKriteria2::findOne(['id_lk_institusi' => $lk]);
+        $kriteria3 = K9LkInstitusiKriteria3::findOne(['id_lk_institusi' => $lk]);
+        $kriteria4 = K9LkInstitusiKriteria4::findOne(['id_lk_institusi' => $lk]);
+        $kriteria5 = K9LkInstitusiKriteria5::findOne(['id_lk_institusi' => $lk]);
+
+        return [$kriteria1, $kriteria2, $kriteria3, $kriteria4, $kriteria5];
+    }
+
     protected function findAkreditasiProdiTerakhir()
     {
         return K9Akreditasi::find()->where(['jenis_akreditasi'=>Constants::PRODI])->orderBy('id DESC')->one();
+    }
+
+    protected function getProfilInstitusi()
+    {
+        return new Collection(ArrayHelper::map($this->findProfilInstitusi(), 'nama', 'isi'));
     }
 }

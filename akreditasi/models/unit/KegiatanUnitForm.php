@@ -3,7 +3,6 @@
 
 namespace akreditasi\models\unit;
 
-
 use Carbon\Carbon;
 use common\helpers\UnitDirectoryHelper;
 use common\models\Constants;
@@ -47,11 +46,11 @@ class KegiatanUnitForm extends Model
 
     private $_kegiatan;
 
-    public function __construct($id = null,$config = [])
+    public function __construct($id = null, $config = [])
     {
-        if($id !== null){
+        if ($id !== null) {
             $this->_kegiatan = KegiatanUnit::findOne($id);
-            if(!$this->_kegiatan){
+            if (!$this->_kegiatan) {
                 throw new InvalidArgumentException('Tidak ditemukan');
             }
             $this->setAttributes([
@@ -72,12 +71,12 @@ class KegiatanUnitForm extends Model
             [['sk_kegiatan','laporan_kegiatan','absensi'],'file','maxSize'=>Constants::MAX_UPLOAD_SIZE(),'extensions'=>Constants::ALLOWED_EXTENSIONS,'skipOnEmpty'=>true],
             [['foto_kegiatan','sertifikat','dokumen_lainnya'],'file','maxSize'=>Constants::MAX_UPLOAD_SIZE(),'extensions'=>Constants::ALLOWED_EXTENSIONS,'skipOnEmpty'=>true,'maxFiles'=>10]
         ];
-
     }
 
-    public function save($path){
+    public function save($path)
+    {
         $transaction = \Yii::$app->db->beginTransaction();
-        try{
+        try {
             $kegiatan = new KegiatanUnit();
             $kegiatan->setAttributes([
                 'id_unit'=>$this->id_unit,
@@ -88,15 +87,19 @@ class KegiatanUnitForm extends Model
             ]);
             $kegiatan->save(false);
             $uploadFile = $this->upload($path);
-            if(!empty($uploadFile)){
-                foreach ($uploadFile as $k=>$file){
-                    $detail = new KegiatanUnitDetail();
-                    $detail->id_kegiatan_unit = $kegiatan->id;
-                    $detail->bentuk_file = $file['bentuk_file'];
-                    $detail->jenis_file = $k;
-                    $detail->isi_file = $file['isi_file'];
-                    $detail->nama_file = StringHelper::mb_ucfirst(str_replace("_", ' ', $k));
-                    $detail->save(false);
+
+            if (!empty($uploadFile)) {
+                foreach ($uploadFile as $k => $file) {
+                   foreach ($file as $value){
+                       $detail = new KegiatanUnitDetail();
+                       $detail->id_kegiatan_unit = $kegiatan->id;
+                       $detail->bentuk_file = $value['bentuk_file'];
+                       $detail->jenis_file = $k;
+                       $detail->isi_file = $value['isi_file'];
+                       $detail->nama_file = StringHelper::mb_ucfirst(str_replace('_', ' ', $k));
+                       $detail->save(false);
+                   }
+
                 }
             }
 
@@ -104,17 +107,17 @@ class KegiatanUnitForm extends Model
             $transaction->commit();
 
             return $kegiatan;
-        }catch (\yii\db\Exception $exception){
+        } catch (\yii\db\Exception $exception) {
             $transaction->rollBack();
             throw $exception;
         }
-
     }
 
-    public function update($path){
+    public function update($path)
+    {
         $transaction = \Yii::$app->db->beginTransaction();
 
-        try{
+        try {
             $this->_kegiatan->setAttributes([
                 'nama'=>$this->nama,
                 'deskripsi'=>$this->deskripsi,
@@ -123,52 +126,48 @@ class KegiatanUnitForm extends Model
             ]);
             $this->_kegiatan->save(false);
             $uploadFile = $this->upload($path);
-            foreach ($uploadFile as $k=>$array){
-                foreach ($array as $file){
+            foreach ($uploadFile as $k => $array) {
+                foreach ($array as $file) {
                     $detail = new KegiatanUnitDetail();
                     $detail->id_kegiatan_unit = $this->_kegiatan->id;
                     $detail->bentuk_file = $file['bentuk_file'];
                     $detail->jenis_file = $k;
                     $detail->isi_file = $file['isi_file'];
-                    $detail->nama_file = StringHelper::mb_ucfirst(str_replace("_", ' ', $k));
+                    $detail->nama_file = StringHelper::mb_ucfirst(str_replace('_', ' ', $k));
                     $detail->save(false);
                 }
-
             }
 
             $transaction->commit();
 
             return $this->_kegiatan;
-        }catch (\yii\db\Exception $exception){
+        } catch (\yii\db\Exception $exception) {
             $transaction->rollBack();
             throw $exception;
         }
-
-
-
     }
 
-    public function upload($path){
+    public function upload($path)
+    {
         FileHelper::createDirectory($path);
         $allfile = [];
-        if(!empty($this->sk_kegiatan)){
-           $allfile[KegiatanUnitDetail::JENIS_SK_KEGIATAN] = $this->uploadFiles($this->sk_kegiatan,$path);
-
+        if (!empty($this->sk_kegiatan)) {
+            $allfile[KegiatanUnitDetail::JENIS_SK_KEGIATAN] = $this->uploadFiles($this->sk_kegiatan, $path);
         }
-        if(!empty($this->absensi)){
-            $allfile[KegiatanUnitDetail::JENIS_ABSENSI] = $this->uploadFiles($this->absensi,$path);
+        if (!empty($this->absensi)) {
+            $allfile[KegiatanUnitDetail::JENIS_ABSENSI] = $this->uploadFiles($this->absensi, $path);
         }
-        if(!empty($this->laporan_kegiatan)){
-            $allfile[KegiatanUnitDetail::JENIS_LAPORAN_KEGIATAN] = $this->uploadFiles($this->laporan_kegiatan,$path);
+        if (!empty($this->laporan_kegiatan)) {
+            $allfile[KegiatanUnitDetail::JENIS_LAPORAN_KEGIATAN] = $this->uploadFiles($this->laporan_kegiatan, $path);
         }
-        if(!empty($this->foto_kegiatan)){
-            $allfile[KegiatanUnitDetail::JENIS_FOTO_KEGIATAN] = $this->uploadFiles($this->foto_kegiatan,$path);
+        if (!empty($this->foto_kegiatan)) {
+            $allfile[KegiatanUnitDetail::JENIS_FOTO_KEGIATAN] = $this->uploadFiles($this->foto_kegiatan, $path);
         }
-        if(!empty($this->sertifikat)){
-            $allfile[KegiatanUnitDetail::JENIS_SERTIFIKAT] = $this->uploadFiles($this->sertifikat,$path);
+        if (!empty($this->sertifikat)) {
+            $allfile[KegiatanUnitDetail::JENIS_SERTIFIKAT] = $this->uploadFiles($this->sertifikat, $path);
         }
-        if(!empty($this->dokumen_lainnya)){
-            $allfile[KegiatanUnitDetail::JENIS_DOKUMEN_LAINNYA] = $this->uploadFiles($this->dokumen_lainnya,$path);
+        if (!empty($this->dokumen_lainnya)) {
+            $allfile[KegiatanUnitDetail::JENIS_DOKUMEN_LAINNYA] = $this->uploadFiles($this->dokumen_lainnya, $path);
         }
 
 
@@ -181,35 +180,31 @@ class KegiatanUnitForm extends Model
      * @return array
      * @throws Exception
      */
-    private function uploadFiles($attribute,$path){
+    private function uploadFiles($attribute, $path)
+    {
         $now = Carbon::now()->timestamp;
         $files = [];
-        if(is_array($attribute)){
-
-            foreach ($attribute as /** @var $file UploadedFile */ $file){
+        if (is_array($attribute)) {
+            foreach ($attribute as /** @var $file UploadedFile */ $file) {
                 $filename = "$now-{$file->baseName}.{$file->extension}";
-                if($file->saveAs("$path/$filename")){
+                try {
+                    $file->saveAs("$path/$filename");
                     $files[] = ['isi_file'=>$filename,'bentuk_file'=>$file->extension];
-                }
-                else{
-                    throw new Exception('Gagal upload file');
+                } catch (Exception $exception) {
+                    throw $exception;
                 }
             }
-
-        }
-        else{
+        } else {
             $filename = "$now-{$attribute->baseName}.{$attribute->extension}";
-            if($attribute->saveAs("$path/$filename")){
+            try {
+                $attribute->saveAs("$path/$filename");
                 $files[] = ['isi_file'=>$filename,'bentuk_file'=>$attribute->extension];
+            } catch (Exception $exception) {
+                throw $exception;
             }
-            else{
-                throw new Exception('Gagal upload file');
-            }
-
         }
 
         return $files;
-
     }
 
     /**
@@ -219,6 +214,4 @@ class KegiatanUnitForm extends Model
     {
         return $this->_kegiatan;
     }
-
-
 }

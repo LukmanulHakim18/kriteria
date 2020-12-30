@@ -17,7 +17,7 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property K9LedProdi $ledProdi
  * @property K9LedProdiKriteria1Detail[] $k9LedProdiKriteria1Details
- * @property K9LedProdiNarasiKriteria1$k9LedProdiNarasiKriteria1s
+ * @property K9LedProdiNarasiKriteria1 $k9LedProdiNarasiKriteria1s
  */
 class K9LedProdiKriteria1 extends \yii\db\ActiveRecord
 {
