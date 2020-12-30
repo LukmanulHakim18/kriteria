@@ -2,7 +2,6 @@
 
 namespace common\models\kriteria9\lk\prodi;
 
-use common\helpers\kriteria9\K9ProdiProgressHelper;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -46,7 +45,13 @@ class K9LkProdiKriteria5Narasi extends \yii\db\ActiveRecord
             [['id_lk_prodi_kriteria5', 'created_at', 'updated_at'], 'integer'],
             [['progress'], 'number'],
             [['_5_a', '_5_b', '_5_c'], 'string'],
-            [['id_lk_prodi_kriteria5'], 'exist', 'skipOnError' => true, 'targetClass' => K9LkProdiKriteria5::className(), 'targetAttribute' => ['id_lk_prodi_kriteria5' => 'id']],
+            [
+                ['id_lk_prodi_kriteria5'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => K9LkProdiKriteria5::className(),
+                'targetAttribute' => ['id_lk_prodi_kriteria5' => 'id']
+            ],
         ];
     }
 
@@ -58,9 +63,9 @@ class K9LkProdiKriteria5Narasi extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_lk_prodi_kriteria5' => 'Id Lk Prodi',
-            '_5_a' => '5 A',
-            '_5_b' => '5 B',
-            '_5_c' => '5 C',
+            '_5_a' => '5.a',
+            '_5_b' => '5.b',
+            '_5_c' => '5.c',
             'progress' => 'Progress',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

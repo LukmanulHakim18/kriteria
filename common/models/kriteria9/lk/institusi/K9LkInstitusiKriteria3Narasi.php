@@ -2,7 +2,6 @@
 
 namespace common\models\kriteria9\lk\institusi;
 
-use common\helpers\kriteria9\K9InstitusiProgressHelper;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -50,7 +49,13 @@ class K9LkInstitusiKriteria3Narasi extends \yii\db\ActiveRecord
             [['id_lk_institusi_kriteria3', 'created_at', 'updated_at'], 'integer'],
             [['progress'], 'number'],
             [['_3_a_1', '_3_a_2', '_3_a_3', '_3_a_4', '_3_b', '_3_c_1', '_3_c_2', '_3_d'], 'string'],
-            [['id_lk_institusi_kriteria3'], 'exist', 'skipOnError' => true, 'targetClass' => K9LkInstitusiKriteria3::className(), 'targetAttribute' => ['id_lk_institusi_kriteria3' => 'id']],
+            [
+                ['id_lk_institusi_kriteria3'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => K9LkInstitusiKriteria3::className(),
+                'targetAttribute' => ['id_lk_institusi_kriteria3' => 'id']
+            ],
         ];
     }
 
@@ -62,14 +67,14 @@ class K9LkInstitusiKriteria3Narasi extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_lk_institusi_kriteria3' => 'Id Lk Institusi',
-            '_3_a_1' => '3 A 1',
-            '_3_a_2' => '3 A 2',
-            '_3_a_3' => '3 A 3',
-            '_3_a_4' => '3 A 4',
-            '_3_b' => '3 B',
-            '_3_c_1' => '3 C 1',
-            '_3_c_2' => '3 C 2',
-            '_3_d' => '3 D',
+            '_3_a_1' => '3.a.1',
+            '_3_a_2' => '3.a.2',
+            '_3_a_3' => '3.a.3',
+            '_3_a_4' => '3.a.4',
+            '_3_b' => '3.b',
+            '_3_c_1' => '3.c.1',
+            '_3_c_2' => '3.c.2',
+            '_3_d' => '3.d',
             'progress' => 'Progress',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

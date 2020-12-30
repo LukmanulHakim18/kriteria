@@ -2,7 +2,6 @@
 
 namespace common\models\kriteria9\lk\prodi;
 
-use common\helpers\kriteria9\K9ProdiProgressHelper;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -15,7 +14,9 @@ use yii\behaviors\TimestampBehavior;
  * @property int $updated_at
  *
  * @property K9LkProdiKriteria1 $lkProdiKriteria1
- * @property string $_1
+ * @property string $_1__1
+ * @property string $_1__2
+ * @property string $_1__3
  */
 class K9LkProdiKriteria1Narasi extends \yii\db\ActiveRecord
 {
@@ -42,8 +43,14 @@ class K9LkProdiKriteria1Narasi extends \yii\db\ActiveRecord
         return [
             [['id_lk_prodi_kriteria1', 'created_at', 'updated_at'], 'integer'],
             [['progress'], 'number'],
-            [['_1'], 'string'],
-            [['id_lk_prodi_kriteria1'], 'exist', 'skipOnError' => true, 'targetClass' => K9LkProdiKriteria1::className(), 'targetAttribute' => ['id_lk_prodi_kriteria1' => 'id']],
+            [['_1__1', '_1__2', '_1__3'], 'string'],
+            [
+                ['id_lk_prodi_kriteria1'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => K9LkProdiKriteria1::className(),
+                'targetAttribute' => ['id_lk_prodi_kriteria1' => 'id']
+            ],
         ];
     }
 
@@ -55,7 +62,9 @@ class K9LkProdiKriteria1Narasi extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_lk_prodi_kriteria1' => 'Id Lk Prodi Kriteria 1',
-            '_1' => '1',
+            '_1__1' => '1-1',
+            '_1__2' => '1-2',
+            '_1__3' => '1-3',
             'progress' => 'Progress',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

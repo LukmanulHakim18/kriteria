@@ -2,7 +2,6 @@
 
 namespace common\models\kriteria9\lk\institusi;
 
-use common\helpers\kriteria9\K9InstitusiProgressHelper;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -44,7 +43,13 @@ class K9LkInstitusiKriteria4Narasi extends \yii\db\ActiveRecord
             [['id_lk_institusi_kriteria4', 'created_at', 'updated_at'], 'integer'],
             [['progress'], 'number'],
             [['_4_a', '_4_b'], 'string'],
-            [['id_lk_institusi_kriteria4'], 'exist', 'skipOnError' => true, 'targetClass' => K9LkInstitusiKriteria4::className(), 'targetAttribute' => ['id_lk_institusi_kriteria4' => 'id']],
+            [
+                ['id_lk_institusi_kriteria4'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => K9LkInstitusiKriteria4::className(),
+                'targetAttribute' => ['id_lk_institusi_kriteria4' => 'id']
+            ],
         ];
     }
 
@@ -56,8 +61,8 @@ class K9LkInstitusiKriteria4Narasi extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_lk_institusi_kriteria4' => 'Id Lk Institusi',
-            '_4_a' => '4 A',
-            '_4_b' => '4 B',
+            '_4_a' => '4.a',
+            '_4_b' => '4.b',
             'progress' => 'Progress',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

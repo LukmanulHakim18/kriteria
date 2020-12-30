@@ -11,15 +11,15 @@ class MetronicErrorPageDemo1Asset extends AssetBundle
 {
     public $sourcePath = '@common/assets/metronic/assets';
 
-    public $depends = [BaseMetronicDemo1Asset::class,SweetAlert2Asset::class];
+    public $depends = [BaseMetronicDemo1Asset::class, SweetAlert2Asset::class];
 
     public $css = [
         'css/demo1/pages/general/error/error-6.css'
     ];
 
     public $js = [
-        'js/demo1/scripts.bundle.js',
-        'js/demo1/pages/my-script.js'
+        'js/scripts.bundle.js',
+        'js/pages/my-script.js'
 
 
     ];

@@ -154,6 +154,7 @@ yii\bootstrap4\Modal::begin([
 
 
 ]);
+echo "<div id='spinner-modal' class='kt-spinner--v2 kt-spinner--center kt-spinner kt-spinner--primary'></div>";
 echo "<div id='modalContent'></div>";
 yii\bootstrap4\Modal::end();
 ?>

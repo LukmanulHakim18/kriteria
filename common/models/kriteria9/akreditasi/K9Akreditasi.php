@@ -4,7 +4,6 @@ namespace common\models\kriteria9\akreditasi;
 
 use common\models\kriteria9\led\fakultas\K9LedFakultas;
 use common\models\kriteria9\lk\fakultas\K9LkFakultas;
-use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -25,6 +24,10 @@ use yii\behaviors\TimestampBehavior;
  */
 class K9Akreditasi extends \yii\db\ActiveRecord
 {
+
+    const JENIS_PRODI = 'prodi';
+    const JENIS_INSTITUSI = 'institusi';
+
     /**
      * {@inheritdoc}
      */

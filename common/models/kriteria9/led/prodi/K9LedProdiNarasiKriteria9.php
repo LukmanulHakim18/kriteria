@@ -15,7 +15,8 @@ use yii\behaviors\TimestampBehavior;
  * @property string $_9_1
  * @property string $_9_2
  * @property string $_9_3
- * @property string $_9_4
+ * @property string $_9_4_a
+ * @property string $_9_4_b
  * @property string $_9_5
  * @property string $_9_6
  * @property string $_9_7
@@ -48,7 +49,7 @@ class K9LedProdiNarasiKriteria9 extends \yii\db\ActiveRecord
     {
         return [
             [['id_led_prodi_kriteria9', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['_9_1', '_9_2', '_9_3', '_9_4', '_9_5', '_9_6', '_9_7', '_9_8', '_9_9'], 'string'],
+            [['_9_1', '_9_2', '_9_3', '_9_4_a', '_9_4_b', '_9_5', '_9_6', '_9_7', '_9_8', '_9_9'], 'string'],
             [['progress'], 'number'],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
@@ -75,15 +76,16 @@ class K9LedProdiNarasiKriteria9 extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_led_prodi_kriteria9' => 'Id Led Prodi Kriteria9',
-            '_9_1' => '9 1',
-            '_9_2' => '9 2',
-            '_9_3' => '9 3',
-            '_9_4' => '9 4',
-            '_9_5' => '9 5',
-            '_9_6' => '9 6',
-            '_9_7' => '9 7',
-            '_9_8' => '9 8',
-            '_9_9' => '9 9',
+            '_9_1' => '9.1',
+            '_9_2' => '9.2',
+            '_9_3' => '9.3',
+            '_9_4_a' => '9.4.a',
+            '_9_4_b' => '9.4.b',
+            '_9_5' => '9.5',
+            '_9_6' => '9.6',
+            '_9_7' => '9.7',
+            '_9_8' => '9.8',
+            '_9_9' => '9.9',
             'progress' => 'Progress',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

@@ -1,8 +1,11 @@
 <?php
+
 namespace common\models\kriteria9\forms\kuantitatif;
 
 use common\models\kriteria9\akreditasi\K9Akreditasi;
+use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
 use yii\base\Model;
+use yii\web\NotFoundHttpException;
 
 class K9PencarianKuantitatifForm extends Model
 {
@@ -13,19 +16,30 @@ class K9PencarianKuantitatifForm extends Model
     private $_akreditasi_prodi;
     private $_kuantitatif;
 
-    public function rules(): array {
+    public function rules(): array
+    {
         return [
-            [['akreditasi','id_prodi'],'required']
+            [['akreditasi', 'id_prodi'], 'required']
         ];
     }
 
-    public function cari($target): string {
-        $url = '';
+    public function cari($target): array
+    {
 
         $akreditasiProdiClass = 'common\\models\\kriteria9\\akreditasi\\K9AkreditasiProdi';
         $kuantitatifProdiClass = 'common\\models\\kriteria9\\kuantitatif\\prodi\\K9DataKuantitatifProdi';
 
-        $this->_akreditasi = K9Akreditasi::find()->where(['id'=>$this->akreditasi])->one();
+        $this->_akreditasi = K9Akreditasi::findOne($this->akreditasi);
+        if (!$this->_akreditasi) {
+            throw new NotFoundHttpException();
+        }
+        $this->_akreditasi_prodi = K9AkreditasiProdi::findOne([
+            'id_prodi' => $this->id_prodi,
+            'id_akreditasi' => $this->_akreditasi->id
+        ]);
+        if (!$this->_akreditasi_prodi) {
+            throw new NotFoundHttpException();
+        }
 
 //        $this->_akreditasi_prodi = call_user_func($akreditasiProdiClass.'::findOne',['id_prodi'=>$this->id_prodi,'id_akreditasi'=>$this->akreditasi]);
 //
@@ -33,9 +47,12 @@ class K9PencarianKuantitatifForm extends Model
 //            return false;
 //        }
 //        $this->_kuantitatif = call_user_func($kuantitatifProdiClass.'::findOne',['id_akreditasi_prodi' =>$this->_akreditasi_prodi->id]);
-        $url .= 'kuantitatif/'.$target;
 
-        return $url;
+        return [
+            'kuantitatif/' . $target,
+            'akreditasiprodi' => $this->_akreditasi_prodi->id,
+            'prodi' => $this->_akreditasi_prodi->id_prodi
+        ];
     }
 
     /**

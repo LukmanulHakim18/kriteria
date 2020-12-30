@@ -15,15 +15,16 @@ yii.confirm = function (message, okCallback, cancelCallback) {
         allowOutsideClick: false,
     }).then((selection) => {
 
-        if(selection.value){
-            okCallback.call();}
-        else{
-            cancelCallback.call();}
+        if (selection.value) {
+            okCallback.call();
+        } else {
+            cancelCallback.call();
+        }
     });
 };
 
 
-$(function(){
+$(function () {
 
     //get the click of modal button to create / update item
     //we get the button by class not by ID because you can only have one id on a page and you can
@@ -38,14 +39,18 @@ $(function(){
         //to ensure we get the right button and content.
         if ($('#modal').data('bs.modal').isShown) {
             $('#modal').find('#modalContent')
-                .load($(this).attr('value'));
+                .load($(this).attr('value'), function () {
+                    $('#spinner-modal').css('display', 'none');
+                });
             //dynamiclly set the header for the modal
             document.getElementById('modalHeaderTitle').innerHTML = '<h4>' + $(this).attr('title') + '</h4>';
         } else {
             //if modal isn't open; open it and load content
             $('#modal').modal('show')
                 .find('#modalContent')
-                .load($(this).attr('value'));
+                .load($(this).attr('value'), function () {
+                    $('#spinner-modal').css('display', 'none');
+                });
             //dynamiclly set the header for the modal
             document.getElementById('modalHeaderTitle').innerHTML = '<h4>' + $(this).attr('title') + '</h4>';
         }
@@ -72,29 +77,35 @@ $(function(){
 //         message: 'Sedang memproses...'
 //     });
 // });
-    $('form').on('beforeSubmit', function()
-    {
-        var form = $(this);
-        //console.log('before submit');
+$('form').on('beforeSubmit', function () {
+    var form = $(this);
+    //console.log('before submit');
 
-        var submit = form.find(':submit');
-        KTApp.block('.modal',{
-            overlayColor: '#000000',
-            type: 'v2',
-            state: 'primary',
-            message: 'Sedang Memproses...'
-        });
-        submit.html('<i class="flaticon2-refresh"></i> Sedang Memproses');
-        submit.prop('disabled', true);
-
-        KTApp.blockPage({
-            overlayColor: '#000000',
-            type: 'v2',
-            state: 'primary',
-            message: 'Sedang memproses...'
-        });
-
+    var submit = form.find(':submit');
+    KTApp.block('.modal', {
+        overlayColor: '#000000',
+        type: 'v2',
+        state: 'primary',
+        message: 'Sedang Memproses...'
     });
+    submit.html('<i class="flaticon2-refresh"></i> Sedang Memproses');
+    submit.prop('disabled', true);
 
+    // KTApp.blockPage({
+    //     overlayColor: '#000000',
+    //     type: 'v2',
+    //     state: 'primary',
+    //     message: 'Sedang memproses...'
+    // });
 
+});
+
+function normalizeButton(id, normal = {icon: '', text: ''}) {
+    var button = $('#' + id);
+    console.log(id);
+    console.log(normal.icon);
+    button.prop('disabled', false);
+    button.html(`<i class="${normal.icon}"></i> ${normal.text}`);
+
+}
 
