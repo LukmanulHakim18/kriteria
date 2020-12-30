@@ -271,7 +271,9 @@
                                         "nomor": "2.4.d-1.A-2",
                                         "isi": "Perolehan sertifikasi/ akreditasi eksternal oleh lembaga internasional atau internasional bereputasi.",
                                         "relasi": [
-                                            "1.a"
+                                            "1.a-1",
+                                            "1.a-2",
+                                            "1.a-3"
                                         ],
                                         "rumus": null,
                                         "_4": "Jika NK > 8 , maka Skor_A = 4 ",
@@ -285,7 +287,9 @@
                                         "nomor": "2.4.d-1.B-2",
                                         "isi": "Perolehan akreditasi program studi oleh lembaga akreditasi internasional bereputasi",
                                         "relasi": [
-                                            "1.a"
+                                            "1.a-1",
+                                            "1.a-2",
+                                            "1.a-3"
                                         ],
                                         "rumus": "Skor = (Skor_A + Skor_B) / 2",
                                         "_4": "Jika PAI >= 5% , maka Skor_B = 4 .",
@@ -299,7 +303,9 @@
                                         "nomor": "2.4.d-1.1",
                                         "isi": "Pelaksanaan dan hasil audit eksternal keuangan di perguruan tinggi",
                                         "relasi": [
-                                            "1.a"
+                                            "1.a-1",
+                                            "1.a-2",
+                                            "1.a-3"
                                         ],
                                         "rumus": null,
                                         "_4": "Seluruh temuan pada hasil pemeriksaan inspektorat tahun sebelumnya telah ditindak lanjuti.",
@@ -1311,7 +1317,14 @@
                                     {
                                         "nomor": "9.4.a.5",
                                         "relasi": [
-                                            "5.c.2"
+                                            "5.c.2.a",
+                                            "5.c.2.b",
+                                            "5.c.2.c.1",
+                                            "5.c.2.c.2",
+                                            "5.c.2.d",
+                                            "5.c.2.e",
+                                            "5.c.2.f",
+                                            "5.c.2.g"
                                         ],
                                         "rumus": null,
                                         "isi": "Persentase kelulusan tepat waktu untuk setiap program.",
@@ -1325,7 +1338,14 @@
                                     {
                                         "nomor": "9.4.a.6",
                                         "relasi": [
-                                            "5.c.2"
+                                            "5.c.2.a",
+                                            "5.c.2.b",
+                                            "5.c.2.c.1",
+                                            "5.c.2.c.2",
+                                            "5.c.2.d",
+                                            "5.c.2.e",
+                                            "5.c.2.f",
+                                            "5.c.2.g"
                                         ],
                                         "rumus": null,
                                         "isi": "Persentase keberhasilan studi untuk setiap program.",
@@ -1339,6 +1359,7 @@
                                     {
                                         "nomor": "9.4.a.7",
                                         "relasi": [
+                                            "ref-5.d.1-5.d.2-5.e.2",
                                             "5.d.1"
                                         ],
                                         "rumus": null,
@@ -1353,6 +1374,7 @@
                                     {
                                         "nomor": "9.4.a.8",
                                         "relasi": [
+                                            "5.d.1-5.d.2-5.e.2-ref",
                                             "5.d.2"
                                         ],
                                         "rumus": null,
@@ -1367,6 +1389,7 @@
                                     {
                                         "nomor": "9.4.a.9",
                                         "relasi": [
+                                            "5.e.1-ref",
                                             "5.e.1"
                                         ],
                                         "rumus": null,
@@ -1381,6 +1404,7 @@
                                     {
                                         "nomor": "9.4.a.10",
                                         "relasi": [
+                                            "5.d.1-5.d.2-5.e.2-ref",
                                             "5.e.2"
                                         ],
                                         "rumus": null,
@@ -1444,7 +1468,10 @@
                                     {
                                         "nomor": "9.4.b.4",
                                         "relasi": [
-                                            "5.h"
+                                            "5.h-1",
+                                            "5.h-2",
+                                            "5.h-3",
+                                            "5.h-4"
                                         ],
                                         "rumus": null,
                                         "isi": "Jumlah luaran penelitian dan PkM dosen tetap dalam 3 tahun terakhir.",

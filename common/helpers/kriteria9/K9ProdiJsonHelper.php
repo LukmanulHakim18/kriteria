@@ -15,8 +15,6 @@ use common\models\kriteria9\penilaian\Penilaian;
 use JsonMapper;
 use Yii;
 use yii\helpers\Json;
-use yii\helpers\StringHelper;
-use yii2mod\collection\Collection;
 
 class K9ProdiJsonHelper implements IK9JsonHelper
 {
@@ -25,12 +23,13 @@ class K9ProdiJsonHelper implements IK9JsonHelper
     {
         return new JsonMapper();
     }
+
     public static function getAllJsonLk($jenis)
     {
         $out = [];
         $json = self::getJson('lk', $jenis);
         foreach ($json as $jsonObj) {
-            $out[] =  self::provideMapper()->map($jsonObj, new Lk());
+            $out[] = self::provideMapper()->map($jsonObj, new Lk());
         }
 
         return $out;
@@ -48,6 +47,7 @@ class K9ProdiJsonHelper implements IK9JsonHelper
                 break;
             case 'penilaian':
                 $filename = 'penilaian_prodi_' . $jenis . '.json';
+                break;
         }
         $path = Yii::getAlias('@required/kriteria9/aps/' . $filename);
         return Json::decode(file_get_contents($path), false);
@@ -71,7 +71,7 @@ class K9ProdiJsonHelper implements IK9JsonHelper
      */
     public static function getJsonKriteriaLed(int $kriteria)
     {
-        return self::provideMapper()->map(self::getJson('led')[2]->butir[$kriteria-1], new Led());
+        return self::provideMapper()->map(self::getJson('led')[2]->butir[$kriteria - 1], new Led());
     }
 
     public static function getJsonLedKondisiEksternal()
@@ -91,23 +91,23 @@ class K9ProdiJsonHelper implements IK9JsonHelper
 
     public static function getJsonPenilaianKondisiEksternal($jenis)
     {
-        return self::provideMapper()->map(self::getJson('penilaian',$jenis)[0], new Penilaian());
+        return self::provideMapper()->map(self::getJson('penilaian', $jenis)[0], new Penilaian());
     }
 
     public static function getJsonPenilaianProfil($jenis)
     {
-        return self::provideMapper()->map(self::getJson('penilaian',$jenis)[1], new Penilaian());
+        return self::provideMapper()->map(self::getJson('penilaian', $jenis)[1], new Penilaian());
 
     }
 
     public static function getJsonPenilaianKriteria($jenis)
     {
-        return self::provideMapper()->map(self::getJson('penilaian',$jenis)[2], new Penilaian());
+        return self::provideMapper()->map(self::getJson('penilaian', $jenis)[2], new Penilaian());
     }
 
     public static function getJsonPenilaianAnalisis($jenis)
     {
-        return self::provideMapper()->map(self::getJson('penilaian',$jenis)[3], new Penilaian());
+        return self::provideMapper()->map(self::getJson('penilaian', $jenis)[3], new Penilaian());
 
     }
 }

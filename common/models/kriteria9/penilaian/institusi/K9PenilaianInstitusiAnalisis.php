@@ -2,6 +2,8 @@
 
 namespace common\models\kriteria9\penilaian\institusi;
 
+use common\helpers\HitungPenilaianTrait;
+use common\helpers\kriteria9\K9InstitusiJsonHelper;
 use common\models\kriteria9\akreditasi\K9AkreditasiInstitusi;
 use common\models\User;
 use yii\behaviors\BlameableBehavior;
@@ -29,6 +31,14 @@ use yii\behaviors\TimestampBehavior;
  */
 class K9PenilaianInstitusiAnalisis extends \yii\db\ActiveRecord
 {
+    use HitungPenilaianTrait;
+
+    const STATUS_READY = 'ready';
+    const STATUS_FINSIH = 'finish';
+
+    const STATUS_PENILAIAN = [self::STATUS_READY => self::STATUS_READY, self::STATUS_FINSIH => self::STATUS_FINSIH];
+
+
     /**
      * {@inheritdoc}
      */
@@ -98,6 +108,38 @@ class K9PenilaianInstitusiAnalisis extends \yii\db\ActiveRecord
             'updated_by' => 'Updated By',
         ];
     }
+
+    /**
+     * @param bool $insert
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
+        $json = K9InstitusiJsonHelper::getJsonPenilaianAnalisis();
+
+        $indikator = [];
+        foreach ($json->butir as $butir) {
+            foreach ($butir->indikators as $ind) {
+                $indikator[] = $ind->nomor;
+            }
+        }
+
+        $exclude = [
+            'id',
+            'id_akreditasi_institusi',
+            'total',
+            'status',
+            'created_at',
+            'updated_at',
+            'created_by',
+            'updated_by'
+        ];
+
+        $skor = $this->hitung($this, $exclude, $indikator);
+        $this->total = $skor;
+        return parent::beforeSave($insert);
+    }
+
 
     /**
      * Gets query for [[AkreditasiInstitusi]].

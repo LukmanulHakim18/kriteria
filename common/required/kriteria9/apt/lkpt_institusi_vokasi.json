@@ -856,7 +856,7 @@
                 ]
             },
             {
-                "tabel": "ref-5.d.1-5.d.2-5.e.2",
+                "tabel": "5.d.1-5.d.2-5.e.2-ref",
                 "isi": "Tabel Referensi 5.d.1, 5.d.2, 5.e.2",
                 "nama": "Tabel Referensi 5.d.1, 5.d.2, 5.e.2",
                 "petunjuk": "Tuliskan jumlah lulusan dan jumlah lulusan yang memberikan jawaban pada kegiatan studi penelusuran lulusan dalam 3 (tiga) tahun, mulai TS-4 sampai dengan TS-2, dengan mengikuti format tabel berikut ini. Tabel digunakan sebagai referensi untuk penilaian butir 5.d.1), 5.d.2) dan 5.e.2).",
@@ -886,7 +886,7 @@
                 "dokumen_pendukung": null
             },
             {
-                "tabel": "ref-5.e.1",
+                "tabel": "5.e.1-ref",
                 "isi": "Tabel referensi untuk penelitian butir ",
                 "nama": "Kinerja Lulusan",
                 "petunjuk": "Tuliskan jumlah lulusan dan jumlah lulusan yang dinilai oleh pengguna pada kegiatan studi penelusuran lulusan dalam 3 tahun, mulai TS-4 sampai dengan TS-2, dengan mengikuti format tabel berikut ini. Tabel digunakan sebagai referensi untuk penilaian butir 5.e.1).",

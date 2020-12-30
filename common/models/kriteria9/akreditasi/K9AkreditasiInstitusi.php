@@ -5,6 +5,10 @@ namespace common\models\kriteria9\akreditasi;
 use common\models\kriteria9\kuantitatif\institusi\K9DataKuantitatifInstitusi;
 use common\models\kriteria9\led\institusi\K9LedInstitusi;
 use common\models\kriteria9\lk\institusi\K9LkInstitusi;
+use common\models\kriteria9\penilaian\institusi\K9PenilaianInstitusiAnalisis;
+use common\models\kriteria9\penilaian\institusi\K9PenilaianInstitusiEksternal;
+use common\models\kriteria9\penilaian\institusi\K9PenilaianInstitusiKriteria;
+use common\models\kriteria9\penilaian\institusi\K9PenilaianInstitusiProfil;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -20,6 +24,10 @@ use yii\behaviors\TimestampBehavior;
  * @property K9LedInstitusi $k9LedInstitusi
  * @property K9LkInstitusi $k9LkInstitusi
  * @property K9DataKuantitatifInstitusi $kuantitatif
+ * @property K9PenilaianInstitusiEksternal $penilaianEksternal
+ * @property K9PenilaianInstitusiProfil $penilaianProfil
+ * @property K9PenilaianInstitusiKriteria $penilaianKriteria
+ * @property K9PenilaianInstitusiAnalisis $penilaianAnalisis
  */
 class K9AkreditasiInstitusi extends \yii\db\ActiveRecord
 {
@@ -115,4 +123,35 @@ class K9AkreditasiInstitusi extends \yii\db\ActiveRecord
         return $this;
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPenilaianEksternal()
+    {
+        return $this->hasOne(K9PenilaianInstitusiEksternal::class, ['id_akreditasi_institusi' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPenilaianProfil()
+    {
+        return $this->hasOne(K9PenilaianInstitusiProfil::class, ['id_akreditasi_institusi' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPenilaianKriteria()
+    {
+        return $this->hasOne(K9PenilaianInstitusiKriteria::class, ['id_akreditasi_institusi' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPenilaianAnalisis()
+    {
+        return $this->hasOne(K9PenilaianInstitusiAnalisis::class, ['id_akreditasi_institusi' => 'id']);
+    }
 }

@@ -22,10 +22,10 @@ use yii\behaviors\TimestampBehavior;
  * @property string $_5_c_2_e
  * @property string $_5_c_2_f
  * @property string $_5_c_2_g
- * @property string $_ref__5_d_1__5_d_2__5_e_2
+ * @property string $_5_d_1__5_d_2__5_e_2__ref
  * @property string $_5_d_1
  * @property string $_5_d_2
- * @property string $_ref__5_e_1
+ * @property string $_5_e_1__ref
  * @property string $_5_e_1
  * @property string $_5_e_2
  * @property string $_5_f
@@ -80,10 +80,10 @@ class K9LkInstitusiKriteria5Narasi extends \yii\db\ActiveRecord
                     '_5_c_2_e',
                     '_5_c_2_f',
                     '_5_c_2_g',
-                    '_ref__5_d_1__5_d_2__5_e_2',
+                    '_5_d_1__5_d_2__5_e_2__ref',
                     '_5_d_1',
                     '_5_d_2',
-                    '_ref__5_e_1',
+                    '_5_e_1__ref',
                     '_5_e_1',
                     '_5_e_2',
                     '_5_f',
@@ -126,10 +126,10 @@ class K9LkInstitusiKriteria5Narasi extends \yii\db\ActiveRecord
             '_5_c_2_e' => '5.c.2.e',
             '_5_c_2_f' => '5.c.2.f',
             '_5_c_2_g' => '5.c.2.g',
-            '_ref__5_d_1__5_d_2__5_e_2' => 'Referensi 5.d.1, 5.d.2, dan 5.e.2',
+            '_5_d_1__5_d_2__5_e_2__ref' => 'Referensi 5.d.1, 5.d.2, dan 5.e.2',
             '_5_d_1' => '5.d.1',
             '_5_d_2' => '5.d.2',
-            '_ref__5_e_1' => 'Referensi 5.e.1 ',
+            '_5_e_1__ref' => 'Referensi 5.e.1 ',
             '_5_e_1' => '5.e.1',
             '_5_e_2' => '5.e.2',
             '_5_f' => '5.f',

@@ -43,13 +43,12 @@ use yii\web\View;
             </div>
 
             <br>
-            <?= $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/_item_dokumen_non_kriteria', [
+            <?= $this->render('@akreditasi/modules/kriteria9/modules/institusi/views/led/_item_dokumen_non_kriteria', [
             'linkModel' => $linkModel,
             'textModel' => $textModel,
             'uploadModel' => $uploadModel,
             'model' => $model,
             'poin' => $poin,
-            'prodi' => $prodi,
             'path' => $path,
             'json_dokumen' => $current->dokumen_sumber,
             'jenis' => Constants::SUMBER,
@@ -57,13 +56,12 @@ use yii\web\View;
             'untuk' => $untuk
         ]) ?>
 
-            <?= $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/_item_dokumen_non_kriteria', [
+            <?= $this->render('@akreditasi/modules/kriteria9/modules/institusi/views/led/_item_dokumen_non_kriteria', [
             'linkModel' => $linkModel,
             'textModel' => $textModel,
             'uploadModel' => $uploadModel,
             'model' => $model,
             'poin' => $poin,
-            'prodi' => $prodi,
             'path' => $path,
             'json_dokumen' => $current->dokumen_pendukung,
             'jenis' => Constants::PENDUKUNG,
@@ -95,14 +93,13 @@ use yii\web\View;
 
                 foreach ($detail as $k => $v):
                     ?>
-                    <?= $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/_item_dokumen_detail_non_kriteria',
+                    <?= $this->render('@akreditasi/modules/kriteria9/modules/institusi/views/led/_item_dokumen_detail_non_kriteria',
                     [
                         'path' => $path,
                         'poin' => $poin,
                         'jenis' => 'lainnya',
                         'detail' => $v,
                         'nomor' => $k + 1,
-                        'prodi' => $prodi,
                         'led' => $model,
                         'untuk' => $untuk
                     ]) ?>
@@ -139,13 +136,12 @@ use yii\web\View;
         <div class="kt-separator"></div>
 
 
-        <?= $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/_item_dokumen_non_kriteria', [
+        <?= $this->render('@akreditasi/modules/kriteria9/modules/institusi/views/led/_item_dokumen_non_kriteria', [
         'linkModel' => $linkModel,
         'textModel' => $textModel,
         'uploadModel' => $uploadModel,
         'model' => $model,
         'poin' => $poin,
-        'prodi' => $prodi,
         'path' => $path,
         'json_dokumen' => $item->dokumen_sumber,
         'jenis' => Constants::SUMBER,
@@ -153,13 +149,12 @@ use yii\web\View;
         'untuk' => $untuk
     ]) ?>
 
-        <?= $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/_item_dokumen_non_kriteria', [
+        <?= $this->render('@akreditasi/modules/kriteria9/modules/institusi/views/led/_item_dokumen_non_kriteria', [
         'linkModel' => $linkModel,
         'textModel' => $textModel,
         'uploadModel' => $uploadModel,
         'model' => $model,
         'poin' => $poin,
-        'prodi' => $prodi,
         'path' => $path,
         'json_dokumen' => $item->dokumen_pendukung,
         'jenis' => Constants::PENDUKUNG,
@@ -198,7 +193,7 @@ use yii\web\View;
                                     'action' => Url::to([
                                         'led/isi-non-kriteria',
                                         'led' => $model->id,
-                                        'prodi' => $prodi->id,
+                                        'institusi' => $institusi->id,
                                         'poin' => $poin
                                     ]),
                                     'options' => ['enctype' => 'multipart/form-data'],
@@ -240,7 +235,6 @@ use yii\web\View;
                                     'action' => Url::to([
                                         'led/isi-non-kriteria',
                                         'led' => $model->id,
-                                        'prodi' => $prodi->id,
                                         'poin' => $poin
                                     ]),
                                     'options' => ['enctype' => 'multipart/form-data'],
@@ -283,7 +277,6 @@ use yii\web\View;
                                     'action' => Url::to([
                                         'led/isi-non-kriteria',
                                         'led' => $model->id,
-                                        'prodi' => $prodi->id,
                                         'poin' => $poin
                                     ]),
                                     'options' => ['enctype' => 'multipart/form-data'],
@@ -314,7 +307,7 @@ use yii\web\View;
                                 <?php ActiveForm::end() ?>
 
                                 <?php Modal::end() ?>
-                                <?php //echo Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=>\yii\helpers\Url::to(['resource/index','prodi'=>$_GET['prodi'],'poin'=>$poin,'kode'=>'','jenis'=>Constants::LED,'id_led_lk'=>$_GET['led'],'jenis_dokumen'=>Constants::LAINNYA]),'title'=>'Gunakan Data Untuk Dokumen lainnya ' ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton pull-right'])?>
+                                <?php //echo Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=>\yii\helpers\Url::to(['resource/index','institusi'=>$_GET['institusi'],'poin'=>$poin,'kode'=>'','jenis'=>Constants::LED,'id_led_lk'=>$_GET['led'],'jenis_dokumen'=>Constants::LAINNYA]),'title'=>'Gunakan Data Untuk Dokumen lainnya ' ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton pull-right'])?>
                             </div>
                         </div>
                     <?php endif ?>
@@ -328,14 +321,13 @@ use yii\web\View;
 
             foreach ($detail as $k => $v):
                 ?>
-                <?= $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/_item_dokumen_detail_non_kriteria',
+                <?= $this->render('@akreditasi/modules/kriteria9/modules/institusi/views/led/_item_dokumen_detail_non_kriteria',
                 [
                     'path' => $path,
                     'poin' => $poin,
                     'jenis' => 'lainnya',
                     'detail' => $v,
                     'nomor' => $k + 1,
-                    'prodi' => $prodi,
                     'led' => $model,
                     'untuk' => $untuk
                 ]) ?>

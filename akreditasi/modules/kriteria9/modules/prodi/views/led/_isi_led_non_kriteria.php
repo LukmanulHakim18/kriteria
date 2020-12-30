@@ -19,7 +19,7 @@ $controller = $this->context->id;
 <div class="led-content">
     <div class="row">
         <div class="col-lg-12">
-            <?= $item->deskripsi ?>
+            <?= nl2br($item->deskripsi) ?>
         </div>
     </div>
     <br>
