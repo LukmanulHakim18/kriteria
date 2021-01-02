@@ -16,7 +16,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
 use yii\queue\JobInterface;
 
-class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
+class KuantitatifPTVokasiExportJob extends BaseObject implements JobInterface
 {
 
 
@@ -252,6 +252,30 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
         }
 
         $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentContentRow, 1);
+
+        //2.c
+        $crawler = new Crawler($tabel->_2_c);
+        $data = $this->filter($crawler);
+
+        array_pop($data);
+        $contentStartRow = 6;
+        $currentContentRow = 6;
+        $currentWorksheet = 9;
+
+        foreach ($data as $item) {
+            $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentContentRow + 1, 1);
+            $this->spreadsheet->getSheet($currentWorksheet)
+                ->setCellValue('A' . $currentContentRow, $item[0])
+                ->setCellValue('B' . $currentContentRow, $item[1])
+                ->setCellValue('C' . $currentContentRow, $item[2])
+                ->setCellValue('D' . $currentContentRow, $item[3])
+                ->setCellValue('E' . $currentContentRow, $item[4])
+                ->setCellValue('F' . $currentContentRow, $item[5]);
+
+            $currentContentRow++;
+        }
+
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentContentRow, 1);
     }
 
     private function tabel3()
@@ -266,7 +290,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 9;
+        $currentWorksheet = 10;
 
         foreach ($data as $item) {
             $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
@@ -285,7 +309,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
         $data = $this->filter($crawler);
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 10;
+        $currentWorksheet = 11;
 
         foreach ($data as $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
@@ -304,7 +328,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 5;
         $currentRow = 5;
-        $currentWorksheet = 11;
+        $currentWorksheet = 12;
 
         foreach ($data as $item) {
             $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
@@ -324,7 +348,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 12;
+        $currentWorksheet = 13;
 
         foreach ($data as $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
@@ -343,7 +367,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 5;
         $currentRow = 5;
-        $currentWorksheet = 13;
+        $currentWorksheet = 14;
 
         foreach ($data as $item) {
             $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
@@ -364,7 +388,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 14;
+        $currentWorksheet = 15;
 
         foreach ($data as $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
@@ -382,7 +406,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 15;
+        $currentWorksheet = 16;
 
         foreach ($data as $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
@@ -399,7 +423,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 7;
         $currentRow = 7;
-        $currentWorksheet = 16;
+        $currentWorksheet = 17;
 
         foreach ($data as $item) {
 
@@ -426,7 +450,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 17;
+        $currentWorksheet = 18;
 
         foreach ($data as $k => $item) {
             if ($k === 3 || $k === 9 || $k === 14 || $k === 18 || $k === 19 || $k === 22 || $k === 23) {
@@ -447,7 +471,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 18;
+        $currentWorksheet = 19;
 
         foreach ($data as $k => $item) {
             if ($k === 7 || $k === 9) {
@@ -467,16 +491,18 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
     {
         $tabel = $this->lk->k9LkInstitusiKriteria5s->k9LkInstitusiKriteria5Narasi;
 
-        //5a
+        //5a1
         $crawler = new Crawler($tabel->_5_a_1);
         $data = $this->filter($crawler);
         array_pop($data);
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 19;
+        $currentWorksheet = 20;
 
         foreach ($data as $k => $item) {
+            $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
+
             $this->spreadsheet->getSheet($currentWorksheet)
                 ->setCellValue('C' . $currentRow, $item[2])
                 ->setCellValue('D' . $currentRow, $item[3])
@@ -487,6 +513,29 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
                 ->setCellValue('I' . $currentRow, $item[8]);
             $currentRow++;
         }
+        //5a2
+        $crawler = new Crawler($tabel->_5_a_2);
+        $data = $this->filter($crawler);
+        array_pop($data);
+
+        $startRow = 6;
+        $currentRow = 6;
+        $currentWorksheet = 21;
+
+        foreach ($data as $k => $item) {
+            $this->spreadsheet->getSheet($currentWorksheet)
+                ->setCellValue('A' . $currentRow, $item[0])
+                ->setCellValue('B' . $currentRow, $item[1])
+                ->setCellValue('C' . $currentRow, $item[2])
+                ->setCellValue('D' . $currentRow, $item[3])
+                ->setCellValue('E' . $currentRow, $item[4])
+                ->setCellValue('F' . $currentRow, $item[5])
+                ->setCellValue('G' . $currentRow, $item[6])
+                ->setCellValue('H' . $currentRow, $item[7]);
+            $currentRow++;
+        }
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+
 
         //5b1
         $crawler = new Crawler($tabel->_5_b_1);
@@ -495,7 +544,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 10;
         $currentRow = 10;
-        $currentWorksheet = 20;
+        $currentWorksheet = 22;
 
         foreach ($data as $k => $item) {
             $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
@@ -519,7 +568,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 10;
         $currentRow = 10;
-        $currentWorksheet = 21;
+        $currentWorksheet = 23;
         foreach ($data as $k => $item) {
             $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
             $this->spreadsheet->getSheet($currentWorksheet)
@@ -541,7 +590,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 22;
+        $currentWorksheet = 24;
         foreach ($data as $k => $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
                 ->setCellValue('A' . $currentRow, $item[0])
@@ -560,7 +609,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 22;
+        $currentWorksheet = 25;
         foreach ($data as $k => $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
                 ->setCellValue('B' . $currentRow, $item[1])
@@ -580,7 +629,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 21;
         $currentRow = 21;
-        $currentWorksheet = 22;
+        $currentWorksheet = 25;
         foreach ($data as $k => $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
                 ->setCellValue('B' . $currentRow, $item[1])
@@ -597,7 +646,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 31;
         $currentRow = 31;
-        $currentWorksheet = 22;
+        $currentWorksheet = 25;
         foreach ($data as $k => $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
                 ->setCellValue('B' . $currentRow, $item[1])
@@ -613,7 +662,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 39;
         $currentRow = 39;
-        $currentWorksheet = 22;
+        $currentWorksheet = 25;
         foreach ($data as $k => $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
                 ->setCellValue('B' . $currentRow, $item[1])
@@ -629,7 +678,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 48;
         $currentRow = 48;
-        $currentWorksheet = 22;
+        $currentWorksheet = 25;
         foreach ($data as $k => $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
                 ->setCellValue('B' . $currentRow, $item[1])
@@ -649,7 +698,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 61;
         $currentRow = 61;
-        $currentWorksheet = 22;
+        $currentWorksheet = 25;
         foreach ($data as $k => $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
                 ->setCellValue('B' . $currentRow, $item[1])
@@ -666,7 +715,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 72;
         $currentRow = 72;
-        $currentWorksheet = 22;
+        $currentWorksheet = 25;
         foreach ($data as $k => $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
                 ->setCellValue('B' . $currentRow, $item[1])
@@ -682,7 +731,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 81;
         $currentRow = 81;
-        $currentWorksheet = 22;
+        $currentWorksheet = 25;
         foreach ($data as $k => $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
                 ->setCellValue('B' . $currentRow, $item[1])
@@ -698,7 +747,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 23;
+        $currentWorksheet = 26;
         foreach ($data as $k => $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
                 ->setCellValue('C' . $currentRow, $item[2])
@@ -716,7 +765,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 24;
+        $currentWorksheet = 27;
         foreach ($data as $k => $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
                 ->setCellValue('C' . $currentRow, $item[2])
@@ -730,7 +779,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 25;
+        $currentWorksheet = 28;
         foreach ($data as $k => $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
                 ->setCellValue('C' . $currentRow, $item[2])
@@ -745,7 +794,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 26;
+        $currentWorksheet = 29;
         foreach ($data as $k => $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
                 ->setCellValue('C' . $currentRow, $item[2])
@@ -763,7 +812,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 27;
+        $currentWorksheet = 30;
         foreach ($data as $k => $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
                 ->setCellValue('C' . $currentRow, $item[2])
@@ -779,7 +828,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 28;
+        $currentWorksheet = 31;
         foreach ($data as $k => $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
                 ->setCellValue('C' . $currentRow, $item[2])
@@ -795,7 +844,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 29;
+        $currentWorksheet = 32;
         foreach ($data as $k => $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
                 ->setCellValue('C' . $currentRow, $item[2])
@@ -809,9 +858,9 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
         $data = $this->filter($crawler);
         array_pop($data);
 
-        $startRow = 6;
-        $currentRow = 6;
-        $currentWorksheet = 30;
+        $startRow = 5;
+        $currentRow = 5;
+        $currentWorksheet = 33;
         foreach ($data as $k => $item) {
             $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
             $this->spreadsheet->getSheet($currentWorksheet)
@@ -830,7 +879,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 31;
+        $currentWorksheet = 34;
         foreach ($data as $k => $item) {
             if ($k === 0) {
                 $currentRow++;
@@ -853,7 +902,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 32;
+        $currentWorksheet = 35;
         foreach ($data as $k => $item) {
             if ($k === 0) {
                 $currentRow++;
@@ -876,7 +925,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 33;
+        $currentWorksheet = 36;
         foreach ($data as $k => $item) {
             if ($k === 0) {
                 $currentRow++;
@@ -892,6 +941,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
         }
         $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
 
+
         //5h4
         $crawler = new Crawler($tabel->_5_h__4);
         $data = $this->filter($crawler);
@@ -899,7 +949,7 @@ class KuantitatifPTAkademikExportJob extends BaseObject implements JobInterface
 
         $startRow = 6;
         $currentRow = 6;
-        $currentWorksheet = 34;
+        $currentWorksheet = 37;
         foreach ($data as $k => $item) {
             if ($k === 0) {
                 $currentRow++;
