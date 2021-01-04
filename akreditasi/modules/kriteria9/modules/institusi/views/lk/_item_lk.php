@@ -38,6 +38,8 @@ $controller = $this->context->id;
                 <?= $form->field($modelNarasi, $modelAttribute)->widget(TinyMce::class, [
                     'options' => ['id' => $modelAttribute . '-tinymce-kriteria'],
                 ])->label('') ?>
+
+
                 <div class="form-group pull-right">
                     <?= Html::submitButton('<i class="la la-save"></i> Simpan',
                         ['class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air ']) ?>

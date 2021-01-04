@@ -126,87 +126,87 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
         $data = $this->filter($crawler);
         array_pop($data);
 
-        $contentStartRow = 12;
-        $currentContentRow = 12;
+        $startRow = 12;
+        $currentRow = 12;
         $currentWorksheet = 3;
 
         foreach ($data as $item) {
-            $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentContentRow + 1, 1);
+            $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
             $this->spreadsheet->getSheet($currentWorksheet)
-                ->setCellValue('A' . $currentContentRow, $item[0])
-                ->setCellValue('B' . $currentContentRow, $item[1])
-                ->setCellValue('C' . $currentContentRow, $item[2])
-                ->setCellValue('D' . $currentContentRow, $item[3])
-                ->setCellValue('E' . $currentContentRow, $item[4])
-                ->setCellValue('F' . $currentContentRow, $item[5])
-                ->setCellValue('G' . $currentContentRow, $item[6])
-                ->setCellValue('H' . $currentContentRow, $item[7])
-                ->setCellValue('I' . $currentContentRow, $item[8])
-                ->setCellValue('J' . $currentContentRow, $item[9] ?? '');
+                ->setCellValue('A' . $currentRow, $item[0])
+                ->setCellValue('B' . $currentRow, $item[1])
+                ->setCellValue('C' . $currentRow, $item[2])
+                ->setCellValue('D' . $currentRow, $item[3])
+                ->setCellValue('E' . $currentRow, $item[4])
+                ->setCellValue('F' . $currentRow, $item[5])
+                ->setCellValue('G' . $currentRow, $item[6])
+                ->setCellValue('H' . $currentRow, $item[7])
+                ->setCellValue('I' . $currentRow, $item[8])
+                ->setCellValue('J' . $currentRow, $item[9] ?? '');
 
-            $currentContentRow++;
+            $currentRow++;
         }
 
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentContentRow, 1);
-        $this->spreadsheet->getSheet($currentWorksheet)->getCell('B' . ($currentContentRow + 1))->getCalculatedValue();
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 1);
+        $this->spreadsheet->getSheet($currentWorksheet)->getCell('B' . ($currentRow + 1))->getCalculatedValue();
 
         //1-2
         $crawler = new Crawler($tabel->_1__2);
         $data = $this->filter($crawler);
         array_pop($data);
 
-        $contentStartRow = 12;
-        $currentContentRow = 12;
+        $startRow = 12;
+        $currentRow = 12;
         $currentWorksheet = 4;
 
         foreach ($data as $item) {
-            $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentContentRow + 1, 1);
+            $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
             $this->spreadsheet->getSheet($currentWorksheet)
-                ->setCellValue('A' . $currentContentRow, $item[0])
-                ->setCellValue('B' . $currentContentRow, $item[1])
-                ->setCellValue('C' . $currentContentRow, $item[2])
-                ->setCellValue('D' . $currentContentRow, $item[3])
-                ->setCellValue('E' . $currentContentRow, $item[4])
-                ->setCellValue('F' . $currentContentRow, $item[5])
-                ->setCellValue('G' . $currentContentRow, $item[6])
-                ->setCellValue('H' . $currentContentRow, $item[7])
-                ->setCellValue('I' . $currentContentRow, $item[8])
-                ->setCellValue('J' . $currentContentRow, $item[9] ?? '');
+                ->setCellValue('A' . $currentRow, $item[0])
+                ->setCellValue('B' . $currentRow, $item[1])
+                ->setCellValue('C' . $currentRow, $item[2])
+                ->setCellValue('D' . $currentRow, $item[3])
+                ->setCellValue('E' . $currentRow, $item[4])
+                ->setCellValue('F' . $currentRow, $item[5])
+                ->setCellValue('G' . $currentRow, $item[6])
+                ->setCellValue('H' . $currentRow, $item[7])
+                ->setCellValue('I' . $currentRow, $item[8])
+                ->setCellValue('J' . $currentRow, $item[9] ?? '');
 
-            $currentContentRow++;
+            $currentRow++;
         }
 
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentContentRow, 1);
-        $this->spreadsheet->getSheet($currentWorksheet)->getCell('B' . ($currentContentRow + 1))->getCalculatedValue();
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 1);
+        $this->spreadsheet->getSheet($currentWorksheet)->getCell('B' . ($currentRow + 1))->getCalculatedValue();
 
         //1-3
         $crawler = new Crawler($tabel->_1__3);
         $data = $this->filter($crawler);
         array_pop($data);
 
-        $contentStartRow = 12;
-        $currentContentRow = 12;
+        $startRow = 12;
+        $currentRow = 12;
         $currentWorksheet = 5;
 
         foreach ($data as $item) {
-            $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentContentRow + 1, 1);
+            $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
             $this->spreadsheet->getSheet($currentWorksheet)
-                ->setCellValue('A' . $currentContentRow, $item[0])
-                ->setCellValue('B' . $currentContentRow, $item[1])
-                ->setCellValue('C' . $currentContentRow, $item[2])
-                ->setCellValue('D' . $currentContentRow, $item[3])
-                ->setCellValue('E' . $currentContentRow, $item[4])
-                ->setCellValue('F' . $currentContentRow, $item[5])
-                ->setCellValue('G' . $currentContentRow, $item[6])
-                ->setCellValue('H' . $currentContentRow, $item[7])
-                ->setCellValue('I' . $currentContentRow, $item[8])
-                ->setCellValue('J' . $currentContentRow, $item[9] ?? '');
+                ->setCellValue('A' . $currentRow, $item[0])
+                ->setCellValue('B' . $currentRow, $item[1])
+                ->setCellValue('C' . $currentRow, $item[2])
+                ->setCellValue('D' . $currentRow, $item[3])
+                ->setCellValue('E' . $currentRow, $item[4])
+                ->setCellValue('F' . $currentRow, $item[5])
+                ->setCellValue('G' . $currentRow, $item[6])
+                ->setCellValue('H' . $currentRow, $item[7])
+                ->setCellValue('I' . $currentRow, $item[8])
+                ->setCellValue('J' . $currentRow, $item[9] ?? '');
 
-            $currentContentRow++;
+            $currentRow++;
         }
 
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentContentRow, 1);
-        $this->spreadsheet->getSheet($currentWorksheet)->getCell('B' . ($currentContentRow + 1))->getCalculatedValue();
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 1);
+        $this->spreadsheet->getSheet($currentWorksheet)->getCell('B' . ($currentRow + 1))->getCalculatedValue();
 
     }
 
@@ -221,20 +221,20 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
         $data = $this->filter($crawler);
         array_pop($data);
 
-        $contentStartRow = 6;
-        $currentContentRow = 6;
+        $startRow = 6;
+        $currentRow = 6;
         $currentWorksheet = 6;
 
         foreach ($data as $item) {
             $this->spreadsheet->getSheet($currentWorksheet)
-                ->setCellValue('B' . $currentContentRow, $item[1])
-                ->setCellValue('C' . $currentContentRow, $item[2])
-                ->setCellValue('D' . $currentContentRow, $item[3])
-                ->setCellValue('E' . $currentContentRow, $item[4])
-                ->setCellValue('F' . $currentContentRow, $item[5])
-                ->setCellValue('G' . $currentContentRow, $item[6])
-                ->setCellValue('H' . $currentContentRow, $item[7]);
-            $currentContentRow++;
+                ->setCellValue('B' . $currentRow, $item[1])
+                ->setCellValue('C' . $currentRow, $item[2])
+                ->setCellValue('D' . $currentRow, $item[3])
+                ->setCellValue('E' . $currentRow, $item[4])
+                ->setCellValue('F' . $currentRow, $item[5])
+                ->setCellValue('G' . $currentRow, $item[6])
+                ->setCellValue('H' . $currentRow, $item[7]);
+            $currentRow++;
 
         }
 
@@ -253,29 +253,29 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 array_pop($data);
 
 
-                $contentStartRow = 7;
-                $currentContentRow = 7;
+                $startRow = 7;
+                $currentRow = 7;
                 $currentWorksheet = 7;
 
                 foreach ($data as $item) {
-                    $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentContentRow + 1, 1);
+                    $this->spreadsheet->getSheet($currentWorksheet)->insertNewRowBefore($currentRow + 1, 1);
                     $this->spreadsheet->getSheet($currentWorksheet)
-                        ->setCellValue('A' . $currentContentRow, $item[0])
-                        ->setCellValue('B' . $currentContentRow, $item[1])
-                        ->setCellValue('C' . $currentContentRow, $item[2])
-                        ->setCellValue('D' . $currentContentRow, $item[3])
-                        ->setCellValue('E' . $currentContentRow, $item[4])
-                        ->setCellValue('F' . $currentContentRow, $item[5])
-                        ->setCellValue('G' . $currentContentRow, $item[6])
-                        ->setCellValue('H' . $currentContentRow, $item[7])
-                        ->setCellValue('I' . $currentContentRow, $item[8])
-                        ->setCellValue('J' . $currentContentRow, $item[9])
-                        ->setCellValue('K' . $currentContentRow, $item[10]);
-                    $currentContentRow++;
+                        ->setCellValue('A' . $currentRow, $item[0])
+                        ->setCellValue('B' . $currentRow, $item[1])
+                        ->setCellValue('C' . $currentRow, $item[2])
+                        ->setCellValue('D' . $currentRow, $item[3])
+                        ->setCellValue('E' . $currentRow, $item[4])
+                        ->setCellValue('F' . $currentRow, $item[5])
+                        ->setCellValue('G' . $currentRow, $item[6])
+                        ->setCellValue('H' . $currentRow, $item[7])
+                        ->setCellValue('I' . $currentRow, $item[8])
+                        ->setCellValue('J' . $currentRow, $item[9])
+                        ->setCellValue('K' . $currentRow, $item[10]);
+                    $currentRow++;
 
                 }
 
-                $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentContentRow, 1);
+                $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 1);
 
 
                 break;

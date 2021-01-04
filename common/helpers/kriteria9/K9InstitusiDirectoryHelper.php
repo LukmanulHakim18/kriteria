@@ -3,6 +3,7 @@
  * mutu-v2
  * @author Adryan Eka Vandra <adryanekavandra@gmail.com>
  */
+
 /**
  * Class K9InstitusiDirectoryHelper
  * @package common\helpers\kriteria9
@@ -20,21 +21,10 @@ class K9InstitusiDirectoryHelper extends K9DirectoryHelper
     {
         return Yii::getAlias('@uploadInstitusi');
     }
+
     public static function getUrl()
     {
         return Yii::getAlias('@.uploadInstitusi');
-    }
-    private static function getK9InstitusiPath(K9AkreditasiInstitusi $akreditasiInstitusi)
-    {
-        $pathData = Yii::$app->params['uploadPath'];
-        $pathReplacements = [
-            '{lembaga}'=> $akreditasiInstitusi->akreditasi->lembaga,
-            '{jenis_akreditasi}'=>$akreditasiInstitusi->akreditasi->jenis_akreditasi,
-            '{tahun}'=> $akreditasiInstitusi->akreditasi->tahun,
-            '{level}'=>'institusi',
-            '{id}'=>''
-        ];
-        return strtr($pathData, $pathReplacements);
     }
 
     public static function getDokumenLedPath($akreditasi)
@@ -45,6 +35,19 @@ class K9InstitusiDirectoryHelper extends K9DirectoryHelper
         $realPath = "$path/$documentPath/led";
 
         return $realPath;
+    }
+
+    private static function getK9InstitusiPath(K9AkreditasiInstitusi $akreditasiInstitusi)
+    {
+        $pathData = Yii::$app->params['uploadPath'];
+        $pathReplacements = [
+            '{lembaga}' => $akreditasiInstitusi->akreditasi->lembaga,
+            '{jenis_akreditasi}' => $akreditasiInstitusi->akreditasi->jenis_akreditasi,
+            '{tahun}' => $akreditasiInstitusi->akreditasi->tahun,
+            '{level}' => 'institusi',
+            '{id}' => ''
+        ];
+        return strtr($pathData, $pathReplacements);
     }
 
     public static function getDokumenLedUrl($akreditasi)
@@ -133,14 +136,25 @@ class K9InstitusiDirectoryHelper extends K9DirectoryHelper
     {
         $path = Yii::getAlias('@required');
         $pathReplacement = [
-            '{borang}'=>'kriteria9',
-            '{jenis_dokumen}'=>'apt',
-            '{template}'=>'template',
-            '{untuk}'=>'lk'
+            '{borang}' => 'kriteria9',
+            '{jenis_dokumen}' => 'apt',
+            '{template}' => 'template',
+            '{untuk}' => 'lk'
         ];
         $templatePath = parent::getTemplateLk($pathReplacement);
-        $realPath =  "$path/$templatePath";
+        $realPath = "$path/$templatePath";
 
         return $realPath;
+    }
+
+    public static function getKuantitatifTemplate($jenis)
+    {
+        if ($jenis === 'akademik') {
+            return Yii::getAlias('@required/kriteria9/apt/template/kuantitatif_akademik.xlsx');
+        }
+
+        return Yii::getAlias('@required/kriteria9/apt/template/kuantitatif_vokasi.xlsx');
+
+
     }
 }
