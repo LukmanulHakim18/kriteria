@@ -41,6 +41,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="kt-portlet__body">
         <div class="kt-section kt-section--first" style="margin-bottom: 0;">
 
+            <div class="alert alert-warning">
+                Hasil Ekspor Kuantitatif masih beta dan belum sempurna, mohon diperiksa hasilnya.
+            </div>
+
             <?= \kartik\grid\GridView::widget([
                 'dataProvider' => $dataKuantitatifInstitusi,
                 'summary' => false,
