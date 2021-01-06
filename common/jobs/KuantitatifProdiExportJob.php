@@ -16,6 +16,7 @@ use yii\base\Exception;
 use yii\helpers\FileHelper;
 use yii\helpers\Inflector;
 use yii\queue\JobInterface;
+use yii\queue\Queue;
 
 class KuantitatifProdiExportJob extends BaseObject implements JobInterface
 {
@@ -31,7 +32,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
     private $spreadsheet;
 
     /**
-     * @param \yii\queue\Queue $queue
+     * @param Queue $queue
      * @return mixed|void
      * @throws Exception
      * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
@@ -147,7 +148,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
         }
 
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 1);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         $this->spreadsheet->getSheet($currentWorksheet)->getCell('B' . ($currentRow + 1))->getCalculatedValue();
 
         //1-2
@@ -176,7 +177,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
         }
 
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 1);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         $this->spreadsheet->getSheet($currentWorksheet)->getCell('B' . ($currentRow + 1))->getCalculatedValue();
 
         //1-3
@@ -205,7 +206,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
         }
 
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 1);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         $this->spreadsheet->getSheet($currentWorksheet)->getCell('B' . ($currentRow + 1))->getCalculatedValue();
 
     }
@@ -275,7 +276,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
 
                 }
 
-                $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 1);
+                $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
 
 
                 break;
@@ -332,13 +333,16 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 ->setCellValue('C' . $currentRow, $item[2])
                 ->setCellValue('D' . $currentRow, $item[3])
                 ->setCellValue('E' . $currentRow, $item[4])
+                ->setCellValue('F' . $currentRow, "=AVERAGE(C" . $currentRow . ":E" . $currentRow . ")")
                 ->setCellValue('G' . $currentRow, $item[6])
                 ->setCellValue('H' . $currentRow, $item[7])
-                ->setCellValue('I' . $currentRow, $item[8]);
+                ->setCellValue('I' . $currentRow, $item[8])
+                ->setCellValue('J' . $currentRow, "=AVERAGE(G" . $currentRow . ":I" . $currentRow . ")")
+                ->setCellValue('K' . $currentRow, "=AVERAGE(F" . $currentRow . ",J" . $currentRow . ")");
             $currentRow++;
 
         }
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
 
         //3a3
         $crawler = new Crawler($narasi->_3_a_3);
@@ -367,7 +371,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
 
         }
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
 
         //3a4
         $crawler = new Crawler($narasi->_3_a_4);
@@ -394,7 +398,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
 
         }
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
 
         if (!$jenjang === ProgramStudi::JENJANG_DIPLOMA || $jenjang === ProgramStudi::JENJANG_SARJANA_TERAPAN) {
             //3a5
@@ -419,7 +423,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         }
 
         //3b1
@@ -445,7 +449,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
 
         }
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
 
         //3b2
         $crawler = new Crawler($narasi->_3_b_2);
@@ -464,7 +468,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
 
         }
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
 
         //3b3
         $crawler = new Crawler($narasi->_3_b_3);
@@ -483,7 +487,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
 
         }
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
 
         if ($jenjang === ProgramStudi::JENJANG_SARJANA || $jenjang === ProgramStudi::JENJANG_MAGISTER || $jenjang === ProgramStudi::JENJANG_DOKTOR) {
             //3b4 Non Terapan
@@ -503,7 +507,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         } else {
             //3b4 Non Terapan
             $crawler = new Crawler($narasi->_3_b_4);
@@ -522,7 +526,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         }
 
         if ($jenjang !== ProgramStudi::JENJANG_DIPLOMA) {
@@ -545,7 +549,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         }
         if ($jenjang === ProgramStudi::JENJANG_DIPLOMA || $jenjang === ProgramStudi::JENJANG_SARJANA_TERAPAN || $jenjang === ProgramStudi::JENJANG_MAGISTER_TERAPAN || $jenjang === ProgramStudi::JENJANG_DOKTOR_TERAPAN) {
             //3b6
@@ -569,7 +573,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         }
 
         //3b7-1
@@ -594,7 +598,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
 
         }
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
 
         //3b7-2
         $crawler = new Crawler($narasi->_3_b_7__2);
@@ -619,7 +623,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
 
         }
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
 
         //3b7-3
         $crawler = new Crawler($narasi->_3_b_7__3);
@@ -644,7 +648,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
 
         }
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
 
         //3b7-4
         $crawler = new Crawler($narasi->_3_b_7__4);
@@ -669,7 +673,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
 
         }
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
     }
 
     private function tabel4(string $jenjang)
@@ -701,7 +705,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
 
         }
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
 
     }
 
@@ -740,7 +744,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
 
         }
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
 
         //5b
         $crawler = new Crawler($narasi->_5_b);
@@ -763,7 +767,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
 
         }
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
 
         //5c
         $crawler = new Crawler($narasi->_5_c);
@@ -786,7 +790,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
 
         }
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
     }
 
     private function tabel7(string $jenjang)
@@ -814,7 +818,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
 
         }
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
     }
 
     private function tabel8(string $jenjang)
@@ -838,7 +842,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
 
         }
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
 
         //8b1
         $crawler = new Crawler($narasi->_8_b_1);
@@ -862,7 +866,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
 
         }
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
 
         if ($jenjang === ProgramStudi::JENJANG_DIPLOMA || $jenjang === ProgramStudi::JENJANG_SARJANA || $jenjang === ProgramStudi::JENJANG_SARJANA_TERAPAN) {
             $crawler = new Crawler($narasi->_8_b_2);
@@ -886,7 +890,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         }
 
         //8C
@@ -910,7 +914,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $startColumn++;
                 $currentRow++;
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         } elseif ($jenjang === ProgramStudi::JENJANG_SARJANA || $jenjang === ProgramStudi::JENJANG_SARJANA_TERAPAN) {
             $startRow = 15;
             $currentRow = 15;
@@ -928,7 +932,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $startColumn++;
                 $currentRow++;
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         } elseif ($jenjang === ProgramStudi::JENJANG_MAGISTER || $jenjang === ProgramStudi::JENJANG_MAGISTER_TERAPAN) {
             $startRow = 24;
             $currentRow = 24;
@@ -946,7 +950,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $startColumn++;
                 $currentRow++;
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         } elseif ($jenjang === ProgramStudi::JENJANG_DOKTOR || $jenjang === ProgramStudi::JENJANG_DOKTOR_TERAPAN) {
             $startRow = 32;
             $currentRow = 32;
@@ -964,7 +968,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $startColumn++;
                 $currentRow++;
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         }
 
 
@@ -989,7 +993,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         } elseif ($jenjang === ProgramStudi::JENJANG_SARJANA) {
             $startRow = 16;
             $currentRow = 16;
@@ -1006,7 +1010,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         } elseif ($jenjang === ProgramStudi::JENJANG_SARJANA_TERAPAN) {
             $startRow = 25;
             $currentRow = 25;
@@ -1023,7 +1027,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         }
 
         //8d2
@@ -1046,7 +1050,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         }
 
         //8e1
@@ -1070,7 +1074,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         }
 
         //ref 8e2
@@ -1091,7 +1095,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
 
             //8e2
             $crawler = new Crawler($narasi->_8_e_2);
@@ -1112,7 +1116,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         }
 
         //8f1
@@ -1133,7 +1137,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         } else {
             $crawler = new Crawler($narasi->_8_f_1);
             $data = $this->filter($crawler);
@@ -1151,7 +1155,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         }
 
         //8f2
@@ -1174,7 +1178,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         }
 
         // 8f3
@@ -1200,7 +1204,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         }
 
         if ($jenjang !== ProgramStudi::JENJANG_DIPLOMA) {
@@ -1227,7 +1231,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
 
             $crawler = new Crawler($narasi->_8_f_4__2);
             $data = $this->filter($crawler);
@@ -1251,7 +1255,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         }
 
         $crawler = new Crawler($narasi->_8_f_4__3);
@@ -1276,7 +1280,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
 
         }
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
 
 
         $crawler = new Crawler($narasi->_8_f_4__4);
@@ -1301,7 +1305,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $currentRow++;
 
         }
-        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+        $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
     }
 
     private function tabel6(string $jenjang)
@@ -1332,7 +1336,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         }
 
         if ($jenjang === ProgramStudi::JENJANG_MAGISTER || $jenjang === ProgramStudi::JENJANG_MAGISTER_TERAPAN || $jenjang === ProgramStudi::JENJANG_DOKTOR || $jenjang === ProgramStudi::JENJANG_DOKTOR_TERAPAN) {
@@ -1358,7 +1362,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
                 $currentRow++;
 
             }
-            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow);
+            $this->spreadsheet->getSheet($currentWorksheet)->removeRow($currentRow, 2);
         }
 
     }
