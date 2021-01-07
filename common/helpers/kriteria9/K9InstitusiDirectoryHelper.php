@@ -52,7 +52,7 @@ class K9InstitusiDirectoryHelper extends K9DirectoryHelper
 
     public static function getDokumenLedUrl($akreditasi)
     {
-        $path = Yii::getAlias('@web/upload');
+        $path = Yii::getAlias('@.uploadAkreditasi');
         $documentPath = self::getK9InstitusiPath($akreditasi);
         $realPath = "$path/$documentPath/led";
 
@@ -70,7 +70,7 @@ class K9InstitusiDirectoryHelper extends K9DirectoryHelper
 
     public static function getDetailLedUrl($akreditasi)
     {
-        $path = Yii::getAlias('@web/upload');
+        $path = Yii::getAlias('@.uploadAkreditasi');
         $documentPath = self::getK9InstitusiPath($akreditasi);
         $realPath = "$path/$documentPath/led";
 
@@ -88,7 +88,7 @@ class K9InstitusiDirectoryHelper extends K9DirectoryHelper
 
     public static function getDokumenLkUrl($akreditasi)
     {
-        $path = Yii::getAlias('@web/upload');
+        $path = Yii::getAlias('@.uploadAkreditasi');
         $documentPath = self::getK9InstitusiPath($akreditasi);
         $realPath = "$path/$documentPath/lk";
 
@@ -106,7 +106,7 @@ class K9InstitusiDirectoryHelper extends K9DirectoryHelper
 
     public static function getDetailLkUrl($akreditasi)
     {
-        $path = Yii::getAlias('@web/upload');
+        $path = Yii::getAlias('@.uploadAkreditasi');
         $documentPath = self::getK9InstitusiPath($akreditasi);
         $realPath = "$path/$documentPath/lk";
 
@@ -124,7 +124,7 @@ class K9InstitusiDirectoryHelper extends K9DirectoryHelper
 
     public static function getKuantitatifUrl($akreditasi)
     {
-        $path = Yii::getAlias('@web/upload');
+        $path = Yii::getAlias('@.uploadAkreditasi');
         $documentPath = self::getK9InstitusiPath($akreditasi);
         $realPath = "$path/$documentPath/matriks-kuantitatif";
 
@@ -142,9 +142,7 @@ class K9InstitusiDirectoryHelper extends K9DirectoryHelper
             '{untuk}' => 'lk'
         ];
         $templatePath = parent::getTemplateLk($pathReplacement);
-        $realPath = "$path/$templatePath";
-
-        return $realPath;
+        return "$path/$templatePath";
     }
 
     public static function getKuantitatifTemplate($jenis)
