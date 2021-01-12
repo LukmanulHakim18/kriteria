@@ -170,11 +170,6 @@ class LedProdiPartialExportJob extends BaseObject implements JobInterface
         $excludeAttr = 'id_led_prodi_kriteria' . $kriteria;
         $narasi = $this->led->$kriteriaAttr->$narasiAttr;
 
-        $exclude = ['id', $excludeAttr, 'progress', 'created_at', 'updated_at', 'created_by', 'updated_by'];
-        $filters = array_filter($narasi->attributes, function ($attribute) use ($exclude) {
-            return in_array($attribute, $exclude, true) === false;
-        }, ARRAY_FILTER_USE_KEY);
-
         $json = K9ProdiJsonHelper::getJsonKriteriaLed($kriteria);
         $phpWord = new PhpWord();
         $section = $phpWord->addSection();
@@ -185,7 +180,7 @@ class LedProdiPartialExportJob extends BaseObject implements JobInterface
 
         $teks = '<body>';
 
-        $this->document->setValue('kriteria', $kriteria);
+        $this->document->setValue('kriteria', 'C.' . $kriteria);
         $this->document->setValue('judul', $json->nama);
         foreach ($json->butir as $butir) {
 
@@ -209,6 +204,58 @@ class LedProdiPartialExportJob extends BaseObject implements JobInterface
 
     public function isiNonKriteria($poin)
     {
+        $narasi = null;
+        $json = null;
+
+        $phpWord = new PhpWord();
+        $section = $phpWord->addSection();
+        $fontStyle = array();//if no style given levels do not register (if empty array defaults to template)
+        $phpWord->addTitleStyle(1, $fontStyle);
+        $phpWord->addTitleStyle(2, $fontStyle);
+        $phpWord->addTitleStyle(3, $fontStyle);
+
+        $teks = '<body>';
+
+        switch ($poin) {
+            case 'A':
+                $narasi = $this->led->narasiEksternal;
+                $json = K9ProdiJsonHelper::getJsonLedKondisiEksternal();
+                $attr = NomorKriteriaHelper::changeToDbFormat($json->nomor);
+                $teks .= $narasi->$attr;
+                break;
+            case 'B':
+                $narasi = $this->led->narasiProfil;
+                $json = K9ProdiJsonHelper::getJsonLedProfil();
+                foreach ($json->butir as $butir) {
+
+                    $teks .= "<h3>" . $butir->nomor . ". " . $butir->nama . "</h3>";
+                    $attr = NomorKriteriaHelper::changeToDbFormat($butir->nomor);
+                    $teks .= $narasi->$attr;
+                    $teks .= "<br/>";
+                }
+                break;
+            case 'D':
+                $narasi = $this->led->narasiAnalisis;
+                $json = K9ProdiJsonHelper::getJsonLedAnalisis();
+                foreach ($json->butir as $butir) {
+
+                    $teks .= "<h3>" . $butir->nomor . ". " . $butir->nama . "</h3>";
+                    $attr = NomorKriteriaHelper::changeToDbFormat($butir->nomor);
+                    $teks .= $narasi->$attr;
+                    $teks .= "<br/>";
+                }
+                break;
+        }
+        $teks .= '</body>';
+
+        $this->document->setValue('kriteria', $poin);
+        $this->document->setValue('judul', $json->nama);
+        Html::addHtml($section, $teks, true, false);
+        $htmlAsXml = $this->containerToXML($section);
+
+        Settings::setOutputEscapingEnabled(false);
+        $this->document->setValue('isi_kriteria_block', $htmlAsXml);
+        Settings::setOutputEscapingEnabled(true);
 
     }
 

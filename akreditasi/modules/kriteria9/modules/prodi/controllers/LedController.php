@@ -311,7 +311,7 @@ class LedController extends BaseController
                 break;
         }
 
-        $poin = $json->butir;
+        $currentPoint = $json->butir;
 
         $modelLink = new K9DetailLedInstitusiNonKriteriaLinkForm();
         $modelUpload = new K9DetailLedProdiNonKriteriaUploadForm();
@@ -359,7 +359,8 @@ class LedController extends BaseController
                 'poin' => $poin,
                 'modelNarasi' => $modelNarasi,
                 'untuk' => $untuk,
-                'prodi' => $programStudi
+                'prodi' => $programStudi,
+                'currentPoint' => $currentPoint
             ]);
     }
 
@@ -649,6 +650,30 @@ class LedController extends BaseController
             'led' => $ledProdi,
             'poinKriteria' => $kriteria,
             'jenis' => LedProdiPartialExportJob::JENIS_KRITERIA
+        ]));
+
+        if ($id) {
+            Yii::$app->session->setFlash('success', 'Berhasil memasukkan ekspor ke dalam antrian.');
+            return $this->redirect(['isi', 'led' => $ledProdi->id, 'prodi' => $ledProdi->akreditasiProdi->id_prodi]);
+        }
+        Yii::$app->session->setFlash('danger', 'Terjadi kesalahan saat memasukkan ke dalam antrian.');
+        return $this->redirect($referer);
+    }
+
+    public function actionExportPartialNonKriteria()
+    {
+
+        $params = Yii::$app->request->post();
+        $poin = $params['poin'];
+        $id_led = $params['led'];
+        $referer = $params['referer'];
+
+        $ledProdi = $this->findLedProdi($id_led);
+
+        $id = Yii::$app->queue->push(new LedProdiPartialExportJob([
+            'led' => $ledProdi,
+            'poinKriteria' => $poin,
+            'jenis' => LedProdiPartialExportJob::JENIS_NONKRITERIA
         ]));
 
         if ($id) {
