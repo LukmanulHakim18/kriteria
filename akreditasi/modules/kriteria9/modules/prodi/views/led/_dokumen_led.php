@@ -72,6 +72,7 @@ $controller = $this->context->id;
                     <th class="text-center">No.</th>
                     <th class="text-center">Dokumen Led</th>
                     <th class="text-center">Dibuat Tanggal</th>
+                    <th class="text-center">Jenis</th>
                     <th class="text-center">
                         Aksi
                     </th>
@@ -96,6 +97,7 @@ $controller = $this->context->id;
                             </div>
                         </td>
                         <td class="text-center"><?= Yii::$app->formatter->asDatetime($item->updated_at) ?></td>
+                        <td class="text-center"><?= $item->kode_dokumen ?></td>
                         <td>
                             <div class="row pull-right">
                                 <div class="col-lg-12">
