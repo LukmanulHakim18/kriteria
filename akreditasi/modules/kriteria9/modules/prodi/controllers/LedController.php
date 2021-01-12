@@ -23,6 +23,7 @@ use akreditasi\modules\kriteria9\controllers\BaseController;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\helpers\NomorKriteriaHelper;
+use common\jobs\LedProdiPartialExportJob;
 use common\models\Constants;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\forms\led\K9PencarianLedProdiForm;
@@ -34,6 +35,7 @@ use common\models\kriteria9\led\prodi\K9LedProdiNonKriteriaDokumen;
 use common\models\kriteria9\led\prodi\K9ProdiEksporDokumen;
 use common\models\ProgramStudi;
 use Yii;
+use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
 use yii\helpers\Url;
@@ -48,6 +50,18 @@ class LedController extends BaseController
     protected $lihatLedView = '@akreditasi/modules/kriteria9/modules/prodi/views/led/led';
     protected $lihatKriteriaView = '@akreditasi/modules/kriteria9/modules/prodi/views/led/isi-kriteria';
     protected $lihatNonKriteriaView = '@akreditasi/modules/kriteria9/modules/prodi/views/led/isi-non_kriteria';
+
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'export-partial-kriteria' => ['POST']
+                ]
+            ]
+        ];
+    }
 
     public function actionArsip($target, $prodi)
     {
@@ -297,7 +311,7 @@ class LedController extends BaseController
                 break;
         }
 
-        $poin = $json->butir;
+        $currentPoint = $json->butir;
 
         $modelLink = new K9DetailLedInstitusiNonKriteriaLinkForm();
         $modelUpload = new K9DetailLedProdiNonKriteriaUploadForm();
@@ -345,7 +359,8 @@ class LedController extends BaseController
                 'poin' => $poin,
                 'modelNarasi' => $modelNarasi,
                 'untuk' => $untuk,
-                'prodi' => $programStudi
+                'prodi' => $programStudi,
+                'currentPoint' => $currentPoint
             ]);
     }
 
@@ -618,6 +633,55 @@ class LedController extends BaseController
         $model = K9LedProdiNonKriteriaDokumen::findOne($dokumen);
         $file = K9ProdiDirectoryHelper::getDokumenLedPath($led->akreditasiProdi) . "/$jenis/{$model->isi_dokumen}";
         return Yii::$app->response->sendFile($file);
+    }
+
+    public function actionExportPartialKriteria()
+    {
+
+        $params = Yii::$app->request->post();
+        $kriteria = $params['kriteria'];
+        $id_led = $params['led'];
+        $referer = $params['referer'];
+
+
+        $ledProdi = $this->findLedProdi($id_led);
+
+        $id = Yii::$app->queue->push(new LedProdiPartialExportJob([
+            'led' => $ledProdi,
+            'poinKriteria' => $kriteria,
+            'jenis' => LedProdiPartialExportJob::JENIS_KRITERIA
+        ]));
+
+        if ($id) {
+            Yii::$app->session->setFlash('success', 'Berhasil memasukkan ekspor ke dalam antrian.');
+            return $this->redirect(['isi', 'led' => $ledProdi->id, 'prodi' => $ledProdi->akreditasiProdi->id_prodi]);
+        }
+        Yii::$app->session->setFlash('danger', 'Terjadi kesalahan saat memasukkan ke dalam antrian.');
+        return $this->redirect($referer);
+    }
+
+    public function actionExportPartialNonKriteria()
+    {
+
+        $params = Yii::$app->request->post();
+        $poin = $params['poin'];
+        $id_led = $params['led'];
+        $referer = $params['referer'];
+
+        $ledProdi = $this->findLedProdi($id_led);
+
+        $id = Yii::$app->queue->push(new LedProdiPartialExportJob([
+            'led' => $ledProdi,
+            'poinKriteria' => $poin,
+            'jenis' => LedProdiPartialExportJob::JENIS_NONKRITERIA
+        ]));
+
+        if ($id) {
+            Yii::$app->session->setFlash('success', 'Berhasil memasukkan ekspor ke dalam antrian.');
+            return $this->redirect(['isi', 'led' => $ledProdi->id, 'prodi' => $ledProdi->akreditasiProdi->id_prodi]);
+        }
+        Yii::$app->session->setFlash('danger', 'Terjadi kesalahan saat memasukkan ke dalam antrian.');
+        return $this->redirect($referer);
     }
 
     protected function getLedKriteriaNomor($kriteria, $search)

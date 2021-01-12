@@ -69,9 +69,10 @@ $controller = $this->context->id;
                 <thead class="thead-light">
                 <tr>
 
-                    <th>No.</th>
-                    <th>Dokumen Led</th>
-                    <th>
+                    <th class="text-center">No.</th>
+                    <th class="text-center">Dokumen Led</th>
+                    <th class="text-center">Dibuat Tanggal</th>
+                    <th class="text-center">
                         Aksi
                     </th>
                 </tr>
@@ -79,7 +80,7 @@ $controller = $this->context->id;
                 <tbody>
                 <?php foreach ($dataDokumen as $key => $item) : ?>
                     <tr>
-                        <td><?= $key + 1 ?></td>
+                        <td class="text-center"><?= $key + 1 ?></td>
                         <td>
                             <div class="row">
                                 <div class="col-lg-12 text-center">
@@ -94,32 +95,22 @@ $controller = $this->context->id;
                                 </div>
                             </div>
                         </td>
+                        <td class="text-center"><?= Yii::$app->formatter->asDatetime($item->updated_at) ?></td>
                         <td>
                             <div class="row pull-right">
                                 <div class="col-lg-12">
-                                    <?php $type = FileTypeHelper::getType($item->bentuk_dokumen);
-                                    if ($type === FileTypeHelper::TYPE_IMAGE || $type === FileTypeHelper::TYPE_PDF):?>
-                                        <?php Modal::begin([
-                                            'title' => $item->nama_dokumen,
-                                            'toggleButton' => [
-                                                'label' => '<i class="la la-eye"></i> &nbsp;Lihat',
-                                                'class' => 'btn btn-info btn-pill btn-elevate btn-elevate-air'
-                                            ],
-                                            'size' => 'modal-lg',
-                                            'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
-                                        ]); ?>
-                                        <?php switch ($type) {
-                                            case FileTypeHelper::TYPE_IMAGE:
-                                                echo Html::img("$path/{$item->nama_dokumen}",
-                                                    ['height' => '100%', 'width' => '100%']);
-                                                break;
-                                            case FileTypeHelper::TYPE_PDF:
-                                                echo '<embed src="' . $path . '/' . $item->nama_dokumen . '" type="application/pdf" height="100%" width="100%">
-';
-                                                break;
-                                        } ?>
-                                        <?php Modal::end(); ?>
-                                    <?php endif; ?>
+                                    <?php $type = FileTypeHelper::getType($item->bentuk_dokumen); ?>
+                                    <?php Modal::begin([
+                                        'title' => $item->nama_dokumen,
+                                        'toggleButton' => [
+                                            'label' => '<i class="la la-eye"></i> &nbsp;Lihat',
+                                            'class' => 'btn btn-info btn-pill btn-elevate btn-elevate-air'
+                                        ],
+                                        'size' => 'modal-lg',
+                                        'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
+                                    ]); ?>
+                                    <?php echo ' <div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://docs.google.com/gview?url=' . $path . '/' . rawurlencode($item->nama_dokumen) . '&embedded=true"></iframe></div>'; ?>
+                                    <?php Modal::end(); ?>
                                     <?= Html::a('<i class ="la la-download"></i> Unduh',
                                         [$controller . '/download-dokumen', 'dokumen' => $item->id],
                                         ['class' => 'btn btn-warning btn-pill btn-elevate btn-elevate-air']) ?>
@@ -129,7 +120,7 @@ $controller = $this->context->id;
                                             'data' => [
                                                 'method' => 'POST',
                                                 'confirm' => 'Apakah anda yakin menghapus item ini?',
-                                                'params' => ['id' => $item->id, 'prodi' => $prodi]
+                                                'params' => ['id' => $item->id, 'prodi' => $prodi->id]
                                             ]
                                         ]) ?>
                                 </div>

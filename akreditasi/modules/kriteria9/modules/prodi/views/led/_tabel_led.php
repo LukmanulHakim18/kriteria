@@ -22,19 +22,26 @@ use yii\bootstrap4\Progress;
     <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
             <h3 class="kt-portlet__head-title">
-               Laporan Evaluasi Program Studi
+                Laporan Evaluasi Program Studi
             </h3>
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-actions">
-                <strong>Pengisian:&nbsp;<?= Html::encode($led->progress) ?> %</strong>
-                <div class="kt-space-10"></div>
-                <?=
-                Progress::widget([
-                    'percent' => $led->progress,
-                    'barOptions' => ['class' => 'progress-bar-info m-progress-lg'],
-                    'options' => ['class' => 'progress-sm']
-                ]); ?>
+                <div class="pull-left ml-2 mr-2">
+                    <?= Html::a('<i class="fas fa-file-word"></i> Ekspor', ['export-complete-kriteria'],
+                        ['class' => 'btn btn-primary btn-elevate btn-elevate-air']) ?>
+                </div>
+                <div class="pull-right ml-2 mr-2">
+                    <strong>Pengisian:&nbsp;<?= Html::encode($led->progress) ?> %</strong>
+                    <div class="kt-space-10"></div>
+                    <?=
+                    Progress::widget([
+                        'percent' => $led->progress,
+                        'barOptions' => ['class' => 'progress-bar-info m-progress-lg'],
+                        'options' => ['class' => 'progress-sm']
+                    ]); ?>
+                </div>
+
             </div>
         </div>
     </div>
@@ -44,25 +51,28 @@ use yii\bootstrap4\Progress;
 
             <div class="row">
                 <div class="col-lg-12">
-                    <?=$this->render('_tabel_led_eksternal',compact('json_eksternal','modelEksternal','untuk','prodi','led'))?>
+                    <?= $this->render('_tabel_led_eksternal',
+                        compact('json_eksternal', 'modelEksternal', 'untuk', 'prodi', 'led')) ?>
 
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <?= $this->render('_tabel_led_profil',compact('json_profil','modelProfil','untuk','prodi','led')) ?>
+                    <?= $this->render('_tabel_led_profil',
+                        compact('json_profil', 'modelProfil', 'untuk', 'prodi', 'led')) ?>
 
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <?=$this->render('_tabel_led_kriteria', compact('json', 'kriteria', 'prodi', 'untuk','led'))?>
+                    <?= $this->render('_tabel_led_kriteria', compact('json', 'kriteria', 'prodi', 'untuk', 'led')) ?>
 
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <?=$this->render('_tabel_led_analisis',compact('json_analisis','modelAnalisis','untuk','prodi','led'))?>
+                    <?= $this->render('_tabel_led_analisis',
+                        compact('json_analisis', 'modelAnalisis', 'untuk', 'prodi', 'led')) ?>
 
                 </div>
             </div>

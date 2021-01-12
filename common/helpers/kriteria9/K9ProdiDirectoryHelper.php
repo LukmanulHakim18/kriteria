@@ -118,4 +118,9 @@ class K9ProdiDirectoryHelper extends K9DirectoryHelper
     {
         return Yii::getAlias('@required/kriteria9/aps/template/kuantitatif.xlsx');
     }
+
+    public static function getLedPartialTemplate()
+    {
+        return Yii::getAlias('@required/kriteria9/aps/template/template-led-prodi-partial.docx');
+    }
 }

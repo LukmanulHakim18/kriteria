@@ -28,7 +28,7 @@ class KuantitatifController extends BaseController
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    ['export' => 'POST']
+                    'export' => ['POST']
 
                 ]
             ]
