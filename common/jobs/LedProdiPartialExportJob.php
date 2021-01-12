@@ -121,15 +121,15 @@ class LedProdiPartialExportJob extends BaseObject implements JobInterface
 
     const JENIS_KRITERIA = 'kriteria';
     const JENIS_NONKRITERIA = 'nonkriteria';
-    /** @var TemplateProcessor */
 
-    public $document;
     /** @var K9LedProdi */
     public $led;
 
     public $jenis;
-
     public $poinKriteria;
+
+    /** @var TemplateProcessor */
+    private $_document;
 
     /**
      * @param Queue $queue
@@ -139,7 +139,7 @@ class LedProdiPartialExportJob extends BaseObject implements JobInterface
     {
         $now = Carbon::now()->timestamp;
         $namafile = '';
-        $this->document = new TemplateProcessor(K9ProdiDirectoryHelper::getLedPartialTemplate());
+        $this->_document = new TemplateProcessor(K9ProdiDirectoryHelper::getLedPartialTemplate());
         if ($this->jenis === self::JENIS_KRITERIA) {
 
             $namafile = $now . '-led-prodi-partial-kriteria' . $this->poinKriteria . '.docx';
@@ -157,7 +157,7 @@ class LedProdiPartialExportJob extends BaseObject implements JobInterface
         $model->nama_dokumen = $namafile;
 
         $path = K9ProdiDirectoryHelper::getDokumenLedPath($this->led->akreditasiProdi);
-        $this->document->saveAs($path . '/' . $model->nama_dokumen);
+        $this->_document->saveAs($path . '/' . $model->nama_dokumen);
         $model->save(false);
 
 
@@ -180,10 +180,20 @@ class LedProdiPartialExportJob extends BaseObject implements JobInterface
 
         $teks = '<body>';
 
-        $this->document->setValue('kriteria', 'C.' . $kriteria);
-        $this->document->setValue('judul', $json->nama);
+        $this->_document->setValue('kriteria', 'C.' . $kriteria);
+        $this->_document->setValue('judul', $json->nama);
         foreach ($json->butir as $butir) {
 
+            if ($butir->butir) {
+                $teks .= "<h3>" . $butir->nomor . ". " . $butir->nama . "</h3>";
+                foreach ($butir->butir as $item) {
+                    $teks .= "<h3>" . $item->nomor . ". " . $item->nama . "</h3>";
+                    $attr = NomorKriteriaHelper::changeToDbFormat($item->nomor);
+                    $teks .= $narasi->$attr;
+                    $teks .= "<br/>";
+                }
+                continue;
+            }
 
             $teks .= "<h3>" . $butir->nomor . ". " . $butir->nama . "</h3>";
             $attr = NomorKriteriaHelper::changeToDbFormat($butir->nomor);
@@ -197,7 +207,7 @@ class LedProdiPartialExportJob extends BaseObject implements JobInterface
         $htmlAsXml = $this->containerToXML($section);
 
         Settings::setOutputEscapingEnabled(false);
-        $this->document->setValue('isi_kriteria_block', $htmlAsXml);
+        $this->_document->setValue('isi_kriteria_block', $htmlAsXml);
         Settings::setOutputEscapingEnabled(true);
 
     }
@@ -248,13 +258,13 @@ class LedProdiPartialExportJob extends BaseObject implements JobInterface
         }
         $teks .= '</body>';
 
-        $this->document->setValue('kriteria', $poin);
-        $this->document->setValue('judul', $json->nama);
+        $this->_document->setValue('kriteria', $poin);
+        $this->_document->setValue('judul', $json->nama);
         Html::addHtml($section, $teks, true, false);
         $htmlAsXml = $this->containerToXML($section);
 
         Settings::setOutputEscapingEnabled(false);
-        $this->document->setValue('isi_kriteria_block', $htmlAsXml);
+        $this->_document->setValue('isi_kriteria_block', $htmlAsXml);
         Settings::setOutputEscapingEnabled(true);
 
     }

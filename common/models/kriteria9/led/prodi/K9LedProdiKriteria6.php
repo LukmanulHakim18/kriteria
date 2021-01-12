@@ -3,7 +3,6 @@
 namespace common\models\kriteria9\led\prodi;
 
 use common\helpers\kriteria9\K9ProdiProgressHelper;
-use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -37,7 +36,13 @@ class K9LedProdiKriteria6 extends \yii\db\ActiveRecord
         return [
             [['id_led_prodi', 'created_at', 'updated_at'], 'integer'],
             [['progress'], 'number'],
-            [['id_led_prodi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LedProdi::className(), 'targetAttribute' => ['id_led_prodi' => 'id']],
+            [
+                ['id_led_prodi'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => K9LedProdi::className(),
+                'targetAttribute' => ['id_led_prodi' => 'id']
+            ],
         ];
     }
 
@@ -73,28 +78,29 @@ class K9LedProdiKriteria6 extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getK9LedProdiKriteria6Details()
-    {
-        return $this->hasMany(K9LedProdiKriteria6Detail::className(), ['id_led_prodi_kriteria6' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getK9LedProdiNarasiKriteria6s()
     {
-        return $this->hasMany(K9LedProdiNarasiKriteria6::className(), ['id_led_prodi_kriteria6' => 'id']);
+        return $this->hasOne(K9LedProdiNarasiKriteria6::className(), ['id_led_prodi_kriteria6' => 'id']);
     }
 
     public function updateProgress()
     {
         $narasi = $this->k9LedProdiNarasiKriteria6s->progress;
 
-        $dokumen = K9ProdiProgressHelper::getDokumenLedProgress($this->id_led_prodi,$this->getK9LedProdiKriteria6Details(), 1);
+        $dokumen = K9ProdiProgressHelper::getDokumenLedProgress($this->id_led_prodi,
+            $this->getK9LedProdiKriteria6Details(), 1);
 
 
-        $progress = round(($narasi+$dokumen)/2,2);
+        $progress = round(($narasi + $dokumen) / 2, 2);
         $this->progress = $progress;
         $this->save(false);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getK9LedProdiKriteria6Details()
+    {
+        return $this->hasMany(K9LedProdiKriteria6Detail::className(), ['id_led_prodi_kriteria6' => 'id']);
     }
 }
