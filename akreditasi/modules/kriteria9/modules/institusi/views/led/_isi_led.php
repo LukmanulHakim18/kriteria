@@ -36,7 +36,7 @@ $controller = $this->context->id;
                         <?php $form = ActiveForm::begin([
                             'action' => \yii\helpers\Url::to([
                                 $controller . '/isi-kriteria',
-                                'led' => $model->id,
+                                'led' => $model->ledInstitusi->id,
                                 'kriteria' => $kriteria
                             ]),
                             'options' => ['enctype' => 'multipart/form-data'],
@@ -83,7 +83,7 @@ $controller = $this->context->id;
                     <?php $form = ActiveForm::begin([
                         'action' => \yii\helpers\Url::to([
                             $controller . '/isi-kriteria',
-                            'led' => $model->id,
+                            'led' => $model->ledInstitusi->id,
                             'kriteria' => $kriteria
                         ]),
                         'options' => ['enctype' => 'multipart/form-data'],

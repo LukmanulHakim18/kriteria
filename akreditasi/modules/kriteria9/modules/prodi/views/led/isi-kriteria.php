@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = [
 ];
 $this->params['breadcrumbs'][] = [
     'label' => \yii\helpers\StringHelper::mb_ucfirst($untuk) . ' Led',
-    'url' => ['/kriteria9/k9-prodi/led/' . $untuk, 'led' => $model->id, 'prodi' => $prodi->id]
+    'url' => ['/kriteria9/k9-prodi/led/' . $untuk, 'led' => $model->ledProdi->id, 'prodi' => $prodi->id]
 ];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -120,7 +120,7 @@ use yii\bootstrap4\Progress;
 $url = \yii\helpers\Url::to([
     $controller . '/butir-item',
     'kriteria' => $kriteria,
-    'led' => $model->id,
+    'led' => $model->ledProdi->id,
     'prodi' => $prodi->id,
     'untuk' => $untuk
 ], true);

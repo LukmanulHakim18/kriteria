@@ -2739,7 +2739,7 @@
                 "writeable": false,
                 "butir": [
                     {
-                        "nomor": "9.1",
+                        "nomor": "9.4",
                         "nama": "Indikator Kinerja Utama",
                         "deskripsi": null,
                         "writeable": true,
@@ -2765,119 +2765,32 @@
                         ],
                         "dokumen_sumber": [
                             {
-                                "kode": "9.1.1.1",
-                                "dokumen": "Standar Mutu"
-                            },
-                            {
-                                "kode": "9.1.1.2",
-                                "dokumen": "Pedoman pengukuran capaian pembelajaran lulusan, prestasi mahasiswa, efektivitas dan produktivitas pendidikan, daya saing lulusan, serta kinerja lulusan."
-                            },
-                            {
-                                "kode": "9.1.1.3",
-                                "dokumen": "Data capaian pembelajaran lulusan yang mencakup aspek keserbacakupan, kedalaman dan kebermanfaatan (meliputi data IPK lulusan, capaian prestasi akademik dan non akademik, rata-rata masa studi, kelulusan tepat waktu) yang menunjukkan adanya peningkatan dari waktu ke waktu."
-                            },
-                            {
-                                "kode": "9.1.1.4",
-                                "dokumen": "Pedoman tracer study terhadap lulusan dan pengguna lulusan, yang mencakup aspek organisasi, metodologi, instrumen, penilaian, evaluasi, dan pemanfaatan hasil studi."
-                            },
-                            {
-                                "kode": "9.1.1.5",
-                                "dokumen": "Data hasil tracer study terhadap lulusan yang mencakup waktu tunggu lulusan untuk mendapatkan pekerjaan pertama, dan kesesuaian bidang kerja pekerjaan pertama."
-                            },
-                            {
-                                "kode": "9.1.1.6",
-                                "dokumen": "Data hasil tracer study terhadap pengguna lulusan yang mencakup tingkat/ukuran tempat kerja/berwirausaha lulusan, kepuasan pengguna lulusan (meliputi aspek etika, keahlian pada bidang ilmu, kemampuan berbahasa asing, penggunaan teknologi informasi, kemampuan berkomunikasi, kerjasama tim, dan pengembangan diri)."
-                            },
-                            {
-                                "kode": "9.1.1.7",
-                                "dokumen": "Data luaran penelitian dan PkM mahasiswa, meliputi publikasi ilmiah mahasiswa, HKI, Teknologi Tepat Guna, Produk, Karya Seni, Rekayasa Sosial, Buku ber-ISBN, Book Chapter (baik yang dilakukan mandiri atau bersama dosen tetap program studi),"
-                            }
-                        ],
-                        "dokumen_pendukung": [
-                            {
-                                "kode": "9.1.2.1",
-                                "dokumen": "Notulen"
-                            },
-                            {
-                                "kode": "9.1.2.2",
-                                "dokumen": "Daftar Hadir"
-                            },
-                            {
-                                "kode": "9.1.2.3",
-                                "dokumen": "Dokumen publikasi ilmiah mahasiswa, HKI, Teknologi Tepat Guna, Produk, Karya Seni, Rekayasa Sosial, Buku ber-ISBN, atau Book Chapter yang dihasilkan mahasiswa"
-                            }
-                        ]
-                    },
-                    {
-                        "nomor": "9.2",
-                        "nama": "Indikator Kinerja Tambahan (yang melewati standar Nasional)",
-                        "deskripsi": "Indikator kinerja tambahan adalah indicator kinerja luaran lain yang ditetapkan oleh masing masing perguruan tinggi untuk melampaui SN DIKTI. Data indikator kinerja tambahan yang sahih harus diukur, dimonitor, dikaji dan dianalisis untuk perbaikan berkelanjutan.",
-                        "dokumen_sumber": [
-                            {
-                                "kode": "9.2.1.1",
-                                "dokumen": "Standar Mutu"
-                            },
-                            {
-                                "kode": "9.2.1.2",
-                                "dokumen": "Dokumen Monev terhadap luaran dan capaian tridharma berdasarkan standar yang ditetapkan untuk melampaui SN-Dikti)"
-                            }
-                        ],
-                        "dokumen_pendukung": [
-                            {
-                                "kode": "9.2.2.1",
-                                "dokumen": "Notulen"
-                            },
-                            {
-                                "kode": "9.2.2.2",
-                                "dokumen": "Daftar Hadir"
-                            }
-                        ]
-                    },
-                    {
-                        "nomor": "9.3",
-                        "nama": "Evaluasi Capaian Kinerja",
-                        "deskripsi": "Berisi deskripsi dan analisis keberhasilan dan/atau ketidakberhasilan pencapaian standar yang telah ditetapkan. Capaian kinerja harus diukur dengan metoda yang tepat, dan hasilnya dianalisis serta dievaluasi. Analisis terhadap capaian kinerja harus mencakup identifikasi akar masalah, faktor pendukung keberhasilan dan faktor penghambat ketercapaian standar, dan deskripsi singkat tindak lanjut yang akan dilakukan institusi.",
-                        "writeable": true,
-                        "butir": null,
-                        "dokumen_sumber": [
-                            {
-                                "kode": "9.3.1.1",
-                                "dokumen": "Pedoman Monev luaran tridharma, yang mencakup identifikasi akar masalah, faktor pendukung keberhasilan dan faktor penghambat ketercapaian standar, serta tindak lanjut yang akan dilakukan."
-                            },
-                            {
-                                "kode": "9.3.1.2",
-                                "dokumen": "Hasil Monev luaran tridharma"
-                            }
-                        ],
-                        "dokumen_pendukung": [
-                            {
-                                "kode": "9.3.2.1",
-                                "dokumen": "Notulen"
-                            },
-                            {
-                                "kode": "9.3.2.2",
-                                "dokumen": "Daftar Hadir"
-                            }
-                        ]
-                    },
-                    {
-                        "nomor": "9.4",
-                        "nama": "Penjaminan Mutu Luaran",
-                        "deskripsi": "Berisi deskripsi dan bukti yang sahih sistem penjaminan mutu luaran dan capaian yang ditetapkan, dilaksanakan, hasilnya dievaluasi dan dikendalikan serta dilakukan upaya peningkatan sesuai dengan siklus PPEPP.",
-                        "writeable": true,
-                        "butir": null,
-                        "dokumen_sumber": [
-                            {
                                 "kode": "9.4.1.1",
-                                "dokumen": "Laporan Monev luaran tridharma"
+                                "dokumen": "Standar Mutu"
                             },
                             {
                                 "kode": "9.4.1.2",
-                                "dokumen": "Laporan audit luaran tridharma"
+                                "dokumen": "Pedoman pengukuran capaian pembelajaran lulusan, prestasi mahasiswa, efektivitas dan produktivitas pendidikan, daya saing lulusan, serta kinerja lulusan."
                             },
                             {
                                 "kode": "9.4.1.3",
-                                "dokumen": "Laporan audit tindak lanjut luaran tridharma"
+                                "dokumen": "Data capaian pembelajaran lulusan yang mencakup aspek keserbacakupan, kedalaman dan kebermanfaatan (meliputi data IPK lulusan, capaian prestasi akademik dan non akademik, rata-rata masa studi, kelulusan tepat waktu) yang menunjukkan adanya peningkatan dari waktu ke waktu."
+                            },
+                            {
+                                "kode": "9.4.1.4",
+                                "dokumen": "Pedoman tracer study terhadap lulusan dan pengguna lulusan, yang mencakup aspek organisasi, metodologi, instrumen, penilaian, evaluasi, dan pemanfaatan hasil studi."
+                            },
+                            {
+                                "kode": "9.4.1.5",
+                                "dokumen": "Data hasil tracer study terhadap lulusan yang mencakup waktu tunggu lulusan untuk mendapatkan pekerjaan pertama, dan kesesuaian bidang kerja pekerjaan pertama."
+                            },
+                            {
+                                "kode": "9.4.1.6",
+                                "dokumen": "Data hasil tracer study terhadap pengguna lulusan yang mencakup tingkat/ukuran tempat kerja/berwirausaha lulusan, kepuasan pengguna lulusan (meliputi aspek etika, keahlian pada bidang ilmu, kemampuan berbahasa asing, penggunaan teknologi informasi, kemampuan berkomunikasi, kerjasama tim, dan pengembangan diri)."
+                            },
+                            {
+                                "kode": "9.4.1.7",
+                                "dokumen": "Data luaran penelitian dan PkM mahasiswa, meliputi publikasi ilmiah mahasiswa, HKI, Teknologi Tepat Guna, Produk, Karya Seni, Rekayasa Sosial, Buku ber-ISBN, Book Chapter (baik yang dilakukan mandiri atau bersama dosen tetap program studi),"
                             }
                         ],
                         "dokumen_pendukung": [
@@ -2888,30 +2801,117 @@
                             {
                                 "kode": "9.4.2.2",
                                 "dokumen": "Daftar Hadir"
+                            },
+                            {
+                                "kode": "9.4.2.3",
+                                "dokumen": "Dokumen publikasi ilmiah mahasiswa, HKI, Teknologi Tepat Guna, Produk, Karya Seni, Rekayasa Sosial, Buku ber-ISBN, atau Book Chapter yang dihasilkan mahasiswa"
                             }
                         ]
                     },
                     {
                         "nomor": "9.5",
+                        "nama": "Indikator Kinerja Tambahan (yang melewati standar Nasional)",
+                        "deskripsi": "Indikator kinerja tambahan adalah indicator kinerja luaran lain yang ditetapkan oleh masing masing perguruan tinggi untuk melampaui SN DIKTI. Data indikator kinerja tambahan yang sahih harus diukur, dimonitor, dikaji dan dianalisis untuk perbaikan berkelanjutan.",
+                        "dokumen_sumber": [
+                            {
+                                "kode": "9.5.1.1",
+                                "dokumen": "Standar Mutu"
+                            },
+                            {
+                                "kode": "9.5.1.2",
+                                "dokumen": "Dokumen Monev terhadap luaran dan capaian tridharma berdasarkan standar yang ditetapkan untuk melampaui SN-Dikti)"
+                            }
+                        ],
+                        "dokumen_pendukung": [
+                            {
+                                "kode": "9.5.2.1",
+                                "dokumen": "Notulen"
+                            },
+                            {
+                                "kode": "9.5.2.2",
+                                "dokumen": "Daftar Hadir"
+                            }
+                        ]
+                    },
+                    {
+                        "nomor": "9.6",
+                        "nama": "Evaluasi Capaian Kinerja",
+                        "deskripsi": "Berisi deskripsi dan analisis keberhasilan dan/atau ketidakberhasilan pencapaian standar yang telah ditetapkan. Capaian kinerja harus diukur dengan metoda yang tepat, dan hasilnya dianalisis serta dievaluasi. Analisis terhadap capaian kinerja harus mencakup identifikasi akar masalah, faktor pendukung keberhasilan dan faktor penghambat ketercapaian standar, dan deskripsi singkat tindak lanjut yang akan dilakukan institusi.",
+                        "writeable": true,
+                        "butir": null,
+                        "dokumen_sumber": [
+                            {
+                                "kode": "9.6.1.1",
+                                "dokumen": "Pedoman Monev luaran tridharma, yang mencakup identifikasi akar masalah, faktor pendukung keberhasilan dan faktor penghambat ketercapaian standar, serta tindak lanjut yang akan dilakukan."
+                            },
+                            {
+                                "kode": "9.6.1.2",
+                                "dokumen": "Hasil Monev luaran tridharma"
+                            }
+                        ],
+                        "dokumen_pendukung": [
+                            {
+                                "kode": "9.6.2.1",
+                                "dokumen": "Notulen"
+                            },
+                            {
+                                "kode": "9.6.2.2",
+                                "dokumen": "Daftar Hadir"
+                            }
+                        ]
+                    },
+                    {
+                        "nomor": "9.7",
+                        "nama": "Penjaminan Mutu Luaran",
+                        "deskripsi": "Berisi deskripsi dan bukti yang sahih sistem penjaminan mutu luaran dan capaian yang ditetapkan, dilaksanakan, hasilnya dievaluasi dan dikendalikan serta dilakukan upaya peningkatan sesuai dengan siklus PPEPP.",
+                        "writeable": true,
+                        "butir": null,
+                        "dokumen_sumber": [
+                            {
+                                "kode": "9.7.1.1",
+                                "dokumen": "Laporan Monev luaran tridharma"
+                            },
+                            {
+                                "kode": "9.7.1.2",
+                                "dokumen": "Laporan audit luaran tridharma"
+                            },
+                            {
+                                "kode": "9.7.1.3",
+                                "dokumen": "Laporan audit tindak lanjut luaran tridharma"
+                            }
+                        ],
+                        "dokumen_pendukung": [
+                            {
+                                "kode": "9.7.2.1",
+                                "dokumen": "Notulen"
+                            },
+                            {
+                                "kode": "9.7.2.2",
+                                "dokumen": "Daftar Hadir"
+                            }
+                        ]
+                    },
+                    {
+                        "nomor": "9.8",
                         "nama": "Kepuasan Pengguna",
                         "deskripsi": "Bagian ini berisi:\na)\tDeskripsi sistem untuk mengukur kepuasan pengguna luaran perguruan tinggi (pengguna lulusan dan mitra), termasuk kejelasan instrumen yang digunakan, pelaksanaan, perekaman, dan analisis datanya.\nb)\tKetersediaan bukti yang sahih tentang hasil pengukuran kepuasan pengguna yang dilaksanakan secara konsisten, dan ditindaklanjuti secara berkala dan tersistem.\n",
                         "writeable": true,
                         "butir": null,
                         "dokumen_sumber": [
                             {
-                                "kode": "9.5.1.1",
+                                "kode": "9.8.1.1",
                                 "dokumen": "Pedoman Penyusunan Instrumen pengukuran kepuasan pengguna lulusan dan mitra kerja terhadap kinerja lulusan."
                             },
                             {
-                                "kode": "9.5.1.2",
+                                "kode": "9.8.1.2",
                                 "dokumen": "Pedoman pelaksanaan survey (waktu, pelaksana, tempat, Dokumentasi) yang menunjukkan bahwa survey dilaksanakan secara konsisten, dan ditindaklanjuti secara berkala dan tersistem."
                             },
                             {
-                                "kode": "9.5.1.3",
+                                "kode": "9.8.1.3",
                                 "dokumen": "Pedoman analisis hasil survey"
                             },
                             {
-                                "kode": "9.5.1.4",
+                                "kode": "9.8.1.4",
                                 "dokumen": "Hasil analisis dan review pelaksanaan pengukuran kepuasan pengguna lulusan dan mitra kerja terhadap kinerja lulusan"
                             }
                         ],
@@ -2927,24 +2927,24 @@
                         ]
                     },
                     {
-                        "nomor": "9.6",
+                        "nomor": "9.9",
                         "nama": "Kesimpulan hasil evaluasi ketercapaian standar serta tindak lanjut",
                         "deskripsi": "Berisi ringkasan dari: pemosisian, masalah dan akar masalah, serta rencana perbaikan dan peningkatan luaran dan capaian tridharma.",
                         "writeable": true,
                         "butir": null,
                         "dokumen_sumber": [
                             {
-                                "kode": "9.6.1.1",
+                                "kode": "9.9.1.1",
                                 "dokumen": "Laporan Evaluasi dan tindak lanjut terkait luaran dan capaian tridharma."
                             }
                         ],
                         "dokumen_pendukung": [
                             {
-                                "kode": "9.6.2.1",
+                                "kode": "9.9.2.1",
                                 "dokumen": "Notulen"
                             },
                             {
-                                "kode": "9.6.2.2",
+                                "kode": "9.9.2.2",
                                 "dokumen": "Daftar Hadir"
                             }
                         ]

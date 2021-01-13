@@ -101,11 +101,11 @@ namespace common\jobs;
 
 
 use Carbon\Carbon;
-use common\helpers\kriteria9\K9ProdiDirectoryHelper;
-use common\helpers\kriteria9\K9ProdiJsonHelper;
+use common\helpers\kriteria9\K9InstitusiDirectoryHelper;
+use common\helpers\kriteria9\K9InstitusiJsonHelper;
 use common\helpers\NomorKriteriaHelper;
-use common\models\kriteria9\led\prodi\K9LedProdi;
-use common\models\kriteria9\led\prodi\K9ProdiEksporDokumen;
+use common\models\kriteria9\led\institusi\K9InstitusiEksporDokumen;
+use common\models\kriteria9\led\institusi\K9LedInstitusi;
 use PhpOffice\Common\XMLWriter;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\Settings;
@@ -116,13 +116,13 @@ use yii\base\BaseObject;
 use yii\queue\JobInterface;
 use yii\queue\Queue;
 
-class LedProdiPartialExportJob extends BaseObject implements JobInterface
+class LedInstitusiPartialExportJob extends BaseObject implements JobInterface
 {
 
     const JENIS_KRITERIA = 'kriteria';
     const JENIS_NONKRITERIA = 'nonkriteria';
 
-    /** @var K9LedProdi */
+    /** @var K9LedInstitusi */
     public $led;
 
     public $jenis;
@@ -139,24 +139,24 @@ class LedProdiPartialExportJob extends BaseObject implements JobInterface
     {
         $now = Carbon::now()->timestamp;
         $namafile = '';
-        $this->_document = new TemplateProcessor(K9ProdiDirectoryHelper::getLedPartialTemplate());
+        $this->_document = new TemplateProcessor(K9InstitusiDirectoryHelper::getLedPartialTemplate());
         if ($this->jenis === self::JENIS_KRITERIA) {
 
-            $namafile = $now . '-led-prodi-partial-kriteria' . $this->poinKriteria . '.docx';
+            $namafile = $now . '-led-institusi-partial-kriteria' . $this->poinKriteria . '.docx';
             $this->isiKriteria($this->poinKriteria);
         } else {
-            $namafile = $now . '-led-prodi-partial-poin' . $this->poinKriteria . '.docx';
+            $namafile = $now . '-led-institusi-partial-poin' . $this->poinKriteria . '.docx';
 
             $this->isiNonKriteria($this->poinKriteria);
         }
 
-        $model = new K9ProdiEksporDokumen();
-        $model->id_led_prodi = $this->led->id;
+        $model = new K9InstitusiEksporDokumen();
+        $model->id_led_institusi = $this->led->id;
         $model->kode_dokumen = $this->poinKriteria;
         $model->bentuk_dokumen = 'docx';
         $model->nama_dokumen = $namafile;
 
-        $path = K9ProdiDirectoryHelper::getDokumenLedPath($this->led->akreditasiProdi);
+        $path = K9InstitusiDirectoryHelper::getDokumenLedPath($this->led->akreditasiInstitusi);
         $this->_document->saveAs($path . '/' . $model->nama_dokumen);
         $model->save(false);
 
@@ -165,12 +165,12 @@ class LedProdiPartialExportJob extends BaseObject implements JobInterface
 
     public function isiKriteria($kriteria)
     {
-        $kriteriaAttr = 'k9LedProdiKriteria' . $kriteria . 's';
-        $narasiAttr = 'k9LedProdiNarasiKriteria' . $kriteria . 's';
-        $excludeAttr = 'id_led_prodi_kriteria' . $kriteria;
+        $kriteriaAttr = 'k9LedInstitusiKriteria' . $kriteria . 's';
+        $narasiAttr = 'k9LedInstitusiNarasiKriteria' . $kriteria . 's';
+        $excludeAttr = 'id_led_institusi_kriteria' . $kriteria;
         $narasi = $this->led->$kriteriaAttr->$narasiAttr;
 
-        $json = K9ProdiJsonHelper::getJsonKriteriaLed($kriteria);
+        $json = K9InstitusiJsonHelper::getJsonKriteriaLed($kriteria);
         $phpWord = new PhpWord();
         $section = $phpWord->addSection();
         $fontStyle = array();//if no style given levels do not register (if empty array defaults to template)
@@ -229,13 +229,13 @@ class LedProdiPartialExportJob extends BaseObject implements JobInterface
         switch ($poin) {
             case 'A':
                 $narasi = $this->led->narasiEksternal;
-                $json = K9ProdiJsonHelper::getJsonLedKondisiEksternal();
+                $json = K9InstitusiJsonHelper::getJsonLedKondisiEksternal();
                 $attr = NomorKriteriaHelper::changeToDbFormat($json->nomor);
                 $teks .= $narasi->$attr;
                 break;
             case 'B':
                 $narasi = $this->led->narasiProfil;
-                $json = K9ProdiJsonHelper::getJsonLedProfil();
+                $json = K9InstitusiJsonHelper::getJsonLedProfil();
                 foreach ($json->butir as $butir) {
 
                     $teks .= "<h3>" . $butir->nomor . ". " . $butir->nama . "</h3>";
@@ -246,7 +246,7 @@ class LedProdiPartialExportJob extends BaseObject implements JobInterface
                 break;
             case 'D':
                 $narasi = $this->led->narasiAnalisis;
-                $json = K9ProdiJsonHelper::getJsonLedAnalisis();
+                $json = K9InstitusiJsonHelper::getJsonLedAnalisis();
                 foreach ($json->butir as $butir) {
 
                     $teks .= "<h3>" . $butir->nomor . ". " . $butir->nama . "</h3>";

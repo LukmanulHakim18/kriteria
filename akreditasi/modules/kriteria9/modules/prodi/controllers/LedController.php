@@ -23,6 +23,7 @@ use akreditasi\modules\kriteria9\controllers\BaseController;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\helpers\NomorKriteriaHelper;
+use common\jobs\LedProdiCompleteExportJob;
 use common\jobs\LedProdiPartialExportJob;
 use common\models\Constants;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
@@ -57,7 +58,9 @@ class LedController extends BaseController
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'export-partial-kriteria' => ['POST']
+                    'export-partial-kriteria' => ['POST'],
+                    'export-partial-non-kriteria' => ['POST'],
+                    'export-complete' => ['POST']
                 ]
             ]
         ];
@@ -147,7 +150,7 @@ class LedController extends BaseController
         $modelAnalisis = K9LedProdiNarasiAnalisisForm::findOne(['id_led_prodi' => $ledProdi->id]);
 
         $modelDokumen = new K9DokumenLedProdiUploadForm();
-        $dataDokumen = K9ProdiEksporDokumen::findAll(['id_led_prodi' => $ledProdi->id]);
+        $dataDokumen = K9ProdiEksporDokumen::find()->where(['id_led_prodi' => $ledProdi->id])->orderBy('kode_dokumen')->all();
         $kriteria = $this->getArrayKriteria($led);
         $realPath = K9ProdiDirectoryHelper::getDokumenLedUrl($ledProdi->akreditasiProdi);
 
@@ -287,7 +290,8 @@ class LedController extends BaseController
             'poinKriteria' => $poinKriteria,
             'untuk' => 'isi',
             'kriteria' => $kriteria,
-            'prodi' => $programStudi
+            'prodi' => $programStudi,
+            'ledProdi' => $ledProdi
         ]);
     }
 
@@ -681,6 +685,27 @@ class LedController extends BaseController
             return $this->redirect(['isi', 'led' => $ledProdi->id, 'prodi' => $ledProdi->akreditasiProdi->id_prodi]);
         }
         Yii::$app->session->setFlash('danger', 'Terjadi kesalahan saat memasukkan ke dalam antrian.');
+        return $this->redirect($referer);
+    }
+
+    public function actionExportComplete()
+    {
+
+        $params = Yii::$app->request->post();
+        $id_led = $params['led'];
+        $referer = $params['referer'];
+
+        $ledProdi = $this->findLedProdi($id_led);
+        $id = Yii::$app->queue->push(new LedProdiCompleteExportJob([
+            'led' => $ledProdi,
+        ]));
+
+        if ($id) {
+            Yii::$app->session->setFlash('success', 'Berhasil memasukkan ekspor ke dalam antrian.');
+        } else {
+            Yii::$app->session->setFlash('danger', 'Terjadi kesalahan saat memasukkan ke dalam antrian.');
+
+        }
         return $this->redirect($referer);
     }
 

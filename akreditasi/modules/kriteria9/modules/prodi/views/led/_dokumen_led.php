@@ -72,6 +72,7 @@ $controller = $this->context->id;
                     <th class="text-center">No.</th>
                     <th class="text-center">Dokumen Led</th>
                     <th class="text-center">Dibuat Tanggal</th>
+                    <th class="text-center">Jenis</th>
                     <th class="text-center">
                         Aksi
                     </th>
@@ -96,6 +97,7 @@ $controller = $this->context->id;
                             </div>
                         </td>
                         <td class="text-center"><?= Yii::$app->formatter->asDatetime($item->updated_at) ?></td>
+                        <td class="text-center"><?= $item->kode_dokumen ?></td>
                         <td>
                             <div class="row pull-right">
                                 <div class="col-lg-12">
@@ -114,7 +116,8 @@ $controller = $this->context->id;
                                     <?= Html::a('<i class ="la la-download"></i> Unduh',
                                         [$controller . '/download-dokumen', 'dokumen' => $item->id],
                                         ['class' => 'btn btn-warning btn-pill btn-elevate btn-elevate-air']) ?>
-                                    <?= Html::a('<i class ="la la-trash"></i> Hapus',
+
+                                    <?= ($untuk === 'isi') ? Html::a('<i class ="la la-trash"></i> Hapus',
                                         [$controller . '/hapus-dokumen-led'], [
                                             'class' => 'btn btn-danger btn-pill btn-elevate btn-elevate-air',
                                             'data' => [
@@ -122,7 +125,7 @@ $controller = $this->context->id;
                                                 'confirm' => 'Apakah anda yakin menghapus item ini?',
                                                 'params' => ['id' => $item->id, 'prodi' => $prodi->id]
                                             ]
-                                        ]) ?>
+                                        ]) : '' ?>
                                 </div>
 
                             </div>

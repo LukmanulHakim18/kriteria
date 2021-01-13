@@ -28,8 +28,18 @@ use yii\bootstrap4\Progress;
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-actions">
                 <div class="pull-left ml-2 mr-2">
-                    <?= Html::a('<i class="fas fa-file-word"></i> Ekspor', ['export-complete-kriteria'],
-                        ['class' => 'btn btn-primary btn-elevate btn-elevate-air']) ?>
+                    <?= Html::a('<i class="fas fa-file-word"></i> Ekspor', ['export-complete'],
+                        [
+                            'class' => 'btn btn-primary btn-elevate btn-elevate-air',
+                            'data' => [
+                                'method' => 'POST',
+                                'confirm' => 'Apakah anda ingin mengekspor dokumen LED?',
+                                'params' => [
+                                    'referer' => \yii\helpers\Url::current(),
+                                    'led' => $led->id,
+                                ]
+                            ]
+                        ]) ?>
                 </div>
                 <div class="pull-right ml-2 mr-2">
                     <strong>Pengisian:&nbsp;<?= Html::encode($led->progress) ?> %</strong>

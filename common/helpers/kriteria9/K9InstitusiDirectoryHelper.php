@@ -153,6 +153,15 @@ class K9InstitusiDirectoryHelper extends K9DirectoryHelper
 
         return Yii::getAlias('@required/kriteria9/apt/template/kuantitatif_vokasi.xlsx');
 
+    }
 
+    public static function getLedPartialTemplate()
+    {
+        return Yii::getAlias('@required/kriteria9/apt/template/template-led-institusi-partial.docx');
+    }
+
+    public static function getLedCompleteTemplate()
+    {
+        return Yii::getAlias('@required/kriteria9/apt/template/template-led-institusi-complete.docx');
     }
 }
