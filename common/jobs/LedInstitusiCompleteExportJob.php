@@ -46,7 +46,8 @@ class LedInstitusiCompleteExportJob extends BaseObject implements JobInterface
 
         $this->isiDokumen();
         $model = new K9InstitusiEksporDokumen();
-        $model->id_led_institusi = $this->led->id;
+        $model->external_id = $this->led->id;
+        $model->type = K9InstitusiEksporDokumen::TYPE_LED;
         $model->kode_dokumen = 'complete';
         $model->bentuk_dokumen = 'docx';
         $model->nama_dokumen = $namafile;

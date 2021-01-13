@@ -10,8 +10,6 @@ use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\models\FakultasAkademi;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\akreditasi\K9AkreditasiInstitusi;
-use common\models\kriteria9\led\institusi\K9InstitusiEksporDokumen;
-use common\models\kriteria9\led\prodi\K9ProdiEksporDokumen;
 use yii\data\ActiveDataProvider;
 
 class AkreditasiController extends BaseController
@@ -53,7 +51,7 @@ class AkreditasiController extends BaseController
         $json_profil = K9ProdiJsonHelper::getJsonLedProfil();
         $json_analisis = K9ProdiJsonHelper::getJsonLedAnalisis();
         $ledProdi = $akreditasiProdi->k9LedProdi;
-        $dokumenLed = K9ProdiEksporDokumen::find()->where(['id_led_prodi' => $ledProdi->id])->orderBy('kode_dokumen')->all();
+        $dokumenLed = $ledProdi->getEksporDokumen()->orderBy('kode_dokumen')->all();
         $kriteriaLed = $this->getArrayKriteraLed($ledProdi->id);
         $urlLed = K9ProdiDirectoryHelper::getDokumenLedUrl($ledProdi->akreditasiProdi);
         $modelEksternal = $ledProdi->narasiEksternal;
@@ -98,7 +96,7 @@ class AkreditasiController extends BaseController
         $json_profil = K9InstitusiJsonHelper::getJsonLedProfil();
         $json_analisis = K9InstitusiJsonHelper::getJsonLedAnalisis();
         $ledInstitusi = $apt->k9LedInstitusi;
-        $dokumenLed = K9InstitusiEksporDokumen::findAll(['id_led_institusi' => $ledInstitusi->id]);
+        $dokumenLed = $ledInstitusi->getEksporDokumen()->orderBy('kode_dokumen')->all();
         $kriteriaLed = $this->getArrayKriteraLedInstitusi($ledInstitusi->id);
         $urlLed = K9InstitusiDirectoryHelper::getDokumenLedUrl($ledInstitusi->akreditasiInstitusi);
 

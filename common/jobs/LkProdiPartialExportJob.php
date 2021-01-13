@@ -116,14 +116,11 @@ use yii\base\BaseObject;
 use yii\queue\JobInterface;
 use yii\queue\Queue;
 
-class LedProdiPartialExportJob extends BaseObject implements JobInterface
+class LkProdiPartialExportJob extends BaseObject implements JobInterface
 {
 
-    const JENIS_KRITERIA = 'kriteria';
-    const JENIS_NONKRITERIA = 'nonkriteria';
-
     /** @var K9LedProdi */
-    public $led;
+    public $lk;
 
     public $jenis;
     public $poinKriteria;
@@ -140,24 +137,19 @@ class LedProdiPartialExportJob extends BaseObject implements JobInterface
         $now = Carbon::now()->timestamp;
         $namafile = '';
         $this->_document = new TemplateProcessor(K9ProdiDirectoryHelper::getLedPartialTemplate());
-        if ($this->jenis === self::JENIS_KRITERIA) {
 
-            $namafile = $now . '-led-prodi-partial-kriteria' . $this->poinKriteria . '.docx';
-            $this->isiKriteria($this->poinKriteria);
-        } else {
-            $namafile = $now . '-led-prodi-partial-poin' . $this->poinKriteria . '.docx';
 
-            $this->isiNonKriteria($this->poinKriteria);
-        }
+        $namafile = $now . '-lk-prodi-partial-kriteria' . $this->poinKriteria . '.docx';
+        $this->isiKriteria($this->poinKriteria);
+
 
         $model = new K9ProdiEksporDokumen();
-        $model->external_id = $this->led->id;
-        $model->type = K9ProdiEksporDokumen::TYPE_LED;
+        $model->external_id = $this->lk->id;
         $model->kode_dokumen = $this->poinKriteria;
         $model->bentuk_dokumen = 'docx';
         $model->nama_dokumen = $namafile;
 
-        $path = K9ProdiDirectoryHelper::getDokumenLedPath($this->led->akreditasiProdi);
+        $path = K9ProdiDirectoryHelper::getDokumenLedPath($this->lk->akreditasiProdi);
         $this->_document->saveAs($path . '/' . $model->nama_dokumen);
         $model->save(false);
 
@@ -168,8 +160,8 @@ class LedProdiPartialExportJob extends BaseObject implements JobInterface
     {
         $kriteriaAttr = 'k9LedProdiKriteria' . $kriteria . 's';
         $narasiAttr = 'k9LedProdiNarasiKriteria' . $kriteria . 's';
-        $excludeAttr = 'id_led_prodi_kriteria' . $kriteria;
-        $narasi = $this->led->$kriteriaAttr->$narasiAttr;
+        $excludeAttr = 'id_lk_prodi_kriteria' . $kriteria;
+        $narasi = $this->lk->$kriteriaAttr->$narasiAttr;
 
         $json = K9ProdiJsonHelper::getJsonKriteriaLed($kriteria);
         $phpWord = new PhpWord();
@@ -211,6 +203,14 @@ class LedProdiPartialExportJob extends BaseObject implements JobInterface
         $this->_document->setValue('isi_kriteria_block', $htmlAsXml);
         Settings::setOutputEscapingEnabled(true);
 
+    }
+
+    function containerToXML(/** @var  Container */ $container)
+    {
+        $xmlWriter = new XMLWriter(XMLWriter::STORAGE_MEMORY, './', Settings::hasCompatibility());
+        $containerWriter = new Container($xmlWriter, $container);
+        $containerWriter->write();
+        return ($xmlWriter->getData());
     }
 
     public function isiNonKriteria($poin)
@@ -268,13 +268,5 @@ class LedProdiPartialExportJob extends BaseObject implements JobInterface
         $this->_document->setValue('isi_kriteria_block', $htmlAsXml);
         Settings::setOutputEscapingEnabled(true);
 
-    }
-
-    function containerToXML(/** @var  Container */ $container)
-    {
-        $xmlWriter = new XMLWriter(XMLWriter::STORAGE_MEMORY, './', Settings::hasCompatibility());
-        $containerWriter = new Container($xmlWriter, $container);
-        $containerWriter->write();
-        return ($xmlWriter->getData());
     }
 }

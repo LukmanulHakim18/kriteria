@@ -3,7 +3,6 @@
 namespace common\models;
 
 use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
-use oxyaction\behaviors\RelatedPolymorphicBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -47,18 +46,18 @@ class ProgramStudi extends \yii\db\ActiveRecord
     const JENJANG_SARJANA = 'Sarjana';
     const JENJANG_SARJANA_TERAPAN = 'SarjanaTerapan';
     const JENJANG_MAGISTER = 'Magister';
-    const JENJANG_MAGISTER_TERAPAN ='MagisterTerapan';
+    const JENJANG_MAGISTER_TERAPAN = 'MagisterTerapan';
     const JENJANG_DOKTOR = 'Doktor';
     const JENJANG_DOKTOR_TERAPAN = 'DoktorTerapan';
 
     const JENJANG = [
-        self::JENJANG_DIPLOMA=>self::JENJANG_DIPLOMA,
-        self::JENJANG_SARJANA=>self::JENJANG_SARJANA,
-        self::JENJANG_SARJANA_TERAPAN=>'Sarjana Terapan',
-        self::JENJANG_MAGISTER=>self::JENJANG_MAGISTER,
-        self::JENJANG_MAGISTER_TERAPAN=>'Magister Terapan',
-        self::JENJANG_DOKTOR=>self::JENJANG_DOKTOR,
-        self::JENJANG_DOKTOR_TERAPAN=>'Doktor Terapan',
+        self::JENJANG_DIPLOMA => self::JENJANG_DIPLOMA,
+        self::JENJANG_SARJANA => self::JENJANG_SARJANA,
+        self::JENJANG_SARJANA_TERAPAN => 'Sarjana Terapan',
+        self::JENJANG_MAGISTER => self::JENJANG_MAGISTER,
+        self::JENJANG_MAGISTER_TERAPAN => 'Magister Terapan',
+        self::JENJANG_DOKTOR => self::JENJANG_DOKTOR,
+        self::JENJANG_DOKTOR_TERAPAN => 'Doktor Terapan',
 
     ];
 
@@ -85,10 +84,47 @@ class ProgramStudi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_fakultas_akademi', 'tanggal_sk_pendirian', 'bulan_berdiri', 'tanggal_sk_operasional', 'nilai_banpt_terakhir', 'created_at', 'updated_at'], 'integer'],
-            [['kode', 'nama', 'jurusan_departemen', 'nomor_sk_pendirian', 'pejabat_ttd_sk_pendirian', 'nomor_sk_operasional', 'peringkat_banpt_terakhir', 'nomor_sk_banpt', 'alamat', 'kodepos', 'nomor_telp', 'homepage', 'email', 'kaprodi', 'jenjang'], 'string', 'max' => 255],
+            [
+                [
+                    'id_fakultas_akademi',
+                    'tanggal_sk_pendirian',
+                    'bulan_berdiri',
+                    'tanggal_sk_operasional',
+                    'nilai_banpt_terakhir',
+                    'created_at',
+                    'updated_at'
+                ],
+                'integer'
+            ],
+            [
+                [
+                    'kode',
+                    'nama',
+                    'jurusan_departemen',
+                    'nomor_sk_pendirian',
+                    'pejabat_ttd_sk_pendirian',
+                    'nomor_sk_operasional',
+                    'peringkat_banpt_terakhir',
+                    'nomor_sk_banpt',
+                    'alamat',
+                    'kodepos',
+                    'nomor_telp',
+                    'homepage',
+                    'email',
+                    'kaprodi',
+                    'jenjang'
+                ],
+                'string',
+                'max' => 255
+            ],
             [['tahun_berdiri'], 'string', 'max' => 4],
-            [['id_fakultas_akademi'], 'exist', 'skipOnError' => true, 'targetClass' => FakultasAkademi::className(), 'targetAttribute' => ['id_fakultas_akademi' => 'id']],
+            [
+                ['id_fakultas_akademi'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => FakultasAkademi::className(),
+                'targetAttribute' => ['id_fakultas_akademi' => 'id']
+            ],
         ];
     }
 
@@ -154,14 +190,14 @@ class ProgramStudi extends \yii\db\ActiveRecord
      */
     public function getProfil()
     {
-        return $this->hasOne(Profil::class, ['external_id'=>'id'])->andWhere(['type'=>self::PROGRAM_STUDI]);
+        return $this->hasOne(Profil::class, ['external_id' => 'id'])->andWhere(['type' => self::PROGRAM_STUDI]);
     }
 
     /**
-     * @return yii\db\ActiveQuery;
+     * @return \yii\db\ActiveQuery
      */
     public function getBerkas()
     {
-        return $this->hasMany(Berkas::class, ['external_id'=>'id'])->andWhere(['type'=>self::PROGRAM_STUDI]);
+        return $this->hasMany(Berkas::class, ['external_id' => 'id'])->andWhere(['type' => self::PROGRAM_STUDI]);
     }
 }

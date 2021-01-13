@@ -150,7 +150,7 @@ class LedController extends BaseController
         $modelAnalisis = K9LedProdiNarasiAnalisisForm::findOne(['id_led_prodi' => $ledProdi->id]);
 
         $modelDokumen = new K9DokumenLedProdiUploadForm();
-        $dataDokumen = K9ProdiEksporDokumen::find()->where(['id_led_prodi' => $ledProdi->id])->orderBy('kode_dokumen')->all();
+        $dataDokumen = $ledProdi->getEksporDokumen()->orderBy('kode_dokumen')->all();
         $kriteria = $this->getArrayKriteria($led);
         $realPath = K9ProdiDirectoryHelper::getDokumenLedUrl($ledProdi->akreditasiProdi);
 
@@ -481,7 +481,7 @@ class LedController extends BaseController
         $modelProfil = K9LedProdiNarasiProfilUpps::findOne(['id_led_prodi' => $ledProdi->id]);
         $modelAnalisis = K9LedProdiNarasiAnalisis::findOne(['id_led_prodi' => $ledProdi->id]);
         $modelDokumen = new K9DokumenLedProdiUploadForm();
-        $dataDokumen = K9ProdiEksporDokumen::findAll(['id_led_prodi' => $ledProdi->id]);
+        $dataDokumen = $ledProdi->getEksporDokumen()->orderBy('kode_dokumen')->all();
         $kriteria = $this->getArrayKriteria($led);
         $realPath = K9ProdiDirectoryHelper::getDokumenLedUrl($ledProdi->akreditasiProdi);
 

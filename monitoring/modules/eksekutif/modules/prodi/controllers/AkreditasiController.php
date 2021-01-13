@@ -33,7 +33,7 @@ class AkreditasiController extends BaseController
         $json_profil = K9ProdiJsonHelper::getJsonLedProfil();
         $json_analisis = K9ProdiJsonHelper::getJsonLedAnalisis();
         $ledProdi = $akreditasiProdi->k9LedProdi;
-        $dokumenLed = K9ProdiEksporDokumen::find()->where(['id_led_prodi' => $ledProdi->id])->orderBy('kode_dokumen')->all();
+        $dokumenLed = $ledProdi->getEksporDokumen()->orderBy('kode_dokumen')->all();
         $kriteriaLed = $this->getArrayKriteraLed($ledProdi->id);
         $urlLed = K9ProdiDirectoryHelper::getDokumenLedUrl($ledProdi->akreditasiProdi);
         $modelEksternal = $ledProdi->narasiEksternal;

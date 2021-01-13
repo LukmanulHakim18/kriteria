@@ -5,7 +5,6 @@ namespace monitoring\modules\eksekutif\modules\fakultas\controllers;
 
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\helpers\kriteria9\K9ProdiJsonHelper;
-use common\models\kriteria9\led\prodi\K9ProdiEksporDokumen;
 
 class AkreditasiController extends BaseController
 {
@@ -32,7 +31,7 @@ class AkreditasiController extends BaseController
         $json_profil = K9ProdiJsonHelper::getJsonLedProfil();
         $json_analisis = K9ProdiJsonHelper::getJsonLedAnalisis();
         $ledProdi = $akreditasiProdi->k9LedProdi;
-        $dokumenLed = K9ProdiEksporDokumen::find()->where(['id_led_prodi' => $ledProdi->id])->orderBy('kode_dokumen')->all();
+        $dokumenLed = $ledProdi->getEksporDokumen()->orderBy('kode_dokumen')->all();
         $kriteriaLed = $this->getArrayKriteraLed($ledProdi->id);
         $urlLed = K9ProdiDirectoryHelper::getDokumenLedUrl($ledProdi->akreditasiProdi);
         $modelEksternal = $ledProdi->narasiEksternal;

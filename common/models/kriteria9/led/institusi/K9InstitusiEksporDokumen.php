@@ -2,6 +2,7 @@
 
 namespace common\models\kriteria9\led\institusi;
 
+use common\models\kriteria9\lk\institusi\K9LkInstitusi;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
@@ -9,7 +10,8 @@ use yii\behaviors\TimestampBehavior;
  * This is the model class for table "k9_dokumen_led_institusi".
  *
  * @property int $id
- * @property int $id_led_institusi
+ * @property int $external_id
+ * @property string $type
  * @property string $kode_dokumen
  * @property string $nama_dokumen
  * @property string $bentuk_dokumen
@@ -19,9 +21,13 @@ use yii\behaviors\TimestampBehavior;
  * @property int $updated_by
  *
  * @property K9LedInstitusi $ledInstitusi
+ * @property K9LkInstitusi $lkInstitusi
  */
 class K9InstitusiEksporDokumen extends \yii\db\ActiveRecord
 {
+    const TYPE_LED = 'led';
+    const TYPE_LK = 'lk';
+
     /**
      * {@inheritdoc}
      */
@@ -36,15 +42,8 @@ class K9InstitusiEksporDokumen extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_led_institusi', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['nama_dokumen', 'bentuk_dokumen', 'kode_dokumen'], 'string', 'max' => 255],
-            [
-                ['id_led_institusi'],
-                'exist',
-                'skipOnError' => true,
-                'targetClass' => K9LedInstitusi::className(),
-                'targetAttribute' => ['id_led_institusi' => 'id']
-            ],
+            [['external_id', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['nama_dokumen', 'bentuk_dokumen', 'kode_dokumen', 'type'], 'string', 'max' => 255],
         ];
     }
 
@@ -63,7 +62,8 @@ class K9InstitusiEksporDokumen extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_led_institusi' => 'Id Led Institusi',
+            'external_id' => 'ID Eksternal',
+            'type' => 'Tipe',
             'kode_dokumen' => 'Kode Dokumen',
             'nama_dokumen' => 'Nama Dokumen',
             'bentuk_dokumen' => 'Bentuk Dokumen',
@@ -79,6 +79,16 @@ class K9InstitusiEksporDokumen extends \yii\db\ActiveRecord
      */
     public function getLedInstitusi()
     {
-        return $this->hasOne(K9LedInstitusi::className(), ['id' => 'id_led_institusi']);
+        return $this->hasOne(K9LedInstitusi::className(),
+            ['id' => 'external_id'])->andOnCondition(['type' => self::TYPE_LED]);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLkInstitusi()
+    {
+        return $this->hasOne(K9LkInstitusi::className(),
+            ['id' => 'external_id'])->andOnCondition(['type' => self::TYPE_LK]);
     }
 }
