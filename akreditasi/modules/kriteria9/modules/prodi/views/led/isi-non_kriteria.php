@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = [
 ];
 $this->params['breadcrumbs'][] = [
     'label' => \yii\helpers\StringHelper::mb_ucfirst($untuk) . ' Led',
-    'url' => ['/kriteria9/k9-prodi/led/' . $untuk, 'led' => $_GET['led'], 'prodi' => $prodi->id]
+    'url' => ['/kriteria9/k9-prodi/led/' . $untuk, 'led' => $ledProdi->id, 'prodi' => $prodi->id]
 ];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -46,7 +46,7 @@ use yii\bootstrap4\Progress;
                                 'data-method' => 'POST',
                                 'data-params' => [
                                     'poin' => $poin,
-                                    'led' => $modelNarasi->ledProdi->id,
+                                    'led' => $ledProdi->id,
                                     'referer' => \yii\helpers\Url::current()
                                 ],
                                 'data-confirm' => 'Apakah anda ingin mengekspor ini?'

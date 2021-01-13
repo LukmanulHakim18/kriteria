@@ -23,6 +23,8 @@ use akreditasi\models\kriteria9\led\institusi\K9LedInstitusiNarasiProfilInstitus
 use common\helpers\kriteria9\K9InstitusiDirectoryHelper;
 use common\helpers\kriteria9\K9InstitusiJsonHelper;
 use common\helpers\NomorKriteriaHelper;
+use common\jobs\LedInstitusiCompleteExportJob;
+use common\jobs\LedInstitusiPartialExportJob;
 use common\models\Constants;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\forms\led\K9PencarianLedInstitusiForm;
@@ -31,6 +33,7 @@ use common\models\kriteria9\led\institusi\K9LedInstitusi;
 use common\models\kriteria9\led\institusi\K9LedInstitusiNarasiProfilInstitusi;
 use common\models\kriteria9\led\institusi\K9LedInstitusiNonKriteriaDokumen;
 use Yii;
+use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
 use yii\helpers\Url;
@@ -44,6 +47,20 @@ class LedController extends BaseController
     protected $lihatLedView = '@akreditasi/modules/kriteria9/modules/institusi/views/led/led';
     protected $lihatKriteriaView = '@akreditasi/modules/kriteria9/modules/institusi/views/led/isi-kriteria';
     protected $lihatNonKriteriaView = '@akreditasi/modules/kriteria9/modules/institusi/views/led/isi-non_kriteria';
+
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'export-partial-kriteria' => ['POST'],
+                    'export-partial-non-kriteria' => ['POST'],
+                    'export-complete' => ['POST']
+                ]
+            ]
+        ];
+    }
 
     public function actionArsip($target)
     {
@@ -283,7 +300,8 @@ class LedController extends BaseController
             'textModel' => $textModel,
             'linkModel' => $linkModel,
             'kriteria' => $kriteria,
-            'untuk' => 'isi'
+            'untuk' => 'isi',
+            'ledInstitusi' => $ledInstitusi
 
         ]);
     }
@@ -298,7 +316,7 @@ class LedController extends BaseController
                 $json = K9InstitusiJsonHelper::getJsonLedKondisiEksternal();
                 break;
             case 'B':
-                $modelNarasi = K9LedInstitusiNarasiProfilInstitusiForm::findOne(['id_led_insitusi' => $ledInstitusi->id]);
+                $modelNarasi = K9LedInstitusiNarasiProfilInstitusiForm::findOne(['id_led_institusi' => $ledInstitusi->id]);
                 $json = K9InstitusiJsonHelper::getJsonLedProfil();
                 break;
             case 'D':
@@ -307,7 +325,7 @@ class LedController extends BaseController
                 break;
         }
 
-        $poin = $json->butir;
+        $currentPoint = $json->butir;
 
         $modelLink = new K9DetailLedInstitusiNonKriteriaLinkForm();
         $modelUpload = new K9DetailLedInstitusiNonKriteriaUploadForm();
@@ -354,6 +372,7 @@ class LedController extends BaseController
                 'poin' => $poin,
                 'modelNarasi' => $modelNarasi,
                 'untuk' => $untuk,
+                'currentPoint' => $currentPoint
             ]);
     }
 
@@ -610,6 +629,76 @@ class LedController extends BaseController
 
         return $this->render($this->lihatNonKriteriaView,
             compact('ledInstitusi', 'json', 'poin', 'modelNarasi', 'detail', 'untuk'));
+    }
+
+    public function actionExportPartialKriteria()
+    {
+
+        $params = Yii::$app->request->post();
+        $kriteria = $params['kriteria'];
+        $id_led = $params['led'];
+        $referer = $params['referer'];
+
+
+        $ledInstitusi = $this->findLedInstitusi($id_led);
+
+        $id = Yii::$app->queue->push(new LedInstitusiPartialExportJob([
+            'led' => $ledInstitusi,
+            'poinKriteria' => $kriteria,
+            'jenis' => LedInstitusiPartialExportJob::JENIS_KRITERIA
+        ]));
+
+        if ($id) {
+            Yii::$app->session->setFlash('success', 'Berhasil memasukkan ekspor ke dalam antrian.');
+            return $this->redirect(['isi', 'led' => $ledInstitusi->id]);
+        }
+        Yii::$app->session->setFlash('danger', 'Terjadi kesalahan saat memasukkan ke dalam antrian.');
+        return $this->redirect($referer);
+    }
+
+    public function actionExportPartialNonKriteria()
+    {
+
+        $params = Yii::$app->request->post();
+        $poin = $params['poin'];
+        $id_led = $params['led'];
+        $referer = $params['referer'];
+
+        $ledInstitusi = $this->findLedInstitusi($id_led);
+
+        $id = Yii::$app->queue->push(new LedInstitusiPartialExportJob([
+            'led' => $ledInstitusi,
+            'poinKriteria' => $poin,
+            'jenis' => LedInstitusiPartialExportJob::JENIS_NONKRITERIA
+        ]));
+
+        if ($id) {
+            Yii::$app->session->setFlash('success', 'Berhasil memasukkan ekspor ke dalam antrian.');
+            return $this->redirect(['isi', 'led' => $ledInstitusi->id]);
+        }
+        Yii::$app->session->setFlash('danger', 'Terjadi kesalahan saat memasukkan ke dalam antrian.');
+        return $this->redirect($referer);
+    }
+
+    public function actionExportComplete()
+    {
+
+        $params = Yii::$app->request->post();
+        $id_led = $params['led'];
+        $referer = $params['referer'];
+
+        $ledInstitusi = $this->findLedInstitusi($id_led);
+        $id = Yii::$app->queue->push(new LedInstitusiCompleteExportJob([
+            'led' => $ledInstitusi,
+        ]));
+
+        if ($id) {
+            Yii::$app->session->setFlash('success', 'Berhasil memasukkan ekspor ke dalam antrian.');
+        } else {
+            Yii::$app->session->setFlash('danger', 'Terjadi kesalahan saat memasukkan ke dalam antrian.');
+
+        }
+        return $this->redirect($referer);
     }
 
     protected function getKriteriaNomor($kriteria, $search)

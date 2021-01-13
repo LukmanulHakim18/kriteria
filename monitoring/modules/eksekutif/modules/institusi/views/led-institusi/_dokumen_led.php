@@ -9,7 +9,6 @@
 
 use akreditasi\models\kriteria9\forms\led\K9DokumenLedInstitusiUploadForm;
 use common\helpers\FileIconHelper;
-use common\helpers\FileTypeHelper;
 use common\models\Constants;
 use kartik\file\FileInput;
 use yii\bootstrap4\ActiveForm;
@@ -70,6 +69,8 @@ use yii\bootstrap4\Modal;
 
                     <th>No.</th>
                     <th>Dokumen Led</th>
+                    <th>Dibuat Tanggal</th>
+                    <th>Jenis</th>
                     <th>
                         Aksi
                     </th>
@@ -93,43 +94,26 @@ use yii\bootstrap4\Modal;
                                 </div>
                             </div>
                         </td>
+                        <td><?= Yii::$app->formatter->asDatetime($item->created_at) ?></td>
+                        <td><?= $item->kode_dokumen ?></td>
                         <td>
                             <div class="row pull-right">
                                 <div class="col-lg-12">
-                                    <?php $type = FileTypeHelper::getType($item->bentuk_dokumen);
-                                    if ($type === FileTypeHelper::TYPE_IMAGE || $type === FileTypeHelper::TYPE_PDF):?>
-                                        <?php Modal::begin([
-                                            'title' => $item->nama_dokumen,
-                                            'toggleButton' => [
-                                                'label' => '<i class="la la-eye"></i> &nbsp;Lihat',
-                                                'class' => 'btn btn-info btn-pill btn-elevate btn-elevate-air'
-                                            ],
-                                            'size' => 'modal-lg',
-                                            'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
-                                        ]); ?>
-                                        <?php switch ($type) {
-                                            case FileTypeHelper::TYPE_IMAGE:
-                                                echo Html::img("$path/{$item->nama_dokumen}",
-                                                    ['height' => '100%', 'width' => '100%']);
-                                                break;
-                                            case FileTypeHelper::TYPE_PDF:
-                                                echo '<embed src="' . $path . '/' . $item->nama_dokumen . '" type="application/pdf" height="100%" width="100%">
-';
-                                                break;
-                                        } ?>
-                                        <?php Modal::end(); ?>
-                                    <?php endif; ?>
+                                    <?php Modal::begin([
+                                        'title' => $item->nama_dokumen,
+                                        'toggleButton' => [
+                                            'label' => '<i class="la la-eye"></i> &nbsp;Lihat',
+                                            'class' => 'btn btn-info btn-pill btn-elevate btn-elevate-air'
+                                        ],
+                                        'size' => 'modal-lg',
+                                        'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
+                                    ]); ?>
+                                    <?php echo ' <div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://docs.google.com/gview?url=' . $path . '/' . rawurlencode($item->nama_dokumen) . '&embedded=true"></iframe></div>'; ?>
+                                    <?php Modal::end(); ?>
                                     <?= Html::a('<i class ="la la-download"></i> Unduh',
                                         ['led-institusi/download-dokumen', 'dokumen' => $item->id],
                                         ['class' => 'btn btn-warning btn-pill btn-elevate btn-elevate-air']) ?>
-                                    <?= Html::a('<i class ="la la-trash"></i> Hapus', ['led/hapus-dokumen-led'], [
-                                        'class' => 'btn btn-danger btn-pill btn-elevate btn-elevate-air',
-                                        'data' => [
-                                            'method' => 'POST',
-                                            'confirm' => 'Apakah anda yakin menghapus item ini?',
-                                            'params' => ['id' => $item->id]
-                                        ]
-                                    ]) ?>
+
                                 </div>
 
                             </div>

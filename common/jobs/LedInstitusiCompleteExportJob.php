@@ -5,11 +5,11 @@ namespace common\jobs;
 
 
 use Carbon\Carbon;
-use common\helpers\kriteria9\K9ProdiDirectoryHelper;
-use common\helpers\kriteria9\K9ProdiJsonHelper;
+use common\helpers\kriteria9\K9InstitusiDirectoryHelper;
+use common\helpers\kriteria9\K9InstitusiJsonHelper;
 use common\helpers\NomorKriteriaHelper;
-use common\models\kriteria9\led\prodi\K9LedProdi;
-use common\models\kriteria9\led\prodi\K9ProdiEksporDokumen;
+use common\models\kriteria9\led\institusi\K9InstitusiEksporDokumen;
+use common\models\kriteria9\led\institusi\K9LedInstitusi;
 use PhpOffice\Common\XMLWriter;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\Settings;
@@ -20,11 +20,11 @@ use yii\base\BaseObject;
 use yii\queue\JobInterface;
 use yii\queue\Queue;
 
-class LedProdiCompleteExportJob extends BaseObject implements JobInterface
+class LedInstitusiCompleteExportJob extends BaseObject implements JobInterface
 {
 
     /**
-     * @var K9LedProdi
+     * @var K9LedInstitusi
      */
     public $led;
 
@@ -40,18 +40,18 @@ class LedProdiCompleteExportJob extends BaseObject implements JobInterface
     public function execute($queue)
     {
         $timestamp = Carbon::now()->timestamp;
-        $this->_document = new TemplateProcessor(K9ProdiDirectoryHelper::getLedCompleteTemplate());
+        $this->_document = new TemplateProcessor(K9InstitusiDirectoryHelper::getLedCompleteTemplate());
 
-        $namafile = $timestamp . '-led-prodi-complete.docx';
+        $namafile = $timestamp . '-led-institusi-complete.docx';
 
         $this->isiDokumen();
-        $model = new K9ProdiEksporDokumen();
-        $model->id_led_prodi = $this->led->id;
+        $model = new K9InstitusiEksporDokumen();
+        $model->id_led_institusi = $this->led->id;
         $model->kode_dokumen = 'complete';
         $model->bentuk_dokumen = 'docx';
         $model->nama_dokumen = $namafile;
 
-        $path = K9ProdiDirectoryHelper::getDokumenLedPath($this->led->akreditasiProdi);
+        $path = K9InstitusiDirectoryHelper::getDokumenLedPath($this->led->akreditasiInstitusi);
         $this->_document->saveAs($path . '/' . $model->nama_dokumen);
         $model->save(false);
 
@@ -87,14 +87,14 @@ class LedProdiCompleteExportJob extends BaseObject implements JobInterface
         switch ($poin) {
             case 'A':
                 $narasi = $this->led->narasiEksternal;
-                $json = K9ProdiJsonHelper::getJsonLedKondisiEksternal();
+                $json = K9InstitusiJsonHelper::getJsonLedKondisiEksternal();
                 $attr = NomorKriteriaHelper::changeToDbFormat($json->nomor);
                 $teks .= $narasi->$attr;
                 $jenis = 'eksternal';
                 break;
             case 'B':
                 $narasi = $this->led->narasiProfil;
-                $json = K9ProdiJsonHelper::getJsonLedProfil();
+                $json = K9InstitusiJsonHelper::getJsonLedProfil();
                 foreach ($json->butir as $butir) {
 
                     $teks .= "<h3>" . $butir->nomor . ". " . $butir->nama . "</h3>";
@@ -106,10 +106,10 @@ class LedProdiCompleteExportJob extends BaseObject implements JobInterface
                 break;
             case 'D':
                 $narasi = $this->led->narasiAnalisis;
-                $json = K9ProdiJsonHelper::getJsonLedAnalisis();
+                $json = K9InstitusiJsonHelper::getJsonLedAnalisis();
                 foreach ($json->butir as $butir) {
 
-                    $teks .= "<h4>" . $butir->nomor . ". " . $butir->nama . "</h4>";
+                    $teks .= "<h3>" . $butir->nomor . ". " . $butir->nama . "</h3>";
                     $attr = NomorKriteriaHelper::changeToDbFormat($butir->nomor);
                     $teks .= $narasi->$attr;
                     $teks .= "<br/>";
@@ -129,12 +129,12 @@ class LedProdiCompleteExportJob extends BaseObject implements JobInterface
 
     private function isiKriteria($kriteria)
     {
-        $kriteriaAttr = 'k9LedProdiKriteria' . $kriteria . 's';
-        $narasiAttr = 'k9LedProdiNarasiKriteria' . $kriteria . 's';
-        $excludeAttr = 'id_led_prodi_kriteria' . $kriteria;
+        $kriteriaAttr = 'k9LedInstitusiKriteria' . $kriteria . 's';
+        $narasiAttr = 'k9LedInstitusiNarasiKriteria' . $kriteria . 's';
+        $excludeAttr = 'id_led_institusi_kriteria' . $kriteria;
         $narasi = $this->led->$kriteriaAttr->$narasiAttr;
 
-        $json = K9ProdiJsonHelper::getJsonKriteriaLed($kriteria);
+        $json = K9InstitusiJsonHelper::getJsonKriteriaLed($kriteria);
         $phpWord = new PhpWord();
         $section = $phpWord->addSection();
         $fontStyle = array();//if no style given levels do not register (if empty array defaults to template)

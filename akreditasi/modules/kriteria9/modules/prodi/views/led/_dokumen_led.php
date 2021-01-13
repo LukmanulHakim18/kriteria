@@ -116,7 +116,8 @@ $controller = $this->context->id;
                                     <?= Html::a('<i class ="la la-download"></i> Unduh',
                                         [$controller . '/download-dokumen', 'dokumen' => $item->id],
                                         ['class' => 'btn btn-warning btn-pill btn-elevate btn-elevate-air']) ?>
-                                    <?= Html::a('<i class ="la la-trash"></i> Hapus',
+
+                                    <?= ($untuk === 'isi') ? Html::a('<i class ="la la-trash"></i> Hapus',
                                         [$controller . '/hapus-dokumen-led'], [
                                             'class' => 'btn btn-danger btn-pill btn-elevate btn-elevate-air',
                                             'data' => [
@@ -124,7 +125,7 @@ $controller = $this->context->id;
                                                 'confirm' => 'Apakah anda yakin menghapus item ini?',
                                                 'params' => ['id' => $item->id, 'prodi' => $prodi->id]
                                             ]
-                                        ]) ?>
+                                        ]) : '' ?>
                                 </div>
 
                             </div>

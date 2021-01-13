@@ -290,7 +290,8 @@ class LedController extends BaseController
             'poinKriteria' => $poinKriteria,
             'untuk' => 'isi',
             'kriteria' => $kriteria,
-            'prodi' => $programStudi
+            'prodi' => $programStudi,
+            'ledProdi' => $ledProdi
         ]);
     }
 
