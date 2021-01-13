@@ -6,6 +6,7 @@ namespace monitoring\modules\eksekutif\modules\prodi\controllers;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\models\kriteria9\led\prodi\K9ProdiEksporDokumen;
+use Yii;
 use yii\data\ActiveDataProvider;
 
 class AkreditasiController extends BaseController
@@ -32,7 +33,7 @@ class AkreditasiController extends BaseController
         $json_profil = K9ProdiJsonHelper::getJsonLedProfil();
         $json_analisis = K9ProdiJsonHelper::getJsonLedAnalisis();
         $ledProdi = $akreditasiProdi->k9LedProdi;
-        $dokumenLed = K9ProdiEksporDokumen::findAll(['id_led_prodi' => $ledProdi->id]);
+        $dokumenLed = K9ProdiEksporDokumen::find()->where(['id_led_prodi' => $ledProdi->id])->orderBy('kode_dokumen')->all();
         $kriteriaLed = $this->getArrayKriteraLed($ledProdi->id);
         $urlLed = K9ProdiDirectoryHelper::getDokumenLedUrl($ledProdi->akreditasiProdi);
         $modelEksternal = $ledProdi->narasiEksternal;
@@ -63,5 +64,13 @@ class AkreditasiController extends BaseController
             'modelAnalisis' => $modelAnalisis,
             'modelProfil' => $modelProfil,
         ]);
+    }
+
+    public function actionDownloadDokumen($dokumen)
+    {
+        ini_set('max_execution_time', 5 * 60);
+        $model = K9ProdiEksporDokumen::findOne($dokumen);
+        $file = K9ProdiDirectoryHelper::getDokumenLedPath($model->ledProdi->akreditasiProdi) . "/{$model->nama_dokumen}";
+        return Yii::$app->response->sendFile($file);
     }
 }

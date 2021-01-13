@@ -13,16 +13,15 @@
  * @var $kriteriaLk array
  */
 
-use common\helpers\FileIconHelper;
-use common\helpers\FileTypeHelper;
-use common\models\FakultasAkademi;
 use common\models\ProgramStudi;
 use yii\bootstrap4\Html;
-use yii\bootstrap4\Modal;
 use yii\bootstrap4\Progress;
 
 $this->title = "Akreditasi: {$akreditasiProdi->akreditasi->nama} - {$modelProdi->nama}";
-$this->params['breadcrumbs'][] = ['label' => 'Akreditasi Prodi', 'url' => ['index', 'prodi' => $modelProdi->id,'fakultas'=>$fakultasAkademi->id]];
+$this->params['breadcrumbs'][] = [
+    'label' => 'Akreditasi Prodi',
+    'url' => ['index', 'prodi' => $modelProdi->id, 'fakultas' => $fakultasAkademi->id]
+];
 $this->params['breadcrumbs'][] = ['label' => $this->title];
 
 ?>
@@ -34,27 +33,28 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
 <div class="row">
     <div class="col-lg-12">
 
-        <?= $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/_dokumen_led',[
-            'modelDokumen'=>null,
-            'dataDokumen'=>$dokumenLed,
-            'path'=>$urlLed,
-            'untuk'=>'lihat'
+        <?= $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/_dokumen_led', [
+            'modelDokumen' => null,
+            'dataDokumen' => $dokumenLed,
+            'path' => $urlLed,
+            'untuk' => 'lihat',
+            'prodi' => $modelProdi
         ]) ?>
 
-        <?= $this->render('@monitoring/modules/eksekutif/modules/fakultas/views/led/_tabel_led',[
-            'kriteria'=>$kriteriaLed,
-            'json'=>$json,
+        <?= $this->render('@monitoring/modules/eksekutif/modules/fakultas/views/led/_tabel_led', [
+            'kriteria' => $kriteriaLed,
+            'json' => $json,
             'prodi' => $modelProdi,
             'untuk' => 'lihat',
-            'led'=>$ledProdi,
-            'json_eksternal'=>$json_eksternal,
-            'json_profil'=>$json_profil,
-            'json_analisis'=>$json_analisis,
-            'modelEksternal'=>$modelEksternal,
-            'modelAnalisis'=>$modelAnalisis,
-            'modelProfil'=>$modelProfil,
-            'fakultas'=>$fakultasAkademi
-        ])?>
+            'led' => $ledProdi,
+            'json_eksternal' => $json_eksternal,
+            'json_profil' => $json_profil,
+            'json_analisis' => $json_analisis,
+            'modelEksternal' => $modelEksternal,
+            'modelAnalisis' => $modelAnalisis,
+            'modelProfil' => $modelProfil,
+            'fakultas' => $fakultasAkademi
+        ]) ?>
 
     </div>
 </div>
@@ -93,7 +93,8 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                         </thead>
                         <tbody>
 
-                        <?php foreach ($jsonLk as /* @var Lk*/$kriteriaJson): ?>
+                        <?php foreach ($jsonLk as /* @var Lk */
+                                       $kriteriaJson): ?>
                             <tr>
                                 <th scope="row"><?= Html::encode($kriteriaJson->kriteria) ?></th>
                                 <td>
@@ -109,7 +110,13 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                                     ]); ?>
                                 </td>
                                 <td style="padding-top: 15px;">
-                                    <?= Html::a("<i class='la la-folder-open'></i>Lihat", ['lk/lihat-kriteria', 'lk' => $lkProdi->id, 'kriteria' => $kriteriaJson->kriteria, 'prodi' => $modelProdi->id,'fakultas'=>$fakultasAkademi->id], ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
+                                    <?= Html::a("<i class='la la-folder-open'></i>Lihat", [
+                                        'lk/lihat-kriteria',
+                                        'lk' => $lkProdi->id,
+                                        'kriteria' => $kriteriaJson->kriteria,
+                                        'prodi' => $modelProdi->id,
+                                        'fakultas' => $fakultasAkademi->id
+                                    ], ['class' => 'btn btn-default btn-pill btn-elevate btn-elevate-air']) ?>
 
                                     <!--                        <button type="button" class="btn btn-danger">Lihat</button>-->
                                 </td>
