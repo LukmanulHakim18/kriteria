@@ -3,6 +3,7 @@
 
 namespace akreditasi\modules\kriteria9\modules\prodi\controllers;
 
+use akreditasi\models\kriteria9\forms\led\K9DokumenLedProdiUploadForm;
 use akreditasi\models\kriteria9\forms\lk\prodi\K9LinkLkProdiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\prodi\K9LkProdiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\prodi\K9TextLkProdiKriteriaDetailForm;
@@ -11,8 +12,11 @@ use common\helpers\DownloadDokumenTrait;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\helpers\NomorKriteriaHelper;
+use common\jobs\LkProdiCompleteExportJob;
+use common\jobs\LkProdiPartialExportJob;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\forms\lk\K9PencarianLkProdiForm;
+use common\models\kriteria9\led\prodi\K9ProdiEksporDokumen;
 use common\models\kriteria9\lk\prodi\K9LkProdi;
 use common\models\kriteria9\lk\prodi\K9LkProdiKriteria1;
 use common\models\kriteria9\lk\prodi\K9LkProdiKriteria2;
@@ -24,10 +28,12 @@ use common\models\kriteria9\lk\prodi\K9LkProdiKriteria7;
 use common\models\kriteria9\lk\prodi\K9LkProdiKriteria8;
 use common\models\ProgramStudi;
 use Yii;
+use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Json;
+use yii\helpers\FileHelper;
 use yii\helpers\Url;
 use yii\web\MethodNotAllowedHttpException;
+use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
 use yii2mod\collection\Collection;
 
@@ -38,6 +44,21 @@ class LkController extends BaseController
     protected $lihatLkKriteria = '@akreditasi/modules/kriteria9/modules/prodi/views/lk/isi-kriteria';
     protected $itemLkView = '@akreditasi/modules/kriteria9/modules/prodi/views/lk/_item_lk';
     use DownloadDokumenTrait;
+
+
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'export-partial' => ['POST'],
+                    'export-complete' => ['POST']
+                ]
+            ]
+        ];
+
+    }
 
     public function actionArsip($target, $prodi)
     {
@@ -77,11 +98,32 @@ class LkController extends BaseController
 
     public function actionIsi($lk, $prodi)
     {
-        $lkProdi = K9LkProdi::findOne($lk);
+        $lkProdi = $this->findLkProdi($lk);
         $programStudi = $lkProdi->akreditasiProdi->prodi;
         $json = K9ProdiJsonHelper::getAllJsonLk($programStudi->jenjang);
+        $dataDokumen = $lkProdi->getEksporDokumen()->orderBy('kode_dokumen')->all();
+
         $kriteria = $this->getArrayKriteria($lk);
         $institusi = Yii::$app->params['institusi'];
+
+        $modelDokumen = new K9DokumenLedProdiUploadForm();
+        if ($modelDokumen->load(Yii::$app->request->post())) {
+            $dokumen = $this->uploadDokumenLed($lk);
+            if ($dokumen) {
+                $model = new K9ProdiEksporDokumen();
+                $model->external_id = $lkProdi->id;
+                $model->type = K9ProdiEksporDokumen::TYPE_LK;
+                $model->nama_dokumen = $dokumen->getNamaDokumen();
+                $model->bentuk_dokumen = $dokumen->getBentukDokumen();
+                $model->kode_dokumen = 'uploaded';
+                $model->save(false);
+
+                Yii::$app->session->setFlash('success', 'Berhasil mengunggah Dokumen LED');
+                return $this->redirect(Url::current());
+            }
+            Yii::$app->session->setFlash('warning', 'Gagal mengunggah Dokumen LED');
+            return $this->redirect(Url::current());
+        }
 
         return $this->render('isi', [
             'lkProdi' => $lkProdi,
@@ -89,8 +131,25 @@ class LkController extends BaseController
             'institusi' => $institusi,
             'json' => $json,
             'prodi' => $programStudi,
-            'untuk' => 'isi'
+            'untuk' => 'isi',
+            'dataDokumen' => $dataDokumen,
+            'modelDokumen' => $modelDokumen,
+            'path' => K9ProdiDirectoryHelper::getDokumenLkUrl($lkProdi->akreditasiProdi)
         ]);
+    }
+
+    /**
+     * @param $id
+     * @return K9LkProdi|null
+     * @throws NotFoundHttpException
+     */
+    protected function findLkProdi($id)
+    {
+        $model = null;
+        if ($model = K9LkProdi::findOne($id)) {
+            return $model;
+        }
+        throw new NotFoundHttpException('Data yang anda cari tidak ditemukan');
     }
 
     protected function getArrayKriteria($lk)
@@ -107,9 +166,28 @@ class LkController extends BaseController
         return [$kriteria1, $kriteria2, $kriteria3, $kriteria4, $kriteria5, $kriteria6, $kriteria7, $kriteria8];
     }
 
+    protected function uploadDokumenLed($led)
+    {
+        $ledProdi = $this->findLkProdi($led);
+
+        $dokumenLed = new K9DokumenLedProdiUploadForm();
+        $dokumenLed->dokumenLed = UploadedFile::getInstance($dokumenLed, 'dokumenLed');
+        $realPath = K9ProdiDirectoryHelper::getDokumenLkPath($ledProdi->akreditasiProdi);
+        $response = null;
+
+        if ($dokumenLed->validate()) {
+            $uploaded = $dokumenLed->uploadDokumen($realPath);
+            if ($uploaded) {
+                $response = $dokumenLed;
+            }
+        }
+
+        return $response;
+    }
+
     public function actionLihat($lk, $prodi)
     {
-        $lkProdi = K9LkProdi::findOne($lk);
+        $lkProdi = $this->findLkProdi($lk);
         $programStudi = $lkProdi->akreditasiProdi->prodi;
         $json = K9ProdiJsonHelper::getAllJsonLk($programStudi->jenjang);
         $kriteria = $this->getArrayKriteria($lk);
@@ -127,7 +205,7 @@ class LkController extends BaseController
 
     public function actionIsiKriteria($lk, $kriteria, $prodi)
     {
-        $lkProdi = K9LkProdi::findOne($lk);
+        $lkProdi = $this->findLkProdi($lk);
 
         $programStudi = $lkProdi->akreditasiProdi->prodi;
         $json = K9ProdiJsonHelper::getJsonKriteriaLk($kriteria, $programStudi->jenjang);
@@ -203,7 +281,7 @@ class LkController extends BaseController
 
     public function actionButirItem($lk, $prodi, $kriteria, $untuk, $poin)
     {
-        $lkProdi = K9LkProdi::findOne($lk);
+        $lkProdi = $this->findLkProdi($lk);
         $programStudi = $lkProdi->akreditasiProdi->prodi;
         //json
         $currentPoint = $this->getKriteriaNomor($kriteria, $poin, $programStudi->jenjang);
@@ -249,7 +327,7 @@ class LkController extends BaseController
 
     public function actionLihatKriteria($lk, $kriteria, $prodi)
     {
-        $lkProdi = K9LkProdi::findOne($lk);
+        $lkProdi = $this->findLkProdi($lk);
 
         $programStudi = $lkProdi->akreditasiProdi->prodi;
         $json = K9ProdiJsonHelper::getJsonKriteriaLk($kriteria, $programStudi->jenjang);
@@ -353,10 +431,83 @@ class LkController extends BaseController
         throw new MethodNotAllowedHttpException('Request Harus Post');
     }
 
-    protected function getJsonData()
+    /**
+     * @return yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionExportPartial()
     {
-        $fileJson = 'lkps_prodi_Sarjana.json';
-        $json = Json::decode(file_get_contents(Yii::getAlias('@common/required/kriteria9/aps/' . $fileJson)));
-        return $json;
+
+        $params = Yii::$app->request->post();
+        $id_lk = $params['lk'];
+        $tabel = $params['tabel'];
+        $referer = $params['referer'];
+
+        $lkProdi = $this->findLkProdi($id_lk);
+
+        $id = Yii::$app->queue->push(new LkProdiPartialExportJob([
+            'lk' => $lkProdi,
+            'poinKriteria' => $tabel
+        ]));
+
+        if ($id) {
+            Yii::$app->session->setFlash('success', 'Berhasil memasukkan ekspor ke dalam antrian.');
+            return $this->redirect(['isi', 'lk' => $lkProdi->id, 'prodi' => $lkProdi->akreditasiProdi->id_prodi]);
+        }
+        Yii::$app->session->setFlash('danger', 'Terjadi kesalahan saat memasukkan ke dalam antrian.');
+        return $this->redirect($referer);
+
+    }
+
+    public function actionExportComplete()
+    {
+        $params = Yii::$app->request->post();
+        $id_lk = $params['lk'];
+        $referer = $params['referer'];
+
+        $lkProdi = $this->findLkProdi($id_lk);
+
+        $id = Yii::$app->queue->push(new LkProdiCompleteExportJob([
+            'lk' => $lkProdi
+        ]));
+
+        if ($id) {
+            Yii::$app->session->setFlash('success', 'Berhasil memasukkan ekspor ke dalam antrian.');
+        } else {
+            Yii::$app->session->setFlash('danger', 'Terjadi kesalahan saat memasukkan ke dalam antrian.');
+
+        }
+        return $this->redirect($referer);
+
+    }
+
+    public function actionDownloadDokumen($dokumen)
+    {
+        ini_set('max_execution_time', 5 * 60);
+        $model = K9ProdiEksporDokumen::findOne($dokumen);
+        $file = K9ProdiDirectoryHelper::getDokumenLkPath($model->lkProdi->akreditasiProdi) . "/{$model->nama_dokumen}";
+        return Yii::$app->response->sendFile($file);
+    }
+
+    public function actionHapusDokumenLk()
+    {
+        if (Yii::$app->request->isPost) {
+            $data = Yii::$app->request->post();
+
+            $idDokumenLed = $data['id'];
+            $prodi = $data['prodi'];
+            $dokumenLkProdi = K9ProdiEksporDokumen::findOne($idDokumenLed);
+            $path = K9ProdiDirectoryHelper::getDokumenLkPath($dokumenLkProdi->ledProdi->akreditasiProdi);
+            $deleteDokumen = FileHelper::unlink($path . '/' . $dokumenLkProdi->nama_dokumen);
+            if ($deleteDokumen) {
+                $dokumenLkProdi->delete();
+                Yii::$app->session->setFlash('success', 'Berhasil menghapus dokumen led');
+                return $this->redirect(['lk/isi', 'lk' => $dokumenLkProdi->lkProdi->id, 'prodi' => $prodi]);
+            }
+            Yii::$app->session->setFlash('success', 'Gagal menghapus dokumen lk');
+            return $this->redirect(['lk/isi', 'lk' => $dokumenLkProdi->lkProdi->id, 'prodi' => $prodi]);
+        }
+
+        return new MethodNotAllowedHttpException('Harus melalui prosedur penghapusan data.');
     }
 }

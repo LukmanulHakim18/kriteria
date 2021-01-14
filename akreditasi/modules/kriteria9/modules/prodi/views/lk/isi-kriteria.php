@@ -37,15 +37,30 @@ $controller = $this->context->id;
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-actions">
-                <strong>Kelengkapan Berkas &nbsp; : <?= $modelKriteria->progress ?> %</strong>
-                <div class="kt-space-10"></div>
-                <?=
-                Progress::widget([
-                    'percent' => $modelKriteria->progress,
-                    'barOptions' => ['class' => 'progress-bar-info'],
-                    'options' => ['class' => 'progress-sm']
-                ]);
-                ?>
+                <!--                <div class="pull-left ml-2 mr-2">-->
+                <!--                    --><?php //echo Html::a('<i class="fas fa-file-word"></i> Ekspor', ['export-partial'],
+                //                        [
+                //                            'class' => 'btn btn-sm btn-primary btn-elevate btn-elevate-air',
+                //                            'data-method' => 'POST',
+                //                            'data-params' => [
+                //                                'tabel' => $kriteria,
+                //                                'lk' => $modelKriteria->lkProdi->id,
+                //                                'referer' => \yii\helpers\Url::current()
+                //                            ],
+                //                            'data-confirm' => 'Apakah anda ingin mengekspor ini?'
+                //                        ]) ?>
+                <!--                </div>-->
+
+                <div class="pull-right ml-2 mr-2">
+                    <strong>Kelengkapan Berkas &nbsp; : <?= $modelKriteria->progress ?> %</strong>
+                    <div class="kt-space-10"></div>
+                    <?=
+                    Progress::widget([
+                        'percent' => $modelKriteria->progress,
+                        'barOptions' => ['class' => 'progress-bar-info m-progress-lg'],
+                        'options' => ['class' => 'progress-sm']
+                    ]) ?>
+                </div>
             </div>
         </div>
     </div>

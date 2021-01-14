@@ -3,6 +3,7 @@
 namespace common\models\kriteria9\lk\prodi;
 
 use common\models\kriteria9\akreditasi\K9AkreditasiProdi;
+use common\models\kriteria9\led\prodi\K9ProdiEksporDokumen;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -23,15 +24,22 @@ use yii\behaviors\TimestampBehavior;
  * @property K9LkProdiKriteria6 $k9LkProdiKriteria6s
  * @property K9LkProdiKriteria7 $k9LkProdiKriteria7s
  * @property K9LkProdiKriteria8 $k9LkProdiKriteria8s
+ * @property K9ProdiEksporDokumen $eksporDokumen
  */
 class K9LkProdi extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public function attributeLabels()
     {
-        return 'k9_lk_prodi';
+        return [
+            'id' => 'ID',
+            'id_akreditasi_prodi' => 'Id Akreditasi Prodi',
+            'progress' => 'Progress',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+        ];
     }
 
     public function behaviors()
@@ -49,22 +57,22 @@ class K9LkProdi extends \yii\db\ActiveRecord
         return [
             [['id_akreditasi_prodi', 'created_at', 'updated_at'], 'integer'],
             [['progress'], 'number'],
-            [['id_akreditasi_prodi'], 'exist', 'skipOnError' => true, 'targetClass' => K9AkreditasiProdi::className(), 'targetAttribute' => ['id_akreditasi_prodi' => 'id']],
+            [
+                ['id_akreditasi_prodi'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => K9AkreditasiProdi::className(),
+                'targetAttribute' => ['id_akreditasi_prodi' => 'id']
+            ],
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public static function tableName()
     {
-        return [
-            'id' => 'ID',
-            'id_akreditasi_prodi' => 'Id Akreditasi Prodi',
-            'progress' => 'Progress',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-        ];
+        return 'k9_lk_prodi';
     }
 
     /**
@@ -139,6 +147,14 @@ class K9LkProdi extends \yii\db\ActiveRecord
         return $this->hasOne(K9LkProdiKriteria8::className(), ['id_lk_prodi' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEksporDokumen()
+    {
+        return $this->hasMany(K9ProdiEksporDokumen::className(),
+            ['external_id' => 'id'])->andWhere(['type' => K9ProdiEksporDokumen::TYPE_LK]);
+    }
 
     public function updateProgress()
     {
@@ -150,7 +166,8 @@ class K9LkProdi extends \yii\db\ActiveRecord
         $kriteria6 = $this->k9LkProdiKriteria6s->progress;
         $kriteria7 = $this->k9LkProdiKriteria7s->progress;
         $kriteria8 = $this->k9LkProdiKriteria8s->progress;
-        $progress = round((($kriteria1 + $kriteria2 + $kriteria3 + $kriteria4 + $kriteria5 + $kriteria6 + $kriteria7 + $kriteria8) / 8), 2);
+        $progress = round((($kriteria1 + $kriteria2 + $kriteria3 + $kriteria4 + $kriteria5 + $kriteria6 + $kriteria7 + $kriteria8) / 8),
+            2);
         $this->progress = $progress;
 
         return $this;

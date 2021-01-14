@@ -35,9 +35,15 @@ class K9LedProdi extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public function attributeLabels()
     {
-        return 'k9_led_prodi';
+        return [
+            'id' => 'ID',
+            'id_akreditasi_prodi' => 'Id Akreditasi Prodi',
+            'progress' => 'Progress',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+        ];
     }
 
     /**
@@ -71,15 +77,9 @@ class K9LedProdi extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public static function tableName()
     {
-        return [
-            'id' => 'ID',
-            'id_akreditasi_prodi' => 'Id Akreditasi Prodi',
-            'progress' => 'Progress',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-        ];
+        return 'k9_led_prodi';
     }
 
     /**
@@ -167,7 +167,7 @@ class K9LedProdi extends \yii\db\ActiveRecord
      */
     public function getEksporDokumen()
     {
-        return $this->hasOne(K9ProdiEksporDokumen::className(),
+        return $this->hasMany(K9ProdiEksporDokumen::className(),
             ['external_id' => 'id'])->andWhere(['type' => K9ProdiEksporDokumen::TYPE_LED]);
     }
 
