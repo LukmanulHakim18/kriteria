@@ -134,7 +134,7 @@ $controller = $this->context->id;
                 <tr>
 
                     <th class="text-center">No.</th>
-                    <th class="text-center">Dokumen Led</th>
+                    <th class="text-center">Dokumen Lk</th>
                     <th class="text-center">Dibuat Tanggal</th>
                     <th class="text-center">Jenis</th>
                     <th class="text-center">

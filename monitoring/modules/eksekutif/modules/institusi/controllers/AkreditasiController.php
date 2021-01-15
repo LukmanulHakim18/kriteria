@@ -63,6 +63,8 @@ class AkreditasiController extends BaseController
         $jsonLk = K9ProdiJsonHelper::getAllJsonLk($modelProdi->jenjang);
         $lkProdi = $akreditasiProdi->k9LkProdi;
         $kriteriaLk = $this->getArrayKriteriaLk($lkProdi->id);
+        $dataDokumen = $lkProdi->eksporDokumen;
+
         return $this->render('detail', [
             'modelProdi' => $modelProdi,
             'akreditasiProdi' => $akreditasiProdi,
@@ -80,7 +82,9 @@ class AkreditasiController extends BaseController
             'modelEksternal' => $modelEksternal,
             'modelAnalisis' => $modelAnalisis,
             'modelProfil' => $modelProfil,
-            'fakultasAkademi' => $fakultasAkademi
+            'fakultasAkademi' => $fakultasAkademi,
+            'dataDokumen' => $dataDokumen,
+            'path' => K9ProdiDirectoryHelper::getDokumenLkUrl($akreditasiProdi)
         ]);
     }
 
@@ -107,6 +111,7 @@ class AkreditasiController extends BaseController
         $jsonLk = K9InstitusiJsonHelper::getAllJsonLk();
         $lkInstitusi = $apt->k9LkInstitusi;
         $kriteriaLk = $this->getArrayKriteriaLkInstitusi($lkInstitusi->id);
+        $dataDokumen = $lkInstitusi->eksporDokumen;
 
         return $this->render('detail-pt', [
             'profilInstitusi' => $profilInstitusi,
@@ -127,6 +132,8 @@ class AkreditasiController extends BaseController
             'modelEksternal' => $modelEksternal,
             'modelAnalisis' => $modelAnalisis,
             'modelProfil' => $modelProfil,
+            'dataDokumenLk' => $dataDokumen,
+            'pathLk' => K9InstitusiDirectoryHelper::getDokumenLkUrl($apt)
         ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace common\models\kriteria9\lk\institusi;
 
 use common\models\kriteria9\akreditasi\K9AkreditasiInstitusi;
+use common\models\kriteria9\led\institusi\K9InstitusiEksporDokumen;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -20,15 +21,22 @@ use yii\behaviors\TimestampBehavior;
  * @property K9LkInstitusiKriteria3 $k9LkInstitusiKriteria3s
  * @property K9LkInstitusiKriteria4 $k9LkInstitusiKriteria4s
  * @property K9LkInstitusiKriteria5 $k9LkInstitusiKriteria5s
+ * @property K9InstitusiEksporDokumen $eksporDokumen
  */
 class K9LkInstitusi extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public function attributeLabels()
     {
-        return 'k9_lk_institusi';
+        return [
+            'id' => 'ID',
+            'id_akreditasi_institusi' => 'Id Akreditasi Institusi',
+            'progress' => 'Progress',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+        ];
     }
 
     public function behaviors()
@@ -46,22 +54,22 @@ class K9LkInstitusi extends \yii\db\ActiveRecord
         return [
             [['id_akreditasi_institusi', 'created_at', 'updated_at'], 'integer'],
             [['progress'], 'number'],
-            [['id_akreditasi_institusi'], 'exist', 'skipOnError' => true, 'targetClass' => K9AkreditasiInstitusi::className(), 'targetAttribute' => ['id_akreditasi_institusi' => 'id']],
+            [
+                ['id_akreditasi_institusi'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => K9AkreditasiInstitusi::className(),
+                'targetAttribute' => ['id_akreditasi_institusi' => 'id']
+            ],
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public static function tableName()
     {
-        return [
-            'id' => 'ID',
-            'id_akreditasi_institusi' => 'Id Akreditasi Institusi',
-            'progress' => 'Progress',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-        ];
+        return 'k9_lk_institusi';
     }
 
     /**
@@ -112,6 +120,14 @@ class K9LkInstitusi extends \yii\db\ActiveRecord
         return $this->hasOne(K9LkInstitusiKriteria5::className(), ['id_lk_institusi' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEksporDokumen()
+    {
+        return $this->hasMany(K9InstitusiEksporDokumen::className(),
+            ['external_id' => 'id'])->andWhere(['type' => K9InstitusiEksporDokumen::TYPE_LK]);
+    }
 
     public function updateProgress()
     {

@@ -43,6 +43,7 @@ class AkreditasiController extends BaseController
         $jsonLk = K9ProdiJsonHelper::getAllJsonLk($modelProdi->jenjang);
         $lkProdi = $akreditasiProdi->k9LkProdi;
         $kriteriaLk = $this->getArrayKriteriaLk($lkProdi->id);
+        $dataDokumen = $lkProdi->eksporDokumen;
         return $this->render('detail', [
             'modelProdi' => $modelProdi,
             'akreditasiProdi' => $akreditasiProdi,
@@ -60,7 +61,10 @@ class AkreditasiController extends BaseController
             'modelEksternal' => $modelEksternal,
             'modelAnalisis' => $modelAnalisis,
             'modelProfil' => $modelProfil,
-            'fakultasAkademi' => $fakultasAkademi
+            'fakultasAkademi' => $fakultasAkademi,
+            'dataDokumen' => $dataDokumen,
+            'path' => K9ProdiDirectoryHelper::getDokumenLkUrl($akreditasiProdi)
+
         ]);
     }
 }

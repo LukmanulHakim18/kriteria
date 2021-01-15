@@ -31,33 +31,6 @@ class K9InstitusiEksporDokumen extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
-        return 'k9_institusi_ekspor_dokumen';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
-    {
-        return [
-            [['external_id', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['nama_dokumen', 'bentuk_dokumen', 'kode_dokumen', 'type'], 'string', 'max' => 255],
-        ];
-    }
-
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::class,
-            BlameableBehavior::class
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
@@ -74,13 +47,40 @@ class K9InstitusiEksporDokumen extends \yii\db\ActiveRecord
         ];
     }
 
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+            BlameableBehavior::class
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['external_id', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['nama_dokumen', 'bentuk_dokumen', 'kode_dokumen', 'type'], 'string', 'max' => 255],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'k9_institusi_ekspor_dokumen';
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getLedInstitusi()
     {
         return $this->hasOne(K9LedInstitusi::className(),
-            ['id' => 'external_id'])->andOnCondition(['type' => self::TYPE_LED]);
+            ['id' => 'external_id']);
     }
 
     /**
@@ -89,6 +89,6 @@ class K9InstitusiEksporDokumen extends \yii\db\ActiveRecord
     public function getLkInstitusi()
     {
         return $this->hasOne(K9LkInstitusi::className(),
-            ['id' => 'external_id'])->andOnCondition(['type' => self::TYPE_LK]);
+            ['id' => 'external_id']);
     }
 }

@@ -497,11 +497,11 @@ class LkController extends BaseController
             $idDokumenLed = $data['id'];
             $prodi = $data['prodi'];
             $dokumenLkProdi = K9ProdiEksporDokumen::findOne($idDokumenLed);
-            $path = K9ProdiDirectoryHelper::getDokumenLkPath($dokumenLkProdi->ledProdi->akreditasiProdi);
+            $path = K9ProdiDirectoryHelper::getDokumenLkPath($dokumenLkProdi->lkProdi->akreditasiProdi);
             $deleteDokumen = FileHelper::unlink($path . '/' . $dokumenLkProdi->nama_dokumen);
             if ($deleteDokumen) {
                 $dokumenLkProdi->delete();
-                Yii::$app->session->setFlash('success', 'Berhasil menghapus dokumen led');
+                Yii::$app->session->setFlash('success', 'Berhasil menghapus dokumen lk');
                 return $this->redirect(['lk/isi', 'lk' => $dokumenLkProdi->lkProdi->id, 'prodi' => $prodi]);
             }
             Yii::$app->session->setFlash('success', 'Gagal menghapus dokumen lk');

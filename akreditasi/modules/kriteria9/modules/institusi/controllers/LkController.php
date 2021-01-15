@@ -3,6 +3,7 @@
 
 namespace akreditasi\modules\kriteria9\modules\institusi\controllers;
 
+use akreditasi\models\kriteria9\forms\led\K9DokumenLedInstitusiUploadForm;
 use akreditasi\models\kriteria9\forms\lk\institusi\K9LinkLkInstitusiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\institusi\K9LkInstitusiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\institusi\K9TextLkInstitusiKriteriaDetailForm;
@@ -12,6 +13,7 @@ use common\helpers\kriteria9\K9InstitusiJsonHelper;
 use common\helpers\NomorKriteriaHelper;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\forms\lk\K9PencarianLkInstitusiForm;
+use common\models\kriteria9\led\institusi\K9InstitusiEksporDokumen;
 use common\models\kriteria9\lk\institusi\K9LkInstitusi;
 use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria1;
 use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria2;
@@ -21,6 +23,7 @@ use common\models\kriteria9\lk\institusi\K9LkInstitusiKriteria5;
 use common\models\ProfilInstitusi;
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\helpers\FileHelper;
 use yii\helpers\Url;
 use yii\web\MethodNotAllowedHttpException;
 use yii\web\UploadedFile;
@@ -70,13 +73,36 @@ class LkController extends BaseController
         $json = K9InstitusiJsonHelper::getAllJsonLk($arrayProfil['jenis']);
         $kriteria = $this->getArrayKriteria($lk);
         $institusi = Yii::$app->params['institusi'];
+        $dataDokumen = $lkInstitusi->getEksporDokumen()->orderBy('kode_dokumen')->all();
+
+        $modelDokumen = new K9DokumenLedInstitusiUploadForm();
+        if ($modelDokumen->load(Yii::$app->request->post())) {
+            $dokumen = $this->uploadDokumenLed($lk);
+            if ($dokumen) {
+                $model = new K9InstitusiEksporDokumen();
+                $model->external_id = $lkInstitusi->id;
+                $model->type = K9InstitusiEksporDokumen::TYPE_LK;
+                $model->nama_dokumen = $dokumen->getNamaDokumen();
+                $model->bentuk_dokumen = $dokumen->getBentukDokumen();
+                $model->kode_dokumen = 'uploaded';
+                $model->save(false);
+
+                Yii::$app->session->setFlash('success', 'Berhasil mengunggah Dokumen LED');
+                return $this->redirect(Url::current());
+            }
+            Yii::$app->session->setFlash('warning', 'Gagal mengunggah Dokumen LED');
+            return $this->redirect(Url::current());
+        }
 
         return $this->render('isi', [
             'lkInstitusi' => $lkInstitusi,
             'kriteria' => $kriteria,
             'institusi' => $institusi,
             'json' => $json,
-            'untuk' => 'isi'
+            'untuk' => 'isi',
+            'modelDokumen' => $modelDokumen,
+            'dataDokumen' => $dataDokumen,
+            'path' => K9InstitusiDirectoryHelper::getDokumenLkUrl($lkInstitusi->akreditasiInstitusi)
         ]);
     }
 
@@ -94,6 +120,29 @@ class LkController extends BaseController
         $kriteria5 = K9LkInstitusiKriteria5::findOne(['id_lk_institusi' => $lk]);
 
         return [$kriteria1, $kriteria2, $kriteria3, $kriteria4, $kriteria5];
+    }
+
+    protected function uploadDokumenLed($led)
+    {
+        $lkInstitusi = K9LkInstitusi::findOne($led);
+
+        $dokumenLed = new K9DokumenLedInstitusiUploadForm();
+        $dokumenLed->dokumenLed = UploadedFile::getInstance($dokumenLed, 'dokumenLed');
+        $realPath = K9InstitusiDirectoryHelper::getDokumenLkPath($lkInstitusi->akreditasiInstitusi);
+        $response = null;
+
+        if ($dokumenLed->validate()) {
+
+            $uploaded = $dokumenLed->uploadDokumen($realPath);
+            if ($uploaded) {
+                $response = $dokumenLed;
+            }
+
+        }
+
+        return $response;
+
+
     }
 
     public function actionIsiKriteria($lk, $kriteria)
@@ -250,12 +299,19 @@ class LkController extends BaseController
         $kriteria = $this->getArrayKriteria($lk);
         $institusi = Yii::$app->params['institusi'];
 
+        $dataDokumen = $lkInstitusi->getEksporDokumen()->orderBy('kode_dokumen')->all();
+
+        $modelDokumen = new K9DokumenLedInstitusiUploadForm();
+
         return $this->render($this->lkView, [
             'lkInstitusi' => $lkInstitusi,
             'kriteria' => $kriteria,
             'institusi' => $institusi,
             'json' => $json,
-            'untuk' => 'lihat'
+            'untuk' => 'lihat',
+            'dataDokumen' => $dataDokumen,
+            'modelDokumen' => $modelDokumen,
+            'path' => K9InstitusiDirectoryHelper::getDokumenLkUrl($lkInstitusi->akreditasiInstitusi)
         ]);
     }
 
@@ -336,4 +392,32 @@ class LkController extends BaseController
         return Collection::make($data->butir)->where('tabel', $item)->first();
     }
 
+    public function actionDownloadDokumen($dokumen)
+    {
+        ini_set('max_execution_time', 5 * 60);
+        $model = K9InstitusiEksporDokumen::findOne($dokumen);
+        $file = K9InstitusiDirectoryHelper::getDokumenLkPath($model->lkInstitusi->akreditasiInstitusi) . "/{$model->nama_dokumen}";
+        return Yii::$app->response->sendFile($file);
+    }
+
+    public function actionHapusDokumenLk()
+    {
+        if (Yii::$app->request->isPost) {
+            $data = Yii::$app->request->post();
+
+            $idDokumenLed = $data['id'];
+            $dokumenLkInstitusi = K9InstitusiEksporDokumen::findOne($idDokumenLed);
+            $path = K9InstitusiDirectoryHelper::getDokumenLkPath($dokumenLkInstitusi->lkInstitusi->akreditasiInstitusi);
+            $deleteDokumen = FileHelper::unlink($path . '/' . $dokumenLkInstitusi->nama_dokumen);
+            if ($deleteDokumen) {
+                $dokumenLkInstitusi->delete();
+                Yii::$app->session->setFlash('success', 'Berhasil menghapus dokumen lk');
+                return $this->redirect(['lk/isi', 'lk' => $dokumenLkInstitusi->lkInstitusi->id]);
+            }
+            Yii::$app->session->setFlash('success', 'Gagal menghapus dokumen lk');
+            return $this->redirect(['lk/isi', 'lk' => $dokumenLkInstitusi->lkInstitusi->id]);
+        }
+
+        return new MethodNotAllowedHttpException('Harus melalui prosedur penghapusan data.');
+    }
 }
