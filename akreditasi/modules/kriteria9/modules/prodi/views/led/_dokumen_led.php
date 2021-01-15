@@ -9,7 +9,6 @@
 
 use akreditasi\models\kriteria9\forms\led\K9DokumenLedProdiUploadForm;
 use common\helpers\FileIconHelper;
-use common\helpers\FileTypeHelper;
 use common\models\Constants;
 use kartik\file\FileInput;
 use yii\bootstrap4\ActiveForm;
@@ -38,7 +37,6 @@ $controller = $this->context->id;
                         'size' => 'modal-lg',
                         'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
                     ]); ?>
-                    aw
                     <?php $form = ActiveForm::begin([
                         'options' => ['enctype' => 'multipart/form-data'],
                         'id' => 'dokumen-led-form'
@@ -101,7 +99,6 @@ $controller = $this->context->id;
                         <td>
                             <div class="row pull-right">
                                 <div class="col-lg-12">
-                                    <?php $type = FileTypeHelper::getType($item->bentuk_dokumen); ?>
                                     <?php Modal::begin([
                                         'title' => $item->nama_dokumen,
                                         'toggleButton' => [

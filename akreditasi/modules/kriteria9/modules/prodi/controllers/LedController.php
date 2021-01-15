@@ -150,7 +150,7 @@ class LedController extends BaseController
         $modelAnalisis = K9LedProdiNarasiAnalisisForm::findOne(['id_led_prodi' => $ledProdi->id]);
 
         $modelDokumen = new K9DokumenLedProdiUploadForm();
-        $dataDokumen = K9ProdiEksporDokumen::find()->where(['id_led_prodi' => $ledProdi->id])->orderBy('kode_dokumen')->all();
+        $dataDokumen = $ledProdi->getEksporDokumen()->orderBy('kode_dokumen')->all();
         $kriteria = $this->getArrayKriteria($led);
         $realPath = K9ProdiDirectoryHelper::getDokumenLedUrl($ledProdi->akreditasiProdi);
 
@@ -158,9 +158,11 @@ class LedController extends BaseController
             $dokumen = $this->uploadDokumenLed($led);
             if ($dokumen) {
                 $model = new K9ProdiEksporDokumen();
-                $model->id_led_prodi = $ledProdi->id;
+                $model->external_id = $ledProdi->id;
+                $model->type = K9ProdiEksporDokumen::TYPE_LED;
                 $model->nama_dokumen = $dokumen->getNamaDokumen();
                 $model->bentuk_dokumen = $dokumen->getBentukDokumen();
+                $model->kode_dokumen = 'uploaded';
                 $model->save(false);
 
                 Yii::$app->session->setFlash('success', 'Berhasil mengunggah Dokumen LED');
@@ -481,7 +483,7 @@ class LedController extends BaseController
         $modelProfil = K9LedProdiNarasiProfilUpps::findOne(['id_led_prodi' => $ledProdi->id]);
         $modelAnalisis = K9LedProdiNarasiAnalisis::findOne(['id_led_prodi' => $ledProdi->id]);
         $modelDokumen = new K9DokumenLedProdiUploadForm();
-        $dataDokumen = K9ProdiEksporDokumen::findAll(['id_led_prodi' => $ledProdi->id]);
+        $dataDokumen = $ledProdi->getEksporDokumen()->orderBy('kode_dokumen')->all();
         $kriteria = $this->getArrayKriteria($led);
         $realPath = K9ProdiDirectoryHelper::getDokumenLedUrl($ledProdi->akreditasiProdi);
 

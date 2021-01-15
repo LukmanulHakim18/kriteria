@@ -27,6 +27,7 @@ use yii\behaviors\TimestampBehavior;
  * @property K9LedInstitusiNarasiKondisiEksternal $narasiEksternal
  * @property K9LedInstitusiNarasiProfilInstitusi $narasiProfil
  * @property K9LedInstitusiNarasiAnalisis $narasiAnalisis
+ * @property K9InstitusiEksporDokumen[] $eksporDokumen
  */
 class K9LedInstitusi extends \yii\db\ActiveRecord
 {
@@ -158,6 +159,15 @@ class K9LedInstitusi extends \yii\db\ActiveRecord
     public function getK9LedInstitusiKriteria9s()
     {
         return $this->hasOne(K9LedInstitusiKriteria9::className(), ['id_led_institusi' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEksporDokumen()
+    {
+        return $this->hasMany(K9InstitusiEksporDokumen::className(),
+            ['external_id' => 'id'])->andWhere(['type' => K9InstitusiEksporDokumen::TYPE_LED]);
     }
 
     public function updateProgress()

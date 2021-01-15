@@ -151,7 +151,8 @@ class LedInstitusiPartialExportJob extends BaseObject implements JobInterface
         }
 
         $model = new K9InstitusiEksporDokumen();
-        $model->id_led_institusi = $this->led->id;
+        $model->external_id = $this->led->id;
+        $model->type = K9InstitusiEksporDokumen::TYPE_LED;
         $model->kode_dokumen = $this->poinKriteria;
         $model->bentuk_dokumen = 'docx';
         $model->nama_dokumen = $namafile;

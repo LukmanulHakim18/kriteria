@@ -124,8 +124,18 @@ class K9ProdiDirectoryHelper extends K9DirectoryHelper
         return Yii::getAlias('@required/kriteria9/aps/template/template-led-prodi-partial.docx');
     }
 
+    public static function getLkPartialTemplate()
+    {
+        return Yii::getAlias('@required/kriteria9/aps/template/template-lk-prodi-partial.docx');
+    }
+
     public static function getLedCompleteTemplate()
     {
         return Yii::getAlias('@required/kriteria9/aps/template/template-led-prodi-complete.docx');
+    }
+
+    public static function getLkCompleteTemplate()
+    {
+        return Yii::getAlias('@required/kriteria9/aps/template/template-lk-prodi-complete.docx');
     }
 }

@@ -8,8 +8,8 @@ use Carbon\Carbon;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\helpers\NomorKriteriaHelper;
-use common\models\kriteria9\led\prodi\K9LedProdi;
 use common\models\kriteria9\led\prodi\K9ProdiEksporDokumen;
+use common\models\kriteria9\lk\prodi\K9LkProdi;
 use PhpOffice\Common\XMLWriter;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\Settings;
@@ -20,13 +20,13 @@ use yii\base\BaseObject;
 use yii\queue\JobInterface;
 use yii\queue\Queue;
 
-class LedProdiCompleteExportJob extends BaseObject implements JobInterface
+class LkProdiCompleteExportJob extends BaseObject implements JobInterface
 {
 
     /**
-     * @var K9LedProdi
+     * @var K9LkProdi
      */
-    public $led;
+    public $lk;
 
     /**
      * @var TemplateProcessor
@@ -40,19 +40,19 @@ class LedProdiCompleteExportJob extends BaseObject implements JobInterface
     public function execute($queue)
     {
         $timestamp = Carbon::now()->timestamp;
-        $this->_document = new TemplateProcessor(K9ProdiDirectoryHelper::getLedCompleteTemplate());
+        $this->_document = new TemplateProcessor(K9ProdiDirectoryHelper::getLkCompleteTemplate());
 
-        $namafile = $timestamp . '-led-prodi-complete.docx';
+        $namafile = $timestamp . '-lk-prodi-complete.docx';
 
         $this->isiDokumen();
         $model = new K9ProdiEksporDokumen();
-        $model->external_id = $this->led->id;
+        $model->external_id = $this->lk->id;
         $model->type = K9ProdiEksporDokumen::TYPE_LED;
         $model->kode_dokumen = 'complete';
         $model->bentuk_dokumen = 'docx';
         $model->nama_dokumen = $namafile;
 
-        $path = K9ProdiDirectoryHelper::getDokumenLedPath($this->led->akreditasiProdi);
+        $path = K9ProdiDirectoryHelper::getDokumenLkPath($this->lk->akreditasiProdi);
         $this->_document->saveAs($path . '/' . $model->nama_dokumen);
         $model->save(false);
 
@@ -61,81 +61,20 @@ class LedProdiCompleteExportJob extends BaseObject implements JobInterface
     private function isiDokumen()
     {
 
-        $this->isiNonKriteria('A');
-        $this->isiNonKriteria('B');
         for ($i = 1; $i <= 9; $i++) {
             $this->isiKriteria($i);
         }
-        $this->isiNonKriteria('D');
 
-    }
-
-    private function isiNonKriteria($poin)
-    {
-        $narasi = null;
-        $json = null;
-        $jenis = '';
-
-        $phpWord = new PhpWord();
-        $section = $phpWord->addSection();
-        $fontStyle = array();//if no style given levels do not register (if empty array defaults to template)
-        $phpWord->addTitleStyle(1, $fontStyle);
-        $phpWord->addTitleStyle(2, $fontStyle);
-        $phpWord->addTitleStyle(3, $fontStyle);
-
-        $teks = '<body>';
-
-        switch ($poin) {
-            case 'A':
-                $narasi = $this->led->narasiEksternal;
-                $json = K9ProdiJsonHelper::getJsonLedKondisiEksternal();
-                $attr = NomorKriteriaHelper::changeToDbFormat($json->nomor);
-                $teks .= $narasi->$attr;
-                $jenis = 'eksternal';
-                break;
-            case 'B':
-                $narasi = $this->led->narasiProfil;
-                $json = K9ProdiJsonHelper::getJsonLedProfil();
-                foreach ($json->butir as $butir) {
-
-                    $teks .= "<h3>" . $butir->nomor . ". " . $butir->nama . "</h3>";
-                    $attr = NomorKriteriaHelper::changeToDbFormat($butir->nomor);
-                    $teks .= $narasi->$attr;
-                    $teks .= "<br/>";
-                }
-                $jenis = 'profil';
-                break;
-            case 'D':
-                $narasi = $this->led->narasiAnalisis;
-                $json = K9ProdiJsonHelper::getJsonLedAnalisis();
-                foreach ($json->butir as $butir) {
-
-                    $teks .= "<h4>" . $butir->nomor . ". " . $butir->nama . "</h4>";
-                    $attr = NomorKriteriaHelper::changeToDbFormat($butir->nomor);
-                    $teks .= $narasi->$attr;
-                    $teks .= "<br/>";
-                }
-                $jenis = 'analisis';
-                break;
-        }
-        $teks .= '</body>';
-
-        Html::addHtml($section, $teks, true, false);
-        $htmlAsXml = $this->containerToXML($section);
-
-        Settings::setOutputEscapingEnabled(false);
-        $this->_document->setValue('isi_' . $jenis, $htmlAsXml);
-        Settings::setOutputEscapingEnabled(true);
     }
 
     private function isiKriteria($kriteria)
     {
-        $kriteriaAttr = 'k9LedProdiKriteria' . $kriteria . 's';
-        $narasiAttr = 'k9LedProdiNarasiKriteria' . $kriteria . 's';
-        $excludeAttr = 'id_led_prodi_kriteria' . $kriteria;
-        $narasi = $this->led->$kriteriaAttr->$narasiAttr;
+        $kriteriaAttr = 'k9LkProdiKriteria' . $kriteria . 's';
+        $narasiAttr = 'k9LkProdiNarasiKriteria' . $kriteria . 's';
+        $excludeAttr = 'id_lk_prodi_kriteria' . $kriteria;
+        $narasi = $this->lk->$kriteriaAttr->$narasiAttr;
 
-        $json = K9ProdiJsonHelper::getJsonKriteriaLed($kriteria);
+        $json = K9ProdiJsonHelper::getJsonKriteriaLk($kriteria, $this->lk->akreditasiProdi->prodi->jenjang);
         $phpWord = new PhpWord();
         $section = $phpWord->addSection();
         $fontStyle = array();//if no style given levels do not register (if empty array defaults to template)

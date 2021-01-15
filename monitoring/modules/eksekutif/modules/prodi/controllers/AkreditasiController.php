@@ -33,7 +33,7 @@ class AkreditasiController extends BaseController
         $json_profil = K9ProdiJsonHelper::getJsonLedProfil();
         $json_analisis = K9ProdiJsonHelper::getJsonLedAnalisis();
         $ledProdi = $akreditasiProdi->k9LedProdi;
-        $dokumenLed = K9ProdiEksporDokumen::find()->where(['id_led_prodi' => $ledProdi->id])->orderBy('kode_dokumen')->all();
+        $dokumenLed = $ledProdi->getEksporDokumen()->orderBy('kode_dokumen')->all();
         $kriteriaLed = $this->getArrayKriteraLed($ledProdi->id);
         $urlLed = K9ProdiDirectoryHelper::getDokumenLedUrl($ledProdi->akreditasiProdi);
         $modelEksternal = $ledProdi->narasiEksternal;
@@ -45,6 +45,8 @@ class AkreditasiController extends BaseController
         $jsonLk = K9ProdiJsonHelper::getAllJsonLk($modelProdi->jenjang);
         $lkProdi = $akreditasiProdi->k9LkProdi;
         $kriteriaLk = $this->getArrayKriteriaLk($lkProdi->id);
+
+        $dataDokumen = $lkProdi->eksporDokumen;
         return $this->render('detail', [
             'modelProdi' => $modelProdi,
             'akreditasiProdi' => $akreditasiProdi,
@@ -63,6 +65,8 @@ class AkreditasiController extends BaseController
             'modelEksternal' => $modelEksternal,
             'modelAnalisis' => $modelAnalisis,
             'modelProfil' => $modelProfil,
+            'dataDokumen' => $dataDokumen,
+            'path' => K9ProdiDirectoryHelper::getDokumenLkUrl($akreditasiProdi)
         ]);
     }
 
