@@ -4,21 +4,34 @@
 namespace akreditasi\modules\kriteria9\modules\institusi\controllers;
 
 
-use Carbon\Carbon;
 use common\helpers\kriteria9\K9InstitusiDirectoryHelper;
+use common\jobs\KuantitatifPTAkademikExportJob;
+use common\jobs\KuantitatifPTVokasiExportJob;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\akreditasi\K9AkreditasiInstitusi;
 use common\models\kriteria9\kuantitatif\institusi\K9DataKuantitatifInstitusi;
+use common\models\ProfilInstitusi;
 use Yii;
 use yii\base\DynamicModel;
-use yii\base\Exception;
+use yii\data\ActiveDataProvider;
+use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
-use yii\web\UploadedFile;
 
 class KuantitatifController extends BaseController
 {
+
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'export' => ['POST']
+                ]
+            ]
+        ];
+    }
 
     public function actionArsip()
     {
@@ -31,7 +44,8 @@ class KuantitatifController extends BaseController
         });
 
         if ($modelInstitusi->load(Yii::$app->request->post())) {
-            return $this->redirect(['kuantitatif/isi', 'id' => $modelInstitusi->akreditasi_ins]);
+            $akreditasiInstitusi = K9AkreditasiInstitusi::findOne(['id_akreditasi' => $modelInstitusi->akreditasi_ins]);
+            return $this->redirect(['kuantitatif/isi', 'id' => $akreditasiInstitusi->id]);
         }
 
         return $this->render('arsip', [
@@ -43,43 +57,43 @@ class KuantitatifController extends BaseController
     public function actionIsi($id)
     {
 
-        $id_akre_institusi = K9AkreditasiInstitusi::find()->where(['id' => $id])->one();
+        $id_akre_institusi = K9AkreditasiInstitusi::findOne(['id' => $id]);
 
 
-        $dataKuantitatifInstitusi = K9DataKuantitatifInstitusi::find()->where(['id_akreditasi_institusi' => $id_akre_institusi->id])->all();
+        $dataKuantitatifInstitusi = new ActiveDataProvider(['query' => K9DataKuantitatifInstitusi::find()->where(['id_akreditasi_institusi' => $id_akre_institusi->id])]);
 
-        $model = new K9DataKuantitatifInstitusi();
-
-        if ($model->load(Yii::$app->request->post())) {
-
-            $carbon = Carbon::now('Asia/Jakarta');
-            $tgl = $carbon->format('U');
-
-            $file = UploadedFile::getInstance($model, 'nama_dokumen');
-            $fileName = $tgl . '-' . $file->getBaseName() . '.' . $file->getExtension();
-            $model->id_akreditasi_institusi = $id_akre_institusi->id;
-            $model->nama_dokumen = $fileName;
-            $path = K9InstitusiDirectoryHelper::getKuantitatifPath($model->akreditasiInstitusi);
-
-            if (!$file->saveAs("$path/$fileName")) {
-                throw new Exception("Gagal Mengupload File");
-            }
-
-            if (!$model->save()) {
-                throw new Exception("Gagal Menyimpan Data Kuantitatif");
-            }
-
-            Yii::$app->session->setFlash('success', 'Berhasil Mengupload Dokumen Kuantitatif.');
-
-            $this->redirect(Url::current());
-
-        }
+//        $model = new K9DataKuantitatifInstitusi();
+//
+//        if ($model->load(Yii::$app->request->post())) {
+//
+//            $carbon = Carbon::now('Asia/Jakarta');
+//            $tgl = $carbon->format('U');
+//
+//            $file = UploadedFile::getInstance($model, 'nama_dokumen');
+//            $fileName = $tgl . '-' . $file->getBaseName() . '.' . $file->getExtension();
+//            $model->id_akreditasi_institusi = $id_akre_institusi->id;
+//            $model->nama_dokumen = $fileName;
+//            $path = K9InstitusiDirectoryHelper::getKuantitatifPath($model->akreditasiInstitusi);
+//
+//            if (!$file->saveAs("$path/$fileName")) {
+//                throw new Exception("Gagal Mengupload File");
+//            }
+//
+//            if (!$model->save()) {
+//                throw new Exception("Gagal Menyimpan Data Kuantitatif");
+//            }
+//
+//            Yii::$app->session->setFlash('success', 'Berhasil Mengupload Dokumen Kuantitatif.');
+//
+//            $this->redirect(Url::current());
+//
+//        }
 
 
         return $this->render('isi', [
             'akreinstitusi' => $id_akre_institusi,
             'dataKuantitatifInstitusi' => $dataKuantitatifInstitusi,
-            'model' => $model
+//            'model' => $model
         ]);
     }
 
@@ -88,7 +102,7 @@ class KuantitatifController extends BaseController
         ini_set('max_execution_time', 5 * 60);
         $template = K9DataKuantitatifInstitusi::findOne($dokumen);
         $path = K9InstitusiDirectoryHelper::getKuantitatifPath($template->akreditasiInstitusi);
-        $file = $template->nama_dokumen;
+        $file = $template->isi_dokumen;
         return Yii::$app->response->sendFile("$path/$file");
     }
 
@@ -97,29 +111,43 @@ class KuantitatifController extends BaseController
         if (Yii::$app->request->isPost) {
 
             $id = Yii::$app->request->post('id');
-            $id_institusi = Yii::$app->request->post('id_institusi');
-
             $model = K9DataKuantitatifInstitusi::findOne($id);
+            $akreditasiInstitusi = $model->akreditasiInstitusi;
             $path = K9InstitusiDirectoryHelper::getKuantitatifPath($model->akreditasiInstitusi);
 
-            unlink("$path/$model->nama_dokumen");
+            unlink("$path/$model->isi_dokumen");
 
             $model->delete();
 
             Yii::$app->session->setFlash('success', 'Berhasil Menghapus Data');
-            return $this->redirect(['kuantitatif/isi', 'id' => $id_institusi]);
+            return $this->redirect(['kuantitatif/isi', 'id' => $akreditasiInstitusi->id]);
 
         }
 
         throw new BadRequestHttpException('Request Harus Post');
     }
 
-    public function actionLihatDokumen($id)
+    public function actionExport()
     {
-        $model = K9DataKuantitatifInstitusi::findOne($id);
-        $path = K9InstitusiDirectoryHelper::getKuantitatifUrl($model->akreditasiInstitusi);
-        return $this->redirect(Url::to("$path/$model->nama_dokumen"));
-//        return $this->redirect(Url::to("@web/upload/BAN-PT/institusi/2019/institusi/matriks-kuantitatif/".$this->findModel($id)->nama_dokumen));
+        $params = Yii::$app->request->post();
+        $akreditasiInstitusi = K9AkreditasiInstitusi::findOne([$params['akreditasiInstitusi']]);
+        $laporanKinerja = $akreditasiInstitusi->k9LkInstitusi;
+        $jenis = ArrayHelper::map(ProfilInstitusi::find()->all(), 'nama', 'isi');
+        $template = K9InstitusiDirectoryHelper::getKuantitatifTemplate($jenis['jenis']);
+        $id = $jenis['jenis'] === 'akademik' ? Yii::$app->queue->push(new KuantitatifPTAkademikExportJob([
+            'template' => $template,
+            'lk' => $laporanKinerja
+        ])) : Yii::$app->queue->push(new KuantitatifPTVokasiExportJob([
+            'template' => $template,
+            'lk' => $laporanKinerja
+        ]));
+
+        if ($id) {
+            Yii::$app->session->setFlash('success', 'Berhasil membuat data kuantitatif, silahkan ditunggu.');
+        }
+
+        return $this->redirect(['isi', 'id' => $akreditasiInstitusi->id]);
+
     }
 
 

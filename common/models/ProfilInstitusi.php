@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
 /**
@@ -21,6 +22,13 @@ class ProfilInstitusi extends ActiveRecord
     public static function tableName()
     {
         return 'profil_institusi';
+    }
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class
+        ];
     }
 
     /**

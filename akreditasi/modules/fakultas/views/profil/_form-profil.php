@@ -21,102 +21,29 @@ use yii\bootstrap4\ActiveForm;
     <?php $form = ActiveForm::begin(['id' => 'profil-fakultas-form']); ?>
 
     <?= $form->field($profil, 'visi')->widget(TinyMce::class,[
-        'options' => ['rows' => 6],
 
-        'language' => 'id',
-        'clientOptions' => [
-
-            'plugins' => [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
-            ],
-            'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link"
-
-        ]
     ]) ?>
 
 
     <?= $form->field($profil, 'misi')->widget(TinyMce::class,[
-        'options' => ['rows' => 6],
 
-        'language' => 'id',
-        'clientOptions' => [
 
-            'plugins' => [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
-            ],
-            'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link"
-
-        ]
     ]) ?>
     <?= $form->field($profil, 'tujuan')->widget(TinyMce::class,[
-        'options' => ['rows' => 6],
 
-        'language' => 'id',
-        'clientOptions' => [
 
-            'plugins' => [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
-            ],
-            'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link"
-
-        ]
     ]) ?>
     <?= $form->field($profil, 'sasaran')->widget(TinyMce::class,[
-        'options' => ['rows' => 6],
 
-        'language' => 'id',
-        'clientOptions' => [
 
-            'plugins' => [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
-            ],
-            'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link"
-
-        ]
     ]) ?>
     <?= $form->field($profil, 'motto')->widget(TinyMce::class,[
-        'options' => ['rows' => 6],
 
-        'language' => 'id',
-        'clientOptions' => [
 
-            'plugins' => [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
-            ],
-            'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link"
-
-        ]
     ]) ?>
     <?= $form->field($profil, 'sambutan')->widget(TinyMce::class,[
-        'options' => ['rows' => 6],
 
-        'language' => 'id',
-        'clientOptions' => [
 
-            'plugins' => [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak placeholder",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc noneditable",
-            ],
-            'toolbar' => "undo redo| styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ltr rtl | link"
-
-        ]
     ]) ?>
     <?php if($profil->struktur_organisasi):?>
         <div id="current-struktur">
@@ -143,7 +70,7 @@ use yii\bootstrap4\ActiveForm;
                                 const elem = document.getElementById("current-struktur");
                                 elem.parentNode.removeChild(elem);
                             }
-                            
+
                             }')
                         ])?>
                     </td>
@@ -156,16 +83,7 @@ use yii\bootstrap4\ActiveForm;
     <?= $form->field($strukturModel, 'struktur')->widget(FileInput::class,[
 
         'pluginOptions' => [
-            'theme' => 'explorer-fas',
-            'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),
             'allowedFileExtensions' => Constants::IMAGE_EXTENSIONS,
-            'showUpload' => false,
-            'previewFileType' => 'any',
-            'fileActionSettings' => [
-                'showZoom' => true,
-                'showRemove' => false,
-                'showUpload' => false,
-            ],
         ]
     ]) ?>
 
@@ -195,7 +113,7 @@ $jsForm = <<<JS
         });
         submit.html('<i class="flaticon2-refresh"></i> Sedang Memproses');
         submit.prop('disabled', true);
-        
+
     });
 
 JS;

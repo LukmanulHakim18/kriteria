@@ -18,9 +18,7 @@ use common\models\kriteria9\forms\led\K9PencarianLedProdiForm;
 use demogorgorn\ajax\AjaxSubmitButton;
 use kartik\select2\Select2;
 use yii\bootstrap4\ActiveForm;
-use yii\bootstrap4\Html;
 use yii\web\JsExpression;
-use yii\widgets\Pjax;
 
 ?>
 <!--card-->
@@ -60,11 +58,15 @@ use yii\widgets\Pjax;
                     'type' => 'POST',
                     'success' => new JsExpression('function(html){
                         $("#hasil-arsip").html(html);
-                        normalizeButton("submit-form");
+                        normalizeButton("submit-form",{icon: "la la-search",text:"Cari"});
                     }')
 
                 ],
-                'options' => ['class' => 'btn btn-success btn-pill btn-elevate btn-elevate-air', 'type' => 'submit', 'id' => 'submit-form']
+                'options' => [
+                    'class' => 'btn btn-success btn-pill btn-elevate btn-elevate-air',
+                    'type' => 'submit',
+                    'id' => 'submit-form'
+                ]
             ]);
 
             AjaxSubmitButton::end();

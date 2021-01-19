@@ -16,12 +16,12 @@ $url = ($jenis === ProgramStudi::PROGRAM_STUDI || $jenis === 'institusi') ? [
     'akreditasi/detail',
     'id' => $model->id,
     'prodi' => $prodi->id
-] : ($jenis === FakultasAkademi::FAKULTAS_AKADEMI) ? [
+] : (($jenis === FakultasAkademi::FAKULTAS_AKADEMI) ? [
     'akreditasi/detail',
     'id' => $model->id,
     'prodi' => $prodi->id,
     'fakultas' => $prodi->fakultasAkademi->id
-] : '';
+] : '');
 ?>
 <div class="row">
     <div class="col-lg-12">
@@ -65,14 +65,14 @@ $url = ($jenis === ProgramStudi::PROGRAM_STUDI || $jenis === 'institusi') ? [
                                         Progress
                                     </div>
                                     <?= Progress::widget([
-                                        'bars'=>[
-                                            ['percent'=>$model->progress,'options'=>['class'=>'kt-bg-success']]
+                                        'bars' => [
+                                            ['percent' => $model->progress, 'options' => ['class' => 'kt-bg-success']]
                                         ],
-                                        'options'=>['class'=>'progress','style'=>'height:5px;width:100%']
-                                    ])?>
+                                        'options' => ['class' => 'progress', 'style' => 'height:5px;width:100%']
+                                    ]) ?>
 
                                     <div class="kt-widget__stats">
-                                        <?=$model->progress?>%
+                                        <?= $model->progress ?>%
                                     </div>
                                 </div>
                             </div>
@@ -86,14 +86,17 @@ $url = ($jenis === ProgramStudi::PROGRAM_STUDI || $jenis === 'institusi') ? [
                             <div class="kt-widget__details">
                                 <span class="kt-widget__title">Laporan Evaluasi Diri</span>
                                 <span class="kt-widget__value">  <?= Progress::widget([
-                                        'bars'=>[
-                                            ['percent'=>$model->k9LedProdi->progress,'options'=>['class'=>'kt-bg-success']]
+                                        'bars' => [
+                                            [
+                                                'percent' => $model->k9LedProdi->progress,
+                                                'options' => ['class' => 'kt-bg-success']
+                                            ]
                                         ],
-                                        'options'=>['class'=>'progress','style'=>'height:5px;width:100%']
-                                    ])?>
+                                        'options' => ['class' => 'progress', 'style' => 'height:5px;width:100%']
+                                    ]) ?>
 
                                     <div class="kt-widget__stats">
-                                       <span><?=$model->k9LedProdi->progress?>%</span>
+                                       <span><?= $model->k9LedProdi->progress ?>%</span>
                                     </div>
                                 </span>
                             </div>
@@ -105,14 +108,17 @@ $url = ($jenis === ProgramStudi::PROGRAM_STUDI || $jenis === 'institusi') ? [
                             <div class="kt-widget__details">
                                 <span class="kt-widget__title">Laporan Kinerja</span>
                                 <span class="kt-widget__value">  <?= Progress::widget([
-                                        'bars'=>[
-                                            ['percent'=>$model->k9LkProdi->progress,'options'=>['class'=>'kt-bg-success']]
+                                        'bars' => [
+                                            [
+                                                'percent' => $model->k9LkProdi->progress,
+                                                'options' => ['class' => 'kt-bg-success']
+                                            ]
                                         ],
-                                        'options'=>['class'=>'progress','style'=>'height:5px;width:100%']
-                                    ])?>
+                                        'options' => ['class' => 'progress', 'style' => 'height:5px;width:100%']
+                                    ]) ?>
 
                                     <div class="kt-widget__stats">
-                                       <span><?=$model->k9LkProdi->progress?>%</span>
+                                       <span><?= $model->k9LkProdi->progress ?>%</span>
                                     </div>
                                 </span>
                             </div>
@@ -123,7 +129,9 @@ $url = ($jenis === ProgramStudi::PROGRAM_STUDI || $jenis === 'institusi') ? [
                             </div>
                             <div class="kt-widget__details">
                                 <span class="kt-widget__title">Matriks Kuantitatif</span>
-                                <span class="kt-widget__value"><span>Belum</span>
+                                <span class="kt-widget__value"><?= $model->kuantitatif ? Html::a('Download',
+                                        \common\helpers\kriteria9\K9ProdiDirectoryHelper::getKuantitatifUrl($model) . '/' . $model->kuantitatif->isi_dokumen,
+                                        ['class' => 'btn btn-success btn-sm btn-pill btn-elevate btn-elevate-air']) : 'Belum' ?>
                             </div>
                         </div>
                     </div>

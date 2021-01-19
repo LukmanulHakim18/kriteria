@@ -9,20 +9,32 @@
 
 namespace common\helpers\kriteria9;
 
-
+use common\models\kriteria9\led\Led;
+use common\models\kriteria9\lk\Lk;
+use common\models\kriteria9\penilaian\Penilaian;
+use JsonMapper;
 use Yii;
 use yii\helpers\Json;
 
 class K9InstitusiJsonHelper implements IK9JsonHelper
 {
 
-    public static function getAllJsonLk()
+    public static function getAllJsonLk($jenis = null)
     {
-        return self::getJson('lk');
+        if (!$jenis) {
+            $jenis = \yii\helpers\ArrayHelper::map(\common\models\ProfilInstitusi::find()->all(),
+                'nama', 'isi')['jenis'];
+        }
+        $out = [];
+        $json = self::getJson('lk', $jenis);
+        foreach ($json as $jsonObj) {
+            $out[] = self::provideMapper()->map($jsonObj, new Lk());
+        }
 
+        return $out;
     }
 
-    static function getJson($tipe)
+    static function getJson($tipe, $jenis = '')
     {
         $filename = '';
         switch ($tipe) {
@@ -30,28 +42,107 @@ class K9InstitusiJsonHelper implements IK9JsonHelper
                 $filename = 'led_institusi.json';
                 break;
             case 'lk':
-                $filename = 'lkpt_institusi_akademik.json';
+                $filename = "lkpt_institusi_$jenis.json";
+                break;
+            case 'penilaian':
+                $filename = 'penilaian_pt_' . $jenis . '.json';
                 break;
         }
         $path = Yii::getAlias('@required/kriteria9/apt/' . $filename);
-        $json = Json::decode(file_get_contents($path));
-        return $json;
+        return Json::decode(file_get_contents($path), false);
     }
 
-    public static function getJsonKriteriaLk(int $kriteria)
+    static function provideMapper()
     {
-        $json = self::getJson('lk');
-        return $json[$kriteria - 1];
+        return new JsonMapper();
     }
 
-    public static function getAllJsonLed()
+    public static function getJsonKriteriaLk(int $kriteria, $jenis = null)
     {
-        return self::getJson('led');
+        if (!$jenis) {
+            $jenis = \yii\helpers\ArrayHelper::map(\common\models\ProfilInstitusi::find()->all(),
+                'nama', 'isi')['jenis'];
+        }
+
+        $json = self::getJson('lk', $jenis)[$kriteria - 1];
+        return self::provideMapper()->map($json, new Lk());
+    }
+
+    public static function getAllJsonLed($jenis = '')
+    {
+        return self::provideMapper()->map(self::getJson('led')[2], new Led());
     }
 
     public static function getJsonKriteriaLed(int $kriteria)
     {
-        $json = self::getJson('led');
-        return $json[$kriteria - 1];
+        return self::provideMapper()->map(self::getJson('led')[2]->butir[$kriteria - 1], new Led());
     }
+
+    public static function getJsonLedKondisiEksternal()
+    {
+        return self::provideMapper()->map(self::getJson('led')[0], new Led());
+    }
+
+    public static function getJsonLedProfil()
+    {
+        return self::provideMapper()->map(self::getJson('led')[1], new Led());
+    }
+
+    public static function getJsonLedAnalisis()
+    {
+        return self::provideMapper()->map(self::getJson('led')[3], new Led());
+    }
+
+    /**
+     * @param $jenis
+     * @return mixed
+     */
+    public static function getJsonPenilaianKondisiEksternal($jenis = null)
+    {
+        if (!$jenis) {
+            $jenis = \yii\helpers\ArrayHelper::map(\common\models\ProfilInstitusi::find()->all(),
+                'nama', 'isi')['bentuk'];
+        }
+        return self::provideMapper()->map(self::getJson('penilaian', $jenis)[0], new Penilaian());
+    }
+
+    /**
+     * @param $jenis
+     * @return mixed
+     */
+    public static function getJsonPenilaianProfil($jenis = null)
+    {
+        if (!$jenis) {
+            $jenis = \yii\helpers\ArrayHelper::map(\common\models\ProfilInstitusi::find()->all(),
+                'nama', 'isi')['bentuk'];
+        }
+        return self::provideMapper()->map(self::getJson('penilaian', $jenis)[1], new Penilaian());
+    }
+
+    /**
+     * @param $jenis
+     * @return mixed
+     */
+    public static function getJsonPenilaianKriteria($jenis = null)
+    {
+        if (!$jenis) {
+            $jenis = \yii\helpers\ArrayHelper::map(\common\models\ProfilInstitusi::find()->all(),
+                'nama', 'isi')['bentuk'];
+        }
+        return self::provideMapper()->map(self::getJson('penilaian', $jenis)[2], new Penilaian());
+    }
+
+    /**
+     * @param $jenis
+     * @return mixed
+     */
+    public static function getJsonPenilaianAnalisis($jenis = null)
+    {
+        if (!$jenis) {
+            $jenis = \yii\helpers\ArrayHelper::map(\common\models\ProfilInstitusi::find()->all(),
+                'nama', 'isi')['bentuk'];
+        }
+        return self::provideMapper()->map(self::getJson('penilaian', $jenis)[3], new Penilaian());
+    }
+
 }

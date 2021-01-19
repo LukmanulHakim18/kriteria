@@ -3,7 +3,6 @@
 
 namespace akreditasi\models\kriteria9\forms\lk\prodi;
 
-
 use Carbon\Carbon;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use yii\base\Model;
@@ -25,14 +24,14 @@ class K9LinkLkProdiKriteriaDetailForm extends Model
         ];
     }
 
-    public function uploadLink($id, $kriteria){
+    public function uploadLink($id, $kriteria)
+    {
 
-        if($this->validate()){
-
-            $detailClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria'.$kriteria.'Detail';
+        if ($this->validate()) {
+            $detailClass = 'common\\models\\kriteria9\\lk\\prodi\\K9LkProdiKriteria' . $kriteria . 'Detail';
             $this->_dokumenLk = new $detailClass;
 
-            $detailAttr = 'id_lk_prodi_kriteria'.$kriteria;
+            $detailAttr = 'id_lk_prodi_kriteria' . $kriteria;
             $this->_dokumenLk->$detailAttr = $id;
             $this->_dokumenLk->nama_dokumen = $this->namaDokumen;
             $this->_dokumenLk->isi_dokumen = $this->isiDokumen;
@@ -47,5 +46,4 @@ class K9LinkLkProdiKriteriaDetailForm extends Model
 
         return false;
     }
-
 }

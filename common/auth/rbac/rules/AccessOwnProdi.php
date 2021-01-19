@@ -13,6 +13,12 @@ class AccessOwnProdi extends Rule
 {
     public $name = "accessOwnProdi";
 
+    /**
+     * @param int|string $user
+     * @param \yii\rbac\Item $item
+     * @param array $params
+     * @return bool
+     */
     public function execute($user, $item, $params)
     {
 

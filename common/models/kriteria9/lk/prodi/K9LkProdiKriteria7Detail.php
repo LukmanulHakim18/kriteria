@@ -104,17 +104,17 @@ class K9LkProdiKriteria7Detail extends \yii\db\ActiveRecord
 
     public function afterSave($insert, $changedAttributes)
     {
-        $this->lkProdiKriteria7->updateProgress();
-        $this->lkProdiKriteria7->lkProdi->updateProgress();
-        $this->lkProdiKriteria7->lkProdi->akreditasiProdi->updateProgress();
+        $this->lkProdiKriteria7->updateProgressDokumen()->save(false);
+        $this->lkProdiKriteria7->lkProdi->updateProgress()->save(false);
+        $this->lkProdiKriteria7->lkProdi->akreditasiProdi->updateProgress()->save(false);
         return parent::afterSave($insert, $changedAttributes);
     }
 
     public function afterDelete()
     {
-        $this->lkProdiKriteria7->updateProgress();
-        $this->lkProdiKriteria7->lkProdi->updateProgress();
-        $this->lkProdiKriteria7->lkProdi->akreditasiProdi->updateProgress();
+        $this->lkProdiKriteria7->updateProgressDokumen()->save(false);
+        $this->lkProdiKriteria7->lkProdi->updateProgress()->save(false);
+        $this->lkProdiKriteria7->lkProdi->akreditasiProdi->updateProgress()->save(false);
         parent::afterDelete();
     }
 }

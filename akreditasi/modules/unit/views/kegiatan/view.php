@@ -126,14 +126,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <?php endif; ?>
                                                 <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['kegiatan/download-detail','dokumen'=>$datum->id,'unit'=>$unit,'id'=>$_GET['id']], ['class' => 'btn btn-warning btn-pill btn-elevate btn-elevate-air']) ?>
 
-                                                <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['kegiatan/hapus-detail'], [
-                                                    'class' => 'btn btn-danger btn-pill btn-elevate btn-elevate-air',
-                                                    'data' => [
-                                                        'method' => 'POST',
-                                                        'confirm' => 'Apakah anda yakin menghapus item ini?',
-                                                        'params' => ['dokumen'=>$datum->id,'unit'=>$unit,'id'=>$_GET['id']]
-                                                    ]
-                                                ]) ?>
                                             </div>
 
                                         </div>

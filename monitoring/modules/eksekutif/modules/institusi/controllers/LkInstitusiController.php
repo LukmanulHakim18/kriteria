@@ -3,18 +3,8 @@
 
 namespace monitoring\modules\eksekutif\modules\institusi\controllers;
 
-class LkInstitusiController extends BaseController
+class LkInstitusiController extends \akreditasi\modules\kriteria9\modules\institusi\controllers\LkController
 {
 
-    public function actionLihat($lk, $kriteria)
-    {
-    }
-
-    public function actionDownloadTemplate($id)
-    {
-    }
-
-    public function actionDownloadDok($id)
-    {
-    }
+    protected $lihatLkKriteria = '@monitoring/modules/eksekutif/modules/institusi/views/lk-institusi/isi-kriteria';
 }

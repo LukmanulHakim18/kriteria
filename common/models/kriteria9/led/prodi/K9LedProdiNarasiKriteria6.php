@@ -15,7 +15,9 @@ use yii\behaviors\TimestampBehavior;
  * @property string $_6_1
  * @property string $_6_2
  * @property string $_6_3
- * @property string $_6_4
+ * @property string $_6_4_a
+ * @property string $_6_4_b
+ * @property string $_6_4_c
  * @property string $_6_5
  * @property string $_6_6
  * @property string $_6_7
@@ -48,7 +50,7 @@ class K9LedProdiNarasiKriteria6 extends \yii\db\ActiveRecord
     {
         return [
             [['id_led_prodi_kriteria6', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['_6_1', '_6_2', '_6_3', '_6_4', '_6_5', '_6_6', '_6_7', '_6_8', '_6_9'], 'string'],
+            [['_6_1', '_6_2', '_6_3', '_6_4_a', '_6_4_b', '_6_4_c', '_6_5', '_6_6', '_6_7', '_6_8', '_6_9'], 'string'],
             [['progress'], 'number'],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
@@ -75,15 +77,17 @@ class K9LedProdiNarasiKriteria6 extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_led_prodi_kriteria6' => 'Id Led Prodi Kriteria6',
-            '_6_1' => '6 1',
-            '_6_2' => '6 2',
-            '_6_3' => '6 3',
-            '_6_4' => '6 4',
-            '_6_5' => '6 5',
-            '_6_6' => '6 6',
-            '_6_7' => '6 7',
-            '_6_8' => '6 8',
-            '_6_9' => '6 9',
+            '_6_1' => '6.1',
+            '_6_2' => '6.2',
+            '_6_3' => '6.3',
+            '_6_4_a' => '6.4.a',
+            '_6_4_b' => '6.4.b',
+            '_6_4_c' => '6.4.c',
+            '_6_5' => '6.5',
+            '_6_6' => '6.6',
+            '_6_7' => '6.7',
+            '_6_8' => '6.8',
+            '_6_9' => '6.9',
             'progress' => 'Progress',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

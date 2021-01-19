@@ -3,31 +3,23 @@
 namespace common\models\kriteria9\lk\prodi;
 
 use common\helpers\kriteria9\K9ProdiProgressHelper;
+use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "k9_lk_prodi_kriteria3".
  *
  * @property int $id
- * @property int $id_lk_prodi
- * @property double $progress
- * @property int $created_at
- * @property int $updated_at
- * @property string $_3_a_1
- * @property string $_3_a_2
- * @property string $_3_a_3
- * @property string $_3_a_4
- * @property string $_3_a_5
- * @property string $_3_b_1
- * @property string $_3_b_2
- * @property string $_3_b_3
- * @property string $_3_b_4
- * @property string $_3_b_5
- * @property string $_3_b_6
- * @property string $_3_b_7
+ * @property int|null $id_lk_prodi
+ * @property float|null $progress_narasi
+ * @property float|null $progress_dokumen
+ * @property int|null $created_at
+ * @property int|null $updated_at
  *
  * @property K9LkProdi $lkProdi
+ * @property K9LkProdiKriteria3Narasi $k9LkProdiKriteria3Narasi
  * @property K9LkProdiKriteria3Detail[] $k9LkProdiKriteria3Details
+ * @property float $progress
  */
 class K9LkProdiKriteria3 extends \yii\db\ActiveRecord
 {
@@ -42,7 +34,7 @@ class K9LkProdiKriteria3 extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::class,
+            TimestampBehavior::class
         ];
     }
 
@@ -53,8 +45,7 @@ class K9LkProdiKriteria3 extends \yii\db\ActiveRecord
     {
         return [
             [['id_lk_prodi', 'created_at', 'updated_at'], 'integer'],
-            [['progress'], 'number'],
-            [['_3_a_1', '_3_a_2', '_3_a_3', '_3_a_4', '_3_a_5', '_3_b_1', '_3_b_2', '_3_b_3', '_3_b_4', '_3_b_5', '_3_b_6', '_3_b_7'], 'string'],
+            [['progress_narasi', 'progress_dokumen'], 'number'],
             [['id_lk_prodi'], 'exist', 'skipOnError' => true, 'targetClass' => K9LkProdi::className(), 'targetAttribute' => ['id_lk_prodi' => 'id']],
         ];
     }
@@ -67,25 +58,16 @@ class K9LkProdiKriteria3 extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_lk_prodi' => 'Id Lk Prodi',
-            '_3_a_1' => '3 A 1',
-            '_3_a_2' => '3 A 2',
-            '_3_a_3' => '3 A 3',
-            '_3_a_4' => '3 A 4',
-            '_3_a_5' => '3 A 5',
-            '_3_b_1' => '3 B 1',
-            '_3_b_2' => '3 B 2',
-            '_3_b_3' => '3 B 3',
-            '_3_b_4' => '3 B 4',
-            '_3_b_5' => '3 B 5',
-            '_3_b_6' => '3 B 6',
-            '_3_b_7' => '3 B 7',
-            'progress' => 'Progress',
+            'progress_narasi' => 'Progress Narasi',
+            'progress_dokumen' => 'Progress Dokumen',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
     }
 
     /**
+     * Gets query for [[LkProdi]].
+     *
      * @return \yii\db\ActiveQuery
      */
     public function getLkProdi()
@@ -93,13 +75,14 @@ class K9LkProdiKriteria3 extends \yii\db\ActiveRecord
         return $this->hasOne(K9LkProdi::className(), ['id' => 'id_lk_prodi']);
     }
 
-    public function updateProgress()
+    /**
+     * Gets query for [[K9LkProdiKriteria3Narasi]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getK9LkProdiKriteria3Narasi()
     {
-        $dokumen = K9ProdiProgressHelper::getDokumenLkProgress($this->id_lk_prodi, $this->getK9LkProdiKriteria3Details(), 3);
-
-        $progress = round(($dokumen) / 1, 2);
-        $this->progress = $progress;
-        $this->save(false);
+        return $this->hasOne(K9LkProdiKriteria3Narasi::className(), ['id_lk_prodi_kriteria3' => 'id']);
     }
 
     /**
@@ -108,5 +91,21 @@ class K9LkProdiKriteria3 extends \yii\db\ActiveRecord
     public function getK9LkProdiKriteria3Details()
     {
         return $this->hasMany(K9LkProdiKriteria3Detail::className(), ['id_lk_prodi_kriteria3' => 'id']);
+    }
+
+    public function getProgress(){
+        return round(( $this->progress_narasi + $this->progress_dokumen)/2,2);
+    }
+    public function updateProgressNarasi(){
+
+        $this->progress_narasi = $this->k9LkProdiKriteria3Narasi->progress;
+        return $this;
+    }
+    public function updateProgressDokumen()
+    {
+        $dokumen = K9ProdiProgressHelper::getDokumenLkProgress($this, $this->getK9LkProdiKriteria3Details(), 3);
+        $progress = round($dokumen, 2);
+        $this->progress_dokumen = $progress;
+        return $this;
     }
 }

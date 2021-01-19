@@ -11,15 +11,14 @@ class MetronicLoginPageDemo1Asset extends AssetBundle
     public $sourcePath = '@common/assets/metronic/assets';
 
 
-
     public $depends = [BaseMetronicAsset::class];
 
     public $css = [
-        'css/demo1/pages/general/login/login-4.css'
+        'css/pages/general/login/login-4.css'
     ];
 
     public $js = [
-        'js/demo1/scripts.bundle.js',
+        'js/scripts.bundle.js',
 
 //        'js/pages/login/login-general.js'
     ];

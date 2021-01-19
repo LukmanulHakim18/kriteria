@@ -2,10 +2,14 @@
 
 namespace common\models\kriteria9\akreditasi;
 
+use common\models\kriteria9\kuantitatif\prodi\K9DataKuantitatifProdi;
 use common\models\kriteria9\led\prodi\K9LedProdi;
 use common\models\kriteria9\lk\prodi\K9LkProdi;
+use common\models\kriteria9\penilaian\prodi\K9PenilaianProdiAnalisis;
+use common\models\kriteria9\penilaian\prodi\K9PenilaianProdiEksternal;
+use common\models\kriteria9\penilaian\prodi\K9PenilaianProdiKriteria;
+use common\models\kriteria9\penilaian\prodi\K9PenilaianProdiProfil;
 use common\models\ProgramStudi;
-use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -22,6 +26,11 @@ use yii\behaviors\TimestampBehavior;
  * @property ProgramStudi $prodi
  * @property K9LedProdi $k9LedProdi
  * @property K9LkProdi $k9LkProdi
+ * @property K9PenilaianProdiEksternal $penilaianEksternal
+ * @property K9PenilaianProdiProfil $penilaianProfil
+ * @property K9PenilaianProdiKriteria $penilaianKriteria
+ * @property K9PenilaianProdiAnalisis $penilaianAnalisis
+ * @property K9DataKuantitatifProdi $kuantitatif
  */
 class K9AkreditasiProdi extends \yii\db\ActiveRecord
 {
@@ -42,6 +51,7 @@ class K9AkreditasiProdi extends \yii\db\ActiveRecord
             TimestampBehavior::class
         ];
     }
+
     /**
      * {@inheritdoc}
      */
@@ -49,8 +59,20 @@ class K9AkreditasiProdi extends \yii\db\ActiveRecord
     {
         return [
             [['id_akreditasi', 'id_prodi', 'created_at', 'updated_at'], 'integer'],
-            [['id_akreditasi'], 'exist', 'skipOnError' => true, 'targetClass' => K9Akreditasi::className(), 'targetAttribute' => ['id_akreditasi' => 'id']],
-            [['id_prodi'], 'exist', 'skipOnError' => true, 'targetClass' => ProgramStudi::className(), 'targetAttribute' => ['id_prodi' => 'id']],
+            [
+                ['id_akreditasi'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => K9Akreditasi::className(),
+                'targetAttribute' => ['id_akreditasi' => 'id']
+            ],
+            [
+                ['id_prodi'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => ProgramStudi::className(),
+                'targetAttribute' => ['id_prodi' => 'id']
+            ],
         ];
     }
 
@@ -100,12 +122,57 @@ class K9AkreditasiProdi extends \yii\db\ActiveRecord
         return $this->hasOne(K9LkProdi::className(), ['id_akreditasi_prodi' => 'id']);
     }
 
-    public function updateProgress(){
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPenilaianEksternal()
+    {
+        return $this->hasOne(K9PenilaianProdiEksternal::class, ['id_akreditasi_prodi' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPenilaianProfil()
+    {
+        return $this->hasOne(K9PenilaianProdiProfil::class, ['id_akreditasi_prodi' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPenilaianKriteria()
+    {
+        return $this->hasOne(K9PenilaianProdiKriteria::class, ['id_akreditasi_prodi' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPenilaianAnalisis()
+    {
+        return $this->hasOne(K9PenilaianProdiAnalisis::class, ['id_akreditasi_prodi' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getKuantitatif()
+    {
+        return $this->hasOne(K9DataKuantitatifProdi::class, ['id_akreditasi_prodi' => 'id']);
+    }
+
+    /**
+     * @return $this
+     */
+    public function updateProgress()
+    {
         $led = $this->k9LedProdi->progress;
         $lk = $this->k9LkProdi->progress;
 
-        $progress = round((($led+$lk)/2),2);
+        $progress = round((($led + $lk) / 2), 2);
         $this->progress = $progress;
-        $this->save(false);
+
+        return $this;
     }
 }

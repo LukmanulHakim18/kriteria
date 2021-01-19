@@ -11,43 +11,70 @@
  */
 
 use yii\bootstrap4\Html;
-use yii\bootstrap4\Modal;
 use yii\helpers\Url;
 
 ?>
-<div class="row">
-    <div class="col-lg-12">
-        <h4><?=$key . '. ' . $model->nama_berkas?></h4>
-        <?=\kartik\grid\GridView::widget(['dataProvider' => new \yii\data\ActiveDataProvider(['query' => $model->getDetailBerkas()]),
-            'summary' => false,
-            'columns' => [
-                ['class'=>'kartik\grid\SerialColumn','header' => 'No'],
-                'isi_berkas',
-                ['class'=>'common\widgets\ActionColumn','header' => 'Aksi',
-                    'template' => '{lihat}{gunakan}',
-                    'buttons' => [
+    <div class="row">
+        <div class="col-lg-12">
+            <h4><?= $key . '. ' . $model->nama_berkas ?></h4>
+            <?= \kartik\grid\GridView::widget([
+                'dataProvider' => new \yii\data\ActiveDataProvider(['query' => $model->getDetailBerkas()]),
+                'summary' => false,
+                'columns' => [
+                    ['class' => 'kartik\grid\SerialColumn', 'header' => 'No'],
+                    'isi_berkas',
+                    [
+                        'class' => 'common\widgets\ActionColumn',
+                        'header' => 'Aksi',
+                        'template' => '{lihat}{gunakan}',
+                        'buttons' => [
 
-                        'lihat'=>function ($url, $model, $key) {
-            return Html::button('<i class="flaticon2-magnifier-tool"></i> Lihat',['value'=>Url::to(['resource/lihat-berkas-detail','id'=>$model->id]),'title'=>$model->isi_berkas,'class'=>'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air showModalBerkasButton']);
-                        },
-                        'gunakan'=>function ($url, $model, $key) use ($prodi,$kode,$jenis,$id_led_lk,$kriteria, $jenis_dokumen) {
-                            return Html::a('<i class="flaticon2-laptop"></i> Gunakan', ['resource/gunakan'],['class'=>'btn btn-primary btn-pill btn-elevate btn-elevate-air','data'=>[
-                                'confirm'=>"Apakah anda ingin menggunakan data: {$model->isi_berkas} untuk pengisisan $jenis kode $kode?",
-                                'method'=>'POST',
-                                'params'=>['id'=>$model->id,'prodi'=>$prodi->id,'kode'=>$kode,'jenis'=>$jenis,'id_led_lk'=>$id_led_lk,'kriteria'=>$kriteria,'jenis_dokumen'=>$jenis_dokumen]
-                            ]]);
-                        }
-                    ]]
-            ]])?>
+                            'lihat' => function ($url, $model, $key) {
+                                return Html::button('<i class="flaticon2-magnifier-tool"></i> Lihat', [
+                                    'value' => Url::to(['resource/lihat-berkas-detail', 'id' => $model->id]),
+                                    'title' => $model->isi_berkas,
+                                    'class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air showModalBerkasButton'
+                                ]);
+                            },
+                            'gunakan' => function ($url, $model, $key) use (
+                                $prodi,
+                                $kode,
+                                $jenis,
+                                $id_led_lk,
+                                $kriteria,
+                                $jenis_dokumen
+                            ) {
+                                return Html::a('<i class="flaticon2-laptop"></i> Gunakan', ['resource/gunakan'], [
+                                    'class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air',
+                                    'data' => [
+                                        'confirm' => "Apakah anda ingin menggunakan data: {$model->isi_berkas} untuk pengisisan $jenis kode $kode?",
+                                        'method' => 'POST',
+                                        'params' => [
+                                            'id' => $model->id,
+                                            'prodi' => $prodi->id,
+                                            'kode' => $kode,
+                                            'jenis' => $jenis,
+                                            'id_led_lk' => $id_led_lk,
+                                            'kriteria' => $kriteria,
+                                            'jenis_dokumen' => $jenis_dokumen
+                                        ]
+                                    ]
+                                ]);
+                            }
+                        ]
+                    ]
+                ]
+            ]) ?>
+        </div>
     </div>
-</div>
 
 <?php yii\bootstrap4\Modal::begin([
     'title' => '<span id="modalBerkasHeaderTitle"></span>',
     'headerOptions' => ['id' => 'modalBerkasHeader'],
     'id' => 'modalBerkas',
     'size' => 'modal-lg',
-    'clientOptions' => ['backdrop' => 'static']
+    'clientOptions' => ['backdrop' => 'static'],
+    'closeButton' => false
 
 
 ]);

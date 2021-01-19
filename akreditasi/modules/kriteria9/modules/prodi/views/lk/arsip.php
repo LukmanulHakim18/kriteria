@@ -4,7 +4,6 @@
 use demogorgorn\ajax\AjaxSubmitButton;
 use kartik\select2\Select2;
 use yii\bootstrap4\ActiveForm;
-use yii\bootstrap4\Html;
 use yii\web\JsExpression;
 
 /* @var $dataProdi */
@@ -12,9 +11,12 @@ use yii\web\JsExpression;
 
 $this->title = "Pencarian Data Program Studi Dokumentasi";
 
-$this->params['breadcrumbs'][] = ['label'=>'Beranda','url'=>['/site/index']];
-$this->params['breadcrumbs'][] = ['label'=>'9 Kriteria','url'=>['/site/index']];
-$this->params['breadcrumbs'][] = ['label'=>'Program Studi','url'=>['/kriteria9/k9-prodi/default/index','prodi'=>$_GET['prodi']]];
+$this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
+$this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/site/index']];
+$this->params['breadcrumbs'][] = [
+    'label' => 'Program Studi',
+    'url' => ['/kriteria9/k9-prodi/default/index', 'prodi' => $_GET['prodi']]
+];
 
 ?>
 <!--card-->
@@ -33,12 +35,12 @@ $this->params['breadcrumbs'][] = ['label'=>'Program Studi','url'=>['/kriteria9/k
 
         <?php $form = ActiveForm::begin(['id' => 'form-pencarian-lk', 'options' => ['class' => 'kt-form']]) ?>
 
-        <?= $form->field($model, 'akreditasi')->widget(Select2::class,[
-            'data'=> $dataAkreditasiProdi,
+        <?= $form->field($model, 'akreditasi')->widget(Select2::class, [
+            'data' => $dataAkreditasiProdi,
             'options' => [
                 'placeholder' => 'Pilih Akreditasi'
             ]
-        ])?>
+        ]) ?>
         <?= $form->field($model, 'id_prodi')->widget(Select2::class, [
             'data' => $dataProdi
         ])->label('Program Studi') ?>
@@ -51,14 +53,18 @@ $this->params['breadcrumbs'][] = ['label'=>'Program Studi','url'=>['/kriteria9/k
                 'useWithActiveForm' => 'form-pencarian-lk',
                 'ajaxOptions' => [
                     'type' => 'POST',
-                    'success'=>new JsExpression('function(html){
+                    'success' => new JsExpression('function(html){
                     $("#hasil-arsip").html(html);
-                        normalizeButton("submit-form");
+                        normalizeButton("submit-form",{icon:"la la-search",text:"Cari"});
                     }')
 
 
                 ],
-                'options' => ['class'=> 'btn btn-success btn-pill btn-elevate btn-elevate-air', 'type' => 'submit','id'=>'submit-form']
+                'options' => [
+                    'class' => 'btn btn-success btn-pill btn-elevate btn-elevate-air',
+                    'type' => 'submit',
+                    'id' => 'submit-form'
+                ]
             ]);
 
             AjaxSubmitButton::end();

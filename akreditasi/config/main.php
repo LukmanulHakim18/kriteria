@@ -13,7 +13,7 @@ return [
     'id' => 'app-akreditasi',
     'name' => $params['nama_sistem'],
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'queue'],
     'controllerNamespace' => 'akreditasi\controllers',
     'modules' => [
         'profile' => [
@@ -109,7 +109,7 @@ return [
                 'yii\bootstrap4\BootstrapAsset' => [
                     'sourcePath' => '@common/assets/metronic/assets',
 
-                    'css' => ['css/demo1/style.bundle.css']
+                    'css' => ['css/style.bundle.css']
                 ]
             ]
         ],

@@ -46,7 +46,8 @@ use yii\bootstrap4\Html;
                         <td><?= $led->akreditasiInstitusi->akreditasi->nama ?></td>
                         <td><?= $led->akreditasiInstitusi->akreditasi->tahun ?></td>
                         <td><?= $led->akreditasiInstitusi->akreditasi->lembaga ?></td>
-                        <td><?= Html::a('<i class="la la-folder"></i> Lihat', $url, ['class' => ['btn btn-default btn-pill btn-elevate btn-elevate-air']]) ?></td>
+                        <td><?= Html::a('<i class="la la-folder"></i> Lihat', $url,
+                                ['class' => ['btn btn-default btn-pill btn-elevate btn-elevate-air']]) ?></td>
                     </tr>
 
                     </tbody>

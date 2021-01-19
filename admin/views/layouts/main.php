@@ -45,7 +45,8 @@ $this->registerJs($counterUp, \yii\web\View::POS_READY);
     <?php $this->head() ?>
 </head>
 <!-- begin::Body -->
-<body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
+<body
+    class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
 
 <!-- begin:: Page -->
 
@@ -117,10 +118,11 @@ yii\bootstrap4\Modal::begin([
     'headerOptions' => ['id' => 'modalHeader'],
     'id' => 'modal',
     'size' => 'modal-lg',
-    'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
+    'clientOptions' => ['backdrop' => 'static', 'keyboard' => false]
 
 
 ]);
+echo "<div id='spinner-modal' class='kt-spinner--v2 kt-spinner--center kt-spinner kt-spinner--primary'></div>";
 echo "<div id='modalContent'></div>";
 yii\bootstrap4\Modal::end();
 ?>

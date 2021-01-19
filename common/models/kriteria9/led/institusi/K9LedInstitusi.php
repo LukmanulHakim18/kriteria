@@ -3,7 +3,6 @@
 namespace common\models\kriteria9\led\institusi;
 
 use common\models\kriteria9\akreditasi\K9AkreditasiInstitusi;
-use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -25,6 +24,10 @@ use yii\behaviors\TimestampBehavior;
  * @property K9LedInstitusiKriteria7 $k9LedInstitusiKriteria7s
  * @property K9LedInstitusiKriteria8 $k9LedInstitusiKriteria8s
  * @property K9LedInstitusiKriteria9 $k9LedInstitusiKriteria9s
+ * @property K9LedInstitusiNarasiKondisiEksternal $narasiEksternal
+ * @property K9LedInstitusiNarasiProfilInstitusi $narasiProfil
+ * @property K9LedInstitusiNarasiAnalisis $narasiAnalisis
+ * @property K9InstitusiEksporDokumen[] $eksporDokumen
  */
 class K9LedInstitusi extends \yii\db\ActiveRecord
 {
@@ -35,6 +38,7 @@ class K9LedInstitusi extends \yii\db\ActiveRecord
     {
         return 'k9_led_institusi';
     }
+
     /**
      * {@inheritdoc}
      */
@@ -53,7 +57,13 @@ class K9LedInstitusi extends \yii\db\ActiveRecord
         return [
             [['id_akreditasi_institusi', 'created_at', 'updated_at'], 'integer'],
             [['progress'], 'number'],
-            [['id_akreditasi_institusi'], 'exist', 'skipOnError' => true, 'targetClass' => K9AkreditasiInstitusi::className(), 'targetAttribute' => ['id_akreditasi_institusi' => 'id']],
+            [
+                ['id_akreditasi_institusi'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => K9AkreditasiInstitusi::className(),
+                'targetAttribute' => ['id_akreditasi_institusi' => 'id']
+            ],
         ];
     }
 
@@ -151,6 +161,15 @@ class K9LedInstitusi extends \yii\db\ActiveRecord
         return $this->hasOne(K9LedInstitusiKriteria9::className(), ['id_led_institusi' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEksporDokumen()
+    {
+        return $this->hasMany(K9InstitusiEksporDokumen::className(),
+            ['external_id' => 'id'])->andWhere(['type' => K9InstitusiEksporDokumen::TYPE_LED]);
+    }
+
     public function updateProgress()
     {
         $kriteria1 = $this->k9LedInstitusiKriteria1s->progress;
@@ -163,9 +182,28 @@ class K9LedInstitusi extends \yii\db\ActiveRecord
         $kriteria8 = $this->k9LedInstitusiKriteria8s->progress;
         $kriteria9 = $this->k9LedInstitusiKriteria9s->progress;
 
-        $progress = round((($kriteria1+$kriteria2+$kriteria3+$kriteria4+$kriteria5+$kriteria6+$kriteria7+$kriteria8+$kriteria9)/9), 2);
+        $progress_kriteria = round((($kriteria1 + $kriteria2 + $kriteria3 + $kriteria4 + $kriteria5 + $kriteria6 + $kriteria7 + $kriteria8 + $kriteria9) / 9),
+            2);
+
+        $progress = round(($this->narasiEksternal->progress + $this->narasiProfil->progress + $progress_kriteria + $this->narasiAnalisis->progress) / 4,
+            2);
         $this->progress = $progress;
 
         $this->save(false);
+    }
+
+    public function getNarasiEksternal()
+    {
+        return $this->hasOne(K9LedInstitusiNarasiKondisiEksternal::class, ['id_led_institusi' => 'id']);
+    }
+
+    public function getNarasiProfil()
+    {
+        return $this->hasOne(K9LedInstitusiNarasiProfilInstitusi::class, ['id_led_institusi' => 'id']);
+    }
+
+    public function getNarasiAnalisis()
+    {
+        return $this->hasOne(K9LedInstitusiNarasiAnalisis::class, ['id_led_institusi' => 'id']);
     }
 }

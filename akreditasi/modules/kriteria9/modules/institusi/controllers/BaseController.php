@@ -9,4 +9,5 @@ class BaseController extends Controller
 {
 
     public $layout= 'main';
+
 }

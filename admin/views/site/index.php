@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <span class="kt-widget24__desc">Jumlah Program Studi</span>
                         </div>
                         <span class="kt-widget24__stats kt-font-brand">
-                            <span class="counter"><?=$jumlahProdi ?></span>
+                            <span class="counter"><?= $jumlahProdi ?></span>
                         </span>
                     </div>
                 </div>
@@ -46,7 +46,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             </h4>
                             <span class="kt-widget24__desc">Jumlah Akun Pengguna</span>
                         </div>
-                        <span class="kt-widget24__stats kt-font-warning"><span class="counter"><?= $jumlahPengguna ?></span></span>
+                        <span class="kt-widget24__stats kt-font-warning"><span
+                                class="counter"><?= $jumlahPengguna ?></span></span>
                     </div>
                 </div>
 
@@ -59,14 +60,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="kt-widget24__details">
                         <div class="kt-widget24__info">
                             <h4 class="kt-widget24__title">Akreditasi Prodi</h4>
-                            <span class="kt-widget24__desc">Akreditasi Program Studi Tahun <?=date('Y')?></span>
+                            <span class="kt-widget24__desc">Akreditasi Program Studi Tahun <?= date('Y') ?></span>
                         </div>
-                        <span class="kt-widget24__stats kt-font-danger"><span class="counter"><?=$aps?></span></span>
+                        <span class="kt-widget24__stats kt-font-danger"><span class="counter"><?= $aps ?></span></span>
                     </div>
-                    <?=\yii\bootstrap4\Progress::widget([
-                            'barOptions' => ['class'=>'progress-bar progress-bar-striped progress-bar-animated kt-bg-danger'],
+                    <?= \yii\bootstrap4\Progress::widget([
+                        'barOptions' => ['class' => 'progress-bar progress-bar-striped progress-bar-animated kt-bg-danger'],
                         'percent' => $persenAps
-                    ])?>
+                    ]) ?>
 
                 </div>
 
@@ -81,14 +82,15 @@ $this->params['breadcrumbs'][] = $this->title;
                             <h4 class="kt-widget24__title">
                                 Akreditasi Perguruan Tinggi
                             </h4>
-                            <span class="kt-widget24__desc">Akreditasi Insitusi Perguruan Tinggi Tahun <?=date('Y')?></span>
+                            <span
+                                class="kt-widget24__desc">Akreditasi Insitusi Perguruan Tinggi Tahun <?= date('Y') ?></span>
                         </div>
-                        <span class="kt-widget24__stats kt-font-success"><span class="counter"><?=$apt?></span></span>
+                        <span class="kt-widget24__stats kt-font-success"><span class="counter"><?= $apt ?></span></span>
                     </div>
-                    <?=\yii\bootstrap4\Progress::widget([
-                            'barOptions' => ['class'=>'progress-bar progress-bar-striped progress-bar-animated kt-bg-success'],
+                    <?= \yii\bootstrap4\Progress::widget([
+                        'barOptions' => ['class' => 'progress-bar progress-bar-striped progress-bar-animated kt-bg-success'],
                         'percent' => $persenApt
-                    ])?>
+                    ]) ?>
 
                 </div>
 
@@ -115,11 +117,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
             <div class="kt-portlet__body">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                scrambled. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                type and scrambled.
+                <p> Untuk petunjuk penggunaan aplikasi, silahkan merujuk pada buku panduan yang telah diberikan.
+                    Fitur bagian admin:</p>
+                <ul>
+                    <li>Manajemen Data Institusi (Perguran Tinggi, Unit/Satker/Lembaga, Fakultas/Akademi, Program
+                        Studi)
+                    </li>
+                    <li>Manajemen Data Pengguna (Akun, Hak Akses Pengguna)</li>
+                    <li>Manajemen Data Akreditasi Perguruan Tinggi</li>
+                    <li>Manajemen Data Sertifikat Akreditasi</li>
+                    <li><i>Monitoring</i> Antrian (Queue Monitor)</li>
+                </ul>
             </div>
         </div>
 
