@@ -46,3 +46,5 @@ phpunit.phar
 /monitoring/web/robots.txt
 
 system-configuration.ini
+workspace.code-workspace
+_ide_components.php
