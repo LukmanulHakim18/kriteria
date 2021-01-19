@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $struktur common\models\ProfilInstitusi */
+/* @var $struktur string */
 
 $this->title = 'Beranda';
 $this->params['breadcrumbs'][] = $this->title;
@@ -11,9 +11,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="kt-space-30"></div>
     <h1 class="text-center"><?= Yii::$app->params['institusi'] ?></h1>
 
-    <?php foreach ($struktur as $item):?>
-        <div class="text-center" style="margin-top: 30px">
-            <img src="<?= Yii::getAlias('@web/upload/struktur/'.$item->nama) ?>">
+    <div class="kt-portlet__body">
+        <div class="text-center mt-30 mb-30">
+            <img src="<?= common\helpers\kriteria9\K9InstitusiDirectoryHelper::getStrukturUrl() . '/' . $struktur ?>">
         </div>
-    <?php endforeach; ?>
+        <div class="clearfix"></div>
+    </div>
+
 </div>

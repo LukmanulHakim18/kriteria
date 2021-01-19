@@ -1,6 +1,8 @@
 <?php
+
 use yii\bootstrap4\Html;
 
+$this->title = 'Akreditasi 9 Kriteria';
 ?>
 
 
@@ -17,7 +19,7 @@ use yii\bootstrap4\Html;
         </div>
     </div>
     <div class="kt-portlet__body">
-        Universitas Islam Negeri Sultan Syarif Kasim Riau Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.
+        Universitas Islam Negeri Sultan Syarif Kasim Riau.
     </div>
     <div class="kt-portlet__foot">
         <div class="row align-items-center">
@@ -25,7 +27,8 @@ use yii\bootstrap4\Html;
 
             </div>
             <div class="col-lg-6 kt-align-right">
-                <?= Html::a("<i class='la la-file-o'></i>Institusi", ['/kriteria9/k9-institusi/default/index'], ['class' => 'btn btn-primary btn-wide']) ?>
+                <?= Html::a("<i class='la la-file-o'></i>Institusi", ['/kriteria9/k9-institusi/default/index'],
+                    ['class' => 'btn btn-primary btn-wide']) ?>
             </div>
         </div>
     </div>
@@ -45,7 +48,7 @@ use yii\bootstrap4\Html;
         </div>
     </div>
     <div class="kt-portlet__body">
-        Fakultas di Universitas Islam Negeri Sultan Syarif Kasim Riau Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.
+        Fakultas di Universitas Islam Negeri Sultan Syarif Kasim Riau.
     </div>
     <div class="kt-portlet__foot">
         <div class="row align-items-center">
@@ -53,7 +56,8 @@ use yii\bootstrap4\Html;
 
             </div>
             <div class="col-lg-6 kt-align-right">
-                <?= Html::a("<i class='la la-file-o'></i>Fakultas", ['/kriteria9/fakultas/arsip'], ['class' => 'btn btn-primary btn-wide']) ?>
+                <?= Html::a("<i class='la la-file-o'></i>Fakultas", ['/kriteria9/fakultas/arsip'],
+                    ['class' => 'btn btn-primary btn-wide']) ?>
             </div>
         </div>
     </div>
@@ -73,7 +77,7 @@ use yii\bootstrap4\Html;
         </div>
     </div>
     <div class="kt-portlet__body">
-        Program Studi di Universitas Islam Negeri Sultan Syarif Kasim Riau Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.
+        Program Studi di Universitas Islam Negeri Sultan Syarif Kasim Riau.
     </div>
     <div class="kt-portlet__foot">
         <div class="row align-items-center">
@@ -81,7 +85,8 @@ use yii\bootstrap4\Html;
 
             </div>
             <div class="col-lg-6 kt-align-right">
-                <?= Html::a("<i class='la la-file-o'></i>Prodi", ['/kriteria9/prodi/arsip'], ['class' => 'btn btn-primary btn-wide']) ?>
+                <?= Html::a("<i class='la la-file-o'></i>Prodi", ['/kriteria9/prodi/arsip'],
+                    ['class' => 'btn btn-primary btn-wide']) ?>
             </div>
         </div>
     </div>
