@@ -2,4 +2,4 @@
 deployment:
     tasks:
         - export DEPLOYPATH=/home/u7722220/public_html/kriteria
-        - /usr/bin/rsync -Paz * $DEPLOYPATH
+        - /usr/bin/rsync -Paz . $DEPLOYPATH
