@@ -9,10 +9,10 @@
 $this->title = "Narasi " . $json->nama;
 $this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
 $this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9/default/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Perguruan TInggi', 'url' => ['/kriteria9/k9-institusi/index']];
+$this->params['breadcrumbs'][] = ['label' => 'Perguruan TInggi', 'url' => ['/kriteria9/k9-institusi/default/index']];
 $this->params['breadcrumbs'][] = [
     'label' => 'Pencarian Data Institusi',
-    'url' => ['/kriteria9/k9-institusi/arsip', 'target' => $untuk]
+    'url' => ['/kriteria9/k9-institusi/led/arsip', 'target' => $untuk]
 ];
 $this->params['breadcrumbs'][] = [
     'label' => \yii\helpers\StringHelper::mb_ucfirst($untuk) . ' Led',
