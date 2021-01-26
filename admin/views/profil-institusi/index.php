@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <i class="flaticon2-list-2"></i>
                     </span>
                     <h3 class="kt-portlet__head-title">
-                        <?= Html::encode($this->title) ?> <small>portlet sub title</small>
+                        <?= Html::encode($this->title) ?> <small><?=Yii::$app->params['institusi']?></small>
                     </h3>
                 </div>
                 <div class="kt-portlet__head-toolbar">
@@ -68,6 +68,3 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div>
 </div>
-
-
-

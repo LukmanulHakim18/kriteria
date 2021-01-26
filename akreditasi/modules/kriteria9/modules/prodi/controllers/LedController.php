@@ -548,7 +548,8 @@ class LedController extends BaseController
                 break;
         }
 
-        $poin = $json->butir;
+        $currentPoint = $json->butir;
+
 
         $detail = $modelNarasi->documents;
 
@@ -564,7 +565,8 @@ class LedController extends BaseController
                 'detail' => $detail,
                 'untuk' => $untuk,
                 'prodi' => $programStudi,
-                'akreditasiProdi' => $akreditasiProdi
+                'akreditasiProdi' => $akreditasiProdi,
+                'currentPoint' => $currentPoint
             ]
         );
     }

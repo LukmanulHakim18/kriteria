@@ -23,7 +23,7 @@ use yii\bootstrap4\Progress;
     <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
             <h3 class="kt-portlet__head-title">
-                Laporan Evaluasi Perguruan Tinggi
+                Laporan Evaluasi Diri Perguruan Tinggi
             </h3>
         </div>
         <div class="kt-portlet__head-toolbar">

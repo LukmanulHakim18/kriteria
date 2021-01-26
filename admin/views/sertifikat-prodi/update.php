@@ -7,9 +7,9 @@ use yii\helpers\Html;
 /* @var $model common\models\sertifikat\SertifikatProdi */
 /* @var $dataProdi ProgramStudi */
 
-$this->title = 'Ubah Sertifikat Prodi:  ' . $model->id;
+$this->title = 'Ubah Sertifikat Prodi:  ' . $model->prodi->nama;
 $this->params['breadcrumbs'][] = ['label' => 'Sertifikat Prodi', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->prodi->nama, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Ubah';
 ?>
 
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = 'Ubah';
                     <div class="kt-space-20"></div>
 
                     <?= $this->render('_form-update', [
-                    'model' => $model,
+                        'model' => $model,
                     ]) ?>
 
                 </div>

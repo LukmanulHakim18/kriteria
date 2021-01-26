@@ -23,14 +23,18 @@ $this->params['breadcrumbs'][] = $this->title;
                         <i class="flaticon2-list-2"></i>
                     </span>
                     <h3 class="kt-portlet__head-title">
-                        <?= Html::encode($this->title) ?> <small>portlet sub title</small>
+                        <?= Html::encode($this->title) ?>
                     </h3>
                 </div>
                 <div class="kt-portlet__head-toolbar">
                     <div class="kt-portlet__head-wrapper">
                         <div class="kt-portlet__head-actions">
 
-                            <?= Html::button('<i class=flaticon2-add></i> Tambah Sertifikat Institusi', ['value' => Url::to(['create']), 'title' => 'Tambah Sertifikat Institusi', 'class' => 'showModalButton btn btn-success btn-elevate btn-elevate-air']); ?>
+                            <?= Html::button('<i class=flaticon2-add></i> Tambah Sertifikat Institusi', [
+                                'value' => Url::to(['create']),
+                                'title' => 'Tambah Sertifikat Institusi',
+                                'class' => 'showModalButton btn btn-success btn-elevate btn-elevate-air'
+                            ]); ?>
                         </div>
                     </div>
                 </div>
@@ -66,7 +70,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'attribute' => 'sertifikat',
                                 'format' => 'raw',
                                 'value' => function ($model) {
-                                    return Html::a($model->sertifikat . "&nbsp;<i class='fa fa-external-link-alt'></i>", ['sertifikat-perguruan-tinggi/lihat-sertifikat', 'id' => $model->id], ['target' => '_blank', 'data-pjax' => "0"]);
+                                    return Html::a($model->sertifikat . "&nbsp;<i class='fa fa-external-link-alt'></i>",
+                                        ['sertifikat-perguruan-tinggi/lihat-sertifikat', 'id' => $model->id],
+                                        ['target' => '_blank', 'data-pjax' => "0"]);
                                 }
                             ],
 //            'sertifikat',

@@ -50,6 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 //                                    'id',
                             'nama',
+                            'jenisString',
 //            'created_at',
 //            'updated_at',
 
@@ -66,6 +67,3 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div>
 </div>
-
-
-
