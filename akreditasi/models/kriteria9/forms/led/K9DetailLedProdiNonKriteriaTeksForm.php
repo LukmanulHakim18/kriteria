@@ -3,6 +3,7 @@
  * mutu-v2
  * @author Adryan Eka Vandra <adryanekavandra@gmail.com>
  */
+
 /**
  * Class K9DetailLedProdiUploadForm
  * @package akreditasi\models\kriteria9\forms\led
@@ -12,12 +13,9 @@
 namespace akreditasi\models\kriteria9\forms\led;
 
 
-use Carbon\Carbon;
-use common\helpers\kriteria9\K9ProdiDirectoryHelper;
-use common\models\Constants;
+use common\helpers\FileTypeHelper;
 use common\models\kriteria9\led\prodi\K9LedProdiNonKriteriaDokumen;
 use yii\base\Model;
-use yii\web\UploadedFile;
 
 class K9DetailLedProdiNonKriteriaTeksForm extends Model
 {
@@ -32,15 +30,15 @@ class K9DetailLedProdiNonKriteriaTeksForm extends Model
     public function rules()
     {
         return [
-            [['kode_dokumen','nama_dokumen','berkasDokumen','jenis_dokumen'],'required'],
-            [['kode_dokumen','nama_dokumen','berkasDokumen','jenis_dokumen'],'string'],
+            [['kode_dokumen', 'nama_dokumen', 'berkasDokumen', 'jenis_dokumen'], 'required'],
+            [['kode_dokumen', 'nama_dokumen', 'berkasDokumen', 'jenis_dokumen'], 'string'],
         ];
     }
 
     public function save($led)
     {
 
-        if(!$this->validate()){
+        if (!$this->validate()) {
             return false;
         }
 
@@ -52,7 +50,7 @@ class K9DetailLedProdiNonKriteriaTeksForm extends Model
         $this->_detailLedProdi->nama_dokumen = $this->nama_dokumen;
         $this->_detailLedProdi->isi_dokumen = $this->berkasDokumen;
         $this->_detailLedProdi->jenis_dokumen = $this->jenis_dokumen;
-        $this->_detailLedProdi->bentuk_dokumen = Constants::TEXT;
+        $this->_detailLedProdi->bentuk_dokumen = FileTypeHelper::TYPE_STATIC_TEXT;
 
         $this->_detailLedProdi->save(false);
 
