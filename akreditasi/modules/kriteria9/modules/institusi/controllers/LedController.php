@@ -121,7 +121,8 @@ class LedController extends BaseController
             $dokumen = $this->uploadDokumenLed($led);
             if ($dokumen) {
                 $model = new K9InstitusiEksporDokumen();
-                $model->id_led_institusi = $ledInstitusi->id;
+                $model->external_id = $ledInstitusi->id;
+                $model->type = K9InstitusiEksporDokumen::TYPE_LED;
                 $model->nama_dokumen = $dokumen->getNamaDokumen();
                 $model->bentuk_dokumen = $dokumen->getBentukDokumen();
                 $model->save(false);

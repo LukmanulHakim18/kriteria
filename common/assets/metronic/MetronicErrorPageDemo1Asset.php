@@ -14,7 +14,7 @@ class MetronicErrorPageDemo1Asset extends AssetBundle
     public $depends = [BaseMetronicDemo1Asset::class, SweetAlert2Asset::class];
 
     public $css = [
-        'css/demo1/pages/general/error/error-6.css'
+        'css/pages/general/error/error-6.css'
     ];
 
     public $js = [
