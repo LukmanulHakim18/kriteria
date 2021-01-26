@@ -15,7 +15,6 @@ use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\bootstrap4\ActiveForm;
 
-
 /**
  * UnitController implements the CRUD actions for Unit model.
  */
@@ -84,34 +83,28 @@ class UnitController extends Controller
         $model = new Unit();
         $jenis = Unit::JENIS;
         if ($model->load(Yii::$app->request->post())) {
-
-            if(Yii::$app->request->isAjax){
+            if (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return ActiveForm::validate($model);
             }
             $db = Yii::$app->db->beginTransaction();
-            try{
+            try {
                 $model->save();
                 $profil = new Profil();
                 $profil->external_id = $model->id;
                 $profil->type = Unit::UNIT;
                 $profil->save(false);
 
-                $struktur = new StrukturOrganisasi();
-                $struktur->id_profil = $profil->id;
-                $struktur->save(false);
                 $db->commit();
-                Yii::$app->session->setFlash('success','Berhasil menambahkan Unit.');
+                Yii::$app->session->setFlash('success', 'Berhasil menambahkan Unit.');
 
                 return $this->redirect(['view', 'id' => $model->id]);
-            }catch (Exception $exception){
+            } catch (Exception $exception) {
                 $db->rollBack();
                 throw $exception;
             }
-        }
-
-        elseif (Yii::$app->request->isAjax){
-            return $this->renderAjax('_form',['model'=>$model,'jenis'=>$jenis]);
+        } elseif (Yii::$app->request->isAjax) {
+            return $this->renderAjax('_form', ['model'=>$model,'jenis'=>$jenis]);
         }
 
         return $this->render('create', [
@@ -132,7 +125,7 @@ class UnitController extends Controller
         $model = $this->findModel($id);
         $jenis = Unit::JENIS;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success','Berhasil mengubah Unit.');
+            Yii::$app->session->setFlash('success', 'Berhasil mengubah Unit.');
 
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -154,7 +147,7 @@ class UnitController extends Controller
     {
         $this->findModel($id)->delete();
 
-        Yii::$app->session->setFlash('success','Berhasil menghapus Unit.');
+        Yii::$app->session->setFlash('success', 'Berhasil menghapus Unit.');
 
         return $this->redirect(['index']);
     }

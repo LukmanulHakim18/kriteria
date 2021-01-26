@@ -30,7 +30,8 @@ class SertifikatPerguruanTinggiController extends Controller
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
-                    ['actions' => ['index', 'create', 'update', 'view', 'delete', 'lihat-sertifikat', 'lihat-sk'],
+                    [
+                        'actions' => ['index', 'create', 'update', 'view', 'delete', 'lihat-sertifikat', 'lihat-sk'],
                         'allow' => true,
                         'roles' => ['@']
                     ]
@@ -97,9 +98,9 @@ class SertifikatPerguruanTinggiController extends Controller
     public function actionCreate()
     {
         $model = new SertifikatInstitusi();
-        $ini = parse_ini_file(__DIR__ . '/../../system-configuration.ini');
 
-        $namaInstitusi = $ini['institusi'];
+
+        $namaInstitusi = Yii::$app->params['institusi'];
 
 
 //        var_dump($dataInstitusi);

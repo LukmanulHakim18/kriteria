@@ -12,7 +12,6 @@ use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\bootstrap4\ActiveForm;
 
-
 /**
  * ProfilInstitusiController implements the CRUD actions for ProfilInstitusi model.
  */
@@ -79,21 +78,17 @@ class ProfilInstitusiController extends Controller
     {
         $model = new ProfilInstitusi();
 
-        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
         if ($model->load(Yii::$app->request->post())) {
-
-
             $model->save();
-            Yii::$app->session->setFlash('success','Berhasil menambahkan ProfilInstitusi.');
+            Yii::$app->session->setFlash('success', 'Berhasil menambahkan Profil Institusi.');
 
             return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        elseif (Yii::$app->request->isAjax){
-            return $this->renderAjax('_form',['model'=>$model]);
+        } elseif (Yii::$app->request->isAjax) {
+            return $this->renderAjax('_form', ['model'=>$model]);
         }
 
         return $this->render('create', [
@@ -112,12 +107,12 @@ class ProfilInstitusiController extends Controller
     {
         $model = $this->findModel($id);
 
-        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success','Berhasil mengubah ProfilInstitusi.');
+            Yii::$app->session->setFlash('success', 'Berhasil mengubah Profil Institusi.');
 
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -138,7 +133,7 @@ class ProfilInstitusiController extends Controller
     {
         $this->findModel($id)->delete();
 
-        Yii::$app->session->setFlash('success','Berhasil menghapus ProfilInstitusi.');
+        Yii::$app->session->setFlash('success', 'Berhasil menghapus Profil Institusi.');
 
         return $this->redirect(['index']);
     }
@@ -156,6 +151,6 @@ class ProfilInstitusiController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('Halaman yang anda minta tidak ditemukan.');
     }
 }

@@ -620,7 +620,8 @@ class LedController extends BaseController
                 break;
         }
 
-        $poin = $json->butir;
+        $currentPoint = $json->butir;
+
 
         $detail = $modelNarasi->documents;
 
@@ -628,7 +629,7 @@ class LedController extends BaseController
         $untuk = 'lihat';
 
         return $this->render($this->lihatNonKriteriaView,
-            compact('ledInstitusi', 'json', 'poin', 'modelNarasi', 'detail', 'untuk'));
+            compact('ledInstitusi', 'json', 'poin', 'modelNarasi', 'detail', 'untuk', 'currentPoint'));
     }
 
     public function actionExportPartialKriteria()

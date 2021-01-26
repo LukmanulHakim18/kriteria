@@ -68,11 +68,11 @@ $controller = $this->context->id;
                 <thead class="thead-light">
                 <tr>
 
-                    <th>No.</th>
-                    <th>Dokumen Led</th>
-                    <th>Dibuat Tanggal</th>
-                    <th>Jenis</th>
-                    <th>
+                    <th class="text-center">No.</th>
+                    <th class="text-center">Dokumen Led</th>
+                    <th class="text-center">Dibuat Tanggal</th>
+                    <th class="text-center">Jenis</th>
+                    <th class="text-center">
                         Aksi
                     </th>
                 </tr>
@@ -80,8 +80,8 @@ $controller = $this->context->id;
                 <tbody>
                 <?php foreach ($dataDokumen as $key => $item) : ?>
                     <tr>
-                        <td><?= $key + 1 ?></td>
-                        <td>
+                        <td class="text-center"><?= $key + 1 ?></td>
+                        <td class="text-center">
                             <div class="row">
                                 <div class="col-lg-12 text-center">
                                     <?= FileIconHelper::getIconByExtension($item->bentuk_dokumen) ?>
@@ -95,9 +95,9 @@ $controller = $this->context->id;
                                 </div>
                             </div>
                         </td>
-                        <td><?= Yii::$app->formatter->asDatetime($item->created_at) ?></td>
-                        <td><?= $item->kode_dokumen ?></td>
-                        <td>
+                        <td class="text-center"><?= Yii::$app->formatter->asDatetime($item->created_at) ?></td>
+                        <td class="text-center"><?= $item->kode_dokumen ?></td>
+                        <td class="text-center">
                             <div class="row pull-right">
                                 <div class="col-lg-12">
                                     <?php $type = FileTypeHelper::getType($item->bentuk_dokumen); ?>

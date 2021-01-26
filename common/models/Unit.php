@@ -17,7 +17,7 @@ use yii\db\ActiveRecord;
  * @property int $jenis
  * @property int $created_at
  * @property int $updated_at
- *
+ * @property string $jenisString
  * @property Profil $profil
  * @property Berkas[] $berkas
  * @property KegiatanUnit[] $kegiatans
@@ -78,6 +78,7 @@ class Unit extends ActiveRecord
             'jenis'=> Yii::t('app', 'Jenis'),
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'jenisString'=> 'Jenis'
         ];
     }
 

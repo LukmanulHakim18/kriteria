@@ -1,6 +1,7 @@
 <?php
 
-use kartik\date\DatePicker;
+use kartik\datecontrol\DateControl;
+use kartik\datecontrol\Module;
 use kartik\file\FileInput;
 use kartik\select2\Select2;
 use yii\bootstrap4\ActiveForm;
@@ -23,21 +24,17 @@ use yii\helpers\Html;
 
         <?= $form->field($model, 'nama_lembaga')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'tgl_akreditasi')->widget(DatePicker::class, [
-            'name' => 'check_date1',
-            'removeButton' => false,
-            'pluginOptions' => [
-                'autoclose' => true,
-                'format' => 'dd-MM-yyyy'
+        <?= $form->field($model, 'tgl_akreditasi')->widget(DateControl::class, [
+            'type' => Module::FORMAT_DATE,
+            'widgetOptions' => [
+                'pluginOptions' => ['autoclose' => true]
             ]
         ]) ?>
 
-        <?= $form->field($model, 'tgl_kadaluarsa')->widget(DatePicker::class, [
-            'name' => 'check_date2',
-            'removeButton' => false,
-            'pluginOptions' => [
-                'autoclose' => true,
-                'format' => 'dd-MM-yyyy'
+        <?= $form->field($model, 'tgl_kadaluarsa')->widget(DateControl::class, [
+            'type' => Module::FORMAT_DATE,
+            'widgetOptions' => [
+                'pluginOptions' => ['autoclose' => true]
             ]
         ]) ?>
 
@@ -56,21 +53,17 @@ use yii\helpers\Html;
 
         <?= $form->field($model, 'tahun_sk')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'tanggal_pengajuan')->widget(DatePicker::class, [
-            'name' => 'check_date3',
-            'removeButton' => false,
-            'pluginOptions' => [
-                'autoclose' => true,
-                'format' => 'dd-MM-yyyy'
+        <?= $form->field($model, 'tanggal_pengajuan')->widget(DateControl::class, [
+            'type' => Module::FORMAT_DATE,
+            'widgetOptions' => [
+                'pluginOptions' => ['autoclose' => true]
             ]
         ]) ?>
 
-        <?= $form->field($model, 'tanggal_diterima')->widget(DatePicker::class, [
-            'name' => 'check_date4',
-            'removeButton' => false,
-            'pluginOptions' => [
-                'autoclose' => true,
-                'format' => 'dd-MM-yyyy'
+        <?= $form->field($model, 'tanggal_diterima')->widget(DateControl::class, [
+            'type' => Module::FORMAT_DATE,
+            'widgetOptions' => [
+                'pluginOptions' => ['autoclose' => true]
             ]
         ]) ?>
 
@@ -97,7 +90,8 @@ use yii\helpers\Html;
 
 
         <div class="form-group">
-            <?= Html::submitButton('<i class=\'la la-save\'></i> Simpan', ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-brand']) ?>
+            <?= Html::submitButton('<i class=\'la la-save\'></i> Simpan',
+                ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-brand']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>
