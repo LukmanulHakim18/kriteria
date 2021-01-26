@@ -251,8 +251,8 @@ $controller = $this->context->id;
 
         <tbody>
         <?php
-        $detail = $detailCollection->where('jenis_dokumen', Constants::LAINNYA)->values()->all();
-
+        $detail = $detailCollection->where('jenis_dokumen', Constants::LAINNYA)->where('kode_dokumen',
+            $poin . '.' . $item->nomor)->values()->all();
         foreach ($detail as $k => $v):
             ?>
             <?= $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/_item_dokumen_detail_non_kriteria',

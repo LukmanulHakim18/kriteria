@@ -9,11 +9,13 @@ use akreditasi\models\kriteria9\forms\lk\prodi\K9LkProdiKriteriaDetailForm;
 use akreditasi\models\kriteria9\forms\lk\prodi\K9TextLkProdiKriteriaDetailForm;
 use akreditasi\modules\kriteria9\controllers\BaseController;
 use common\helpers\DownloadDokumenTrait;
+use common\helpers\FileTypeHelper;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\helpers\kriteria9\K9ProdiJsonHelper;
 use common\helpers\NomorKriteriaHelper;
 use common\jobs\LkProdiCompleteExportJob;
 use common\jobs\LkProdiPartialExportJob;
+use common\models\Constants;
 use common\models\kriteria9\akreditasi\K9Akreditasi;
 use common\models\kriteria9\forms\lk\K9PencarianLkProdiForm;
 use common\models\kriteria9\led\prodi\K9ProdiEksporDokumen;
@@ -389,32 +391,32 @@ class LkController extends BaseController
             $path = K9ProdiDirectoryHelper::getDokumenLkPath($model->$attr->lkProdi->akreditasiProdi);
             $file = $model->isi_dokumen;
 
-            if ($model->bentuk_dokumen === 'text') {
+            if ($model->bentuk_dokumen === FileTypeHelper::TYPE_STATIC_TEXT) {
                 $model->delete();
                 Yii::$app->session->setFlash('success', "Teks Tabel $model->kode_dokumen berhasil dihapus");
                 return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk, 'prodi' => $prodi]);
             }
-            if ($model->bentuk_dokumen === 'link') {
+            if ($model->bentuk_dokumen === FileTypeHelper::TYPE_LINK) {
                 $model->delete();
                 Yii::$app->session->setFlash('success', "Tautan Tabel $model->kode_dokumen berhasil dihapus");
                 return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk, 'prodi' => $prodi]);
             }
 
-            if ($model->jenis_dokumen === 'lainnya') {
+            if ($model->jenis_dokumen === Constants::LAINNYA) {
                 unlink("$path/lainnya/$file");
                 $model->delete();
 
                 Yii::$app->session->setFlash('success', "Dokumen Tabel $model->kode_dokumen berhasil dihapus");
                 return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk, 'prodi' => $prodi]);
             }
-            if ($model->jenis_dokumen === 'sumber') {
+            if ($model->jenis_dokumen === Constants::SUMBER) {
                 unlink("$path/sumber/$file");
                 $model->delete();
 
                 Yii::$app->session->setFlash('success', "Dokumen Tabel $model->kode_dokumen berhasil dihapus");
                 return $this->redirect(['lk/isi-kriteria', 'kriteria' => $kriteria, 'lk' => $lk, 'prodi' => $prodi]);
             }
-            if ($model->jenis_dokumen === 'pendukung') {
+            if ($model->jenis_dokumen === Constants::PENDUKUNG) {
                 unlink("$path/pendukung/$file");
                 $model->delete();
 

@@ -3,8 +3,7 @@
 
 namespace akreditasi\models\kriteria9\forms\lk\institusi;
 
-use Carbon\Carbon;
-use common\helpers\kriteria9\K9InstitusiDirectoryHelper;
+use common\helpers\FileTypeHelper;
 use yii\base\Model;
 
 class K9TextLkInstitusiKriteriaDetailForm extends Model
@@ -19,8 +18,8 @@ class K9TextLkInstitusiKriteriaDetailForm extends Model
     public function rules(): array
     {
         return [
-            [['kodeDokumen', 'namaDokumen','jenisDokumen','isiDokumen'],'string',],
-            [['kodeDokumen', 'namaDokumen','jenisDokumen','isiDokumen'],'required']
+            [['kodeDokumen', 'namaDokumen', 'jenisDokumen', 'isiDokumen'], 'string',],
+            [['kodeDokumen', 'namaDokumen', 'jenisDokumen', 'isiDokumen'], 'required']
         ];
     }
 
@@ -36,7 +35,7 @@ class K9TextLkInstitusiKriteriaDetailForm extends Model
             $this->_dokumenLk->nama_dokumen = $this->namaDokumen;
             $this->_dokumenLk->isi_dokumen = $this->isiDokumen;
             $this->_dokumenLk->kode_dokumen = $this->kodeDokumen;
-            $this->_dokumenLk->bentuk_dokumen = 'text';
+            $this->_dokumenLk->bentuk_dokumen = FileTypeHelper::TYPE_STATIC_TEXT;
             $this->_dokumenLk->jenis_dokumen = $this->jenisDokumen;
 
             $this->_dokumenLk->save(false);
