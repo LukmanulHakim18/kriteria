@@ -16,7 +16,7 @@ $substring = substr($name, $posTag + 1, '3');
 <!-- begin:: Page -->
 <div class="kt-grid kt-grid--ver kt-grid--root">
     <div class="kt-grid__item kt-grid__item--fluid kt-grid  kt-error-v6"
-         style="background-image: url(<?= Yii::getAlias('@web/media/bg/bg-6.jpg') ?>);">
+         style="background-image: url(<?= Yii::getAlias('@web/media/bg/bg6.jpg') ?>);">
         <div class="kt-error_container">
             <div class="kt-error_subtitle kt-font-light">
                 <h1>Oops...</h1>
