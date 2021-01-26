@@ -225,20 +225,6 @@ $controller = $this->context->id;
 
                     <?php Modal::end(); ?>
 
-
-
-                    <?= Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data', [
-                        'value' => Url::to([
-                            'resource/index',
-                            'kriteria' => $kriteria,
-                            'kode' => '',
-                            'jenis' => Constants::LK,
-                            'id_led_lk' => $lkInstitusi->id,
-                            'jenis_dokumen' => Constants::LAINNYA
-                        ]),
-                        'title' => 'Gunakan Data Untuk Dokumen lainnya ',
-                        'class' => 'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton pull-right'
-                    ]) ?>
                 <?php endif ?>
             </th>
         </tr>

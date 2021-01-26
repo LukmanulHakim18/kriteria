@@ -183,18 +183,7 @@ $controller = $this->context->id;
                     <?php ActiveForm::end() ?>
 
                     <?php Modal::end(); ?>
-                    <?= Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data', [
-                        'value' => \yii\helpers\Url::to([
-                            'resource/index',
-                            'kriteria' => $kriteria,
-                            'kode' => $doksum->kode,
-                            'jenis' => Constants::LK,
-                            'id_led_lk' => $lkInstitusi->id,
-                            'jenis_dokumen' => $jenis
-                        ]),
-                        'title' => 'Gunakan Data Untuk : ' . $doksum->kode . '.' . ' ' . $doksum->dokumen,
-                        'class' => 'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton'
-                    ]) ?>
+
                 <?php endif ?>
             </td>
         </tr>
