@@ -13,7 +13,7 @@
 namespace akreditasi\models\kriteria9\forms\led;
 
 
-use common\models\Constants;
+use common\helpers\FileTypeHelper;
 use common\models\kriteria9\led\institusi\K9LedInstitusiNonKriteriaDokumen;
 use yii\base\Model;
 
@@ -48,7 +48,7 @@ class K9DetailLedInstitusiNonKriteriaTeksForm extends Model
         $this->_detailLedInstitusi->nama_dokumen = $this->nama_dokumen;
         $this->_detailLedInstitusi->isi_dokumen = $this->berkasDokumen;
         $this->_detailLedInstitusi->jenis_dokumen = $this->jenis_dokumen;
-        $this->_detailLedInstitusi->bentuk_dokumen = Constants::LINK;
+        $this->_detailLedInstitusi->bentuk_dokumen = FileTypeHelper::TYPE_STATIC_TEXT;
 
         $this->_detailLedInstitusi->save(false);
 

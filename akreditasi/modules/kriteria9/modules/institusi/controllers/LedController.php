@@ -456,7 +456,7 @@ class LedController extends BaseController
 
         $linkModel = new K9DetailLedInstitusiNonKriteriaLinkForm();
         $uploadModel = new K9DetailLedInstitusiNonKriteriaUploadForm();
-        $textModel = new K9DetailLedInstitusiNonKriteriaUploadForm();
+        $textModel = new K9DetailLedInstitusiNonKriteriaTeksForm();
         $realPath = K9InstitusiDirectoryHelper::getDetailLedUrl($ledInstitusi->akreditasiInstitusi);
 
         return $this->renderAjax('@akreditasi/modules/kriteria9/modules/institusi/views/led/_isi_led_non_kriteria', [
