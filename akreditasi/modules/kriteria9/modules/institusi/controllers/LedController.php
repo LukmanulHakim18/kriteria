@@ -67,8 +67,8 @@ class LedController extends BaseController
 
         $model = new K9PencarianLedInstitusiForm();
         $akreditasi = K9Akreditasi::findAll(['jenis_akreditasi' => Constants::INSTITUSI]);
-        $dataAkreditasi = ArrayHelper::map($akreditasi, 'id', function ($data) {
-            return $data->nama . " (" . $data->tahun . ")";
+        $dataAkreditasi = ArrayHelper::map($akreditasi, 'id', function (/** @var K9Akreditasi $data */ $data) {
+            return $data->lembaga . ' - ' . $data->nama . " (" . $data->tahun . ")";
         });
 
         if ($model->load(Yii::$app->request->post())) {

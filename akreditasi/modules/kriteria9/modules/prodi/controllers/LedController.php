@@ -74,7 +74,7 @@ class LedController extends BaseController
         $progdi = ProgramStudi::findAll(['id' => $prodi]);
         $dataProdi = ArrayHelper::map($progdi, 'id', 'nama');
         $dataAkreditasi = ArrayHelper::map($akreditasi, 'id', function ($data) {
-            return $data->nama . ' (' . $data->tahun . ')';
+            return $data->lembaga . ' - ' . $data->nama . " (" . $data->tahun . ")";
         });
 
         if ($model->load(Yii::$app->request->post())) {
