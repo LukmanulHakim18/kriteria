@@ -108,10 +108,15 @@ use yii\bootstrap4\Modal;
                                         'size' => 'modal-lg',
                                         'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
                                     ]); ?>
-                                    <p><small>Jika dokumen tidak tampil, silahkan klik <?= Html::a('di sini.',
-                                                'https://docs.google.com/gview?url=' . $path . '/' . rawurlencode($item->nama_dokumen),
-                                                ['target' => '_blank']) ?></small>
-                                    </p> <?php echo ' <div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://docs.google.com/gview?url=' . $path . '/' . rawurlencode($item->nama_dokumen) . '&embedded=true"></iframe></div>'; ?>
+                                    <?php if (\common\helpers\FileTypeHelper::getType($item->bentuk_dokumen) === \common\helpers\FileTypeHelper::TYPE_IMAGE):
+                                        echo Html::img("$path/{$item->nama_dokumen}",
+                                            ['height' => '100%', 'width' => '100%']);
+                                    else :?>
+                                        <p><small>Jika dokumen tidak tampil, silahkan klik <?= Html::a('di sini.',
+                                                    'https://docs.google.com/gview?url=' . $path . '/' . rawurlencode($item->nama_dokumen),
+                                                    ['target' => '_blank']) ?></small>
+                                        </p> <?php echo ' <div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://docs.google.com/gview?url=' . $path . '/' . rawurlencode($item->nama_dokumen) . '&embedded=true"></iframe></div>'; ?>
+                                    <?php endif; ?>
                                     <?php Modal::end(); ?>
                                     <?= Html::a('<i class ="la la-download"></i> Unduh',
                                         ['led-institusi/download-dokumen', 'dokumen' => $item->id],
