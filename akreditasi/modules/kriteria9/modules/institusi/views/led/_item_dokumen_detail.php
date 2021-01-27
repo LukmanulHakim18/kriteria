@@ -65,6 +65,10 @@ $controller = $this->context->id;
                             echo $detail->isi_dokumen;
                             break;
                         default:
+                            echo '  <p><small>Jika dokumen tidak tampil, silahkan klik ' . Html::a('di sini.',
+                                    'https://docs.google.com/gview?url=' . $path . '/' . $jenis . '/' . rawurlencode($detail->isi_dokumen),
+                                    ['target' => '_blank']) . '</small>
+                </p>';
                             echo '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://docs.google.com/gview?url=' . $path . '/' . $jenis . '/' . rawurlencode($detail->isi_dokumen) . '&embedded=true"></iframe></div>';
                             break;
                     } ?>
