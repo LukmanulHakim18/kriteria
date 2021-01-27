@@ -161,6 +161,10 @@ $controller = $this->context->id;
                                         'size' => 'modal-lg',
                                         'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
                                     ]); ?>
+                                    <p><small>Jika dokumen tidak tampil, silahkan klik <?= Html::a('di sini.',
+                                                'https://docs.google.com/gview?url=' . $path . '/' . rawurlencode($item->nama_dokumen),
+                                                ['target' => '_blank']) ?></small>
+                                    </p>
                                     <?php echo ' <div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://docs.google.com/gview?url=' . $path . '/' . rawurlencode($item->nama_dokumen) . '&embedded=true"></iframe></div>'; ?>
                                     <?php Modal::end(); ?>
                                     <?= Html::a('<i class ="la la-download"></i> Unduh',
