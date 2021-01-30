@@ -9,7 +9,7 @@
 
 namespace akreditasi\modules\kriteria9\modules\prodi\controllers;
 
-use akreditasi\models\kriteria9\forms\led\K9DetailLedInstitusiNonKriteriaLinkForm;
+use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiNonKriteriaLinkForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiLinkForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiNonKriteriaTeksForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiNonKriteriaUploadForm;
@@ -190,50 +190,6 @@ class LedController extends BaseController
         ]);
     }
 
-    /**
-     * @param $led
-     * @return K9LedProdi|null
-     * @throws NotFoundHttpException
-     */
-    protected function findLedProdi($led)
-    {
-        $model = null;
-        if ($model = K9LedProdi::findOne($led)) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException();
-    }
-
-    protected function getArrayKriteria($led)
-    {
-        $kriteria = [];
-        for ($i = 1; $i <= 9; $i++) {
-            $classpath = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria' . $i;
-            $kriteria[] = call_user_func($classpath . '::findOne', ['id_led_prodi' => $led]);
-        }
-        return $kriteria;
-    }
-
-    protected function uploadDokumenLed($led)
-    {
-        $ledProdi = K9LedProdi::findOne($led);
-
-        $dokumenLed = new K9DokumenLedProdiUploadForm();
-        $dokumenLed->dokumenLed = UploadedFile::getInstance($dokumenLed, 'dokumenLed');
-        $realPath = K9ProdiDirectoryHelper::getDokumenLedPath($ledProdi->akreditasiProdi);
-        $response = null;
-
-        if ($dokumenLed->validate()) {
-            $uploaded = $dokumenLed->uploadDokumen($realPath);
-            if ($uploaded) {
-                $response = $dokumenLed;
-            }
-        }
-
-        return $response;
-    }
-
     public function actionIsiKriteria($led, $kriteria, $prodi)
     {
         $ledProdi = K9LedProdi::findOne(['id' => $led]);
@@ -319,7 +275,7 @@ class LedController extends BaseController
 
         $currentPoint = $json->butir;
 
-        $modelLink = new K9DetailLedInstitusiNonKriteriaLinkForm();
+        $modelLink = new K9DetailLedProdiNonKriteriaLinkForm();
         $modelUpload = new K9DetailLedProdiNonKriteriaUploadForm();
         $modelTeks = new K9DetailLedProdiNonKriteriaTeksForm();
 
@@ -448,7 +404,7 @@ class LedController extends BaseController
             $currentPoint = $currentCollection->where('nomor', $nomor)->first();
         }
 
-        $linkModel = new K9DetailLedInstitusiNonKriteriaLinkForm();
+        $linkModel = new K9DetailLedProdiNonKriteriaLinkForm();
         $uploadModel = new K9DetailLedProdiNonKriteriaUploadForm();
         $textModel = new K9DetailLedProdiNonKriteriaTeksForm();
         $realPath = K9ProdiDirectoryHelper::getDetailLedUrl($ledProdi->akreditasiProdi);
@@ -711,6 +667,50 @@ class LedController extends BaseController
 
         }
         return $this->redirect($referer);
+    }
+
+    /**
+     * @param $led
+     * @return K9LedProdi|null
+     * @throws NotFoundHttpException
+     */
+    protected function findLedProdi($led)
+    {
+        $model = null;
+        if ($model = K9LedProdi::findOne($led)) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException();
+    }
+
+    protected function getArrayKriteria($led)
+    {
+        $kriteria = [];
+        for ($i = 1; $i <= 9; $i++) {
+            $classpath = 'common\\models\\kriteria9\\led\\prodi\\K9LedProdiKriteria' . $i;
+            $kriteria[] = call_user_func($classpath . '::findOne', ['id_led_prodi' => $led]);
+        }
+        return $kriteria;
+    }
+
+    protected function uploadDokumenLed($led)
+    {
+        $ledProdi = K9LedProdi::findOne($led);
+
+        $dokumenLed = new K9DokumenLedProdiUploadForm();
+        $dokumenLed->dokumenLed = UploadedFile::getInstance($dokumenLed, 'dokumenLed');
+        $realPath = K9ProdiDirectoryHelper::getDokumenLedPath($ledProdi->akreditasiProdi);
+        $response = null;
+
+        if ($dokumenLed->validate()) {
+            $uploaded = $dokumenLed->uploadDokumen($realPath);
+            if ($uploaded) {
+                $response = $dokumenLed;
+            }
+        }
+
+        return $response;
     }
 
     protected function getLedKriteriaNomor($kriteria, $search)
