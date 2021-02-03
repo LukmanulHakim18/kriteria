@@ -328,7 +328,8 @@ $controller = $this->context->id;
             'detail' => $v,
             'nomor' => $k + 1,
             'prodi' => $prodi,
-            'untuk' => $untuk
+            'untuk' => $untuk,
+            'model' => $model
         ]) ?>
 
         <?php endforeach; ?>
