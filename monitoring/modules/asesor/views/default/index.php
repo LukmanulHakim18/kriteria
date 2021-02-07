@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'label' => 'Laporan Evaluasi Diri',
                         'value' => function ($model, $key, $index, $widget) {
                             return $model->k9LedProdi->progress;
-                        }
+                        },
                     ],
                     [
                         'label' => 'Laporan Kinerja',
@@ -72,10 +72,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 );
                             },
                             'kuantitatif' => function ($url, $model) {
-                                return !empty($model->kuantitatif) ? Html::a(
+                                return !empty($model->kuantitatif) ? Html::button(
                                     'Kuantitatif',
-                                    ['default/kuantitatif-prodi', 'id' => $model->id],
-                                    ['class' => 'btn btn-dark btn-sm']
+                                    [
+                                        'class' => 'btn btn-dark btn-sm showModalButton',
+                                        'value' => \yii\helpers\Url::to(['/kuantitatif/prodi', 'id' => $model->id]),
+                                        'title' => 'Kuantitatif Prodi'
+                                    ]
                                 ) : Html::a(
                                     'Kuantitatif',
                                     '#',
@@ -146,10 +149,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 );
                             },
                             'kuantitatif' => function ($url, $model) {
-                                return !empty($model->kuantitatif) ? Html::a(
+                                return !empty($model->kuantitatif) ? Html::button(
                                     'Kuantitatif',
-                                    ['default/kuantitatif-institusi', 'id' => $model->id],
-                                    ['class' => 'btn btn-dark btn-sm']
+                                    [
+                                        'class' => 'btn btn-dark btn-sm showModalButton',
+                                        'value' => \yii\helpers\Url::to(['/kuantitatif/institusi', 'id' => $model->id]),
+                                        'title' => 'Kuantitatif Institusi'
+                                    ]
                                 ) : Html::a(
                                     'Kuantitatif',
                                     '#',

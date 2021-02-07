@@ -129,9 +129,13 @@ $url = ($jenis === ProgramStudi::PROGRAM_STUDI || $jenis === 'institusi') ? [
                             </div>
                             <div class="kt-widget__details">
                                 <span class="kt-widget__title">Matriks Kuantitatif</span>
-                                <span class="kt-widget__value"><?= $model->kuantitatif ? Html::a('Download',
-                                        \common\helpers\kriteria9\K9ProdiDirectoryHelper::getKuantitatifUrl($model) . '/' . $model->kuantitatif->isi_dokumen,
-                                        ['class' => 'btn btn-success btn-sm btn-pill btn-elevate btn-elevate-air']) : 'Belum' ?>
+                                <span
+                                    class="kt-widget__value"><?= $model->kuantitatif ? Html::button('<i class="flaticon2-arrow-down"></i> Download',
+                                        [
+                                            'class' => 'btn btn-success btn-sm btn-pill btn-elevate btn-elevate-air showModalButton',
+                                            'value' => \yii\helpers\Url::to(['/kuantitatif/prodi', 'id' => $model->id]),
+                                            'title' => 'Berkas Kuantitatif Prodi'
+                                        ]) : 'Belum' ?>
                             </div>
                         </div>
                     </div>

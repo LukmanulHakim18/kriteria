@@ -118,9 +118,16 @@ $url = ['akreditasi/detail-pt', 'id' => $model->id]
                             </div>
                             <div class="kt-widget__details">
                                 <span class="kt-widget__title">Matriks Kuantitatif</span>
-                                <span class="kt-widget__value"><?= $model->kuantitatif ? Html::a('Download',
-                                        \common\helpers\kriteria9\K9InstitusiDirectoryHelper::getKuantitatifUrl($model) . '/' . $model->kuantitatif->isi_dokumen,
-                                        ['class' => 'btn btn-success btn-pill btn-elevate btn-elevate-air']) : 'Belum' ?>
+                                <span
+                                    class="kt-widget__value"><?= $model->kuantitatif ? Html::button('<i class="flaticon2-arrow-down"></i> Download',
+                                        [
+                                            'class' => 'btn btn-success btn-sm btn-pill btn-elevate btn-elevate-air showModalButton',
+                                            'value' => \yii\helpers\Url::to([
+                                                '/kuantitatif/institusi',
+                                                'id' => $model->id
+                                            ]),
+                                            'title' => 'Berkas Kuantitatif Institusi'
+                                        ]) : 'Belum' ?>
                             </div>
                         </div>
                     </div>
