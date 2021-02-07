@@ -4,6 +4,7 @@
 namespace akreditasi\modules\kriteria9\modules\prodi\controllers;
 
 
+use akreditasi\models\kriteria9\forms\K9KuantitatifUploadForm;
 use akreditasi\modules\kriteria9\controllers\BaseController;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\jobs\KuantitatifProdiExportJob;
@@ -13,12 +14,14 @@ use common\models\kriteria9\forms\kuantitatif\K9PencarianKuantitatifForm;
 use common\models\kriteria9\kuantitatif\prodi\K9DataKuantitatifProdi;
 use common\models\ProgramStudi;
 use Yii;
+use yii\base\Exception;
 use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
 
 class KuantitatifController extends BaseController
 {
@@ -74,41 +77,39 @@ class KuantitatifController extends BaseController
         $programStudi = $akreditasiProdi->prodi;
 
         $dataKuantitatifProdi = new ActiveDataProvider(['query' => K9DataKuantitatifProdi::find()->where(['id_akreditasi_prodi' => $akreditasiProdi->id])]);
-//        $model = new K9DataKuantitatifProdi();
-//
-//        if ($model->load(Yii::$app->request->post())) {
-//
-////            var_dump($model->akreditasiProdi);
-////            exit();
-//
-//            $carbon = Carbon::now('Asia/Jakarta');
-//            $tgl = $carbon->format('U');
-//
-//            $file = UploadedFile::getInstance($model, 'nama_dokumen');
-//            $fileName = $tgl . '-' . $file->getBaseName() . '.' . $file->getExtension();
-//            $model->id_akreditasi_prodi = $id_akre->id;
-//            $model->nama_dokumen = $fileName;
-//            $path = K9ProdiDirectoryHelper::getKuantitatifPath($model->akreditasiProdi);
-//
-//            if (!$file->saveAs("$path/$fileName")) {
-//                throw new Exception("Gagal Mengupload File");
-//            }
-//
-//            if (!$model->save()) {
-//                throw new Exception("Gagal Menyimpan Data Kuantitatif");
-//            }
-//
-//            Yii::$app->session->setFlash('success', 'Berhasil Mengupload Dokumen Kuantitatif.');
-//
-//            $this->redirect(Url::current());
-//
-//        }
+        $model = new K9DataKuantitatifProdi();
+        $modelUpload = new K9KuantitatifUploadForm();
+        $model->id_akreditasi_prodi = $akreditasiProdi->id;
+        $model->nama_dokumen = 'Matriks Kuantitatif ' . $akreditasiProdi->prodi->nama . ' (' . $akreditasiProdi->akreditasi->tahun . ')';
+        $model->sumber = K9DataKuantitatifProdi::SUMBER_UNGGAH;
+
+        $path = K9ProdiDirectoryHelper::getKuantitatifPath($model->akreditasiProdi);
+        if (Yii::$app->request->isAjax) {
+            return $this->renderAjax('_form', ['model' => $model, 'modelUpload' => $modelUpload]);
+        }
+
+        if ($model->load(Yii::$app->request->post())) {
+
+
+            $file = UploadedFile::getInstance($modelUpload, 'berkas');
+            $modelUpload->berkas = $file;
+            if (!($fileName = $modelUpload->upload($path))) {
+                throw new Exception("Gagal Mengupload File");
+            }
+            $model->isi_dokumen = $fileName;
+
+            if (!$model->save()) {
+                throw new Exception("Gagal Menyimpan Data Kuantitatif");
+            }
+            Yii::$app->session->setFlash('success', 'Berhasil Mengupload Dokumen Kuantitatif.');
+            $this->redirect(Url::current());
+
+        }
 
         return $this->render('isi', [
             'akreditasiProdi' => $akreditasiProdi,
             'dataKuantitatifProdi' => $dataKuantitatifProdi,
-            'prodi' => $programStudi
-//            'model' => $model
+            'prodi' => $programStudi,
         ]);
     }
 

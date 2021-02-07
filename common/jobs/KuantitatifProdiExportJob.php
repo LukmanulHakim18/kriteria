@@ -104,7 +104,10 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
         $path = K9ProdiDirectoryHelper::getKuantitatifPath($akreditasiProdi);
         $writer->save("$path/$filename");
 
-        $model = K9DataKuantitatifProdi::findOne(['id_akreditasi_prodi' => $akreditasiProdi->id]);
+        $model = K9DataKuantitatifProdi::findOne([
+            'id_akreditasi_prodi' => $akreditasiProdi->id,
+            'sumber' => K9DataKuantitatifProdi::SUMBER_EKSPOR
+        ]);
         if (!$model) {
             $model = new K9DataKuantitatifProdi();
             $model->id_akreditasi_prodi = $akreditasiProdi->id;
@@ -112,7 +115,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
             $oldName = $model->isi_dokumen;
             FileHelper::unlink("$path/$oldName");
         }
-        $model->nama_dokumen = 'Matriks Kuantitatif ' . $prodi->nama . '(' . $akreditasiProdi->akreditasi->tahun . ')';
+        $model->nama_dokumen = 'Matriks Kuantitatif ' . $prodi->nama . ' (' . $akreditasiProdi->akreditasi->tahun . ')';
         $model->isi_dokumen = $filename;
         $model->save(false);
     }
