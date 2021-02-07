@@ -3,6 +3,7 @@
 use common\models\standar7\akreditasi\S7AkreditasiInstitusi;
 use common\models\standar7\kuantitatif\institusi\S7DataKuantitatifInstitusi;
 use yii\bootstrap4\Html;
+use yii\helpers\Url;
 
 /* @var $dataKuantitatifInstitusi S7DataKuantitatifInstitusi */
 /* @var $model S7DataKuantitatifInstitusi */
@@ -27,9 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-actions">
-                <?= Html::a('Export Kuantitatif', ['kuantitatif/export'],
+                <?= Html::button('<i class="la la-upload"></i> Unggah Kuantitatif', [
+                    'class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air showModalButton',
+                    'value' => Url::to(['kuantitatif/isi', 'id' => $akreinstitusi->id]),
+                    'title' => 'Unggah Data Kuantitatif'
+                ]) ?>
+                <?= Html::a('<i class="fas fa-file-excel"></i> Export Kuantitatif', ['kuantitatif/export'],
                     [
-                        'class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air',
+                        'class' => 'btn btn-success btn-pill btn-elevate btn-elevate-air',
                         'data-method' => 'POST',
                         'data-params' => ['akreditasiInstitusi' => $akreinstitusi->id],
                         'data-confirm' => 'Apakah anda yakin membuat Excel Kuantitatif baru? (Data yang lama akan dihapus)'
@@ -53,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'nama_dokumen',
                     'isi_dokumen',
                     'created_at:datetime',
-                    'updated_at:datetime',
+                    'sumber',
                     [
                         'class' => \common\widgets\ActionColumn::class,
                         'header' => 'Aksi',

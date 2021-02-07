@@ -1,6 +1,8 @@
 <?php
 
 use common\models\Constants;
+use dosamigos\tinymce\TinyMce;
+use kartik\file\FileInput;
 
 return [
     'aliases' => [
@@ -39,7 +41,7 @@ return [
     ],
     'container' => [
         'definitions' => [
-            'dosamigos\tinymce\TinyMce' => [
+            TinyMce::class => [
                 'options' => ['rows' => 8],
                 'language' => 'id',
                 'clientOptions' => [
@@ -53,7 +55,7 @@ return [
 
                 ]
             ],
-            'kartik\file\FileInput' => [
+            FileInput::class => [
                 'pluginOptions' => [
                     'theme' => 'explorer-fas',
                     'maxFileSize' => Constants::MAX_UPLOAD_SIZE(),

@@ -30,16 +30,22 @@ use yii\behaviors\TimestampBehavior;
  * @property K9PenilaianProdiProfil $penilaianProfil
  * @property K9PenilaianProdiKriteria $penilaianKriteria
  * @property K9PenilaianProdiAnalisis $penilaianAnalisis
- * @property K9DataKuantitatifProdi $kuantitatif
+ * @property K9DataKuantitatifProdi[] $kuantitatif
  */
 class K9AkreditasiProdi extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public function attributeLabels()
     {
-        return 'k9_akreditasi_prodi';
+        return [
+            'id' => 'ID',
+            'id_akreditasi' => 'Id Akreditasi',
+            'id_prodi' => 'Id Prodi',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+        ];
     }
 
     /**
@@ -79,15 +85,9 @@ class K9AkreditasiProdi extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public static function tableName()
     {
-        return [
-            'id' => 'ID',
-            'id_akreditasi' => 'Id Akreditasi',
-            'id_prodi' => 'Id Prodi',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-        ];
+        return 'k9_akreditasi_prodi';
     }
 
     /**
@@ -159,7 +159,7 @@ class K9AkreditasiProdi extends \yii\db\ActiveRecord
      */
     public function getKuantitatif()
     {
-        return $this->hasOne(K9DataKuantitatifProdi::class, ['id_akreditasi_prodi' => 'id']);
+        return $this->hasMany(K9DataKuantitatifProdi::class, ['id_akreditasi_prodi' => 'id']);
     }
 
     /**

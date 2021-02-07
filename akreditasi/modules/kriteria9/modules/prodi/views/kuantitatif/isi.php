@@ -30,9 +30,18 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-actions">
-                <?= Html::a('Export Kuantitatif', ['kuantitatif/export'],
+                <?= Html::button('<i class="la la-upload"></i> Unggah Kuantitatif', [
+                    'class' => 'showModalButton btn btn-primary btn-pill btn-elevate btn-elevate-air',
+                    'title' => 'Unggah Berkas Kuantitatif',
+                    'value' => \yii\helpers\Url::to([
+                        'kuantitatif/isi',
+                        'akreditasiprodi' => $akreditasiProdi->id,
+                        'prodi' => $prodi->id
+                    ])
+                ]) ?>
+                <?= Html::a('<i class="fas fa-file-excel"></i> Export Kuantitatif', ['kuantitatif/export'],
                     [
-                        'class' => 'btn btn-primary btn-pill btn-elevate btn-elevate-air',
+                        'class' => 'btn btn-success btn-pill btn-elevate btn-elevate-air',
                         'data-method' => 'POST',
                         'data-params' => ['akreditasiprodi' => $akreditasiProdi->id]
                     ]) ?>
@@ -54,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'nama_dokumen',
                     'isi_dokumen',
                     'created_at:datetime',
-                    'updated_at:datetime',
+                    'sumber',
                     [
                         'class' => \common\widgets\ActionColumn::class,
                         'header' => 'Aksi',

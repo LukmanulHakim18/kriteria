@@ -4,7 +4,6 @@ namespace common\models\kriteria9\kuantitatif\institusi;
 
 use common\models\kriteria9\akreditasi\K9AkreditasiInstitusi;
 use common\models\User;
-use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
@@ -19,6 +18,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int $updated_at
  * @property int $created_by
  * @property int $updated_by
+ * @property string $sumber
  *
  * @property K9AkreditasiInstitusi $akreditasiInstitusi
  * @property User $createdBy
@@ -26,12 +26,25 @@ use yii\behaviors\TimestampBehavior;
  */
 class K9DataKuantitatifInstitusi extends \yii\db\ActiveRecord
 {
+    const SUMBER_EKSPOR = 'ekspor';
+    const SUMBER_UNGGAH = 'unggah';
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public function attributeLabels()
     {
-        return 'k9_data_kuantitatif_institusi';
+        return [
+            'id' => 'ID',
+            'id_akreditasi_institusi' => 'Id Akreditasi Institusi',
+            'nama_dokumen' => 'Nama Dokumen',
+            'isi_dokumen' => 'Isi Dokumen',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+            'created_by' => 'Created By',
+            'updated_by' => 'Updated By',
+            'sumber' => 'Sumber',
+        ];
     }
 
     public function behaviors()
@@ -49,28 +62,37 @@ class K9DataKuantitatifInstitusi extends \yii\db\ActiveRecord
     {
         return [
             [['id_akreditasi_institusi', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['nama_dokumen', 'isi_dokumen'], 'string', 'max' => 255],
-            [['id_akreditasi_institusi'], 'exist', 'skipOnError' => true, 'targetClass' => K9AkreditasiInstitusi::className(), 'targetAttribute' => ['id_akreditasi_institusi' => 'id']],
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
-            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
+            [['nama_dokumen', 'isi_dokumen', 'sumber'], 'string', 'max' => 255],
+            [
+                ['id_akreditasi_institusi'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => K9AkreditasiInstitusi::className(),
+                'targetAttribute' => ['id_akreditasi_institusi' => 'id']
+            ],
+            [
+                ['created_by'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => User::className(),
+                'targetAttribute' => ['created_by' => 'id']
+            ],
+            [
+                ['updated_by'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => User::className(),
+                'targetAttribute' => ['updated_by' => 'id']
+            ],
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public static function tableName()
     {
-        return [
-            'id' => 'ID',
-            'id_akreditasi_institusi' => 'Id Akreditasi Institusi',
-            'nama_dokumen' => 'Nama Dokumen',
-            'isi_dokumen' => 'Isi Dokumen',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'created_by' => 'Created By',
-            'updated_by' => 'Updated By',
-        ];
+        return 'k9_data_kuantitatif_institusi';
     }
 
     /**
