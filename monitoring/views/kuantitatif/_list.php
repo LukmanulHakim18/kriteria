@@ -19,7 +19,7 @@
                 'header' => 'Aksi',
                 'template' => '{download}',
                 'buttons' => [
-                    'download' => function ($index, $model, $url) use ($untuk) {
+                    'download' => function ($url, $model) use ($untuk) {
                         return \yii\bootstrap4\Html::a('<i class="flaticon2-arrow-down"></i> Download',
                             $untuk === 'prodi' ? [
                                 '/kuantitatif/download-prodi',
