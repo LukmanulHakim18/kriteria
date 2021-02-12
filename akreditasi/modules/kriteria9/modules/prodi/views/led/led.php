@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9
 $this->params['breadcrumbs'][] = ['label' => 'Prodi', 'url' => ['/kriteria9/k9-prodi/default/index']];
 $this->params['breadcrumbs'][] = [
     'label' => 'Led',
-    'url' => ['/kriteria9/k9-prodi/led/arsip', 'target' => 'isi', 'prodi' => $prodi]
+    'url' => ['/kriteria9/k9-prodi/led/arsip', 'target' => 'isi', 'prodi' => $prodi->id]
 ];
 $this->params['breadcrumbs'][] = $this->title;
 

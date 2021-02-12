@@ -14,6 +14,7 @@
  */
 
 use common\helpers\FileIconHelper;
+use common\helpers\FileTypeHelper;
 use common\models\ProgramStudi;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;
@@ -119,10 +120,15 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                                         'size' => 'modal-lg',
                                         'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
                                     ]); ?>
-                                     <?php if($type === FileTypeHelper::TYPE_IMAGE):
-                                        echo Html::img("$path/{$item->nama_dokumen}", ['height' => '100%', 'width' => '100%']);
+                                    <?php
+                                    $type = FileTypeHelper::getType($item->bentuk_dokumen);
+                                    if ($type === FileTypeHelper::TYPE_IMAGE):
+                                        echo Html::img("$path/{$item->nama_dokumen}",
+                                            ['height' => '100%', 'width' => '100%']);
                                         break;
-                                    else :?> <?php if (\common\helpers\FileTypeHelper::getType($item->bentuk_dokumen)  ===\common\helpers\FileTypeHelper::TYPE_IMAGE):
+                                    elseif (\common\helpers\FileTypeHelper::getType($item->bentuk_dokumen) === \common\helpers\FileTypeHelper::TYPE_IMAGE) :?>
+
+                                        <?php
                                         echo Html::img("$path/{$item->nama_dokumen}",
                                             ['height' => '100%', 'width' => '100%']);
                                     else :?>
@@ -143,7 +149,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                         </td>
                     </tr>
 
-                <?php endforeach; ?>
+                <?php endforeach ?>
                 </tbody>
             </table>
         </div>
