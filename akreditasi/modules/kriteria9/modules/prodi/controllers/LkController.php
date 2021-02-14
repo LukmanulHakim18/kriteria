@@ -127,7 +127,7 @@ class LkController extends BaseController
             return $this->redirect(Url::current());
         }
 
-        return $this->render('isi', [
+        return $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/lk/isi', [
             'lkProdi' => $lkProdi,
             'kriteria' => $kriteria,
             'institusi' => $institusi,
@@ -191,6 +191,7 @@ class LkController extends BaseController
     {
         $lkProdi = $this->findLkProdi($lk);
         $programStudi = $lkProdi->akreditasiProdi->prodi;
+        $dataDokumen = $lkProdi->getEksporDokumen()->orderBy('kode_dokumen')->all();
         $json = K9ProdiJsonHelper::getAllJsonLk($programStudi->jenjang);
         $kriteria = $this->getArrayKriteria($lk);
         $institusi = Yii::$app->params['institusi'];
@@ -201,7 +202,9 @@ class LkController extends BaseController
             'institusi' => $institusi,
             'json' => $json,
             'prodi' => $programStudi,
-            'untuk' => 'lihat'
+            'untuk' => 'lihat',
+            'dataDokumen' => $dataDokumen,
+            'path' => K9ProdiDirectoryHelper::getDokumenLkUrl($lkProdi->akreditasiProdi)
         ]);
     }
 
