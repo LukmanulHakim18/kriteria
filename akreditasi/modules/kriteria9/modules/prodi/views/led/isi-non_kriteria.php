@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = ['label' => '9 Kriteria', 'url' => ['/kriteria9
 $this->params['breadcrumbs'][] = ['label' => 'Program Studi', 'url' => ['/kriteria9/k9-prodi/index']];
 $this->params['breadcrumbs'][] = [
     'label' => 'Pencarian Data Prodi',
-    'url' => ['/kriteria9/k9-prodi/arsip', 'target' => $untuk, 'prodi' => $prodi->id]
+    'url' => ['/kriteria9/k9-prodi/led/arsip', 'target' => $untuk, 'prodi' => $prodi->id]
 ];
 $this->params['breadcrumbs'][] = [
     'label' => \yii\helpers\StringHelper::mb_ucfirst($untuk) . ' Led',

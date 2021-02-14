@@ -21,7 +21,7 @@ use yii\bootstrap4\Modal;
 use yii\bootstrap4\Progress;
 
 $this->title = "Akreditasi: {$akreditasiProdi->akreditasi->nama} - {$modelProdi->nama}";
-$this->params['breadcrumbs'][] = ['label' => 'Akreditasi Prodi', 'url' => ['index', 'prodi' => $_GET['prodi']]];
+$this->params['breadcrumbs'][] = ['label' => 'Akreditasi Prodi', 'url' => ['index', 'prodi' => $modelProdi->id]];
 $this->params['breadcrumbs'][] = ['label' => $this->title];
 
 ?>
@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
             'prodi' => $modelProdi
         ]) ?>
 
-        <?= $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/_tabel_led', [
+        <?= $this->render('@monitoring/modules/eksekutif/modules/prodi/views/led/_tabel_led', [
             'kriteria' => $kriteriaLed,
             'json' => $json,
             'prodi' => $modelProdi,

@@ -54,8 +54,8 @@ use yii\bootstrap4\Progress;
 
 
                     <?php
-                    if ($poin):
-                        foreach ($poin as $key => $item):
+                    if ($currentPoint):
+                        foreach ($currentPoint as $key => $item):
                             $modelAttribute = \common\helpers\NomorKriteriaHelper::changeToDbFormat($item->nomor);
 
                             ?>

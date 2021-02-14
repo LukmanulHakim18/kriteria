@@ -241,7 +241,19 @@ $controller = $this->context->id;
                             <?php ActiveForm::end() ?>
 
                             <?php Modal::end() ?>
-                            <?php //echo Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data',['value'=>\yii\helpers\Url::to(['resource/index','prodi'=>$_GET['prodi'],'poin'=>$poin,'kode'=>'','jenis'=>Constants::LED,'id_led_lk'=>$_GET['led'],'jenis_dokumen'=>Constants::LAINNYA]),'title'=>'Gunakan Data Untuk Dokumen lainnya ' ,'class'=>'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton pull-right'])?>
+                            <!--                            --><?php //echo Html::submitButton('<i class="flaticon2-laptop"></i> Gunakan Data', [
+                            //                                'value' => \yii\helpers\Url::to([
+                            //                                    'resource/index',
+                            //                                    'prodi' => $prodi->id,
+                            //                                    'poin' => $poin,
+                            //                                    'kode' => '',
+                            //                                    'jenis' => Constants::LED,
+                            //                                    'id_led_lk' =>$model->id,
+                            //                                    'jenis_dokumen' => Constants::LAINNYA
+                            //                                ]),
+                            //                                'title' => 'Gunakan Data Untuk Dokumen lainnya ',
+                            //                                'class' => 'btn btn-warning btn-pill btn-elevate btn-elevate-air showModalButton pull-right'
+                            //                            ]) ?>
                         </div>
                     </div>
                 <?php endif ?>

@@ -23,7 +23,7 @@ $menuItems = [
 
     [
         'label' => 'Data Program Studi',
-        'url' => ['/kriteria9/k9-prodi/default/index'],
+        'url' => ['/site/index'],
         'options' => ['class' => 'kt-menu__section']
     ],
     [
