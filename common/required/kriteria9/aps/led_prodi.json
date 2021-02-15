@@ -7,7 +7,6 @@
         "butir": null,
         "dokumen_sumber": null,
         "dokumen_pendukung": null
-
     },
     {
         "nomor": "B",
@@ -889,7 +888,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             },
                             {
                                 "nomor": "3.4.b",
@@ -899,7 +897,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             },
                             {
                                 "nomor": "3.4.c",
@@ -909,7 +906,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             }
                         ],
                         "dokumen_sumber": [
@@ -1168,7 +1164,7 @@
                     {
                         "nomor": "4.2",
                         "nama": "Kebijakan",
-                        "deskripsi": "<p style=\"text-align:left\"><span style=\"font-size:12pt\"><span style=\"font-family:Arial,serif\">Berisi deskripsi dokumen formal kebijakan yang mencakup:</span></span></p>\n\n<ol start=\"1\" style=\"list-style-type:upper-alpha\">\n\t<li><span style=\"font-size:small\"><span style=\"font-size:medium\">Penetapan standar perguruan tinggi terkait kualifikasi, kompetensi, beban kerja, proporsi, serta pengelolaan SDM (dosen dan tenaga kependidikan).</span></span></li>\n\t<li>\n\t<p style=\"text-align:left\"><span style=\"font-size:small\"><span style=\"font-size:medium\">Pengelolaan SDM yang</span><span style=\"font-size:medium\"> </span><span style=\"font-size:medium\">meliputi:</span></span></p>\n\n\t<ol>\n\t\t<li>\n\t\t<p style=\"margin-right:9px; text-align:left\"><span style=\"font-size:small\"><span style=\"font-size:medium\">Perencanaan, rekrutmen, seleksi, penempatan, pengembangan, retensi,</span><span style=\"font-size:medium\"> </span><span style=\"font-size:medium\">pemberhentian,</span><span style=\"font-size:medium\"> </span><span style=\"font-size:medium\">dan</span><span style=\"font-size:medium\"> </span><span style=\"font-size:medium\">pensiun</span><span style=\"font-size:medium\"> </span><span style=\"font-size:medium\">yang</span><span style=\"font-size:medium\"> </span><span style=\"font-size:medium\">telah</span><span style=\"font-size:medium\"> </span><span style=\"font-size:medium\">ditetapkan</span><span style=\"font-size:medium\"> </span><span style=\"font-size:medium\">untuk memenuhi kebutuhan pendidikan, penelitian, dan</span><span style=\"font-size:medium\"> </span><span style=\"font-size:medium\">PkM.</span></span></p>\n\t\t</li>\n\t\t<li>\n\t\t<p style=\"margin-right:8px; text-align:left\"><span style=\"font-size:small\"><span style=\"font-size:medium\">Kriteria perencanaan, rekrutmen, seleksi, penempatan, pengembangan, retensi, pemberhentian, dan pensiun yang ditetapkan serta</span><span style=\"font-size:medium\"> </span><span style=\"font-size:medium\">dikomunikasikan.</span></span></p>\n\t\t</li>\n\t\t<li>\n\t\t<p style=\"margin-right:9px; text-align:left\"><span style=\"font-size:small\"><span style=\"font-size:medium\">Kegiatan pengembangan seperti: studi lanjut, seminar, konferensi, workshop, simposium,</span><span style=\"font-size:medium\"> </span><span style=\"font-size:medium\">dll.</span></span></p>\n\t\t</li>\n\t\t<li>\n\t\t<p style=\"margin-right:8px; text-align:left\"><span style=\"font-size:small\"><span style=\"font-size:medium\">Skema pemberian </span><span style=\"font-size:medium\"><em>reward and punishment</em></span><span style=\"font-size:medium\">, pengakuan, mentoring yang diimplementasikan untuk memotivasi dan mendukung pelaksanaan</span><span style=\"font-size:medium\"> </span><span style=\"font-size:medium\">tridharma.</span></span></p>\n\t\t</li>\n\t</ol>\n\t</li>\n</ol>\n",
+                        "deskripsi": "<p>Bagian ini berisi deskripsi dokumen formal kebijakan yang mencakup:</p>\n<ol style=\"list-style-type: lower-alpha;\">\n<li>Penetapan standar pendidikan tinggi yang ditetapkan perguruan tinggi terkait kualifikasi, kompetensi, beban kerja, proporsi, serta pengelolaan SDM (dosen dan tenaga kependidikan).</li>\n<li>Pengelolaan SDM yang meliputi:<br />\n<ol>\n<li>Perencanaan, rekrutmen, seleksi, penempatan, pengembangan, retensi, pemberhentian, dan pensiun telah ditetapkan untuk memenuhi kebutuhan pendidikan, penelitian, dan PkM.</li>\n<li>Kriteria perencanaan, rekrutmen, seleksi, penempatan, pengembangan, retensi, pemberhentian, dan pensiun ditetapkan serta dikomunikasikan.</li>\n<li>Kegiatan pengembangan seperti: studi lanjut, seminar, konferensi, workshop, simposium, dll.</li>\n<li>Skema pemberian reward and punishment, pengakuan, mentoring yang diimplementasikan untuk memotivasi dan mendukung pelaksanaan tridharma.</li>\n</ol>\n</li>\n</ol>",
                         "writeable": true,
                         "butir": null,
                         "dokumen_sumber": [
@@ -1273,7 +1269,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             },
                             {
                                 "nomor": "4.4.b",
@@ -1283,7 +1278,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             },
                             {
                                 "nomor": "4.4.c",
@@ -1293,7 +1287,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             },
                             {
                                 "nomor": "4.4.d",
@@ -1303,7 +1296,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             }
                         ],
                         "dokumen_sumber": [
@@ -1643,7 +1635,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             },
                             {
                                 "nomor": "5.4.b",
@@ -1653,7 +1644,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             },
                             {
                                 "nomor": "5.4.c",
@@ -1663,7 +1653,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             }
                         ],
                         "dokumen_sumber": [
@@ -2019,7 +2008,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             },
                             {
                                 "nomor": "6.4.b",
@@ -2029,7 +2017,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             },
                             {
                                 "nomor": "6.4.c",
@@ -2039,7 +2026,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             }
                         ],
                         "dokumen_sumber": [
@@ -2351,7 +2337,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             },
                             {
                                 "nomor": "7.4.b",
@@ -2361,7 +2346,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             },
                             {
                                 "nomor": "7.4.c",
@@ -2371,7 +2355,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             }
                         ],
                         "dokumen_sumber": [
@@ -2663,7 +2646,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             },
                             {
                                 "nomor": "8.4.b",
@@ -2673,7 +2655,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             }
                         ],
                         "dokumen_sumber": [
@@ -2900,7 +2881,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             },
                             {
                                 "nomor": "9.4.b",
@@ -2910,7 +2890,6 @@
                                 "butir": null,
                                 "dokumen_sumber": null,
                                 "dokumen_pendukung": null
-
                             }
                         ],
                         "dokumen_sumber": [
