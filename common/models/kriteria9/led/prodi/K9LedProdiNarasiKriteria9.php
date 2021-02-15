@@ -3,7 +3,6 @@
 namespace common\models\kriteria9\led\prodi;
 
 use common\models\User;
-use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
@@ -12,9 +11,6 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property int $id
  * @property int $id_led_prodi_kriteria9
- * @property string $_9_1
- * @property string $_9_2
- * @property string $_9_3
  * @property string $_9_4_a
  * @property string $_9_4_b
  * @property string $_9_5
@@ -37,23 +33,23 @@ class K9LedProdiNarasiKriteria9 extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
-        return 'k9_led_prodi_narasi_kriteria9';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
+    public function attributeLabels()
     {
         return [
-            [['id_led_prodi_kriteria9', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['_9_1', '_9_2', '_9_3', '_9_4_a', '_9_4_b', '_9_5', '_9_6', '_9_7', '_9_8', '_9_9'], 'string'],
-            [['progress'], 'number'],
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
-            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
-            [['id_led_prodi_kriteria9'], 'exist', 'skipOnError' => true, 'targetClass' => K9LedProdiKriteria9::className(), 'targetAttribute' => ['id_led_prodi_kriteria9' => 'id']],
+            'id' => 'ID',
+            'id_led_prodi_kriteria9' => 'Id Led Prodi Kriteria9',
+            '_9_4_a' => '9.4.a',
+            '_9_4_b' => '9.4.b',
+            '_9_5' => '9.5',
+            '_9_6' => '9.6',
+            '_9_7' => '9.7',
+            '_9_8' => '9.8',
+            '_9_9' => '9.9',
+            'progress' => 'Progress',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+            'created_by' => 'Created By',
+            'updated_by' => 'Updated By',
         ];
     }
 
@@ -71,27 +67,42 @@ class K9LedProdiNarasiKriteria9 extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function rules()
     {
         return [
-            'id' => 'ID',
-            'id_led_prodi_kriteria9' => 'Id Led Prodi Kriteria9',
-            '_9_1' => '9.1',
-            '_9_2' => '9.2',
-            '_9_3' => '9.3',
-            '_9_4_a' => '9.4.a',
-            '_9_4_b' => '9.4.b',
-            '_9_5' => '9.5',
-            '_9_6' => '9.6',
-            '_9_7' => '9.7',
-            '_9_8' => '9.8',
-            '_9_9' => '9.9',
-            'progress' => 'Progress',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'created_by' => 'Created By',
-            'updated_by' => 'Updated By',
+            [['id_led_prodi_kriteria9', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['_9_4_a', '_9_4_b', '_9_5', '_9_6', '_9_7', '_9_8', '_9_9'], 'string'],
+            [['progress'], 'number'],
+            [
+                ['created_by'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => User::className(),
+                'targetAttribute' => ['created_by' => 'id']
+            ],
+            [
+                ['updated_by'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => User::className(),
+                'targetAttribute' => ['updated_by' => 'id']
+            ],
+            [
+                ['id_led_prodi_kriteria9'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => K9LedProdiKriteria9::className(),
+                'targetAttribute' => ['id_led_prodi_kriteria9' => 'id']
+            ],
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'k9_led_prodi_narasi_kriteria9';
     }
 
     /**
