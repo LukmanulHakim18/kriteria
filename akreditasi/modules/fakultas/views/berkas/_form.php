@@ -54,7 +54,7 @@ use yii\web\JsExpression;
                                 case FileTypeHelper::TYPE_STATIC_TEXT:
                                     echo $detail->isi_berkas;
                                     break;
-                                case FileTypeHelper::TYPE_PDF:
+                                default:
                                     echo '<small>Jika dokumen berkas tidak bisa dimuat, klik ' . Html::a('di sini',
                                             \yii\helpers\Url::to("$urlPath/$detail->isi_berkas",
                                                 true), ['target' => '_blank']) . '.</small>';

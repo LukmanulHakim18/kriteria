@@ -118,7 +118,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 case FileTypeHelper::TYPE_STATIC_TEXT:
                                                     echo $v->isi_berkas;
                                                     break;
-                                                case FileTypeHelper::TYPE_PDF:
+                                                default:
                                                     echo '<small>Jika dokumen berkas tidak bisa dimuat, klik ' . Html::a('di sini',
                                                             \yii\helpers\Url::to("$url/$v->isi_berkas",
                                                                 true), ['target' => '_blank']) . '.</small>';
