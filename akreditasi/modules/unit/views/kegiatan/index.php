@@ -1,8 +1,8 @@
 <?php
 
+use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\grid\GridView;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
@@ -29,7 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="kt-portlet__head-wrapper">
                         <div class="kt-portlet__head-actions">
 
-                            <?= Html::button('<i class=flaticon2-add></i> Tambah Kegiatan Unit', ['value' => Url::to(['create', 'unit' => $_GET['unit']]), 'title' => 'Tambah Kegiatan Unit', 'class' => 'showModalButton btn btn-success btn-elevate btn-elevate-air']); ?>
+                            <?= Html::button('<i class=flaticon2-add></i> Tambah Kegiatan Unit', [
+                                'value' => Url::to(['create', 'unit' => $_GET['unit']]),
+                                'title' => 'Tambah Kegiatan Unit',
+                                'class' => 'showModalButton btn btn-success btn-elevate btn-elevate-air'
+                            ]); ?>
                         </div>
                     </div>
                 </div>
@@ -47,33 +51,41 @@ $this->params['breadcrumbs'][] = $this->title;
                         'columns' => [
                             ['class' => 'yii\grid\SerialColumn', 'header' => 'No'],
 
-                            'id',
+//                            'id',
 //            'id_unit',
                             'nama',
-                            'deskripsi:ntext',
-                            'waktu_mulai',
-                            //'waktu_selesai',
+                            'deskripsi:html',
+                            'waktu_mulai:datetime',
+                            'waktu_selesai:datetime',
                             //'created_at',
                             //'updated_at',
 
-                            ['class' => 'common\widgets\ActionColumn', 'header' => 'Aksi',
+                            [
+                                'class' => 'common\widgets\ActionColumn',
+                                'header' => 'Aksi',
                                 'buttons' => [
                                     'view' => function ($url, $model) use ($unit) {
-                                        $url = Url::to(['kegiatan/view', 'id' => $model->id, 'unit' => $unit]);
-                                        return Html::a('<i class="flaticon2-information"> </i>Lihat', $url, ['class' => 'btn btn-sm btn-pill btn-elevate btn-elevate-air btn-info']);
+                                        $link = Url::to(['kegiatan/view', 'id' => $model->id, 'unit' => $unit]);
+                                        return Html::a('<i class="flaticon2-information"> </i>Lihat', $link,
+                                            ['class' => 'btn btn-sm btn-pill btn-elevate btn-elevate-air btn-info']);
                                     },
                                     'update' => function ($url, $model) use ($unit) {
-                                        $url = Url::to(['kegiatan/update', 'id' => $model->id, 'unit' => $unit]);
-                                        return Html::a('<i class="flaticon2-edit"> </i>Ubah', $url, ['class' => 'btn btn-sm btn-pill btn-elevate btn-elevate-air btn-warning']);
+                                        $link = Url::to(['kegiatan/update', 'id' => $model->id, 'unit' => $unit]);
+                                        return Html::a('<i class="flaticon2-edit"> </i>Ubah', $link,
+                                            ['class' => 'btn btn-sm btn-pill btn-elevate btn-elevate-air btn-warning']);
                                     },
                                     'delete' => function ($url, $model) use ($unit) {
-                                        $url = Url::to(['kegiatan/delete', 'id' => $model->id, 'unit' => $unit]);
-                                        return Html::a('<i class="flaticon2-delete"></i>Hapus', $url, ['class' => 'btn btn-sm btn-pill btn-elevate btn-elevate-air btn-danger', 'data' => [
-                                            'confirm' => 'Apakah anda ingin menghapus item ini?',
-                                            'method' => 'post',
-                                        ],]);
+                                        $link = Url::to(['kegiatan/delete', 'id' => $model->id, 'unit' => $unit]);
+                                        return Html::a('<i class="flaticon2-delete"></i>Hapus', $link, [
+                                            'class' => 'btn btn-sm btn-pill btn-elevate btn-elevate-air btn-danger',
+                                            'data' => [
+                                                'confirm' => 'Apakah anda ingin menghapus item ini?',
+                                                'method' => 'post',
+                                            ],
+                                        ]);
                                     }
-                                ]],
+                                ]
+                            ],
                         ],
                     ]); ?>
 

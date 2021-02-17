@@ -1,17 +1,15 @@
 <?php
 
-use akreditasi\models\unit\KegiatanDetailUploadForm;
 use common\helpers\FileIconHelper;
 use common\helpers\FileTypeHelper;
-use common\models\Constants;
 use dosamigos\tinymce\TinyMce;
 use kartik\datecontrol\DateControl;
 use kartik\datecontrol\Module;
-use kartik\datetime\DateTimePicker;
 use kartik\file\FileInput;
+use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Modal;
 use yii\helpers\Html;
-use yii\bootstrap4\ActiveForm;
+use yii\helpers\Url;
 
 $unit = $_GET['unit'];
 
@@ -24,76 +22,64 @@ $action = Yii::$app->controller->action->id;
 
 <div class="kegiatan-unit-form">
 
-    <?php $form = ActiveForm::begin(['id'=>'kegiatan-unit-form','options' => ['enctype'=>'multipart/form-data']]); ?>
+    <?php $form = ActiveForm::begin([
+        'id' => 'kegiatan-unit-form',
+        'options' => ['enctype' => 'multipart/form-data']
+    ]); ?>
 
 
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'waktu_mulai')->widget(DateControl::class,[
-            'type' => Module::FORMAT_DATETIME,
-            'widgetOptions' => [
-                    'pluginOptions'=>['autoclose'=>true]
-            ]
-    ]) ?>
-
-    <?= $form->field($model, 'waktu_selesai')->widget(DateControl::class,[
+    <?= $form->field($model, 'waktu_mulai')->widget(DateControl::class, [
         'type' => Module::FORMAT_DATETIME,
         'widgetOptions' => [
-            'pluginOptions'=>['autoclose'=>true]
+            'pluginOptions' => ['autoclose' => true]
         ]
     ]) ?>
 
-    <?= $form->field($model, 'deskripsi')->widget(TinyMce::class,[
-            'options'=>['rows' => 6]
-    ]) ?>
-
-    <?=$form->field($model,'sk_kegiatan')->widget(FileInput::className(),[
-        'pluginOptions' => [
-            'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-        ]
-    ])?>
-    <?=$form->field($model,'laporan_kegiatan')->widget(FileInput::className(),[
-        'pluginOptions' => [
-            'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-        ]
-    ])?>
-    <?=$form->field($model,'absensi')->widget(FileInput::className(),[
-        'pluginOptions' => [
-            'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-        ]
-    ])?>
-
-    <?= $form->field($model, 'foto_kegiatan[]')->widget(FileInput::class,[
-            'options' => ['multiple'=>true],
-            'pluginOptions' => [
-            'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-        ]
-    ]) ?>
-    <?= $form->field($model, 'sertifikat[]')->widget(FileInput::class,[
-        'options' => ['multiple'=>true],
-        'pluginOptions' => [
-            'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-
+    <?= $form->field($model, 'waktu_selesai')->widget(DateControl::class, [
+        'type' => Module::FORMAT_DATETIME,
+        'widgetOptions' => [
+            'pluginOptions' => ['autoclose' => true]
         ]
     ]) ?>
 
-    <?= $form->field($model, 'dokumen_lainnya[]')->widget(FileInput::class,[
-        'options' => ['mutiple'=>true],
-        'pluginOptions' => [
-            'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-        ]
+    <?= $form->field($model, 'deskripsi')->widget(TinyMce::class, [
+        'options' => ['rows' => 6]
     ]) ?>
 
+    <?= $form->field($model, 'sk_kegiatan')->widget(FileInput::className(), [
 
+    ]) ?>
+    <?= $form->field($model, 'laporan_kegiatan')->widget(FileInput::className(), [
 
+    ]) ?>
+    <?= $form->field($model, 'absensi')->widget(FileInput::className(), [
+
+    ]) ?>
+
+    <?= $form->field($model, 'foto_kegiatan[]')->widget(FileInput::class, [
+        'options' => ['multiple' => true],
+
+    ]) ?>
+    <?= $form->field($model, 'sertifikat[]')->widget(FileInput::class, [
+        'options' => ['multiple' => true],
+
+    ]) ?>
+
+    <?= $form->field($model, 'dokumen_lainnya[]')->widget(FileInput::class, [
+        'options' => ['multiple' => true],
+
+    ]) ?>
 
 
     <div class="form-group">
-        <?= Html::submitButton('<i class=\'la la-save\'></i> Simpan', ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-brand']) ?>
+        <?= Html::submitButton('<i class=\'la la-save\'></i> Simpan',
+            ['class' => 'btn btn-pill btn-elevate btn-elevate-air btn-brand']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
 
-    <?php if($action === 'update'):
+    <?php if ($action === 'update'):
         $detailData = $model->getKegiatan()->kegiatanUnitDetails;
         ?>
 
@@ -108,7 +94,7 @@ $action = Yii::$app->controller->action->id;
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($detailData as $datum) :?>
+                    <?php foreach ($detailData as $datum) : ?>
                         <tr>
                             <td>
                                 <div class="row">
@@ -125,51 +111,63 @@ $action = Yii::$app->controller->action->id;
                                     </div>
                                 </div>
                             </td>
-                            <td><?=$datum->nama_file?></td>
+                            <td><?= $datum->nama_file ?></td>
                             <td>
                                 <div class="row pull-right">
                                     <div class="col-lg-12 ">
-                                        <?php $type = FileTypeHelper::getType($datum->bentuk_file);
-                                        if ($type === FileTypeHelper::TYPE_IMAGE || $type === FileTypeHelper::TYPE_PDF || $type ===FileTypeHelper::TYPE_STATIC_TEXT):?>
+                                        <?php $type = FileTypeHelper::getType($datum->bentuk_file); ?>
+                                        <?php Modal::begin([
+                                            'title' => $model->nama,
+                                            'toggleButton' => [
+                                                'label' => '<i class="la la-eye"></i> &nbsp;Lihat',
+                                                'class' => 'btn btn-info btn-pill btn-elevate btn-elevate-air'
+                                            ],
+                                            'size' => 'modal-lg',
+                                            'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
+                                        ]); ?>
+                                        <?php switch ($type) {
+                                            case FileTypeHelper::TYPE_IMAGE:
+                                                echo \yii\bootstrap4\Html::img("$path/{$datum->isi_file}",
+                                                    ['height' => '100%', 'width' => '100%']);
+                                                break;
+                                            case FileTypeHelper::TYPE_STATIC_TEXT:
+                                                echo $datum->isi_file;
+                                                break;
+                                            default:
+                                                echo '<small>Jika dokumen berkas tidak bisa dimuat, klik ' . Html::a('di sini',
+                                                        Url::to("$path/$datum->isi_file",
+                                                            true), ['target' => '_blank']) . '.</small>';
+                                                echo '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://docs.google.com/gview?url=' . $path . '/' . rawurldecode($datum->isi_file) . '&embedded=true"></iframe></div>';
+                                                break;
+                                        } ?>
+                                        <?php Modal::end(); ?>
 
-                                            <?php Modal::begin([
-                                                'title' => $model->nama,
-                                                'toggleButton' => ['label' => '<i class="la la-eye"></i> &nbsp;Lihat', 'class' => 'btn btn-info btn-pill btn-elevate btn-elevate-air'],
-                                                'size' => 'modal-lg',
-                                                'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
-                                            ]); ?>
-                                            <?php switch ($type) {
-                                                case FileTypeHelper::TYPE_IMAGE:
-                                                    echo \yii\bootstrap4\Html::img("$path/{$datum->isi_file}", ['height' => '100%', 'width' => '100%']);
-                                                    break;
-                                                case FileTypeHelper::TYPE_STATIC_TEXT:
-                                                    echo $datum->isi_file;
-                                                    break;
-                                                case FileTypeHelper::TYPE_PDF:
-                                                    echo '<embed src="' . $path . '/' . $datum->isi_file . '" type="application/pdf" height="100%" width="100%">
-';
-                                                    break;
-                                            } ?>
-                                            <?php Modal::end(); ?>
+                                        <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', [
+                                            'kegiatan/download-detail',
+                                            'dokumen' => $datum->id,
+                                            'unit' => $unit,
+                                            'id' => $_GET['id']
+                                        ], ['class' => 'btn btn-warning btn-pill btn-elevate btn-elevate-air']) ?>
 
-
-                                        <?php endif; ?>
-                                        <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['kegiatan/download-detail','dokumen'=>$datum->id,'unit'=>$unit,'id'=>$_GET['id']], ['class' => 'btn btn-warning btn-pill btn-elevate btn-elevate-air']) ?>
-
-                                        <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus', ['kegiatan/hapus-detail'], [
-                                            'class' => 'btn btn-danger btn-pill btn-elevate btn-elevate-air',
-                                            'data' => [
-                                                'method' => 'POST',
-                                                'confirm' => 'Apakah anda yakin menghapus item ini?',
-                                                'params' => ['dokumen'=>$datum->id,'unit'=>$unit,'id'=>$_GET['id']]
-                                            ]
-                                        ]) ?>
+                                        <?= Html::a('<i class ="la la-trash"></i>&nbsp; Hapus',
+                                            ['kegiatan/hapus-detail'], [
+                                                'class' => 'btn btn-danger btn-pill btn-elevate btn-elevate-air',
+                                                'data' => [
+                                                    'method' => 'POST',
+                                                    'confirm' => 'Apakah anda yakin menghapus item ini?',
+                                                    'params' => [
+                                                        'dokumen' => $datum->id,
+                                                        'unit' => $unit,
+                                                        'id' => $_GET['id']
+                                                    ]
+                                                ]
+                                            ]) ?>
                                     </div>
 
                                 </div>
                             </td>
                         </tr>
-                    <?php endforeach;?>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

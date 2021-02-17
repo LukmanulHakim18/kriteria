@@ -1,7 +1,6 @@
 <?php
 
 use common\helpers\FileTypeHelper;
-use common\models\Constants;
 use dmstr\ajaxbutton\AjaxButton;
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
@@ -87,9 +86,7 @@ use yii\web\JsExpression;
     <?php endif; ?>
     <?= $form->field($detailModel, 'berkas[]')->widget(kartik\file\FileInput::class, [
         'options' => ['multiple' => true],
-        'pluginOptions' => [
-            'allowedFileExtensions' => Constants::ALLOWED_EXTENSIONS,
-        ]
+
 
     ]) ?>
 
