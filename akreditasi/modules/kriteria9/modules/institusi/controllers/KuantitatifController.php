@@ -155,5 +155,12 @@ class KuantitatifController extends BaseController
 
     }
 
+    public function actionShow($id)
+    {
+        $model = K9DataKuantitatifInstitusi::findOne($id);
+        $path = K9InstitusiDirectoryHelper::getKuantitatifUrl($model->akreditasiInstitusi);
+        return $this->renderAjax('_document', ['model' => $model, 'path' => $path]);
+    }
+
 
 }

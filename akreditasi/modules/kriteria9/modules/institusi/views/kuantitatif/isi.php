@@ -63,12 +63,20 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'class' => \common\widgets\ActionColumn::class,
                         'header' => 'Aksi',
-                        'template' => '{download}{hapus}',
+                        'template' => '{lihat}{download}{hapus}',
                         'buttons' => [
+                            'lihat' => function ($url, $model, $key) {
+                                return Html::button('<i class="la la-eye"></i>',
+                                    [
+                                        'class' => 'showModalButton btn btn-pill btn-sm btn-elevate btn-elevate-air btn-primary',
+                                        'value' => \yii\helpers\Url::to(['show', 'id' => $model->id]),
+                                        'title' => $model->nama_dokumen
+                                    ]);
+                            },
                             'download' => function ($url, $model, $key) {
                                 return Html::a('<i class ="la la-download"></i>',
                                     ['kuantitatif/download-dokumen', 'dokumen' => $model->id],
-                                    ['class' => 'btn btn-pill btn-sm btn-elevate btn-elevate-air btn-info']);
+                                    ['class' => 'btn btn-pill btn-sm btn-elevate btn-elevate-air btn-warning']);
                             },
                             'hapus' => function ($url, $model, $key) {
                                 return Html::a('<i class ="la la-trash"></i>', ['kuantitatif/hapus-dokumen'], [
