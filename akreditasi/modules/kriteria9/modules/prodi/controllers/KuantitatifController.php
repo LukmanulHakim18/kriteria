@@ -168,4 +168,11 @@ class KuantitatifController extends BaseController
 //        return $this->redirect(Url::to("@web/upload/BAN-PT/prodi/2019/prodi/$prodi/matriks-kuantitatif/".$this->findModel($id)->nama_dokumen));
         return $this->redirect(Url::to("$path/$model->nama_dokumen"));
     }
+
+    public function actionShow($id)
+    {
+        $model = K9DataKuantitatifProdi::findOne($id);
+        $path = K9ProdiDirectoryHelper::getKuantitatifUrl($model->akreditasiProdi);
+        return $this->renderAjax('_document', ['model' => $model, 'path' => $path]);
+    }
 }

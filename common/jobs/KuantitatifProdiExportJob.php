@@ -111,6 +111,7 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
         if (!$model) {
             $model = new K9DataKuantitatifProdi();
             $model->id_akreditasi_prodi = $akreditasiProdi->id;
+            $model->sumber = K9DataKuantitatifProdi::SUMBER_EKSPOR;
         } else {
             $oldName = $model->isi_dokumen;
             FileHelper::unlink("$path/$oldName");

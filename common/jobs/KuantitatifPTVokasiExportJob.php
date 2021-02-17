@@ -58,10 +58,14 @@ class KuantitatifPTVokasiExportJob extends BaseObject implements JobInterface
         $path = K9InstitusiDirectoryHelper::getKuantitatifPath($akreditasiInstitusi);
         $writer->save("$path/$filename");
 
-        $model = K9DataKuantitatifInstitusi::findOne(['id_akreditasi_institusi' => $akreditasiInstitusi->id]);
+        $model = K9DataKuantitatifInstitusi::findOne([
+            'id_akreditasi_institusi' => $akreditasiInstitusi->id,
+            'sumber' => K9DataKuantitatifInstitusi::SUMBER_EKSPOR
+        ]);
         if (!$model) {
             $model = new K9DataKuantitatifInstitusi();
             $model->id_akreditasi_institusi = $akreditasiInstitusi->id;
+            $model->sumber = K9DataKuantitatifInstitusi::SUMBER_EKSPOR;
         } else {
             $oldName = $model->isi_dokumen;
             FileHelper::unlink("$path/$oldName");
