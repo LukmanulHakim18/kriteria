@@ -10,7 +10,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\Berkas */
 
 $this->title = $model->nama_berkas;
-$this->params['breadcrumbs'][] = ['label' => 'Berkas', 'url' => ['index','fakultas'=>$_GET['fakultas']]];
+$this->params['breadcrumbs'][] = ['label' => 'Berkas', 'url' => ['index', 'fakultas' => $_GET['fakultas']]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
@@ -32,14 +32,17 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="kt-portlet__head-actions">
 
 
-                            <?= Html::a('<i class=flaticon2-edit></i> Edit', ['update', 'id' => $model->id,'fakultas'=>$_GET['fakultas']], ['class' => 'btn btn-warning btn-elevate btn-elevate-air']) ?>
-                            <?= Html::a('<i class=flaticon2-delete></i> Hapus', ['delete', 'id' => $model->id,'fakultas'=>$_GET['fakultas']], [
-                            'class' => 'btn btn-danger btn-elevate btn-elevate-air',
-                            'data' => [
-                            'confirm' => 'Apakah anda ingin menghapus item ini?',
-                            'method' => 'post',
-                            ],
-                            ]) ?>
+                            <?= Html::a('<i class=flaticon2-edit></i> Edit',
+                                ['update', 'id' => $model->id, 'fakultas' => $_GET['fakultas']],
+                                ['class' => 'btn btn-warning btn-elevate btn-elevate-air']) ?>
+                            <?= Html::a('<i class=flaticon2-delete></i> Hapus',
+                                ['delete', 'id' => $model->id, 'fakultas' => $_GET['fakultas']], [
+                                    'class' => 'btn btn-danger btn-elevate btn-elevate-air',
+                                    'data' => [
+                                        'confirm' => 'Apakah anda ingin menghapus item ini?',
+                                        'method' => 'post',
+                                    ],
+                                ]) ?>
                         </div>
                     </div>
                 </div>
@@ -49,15 +52,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                     <?= DetailView::widget([
-                    'model' => $model,
-                    'attributes' => [
-                                'id',
+                        'model' => $model,
+                        'attributes' => [
+                            'id',
 //                    'external_id',
 //                    'type',
-                    'nama_berkas',
-                    'created_at:datetime',
-                    'updated_at:datetime',
-                    ],
+                            'nama_berkas',
+                            'created_at:datetime',
+                            'updated_at:datetime',
+                        ],
                     ]) ?>
 
                 </div>
@@ -75,9 +78,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         </tr>
                         </thead>
                         <tbody>
-                        <?php $i=0; foreach ($model->detailBerkas as $k=>$v): ?>
+                        <?php $i = 0;
+                        foreach ($model->detailBerkas as $k => $v): ?>
                             <tr>
-                                <td><?=++$i?></td>
+                                <td><?= ++$i ?></td>
                                 <td>
                                     <div class="text-center">
                                         <?php if ($v->bentuk_berkas !== 'text' && $v->bentuk_berkas !== 'link') { ?>
@@ -95,32 +99,43 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <td class="pull-right">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <?php $type = FileTypeHelper::getType($v->bentuk_berkas);
-                                            if ($type === FileTypeHelper::TYPE_IMAGE || $type === FileTypeHelper::TYPE_PDF || $type === FileTypeHelper::TYPE_STATIC_TEXT):?>
+                                            <?php $type = FileTypeHelper::getType($v->bentuk_berkas); ?>
 
-                                                <?php Modal::begin([
-                                                    'title' => $model->nama_berkas,
-                                                    'toggleButton' => ['label' => '<i class="la la-eye"></i> &nbsp;Lihat', 'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'],
-                                                    'size' => 'modal-lg',
-                                                    'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
-                                                ]); ?>
-                                                <?php switch ($type) {
-                                                    case FileTypeHelper::TYPE_IMAGE:
-                                                        echo Html::img("$url/{$v->isi_berkas}", ['height' => '100%', 'width' => '100%']);
-                                                        break;
-                                                    case FileTypeHelper::TYPE_STATIC_TEXT:
-                                                        echo $v->isi_berkas;
-                                                        break;
-                                                    case FileTypeHelper::TYPE_PDF:
-                                                        echo '<embed src="' . $url . '/' . $v->isi_berkas . '" type="application/pdf" height="100%" width="100%">
-';
-                                                        break;
-                                                } ?>
-                                                <?php Modal::end(); ?>
-                                            <?php elseif ($type === FileTypeHelper::TYPE_LINK): ?>
-                                                <?= Html::a('<i class="la la-external-link"></i> Lihat', $v->isi_berkas, ['class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air', 'target' => '_blank']) ?>
+                                            <?php Modal::begin([
+                                                'title' => $model->nama_berkas,
+                                                'toggleButton' => [
+                                                    'label' => '<i class="la la-eye"></i> &nbsp;Lihat',
+                                                    'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air'
+                                                ],
+                                                'size' => 'modal-lg',
+                                                'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
+                                            ]); ?>
+                                            <?php switch ($type) {
+                                                case FileTypeHelper::TYPE_IMAGE:
+                                                    echo Html::img("$url/{$v->isi_berkas}",
+                                                        ['height' => '100%', 'width' => '100%']);
+                                                    break;
+                                                case FileTypeHelper::TYPE_STATIC_TEXT:
+                                                    echo $v->isi_berkas;
+                                                    break;
+                                                case FileTypeHelper::TYPE_PDF:
+                                                    echo '<small>Jika dokumen berkas tidak bisa dimuat, klik ' . Html::a('di sini',
+                                                            \yii\helpers\Url::to("$url/$v->isi_berkas",
+                                                                true), ['target' => '_blank']) . '.</small>';
+                                                    echo '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://docs.google.com/gview?url=' . $url . '/' . rawurldecode($v->isi_berkas) . '&embedded=true"></iframe></div>';
+                                                    break;
+                                            } ?>
+                                            <?php Modal::end(); ?>
+                                            <?php if ($type === FileTypeHelper::TYPE_LINK): ?>
+                                                <?= Html::a('<i class="la la-external-link"></i> Lihat', $v->isi_berkas,
+                                                    [
+                                                        'class' => 'btn btn-info btn-sm btn-pill btn-elevate btn-elevate-air',
+                                                        'target' => '_blank'
+                                                    ]) ?>
                                             <?php endif; ?>
-                                            <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh', ['berkas/download-berkas','id'=>$v->id], ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
+                                            <?= Html::a('<i class="la la-download"></i>&nbsp;Unduh',
+                                                ['berkas/download-berkas', 'id' => $v->id],
+                                                ['class' => 'btn btn-warning btn-sm btn-pill btn-elevate btn-elevate-air']) ?>
 
                                         </div>
 
@@ -128,7 +143,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </td>
 
                             </tr>
-                        <?php endforeach;?>
+                        <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
