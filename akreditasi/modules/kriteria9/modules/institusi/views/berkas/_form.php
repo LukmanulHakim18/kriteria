@@ -1,5 +1,6 @@
 <?php
 
+use common\helpers\FileTypeHelper;
 use dmstr\ajaxbutton\AjaxButton;
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
@@ -31,8 +32,35 @@ use yii\web\JsExpression;
                 <?php foreach ($model->detailBerkas as $detail): ?>
                     <tr>
                         <td><?= $detail->isi_berkas ?></td>
-                        <td><?= Html::a('Lihat', "$urlPath/{$detail->isi_berkas}",
-                                ['class' => 'btn btn-info btn-elevate btn-elevate-air', 'target' => '_blank']) ?>
+                        <td> <?php \yii\bootstrap4\Modal::begin([
+                                'id' => 'modal-' . $detail->id,
+                                'title' => $detail->isi_berkas,
+                                'toggleButton' => [
+                                    'label' => 'Lihat',
+                                    'class' => 'btn btn-info btn-elevate btn-elevate-air'
+                                ],
+                                'size' => 'modal-lg',
+                                'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true]
+                            ]); ?>
+                            <?php
+                            $type = FileTypeHelper::getType($detail->bentuk_berkas);
+                            switch ($type) {
+                                case FileTypeHelper::TYPE_IMAGE:
+                                    echo Html::img("$urlPath/{$detail->isi_berkas}",
+                                        ['height' => '100%', 'width' => '100%']);
+                                    break;
+                                case FileTypeHelper::TYPE_STATIC_TEXT:
+                                    echo $detail->isi_berkas;
+                                    break;
+                                default:
+                                    echo '<small>Jika dokumen berkas tidak bisa dimuat, klik ' . Html::a('di sini',
+                                            \yii\helpers\Url::to("$urlPath/$detail->isi_berkas",
+                                                true), ['target' => '_blank']) . '.</small>';
+                                    echo '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://docs.google.com/gview?url=' . $urlPath . '/' . rawurldecode($detail->isi_berkas) . '&embedded=true"></iframe></div>';
+                                    break;
+                            }
+                            ?>
+                            <?php \yii\bootstrap4\Modal::end() ?>
                             <?= AjaxButton::widget([
                                 'id' => 'hapus-berkas-button',
                                 'url' => ['berkas/delete-berkas'],
