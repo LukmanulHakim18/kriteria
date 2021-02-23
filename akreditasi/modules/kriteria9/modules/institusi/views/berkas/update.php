@@ -9,7 +9,7 @@ use yii\helpers\Html;
 
 $this->title = 'Ubah Berkas: ' . $model->nama_berkas;
 $this->params['breadcrumbs'][] = ['label' => 'Berkas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->nama_berkas, 'url' => ['view', 'id' => $model->id,'fakultas'=>$_GET['fakultas']]];
+$this->params['breadcrumbs'][] = ['label' => $model->nama_berkas, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Ubah';
 ?>
 
@@ -32,9 +32,9 @@ $this->params['breadcrumbs'][] = 'Ubah';
                 <div class="berkas-update">
 
                     <?= $this->render('_form', [
-                    'model' => $model,
-                        'detailModel'=>$detailModel,
-                        'urlPath'=>$urlPath
+                        'model' => $model,
+                        'detailModel' => $detailModel,
+                        'urlPath' => $urlPath
                     ]) ?>
 
                 </div>
