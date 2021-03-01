@@ -3,7 +3,6 @@
 
 namespace akreditasi\modules\unit\controllers;
 
-use akreditasi\models\BerkasSearch;
 use akreditasi\models\BerkasUploadForm;
 use common\helpers\UnitDirectoryHelper;
 use common\models\Berkas;
@@ -34,7 +33,7 @@ class BerkasController extends BaseController
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
-                    'delete-berkas'=>['POST']
+                    'delete-berkas' => ['POST']
                 ],
             ],
         ];
@@ -54,6 +53,14 @@ class BerkasController extends BaseController
         ]);
     }
 
+    protected function findUnit($id)
+    {
+        if (($model = Unit::findOne($id)) !== null) {
+            return $model;
+        }
+        throw new NotFoundHttpException('Data yang anda cari tidak ditemukan');
+    }
+
     /**
      * Displays a single Berkas model.
      * @param integer $id
@@ -65,8 +72,24 @@ class BerkasController extends BaseController
         $url = UnitDirectoryHelper::getUrl($unit);
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'url'=>$url
+            'url' => $url
         ]);
+    }
+
+    /**
+     * Finds the Berkas model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Berkas the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Berkas::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 
     /**
@@ -97,7 +120,7 @@ class BerkasController extends BaseController
                 if ($files = $detailModel->upload($path)) {
                     foreach ($files as $file) {
                         $detail = new DetailBerkas();
-                        $detail->id_berkas =$model->id;
+                        $detail->id_berkas = $model->id;
                         $detail->isi_berkas = $file['isi_berkas'];
                         $detail->bentuk_berkas = $file['bentuk_berkas'];
                         $detail->save(false);
@@ -107,19 +130,20 @@ class BerkasController extends BaseController
                 $transaction->commit();
                 Yii::$app->session->setFlash('success', 'Berhasil menambahkan Berkas.');
 
-                return $this->redirect(['view', 'id' => $model->id,'unit'=>$unit]);
+                return $this->redirect(['view', 'id' => $model->id, 'unit' => $unit]);
             } catch (Exception $exception) {
                 $transaction->rollBack();
                 throw $exception;
             }
         } elseif (Yii::$app->request->isAjax) {
-            return $this->renderAjax('_form', ['model'=>$model,'detailModel'=>$detailModel,'urlPath'=>$urlPath]);
+            return $this->renderAjax('_form',
+                ['model' => $model, 'detailModel' => $detailModel, 'urlPath' => $urlPath]);
         }
 
         return $this->render('create', [
             'model' => $model,
-            'detailModel'=>$detailModel,
-            'urlPath'=>$urlPath
+            'detailModel' => $detailModel,
+            'urlPath' => $urlPath
         ]);
     }
 
@@ -135,7 +159,7 @@ class BerkasController extends BaseController
         $model = $this->findModel($id);
         $detailModel = new BerkasUploadForm();
         $path = UnitDirectoryHelper::getPath($unit);
-        $urlPath=  UnitDirectoryHelper::getUrl($unit);
+        $urlPath = UnitDirectoryHelper::getUrl($unit);
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -163,7 +187,7 @@ class BerkasController extends BaseController
 
                 Yii::$app->session->setFlash('success', 'Berhasil mengubah Berkas.');
 
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'id' => $model->id, 'unit' => $unit]);
             } catch (Exception $exception) {
                 $transaction->rollBack();
                 throw $exception;
@@ -172,8 +196,8 @@ class BerkasController extends BaseController
 
         return $this->render('update', [
             'model' => $model,
-            'detailModel'=>$detailModel,
-            'urlPath'=>$urlPath
+            'detailModel' => $detailModel,
+            'urlPath' => $urlPath
         ]);
     }
 
@@ -192,7 +216,20 @@ class BerkasController extends BaseController
         $path = UnitDirectoryHelper::getPath($unit);
         FileHelper::unlink("$path/{$detail->isi_berkas}");
         $detail->delete();
-        return $this->redirect(['berkas/update','unit'=>$unit,'id'=>$berkas->id]);
+        return $this->redirect(['berkas/update', 'unit' => $unit, 'id' => $berkas->id]);
+    }
+
+    /**
+     * @param $id
+     * @return DetailBerkas|null
+     * @throws NotFoundHttpException
+     */
+    protected function findDetail($id)
+    {
+        if (($model = DetailBerkas::findOne($id)) !== null) {
+            return $model;
+        }
+        throw new NotFoundHttpException('Data yang anda cari tidak ditemukan');
     }
 
     /**
@@ -225,42 +262,6 @@ class BerkasController extends BaseController
 
         Yii::$app->session->setFlash('success', 'Berhasil menghapus Berkas.');
 
-        return $this->redirect(['index','unit'=>$unit]);
-    }
-
-    /**
-     * Finds the Berkas model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Berkas the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Berkas::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    /**
-     * @param $id
-     * @return DetailBerkas|null
-     * @throws NotFoundHttpException
-     */
-    protected function findDetail($id)
-    {
-        if (($model = DetailBerkas::findOne($id)) !== null) {
-            return $model;
-        }
-        throw new NotFoundHttpException('Data yang anda cari tidak ditemukan');
-    }
-
-    protected function findUnit($id){
-        if (($model = Unit::findOne($id)) !== null) {
-            return $model;
-        }
-        throw new NotFoundHttpException('Data yang anda cari tidak ditemukan');
+        return $this->redirect(['index', 'unit' => $unit]);
     }
 }
