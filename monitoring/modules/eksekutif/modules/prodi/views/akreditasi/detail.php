@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
 <div class="row">
     <div class="col-lg-12">
 
-        <?= $this->render('@akreditasi/modules/kriteria9/modules/prodi/views/led/_dokumen_led', [
+        <?= $this->render('@monitoring/modules/eksekutif/modules/prodi/views/led/_dokumen_led', [
             'modelDokumen' => null,
             'dataDokumen' => $dokumenLed,
             'path' => $urlLed,
