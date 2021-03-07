@@ -54,7 +54,8 @@ $controller = $this->context->id;
                         ],
                         'size' => 'modal-xl',
                         'clientOptions' => ['backdrop' => 'blur', 'keyboard' => true],
-                        'closeButton' => false
+                        'closeButton' => false,
+                        'id' => 'dokumen-lainnya-' . $detail->id,
                     ]); ?>
                     <?php switch ($type) {
                         case FileTypeHelper::TYPE_IMAGE:
