@@ -9,7 +9,6 @@ use common\models\kriteria9\kuantitatif\institusi\K9DataKuantitatifInstitusi;
 use common\models\kriteria9\lk\institusi\K9LkInstitusi;
 use common\models\ProfilInstitusi;
 use PhpOffice\PhpSpreadsheet\IOFactory;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use Symfony\Component\DomCrawler\Crawler;
 use yii\base\BaseObject;
 use yii\helpers\ArrayHelper;
@@ -18,16 +17,12 @@ use yii\queue\JobInterface;
 
 class KuantitatifPTVokasiExportJob extends BaseObject implements JobInterface
 {
+    use KuantitatifPerguruanTingiTrait;
 
 
     /** @var K9LkInstitusi */
     public $lk;
     public $template;
-
-    /**
-     * @var Spreadsheet
-     */
-    private $spreadsheet;
 
     public function execute($queue)
     {
@@ -42,6 +37,7 @@ class KuantitatifPTVokasiExportJob extends BaseObject implements JobInterface
         $akreditasiInstitusi = $this->lk->akreditasiInstitusi;
         $institusi = ArrayHelper::map(ProfilInstitusi::find()->all(), 'nama', 'isi');
 
+        $this->isiProfil($institusi);
         $this->tabel1();
         $this->tabel2();
         $this->tabel3();

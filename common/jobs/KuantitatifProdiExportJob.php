@@ -7,7 +7,9 @@ use Carbon\Carbon;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;
 use common\models\kriteria9\kuantitatif\prodi\K9DataKuantitatifProdi;
 use common\models\kriteria9\lk\prodi\K9LkProdi;
+use common\models\ProfilInstitusi;
 use common\models\ProgramStudi;
+use common\models\sertifikat\SertifikatProdi;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use Symfony\Component\DomCrawler\Crawler;
@@ -55,6 +57,8 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
     {
         $akreditasiProdi = $this->lk->akreditasiProdi;
         $prodi = $akreditasiProdi->prodi;
+
+        $this->isiProfil($prodi);
 
         switch ($prodi->jenjang) {
             case ProgramStudi::JENJANG_DIPLOMA:
@@ -119,6 +123,32 @@ class KuantitatifProdiExportJob extends BaseObject implements JobInterface
         $model->nama_dokumen = 'Matriks Kuantitatif ' . $prodi->nama . ' (' . $akreditasiProdi->akreditasi->tahun . ')';
         $model->isi_dokumen = $filename;
         $model->save(false);
+    }
+
+    private function isiProfil(ProgramStudi $prodi)
+    {
+        $currentWorksheet = 0;
+        $profilInstitusi = ProfilInstitusi::find();
+
+        $sertifikat = SertifikatProdi::findOne(['nomor_sk' => $prodi->nomor_sk_banpt]);
+        //nama
+        $this->spreadsheet->getSheet($currentWorksheet)->setCellValue('H5', $prodi->nama);
+        //program
+        $this->spreadsheet->getSheet($currentWorksheet)->setCellValue('H7', ProgramStudi::JENJANG[$prodi->jenjang]);
+        //peringkat terakhir
+        $this->spreadsheet->getSheet($currentWorksheet)->setCellValue('H17', $prodi->peringkat_banpt_terakhir);
+        //sk ban-pt terakhir
+        $this->spreadsheet->getSheet($currentWorksheet)->setCellValue('H27', $prodi->nomor_sk_banpt);
+        //tanggal kadaluarsa
+        $this->spreadsheet->getSheet($currentWorksheet)->setCellValue('H29', $sertifikat->tgl_kadaluarsa);
+        //nama unit pengelola
+        $this->spreadsheet->getSheet($currentWorksheet)->setCellValue('H31', $prodi->fakultasAkademi->nama);
+        //nama pt
+        $this->spreadsheet->getSheet($currentWorksheet)->setCellValue('H33', \Yii::$app->params['institusi']);
+        //alamat
+        $this->spreadsheet->getSheet($currentWorksheet)->setCellValue('H41',
+            $profilInstitusi->where(['nama' => 'alamat']));
+
     }
 
     private function tabel1($jenjang)

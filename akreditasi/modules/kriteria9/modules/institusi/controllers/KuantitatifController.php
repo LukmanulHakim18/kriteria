@@ -138,8 +138,8 @@ class KuantitatifController extends BaseController
         $akreditasiInstitusi = K9AkreditasiInstitusi::findOne([$params['akreditasiInstitusi']]);
         $laporanKinerja = $akreditasiInstitusi->k9LkInstitusi;
         $jenis = ArrayHelper::map(ProfilInstitusi::find()->all(), 'nama', 'isi');
-        $template = K9InstitusiDirectoryHelper::getKuantitatifTemplate($jenis['jenis']);
-        $id = $jenis['jenis'] === 'akademik' ? Yii::$app->queue->push(new KuantitatifPTAkademikExportJob([
+        $template = K9InstitusiDirectoryHelper::getKuantitatifTemplate($jenis['bentuk']);
+        $id = $jenis['bentuk'] === 'akademik' ? Yii::$app->queue->push(new KuantitatifPTAkademikExportJob([
             'template' => $template,
             'lk' => $laporanKinerja
         ])) : Yii::$app->queue->push(new KuantitatifPTVokasiExportJob([
