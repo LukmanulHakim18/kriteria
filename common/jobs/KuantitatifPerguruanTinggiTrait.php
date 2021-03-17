@@ -6,7 +6,7 @@ namespace common\jobs;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
-trait KuantitatifPerguruanTingiTrait
+trait KuantitatifPerguruanTinggiTrait
 {
     /**
      * @var Spreadsheet
@@ -19,7 +19,7 @@ trait KuantitatifPerguruanTingiTrait
         //nama pt
         $this->spreadsheet->getSheet($currentWorksheet)->setCellValue('H7', $profil['nama']);
         //bentuk pt
-        $this->spreadsheet->getSheet($currentWorksheet)->setCellValue('H9', $profil['bentuk_perguruan_tinggi']);
+        $this->spreadsheet->getSheet($currentWorksheet)->setCellValue('H9', $profil['bentuk']);
         //jenis pengelolaan
         $this->spreadsheet->getSheet($currentWorksheet)->setCellValue('H16', $profil['jenis_pengelolaan']);
         //alamat

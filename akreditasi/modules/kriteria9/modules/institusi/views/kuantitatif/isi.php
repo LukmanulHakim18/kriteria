@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => \kartik\grid\SerialColumn::class, 'header' => 'No'],
                     'nama_dokumen',
                     'isi_dokumen',
-                    'created_at:datetime',
+                    'updated_at:datetime',
                     'sumber',
                     [
                         'class' => \common\widgets\ActionColumn::class,

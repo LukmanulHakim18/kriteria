@@ -17,7 +17,7 @@ use yii\queue\JobInterface;
 
 class KuantitatifPTVokasiExportJob extends BaseObject implements JobInterface
 {
-    use KuantitatifPerguruanTingiTrait;
+    use KuantitatifPerguruanTinggiTrait;
 
 
     /** @var K9LkInstitusi */
