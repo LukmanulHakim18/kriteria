@@ -86,54 +86,46 @@ class UserController extends Controller
 
         $roles = array_keys($available_role);
 
-        foreach ($forbidden_roles as $role){
+        foreach ($forbidden_roles as $role) {
             $pos = array_search($role, $roles);
-            ArrayHelper::remove($roles,$pos);
+            ArrayHelper::remove($roles, $pos);
         }
 
         $dataRoles = array_combine($roles, $roles);
 
         $fakultas = FakultasAkademi::find()->all();
-        $dataFakultas = ArrayHelper::map($fakultas,'id',function($item){
-            return $item->nama. " ({$item->jenisString})";
+        $dataFakultas = ArrayHelper::map($fakultas, 'id', function ($item) {
+            return $item->nama . " ({$item->jenisString})";
         });
 
         $prodi = ProgramStudi::find()->all();
-        $dataProdi = ArrayHelper::map($prodi,'id',function ($item){
-            return $item->nama ." ({$item->jenjang})";
+        $dataProdi = ArrayHelper::map($prodi, 'id', function ($item) {
+            return $item->nama . " ({$item->jenjang})";
         });
 
         $unit = Unit::find()->all();
-        $dataUnit = ArrayHelper::map($unit,'id','nama');
+        $dataUnit = ArrayHelper::map($unit, 'id', 'nama');
 
-        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
-        if ($model->load(Yii::$app->request->post()) ) {
-
-
-            if($model->validate()){
-
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validate()) {
                 $user = $model->addUser();
-                if($user === null){
+                if ($user === null) {
                     throw new InvalidArgumentException('Gagal membuat pengguna');
-
                 }
-                Yii::$app->session->setFlash('success','Berhasil menambahkan pengguna.');
+                Yii::$app->session->setFlash('success', 'Berhasil menambahkan pengguna.');
 
                 return $this->redirect(['user/index']);
-
             }
 
             throw new InvalidArgumentException('Gagal membuat user, Validasi data gagal');
-
         }
 
-        if (Yii::$app->request->isAjax){
-
-
-            return $this->renderAjax('_create_user_form',[ 'model' => $model,
+        if (Yii::$app->request->isAjax) {
+            return $this->renderAjax('_create_user_form', [ 'model' => $model,
                 'dataFakultas'=>$dataFakultas, 'dataRoles'=>$dataRoles,'dataProdi'=>$dataProdi,'dataUnit'=>$dataUnit,'tipe'=>$tipe]);
         }
 
@@ -159,57 +151,54 @@ class UserController extends Controller
         $model = new UpdateUserForm($id);
         $modelPassword = new UpdatePasswordForm($id);
         $fakultas = FakultasAkademi::find()->all();
-        $dataFakultas = ArrayHelper::map($fakultas,'id',function($item){
-            return $item->nama. " ({$item->jenisString})";
+        $dataFakultas = ArrayHelper::map($fakultas, 'id', function ($item) {
+            return $item->nama . " ({$item->jenisString})";
         });
 
         $tipe = ProfilUserRole::TIPE;
         $prodi = ProgramStudi::find()->all();
-        $dataProdi = ArrayHelper::map($prodi,'id',function ($item){
-            return $item->nama ." ({$item->jenjang})";
+        $dataProdi = ArrayHelper::map($prodi, 'id', function ($item) {
+            return $item->nama . " ({$item->jenjang})";
         });
 
         $unit = Unit::find()->all();
-        $dataUnit = ArrayHelper::map($unit,'id','nama');
+        $dataUnit = ArrayHelper::map($unit, 'id', 'nama');
         $available_role = Yii::$app->authManager->getRoles();
 
         $forbidden_roles = ['superadmin'];
 
         $roles = array_keys($available_role);
 
-        foreach ($forbidden_roles as $role){
+        foreach ($forbidden_roles as $role) {
             $pos = array_search($role, $roles);
-            ArrayHelper::remove($roles,$pos);
+            ArrayHelper::remove($roles, $pos);
         }
 
         $dataRoles = array_combine($roles, $roles);
 
-        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
-        if ($model->load(Yii::$app->request->post()) ) {
+        if ($model->load(Yii::$app->request->post())) {
             $model->updateUser();
-            if($model === false){
+            if ($model === false) {
                 throw new InvalidArgumentException('Gagal memperbarui pengguna, terdapat error');
-
             }
 
-            Yii::$app->session->setFlash('success','Berhasil memperbarui pengguna');
+            Yii::$app->session->setFlash('success', 'Berhasil memperbarui pengguna');
 
             return $this->redirect(['view', 'id' => $model->getUser()->id]);
         }
-        if($modelPassword->load(Yii::$app->request->post())){
-
-            if($modelPassword->validate()){
+        if ($modelPassword->load(Yii::$app->request->post())) {
+            if ($modelPassword->validate()) {
                 $modelPassword->updatePassword();
-                if(!$modelPassword){
+                if (!$modelPassword) {
                     throw new InvalidArgumentException('Gagal mengganti kata sandi');
                 }
-                Yii::$app->session->setFlash('success','Berhasil mengganti kata sandi');
+                Yii::$app->session->setFlash('success', 'Berhasil mengganti kata sandi');
                 return $this->redirect(['view', 'id' => $model->getUser()->id]);
             }
-
         }
 
         return $this->render('update_user_form', [
@@ -234,7 +223,7 @@ class UserController extends Controller
     {
         $this->findModel($id)->delete();
 
-        Yii::$app->session->setFlash('success','Berhasil menghapus pengguna.');
+        Yii::$app->session->setFlash('success', 'Berhasil menghapus pengguna.');
 
         return $this->redirect(['index']);
     }
