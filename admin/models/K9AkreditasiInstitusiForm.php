@@ -144,7 +144,7 @@ class K9AkreditasiInstitusiForm extends Model
 
 
         $this->_lk_institusi->save(false);
-        $json = K9InstitusiJsonHelper::getAllJsonLk($this->_profilInstitusi['jenis']);
+        $json = K9InstitusiJsonHelper::getAllJsonLk($this->_profilInstitusi['bentuk']);
 
         foreach ($json as /** @var Lk $kriteria */ $kriteria) {
             $kritClass = 'common\\models\\kriteria9\\lk\\institusi\\K9LkInstitusiKriteria' . $kriteria->kriteria;

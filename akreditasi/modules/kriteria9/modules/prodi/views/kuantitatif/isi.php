@@ -42,6 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= Html::a('<i class="fas fa-file-excel"></i> Export Kuantitatif', ['kuantitatif/export'],
                     [
                         'class' => 'btn btn-success btn-pill btn-elevate btn-elevate-air',
+                        'data-confirm' => 'Export Kuantitatif masih versi beta dan belum sempurna, tetap lanjutkan?',
                         'data-method' => 'POST',
                         'data-params' => ['akreditasiprodi' => $akreditasiProdi->id]
                     ]) ?>
@@ -62,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => \kartik\grid\SerialColumn::class, 'header' => 'No'],
                     'nama_dokumen',
                     'isi_dokumen',
-                    'created_at:datetime',
+                    'updated_at:datetime',
                     'sumber',
                     [
                         'class' => \common\widgets\ActionColumn::class,

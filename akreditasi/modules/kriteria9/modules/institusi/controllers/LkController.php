@@ -72,7 +72,7 @@ class LkController extends BaseController
         $lkInstitusi = K9LkInstitusi::findOne($lk);
 
         $arrayProfil = $this->getProfilInstitusi();
-        $json = K9InstitusiJsonHelper::getAllJsonLk($arrayProfil['jenis']);
+        $json = K9InstitusiJsonHelper::getAllJsonLk($arrayProfil['bentuk']);
         $kriteria = $this->getArrayKriteria($lk);
         $institusi = Yii::$app->params['institusi'];
         $dataDokumen = $lkInstitusi->getEksporDokumen()->orderBy('kode_dokumen')->all();
@@ -150,7 +150,7 @@ class LkController extends BaseController
     public function actionIsiKriteria($lk, $kriteria)
     {
         $profil = $this->getProfilInstitusi();
-        $json = K9InstitusiJsonHelper::getJsonKriteriaLk($kriteria, $profil['jenis']);
+        $json = K9InstitusiJsonHelper::getJsonKriteriaLk($kriteria, $profil['bentuk']);
         $poinKriteria = $json->butir;
         $lkInstitusi = K9LkInstitusi::findOne($lk);
 
@@ -297,7 +297,7 @@ class LkController extends BaseController
     {
         $lkInstitusi = K9LkInstitusi::findOne($lk);
         $profil = $this->getProfilInstitusi();
-        $json = K9InstitusiJsonHelper::getAllJsonLk($profil['jenis']);
+        $json = K9InstitusiJsonHelper::getAllJsonLk($profil['bentuk']);
         $kriteria = $this->getArrayKriteria($lk);
         $institusi = Yii::$app->params['institusi'];
 
@@ -321,7 +321,7 @@ class LkController extends BaseController
     public function actionLihatKriteria($kriteria, $lk)
     {
         $profil = $this->getProfilInstitusi();
-        $json = K9InstitusiJsonHelper::getJsonKriteriaLk($kriteria, $profil['jenis']);
+        $json = K9InstitusiJsonHelper::getJsonKriteriaLk($kriteria, $profil['bentuk']);
         $poinKriteria = $json->butir;
         $lkInstitusi = K9LkInstitusi::findOne($lk);
         $akreditasiInstitusi = $lkInstitusi->akreditasiInstitusi;
@@ -353,7 +353,7 @@ class LkController extends BaseController
     {
         $lkInstitusi = K9LkInstitusi::findOne($lk);
         $profil = $this->getProfilInstitusi();
-        $currentPoint = $this->getKriteriaNomor($kriteria, $poin, $profil['jenis']);
+        $currentPoint = $this->getKriteriaNomor($kriteria, $poin, $profil['bentuk']);
 
         $path = K9InstitusiDirectoryHelper::getDokumenLkUrl($lkInstitusi->akreditasiInstitusi);
 

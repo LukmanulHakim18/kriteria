@@ -60,10 +60,10 @@ class InstitusiController extends BaseController
     {
         $akreditasiInstitusi = $this->findAkreditasiInstitusi($id);
         $profil = ArrayHelper::map(ProfilInstitusi::find()->all(), 'nama', 'isi');
-        $jsonEksternal = K9InstitusiJsonHelper::getJsonPenilaianKondisiEksternal($profil['bentuk']);
-        $jsonProfil = K9InstitusiJsonHelper::getJsonPenilaianProfil($profil['bentuk']);
-        $jsonKriteria = K9InstitusiJsonHelper::getJsonPenilaianKriteria($profil['bentuk']);
-        $jsonAnalisis = K9InstitusiJsonHelper::getJsonPenilaianAnalisis($profil['bentuk']);
+        $jsonEksternal = K9InstitusiJsonHelper::getJsonPenilaianKondisiEksternal($profil['jenis_pengelolaan']);
+        $jsonProfil = K9InstitusiJsonHelper::getJsonPenilaianProfil($profil['jenis_pengelolaan']);
+        $jsonKriteria = K9InstitusiJsonHelper::getJsonPenilaianKriteria($profil['jenis_pengelolaan']);
+        $jsonAnalisis = K9InstitusiJsonHelper::getJsonPenilaianAnalisis($profil['jenis_pengelolaan']);
 
         $modelEksternal = $akreditasiInstitusi->penilaianEksternal;
         $modelProfil = $akreditasiInstitusi->penilaianProfil;
@@ -125,7 +125,7 @@ class InstitusiController extends BaseController
             $kriteria = $tabel[0];
             $lk = $akreditasiInstitusi->k9LkInstitusi;
             $profilInstitusi = ArrayHelper::map(ProfilInstitusi::find()->all(), 'nama', 'isi');
-            $json = K9InstitusiJsonHelper::getJsonKriteriaLk($kriteria, $profilInstitusi['jenis']);
+            $json = K9InstitusiJsonHelper::getJsonKriteriaLk($kriteria, $profilInstitusi['bentuk']);
             $collection = Collection::make($json->butir);
             $current = $collection->where('tabel', $tabel)->first();
             $path = K9InstitusiDirectoryHelper::getDokumenLkUrl($akreditasiInstitusi);
