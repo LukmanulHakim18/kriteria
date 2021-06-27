@@ -29,13 +29,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="kt-portlet__head-actions">
 
 
-                            <?= Html::a('<i class=flaticon2-edit></i> Edit', ['update', 'id' => $model->id], ['class' => 'btn btn-warning btn-elevate btn-elevate-air']) ?>
                             <?= Html::a('<i class=flaticon2-delete></i> Hapus', ['delete', 'id' => $model->id], [
-                            'class' => 'btn btn-danger btn-elevate btn-elevate-air',
-                            'data' => [
-                            'confirm' => 'Apakah anda ingin menghapus item ini?',
-                            'method' => 'post',
-                            ],
+                                'class' => 'btn btn-danger btn-elevate btn-elevate-air',
+                                'data' => [
+                                    'confirm' => 'Apakah anda ingin menghapus item ini?',
+                                    'method' => 'post',
+                                ],
                             ]) ?>
                         </div>
                     </div>
@@ -46,16 +45,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                     <?= DetailView::widget([
-                    'model' => $model,
-                    'attributes' => [
-                                'id',
-            'nama',
-            'tahun',
-            'jenis_akreditasi',
-            'lembaga',
-            'created_at:datetime',
-            'updated_at:datetime',
-                    ],
+                        'model' => $model,
+                        'attributes' => [
+                            'id',
+                            'nama',
+                            'tahun',
+                            'jenis_akreditasi',
+                            'lembaga',
+                            'created_at:datetime',
+                            'updated_at:datetime',
+                        ],
                     ]) ?>
 
                 </div>
