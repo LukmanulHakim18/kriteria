@@ -197,7 +197,7 @@ class ResourceController extends BaseController
         $detail = $this->findDetailBerkas($params['id']);
         $prodi = $this->findProdi($params['prodi']);
         $kode = $params['kode'];
-        $jenis = $params['bentuk'];
+        $jenis = $params['jenis'];
         $id_led_lk = $params['id_led_lk'];
         $kriteria = $params['kriteria'];
         $jenis_dokumen = $params['jenis_dokumen'];
