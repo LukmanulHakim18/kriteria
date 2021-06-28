@@ -12,9 +12,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1 class="text-center"><?= Yii::$app->params['institusi'] ?></h1>
 
     <div class="kt-portlet__body">
-        <div class="text-center mt-30 mb-30">
-            <img src="<?= common\helpers\kriteria9\K9InstitusiDirectoryHelper::getStrukturUrl() . '/' . $struktur ?>">
+        <div class="row">
+            <div class="text-center col-lg-12">
+                <img
+                    src="<?= common\helpers\kriteria9\K9InstitusiDirectoryHelper::getStrukturUrl() . '/' . $struktur ?>"
+                    height="480px" width="860px">
+            </div>
         </div>
+
         <div class="clearfix"></div>
     </div>
 
