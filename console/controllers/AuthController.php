@@ -5,10 +5,11 @@ namespace console\controllers;
 use common\auth\rbac\rules\AccessOwnFakultas;
 use common\auth\rbac\rules\AccessOwnProdi;
 use common\auth\rbac\rules\AccessOwnUnit;
+use common\auth\rbac\rules\AccessProdiAsesor;
+use common\auth\rbac\rules\AccessPtAsesor;
 use Yii;
 use yii\console\Controller;
 use yii\console\ExitCode;
-use yii\console\Response;
 
 class AuthController extends Controller
 {
@@ -19,7 +20,6 @@ class AuthController extends Controller
 
         printf("Creating Roles\n");
         $superadmin = $auth->createRole('superadmin');
-        $admin = $auth->createRole('admin');
         $lpm = $auth->createRole('lpm');
         $rektorat = $auth->createRole('rektorat');
         $unit = $auth->createRole('unit');
@@ -27,9 +27,9 @@ class AuthController extends Controller
         $dekanat = $auth->createRole('dekanat');
         $prodi = $auth->createRole('prodi');
         $kaprodi = $auth->createRole('kaprodi');
+        $asesor = $auth->createRole('asesor');
 
         $auth->add($superadmin);
-        $auth->add($admin);
         $auth->add($lpm);
         $auth->add($rektorat);
         $auth->add($unit);
@@ -37,6 +37,7 @@ class AuthController extends Controller
         $auth->add($dekanat);
         $auth->add($prodi);
         $auth->add($kaprodi);
+        $auth->add($asesor);
 
         printf("Assigning SuperAdmin\n");
         $auth->assign($superadmin, 1);
@@ -45,7 +46,7 @@ class AuthController extends Controller
         $suPermission = ['@app-admin/*', '@app-akreditasi/*', '@app-monitoring/*'];
 
         foreach ($suPermission as $permission) {
-            printf("Creating Permission: ". $permission. "\n");
+            printf("Creating Permission: " . $permission . "\n");
             $permission = $auth->createPermission($permission);
             $auth->add($permission);
             printf("Assigning Permission to Roles \n");
@@ -53,56 +54,143 @@ class AuthController extends Controller
             $auth->addChild($lpm, $permission);
 
         }
-        $commonPermission = ['@app-akreditasi/site/*','@app-akreditasi/profile/*'];
+        $commonPermission = [
+            '@app-akreditasi/site/*',
+            '@app-akreditasi/profile/*',
+            '@app-akreditasi/kriteria9/default/*'
+        ];
 
-        $unitPermission = ['@app-akreditasi/unit/arsip/*'];
-        $prodiPermission = ['@app-akreditasi/kriteria9/prodi/*'];
-        $fakultasPermission = ['@app-akreditasi/fakultas/arsip/*'];
+        $unitPermission = [
+            '@app-akreditasi/unit/arsip/*',
+            '@app-akreditasi/unit/kegiatan/*',
+            '@app-akreditasi/unit/default/*',
+            '@app-akreditasi/unit/profil/*'
+        ];
+        $isiLedProdiPermission = ['@app-akreditasi/kriteria9/prodi/*', '@app-akreditasi/kriteria9/k9-prodi/*'];
+        $fakultasPermission = ['@app-akreditasi/kriteria9/fakultas/*', '@app-akreditasi/fakultas/*'];
+        $isiLedInstitusiPermission = ['@app-akreditasi/kriteria9/k9-institusi/*'];
+        $asesorPermission = ['@app-akreditasi/asesor/*'];
+
+        $commonMonitoring = [
+            '@app-monitoring/site/*',
+            '@app-monitoring/profile/*',
+        ];
+        $kaprodiPermission = [
+            '@app-monitoring/eksekutif/arsip/prodi',
+            '@app-monitoring/eksekutif/eksekutif-prodi/*'
+        ];
+        $dekanatPermission = [
+            '@app-monitoring/eksekutif/arsip/fakultas',
+            '@app-monitoring/eksekutif/eksekutif-fakultas/*'
+        ];
 
         //common permission
-        foreach ($commonPermission as $permission){
-            printf("Creating Permission: ". $permission. "\n");
+        foreach ($commonPermission as $permission) {
+            printf("Creating Permission: " . $permission . "\n");
             $permission = $auth->createPermission($permission);
             $auth->add($permission);
             printf("Assigning Permission to Roles \n");
-            $auth->addChild($unit,$permission);
-            $auth->addChild($prodi,$permission);
-            $auth->addChild($kaprodi,$permission);
-            $auth->addChild($dekanat,$permission);
-            $auth->addChild($fakultas,$permission);
+            $auth->addChild($unit, $permission);
+            $auth->addChild($prodi, $permission);
+            $auth->addChild($asesor, $permission);
+        }
+
+        //common permission
+        foreach ($commonMonitoring as $permission) {
+            printf("Creating Permission: " . $permission . "\n");
+            $permission = $auth->createPermission($permission);
+            $auth->add($permission);
+            printf("Assigning Permission to Roles \n");
+            $auth->addChild($kaprodi, $permission);
+            $auth->addChild($dekanat, $permission);
+            $auth->addChild($rektorat, $permission);
+        }
+
+        //kaprodi permission
+        foreach ($kaprodiPermission as $permission) {
+            printf("Creating Permission: " . $permission . "\n");
+            $permission = $auth->createPermission($permission);
+            $auth->add($permission);
+            printf("Assigning Permission to Roles \n");
+            $auth->addChild($kaprodi, $permission);
+        }
+
+        //kaprodi permission
+        foreach ($dekanatPermission as $permission) {
+            printf("Creating Permission: " . $permission . "\n");
+            $permission = $auth->createPermission($permission);
+            $auth->add($permission);
+            printf("Assigning Permission to Roles \n");
+            $auth->addChild($dekanat, $permission);
         }
 
         //unit permission
-        foreach ($unitPermission as $permission){
-            printf("Creating Permission: ". $permission. "\n");
+        foreach ($unitPermission as $permission) {
+            printf("Creating Permission: " . $permission . "\n");
             $permission = $auth->createPermission($permission);
             $auth->add($permission);
             printf("Assigning Permission to Roles \n");
-            $auth->addChild($unit,$permission);
+            $auth->addChild($unit, $permission);
         }
 
         //prodi permissions
-        foreach ($prodiPermission as $permission) {
-            printf("Creating Permission: ". $permission. "\n");
+        foreach ($isiLedProdiPermission as $permission) {
+            printf("Creating Permission: " . $permission . "\n");
             $permission = $auth->createPermission($permission);
             $auth->add($permission);
             printf("Assigning Permission to Roles \n");
-            $auth->addChild($prodi,$permission);
-            $auth->addChild($kaprodi,$permission);
+            $auth->addChild($prodi, $permission);
         }
+        $auth->addChild($kaprodi, $prodi);
+
 
         //fakultas permissions
-        foreach ($fakultasPermission as $permission){
-            printf("Creating Permission: ". $permission. "\n");
+        foreach ($fakultasPermission as $permission) {
+            printf("Creating Permission: " . $permission . "\n");
             $permission = $auth->createPermission($permission);
             $auth->add($permission);
             printf("Assigning Permission to Roles \n");
-            $auth->addChild($fakultas,$permission);
-            $auth->addChild($dekanat,$permission);
+            $auth->addChild($fakultas, $permission);
         }
+
         printf("Add Prodi Permission to Fakultas and Dekanat\n");
-        $auth->addChild($fakultas,$prodi);
-        $auth->addChild($dekanat,$kaprodi);
+        $auth->addChild($fakultas, $prodi);
+        $auth->addChild($dekanat, $fakultas);
+
+        //asesor permissions
+        foreach ($isiLedInstitusiPermission as $permission) {
+            printf("Creating Permission: " . $permission . "\n");
+            $permission = $auth->createPermission($permission);
+            $auth->add($permission);
+        }
+        //asesor permissions
+        foreach ($asesorPermission as $permission) {
+            printf("Creating Permission: " . $permission . "\n");
+            $permission = $auth->createPermission($permission);
+            $auth->add($permission);
+            printf("Assigning Permission to Roles \n");
+            $auth->addChild($asesor, $permission);
+        }
+
+
+        printf("create asesor rule");
+        $accessProdiAsesor = new AccessProdiAsesor();
+        $accessPtAsesor = new AccessPtAsesor();
+
+        $auth->add($accessProdiAsesor);
+        $auth->add($accessPtAsesor);
+
+        print("create izin asesor permission");
+        $izinProdiAsesor = $auth->createPermission('izinProdiAsesor');
+        $izinProdiAsesor->description = "Access ke dalam pengisian prodi sebagai asesor";
+        $izinProdiAsesor->ruleName = $accessProdiAsesor->name;
+        $auth->add($izinProdiAsesor);
+
+        $izinPtAsesor = $auth->createPermission('izinPtAsesor');
+        $izinPtAsesor->description = "Akses ke dalam pengisian pt sebagai asesor";
+        $izinPtAsesor->ruleName = $accessPtAsesor->name;
+        $auth->add($izinPtAsesor);
+
 
         //prodi rules
         printf("Create AccessOwnProdi Rule \n");
@@ -114,12 +202,22 @@ class AuthController extends Controller
         $izinProdi->ruleName = $accessOwnProdi->name;
         $auth->add($izinProdi);
 
-        $prodiRoute = $auth->createPermission('@app-akreditasi/kriteria9/k9-prodi/*');
+        $prodiRoute = $auth->getPermission('@app-akreditasi/kriteria9/k9-prodi/*');
+        $prodiRoute2 = $auth->getPermission('@app-akreditasi/kriteria9/prodi/*');
         printf("Adding izinProdi to Appropriate Roles\n");
-        $auth->add($prodiRoute);
-        $auth->addChild($izinProdi,$prodiRoute);
-        $auth->addChild($prodi,$izinProdi);
-        $auth->addChild($kaprodi,$izinProdi);
+        $auth->addChild($izinProdi, $prodiRoute);
+        $auth->addChild($prodi, $izinProdi);
+
+        printf("adding izinProdiAsesor to prodi permission");
+        $auth->addChild($izinProdiAsesor, $prodiRoute);
+        $auth->addChild($asesor, $izinProdiAsesor);
+        $auth->addChild($izinProdiAsesor, $prodiRoute2);
+
+
+        $institusiLed = $auth->getPermission('@app-akreditasi/kriteria9/k9-institusi/*');
+        printf("adding izinPtAsesor to pt permission");
+        $auth->addChild($izinPtAsesor, $institusiLed);
+        $auth->addChild($asesor, $izinPtAsesor);
 
         //unit rules
         printf("Create AccessOwnUnit Rule \n");
@@ -131,18 +229,15 @@ class AuthController extends Controller
         $izinUnit->ruleName = $accessOwnUnit->name;
         $auth->add($izinUnit);
 
-        $unitRoute1 = $auth->createPermission('@app-akreditasi/unit/default/*');
+        $unitRoute1 = $auth->getPermission('@app-akreditasi/unit/default/*');
         printf("Adding izinUnit to Appropriate Roles\n");
-        $auth->add($unitRoute1);
-        $auth->addChild($izinUnit,$unitRoute1);
-        $unitRoute2 = $auth->createPermission('@app-akreditasi/unit/kegiatan/*');
-        $auth->add($unitRoute2);
-        $auth->addChild($izinUnit,$unitRoute2);
-        $unitRoute3 = $auth->createPermission('@app-akreditasi/unit/profil/*');
-        $auth->add($unitRoute3);
-        $auth->addChild($izinUnit,$unitRoute3);
+        $auth->addChild($izinUnit, $unitRoute1);
+        $unitRoute2 = $auth->getPermission('@app-akreditasi/unit/kegiatan/*');
+        $auth->addChild($izinUnit, $unitRoute2);
+        $unitRoute3 = $auth->getPermission('@app-akreditasi/unit/profil/*');
+        $auth->addChild($izinUnit, $unitRoute3);
 
-        $auth->addChild($unit,$izinUnit);
+        $auth->addChild($unit, $izinUnit);
 
         //Fakultas Rules.
 
@@ -155,20 +250,12 @@ class AuthController extends Controller
         $izinFakultas->ruleName = $accessOwnFakultas->name;
         $auth->add($izinFakultas);
 
-        $fakultasRoute1 = $auth->createPermission('@app-akreditasi/fakultas/default/*');
+        $fakultasRoute1 = $auth->getPermission('@app-akreditasi/fakultas/*');
         printf("Adding izinFakultas to Appropriate Roles\n");
-        $auth->add($fakultasRoute1);
-        $auth->addChild($izinFakultas,$fakultasRoute1);
-        $fakultasRoute2 = $auth->createPermission('@app-akreditasi/fakultas/berkas/*');
-        $auth->add($fakultasRoute2);
-        $auth->addChild($izinFakultas,$fakultasRoute2);
-        $fakultasRoute3 = $auth->createPermission('@app-akreditasi/fakultas/profil/*');
-        $auth->add($fakultasRoute3);
-        $auth->addChild($izinFakultas,$fakultasRoute3);
+        $auth->addChild($izinFakultas, $fakultasRoute1);
+        $auth->addChild($fakultas, $izinFakultas);
 
-        $auth->addChild($fakultas,$izinFakultas);
-        $auth->addChild($dekanat,$izinFakultas);
-
+        $auth->addChild($rektorat, $lpm);
         return ExitCode::OK;
     }
 

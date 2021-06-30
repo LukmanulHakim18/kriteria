@@ -2,9 +2,9 @@
 
 namespace admin\models;
 
+use common\models\User;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\User;
 
 /**
  * UserSearch represents the model behind the search form of `common\models\User`.
@@ -46,6 +46,11 @@ class UserSearch extends User
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_ASC
+                ]
+            ]
         ]);
 
         $query->andWhere('auth_assignment.item_name NOT LIKE \'superadmin\'');
