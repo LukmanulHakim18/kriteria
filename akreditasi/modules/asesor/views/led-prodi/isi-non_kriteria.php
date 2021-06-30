@@ -1,21 +1,23 @@
 <?php
 /**
  * @var $this yii\web\View
- * @var $ledInstitusi common\models\kriteria9\led\institusi\K9LedInstitusi
+ * @var $ledProdi common\models\kriteria9\led\prodi\K9LedProdi
  * @var $json common\models\kriteria9\led\Led
- * @var $detail common\models\kriteria9\led\institusi\K9LedInstitusiNonKriteriaDokumen
+ * @var $detail common\models\kriteria9\led\prodi\K9LedProdiNonKriteriaDokumen
  */
-
-$this->title = "Narasi " . $json->nama;
-$this->params['breadcrumbs'][] = ['label' => 'Beranda', 'url' => ['/site/index']];
-$this->params['breadcrumbs'][] = ['label' => 'Asesor', 'url' => ['default/index']];
+$this->title = $json->nama;
 $this->params['breadcrumbs'][] = [
-    'label' => \yii\helpers\StringHelper::mb_ucfirst($untuk) . ' Led',
-    'url' => ['led-institusi/' . $untuk, 'led' => $ledInstitusi->id]
+    'label' => 'Asesor',
+    'url' => ['/asesor/default/index']
+];
+$this->params['breadcrumbs'][] = [
+    'label' => "Led",
+    'url' => ['led-prodi/lihat', 'led' => $ledProdi->id, 'prodi' => $prodi->id]
 ];
 $this->params['breadcrumbs'][] = $this->title;
 
 
+use common\helpers\NomorKriteriaHelper;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Progress;
 
@@ -50,9 +52,9 @@ use yii\bootstrap4\Progress;
 
 
                     <?php
-                    if ($poin):
+                    if ($currentPoint):
                         foreach ($poin as $key => $item):
-                            $modelAttribute = \common\helpers\NomorKriteriaHelper::changeToDbFormat($item->nomor);
+                            $modelAttribute = NomorKriteriaHelper::changeToDbFormat($item->nomor);
 
                             ?>
                             <div class="card">
@@ -127,8 +129,9 @@ use yii\bootstrap4\Progress;
     </div>
 <?php
 $url = \yii\helpers\Url::to([
-    'led-institusi/butir-item-non-kriteria',
-    'led' => $ledInstitusi->id,
+    'led-prodi/butir-item-non-kriteria',
+    'led' => $ledProdi->id,
+    'prodi' => $prodi->id,
     'untuk' => $untuk
 ], true);
 $js = <<<JS
