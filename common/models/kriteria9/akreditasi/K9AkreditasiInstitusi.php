@@ -19,6 +19,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int $created_at
  * @property int $updated_at
  * @property double $progress
+ * @property int $skor
  *
  * @property K9Akreditasi $akreditasi
  * @property K9LedInstitusi $k9LedInstitusi
@@ -34,9 +35,16 @@ class K9AkreditasiInstitusi extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public function attributeLabels()
     {
-        return 'k9_akreditasi_institusi';
+        return [
+            'id' => 'ID',
+            'id_akreditasi' => 'Id Akreditasi',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+            'progress' => 'Progress',
+            'skor' => 'Skor'
+        ];
     }
 
     /**
@@ -55,7 +63,7 @@ class K9AkreditasiInstitusi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_akreditasi', 'created_at', 'updated_at'], 'integer'],
+            [['id_akreditasi', 'created_at', 'updated_at', 'skor'], 'integer'],
             [['progress'], 'number'],
             [
                 ['id_akreditasi'],
@@ -70,15 +78,9 @@ class K9AkreditasiInstitusi extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public static function tableName()
     {
-        return [
-            'id' => 'ID',
-            'id_akreditasi' => 'Id Akreditasi',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'progress' => 'Progress',
-        ];
+        return 'k9_akreditasi_institusi';
     }
 
     /**
@@ -153,5 +155,16 @@ class K9AkreditasiInstitusi extends \yii\db\ActiveRecord
     public function getPenilaianAnalisis()
     {
         return $this->hasOne(K9PenilaianInstitusiAnalisis::class, ['id_akreditasi_institusi' => 'id']);
+    }
+
+    public function updateSkor()
+    {
+        $eksternal = $this->penilaianEksternal;
+        $profil = $this->penilaianProfil;
+        $kriteria = $this->penilaianKriteria;
+        $analisis = $this->penilaianAnalisis;
+        $skor = $eksternal->total + $profil->total + $kriteria->total + $analisis->total;
+        $this->skor = $skor;
+        $this->save(false);
     }
 }

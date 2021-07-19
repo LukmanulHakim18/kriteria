@@ -1,7 +1,7 @@
 <?php
 
 
-namespace monitoring\modules\asesor\controllers;
+namespace akreditasi\modules\asesor\controllers;
 
 
 use yii\web\Controller;

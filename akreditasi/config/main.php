@@ -36,6 +36,9 @@ return [
         'unit' => [
             'class' => 'akreditasi\modules\unit\Unit',
         ],
+        'asesor' => [
+            'class' => 'akreditasi\modules\asesor\Asesor',
+        ],
         'datecontrol' => [
             'class' => 'kartik\datecontrol\Module',
             // format settings for displaying each date attribute (ICU format example)

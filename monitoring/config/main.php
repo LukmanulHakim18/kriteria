@@ -16,9 +16,6 @@ return [
     'controllerNamespace' => 'monitoring\controllers',
     'bootstrap' => ['log'],
     'modules' => [
-        'asesor' => [
-            'class' => 'monitoring\modules\asesor\Asesor',
-        ],
         'eksekutif' => [
             'class' => 'monitoring\modules\eksekutif\Eksekutif',
             'modules' => [

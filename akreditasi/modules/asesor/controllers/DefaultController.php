@@ -1,6 +1,6 @@
 <?php
 
-namespace monitoring\modules\asesor\controllers;
+namespace akreditasi\modules\asesor\controllers;
 
 use common\helpers\kriteria9\K9InstitusiDirectoryHelper;
 use common\helpers\kriteria9\K9ProdiDirectoryHelper;

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace monitoring\modules\asesor\controllers;
+namespace akreditasi\modules\asesor\controllers;
 
 use akreditasi\models\kriteria9\forms\led\K9DetailLedInstitusiNonKriteriaLinkForm;
 use akreditasi\models\kriteria9\forms\led\K9DetailLedProdiLinkForm;

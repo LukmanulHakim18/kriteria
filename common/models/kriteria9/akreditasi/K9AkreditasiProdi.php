@@ -21,6 +21,7 @@ use yii\behaviors\TimestampBehavior;
  * @property float $progress
  * @property int $created_at
  * @property int $updated_at
+ * @property int $skor
  *
  * @property K9Akreditasi $akreditasi
  * @property ProgramStudi $prodi
@@ -45,6 +46,8 @@ class K9AkreditasiProdi extends \yii\db\ActiveRecord
             'id_prodi' => 'Id Prodi',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'progress' => 'Progress',
+            'skor' => 'Skor'
         ];
     }
 
@@ -64,7 +67,7 @@ class K9AkreditasiProdi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_akreditasi', 'id_prodi', 'created_at', 'updated_at'], 'integer'],
+            [['id_akreditasi', 'id_prodi', 'created_at', 'updated_at', 'skor'], 'integer'],
             [
                 ['id_akreditasi'],
                 'exist',
@@ -174,5 +177,16 @@ class K9AkreditasiProdi extends \yii\db\ActiveRecord
         $this->progress = $progress;
 
         return $this;
+    }
+
+    public function updateSkor()
+    {
+        $eksternal = $this->penilaianEksternal;
+        $profil = $this->penilaianProfil;
+        $kriteria = $this->penilaianKriteria;
+        $analisis = $this->penilaianAnalisis;
+        $skor = $eksternal->total + $profil->total + $kriteria->total + $analisis->total;
+        $this->skor = $skor;
+        $this->save(false);
     }
 }

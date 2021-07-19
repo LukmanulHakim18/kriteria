@@ -35,53 +35,13 @@ class K9PenilaianInstitusiProfil extends \yii\db\ActiveRecord
 
     const STATUS_PENILAIAN = [self::STATUS_READY => self::STATUS_READY, self::STATUS_FINSIH => self::STATUS_FINSIH];
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
+    public function afterSave($insert, $changedAttributes)
     {
-        return 'k9_penilaian_institusi_profil';
-    }
 
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::class,
-            BlameableBehavior::class
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
-    {
-        return [
-            [['id_akreditasi_institusi', 'total', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['_1'], 'string'],
-            [['status'], 'string', 'max' => 255],
-            [
-                ['id_akreditasi_institusi'],
-                'exist',
-                'skipOnError' => true,
-                'targetClass' => K9AkreditasiInstitusi::className(),
-                'targetAttribute' => ['id_akreditasi_institusi' => 'id']
-            ],
-            [
-                ['created_by'],
-                'exist',
-                'skipOnError' => true,
-                'targetClass' => User::className(),
-                'targetAttribute' => ['created_by' => 'id']
-            ],
-            [
-                ['updated_by'],
-                'exist',
-                'skipOnError' => true,
-                'targetClass' => User::className(),
-                'targetAttribute' => ['updated_by' => 'id']
-            ],
-        ];
+        if ($this->status === self::STATUS_FINSIH) {
+            $this->akreditasiInstitusi->updateSkor();
+        }
+        parent::afterSave($insert, $changedAttributes);
     }
 
     /**
@@ -129,6 +89,55 @@ class K9PenilaianInstitusiProfil extends \yii\db\ActiveRecord
         $skor = $this->hitung($this, $exclude, $indikator);
         $this->total = $skor;
         return parent::beforeSave($insert);
+    }
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+            BlameableBehavior::class
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['id_akreditasi_institusi', 'total', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['_1'], 'string'],
+            [['status'], 'string', 'max' => 255],
+            [
+                ['id_akreditasi_institusi'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => K9AkreditasiInstitusi::className(),
+                'targetAttribute' => ['id_akreditasi_institusi' => 'id']
+            ],
+            [
+                ['created_by'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => User::className(),
+                'targetAttribute' => ['created_by' => 'id']
+            ],
+            [
+                ['updated_by'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => User::className(),
+                'targetAttribute' => ['updated_by' => 'id']
+            ],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'k9_penilaian_institusi_profil';
     }
 
     /**

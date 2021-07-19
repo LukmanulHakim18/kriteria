@@ -1,6 +1,6 @@
 <?php
 
-namespace monitoring\modules\asesor;
+namespace akreditasi\modules\asesor;
 
 /**
  * asesor module definition class
@@ -10,7 +10,7 @@ class Asesor extends \yii\base\Module
     /**
      * {@inheritdoc}
      */
-    public $controllerNamespace = 'monitoring\modules\asesor\controllers';
+    public $controllerNamespace = 'akreditasi\modules\asesor\controllers';
 
     /**
      * {@inheritdoc}
