@@ -127,6 +127,15 @@ class K9PenilaianProdiKriteria extends ActiveRecord
 
     const STATUS_PENILAIAN = [self::STATUS_READY => self::STATUS_READY, self::STATUS_FINSIH => self::STATUS_FINSIH];
 
+    public function afterSave($insert, $changedAttributes)
+    {
+
+        if ($this->status === self::STATUS_FINSIH) {
+            $this->akreditasiProdi->updateSkor();
+        }
+        parent::afterSave($insert, $changedAttributes);
+    }
+
     /**
      * {@inheritdoc}
      */

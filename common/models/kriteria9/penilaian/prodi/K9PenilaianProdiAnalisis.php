@@ -40,12 +40,65 @@ class K9PenilaianProdiAnalisis extends ActiveRecord
 
     const STATUS_PENILAIAN = [self::STATUS_READY => self::STATUS_READY, self::STATUS_FINSIH => self::STATUS_FINSIH];
 
+    public function afterSave($insert, $changedAttributes)
+    {
+
+        if ($this->status === self::STATUS_FINSIH) {
+            $this->akreditasiProdi->updateSkor();
+        }
+        parent::afterSave($insert, $changedAttributes);
+    }
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public function attributeLabels()
     {
-        return 'k9_penilaian_prodi_analisis';
+        return [
+            'id' => 'ID',
+            'id_akreditasi_prodi' => 'Id Akreditasi Prodi',
+            '_1_1' => '1.1',
+            '_2_1' => '2.1',
+            '_3_1' => '3.1',
+            '_4_1' => '4.1',
+            'total' => 'Total',
+            'status' => 'Status',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+            'created_by' => 'Created By',
+            'updated_by' => 'Updated By',
+        ];
+    }
+
+    /**
+     * @param bool $insert
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
+        $json = K9ProdiJsonHelper::getJsonPenilaianAnalisis($this->akreditasiProdi->prodi->jenjang);
+
+        $indikator = [];
+        foreach ($json->butir as $butir) {
+            foreach ($butir->indikators as $ind) {
+                $indikator[] = $ind->nomor;
+            }
+        }
+
+        $exclude = [
+            'id',
+            'id_akreditasi_prodi',
+            'total',
+            'status',
+            'created_at',
+            'updated_at',
+            'created_by',
+            'updated_by'
+        ];
+
+        $skor = $this->hitung($this, $exclude, $indikator);
+        $this->total = $skor;
+        return parent::beforeSave($insert);
     }
 
     /**
@@ -108,53 +161,9 @@ class K9PenilaianProdiAnalisis extends ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public static function tableName()
     {
-        return [
-            'id' => 'ID',
-            'id_akreditasi_prodi' => 'Id Akreditasi Prodi',
-            '_1_1' => '1.1',
-            '_2_1' => '2.1',
-            '_3_1' => '3.1',
-            '_4_1' => '4.1',
-            'total' => 'Total',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'created_by' => 'Created By',
-            'updated_by' => 'Updated By',
-        ];
-    }
-
-    /**
-     * @param bool $insert
-     * @return bool
-     */
-    public function beforeSave($insert)
-    {
-        $json = K9ProdiJsonHelper::getJsonPenilaianAnalisis($this->akreditasiProdi->prodi->jenjang);
-
-        $indikator = [];
-        foreach ($json->butir as $butir) {
-            foreach ($butir->indikators as $ind) {
-                $indikator[] = $ind->nomor;
-            }
-        }
-
-        $exclude = [
-            'id',
-            'id_akreditasi_prodi',
-            'total',
-            'status',
-            'created_at',
-            'updated_at',
-            'created_by',
-            'updated_by'
-        ];
-
-        $skor = $this->hitung($this, $exclude, $indikator);
-        $this->total = $skor;
-        return parent::beforeSave($insert);
+        return 'k9_penilaian_prodi_analisis';
     }
 
     /**

@@ -39,6 +39,15 @@ class K9PenilaianInstitusiAnalisis extends \yii\db\ActiveRecord
     const STATUS_PENILAIAN = [self::STATUS_READY => self::STATUS_READY, self::STATUS_FINSIH => self::STATUS_FINSIH];
 
 
+    public function afterSave($insert, $changedAttributes)
+    {
+
+        if ($this->status === self::STATUS_FINSIH) {
+            $this->akreditasiInstitusi->updateSkor();
+        }
+        parent::afterSave($insert, $changedAttributes);
+    }
+
     /**
      * {@inheritdoc}
      */
