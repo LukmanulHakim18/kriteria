@@ -41,9 +41,9 @@ $url = ['akreditasi/detail-pt', 'id' => $model->id]
                                 </div>
                             </div>
                             <div class="kt-widget__subhead">
-                                <a href="#"><i class="flaticon2-new-email"></i><?= $model->akreditasi->nama ?></a>
-                                <a href="#"><i class="flaticon2-calendar-3"></i><?= $model->akreditasi->tahun ?></a>
-                                <a href="#"><i class="flaticon2-placeholder"></i><?= $model->akreditasi->lembaga ?></a>
+                                <a href="#"><i class="flaticon2-edit"></i><?= $model->akreditasi->nama ?></a>
+                                <a href="#"><i class="flaticon2-calendar"></i><?= $model->akreditasi->tahun ?></a>
+                                <a href="#"><i class="flaticon-buildings"></i><?= $model->akreditasi->lembaga ?></a>
                             </div>
                             <div class="kt-widget__info">
                                 <div class="kt-widget__desc">
@@ -70,7 +70,7 @@ $url = ['akreditasi/detail-pt', 'id' => $model->id]
                     <div class="kt-widget__bottom">
                         <div class="kt-widget__item">
                             <div class="kt-widget__icon">
-                                <i class="flaticon-piggy-bank"></i>
+                                <i class="flaticon2-list-2"></i>
                             </div>
                             <div class="kt-widget__details">
                                 <span class="kt-widget__title">Laporan Evaluasi Diri</span>
@@ -92,7 +92,7 @@ $url = ['akreditasi/detail-pt', 'id' => $model->id]
                         </div>
                         <div class="kt-widget__item">
                             <div class="kt-widget__icon">
-                                <i class="flaticon-confetti"></i>
+                                <i class="flaticon2-graphic"></i>
                             </div>
                             <div class="kt-widget__details">
                                 <span class="kt-widget__title">Laporan Kinerja</span>
@@ -114,7 +114,7 @@ $url = ['akreditasi/detail-pt', 'id' => $model->id]
                         </div>
                         <div class="kt-widget__item">
                             <div class="kt-widget__icon">
-                                <i class="flaticon-pie-chart"></i>
+                                <i class="flaticon-doc"></i>
                             </div>
                             <div class="kt-widget__details">
                                 <span class="kt-widget__title">Matriks Kuantitatif</span>

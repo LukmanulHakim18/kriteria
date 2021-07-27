@@ -6,8 +6,6 @@
  * @var $akreditasiTerakhir common\models\kriteria9\akreditasi\K9Akreditasi
  */
 
-use yii\bootstrap4\Html;
-use yii\bootstrap4\Progress;
 use yii\data\ActiveDataProvider;
 use yii\widgets\ListView;
 
@@ -23,21 +21,21 @@ use yii\widgets\ListView;
                             <?php
                             preg_match_all('/[A-Z]/', $model->nama, $match);
                             $initial = implode('', $match[0]);
-                            echo $initial ;
+                            echo $initial;
                             ?>
                         </div>
                         <div class="kt-widget__content">
                             <div class="kt-widget__head">
                                 <a href="#" class="kt-widget__username">
-                                    <?=$model->nama?>
+                                    <?= $model->nama ?>
                                     <i class="flaticon2-correct"></i>
                                 </a>
                             </div>
                             <div class="kt-widget__subhead">
-                                <a href="#"><i class="flaticon2-new-email"></i>
-                                    <?=$akreditasiTerakhir->nama?></a>
-                                <a href="#"><i class="flaticon2-calendar-3"></i><?=$akreditasiTerakhir->tahun?></a>
-                                <a href="#"><i class="flaticon2-placeholder"></i><?=$akreditasiTerakhir->lembaga?></a>
+                                <a href="#"><i class="flaticon2-edit"></i>
+                                    <?= $akreditasiTerakhir->nama ?></a>
+                                <a href="#"><i class="flaticon2-calendar"></i><?= $akreditasiTerakhir->tahun ?></a>
+                                <a href="#"><i class="flaticon-buildings"></i><?= $akreditasiTerakhir->lembaga ?></a>
                             </div>
                             <div class="kt-widget__info">
                                 <div class="kt-widget__desc">
@@ -53,7 +51,12 @@ use yii\widgets\ListView;
                             $prodiDataProvider = new ActiveDataProvider(['query' => $model->getProgramStudis()]);
                             ?>
 
-                            <?= ListView::widget(['dataProvider' => $prodiDataProvider,'summary' => false,'itemView' => '//common/_fakultas_prodi_progress','viewParams' => ['akreditasiTerakhir'=>$akreditasiTerakhir]])?>
+                            <?= ListView::widget([
+                                'dataProvider' => $prodiDataProvider,
+                                'summary' => false,
+                                'itemView' => '//common/_fakultas_prodi_progress',
+                                'viewParams' => ['akreditasiTerakhir' => $akreditasiTerakhir]
+                            ]) ?>
                         </div>
 
                     </div>
